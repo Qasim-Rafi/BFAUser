@@ -1,0 +1,21 @@
+import React from 'react'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { colors } from '../constants/colorsPallet'
+import { globalPath } from '../constants/globalPath'
+import Icon from './Icon'
+import ResponsiveText from './RnText'
+
+const SeeAllButton = () => {
+    return (
+        <TouchableOpacity onPress={() => null} style={styles.button}  >
+    <ResponsiveText size={2.9} margin={[0, 10, 0, 0]} color={colors.yellow}>Show</ResponsiveText>
+            <Icon source={globalPath.BALI_LOGO} />
+        </TouchableOpacity>
+    )
+}
+
+export default SeeAllButton
+
+const styles = StyleSheet.create({
+    button: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 10 }
+})
