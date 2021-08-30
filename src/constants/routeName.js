@@ -3,6 +3,8 @@ export const routeName = {
   LOGIN: 'LOGIN',
   SIGN_UP: 'SIGN_UP',
   LANDING_SCREEN: 'LANDING_SCREEN',
+  Categories :'Categories',
+  RestaurantBranch :'RESTAURANT_BRANCH',
 
   // BOTTOM TABS
   HOME_BOTTOM: "Home",

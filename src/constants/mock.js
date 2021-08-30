@@ -15,3 +15,69 @@ export const BFAPartnerFakeData = [
     'https://images.unsplash.com/photo-1441126270775-739547c8680c?h=1024',
     'https://images.unsplash.com/photo-1440964829947-ca3277bd37f8?h=1024',
 ];
+export const exploreCategoryByName = [
+    {
+      title: "A",
+      data: ["Category Name ", "Category Name", "Category Name"]
+    },
+    {
+      title: "B",
+      data: ["Category Name", "Category Name", "Category Name"]
+    },
+    {
+      title: "C",
+      data: ["Category Name", "Category Name", "Category Name"]
+    },
+    {
+      title: "D",
+      data: ["Category Name", "Category Name","Category Name"]
+    },
+    {
+        title: "E",
+        data: ["Category Name", "Category Name","Category Name"]
+      },
+      {
+        title: "F",
+        data: ["Category Name", "Category Name","Category Name"]
+      },
+      {
+        title: "G",
+        data: ["Category Name", "Category Name","Category Name"]
+      },
+      {
+        title: "H",
+        data: ["Category Name", "Category Name","Category Name"]
+      },
+      {
+        title: "I",
+        data: ["Category Name", "Category Name","Category Name"]
+      },
+      {
+        title: "J",
+        data: ["Category Name", "Category Name","Category Name"]
+      },
+      {
+        title: "K",
+        data: ["Category Name", "Category Name","Category Name"]
+      },
+      {
+        title: "L",
+        data: ["Category Name", "Category Name","Category Name"]
+      },
+      {
+        title: "M",
+        data: ["Category Name", "Category Name","Category Name"]
+      },
+      {
+        title: "N",
+        data: ["Category Name", "Category Name","Category Name"]
+      },
+      {
+        title: "O",
+        data: ["Category Name", "Category Name","Category Name"]
+      },
+      {
+        title: "P",
+        data: ["Category Name", "Category Name","Category Name"]
+      },
+  ];
