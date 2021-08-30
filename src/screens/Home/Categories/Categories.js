@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { View, StyleSheet, Text, SectionList, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, SectionList, TouchableOpacity, FlatList } from 'react-native';
 import Icon from '../../../components/Icon';
 import Input from '../../../components/Input';
 import ResponsiveText from '../../../components/RnText';
@@ -7,22 +7,39 @@ import { globalPath } from '../../../constants/globalPath';
 import { exploreCategoryByName } from '../../../constants/mock';
 import { hp, wp } from '../../../helpers/Responsiveness';
 
-const Item = ({ title }) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
-);
 export default function Categories({ }) {
 
 
-  // const [ref, setRef] = useState(null);
-  // const [ref, setRef] = useState(null);
-  // const [ref, setRef] = useState(null);
-  // const [ref, setRef] = useState(null);
+  const [activeAlphabet, setActiveAlphabet] = useState(null);
   const scrollRef = useRef(null)
-  const ScrollHandler = ( item) => {
-    console.log("Items>>>>",item)
+  const viewConfigRef = React.useRef({ viewAreaCoveragePercentThreshold: 50 })
+  const ScrollHandler = (item, index) => {
+    setActiveAlphabet(item.title)
+    console.log("Items>>>>", item, index)
+    scrollRef?.current.scrollToIndex({ index, viewOffset: hp(22) })
 
+  };
+  const onViewableItemsChanged = ({ viewableItems, changed }) => {
+    // setActiveAlphabet(viewableItems[1]?.item.title)
+    console.log(viewableItems[1]?.item.title)
+    // setActiveAlphabet(viewableItems[2]?.items.title)
+    // console.log("Visible items are", viewableItems);
+    // console.log("Changed in this iteration", changed);
+  }
+  const renderItem = ({ item }) => {
+    return (
+      <View style={styles.item}>
+        <Text style={styles.header}>{item.title}</Text>
+        <View style={{ backgroundColor: "#383838", paddingLeft: 25, borderRadius: 10, justifyContent: 'center', height: hp(22) }}>
+          <Text style={styles.title}>{item.data[0]}</Text>
+          <Text style={styles.title}>{item.data[0]}</Text>
+          <Text style={styles.title}>{item.data[0]}</Text>
+          <Text style={styles.title}>{item.data[0]}</Text>
+          <Text style={styles.title}>{item.data[0]}</Text>
+          <Text style={styles.title}>{item.data[0]}</Text>
+        </View>
+      </View>
+    )
   };
   return (
     <View style={styles.container}>
@@ -33,30 +50,29 @@ export default function Categories({ }) {
         <Icon source={globalPath.SEARCH_LOGO} />
 
       </View>
-      <View style={{ position: 'absolute', height: hp(85), width: wp(10), backgroundColor: 'red', zIndex: 1000, right: 0, marginTop: hp(5), alignItems: 'center', }}>
-        {exploreCategoryByName.map((item) => {
+      <View style={{ position: 'absolute', height: hp(86), marginRight: 10, width: wp(5), backgroundColor: '#383838', zIndex: 1000, right: 0, marginTop: hp(10), alignItems: 'center', borderRadius: 10, justifyContent: 'center' }}>
+        {exploreCategoryByName.map((item, index) => {
+
           return (
-            <TouchableOpacity onPress={(item) => ScrollHandler(item)}>
-              <ResponsiveText>{item.title}</ResponsiveText>
+            <TouchableOpacity style={{ marginBottom: 2, backgroundColor: activeAlphabet === item.title ? 'white' : undefined, height: 25, width: 25, justifyContent: 'center', alignItems: 'center', borderRadius: 1000 }} onPress={() => ScrollHandler(item, index)}>
+              <ResponsiveText color="#EDC54E">{item.title}</ResponsiveText>
             </TouchableOpacity>
           )
         })}
       </View>
-      <SectionList
-        ref={scrollRef}
-        scrollToLocation={({
-          viewOffset: 2,
-          animated: true,
-          itemIndex: 19,
-          sectionIndex: 13
-        })}
-        sections={exploreCategoryByName}
-        keyExtractor={(item, index) => item + index}
-        renderItem={({ item }) => <Item title={item} />}
-        renderSectionHeader={({ section: { title } }) => (
-          <Text style={styles.header}>{title}</Text>
-        )}
-      />
+
+      <View style={{ flex: 0.9, paddingTop: 10, padding: 10 }}>
+        <FlatList
+          ref={scrollRef}
+          contentContainerStyle={{ paddingVertical: 150 }}
+          data={exploreCategoryByName}
+          keyExtractor={(item, index) => item + index}
+          renderItem={renderItem}
+          onViewableItemsChanged={onViewableItemsChanged}
+          viewabilityConfig={viewConfigRef.current}
+
+        />
+      </View>
     </View>)
 }
 
@@ -70,8 +86,9 @@ const styles = StyleSheet.create({
   },
 
   item: {
-
-    backgroundColor: "#383838",
+    // height:250,
+    // backgroundColor:'red'
+    marginBottom: 20,
   },
   header: {
     fontSize: 32,

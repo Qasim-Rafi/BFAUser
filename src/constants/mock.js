@@ -80,4 +80,41 @@ export const exploreCategoryByName = [
         title: "P",
         data: ["Category Name", "Category Name","Category Name"]
       },
+      {
+        title: "Q",
+        data: ["Category Name", "Category Name","Category Name"]
+      },
+      {
+        title: "R",
+        data: ["Category Name", "Category Name","Category Name"]
+      },
+      {
+        title: "S",
+        data: ["Category Name", "Category Name","Category Name"]
+      },
+      {
+        title: "T",
+        data: ["Category Name", "Category Name","Category Name"]
+      },
+      {
+        title: "U",
+        data: ["Category Name", "Category Name","Category Name"]
+      },
+      {
+        title: "V",
+        data: ["Category Name", "Category Name","Category Name"]
+      },
+      {
+        title: "X",
+        data: ["Category Name", "Category Name","Category Name"]
+      },
+      {
+        title: "Y",
+        data: ["Category Name", "Category Name","Category Name"]
+      },
+      {
+        title: "Z",
+        data: ["Category Name", "Category Name","Category Name"]
+      },
+      
   ];
