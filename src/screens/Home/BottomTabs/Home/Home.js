@@ -45,7 +45,7 @@ const Home = ({navigation}) => {
                     </RnButton>
                 </ImageBackground>
                 <View style={styles.recommendationContainer}>
-                    <Recommendation />
+                    <Recommendation navigation={navigation} />
                 </View>
                 <View style={styles.everyoneFavorite}>
                     <EveryOneFavourite />

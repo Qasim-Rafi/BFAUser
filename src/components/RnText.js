@@ -10,6 +10,7 @@ const ResponsiveText = ({
   size,
   fontFamily,
   margin,
+  top,
   position,
   padding,
   numberOfLines,
@@ -33,7 +34,7 @@ const ResponsiveText = ({
         position && { alignSelf: position },
         textAlign && { textAlign: 'center' },
         cutText && { textDecorationLine: 'line-through' },
-
+        {top:top},
         { color: color },
         { fontFamily: fontFamily ? Fonts[fontFamily] : Fonts.Medium },
       ]}>

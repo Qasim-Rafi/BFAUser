@@ -6,6 +6,12 @@ const EMAIL_LOGO = require('../assets/icons/email.png');
 const PASSWORD_LOGO = require('../assets/icons/password.png');
 const GOOGLE_LOGO = require('../assets/icons/google.png');
 const SEARCH_LOGO = require('../assets/icons/home.png');
+const HEART = require('../assets/icons/heart.png');
+const LOCATION = require('../assets/icons/goto.png');
+const CONTACT = require('../assets/icons/contact.png');
+
+
+
 
 // TEMP FILE PATH
 const USER_PROFILE_LOGO = require('../assets/icons/profile.png');
@@ -19,6 +25,9 @@ const PROMOS_LOGO = require('../assets/icons/promos.png');
 
 
 export const globalPath = {
+  CONTACT,
+  LOCATION,
+  HEART,
   BG_IMAGE,
   BALI_LOGO,
   USER_LOGO,
