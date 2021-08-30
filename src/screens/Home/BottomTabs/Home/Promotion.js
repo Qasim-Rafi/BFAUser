@@ -19,7 +19,7 @@ const Promotion = () => {
                         return (
                             <View style={{ width: 90, height: 130, marginHorizontal: 5, borderRadius: 3, overflow: 'hidden', flexDirection: 'row' }}>
                                 <ImageBackground style={{ flex:1 }} source={{ uri: url }} >
-                                <View style={{backgroundColor:'rgba(237, 197, 78, 0.7)',height:'15%',position:"relative",width:"60%",top:20}}>
+                                <View style={styles.promotionoffView}>
                                     <ResponsiveText size={2}>Flat 25% Off</ResponsiveText>
                                 </View>
                                 <View style={{ flex: 1, padding: 5,overflow: 'hidden', justifyContent: 'flex-end'}}>
@@ -41,7 +41,10 @@ const Promotion = () => {
 export default Promotion;
 
 const styles = StyleSheet.create({
-
+    promotionoffView:
+    {
+        backgroundColor:'rgba(237, 197, 78, 0.7)',height:'15%',position:"relative",width:"60%",top:20,justifyContent:'center'
+    },
     everyOneFavoriteHeaderSection: {
         padding: 10,
         flexDirection: 'row',

@@ -7,7 +7,7 @@ import RnButton from '../../../../components/RnButton'
 import { globalPath } from '../../../../constants/globalPath'
 import { wp } from '../../../../helpers/Responsiveness'
 import Swiper from 'react-native-swiper'
-
+import { routeName } from '../../../../constants/routeName'
 import { advertisementBannerFakeDATA } from '../../../../constants/mock'
 import { colors } from '../../../../constants/colorsPallet'
 import Fonts from '../../../../helpers/Fonts'
@@ -20,7 +20,7 @@ import YourFavourite from './YourFavourite'
 import Advertisement2ndVarient from './Advertisement2ndVarient'
 import AwardWinningDishes from './AwardWinningDishes'
 import Promotion from './Promotion'
-const Home = () => {
+const Home = ({navigation}) => {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -39,10 +39,10 @@ const Home = () => {
                     <BfaPartner />
                 </View>
                 <ImageBackground style={styles.cuisinesContainer} source={{ uri: 'https://images.unsplash.com/photo-1441716844725-09cedc13a4e7?h=1024' }}>
-                    <TouchableOpacity style={styles.cuisinesButton}>
+                    <RnButton  onPress={()=>navigation.navigate(routeName.Categories)} style={styles.cuisinesButton}>
                         <ResponsiveText fontFamily={'Regular'} size={2.9}>View Cuisines and Categories</ResponsiveText>
                         <Icon size={wp(8)} source={globalPath.BALI_LOGO} />
-                    </TouchableOpacity>
+                    </RnButton>
                 </ImageBackground>
                 <View style={styles.recommendationContainer}>
                     <Recommendation />
