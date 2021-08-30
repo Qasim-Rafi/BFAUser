@@ -16,6 +16,9 @@ export default function Categories({ }) {
 
 
   // const [ref, setRef] = useState(null);
+  // const [ref, setRef] = useState(null);
+  // const [ref, setRef] = useState(null);
+  // const [ref, setRef] = useState(null);
   const scrollRef = useRef(null)
   const ScrollHandler = ( item) => {
     console.log("Items>>>>",item)

@@ -23,6 +23,7 @@ function HomeStack() {
       }}
       initialRouteName="Home">
       {/* <Stack.Screen name={routeName.RestaurantBranch} component={RestaurantBranchDetailScreen} /> */}
+      {/* <Stack.Screen name={routeName.RestaurantBranch} component={RestaurantBranchDetailScreen} /> */}
       <Stack.Screen name={ routeName.Categories} component={Categories} />
       <Stack.Screen name={routeName.SPLASH} component={Splash} />
       <Stack.Screen name={routeName.LOGIN} component={Login} />
