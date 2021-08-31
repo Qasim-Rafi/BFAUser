@@ -6,6 +6,7 @@ export const routeName = {
   Categories :'Categories',
   RestaurantBranch :'RESTAURANT_BRANCH',
   DishDetails:'DishDetails',
+  MAP_VIEW:"MAP_VIEW",
   // BOTTOM TABS
   HOME_BOTTOM: "Home",
   RANDOMISER_BOTTOM: "Randomiser",

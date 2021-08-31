@@ -1,3 +1,6 @@
+// 1. INITIALIZE PATH  E.G  const BG_IMAGE = require('../assets/icons/background.png');
+// 2. EXPORT CONSTANT BELOW ICON PATHS IN GLOBAL PATH OBJECT
+
 const BG_IMAGE = require('../assets/icons/background.png');
 const BALI_LOGO = require('../assets/icons/bali-logo.png');
 const USER_LOGO = require('../assets/icons/user.png');
@@ -10,11 +13,21 @@ const HEART = require('../assets/icons/heart.png');
 const LOCATION = require('../assets/icons/goto.png');
 const CONTACT = require('../assets/icons/contact.png');
 
+// STATIC DUMMY IMAGES
+
+// 1. INITIALIZE PATH  E.G  const HOME_BFA_PARTNER = require('../assets/fake_Images/home-bfa-partner-ad.png');
+// 2. EXPORT CONSTANT BELOW FAKE IMAGES SECTION IN GLOBAL PATH OBJECT
+
+
+const HOME_BFA_PARTNER = require('../assets/fake_Images/home-bfa-partner-ad.png');
 
 
 
+// =====================================
 // TEMP FILE PATH
 const USER_PROFILE_LOGO = require('../assets/icons/profile.png');
+
+
 
 //BOTTOM TABS LOGO
 const CHECKOUT_LOGO = require('../assets/icons/checkout.png');
@@ -25,6 +38,8 @@ const PROMOS_LOGO = require('../assets/icons/promos.png');
 
 
 export const globalPath = {
+  //ICON PATHS HERE
+  
   CONTACT,
   LOCATION,
   HEART,
@@ -41,7 +56,9 @@ export const globalPath = {
   RANDOMISER_LOGO,
   PROMOS_LOGO,
   SEARCH_LOGO,
-  USER_PROFILE_LOGO
+  USER_PROFILE_LOGO,
 
+  // FAKE IMAGES HERE
+HOME_BFA_PARTNER
 
 };

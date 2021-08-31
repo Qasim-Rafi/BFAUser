@@ -6,6 +6,7 @@ import Swiper from 'react-native-swiper'
 
 import { advertisementBannerFakeDATA } from '../../../../constants/mock'
 import { colors } from '../../../../constants/colorsPallet'
+import { globalPath } from '../../../../constants/globalPath'
 const AdvertisementBanner = () => {
     return (
 
@@ -16,7 +17,10 @@ const AdvertisementBanner = () => {
             }>
             {advertisementBannerFakeDATA.map((url, index) => {
                 return (
-                    <ImageBackground style={styles.advertisementBannerImage} source={{ uri: url }} >
+                    <ImageBackground style={styles.advertisementBannerImage}
+                    //  source={{ uri: url }}
+                     source={globalPath.HOME_BFA_PARTNER}
+                      >
                         <View style={styles.advertisementBannerTitleOverlay}>
                             <ResponsiveText fontFamily={'SemiBold'} size={3.2} color={colors.white}>Pandok Sari Wangi</ResponsiveText>
                             <ResponsiveText fontFamily={'Light'} size={3} color={colors.white}>Seafood Restaurant</ResponsiveText>

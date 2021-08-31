@@ -38,7 +38,10 @@ const Home = ({navigation}) => {
                 <View style={styles.bfaPartnerContainer}>
                     <BfaPartner />
                 </View>
-                <ImageBackground style={styles.cuisinesContainer} source={{ uri: 'https://images.unsplash.com/photo-1441716844725-09cedc13a4e7?h=1024' }}>
+                <ImageBackground style={styles.cuisinesContainer}
+                //  source={{ uri: 'https://images.unsplash.com/photo-1441716844725-09cedc13a4e7?h=1024' }}
+                 source={globalPath.HOME_BFA_PARTNER}
+                 >
                     <RnButton  onPress={()=>navigation.navigate(routeName.Categories)} style={styles.cuisinesButton}>
                         <ResponsiveText fontFamily={'Regular'} size={2.9}>View Cuisines and Categories</ResponsiveText>
                         <Icon size={wp(8)} source={globalPath.BALI_LOGO} />
