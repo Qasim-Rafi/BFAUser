@@ -1,12 +1,12 @@
 import React from 'react'
-import { Image, ScrollView, StyleSheet, View, ImageBackground } from 'react-native'
+import {TouchableOpacity, Image, ScrollView, StyleSheet, View, ImageBackground } from 'react-native'
 import ResponsiveText from '../../../../components/RnText'
 import { Rating, AirbnbRating } from 'react-native-ratings';
-
+import { routeName } from '../../../../constants/routeName';
 import { advertisementBannerFakeDATA } from '../../../../constants/mock'
 import { colors } from '../../../../constants/colorsPallet'
 import SeeAllButton from '../../../../components/SeeAllButton'
-const EveryOneFavourite = () => {
+const EveryOneFavourite = (props) => {
     return (
         <>
             <View style={styles.everyOneFavoriteHeaderSection}>
@@ -17,6 +17,7 @@ const EveryOneFavourite = () => {
                 <ScrollView showsHorizontalScrollIndicator={false} horizontal>
                     {advertisementBannerFakeDATA.map((url, index) => {
                         return (
+                            <TouchableOpacity onPress={()=> props.navigation.navigate(routeName.RestaurantDetail)}>
                             <View style={{ width: 90, height: 130, marginHorizontal: 5, borderRadius: 3, overflow: 'hidden', flexDirection: 'row' }}>
                                 <ImageBackground style={{ flex: 1, padding: 5, overflow: 'hidden', justifyContent: 'flex-end' }} source={{ uri: url }} >
                                     <ResponsiveText fontFamily="Regular" size={2.9} color={colors.white}>Kaizen sushi</ResponsiveText>
@@ -29,7 +30,7 @@ const EveryOneFavourite = () => {
                                     />
                                 </ImageBackground>
                             </View>
-
+                            </TouchableOpacity>
                         )
                     })}
                 </ScrollView>

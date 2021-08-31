@@ -13,4 +13,5 @@ export const routeName = {
   CHECK_OUT_BOTTOM: "Checkout",
   MORE_BOTTOM: "More",
   DISH_DETAIL:"DISH_DETAIL",
+  RestaurantDetail:"RestaurantDetail"
 };

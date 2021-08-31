@@ -1,10 +1,37 @@
 import React from 'react'
-import { View, Text } from 'react-native'
-
-export default function RestaurantBranchDetailScreen() {
+import { View, Text, ScrollView ,StyleSheet} from 'react-native'
+import { FacilityList } from '../../../components/Facility'
+import { FacilityData } from '../../../constants/mock'
+import AdvertisementBanner from '../BottomTabs/Home/AdvertisementBanner'
+import ImageHeader from '../BottomTabs/Home/ImageHeader'
+import Comments from '../DishDetails/Comments'
+import DishDescription from '../DishDetails/DishDescription'
+import HeaderButtons from './HeaderButtons'
+export default function RestaurantBranchDetailScreen({}) {
     return (
-        <View>
-            <Text>Branch Detail</Text>
-        </View>
+       
+        <ScrollView style={{backgroundColor:'#202020'}}>
+            <View style={styles.headerImage}>
+            <ImageHeader/>
+            </View>
+            <View style={styles.buttonStyle}>
+            <HeaderButtons/>
+            </View>
+            <DishDescription/>
+            <View style={{margin:20}}>
+            <Text style={{color:'white',marginBottom:20}}>Facilities</Text>
+            <FacilityList data={FacilityData}/>
+            </View>
+        <Comments/>
+        
+        </ScrollView>
     )
 }
+const styles= StyleSheet.create({
+    headerImage:{
+        height:200
+    },
+    buttonStyle:{
+        padding:20
+    }
+})

@@ -5,6 +5,8 @@ import ImageHeader from '../BottomTabs/Home/ImageHeader'
 import { colors } from '../../../constants/colorsPallet'
 const text="Description"
 import ResponsiveText from '../../../components/RnText'
+import CaloriesList from '../../../components/CalorieList'
+import { DATA } from '../../../constants/mock'
 export default function CalorieCount({}) {
     return (
        
@@ -12,94 +14,8 @@ export default function CalorieCount({}) {
             <View style={{margin:20}}>
                 <ResponsiveText size={4} color={colors.white}>Calorie Count</ResponsiveText>
             </View>
-            <View>
-            <View style={{margin:20}}>
-                <ResponsiveText size={4} color={colors.white}>Total Carbohydrates</ResponsiveText>
-                <View style={{borderBottomWidth:1,borderBottomColor:colors.grey,top:15}}></View>
-                
-            </View>
-            <View style={{margin:20}}>
-                <View style={{flexDirection:'row',justifyContent:'space-between',}}>
-                    <ResponsiveText size={3.8} color={colors.grey}>Saturated Fat(g)</ResponsiveText>
-                     <ResponsiveText size={3.8} color={colors.grey}>10</ResponsiveText>
-                </View >
-                <View style={{flexDirection:'row',justifyContent:'space-between',}}>
-                    <ResponsiveText size={3.8} color={colors.grey}>Saturated Fat(g)</ResponsiveText>
-                     <ResponsiveText size={3.8} color={colors.grey}>10</ResponsiveText>
-                </View>
-                <View style={{flexDirection:'row',justifyContent:'space-between',}}>
-                    <ResponsiveText size={3.8} color={colors.grey}>Saturated Fat(g)</ResponsiveText>
-                     <ResponsiveText size={3.8} color={colors.grey}>10</ResponsiveText>
-                </View>
+            <CaloriesList data={DATA} />
            </View>
-           </View>
-           <View>
-            <View style={{margin:20}}>
-                <ResponsiveText size={4} color={colors.white}>Total Protein</ResponsiveText>
-                <View style={{borderBottomWidth:1,borderBottomColor:colors.grey,top:15}}></View>
-                
-            </View>
-            <View style={{margin:20}}>
-                <View style={{flexDirection:'row',justifyContent:'space-between',}}>
-                    <ResponsiveText size={3.8} color={colors.grey}>Saturated Fat(g)</ResponsiveText>
-                     <ResponsiveText size={3.8} color={colors.grey}>10</ResponsiveText>
-                </View >
-                <View style={{flexDirection:'row',justifyContent:'space-between',}}>
-                    <ResponsiveText size={3.8} color={colors.grey}>Saturated Fat(g)</ResponsiveText>
-                     <ResponsiveText size={3.8} color={colors.grey}>10</ResponsiveText>
-                </View>
-                <View style={{flexDirection:'row',justifyContent:'space-between',}}>
-                    <ResponsiveText size={3.8} color={colors.grey}>Saturated Fat(g)</ResponsiveText>
-                     <ResponsiveText size={3.8} color={colors.grey}>10</ResponsiveText>
-                </View>
-           </View>
-           </View>
-           <View>
-            <View style={{margin:20}}>
-                <ResponsiveText size={4} color={colors.white}>Total Fibres</ResponsiveText>
-                <View style={{borderBottomWidth:1,borderBottomColor:colors.grey,top:15}}></View>
-                
-            </View>
-            <View style={{margin:20}}>
-                <View style={{flexDirection:'row',justifyContent:'space-between',}}>
-                    <ResponsiveText size={3.8} color={colors.grey}>Saturated Fat(g)</ResponsiveText>
-                     <ResponsiveText size={3.8} color={colors.grey}>10</ResponsiveText>
-                </View >
-                <View style={{flexDirection:'row',justifyContent:'space-between',}}>
-                    <ResponsiveText size={3.8} color={colors.grey}>Saturated Fat(g)</ResponsiveText>
-                     <ResponsiveText size={3.8} color={colors.grey}>10</ResponsiveText>
-                </View>
-                <View style={{flexDirection:'row',justifyContent:'space-between',}}>
-                    <ResponsiveText size={3.8} color={colors.grey}>Saturated Fat(g)</ResponsiveText>
-                     <ResponsiveText size={3.8} color={colors.grey}>10</ResponsiveText>
-                </View>
-           </View>
-           </View>
-           <View>
-            <View style={{margin:20}}>
-                <ResponsiveText size={4} color={colors.white}>Micro Nutrients</ResponsiveText>
-                <View style={{borderBottomWidth:1,borderBottomColor:colors.grey,top:15}}></View>
-                
-            </View>
-            <View style={{margin:20}}>
-                <View style={{flexDirection:'row',justifyContent:'space-between',}}>
-                    <ResponsiveText size={3.8} color={colors.grey}>Saturated Fat(g)</ResponsiveText>
-                     <ResponsiveText size={3.8} color={colors.grey}>10</ResponsiveText>
-                </View >
-                <View style={{flexDirection:'row',justifyContent:'space-between',}}>
-                    <ResponsiveText size={3.8} color={colors.grey}>Saturated Fat(g)</ResponsiveText>
-                     <ResponsiveText size={3.8} color={colors.grey}>10</ResponsiveText>
-                </View>
-                <View style={{flexDirection:'row',justifyContent:'space-between',}}>
-                    <ResponsiveText size={3.8} color={colors.grey}>Saturated Fat(g)</ResponsiveText>
-                     <ResponsiveText size={3.8} color={colors.grey}>10</ResponsiveText>
-                </View>
-           </View>
-           </View>
-
-
-
-        </View>
     )
 }
 const styles= StyleSheet.create({

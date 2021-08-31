@@ -48,7 +48,7 @@ const Home = ({navigation}) => {
                     <Recommendation navigation={navigation} />
                 </View>
                 <View style={styles.everyoneFavorite}>
-                    <EveryOneFavourite />
+                    <EveryOneFavourite navigation={navigation}/>
                 </View>
                 <View style={styles.yourFavorite}>
                     <YourFavourite />

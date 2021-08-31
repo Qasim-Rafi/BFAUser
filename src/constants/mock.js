@@ -118,3 +118,59 @@ export const exploreCategoryByName = [
       },
       
   ];
+  export const DATA = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      title: 'Total Carbohydrates',
+      data:[{
+          name:"Saturated Fat(g)",
+          value:'10'
+      },{
+          name:"Saturated Fat(g)",
+          value:'10'
+      },
+      {
+          name:"Saturated Fat(g)",
+          value:'10'
+      }
+  ]
+  
+  },
+  
+  {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      title: 'Total Protein',
+      data:[{
+          name:"Saturated Fat(g)",
+          value:'10'
+      },{
+          name:"Saturated Fat(g)",
+          value:'10'
+      },
+      {
+          name:"Saturated Fat(g)",
+          value:'10'
+      }
+  ]
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Total Fibres',
+      data:[{
+          name:"Saturated Fat(g)",
+          value:'10'
+      },{
+          name:"Saturated Fat(g)",
+          value:'10'
+      },
+      {
+          name:"Saturated Fat(g)",
+          value:'10'
+      }
+  ]
+    },
+  ];
+  export const FacilityData =[
+    {name:'Prayer Room'},
+    {name:'Wifi'},
+    {name:'Parking'}]
