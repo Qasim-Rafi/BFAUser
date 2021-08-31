@@ -6,61 +6,35 @@ import {wp} from '../helpers/Responsiveness';
 import Fonts from '../helpers/Fonts';
 import {iconPath} from '../constants/icon';
 import Icon from './Icon';
+import Input from './Input';
+import { globalPath } from '../constants/globalPath';
 import ResponsiveText from './RnText';
+import { routeName } from '../constants/routeName';
 
 const Header = (props) => {
   return (
-    <View style={styles.mainView}>
-      <View style={styles.subView}>
-        {props.leftIcon && (
-          <TouchableOpacity onPress={() => props.onFirstPress()}>
-            <Icon
-              resizeMode={'contain'}
-              margin={[5, 15, 0, 0]}
-              source={props.leftIcon}
-              tintColor={'grey'}
-              size="s2"
-            />
-          </TouchableOpacity>
-        )}
-        <RText style={styles.titleText}>{props.title}</RText>
-      </View>
-      <View style={{flexDirection: 'row'}}>
-        {props.secondIcon && (
-          <TouchableOpacity onPress={() => props.onSecondPress()}>
-            <Icon
-              margin={[5, 15]}
-              source={props.secondIcon}
-              tintColor={'grey'}
-              size="s2"
-            />
-          </TouchableOpacity>
-        )}
-        <TouchableOpacity
-          onPress={() => props.onSecondPress()}
-          onLayout={props.onLayout}>
-          <Icon
-            margin={[5, 8]}
-            source={props.icon}
-            tintColor={props.color}
-            size="header"
-          />
-        </TouchableOpacity>
-        {props.leftText && (
-          <TouchableOpacity
-            style={{justifyContent: 'center', alignItems: 'center'}}
-            onPress={() => props.onTextPress()}>
-            <ResponsiveText fontFamily={'SemiBold'} color={'red'}>
-              {props.leftText}
-            </ResponsiveText>
-          </TouchableOpacity>
-        )}
-      </View>
-    </View>
+    <View style={styles.header}>
+
+                <Icon source={globalPath.BALI_LOGO} />
+                <TouchableOpacity onPress={()=> props.navigation.navigate(routeName.FeaturedSearch)}>
+                  <Input editable={false} placeholder="Search for Dishes, Restaurants or Promo" padding={[0, 0, 0, 10]} leftIcon={globalPath.SEARCH_LOGO} containerStyle={{ backgroundColor: '#404040' }} width={wp(75)} />
+                  </TouchableOpacity>
+                <Icon source={globalPath.SEARCH_LOGO} />
+
+            </View>
+    
   );
 };
 
 const styles = {
+  header: {
+    flex: 0.1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 15,
+
+},
   mainView: {
     width: '100%',
     height: wp(14),

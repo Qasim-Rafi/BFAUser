@@ -208,3 +208,18 @@ export const FakeCaloriesData = [
 
   },
 ]
+export const myListingTabs = [
+  {
+    id: 1,
+    name: 'Sort',
+  },
+  {
+    id: 2,
+    name: 'Fillter',
+  },
+  {
+    id: 3,
+    name: 'Map',
+  },
+  
+];

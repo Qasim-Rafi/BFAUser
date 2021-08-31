@@ -12,6 +12,8 @@ const SEARCH_LOGO = require('../assets/icons/home.png');
 const HEART = require('../assets/icons/heart.png');
 const LOCATION = require('../assets/icons/goto.png');
 const CONTACT = require('../assets/icons/contact.png');
+const LOCATION1 = require('../assets/icons/location1.png');
+
 
 // STATIC DUMMY IMAGES
 
@@ -39,7 +41,7 @@ const PROMOS_LOGO = require('../assets/icons/promos.png');
 
 export const globalPath = {
   //ICON PATHS HERE
-  
+  LOCATION1,
   CONTACT,
   LOCATION,
   HEART,

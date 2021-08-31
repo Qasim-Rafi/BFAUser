@@ -8,7 +8,6 @@ import { globalPath } from '../../../../constants/globalPath'
 import { wp } from '../../../../helpers/Responsiveness'
 import Swiper from 'react-native-swiper'
 import { routeName } from '../../../../constants/routeName'
-import { advertisementBannerFakeDATA } from '../../../../constants/mock'
 import { colors } from '../../../../constants/colorsPallet'
 import Fonts from '../../../../helpers/Fonts'
 import AdvertisementBanner from './AdvertisementBanner'
@@ -20,16 +19,11 @@ import YourFavourite from './YourFavourite'
 import Advertisement2ndVarient from './Advertisement2ndVarient'
 import AwardWinningDishes from './AwardWinningDishes'
 import Promotion from './Promotion'
+import Header from '../../../../components/Header'
 const Home = ({navigation}) => {
     return (
         <View style={styles.container}>
-            <View style={styles.header}>
-
-                <Icon source={globalPath.BALI_LOGO} />
-                <Input placeholder="Search for Dishes, Restaurants or Promo" padding={[0, 0, 0, 10]} leftIcon={globalPath.SEARCH_LOGO} containerStyle={{ backgroundColor: '#404040' }} width={wp(75)} />
-                <Icon source={globalPath.SEARCH_LOGO} />
-
-            </View>
+            <Header navigation={navigation}/>
             <ScrollView style={
                 { flex: 0.9 }}>
                 <View style={styles.advertisementBanner}>

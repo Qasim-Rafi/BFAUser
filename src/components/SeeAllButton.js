@@ -4,11 +4,12 @@ import { colors } from '../constants/colorsPallet'
 import { globalPath } from '../constants/globalPath'
 import Icon from './Icon'
 import ResponsiveText from './RnText'
+import { routeName } from '../constants/routeName'
 
-const SeeAllButton = () => {
+const SeeAllButton = (props) => {
     return (
-        <TouchableOpacity onPress={() => null} style={styles.button}  >
-    <ResponsiveText size={2.9} margin={[0, 10, 0, 0]} color={colors.yellow}>Show</ResponsiveText>
+        <TouchableOpacity onPress={()=> props.navigation.navigate(routeName.SearchAll)} style={styles.button}  >
+    <ResponsiveText size={2.9} margin={[0, 10, 0, 0]} color={colors.yellow}>Show All</ResponsiveText>
             <Icon source={globalPath.BALI_LOGO} />
         </TouchableOpacity>
     )
