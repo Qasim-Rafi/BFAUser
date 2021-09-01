@@ -7,16 +7,24 @@ const text="Description"
 import Icon from '../../../components/Icon'
 import ResponsiveText from '../../../components/RnText'
 import { globalPath } from '../../../constants/globalPath'
+import { wp } from '../../../helpers/Responsiveness'
 export default function DishDescription({}) {
     return (
        
         <View>
             <View>
+                <View style={{display: 'flex', flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
                 <View style={styles.priceDesc}>
                     <ResponsiveText size={4} color={colors.white}>Salman Sashimi Sushi</ResponsiveText>
                     <ResponsiveText size={3.7}  color={colors.grey}>1-Lotus Resturant</ResponsiveText>
                     <ResponsiveText size={4}  color={colors.yellow} >$10.00</ResponsiveText>
+                    
+                    
                 </View>
+                <Icon size={wp(18)} margin={[0,20,0,0]} source={globalPath.RESTAURANT_LOGO} />
+                </View>
+
+                
                 <View >
                     <Image style={{width:30,height:25}}/>
                 </View>

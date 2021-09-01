@@ -20,6 +20,7 @@ const RIGHT_ARROW = require('../assets/icons/arrow.png');
 const DOWN_ARROW = require('../assets/icons/arrow-down.png');
 const BACK_ARROW = require('../assets/icons/back-arrow.png');
 const BALI_ICON = require('../assets/icons/bali-icon.png');
+const RESTAURANT_LOGO = require('../assets/icons/Restaurant_Logo.png');
 const PROFILE_LOGO = require('../assets/icons/profileimage.png');
 
 
@@ -114,6 +115,7 @@ export const globalPath = {
   BALI_ICON,
   PROFILE_LOGO,
   BACK_ARROW,
+  RESTAURANT_LOGO,
 
 
 

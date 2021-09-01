@@ -14,7 +14,7 @@ export default function FilterSearch({navigation}) {
     return(
         <View style={{flex:1,backgroundColor:'#202020'}}>
         <View style={styles.header}>
-        <Icon source={globalPath.BALI_LOGO} />
+        <Icon source={globalPath.BALI_ICON} />
         <ResponsiveText color={colors.white} size={5}>Filter By</ResponsiveText>
         <Icon source={globalPath.SEARCH_LOGO} />
         </View>

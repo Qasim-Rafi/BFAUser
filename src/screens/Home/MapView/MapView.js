@@ -6,9 +6,18 @@ export default function MapView() {
     return (
         <View style={{ flex: 1 }}>
 
-            <View style={{ flex: 0.1,backgroundColor:'black' }}>
+<View style={[styles.header, {backgroundColor:'#2F2F2F'}]}>
+    
+    <View>
+   <Icon source={globalPath.BACK_ARROW} />
+   </View>
+   <Text style={{ color: "#ffffff", width: wp(75), textAlign: 'center' }}>
+     View map
+   </Text>
+  
+   
 
-            </View>
+ </View>
             <View style={{ flex: 0.9,backgroundColor:'white' }}>
             <Map
     //    provider={PROVIDER_GOOGLE} // remove if not using Google Maps
@@ -31,4 +40,15 @@ const styles = StyleSheet.create({
       ...StyleSheet.absoluteFillObject,
 flex:1
     },
+
+    header: {
+      color: '#EDC54E',
+      flex: 0.1,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      paddingHorizontal: 15,
+  
+    },
+
    });
