@@ -7,6 +7,7 @@ import ImageHeader from '../BottomTabs/Home/ImageHeader'
 import Comments from '../DishDetails/Comments'
 import DishDescription from '../DishDetails/DishDescription'
 import HeaderButtons from './HeaderButtons'
+import TimeTable from './TimeTable'
 export default function RestaurantBranchDetailScreen({}) {
     return (
        
@@ -22,6 +23,7 @@ export default function RestaurantBranchDetailScreen({}) {
             <Text style={{color:'white',marginBottom:20}}>Facilities</Text>
             <FacilityList data={FacilityData}/>
             </View>
+            <TimeTable/>
         <Comments/>
         
         </ScrollView>

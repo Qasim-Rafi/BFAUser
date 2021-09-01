@@ -22,6 +22,7 @@
     "react-native-screens": "^3.6.0",
     "react-native-svg": "^12.1.1",
     "react-native-swiper": "^1.6.0",
+    "react-native-table-component": "^1.2.1",
     "react-redux": "^7.2.4",
     "redux": "^4.1.1",
     "redux-persist": "^6.0.0",
