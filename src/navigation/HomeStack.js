@@ -16,6 +16,7 @@ import FeaturedSearch from '../screens/Home/FeaturedSearch/FeaturedSearch';
 import RestaurantDetail from '../screens/Home/RestaurantBranchDetail/RestaurantBranchDetail';
 import MapView from '../screens/Home/MapView/MapView';
 import SearchAll from '../screens/Home/SearchAll/SearchAll';
+import FilterSearch from '../screens/Home/SearchAll/FilterSearch';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,7 +29,7 @@ function HomeStack() {
       initialRouteName="Home">
       <Stack.Screen name={routeName.SPLASH} component={Splash} />
       <Stack.Screen name={routeName.MAP_VIEW} component={MapView} />
-
+      <Stack.Screen name={routeName.FilterSearch} component={FilterSearch} />
       <Stack.Screen name={routeName.DISH_DETAIL} component={DishDetails} />
       <Stack.Screen name={routeName.RestaurantDetail} component={RestaurantDetail} />
       <Stack.Screen name={routeName.FeaturedSearch} component={FeaturedSearch} />

@@ -9,9 +9,9 @@ import { Rating } from 'react-native-ratings'
 import Icon from '../../../components/Icon'
 import { globalPath } from '../../../constants/globalPath'
 import { myListingTabs } from '../../../constants/mock'
-import RnButton from '../../../components/RnButton'
+import { routeName } from '../../../constants/routeName'
 export default function SearchAll({navigation}) {
-	const [activeTab, setActiveTab] = React.useState(myListingTabs[0].id);
+	// const [activeTab, setActiveTab] = React.useState(myListingTabs[0].id);
 
 
 
@@ -19,38 +19,30 @@ export default function SearchAll({navigation}) {
 		<View style={{flex:1,backgroundColor:'#202020'}}>
 			<Header navigation={navigation}/>
 			<View style={styles.buttonViewStyle}>
-			{myListingTabs.map((items, index) => {
-              return (
-                <React.Fragment key={items.id}>
-                  <RnButton
-                    id={index}
-                    margin={[0, 0]}
-                    onPress={() => setActiveTab(items.id)}
-                    btnStyle={{
-						height:hp(6),
-						width:wp(30),
-						alignItems: 'center',
-						justifyContent: 'center',
-						padding: 10,
-						marginTop: 30,
-                      backgroundColor:
-                        items.id === activeTab ? '#EDC54E' : '#707070',
-                    }}
+			
+                  <TouchableOpacity
+                    style={[styles.buttonShape,{backgroundColor:'#EDC54E'}]}
                     >
-                    <Text>{items.name}</Text>
-                  </RnButton>
-                </React.Fragment>
-              );
-            })}
+                    <Text>Sort</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={()=> navigation.navigate(routeName.FilterSearch)}
+                     style={[styles.buttonShape,{backgroundColor:'#303030'}]}
+                    >
+                    <Text style={{color:colors.white}}>Filter</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                     style={[styles.buttonShape,{backgroundColor:'#303030'}]}
+                    >
+                    <Text style={{color:colors.white}}>Map</Text>
+                  </TouchableOpacity>
+               
 		</View>
 
 			<View style={{margin:20}}>
 				<ResponsiveText color={colors.white}>Now SHowing Dish Result For "Chicken" </ResponsiveText>
 				<ResponsiveText color={colors.white} size={3}>5 Result Found </ResponsiveText>
 			</View>
-			{activeTab === 1 && <SortResult/>}
-          {activeTab === 2 && <Filter/>}
-          {activeTab === 3 && <Expired />}
+		<SortResult/>
 		
 		</View>
 	)

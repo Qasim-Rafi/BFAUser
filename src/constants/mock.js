@@ -223,3 +223,62 @@ export const myListingTabs = [
   },
   
 ];
+
+export const FiltersDummyData = [
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'Popular Filters',
+    data: [{
+      name: "Breakfast Included",
+      value: '102'
+    }, {
+      name: "Book Without Credit Card",
+      value: '10'
+    },
+    {
+      name: "Hotels",
+      value: '10'
+    },{
+      name: "Parking",
+      value: '10'
+    },{
+      name: "SwimmingPools",
+      value: '10'
+    },
+    ]
+
+  },
+
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Your Budget (For One Night)',
+    data: [{
+      name: "$10-$20",
+      value: '10'
+    }, {
+      name: "$10-$20",
+      value: '10'
+    },
+    {
+      name: "$10-$20",
+      value: '10'
+    }
+    ]
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Reviews (Best To Worst)',
+    data: [{
+      name: "4 Stars and higher",
+      value: '102'
+    }, {
+      name: "3 Stars and higher",
+      value: '10'
+    },
+    {
+      name: "2 Stars and higher",
+      value: '10'
+    }
+    ]
+  },
+];

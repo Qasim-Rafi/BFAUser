@@ -16,5 +16,6 @@ export const routeName = {
   DISH_DETAIL:"DISH_DETAIL",
   RestaurantDetail:"RestaurantDetail",
   FeaturedSearch:"FeaturedSearch",
-  SearchAll:'SearchAll'
+  SearchAll:'SearchAll',
+  FilterSearch:'FilterSearch'
 };
