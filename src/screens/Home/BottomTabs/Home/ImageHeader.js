@@ -6,7 +6,7 @@ import Swiper from 'react-native-swiper'
 
 import { advertisementBannerFakeDATA } from '../../../../constants/mock'
 import { colors } from '../../../../constants/colorsPallet'
-const image = { uri: "https://images.unsplash.com/photo-1440847899694-90043f91c7f9?h=1024" };
+const image = { uri: "https://i.ndtvimg.com/i/2016-06/noodles-625_625x350_41466064269.jpg" };
 
 const ImageHeader = () => {
     return (

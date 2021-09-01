@@ -15,11 +15,11 @@ const Header = (props) => {
   return (
     <View style={styles.header}>
 
-                <Icon source={globalPath.BALI_LOGO} />
+                <Icon margin={[0,2,0,0]} size={wp(8)} source={globalPath.BALI_ICON} />
                 <TouchableOpacity onPress={()=> props.navigation.navigate(routeName.FeaturedSearch)}>
                   <Input editable={false} placeholder="Search for Dishes, Restaurants or Promo" padding={[0, 0, 0, 10]} leftIcon={globalPath.SEARCH_LOGO} containerStyle={{ backgroundColor: '#404040' }} width={wp(75)} />
                   </TouchableOpacity>
-                <Icon source={globalPath.SEARCH_LOGO} />
+                <Icon margin={[0,0,0,5]} borderRadius={10} size={wp(10)} source={globalPath.PROFILE_LOGO} />
 
             </View>
     

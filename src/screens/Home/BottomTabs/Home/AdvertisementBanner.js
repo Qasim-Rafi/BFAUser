@@ -19,7 +19,7 @@ const AdvertisementBanner = () => {
                 return (
                     <ImageBackground style={styles.advertisementBannerImage}
                     //  source={{ uri: url }}
-                     source={globalPath.HOME_BFA_PARTNER}
+                     source={globalPath.HOME_ADD_BANNER_1}
                       >
                         <View style={styles.advertisementBannerTitleOverlay}>
                             <ResponsiveText fontFamily={'SemiBold'} size={3.2} color={colors.white}>Pandok Sari Wangi</ResponsiveText>

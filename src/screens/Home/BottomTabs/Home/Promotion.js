@@ -3,7 +3,7 @@ import { Image, ScrollView, StyleSheet, View, ImageBackground ,Text} from 'react
 import ResponsiveText from '../../../../components/RnText'
 import { Rating, AirbnbRating } from 'react-native-ratings';
 
-import { advertisementBannerFakeDATA } from '../../../../constants/mock'
+import { advertisementBannerFakeDATA, promotionsFakeDATA } from '../../../../constants/mock'
 import { colors } from '../../../../constants/colorsPallet'
 import SeeAllButton from '../../../../components/SeeAllButton'
 const Promotion = () => {
@@ -15,7 +15,7 @@ const Promotion = () => {
             </View>
             <View style={styles.recommendationItemsSection}>
                 <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-                    {advertisementBannerFakeDATA.map((url, index) => {
+                    {promotionsFakeDATA.map((url, index) => {
                         return (
                             <View style={{ width: 90, height: 130, marginHorizontal: 5, borderRadius: 3, overflow: 'hidden', flexDirection: 'row' }}>
                                 <ImageBackground style={{ flex:1 }} source={{ uri: url }} >

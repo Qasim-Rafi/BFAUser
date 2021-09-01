@@ -34,11 +34,11 @@ const Home = ({navigation}) => {
                 </View>
                 <ImageBackground style={styles.cuisinesContainer}
                 //  source={{ uri: 'https://images.unsplash.com/photo-1441716844725-09cedc13a4e7?h=1024' }}
-                 source={globalPath.HOME_BFA_PARTNER}
+                 source={globalPath.HOME_HOME_VIEW_COISINES_AND_CATEGORIES}
                  >
                     <RnButton  onPress={()=>navigation.navigate(routeName.Categories)} style={styles.cuisinesButton}>
                         <ResponsiveText fontFamily={'Regular'} size={2.9}>View Cuisines and Categories</ResponsiveText>
-                        <Icon size={wp(8)} source={globalPath.BALI_LOGO} />
+                        <Icon size={wp(4)}  tintColor='black' source={globalPath.RIGHT_ARROW} />
                     </RnButton>
                 </ImageBackground>
                 <View style={styles.recommendationContainer}>
@@ -102,6 +102,8 @@ const styles = StyleSheet.create({
     },
     cuisinesButton: {
         backgroundColor: colors.yellow,
+        paddingVertical:5,
+        // paddingHorizontal:5,
         flexDirection: 'row',
         width: '60%',
         justifyContent: 'space-between',

@@ -43,11 +43,14 @@ export default function Categories({ }) {
   };
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-
-        <Icon source={globalPath.BALI_LOGO} />
+      <View style={[styles.header, {backgroundColor:'#2F2F2F'}]}>
+    
+         <View style={{backgroundColor:'#3f3f3f', borderRadius:2}}>
+        <Icon source={globalPath.BACK_ARROW} />
+        </View>
         <Text style={{ color: "#ffffff", width: wp(75), textAlign: 'center' }} >View Cuisines and Categories</Text>
-        <Icon source={globalPath.SEARCH_LOGO} />
+        <Icon  source={globalPath.SEARCH_LOGO} />
+        
 
       </View>
       <View style={{ position: 'absolute', height: hp(86), marginRight: 10, width: wp(5), backgroundColor: '#383838', zIndex: 1000, right: 0, marginTop: hp(10), alignItems: 'center', borderRadius: 10, justifyContent: 'center' }}>
@@ -68,7 +71,7 @@ export default function Categories({ }) {
           data={exploreCategoryByName}
           keyExtractor={(item, index) => item + index}
           renderItem={renderItem}
-          onViewableItemsChanged={onViewableItemsChanged}
+          // onViewableItemsChanged={onViewableItemsChanged}
           viewabilityConfig={viewConfigRef.current}
 
         />

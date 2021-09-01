@@ -3,7 +3,7 @@ import {TouchableOpacity, Image, ScrollView, StyleSheet, View, ImageBackground }
 import ResponsiveText from '../../../../components/RnText'
 import { Rating, AirbnbRating } from 'react-native-ratings';
 import { routeName } from '../../../../constants/routeName';
-import { advertisementBannerFakeDATA } from '../../../../constants/mock'
+import { advertisementBannerFakeDATA, everyoneFavoriteFakeDATA } from '../../../../constants/mock'
 import { colors } from '../../../../constants/colorsPallet'
 import SeeAllButton from '../../../../components/SeeAllButton'
 const EveryOneFavourite = (props) => {
@@ -15,7 +15,7 @@ const EveryOneFavourite = (props) => {
             </View>
             <View style={styles.everyOneFavoriteItemsSection}>
                 <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-                    {advertisementBannerFakeDATA.map((url, index) => {
+                    {everyoneFavoriteFakeDATA.map((url, index) => {
                         return (
                             <TouchableOpacity onPress={()=> props.navigation.navigate(routeName.RestaurantDetail)}>
                             <View style={{ width: 90, height: 130, marginHorizontal: 5, borderRadius: 3, overflow: 'hidden', flexDirection: 'row' }}>

@@ -3,7 +3,7 @@ import { ImageBackground, StyleSheet, Text, View } from 'react-native'
 import ResponsiveText from '../../../../components/RnText'
 import RnButton from '../../../../components/RnButton'
 import Swiper from 'react-native-swiper'
-
+import { globalPath } from '../../../../constants/globalPath'
 import { advertisementBannerFakeDATA } from '../../../../constants/mock'
 import { colors } from '../../../../constants/colorsPallet'
 const Advertisement2ndVarient = () => {
@@ -16,7 +16,11 @@ const Advertisement2ndVarient = () => {
             }>
             {advertisementBannerFakeDATA.map((url, index) => {
                 return (
-                    <ImageBackground style={styles.Advertisement2ndVarientImage} source={{ uri: url }} >
+                    <ImageBackground style={styles.Advertisement2ndVarientImage} 
+                    // source={{ uri: url }}
+                    source={globalPath.HOME_ADD_BANNER_2}
+
+                     >
                     </ImageBackground>
                 )
             })}

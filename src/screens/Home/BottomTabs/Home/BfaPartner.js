@@ -2,18 +2,19 @@ import React from 'react'
 import { Image, StyleSheet, View } from 'react-native'
 import ResponsiveText from '../../../../components/RnText'
 
-import { advertisementBannerFakeDATA } from '../../../../constants/mock'
+import { advertisementBannerFakeDATA, BFAPartnerFakeData } from '../../../../constants/mock'
 import { colors } from '../../../../constants/colorsPallet'
 import SeeAllButton from '../../../../components/SeeAllButton'
+import { globalPath } from '../../../../constants/globalPath'
 const BfaPartner = () => {
     return (
         <>
             <View style={styles.bfaPartnerHeaderSection}>
                 <ResponsiveText color={colors.white}>BFA Partners</ResponsiveText>
-                <SeeAllButton />
+                <SeeAllButton  src={globalPath.RIGHT_ARROW}/>
             </View>
             <View style={styles.bfaPartnerItemsSection}>
-                {advertisementBannerFakeDATA.map((url, index) => {
+                {BFAPartnerFakeData.map((url, index) => {
                     return (
                         <Image style={{ width: 55, height: 55, marginHorizontal: 5, borderRadius: 5, overflow: 'hidden' }} source={{ uri: url }} />
 
