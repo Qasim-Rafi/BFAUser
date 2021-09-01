@@ -6,6 +6,7 @@ import Swiper from 'react-native-swiper'
 import { globalPath } from '../../../../constants/globalPath'
 import { advertisementBannerFakeDATA } from '../../../../constants/mock'
 import { colors } from '../../../../constants/colorsPallet'
+import { hp } from '../../../../helpers/Responsiveness'
 const Advertisement2ndVarient = () => {
     return (
 
@@ -34,7 +35,8 @@ export default Advertisement2ndVarient
 
 const styles = StyleSheet.create({
 
-    Advertisement2ndVarientImage: { flex: 1, justifyContent: 'center' },
+        
+        Advertisement2ndVarientImage: {  justifyContent: 'center',height: hp(23),backgroundColor: 'rgba(0,0,0,0.5)' },
 
 
 })

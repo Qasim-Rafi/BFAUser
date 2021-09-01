@@ -10,6 +10,7 @@ import Icon from '../../../components/Icon'
 import { globalPath } from '../../../constants/globalPath'
 import { myListingTabs } from '../../../constants/mock'
 import { routeName } from '../../../constants/routeName'
+import SearchHeader from '../../../components/SearchHeader'
 export default function SearchAll({navigation}) {
 	// const [activeTab, setActiveTab] = React.useState(myListingTabs[0].id);
 
@@ -17,7 +18,7 @@ export default function SearchAll({navigation}) {
 
 	return (
 		<View style={{flex:1,backgroundColor:'#202020'}}>
-			<Header navigation={navigation}/>
+			<SearchHeader navigation={navigation}/>
 			<View style={styles.buttonViewStyle}>
 			
                   <TouchableOpacity

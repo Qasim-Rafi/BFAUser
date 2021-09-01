@@ -9,7 +9,7 @@ import { routeName } from '../constants/routeName'
 const SeeAllButton = (props) => {
     return (
         <TouchableOpacity onPress={()=> props.navigation.navigate(routeName.SearchAll)} style={styles.button}  >
-    <ResponsiveText size={2.9} margin={[0, 10, 0, 0]} color={colors.yellow}>Show All</ResponsiveText>
+    <ResponsiveText size={3.2} margin={[0, 10, 0, 0]} color={colors.yellow}>Show All</ResponsiveText>
             <Icon source={props.src?props.src:globalPath.DOWN_ARROW} />
         </TouchableOpacity>
     )

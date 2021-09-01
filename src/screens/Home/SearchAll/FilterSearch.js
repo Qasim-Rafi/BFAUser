@@ -14,7 +14,8 @@ export default function FilterSearch({navigation}) {
     return(
         <View style={{flex:1,backgroundColor:'#202020'}}>
         <View style={styles.header}>
-        <Icon source={globalPath.BALI_ICON} />
+        <TouchableOpacity onPress={()=>{navigation.goBack()}}><Icon size={wp(2) , hp(4)} source={require('../../../assets/icons/back-arrow.png')} /></TouchableOpacity>
+      
         <ResponsiveText color={colors.white} size={5}>Filter By</ResponsiveText>
         <Icon source={globalPath.SEARCH_LOGO} />
         </View>

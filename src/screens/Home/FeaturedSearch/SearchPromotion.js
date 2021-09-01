@@ -1,26 +1,28 @@
 import React from 'react'
-import { Image, ScrollView, StyleSheet, View, ImageBackground ,Text} from 'react-native'
+import { TouchableOpacity, ScrollView, StyleSheet, View, ImageBackground ,Text} from 'react-native'
 import ResponsiveText from '../../../components/RnText';
 import { Rating, AirbnbRating } from 'react-native-ratings';
-
-import { advertisementBannerFakeDATA } from '../../../constants/mock'
+import { routeName } from '../../../constants/routeName';
+import { advertisementBannerFakeDATA, ourRecommendationFakeDATA } from '../../../constants/mock'
 import { colors } from '../../../constants/colorsPallet'
 import SeeAllButton from '../../../components/SeeAllButton';
+import { hp, wp } from '../../../helpers/Responsiveness';
 const SearchPromotion = (props) => {
     return (
         <>
             <View style={styles.everyOneFavoriteHeaderSection}>
-                <ResponsiveText color={colors.white}>Promotions</ResponsiveText>
+                <ResponsiveText size={4} color={colors.white}>Promotions</ResponsiveText>
 				<ResponsiveText color={colors.grey} size={3}>(5 Resulf Found) </ResponsiveText>
 
                 <SeeAllButton navigation={props.navigation}/>
             </View>
             <View style={styles.recommendationItemsSection}>
                 <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-                    {advertisementBannerFakeDATA.map((url, index) => {
+                    {ourRecommendationFakeDATA.map((url, index) => {
                         return (
-                            <View style={{ width: 90, height: 130, marginHorizontal: 5, borderRadius: 3, overflow: 'hidden', flexDirection: 'row' }}>
-                                <ImageBackground style={{ flex:1 }} source={{ uri: url }} >
+                            <TouchableOpacity onPress={()=> props.navigation.navigate(routeName.DISH_DETAIL)}>
+                            <View style={{ width: wp(26), height: hp(18), marginHorizontal: 5, borderRadius: 3, overflow: 'hidden', flexDirection: 'row' }}>
+                                <ImageBackground  imageStyle={{opacity:0.5}} style={{ flex:1 }} source={{ uri: url }} >
                                 <View style={styles.promotionoffView}>
                                     <ResponsiveText size={2}>Flat 25% Off</ResponsiveText>
                                 </View>
@@ -30,7 +32,7 @@ const SearchPromotion = (props) => {
                                 </View>
                                 </ImageBackground>
                             </View>
-
+                </TouchableOpacity>
                         )
                     })}
                 </ScrollView>

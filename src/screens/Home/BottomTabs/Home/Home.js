@@ -5,7 +5,7 @@ import ResponsiveText from '../../../../components/RnText'
 import Input from '../../../../components/Input'
 import RnButton from '../../../../components/RnButton'
 import { globalPath } from '../../../../constants/globalPath'
-import { wp } from '../../../../helpers/Responsiveness'
+import { hp, wp } from '../../../../helpers/Responsiveness'
 import Swiper from 'react-native-swiper'
 import { routeName } from '../../../../constants/routeName'
 import { colors } from '../../../../constants/colorsPallet'
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
 
     },
     cuisinesContainer: {
-        height: 100,
+        height: hp(23),
         marginHorizontal: 15,
         justifyContent: 'center',
         alignItems: 'center',

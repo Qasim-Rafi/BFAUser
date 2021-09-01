@@ -4,7 +4,7 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 import { colors } from '../constants/colorsPallet';
 import { handleMargin, handlePadding } from '../constants/theme';
 import Fonts from '../helpers/Fonts';
-import { wp } from '../helpers/Responsiveness';
+import { hp, wp } from '../helpers/Responsiveness';
 import ResponsiveText from './RnText';
 
 const RnButton = ({
@@ -33,6 +33,7 @@ const RnButton = ({
         backgroundColor && { backgroundColor },
 
         {
+        height:hp(6),
           // width: width ? width : undefined,
           // height: height ? height : undefined,
           // borderRadius: borderRadius ? borderRadius : 7,

@@ -1,25 +1,28 @@
 import React from 'react'
-import { Image, StyleSheet, View } from 'react-native'
+import { Image, StyleSheet, View ,ScrollView} from 'react-native'
 import ResponsiveText from '../../../../components/RnText'
 
 import { advertisementBannerFakeDATA, BFAPartnerFakeData } from '../../../../constants/mock'
 import { colors } from '../../../../constants/colorsPallet'
 import SeeAllButton from '../../../../components/SeeAllButton'
 import { globalPath } from '../../../../constants/globalPath'
+import { wp } from '../../../../helpers/Responsiveness'
 const BfaPartner = (props) => {
     return (
         <>
             <View style={styles.bfaPartnerHeaderSection}>
-                <ResponsiveText color={colors.white}>BFA Partners</ResponsiveText>
+                <ResponsiveText size={4} color={colors.white}>BFA Partners</ResponsiveText>
                 <SeeAllButton navigation={props.navigation} src={globalPath.RIGHT_ARROW}/>
             </View>
             <View style={styles.bfaPartnerItemsSection}>
+            <ScrollView showsHorizontalScrollIndicator={false} horizontal>
                 {BFAPartnerFakeData.map((url, index) => {
                     return (
-                        <Image style={{ width: 55, height: 55, marginHorizontal: 5, borderRadius: 5, overflow: 'hidden' }} source={{ uri: url }} />
+                        <Image style={{ width: wp(22), height: wp(22), marginHorizontal: 5, borderRadius: 5, overflow: 'hidden' }} source={{ uri: url }} />
 
                     )
                 })}
+                 </ScrollView>
             </View>
         </>
     )

@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, TextInput, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, TextInput, TouchableOpacity, KeyboardAvoidingView, StatusBar} from 'react-native';
 import {colors} from '../constants/colorsPallet';
 import {iconPath} from '../constants/globalPath';
 import {handleMargin, handlePadding} from '../constants/theme';
@@ -22,6 +22,7 @@ const Input = ({
   containerStyle,
   secureTextEntry,
   onChnageText,
+  fontSize,
   value,
   ...props
 }) => {
@@ -29,6 +30,7 @@ const Input = ({
   const toggle = () => setShowPassword((previousState) => !previousState);
 
   return (
+    <KeyboardAvoidingView>
     <View
       style={[
         styles.container,
@@ -54,11 +56,14 @@ const Input = ({
         {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
         editable={props.editable}
         style={[
+        fontSize && {fontSize},
           styles.Input,
           fontFamily && {fontFamily: Fonts[fontFamily]},
           props.centerText ? {textAlign: 'center', paddingLeft: 0} : undefined,
           props.textStyle,
-          
+          ,{
+            color:"#ffffff"
+          }
         ]}
         placeholderTextColor={
           placeholderTextColor ? placeholderTextColor : '#737373'
@@ -79,6 +84,7 @@ const Input = ({
         </TouchableOpacity>
       )}
     </View>
+    </KeyboardAvoidingView>
   );
 };
 

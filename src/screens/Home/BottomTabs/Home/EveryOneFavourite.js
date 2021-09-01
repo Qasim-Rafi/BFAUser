@@ -6,11 +6,12 @@ import { routeName } from '../../../../constants/routeName';
 import { advertisementBannerFakeDATA, everyoneFavoriteFakeDATA } from '../../../../constants/mock'
 import { colors } from '../../../../constants/colorsPallet'
 import SeeAllButton from '../../../../components/SeeAllButton'
+import { hp, wp } from '../../../../helpers/Responsiveness';
 const EveryOneFavourite = (props) => {
     return (
         <>
             <View style={styles.everyOneFavoriteHeaderSection}>
-                <ResponsiveText color={colors.white}>Everyone's Favorite</ResponsiveText>
+                <ResponsiveText size={6} color={colors.white}>Everyone's Favorite</ResponsiveText>
                 <SeeAllButton navigation={props.navigation} />
             </View>
             <View style={styles.everyOneFavoriteItemsSection}>
@@ -18,11 +19,12 @@ const EveryOneFavourite = (props) => {
                     {everyoneFavoriteFakeDATA.map((url, index) => {
                         return (
                             <TouchableOpacity onPress={()=> props.navigation.navigate(routeName.RestaurantDetail)}>
-                            <View style={{ width: 90, height: 130, marginHorizontal: 5, borderRadius: 3, overflow: 'hidden', flexDirection: 'row' }}>
-                                <ImageBackground style={{ flex: 1, padding: 5, overflow: 'hidden', justifyContent: 'flex-end' }} source={{ uri: url }} >
+                            <View style={{ width: wp(26), height: hp(18), marginHorizontal: 5, borderRadius: 3, overflow: 'hidden', flexDirection: 'row' }}>
+                                <ImageBackground imageStyle={{opacity:.5}} style={{ flex: 1, padding: 5, overflow: 'hidden', justifyContent: 'flex-end' }} source={{ uri: url }} >
                                     <ResponsiveText fontFamily="Regular" size={2.9} color={colors.white}>Kaizen sushi</ResponsiveText>
                                     <ResponsiveText fontFamily="Light" size={2} color={colors.white}>Special sushi</ResponsiveText>
                                     <Rating
+                                        tintColor={'#000fff '}
                                         size={2}
                                         imageSize={10}
                                         // tintColor={'transparent'}

@@ -1,12 +1,13 @@
 import React from 'react'
 import { View, Text,Image, ScrollView ,StyleSheet, TouchableOpacity} from 'react-native'
+import { hp, wp } from '../../../helpers/Responsiveness'
 export default function HeaderButtons({}) {
     return (
        
         <View style={{flexDirection:'row',justifyContent:'space-between'}}>
           <View style={[styles.buttonView,{backgroundColor:'#EDC54E'}]}>
             <TouchableOpacity>
-                <Image />
+                <Image/>
                 <Text >Info</Text>
             </TouchableOpacity>
             </View>
@@ -37,5 +38,5 @@ const styles= StyleSheet.create({
     headerImage:{
         height:200
     },
-    buttonView:{width:70,height:60,borderRadius:4,justifyContent:'center',alignItems:'center'},
+    buttonView:{width:wp(21),height:hp(9),borderRadius:4,justifyContent:'center',alignItems:'center'},
 })

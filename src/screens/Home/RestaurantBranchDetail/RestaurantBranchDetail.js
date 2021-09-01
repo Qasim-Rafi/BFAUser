@@ -24,7 +24,9 @@ export default function RestaurantBranchDetailScreen({}) {
             <FacilityList data={FacilityData}/>
             </View>
             <TimeTable/>
+            <View style={{marginBottom:30}}>
         <Comments/>
+            </View>
         
         </ScrollView>
     )
@@ -34,6 +36,6 @@ const styles= StyleSheet.create({
         height:200
     },
     buttonStyle:{
-        padding:20
+        padding:10
     }
 })

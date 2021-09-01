@@ -10,18 +10,22 @@ import Input from './Input';
 import { globalPath } from '../constants/globalPath';
 import ResponsiveText from './RnText';
 import { routeName } from '../constants/routeName';
+import { colors } from '../constants/colorsPallet';
 
-const Header = (props) => {
+const SearchHeader = (props) => {
   return (
-    <View style={styles.header}>
+    <View style={[styles.header, {backgroundColor:'#2F2F2F'}]}>
+    
+         <View style={{backgroundColor:'#3f3f3f', borderRadius:2}}>
+        <TouchableOpacity onPress={()=>{props.navigation.goBack()}}><Icon size={wp(2) , hp(5)} source={require('../assets/icons/back-arrow.png')} /></TouchableOpacity>
+        </View>
+        <TouchableOpacity style={{marginLeft:5}}>
+                  <Input editable={false} fontSize={11} color={colors.white} Value="Chicken" padding={[0, 0, 0, 10]} leftIcon={globalPath.SEARCH_LOGO} containerStyle={{ backgroundColor: '#404040'}}height={hp(6)} width={wp(70)} />
+        </TouchableOpacity>
+        <Icon margin={[0,0,0,5]} borderRadius={10} size={wp(10) , hp(6)} source={globalPath.PROFILE_LOGO} />
+        
 
-                <Icon margin={[0,2,0,0]} size={wp(8),hp(4)} source={globalPath.BALI_ICON} />
-                <TouchableOpacity onPress={()=> props.navigation.navigate(routeName.FeaturedSearch)}>
-                  <Input editable={false} fontSize={11} placeholder="Search for Dishes, Restaurants or Promo" padding={[0, 0, 0, 10]} leftIcon={globalPath.SEARCH_LOGO} containerStyle={{ backgroundColor: '#404040'}}height={hp(6)} width={wp(72)} />
-                  </TouchableOpacity>
-                <Icon margin={[0,0,0,5]} borderRadius={10} size={wp(10) , hp(6)} source={globalPath.PROFILE_LOGO} />
-
-            </View>
+      </View>
     
   );
 };
@@ -52,4 +56,4 @@ const styles = {
   titleText: {color: 'black', fontFamily: Fonts.Bold, fontSize: wp(1.2)},
 };
 
-export default Header;
+export default SearchHeader;

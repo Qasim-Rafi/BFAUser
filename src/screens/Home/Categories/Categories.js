@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { View, StyleSheet, Text, SectionList, TouchableOpacity, FlatList } from 'react-native';
+import { View, StyleSheet, Text, SectionList, TouchableOpacity, FlatList, Image } from 'react-native';
 import Icon from '../../../components/Icon';
 import Input from '../../../components/Input';
 import ResponsiveText from '../../../components/RnText';
@@ -7,7 +7,7 @@ import { globalPath } from '../../../constants/globalPath';
 import { exploreCategoryByName } from '../../../constants/mock';
 import { hp, wp } from '../../../helpers/Responsiveness';
 
-export default function Categories({ }) {
+export default function Categories({navigation}) {
 
 
   const [activeAlphabet, setActiveAlphabet] = useState(null);
@@ -46,7 +46,7 @@ export default function Categories({ }) {
       <View style={[styles.header, {backgroundColor:'#2F2F2F'}]}>
     
          <View style={{backgroundColor:'#3f3f3f', borderRadius:2}}>
-        <Icon source={globalPath.BACK_ARROW} />
+        <TouchableOpacity onPress={()=>{navigation.goBack()}}><Icon source={require('../../../assets/icons/back-arrow.png')} /></TouchableOpacity>
         </View>
         <Text style={{ color: "#ffffff", width: wp(75), textAlign: 'center' }} >View Cuisines and Categories</Text>
         <Icon  source={globalPath.SEARCH_LOGO} />

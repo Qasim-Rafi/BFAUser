@@ -57,7 +57,7 @@ export default function Login({navigation}) {
             </ResponsiveText>
             <Line color="#595959" width={wp(20)} />
           </View>
-          <RnButton onPress={()=>navigation.navigate(routeName.LANDING_SCREEN)} fontFamily='SemiBold' margin={[20, 0]} title="SIGN IN" />
+          <RnButton onPress={()=>navigation.navigate(routeName.LANDING_SCREEN)} fontFamily='SemiBold' height={100} margin={[0, 0]} title="SIGN IN" />
           <View style={styles.footer}>
             <ResponsiveText margin={[3, 10]} color={'white'}>
               or Sign up with
