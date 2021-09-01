@@ -11,7 +11,7 @@ const EveryOneFavourite = (props) => {
         <>
             <View style={styles.everyOneFavoriteHeaderSection}>
                 <ResponsiveText color={colors.white}>Everyone's Favorite</ResponsiveText>
-                <SeeAllButton />
+                <SeeAllButton navigation={props.navigation} />
             </View>
             <View style={styles.everyOneFavoriteItemsSection}>
                 <ScrollView showsHorizontalScrollIndicator={false} horizontal>

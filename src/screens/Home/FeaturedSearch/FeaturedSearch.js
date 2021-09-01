@@ -12,8 +12,8 @@ export default function FeaturedSearch({navigation}) {
       <View style={{margin: 20}}>
 				<TouchableOpacity style={styles.buttonShape}><Text>Filter</Text></TouchableOpacity>
 			<SearchDishes navigation={navigation}/>
-			{/* <SearchResturant/> */}
-			{/* <SearchPromotion/> */}
+			<SearchResturant navigation={navigation}/>
+			<SearchPromotion navigation={navigation}/>
 			</View>
 
 	</View>

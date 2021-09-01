@@ -11,7 +11,7 @@ const Recommendation = (props) => {
         <>
             <View style={styles.recommendationHeaderSection}>
                 <ResponsiveText color={colors.white}>Our Recommendations</ResponsiveText>
-                <SeeAllButton />
+                <SeeAllButton navigation={props.navigation} />
             </View>
             <View style={styles.recommendationItemsSection}>
                 <ScrollView showsHorizontalScrollIndicator={false} horizontal>

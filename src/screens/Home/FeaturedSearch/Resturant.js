@@ -6,14 +6,14 @@ import { Rating, AirbnbRating } from 'react-native-ratings';
 import { advertisementBannerFakeDATA } from '../../../constants/mock'
 import { colors } from '../../../constants/colorsPallet'
 import SeeAllButton from '../../../components/SeeAllButton'
-const SearchResturant = () => {
+const SearchResturant = (props) => {
     return (
         <>
             <View style={styles.everyOneFavoriteHeaderSection}>
                 <ResponsiveText color={colors.white}>Resturant</ResponsiveText>
 				<ResponsiveText color={colors.grey}size={3}>(5 Resulf Found) </ResponsiveText>
 
-                <SeeAllButton />
+                <SeeAllButton  navigation={props.navigation}/>
             </View>
             <View style={styles.recommendationItemsSection}>
                 <ScrollView showsHorizontalScrollIndicator={false} horizontal>

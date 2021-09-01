@@ -30,7 +30,7 @@ export default function SearchAll({navigation}) {
                     >
                     <Text style={{color:colors.white}}>Filter</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity
+                  <TouchableOpacity onPress={()=> navigation.navigate(routeName.MAP_VIEW)}
                      style={[styles.buttonShape,{backgroundColor:'#303030'}]}
                     >
                     <Text style={{color:colors.white}}>Map</Text>

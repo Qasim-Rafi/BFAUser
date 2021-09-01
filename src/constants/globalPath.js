@@ -20,6 +20,10 @@ const RIGHT_ARROW = require('../assets/icons/arrow.png');
 const DOWN_ARROW = require('../assets/icons/arrow-down.png');
 const BACK_ARROW = require('../assets/icons/back-arrow.png');
 const BALI_ICON = require('../assets/icons/bali-icon.png');
+const BRANCH_ICON = require('../assets/icons/branches_icon.png');
+const INFO_ICON = require('../assets/icons/info_icon.png');
+const MENU_ICON = require('../assets/icons/menu_icon.png');
+const PROMO_ICON = require('../assets/icons/Promo-icon.png');
 const RESTAURANT_LOGO = require('../assets/icons/Restaurant_Logo.png');
 const PROFILE_LOGO = require('../assets/icons/profileimage.png');
 
@@ -85,9 +89,9 @@ const USER_PROFILE_LOGO = require('../assets/icons/profile.png');
 //BOTTOM TABS LOGO
 const CHECKOUT_LOGO = require('../assets/icons/checkout.png');
 const MORE_LOGO = require('../assets/icons/more.png');
-const HOME_LOGO = require('../assets/icons/home.png');
-const RANDOMISER_LOGO = require('../assets/icons/randomiser.png');
-const PROMOS_LOGO = require('../assets/icons/promos.png');
+const HOME_LOGO = require('../assets/icons/Home.png');
+const RANDOMISER_LOGO = require('../assets/icons/Randomiser.png');
+const PROMOS_LOGO = require('../assets/icons/Promos.png');
 
 
 export const globalPath = {
@@ -116,6 +120,10 @@ export const globalPath = {
   PROFILE_LOGO,
   BACK_ARROW,
   RESTAURANT_LOGO,
+  INFO_ICON,
+  BRANCH_ICON,
+  MENU_ICON,
+  PROMO_ICON,
 
 
 

@@ -6,7 +6,7 @@ export default function HeaderButtons({}) {
         <View style={{flexDirection:'row',justifyContent:'space-between'}}>
           <View style={[styles.buttonView,{backgroundColor:'#EDC54E'}]}>
             <TouchableOpacity>
-                <Image/>
+                <Image />
                 <Text >Info</Text>
             </TouchableOpacity>
             </View>

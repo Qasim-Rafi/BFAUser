@@ -67,7 +67,7 @@ export default function Categories({ }) {
       <View style={{ flex: 0.9, paddingTop: 10, padding: 10 }}>
         <FlatList
           ref={scrollRef}
-          contentContainerStyle={{ paddingVertical: 150 }}
+          contentContainerStyle={{ paddingVertical: 10 }}
           data={exploreCategoryByName}
           keyExtractor={(item, index) => item + index}
           renderItem={renderItem}
@@ -81,6 +81,7 @@ export default function Categories({ }) {
 
 const styles = StyleSheet.create({
   container: {
+    position:'relative',
     flex: 1,
     // height: hp(120),
     // justifyContent: 'center',
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
   },
   header: {
     color: '#EDC54E',
-    flex: 0.1,
+    flex: 0.08,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',

@@ -6,12 +6,12 @@ import { advertisementBannerFakeDATA, BFAPartnerFakeData } from '../../../../con
 import { colors } from '../../../../constants/colorsPallet'
 import SeeAllButton from '../../../../components/SeeAllButton'
 import { globalPath } from '../../../../constants/globalPath'
-const BfaPartner = () => {
+const BfaPartner = (props) => {
     return (
         <>
             <View style={styles.bfaPartnerHeaderSection}>
                 <ResponsiveText color={colors.white}>BFA Partners</ResponsiveText>
-                <SeeAllButton  src={globalPath.RIGHT_ARROW}/>
+                <SeeAllButton navigation={props.navigation} src={globalPath.RIGHT_ARROW}/>
             </View>
             <View style={styles.bfaPartnerItemsSection}>
                 {BFAPartnerFakeData.map((url, index) => {

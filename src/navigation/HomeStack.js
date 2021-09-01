@@ -17,7 +17,6 @@ import RestaurantDetail from '../screens/Home/RestaurantBranchDetail/RestaurantB
 import MapView from '../screens/Home/MapView/MapView';
 import SearchAll from '../screens/Home/SearchAll/SearchAll';
 import FilterSearch from '../screens/Home/SearchAll/FilterSearch';
-
 const Stack = createNativeStackNavigator();
 
 function HomeStack() {

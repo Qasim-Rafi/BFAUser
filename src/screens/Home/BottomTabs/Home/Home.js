@@ -27,10 +27,10 @@ const Home = ({navigation}) => {
             <ScrollView style={
                 { flex: 0.9 }}>
                 <View style={styles.advertisementBanner}>
-                    <AdvertisementBanner />
+                    <AdvertisementBanner navigation={navigation}/>
                 </View>
                 <View style={styles.bfaPartnerContainer}>
-                    <BfaPartner />
+                    <BfaPartner navigation={navigation}/>
                 </View>
                 <ImageBackground style={styles.cuisinesContainer}
                 //  source={{ uri: 'https://images.unsplash.com/photo-1441716844725-09cedc13a4e7?h=1024' }}
@@ -48,16 +48,16 @@ const Home = ({navigation}) => {
                     <EveryOneFavourite navigation={navigation}/>
                 </View>
                 <View style={styles.yourFavorite}>
-                    <YourFavourite />
+                    <YourFavourite navigation={navigation}/>
                 </View>
                 <View style={styles.Advertisement2ndVarient}>
-                    <Advertisement2ndVarient />
+                    <Advertisement2ndVarient navigation={navigation}/>
                 </View>
                 <View style={styles.awardWinningDishes}>
-                    <AwardWinningDishes />
+                    <AwardWinningDishes navigation={navigation}/>
                 </View>
                 <View style={styles.awardWinningDishes}>
-                    <Promotion />
+                    <Promotion navigation={navigation}/>
                 </View>
             </ScrollView>
         </View>

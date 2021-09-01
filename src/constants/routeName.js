@@ -17,5 +17,6 @@ export const routeName = {
   RestaurantDetail:"RestaurantDetail",
   FeaturedSearch:"FeaturedSearch",
   SearchAll:'SearchAll',
+  MAP_VIEW:'MAP_VIEW',
   FilterSearch:'FilterSearch'
 };
