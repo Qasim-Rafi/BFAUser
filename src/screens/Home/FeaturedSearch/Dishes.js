@@ -22,7 +22,7 @@ const SearchDishes = (props) => {
                         return (
                             <TouchableOpacity onPress={()=> props.navigation.navigate(routeName.DISH_DETAIL)}>
                             <View style={{ width: wp(26), height: hp(18), marginHorizontal: 5, borderRadius: 3, overflow: 'hidden', flexDirection: 'row' }}>
-                                <ImageBackground imageStyle={{opacity:0.5}} style={{ flex:1 }} source={{ uri: url }} >
+                                <ImageBackground imageStyle={{opacity:0.5}} style={{ flex:1 }} source={url} >
                                 
                                 <View style={{ flex: 1, padding: 5,overflow: 'hidden', justifyContent: 'flex-end'}}>
                                     <ResponsiveText fontFamily="Regular" size={2.9} color={colors.white}>Kaizen sushi</ResponsiveText>

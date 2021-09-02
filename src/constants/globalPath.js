@@ -38,12 +38,12 @@ const HOME_AWARD_WINNING_DISH_1 = require('../assets/fake_Images/Home-Award-Winn
 const HOME_AWARD_WINNING_DISH_2 = require('../assets/fake_Images/Home-Award-Winning-Dishes- (2).png');
 const HOME_AWARD_WINNING_DISH_3 = require('../assets/fake_Images/Home-Award-Winning-Dishes- (3).png');
 const HOME_AWARD_WINNING_DISH_4 = require('../assets/fake_Images/Home-Award-Winning-Dishes- (4).png');
-const HOME_BFA_PARTNER_1 = require('../assets/fake_Images/HOME_BFA_PARTNER- (1).png');
-const HOME_BFA_PARTNER_2 = require('../assets/fake_Images/HOME_BFA_PARTNER- (2).png');
-const HOME_BFA_PARTNER_3 = require('../assets/fake_Images/HOME_BFA_PARTNER- (3).png');
-const HOME_BFA_PARTNER_4 = require('../assets/fake_Images/HOME_BFA_PARTNER- (4).png');
-const HOME_BFA_PARTNER_5 = require('../assets/fake_Images/HOME_BFA_PARTNER- (5).png');
-const HOME_BFA_PARTNER_6 = require('../assets/fake_Images/HOME_BFA_PARTNER- (6).png');
+const HOME_BFA_PARTNER_1 = require('../assets/fake_Images/HOME_BFA_PARTNER-1.png');
+const HOME_BFA_PARTNER_2 = require('../assets/fake_Images/HOME_BFA_PARTNER-2.png');
+const HOME_BFA_PARTNER_3 = require('../assets/fake_Images/HOME_BFA_PARTNER-3.png');
+const HOME_BFA_PARTNER_4 = require('../assets/fake_Images/HOME_BFA_PARTNER-4.png');
+const HOME_BFA_PARTNER_5 = require('../assets/fake_Images/HOME_BFA_PARTNER-5.png');
+const HOME_BFA_PARTNER_6 = require('../assets/fake_Images/HOME_BFA_PARTNER-6.png');
 // const HOME_COISINE_1 = require('../assets/fake_Images/Home-Coisines- (1).png');
 // const HOME_COISINE_2 = require('../assets/fake_Images/Home-Coisines- (2).png');
 // const HOME_COISINE_3 = require('../assets/fake_Images/Home-Coisines- (4).png');
@@ -60,10 +60,7 @@ const HOME_PROMOTION_1 = require('../assets/fake_Images/Home-Promotions- (1).png
 const HOME_PROMOTION_2 = require('../assets/fake_Images/Home-Promotions- (2).png');
 const HOME_PROMOTION_3 = require('../assets/fake_Images/Home-Promotions- (3).png');
 const HOME_PROMOTION_4 = require('../assets/fake_Images/Home-Promotions- (4).png');
-const HOME_RECOMMENDATION_1 = require('../assets/fake_Images/Home-Recommendations- (1).png');
-const HOME_RECOMMENDATION_2 = require('../assets/fake_Images/Home-Recommendations- (2).png');
-const HOME_RECOMMENDATION_3 = require('../assets/fake_Images/Home-Recommendations- (3).png');
-const HOME_RECOMMENDATION_4 = require('../assets/fake_Images/Home-Recommendations- (4).png');
+
 const HOME_HOME_VIEW_COISINES_AND_CATEGORIES = require('../assets/fake_Images/Home-view-cuisines-and-categories.png');
 const HOME_WHATSNEW_1 = require('../assets/fake_Images/Home-Whatsnew- (1).png');
 const HOME_WHATSNEW_2 = require('../assets/fake_Images/Home-Whatsnew- (2).png');
@@ -81,9 +78,9 @@ const USER_PROFILE_LOGO = require('../assets/icons/profile.png');
 //BOTTOM TABS LOGO
 const CHECKOUT_LOGO = require('../assets/icons/checkout.png');
 const MORE_LOGO = require('../assets/icons/more.png');
-const HOME_LOGO = require('../assets/icons/home.png');
-const RANDOMISER_LOGO = require('../assets/icons/randomiser.png');
-const PROMOS_LOGO = require('../assets/icons/promos.png');
+const HOME_LOGO = require('../assets/icons/Home.png');
+const RANDOMISER_LOGO = require('../assets/icons/Randomiser.png');
+const PROMOS_LOGO = require('../assets/icons/Promos.png');
 
 export const globalPath = {
   //ICON PATHS HERE
@@ -117,46 +114,44 @@ export const globalPath = {
   PROMO_ICON,
 
   // FAKE IMAGES HERE
-  HOME_BFA_PARTNER,
-  HOME_ADD_BANNER_1,
-  HOME_ADD_BANNER_2,
-  HOME_AWARD_WINNING_DISH_1,
-  HOME_AWARD_WINNING_DISH_2,
-  HOME_AWARD_WINNING_DISH_3,
-  HOME_AWARD_WINNING_DISH_4,
-  // HOME_COISINE_1,
-  // HOME_COISINE_2,
-  // HOME_COISINE_3,
-  // HOME_COISINE_4,
-  // HOME_EVERYONES_FAVORITE_1,
-  // HOME_EVERYONES_FAVORITE_2,
-  // HOME_EVERYONES_FAVORITE_3,
-  // HOME_EVERYONES_FAVORITE_4,
-  HOME_HOME_VIEW_COISINES_AND_CATEGORIES,
-  HOME_NEARBY_RESTAURANT_1,
-  HOME_NEARBY_RESTAURANT_2,
-  HOME_NEARBY_RESTAURANT_3,
-  HOME_NEARBY_RESTAURANT_4,
-  HOME_PROMOTION_1,
-  HOME_PROMOTION_2,
-  HOME_PROMOTION_3,
-  HOME_PROMOTION_4,
-  HOME_RECOMMENDATION_1,
-  HOME_RECOMMENDATION_2,
-  HOME_RECOMMENDATION_3,
-  HOME_RECOMMENDATION_4,
-  HOME_WHATSNEW_1,
-  HOME_WHATSNEW_2,
-  HOME_WHATSNEW_3,
-  HOME_WHATSNEW_4,
-  HOME_YOUR_FAVORITE_1,
-  HOME_YOUR_FAVORITE_2,
-  HOME_YOUR_FAVORITE_3,
-  HOME_YOUR_FAVORITE_4,
-  HOME_BFA_PARTNER_1,
-  HOME_BFA_PARTNER_2,
-  HOME_BFA_PARTNER_3,
-  HOME_BFA_PARTNER_4,
-  HOME_BFA_PARTNER_5,
-  HOME_BFA_PARTNER_6,
+HOME_BFA_PARTNER,
+HOME_ADD_BANNER_1,
+HOME_ADD_BANNER_2,
+HOME_AWARD_WINNING_DISH_1,
+HOME_AWARD_WINNING_DISH_2,
+HOME_AWARD_WINNING_DISH_3,
+HOME_AWARD_WINNING_DISH_4,
+// HOME_COISINE_1,
+// HOME_COISINE_2,
+// HOME_COISINE_3,
+// HOME_COISINE_4,
+// HOME_EVERYONES_FAVORITE_1,
+// HOME_EVERYONES_FAVORITE_2,
+// HOME_EVERYONES_FAVORITE_3,
+// HOME_EVERYONES_FAVORITE_4,
+HOME_HOME_VIEW_COISINES_AND_CATEGORIES,
+HOME_NEARBY_RESTAURANT_1,
+HOME_NEARBY_RESTAURANT_2,
+HOME_NEARBY_RESTAURANT_3,
+HOME_NEARBY_RESTAURANT_4,
+HOME_PROMOTION_1,
+HOME_PROMOTION_2,
+HOME_PROMOTION_3,
+HOME_PROMOTION_4,
+
+HOME_WHATSNEW_1,
+HOME_WHATSNEW_2,
+HOME_WHATSNEW_3,
+HOME_WHATSNEW_4,
+HOME_YOUR_FAVORITE_1,
+HOME_YOUR_FAVORITE_2,
+HOME_YOUR_FAVORITE_3,
+HOME_YOUR_FAVORITE_4,
+HOME_BFA_PARTNER_1,
+HOME_BFA_PARTNER_2,
+HOME_BFA_PARTNER_3,
+HOME_BFA_PARTNER_4,
+HOME_BFA_PARTNER_5,
+HOME_BFA_PARTNER_6
+
 };

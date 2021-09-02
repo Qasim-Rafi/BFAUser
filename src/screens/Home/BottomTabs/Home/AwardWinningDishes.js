@@ -21,7 +21,7 @@ const AwardWinningDishes = (props) => {
                         return (
                             <TouchableOpacity onPress={()=> props.navigation.navigate(routeName.DISH_DETAIL)}>
                             <View style={{ width: wp(26), height: hp(18), marginHorizontal: 5, borderRadius: 3, overflow: 'hidden', flexDirection: 'row' }}>
-                                <ImageBackground imageStyle={{opacity:.5}} style={{ flex: 1, padding: 5, overflow: 'hidden', justifyContent: 'flex-end' }} source={{ uri: url }} >
+                                <ImageBackground imageStyle={{opacity:.5}} style={{ flex: 1, padding: 5, overflow: 'hidden', justifyContent: 'flex-end' }} source={url} >
                                     <ResponsiveText fontFamily="Regular" size={2.9} color={colors.white}>Kaizen sushi</ResponsiveText>
                                     <ResponsiveText fontFamily="Light" size={2} color={colors.white}>Special sushi</ResponsiveText>
 

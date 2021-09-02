@@ -22,7 +22,7 @@ const SearchPromotion = (props) => {
                         return (
                             <TouchableOpacity onPress={()=> props.navigation.navigate(routeName.DISH_DETAIL)}>
                             <View style={{ width: wp(26), height: hp(18), marginHorizontal: 5, borderRadius: 3, overflow: 'hidden', flexDirection: 'row' }}>
-                                <ImageBackground  imageStyle={{opacity:0.5}} style={{ flex:1 }} source={{ uri: url }} >
+                                <ImageBackground  imageStyle={{opacity:0.5}} style={{ flex:1 }} source={url } >
                                 <View style={styles.promotionoffView}>
                                     <ResponsiveText size={2}>Flat 25% Off</ResponsiveText>
                                 </View>

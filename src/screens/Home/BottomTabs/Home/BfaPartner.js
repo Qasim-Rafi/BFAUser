@@ -18,7 +18,7 @@ const BfaPartner = (props) => {
             <ScrollView showsHorizontalScrollIndicator={false} horizontal>
                 {BFAPartnerFakeData.map((url, index) => {
                     return (
-                        <Image style={{ width: wp(22), height: wp(22), marginHorizontal: 5, borderRadius: 5, overflow: 'hidden' }} source={{ uri: url }} />
+                        <Image style={{ width: wp(22), height: wp(22), marginHorizontal: 5, borderRadius: 5, overflow: 'hidden' }} source={url} />
 
                     )
                 })}
