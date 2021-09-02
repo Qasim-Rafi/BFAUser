@@ -16,10 +16,10 @@ const SearchHeader = (props) => {
   return (
     <View style={[styles.header, {backgroundColor:'#2F2F2F'}]}>
     
-         <View style={{backgroundColor:'#3f3f3f', borderRadius:2}}>
-        <TouchableOpacity onPress={()=>{props.navigation.goBack()}}><Icon size={wp(2) , hp(5)} source={require('../assets/icons/back-arrow.png')} /></TouchableOpacity>
+         <View style={{padding:10,backgroundColor:'#3f3f3f', borderRadius:2}}>
+        <TouchableOpacity onPress={()=>{props.navigation.goBack()}}><Icon size={wp(1) , hp(3)} source={require('../assets/icons/back-arrow.png')} /></TouchableOpacity>
         </View>
-        <TouchableOpacity style={{marginLeft:5}}>
+        <TouchableOpacity style={{borderRadius:10,marginLeft:5}}>
                   <Input editable={false} fontSize={11} color={colors.white} Value="Chicken" padding={[0, 0, 0, 10]} leftIcon={globalPath.SEARCH_LOGO} containerStyle={{ backgroundColor: '#404040'}}height={hp(6)} width={wp(70)} />
         </TouchableOpacity>
         <Icon margin={[0,0,0,5]} borderRadius={10} size={wp(10) , hp(6)} source={globalPath.PROFILE_LOGO} />
@@ -32,7 +32,7 @@ const SearchHeader = (props) => {
 
 const styles = {
   header: {
-    flex: 0.1,
+    flex: 0.11,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',

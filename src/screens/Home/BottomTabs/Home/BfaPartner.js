@@ -11,8 +11,8 @@ const BfaPartner = (props) => {
     return (
         <>
             <View style={styles.bfaPartnerHeaderSection}>
-                <ResponsiveText size={4} color={colors.white}>BFA Partners</ResponsiveText>
-                <SeeAllButton navigation={props.navigation} src={globalPath.RIGHT_ARROW}/>
+                <ResponsiveText margin={5} size={4} color={colors.white}>BFA Partners</ResponsiveText>
+                <SeeAllButton navigation={props.navigation} src={globalPath.DOWN_ARROW}/>
             </View>
             <View style={styles.bfaPartnerItemsSection}>
             <ScrollView showsHorizontalScrollIndicator={false} horizontal>
@@ -37,11 +37,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: '#404040',
+        backgroundColor: '#505050',
         borderTopLeftRadius: 7,
         borderTopRightRadius: 7,
     },
     bfaPartnerItemsSection: {
+        
         flex: 1,
         flexDirection: 'row',
         display: 'flex',

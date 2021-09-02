@@ -46,7 +46,7 @@ export default function Categories({navigation}) {
       <View style={[styles.header, {backgroundColor:'#2F2F2F'}]}>
     
          <View style={{backgroundColor:'#3f3f3f', borderRadius:2}}>
-        <TouchableOpacity onPress={()=>{navigation.goBack()}}><Icon source={require('../../../assets/icons/back-arrow.png')} /></TouchableOpacity>
+        <TouchableOpacity onPress={()=>{navigation.goBack()}}><Icon  source={require('../../../assets/icons/back-arrow.png')} /></TouchableOpacity>
         </View>
         <Text style={{ color: "#ffffff", width: wp(75), textAlign: 'center' }} >View Cuisines and Categories</Text>
         <Icon  source={globalPath.SEARCH_LOGO} />

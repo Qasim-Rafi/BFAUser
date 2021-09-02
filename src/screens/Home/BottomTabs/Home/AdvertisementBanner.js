@@ -7,6 +7,8 @@ import Swiper from 'react-native-swiper'
 import { advertisementBannerFakeDATA } from '../../../../constants/mock'
 import { colors } from '../../../../constants/colorsPallet'
 import { globalPath } from '../../../../constants/globalPath'
+import Icon from '../../../../components/Icon'
+import { wp } from '../../../../helpers/Responsiveness'
 const AdvertisementBanner = () => {
     return (
 
@@ -26,6 +28,8 @@ const AdvertisementBanner = () => {
                             <ResponsiveText fontFamily={'Light'} size={3} color={colors.white}>Seafood Restaurant</ResponsiveText>
                             <RnButton>
                                 <ResponsiveText>Order Now</ResponsiveText>
+                                <Icon size={wp(3)} margin={[0,0,0,5]}  tintColor='black' source={globalPath.RIGHT_ARROW} />
+
                             </RnButton>
                         </View>
                     </ImageBackground>

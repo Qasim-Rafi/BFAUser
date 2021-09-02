@@ -8,12 +8,12 @@ import Comments from '../DishDetails/Comments'
 import DishDescription from '../DishDetails/DishDescription'
 import HeaderButtons from './HeaderButtons'
 import TimeTable from './TimeTable'
-export default function RestaurantBranchDetailScreen({}) {
+export default function RestaurantBranchDetailScreen({navigation}) {
     return (
        
         <ScrollView style={{backgroundColor:'#202020'}}>
             <View style={styles.headerImage}>
-            <ImageHeader/>
+            <ImageHeader navigation={navigation}/>
             </View>
             <View style={styles.buttonStyle}>
             <HeaderButtons/>

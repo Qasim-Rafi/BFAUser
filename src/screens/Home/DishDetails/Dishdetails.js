@@ -10,12 +10,12 @@ import PeopleSay from './PeopleSay'
 import Comments from './Comments'
 import RnButton from '../../../components/RnButton'
 import ResponsiveText from '../../../components/RnText'
-export default function DishDetails({}) {
+export default function DishDetails({navigation}) {
     return (
        
         <ScrollView style={{backgroundColor:'#202020'}}>
             <View style={styles.headerImage}>
-            <ImageHeader/>
+            <ImageHeader navigation={navigation}/>
             </View>
         <DishDescription/>
         <CalorieCount/>

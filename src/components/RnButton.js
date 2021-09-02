@@ -33,7 +33,8 @@ const RnButton = ({
         backgroundColor && { backgroundColor },
 
         {
-        height:hp(6),
+        height:hp(5),
+        flexDirection:'row'
           // width: width ? width : undefined,
           // height: height ? height : undefined,
           // borderRadius: borderRadius ? borderRadius : 7,

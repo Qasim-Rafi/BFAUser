@@ -6,13 +6,17 @@ import Swiper from 'react-native-swiper'
 
 import { advertisementBannerFakeDATA } from '../../../../constants/mock'
 import { colors } from '../../../../constants/colorsPallet'
+import Icon from '../../../../components/Icon'
+import { globalPath } from '../../../../constants/globalPath'
 const image = { uri: "https://i.ndtvimg.com/i/2016-06/noodles-625_625x350_41466064269.jpg" };
 
-const ImageHeader = () => {
+const ImageHeader = (props) => {
     return (
         <View style={styles.container}>
-        <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-          {/* <TouchableOpacity><Image source={{uri: ''}}/> </TouchableOpacity> */}
+        <ImageBackground  imageStyle={{opacity:0.8}} source={image} resizeMode="cover" style={styles.image}>
+          <TouchableOpacity onPress={()=>{props.navigation.goBack()}} style={{margin:20}}>
+            <Icon source={globalPath.BACK_ARROW}/>
+             </TouchableOpacity>
         </ImageBackground>
       </View>
 
@@ -29,7 +33,6 @@ const styles = StyleSheet.create({
         image: {
           flex: 1,
           height:200,
-          justifyContent: "center"
         },
         
       });
