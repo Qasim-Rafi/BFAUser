@@ -25,6 +25,10 @@ const PROMO_ICON = require('../assets/icons/Promo-icon.png');
 const RESTAURANT_LOGO = require('../assets/icons/Restaurant_Logo.png');
 const PROFILE_LOGO = require('../assets/icons/profileimage.png');
 
+const PARKING_ICON = require('../assets/icons/parking.png');
+const WIFI_ICON = require('../assets/icons/wifi.png');
+const MOSQUE_ICON = require('../assets/icons/mosque.png');
+
 // STATIC DUMMY IMAGES
 
 // 1. INITIALIZE PATH  E.G  const HOME_BFA_PARTNER = require('../assets/fake_Images/home-bfa-partner-ad.png');
@@ -112,6 +116,9 @@ export const globalPath = {
   BRANCH_ICON,
   MENU_ICON,
   PROMO_ICON,
+  PARKING_ICON,
+  MOSQUE_ICON, 
+  WIFI_ICON,
 
   // FAKE IMAGES HERE
 HOME_BFA_PARTNER,
