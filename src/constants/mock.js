@@ -22,6 +22,14 @@ export const awardWinningFakeDATA = [
 
   
 ];
+export const promosBannerFakeDATA = [
+  require('../assets/fake_Images/promos-banner1.png'),
+  require('../assets/fake_Images/promos-banner3.png'),
+  require('../assets/fake_Images/Home-Add-Banner-2.png'),
+ 
+
+  
+];
 
 export const ourRecommendationFakeDATA = [
  
@@ -203,7 +211,7 @@ export const exploreCategoryByName = [
     data: ['Category Name', 'Category Name', 'Category Name'],
   },
   {
-    title: 'V',
+    title: 'V', 
     data: ['Category Name', 'Category Name', 'Category Name'],
   },
   {

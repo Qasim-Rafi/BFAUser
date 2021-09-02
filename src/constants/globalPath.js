@@ -82,9 +82,9 @@ const USER_PROFILE_LOGO = require('../assets/icons/profile.png');
 //BOTTOM TABS LOGO
 const CHECKOUT_LOGO = require('../assets/icons/checkout.png');
 const MORE_LOGO = require('../assets/icons/more.png');
-const HOME_LOGO = require('../assets/icons/home.png');
-const RANDOMISER_LOGO = require('../assets/icons/randomiser.png');
-const PROMOS_LOGO = require('../assets/icons/promos.png');
+const HOME_LOGO = require('../assets/icons/Home.png');
+const RANDOMISER_LOGO = require('../assets/icons/Randomiser.png');
+const PROMOS_LOGO = require('../assets/icons/Promos.png');
 
 export const globalPath = {
   //ICON PATHS HERE
