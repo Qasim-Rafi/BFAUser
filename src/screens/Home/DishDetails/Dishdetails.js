@@ -23,8 +23,11 @@ export default function DishDetails({navigation}) {
         <PeopleSay/>
         <Comments/>
         <View style={{margin:20,paddingBottom:20}}>
+        
+        
         <RnButton>
-            <ResponsiveText padding={15}>Order This Recipie</ResponsiveText>
+            
+            <ResponsiveText padding={0} color={'black'}>ORDER THIS RECIPE</ResponsiveText>
         </RnButton>
         </View>
         </ScrollView>

@@ -75,52 +75,22 @@ export default function DishDescription({}) {
           </ResponsiveText>
         </View>
       </View>
-      <View style={{padding: 20, paddingVertical: 10}}>
+      <View style={{padding: 20, }}>
         <ResponsiveText fontFamily="Regular" size={4} color={colors.white}>
-          Business Address
+          Dish Description
         </ResponsiveText>
         <ResponsiveText
           top={5}
           fontFamily="Regular"
           size={3.5}
           color={colors.grey}>
+          Lorem Ipsum is simply dummy text of the printing.Lorem Ipsum is simply dummy text of the printing.
           Lorem Ipsum is simply dummy text of the printing.
         </ResponsiveText>
       </View>
-      <View style={{paddingHorizontal: 20}}>
-        <ResponsiveText fontFamily="Regular" size={4} color={colors.white}>
-          District
-        </ResponsiveText>
-        <ResponsiveText
-          top={5}
-          fontFamily="Regular"
-          size={3.5}
-          color={colors.grey}>
-          Bandar Seri Begwan, Brunei
-        </ResponsiveText>
-      </View>
-      <View style={{paddingHorizontal: 20, paddingTop: 10}}>
-        <ResponsiveText
-          margin={[10, 0]}
-          fontFamily="Regular"
-          size={4}
-          color={colors.white}>
-          Location Map
-        </ResponsiveText>
-        <StaticMap />
-      </View>
-      <View style={{padding: 20}}>
-        <ResponsiveText fontFamily="Regular" size={4} color={colors.white}>
-          Phone Number
-        </ResponsiveText>
-        <ResponsiveText
-          top={5}
-          fontFamily="Regular"
-          size={3.5}
-          color={colors.grey}>
-          +673-242-2466
-        </ResponsiveText>
-      </View>
+      
+      
+      
     </View>
   );
 }

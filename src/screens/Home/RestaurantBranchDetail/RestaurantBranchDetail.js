@@ -8,6 +8,9 @@ import Comments from '../DishDetails/Comments'
 import DishDescription from '../DishDetails/DishDescription'
 import HeaderButtons from './HeaderButtons'
 import TimeTable from './TimeTable'
+import ResturantDescription from './ResturantDescription'
+import RnButton from '../../../components/RnButton'
+import ResponsiveText from '../../../components/RnText'
 export default function RestaurantBranchDetailScreen({navigation}) {
     return (
        
@@ -18,7 +21,7 @@ export default function RestaurantBranchDetailScreen({navigation}) {
             <View style={styles.buttonStyle}>
             <HeaderButtons/>
             </View>
-            <DishDescription/>
+            <ResturantDescription/>
             <View style={{margin:20}}>
             <Text style={{color:'white',marginBottom:20}}>Facilities</Text>
             <FacilityList data={FacilityData}/>
@@ -27,6 +30,12 @@ export default function RestaurantBranchDetailScreen({navigation}) {
             <View style={{marginBottom:30}}>
         <Comments/>
             </View>
+            <View style={{margin:20,paddingBottom:20}}>
+        <RnButton>
+            
+            <ResponsiveText padding={0} color={'black'}>SUBMIT</ResponsiveText>
+        </RnButton>
+        </View>
         
         </ScrollView>
     )

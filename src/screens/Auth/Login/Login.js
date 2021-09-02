@@ -64,8 +64,8 @@ export default function Login({navigation}) {
             </ResponsiveText>
             <Icon size={wp(8)} margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} />
             <ResponsiveText margin={[0, 10]} color={'white'}>
-              i don't have an account?{' '}
-              <ResponsiveText  fontFamily='Bold' color={colors.yellow}  onPress={()=>navigation.navigate(routeName.SIGN_UP)}>Signup</ResponsiveText>
+              New user{' '}
+              <ResponsiveText  fontFamily='Bold' color={colors.yellow}  onPress={()=>navigation.navigate(routeName.SIGN_UP)}>Sign up</ResponsiveText>
             </ResponsiveText>
             {/* <View style={styles.socialIcon}></View> */}
           </View>

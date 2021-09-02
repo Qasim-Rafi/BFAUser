@@ -11,7 +11,7 @@ const EveryOneFavourite = (props) => {
     return (
         <>
             <View style={styles.everyOneFavoriteHeaderSection}>
-                <ResponsiveText size={6} color={colors.white}>Everyone's Favorite</ResponsiveText>
+                <ResponsiveText size={4} color={colors.white}>Everyone's Favorite</ResponsiveText>
                 <SeeAllButton navigation={props.navigation} />
             </View>
             <View style={styles.everyOneFavoriteItemsSection}>

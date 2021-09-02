@@ -4,7 +4,7 @@ import Header from '../../../components/Header'
 import ResponsiveText from '../../../components/RnText'
 import { colors } from '../../../constants/colorsPallet'
 import { hp, wp } from '../../../helpers/Responsiveness'
-import { advertisementBannerFakeDATA } from '../../../constants/mock'
+import { advertisementBannerFakeDATA, ourRecommendationFakeDATA } from '../../../constants/mock'
 import { Rating } from 'react-native-ratings'
 import Icon from '../../../components/Icon'
 import { globalPath } from '../../../constants/globalPath'
@@ -43,7 +43,7 @@ export default function SearchAll({navigation}) {
 				<ResponsiveText color={colors.white}>Now SHowing Dish Result For "Chicken" </ResponsiveText>
 				<ResponsiveText color={colors.white} size={3}>5 Result Found </ResponsiveText>
 			</View>
-		<SortResult/>
+		<SortResult navigation={navigation} />
 		
 		</View>
 	)
@@ -56,12 +56,12 @@ const SortResult = (props) => {
             
             <View style={styles.everyOneFavoriteItemsSection}>
                 <ScrollView showsHorizontalScrollIndicator={false} >
-                    {advertisementBannerFakeDATA.map((url, index) => {
+                    {ourRecommendationFakeDATA.map((url, index) => {
                         return (
 		
-		<TouchableOpacity style={{flexDirection: 'row',backgroundColor: '#303030',marginTop:10}} onPress={()=> null}>
+		<TouchableOpacity style={{flexDirection: 'row',backgroundColor: '#303030',marginTop:10}} onPress={()=> props.navigation.navigate(routeName.DISH_DETAIL)}>
                             <View style={{  height: 80, marginHorizontal: 5, borderRadius: 3, overflow: 'hidden',  }}>
-                                <Image style={{  padding: 5, overflow: 'hidden', justifyContent: 'flex-end',width:80,height:80 }} source={{ uri: url }} >
+                                <Image style={{  padding: 5, overflow: 'hidden', justifyContent: 'flex-end',width:80,height:80 }} source={ url } >
                                 </Image>
 								</View>
 							<View style={{flex:1,justifyContent:'space-between',flexDirection:'row'}}>	
