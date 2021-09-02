@@ -1,20 +1,43 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import Map, {PROVIDER_GOOGLE} from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
+import React,{useState} from 'react';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import Map, {PROVIDER_GOOGLE,Marker,Polyline} from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
+import MapViewDirections from 'react-native-maps-directions';
+
 import Icon from '../../../components/Icon';
 import ResponsiveText from '../../../components/RnText';
 import {globalPath} from '../../../constants/globalPath';
 import {hp, wp} from '../../../helpers/Responsiveness';
-import { colors } from '../../../constants/colorsPallet';
+import {colors} from '../../../constants/colorsPallet';
 
-export default function MapView() {
+const origin = {latitude: 37.3318456, longitude: -122.0296002};
+const destination = {latitude: 37.771707, longitude: -122.4053769};
+// const GOOGLE_MAPS_APIKEY = 'AIzaSyBPlHPQFOoDXh4K60fqBVg7kPHC7Fcmy5I';
+const GOOGLE_MAPS_APIKEY ='AIzaSyCVqqBceVIdw8mFtICTxUYQ4kWqvk2Wi_c';
+export default function MapView(props) {
+  // latitude: 4.5353,
+  // longitude: 114.7277,
+  const [coordinates] = useState([
+    {
+      latitude: 4.7353,
+      longitude: 114.7277,
+    },
+    {
+      latitude: 4.2254,
+      longitude: 114.6675,
+    },
+  ]);
   return (
     <View style={{flex: 1}}>
-       <View style={styles.header}>
-        <Icon source={globalPath.BALI_ICON} />
-        
-        <ResponsiveText color={colors.white} size={5}>View Map</ResponsiveText>
-        </View>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={()=>props.navigation.goBack()}>
+        <Icon  source={globalPath.BACK_ARROW} />
+        </TouchableOpacity>
+        <ResponsiveText color={colors.white} size={5}>
+          View Map
+        </ResponsiveText>
+        <ResponsiveText color={colors.white} size={5}>
+        </ResponsiveText>
+      </View>
       <View
         style={{
           flex: 0.9,
@@ -89,7 +112,28 @@ export default function MapView() {
             longitude: 114.7277,
             latitudeDelta: 0.9,
             longitudeDelta: 0.0121,
-          }}></Map>
+          }}>
+          {/* <MapViewDirections
+            origin={origin}
+            destination={destination}
+            apikey={GOOGLE_MAPS_APIKEY}
+          /> */}
+          <MapViewDirections
+            origin={coordinates[0]}
+            destination={coordinates[1]}
+            apikey={GOOGLE_MAPS_APIKEY} // insert your API Key here
+            strokeWidth={4}
+            strokeColor="red"
+          />
+          <Marker coordinate={coordinates[0]} />
+          <Marker coordinate={coordinates[1]} />
+          {/* <Polyline
+          coordinates={coordinates}
+          strokeColor="#000" // fallback for when `strokeColors` is not supported by the map-provider
+          strokeColors={['#7F0000']}
+          strokeWidth={6}
+        /> */}
+        </Map>
       </View>
     </View>
   );
@@ -100,12 +144,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    flex: 0.1,
+    flex: 0.09,
+    width:"100%",
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 15,
-    backgroundColor:'#303030'
-
-},
+    backgroundColor: '#303030',
+  },
 });

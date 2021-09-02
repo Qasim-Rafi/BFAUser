@@ -14,8 +14,6 @@ const LOCATION = require('../assets/icons/goto.png');
 const CONTACT = require('../assets/icons/contact.png');
 const LOCATION1 = require('../assets/icons/location1.png');
 
-
-
 const RIGHT_ARROW = require('../assets/icons/arrow.png');
 const DOWN_ARROW = require('../assets/icons/arrow-down.png');
 const BACK_ARROW = require('../assets/icons/back-arrow.png');
@@ -27,13 +25,10 @@ const PROMO_ICON = require('../assets/icons/Promo-icon.png');
 const RESTAURANT_LOGO = require('../assets/icons/Restaurant_Logo.png');
 const PROFILE_LOGO = require('../assets/icons/profileimage.png');
 
-
-
 // STATIC DUMMY IMAGES
 
 // 1. INITIALIZE PATH  E.G  const HOME_BFA_PARTNER = require('../assets/fake_Images/home-bfa-partner-ad.png');
 // 2. EXPORT CONSTANT BELOW FAKE IMAGES SECTION IN GLOBAL PATH OBJECT
-
 
 const HOME_BFA_PARTNER = require('../assets/fake_Images/home-bfa-partner-ad.png');
 const HOME_ADD_BANNER_1 = require('../assets/fake_Images/Home-Add-Banner-1.png');
@@ -74,25 +69,21 @@ const HOME_WHATSNEW_1 = require('../assets/fake_Images/Home-Whatsnew- (1).png');
 const HOME_WHATSNEW_2 = require('../assets/fake_Images/Home-Whatsnew- (2).png');
 const HOME_WHATSNEW_3 = require('../assets/fake_Images/Home-Whatsnew- (3).png');
 const HOME_WHATSNEW_4 = require('../assets/fake_Images/Home-Whatsnew- (4).png');
-const HOME_YOUR_FAVORITE_1 = require('../assets/fake_Images/Home-Your-Favorites- (4).png');
+const HOME_YOUR_FAVORITE_1 ='../assets/fake_Images/Home-Your-Favorites- (4).png';
 const HOME_YOUR_FAVORITE_2 = require('../assets/fake_Images/Home-Your-Favorites- (5).png');
 const HOME_YOUR_FAVORITE_3 = require('../assets/fake_Images/Home-Your-Favorites- (6).png');
 const HOME_YOUR_FAVORITE_4 = require('../assets/fake_Images/Home-Your-Favorites- (7).png');
-
 
 // =====================================
 // TEMP FILE PATH
 const USER_PROFILE_LOGO = require('../assets/icons/profile.png');
 
-
-
 //BOTTOM TABS LOGO
 const CHECKOUT_LOGO = require('../assets/icons/checkout.png');
 const MORE_LOGO = require('../assets/icons/more.png');
-const HOME_LOGO = require('../assets/icons/Home.png');
-const RANDOMISER_LOGO = require('../assets/icons/Randomiser.png');
-const PROMOS_LOGO = require('../assets/icons/Promos.png');
-
+const HOME_LOGO = require('../assets/icons/home.png');
+const RANDOMISER_LOGO = require('../assets/icons/randomiser.png');
+const PROMOS_LOGO = require('../assets/icons/promos.png');
 
 export const globalPath = {
   //ICON PATHS HERE
@@ -115,7 +106,7 @@ export const globalPath = {
   SEARCH_LOGO,
   USER_PROFILE_LOGO,
   RIGHT_ARROW,
-  DOWN_ARROW, 
+  DOWN_ARROW,
   BALI_ICON,
   PROFILE_LOGO,
   BACK_ARROW,
@@ -125,50 +116,47 @@ export const globalPath = {
   MENU_ICON,
   PROMO_ICON,
 
-
-
   // FAKE IMAGES HERE
-HOME_BFA_PARTNER,
-HOME_ADD_BANNER_1,
-HOME_ADD_BANNER_2,
-HOME_AWARD_WINNING_DISH_1,
-HOME_AWARD_WINNING_DISH_2,
-HOME_AWARD_WINNING_DISH_3,
-HOME_AWARD_WINNING_DISH_4,
-// HOME_COISINE_1,
-// HOME_COISINE_2,
-// HOME_COISINE_3,
-// HOME_COISINE_4,
-// HOME_EVERYONES_FAVORITE_1,
-// HOME_EVERYONES_FAVORITE_2,
-// HOME_EVERYONES_FAVORITE_3,
-// HOME_EVERYONES_FAVORITE_4,
-HOME_HOME_VIEW_COISINES_AND_CATEGORIES,
-HOME_NEARBY_RESTAURANT_1,
-HOME_NEARBY_RESTAURANT_2,
-HOME_NEARBY_RESTAURANT_3,
-HOME_NEARBY_RESTAURANT_4,
-HOME_PROMOTION_1,
-HOME_PROMOTION_2,
-HOME_PROMOTION_3,
-HOME_PROMOTION_4,
-HOME_RECOMMENDATION_1,
-HOME_RECOMMENDATION_2,
-HOME_RECOMMENDATION_3,
-HOME_RECOMMENDATION_4,
-HOME_WHATSNEW_1,
-HOME_WHATSNEW_2,
-HOME_WHATSNEW_3,
-HOME_WHATSNEW_4,
-HOME_YOUR_FAVORITE_1,
-HOME_YOUR_FAVORITE_2,
-HOME_YOUR_FAVORITE_3,
-HOME_YOUR_FAVORITE_4,
-HOME_BFA_PARTNER_1,
-HOME_BFA_PARTNER_2,
-HOME_BFA_PARTNER_3,
-HOME_BFA_PARTNER_4,
-HOME_BFA_PARTNER_5,
-HOME_BFA_PARTNER_6
-
+  HOME_BFA_PARTNER,
+  HOME_ADD_BANNER_1,
+  HOME_ADD_BANNER_2,
+  HOME_AWARD_WINNING_DISH_1,
+  HOME_AWARD_WINNING_DISH_2,
+  HOME_AWARD_WINNING_DISH_3,
+  HOME_AWARD_WINNING_DISH_4,
+  // HOME_COISINE_1,
+  // HOME_COISINE_2,
+  // HOME_COISINE_3,
+  // HOME_COISINE_4,
+  // HOME_EVERYONES_FAVORITE_1,
+  // HOME_EVERYONES_FAVORITE_2,
+  // HOME_EVERYONES_FAVORITE_3,
+  // HOME_EVERYONES_FAVORITE_4,
+  HOME_HOME_VIEW_COISINES_AND_CATEGORIES,
+  HOME_NEARBY_RESTAURANT_1,
+  HOME_NEARBY_RESTAURANT_2,
+  HOME_NEARBY_RESTAURANT_3,
+  HOME_NEARBY_RESTAURANT_4,
+  HOME_PROMOTION_1,
+  HOME_PROMOTION_2,
+  HOME_PROMOTION_3,
+  HOME_PROMOTION_4,
+  HOME_RECOMMENDATION_1,
+  HOME_RECOMMENDATION_2,
+  HOME_RECOMMENDATION_3,
+  HOME_RECOMMENDATION_4,
+  HOME_WHATSNEW_1,
+  HOME_WHATSNEW_2,
+  HOME_WHATSNEW_3,
+  HOME_WHATSNEW_4,
+  HOME_YOUR_FAVORITE_1,
+  HOME_YOUR_FAVORITE_2,
+  HOME_YOUR_FAVORITE_3,
+  HOME_YOUR_FAVORITE_4,
+  HOME_BFA_PARTNER_1,
+  HOME_BFA_PARTNER_2,
+  HOME_BFA_PARTNER_3,
+  HOME_BFA_PARTNER_4,
+  HOME_BFA_PARTNER_5,
+  HOME_BFA_PARTNER_6,
 };
