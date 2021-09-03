@@ -7,22 +7,40 @@ import Fonts from '../helpers/Fonts';
 import {iconPath} from '../constants/icon';
 import Icon from './Icon';
 import Input from './Input';
-import { globalPath } from '../constants/globalPath';
+import {globalPath} from '../constants/globalPath';
 import ResponsiveText from './RnText';
-import { routeName } from '../constants/routeName';
+import {routeName} from '../constants/routeName';
 
-const Header = (props) => {
+const Header = ({showRightMenu = true, inputWidth = wp(72), ...props}) => {
   return (
     <View style={styles.header}>
-
-                <Icon margin={[0,2,0,0]} size={wp(8),hp(4)} source={globalPath.BALI_ICON} />
-                <TouchableOpacity onPress={()=> props.navigation.navigate(routeName.FeaturedSearch)}>
-                  <Input editable={false} fontSize={11} placeholder="Search for Dishes, Restaurants or Promo" padding={[0, 0, 0, 10]} leftIcon={globalPath.SEARCH_LOGO} containerStyle={{ backgroundColor: '#404040'}}height={hp(6)} width={wp(72)} />
-                  </TouchableOpacity>
-                <Icon margin={[0,0,0,5]} borderRadius={10} size={wp(10) , hp(6)} source={globalPath.PROFILE_LOGO} />
-
-            </View>
-    
+      <Icon
+        margin={[0, 2, 0, 0]}
+        size={(wp(8), hp(4))}
+        source={globalPath.BALI_ICON}
+      />
+      <TouchableOpacity
+        onPress={() => props.navigation.navigate(routeName.FeaturedSearch)}>
+        <Input
+          editable={false}
+          fontSize={11}
+          placeholder="Search for Dishes, Restaurants or Promo"
+          padding={[0, 0, 0, 10]}
+          leftIcon={globalPath.SEARCH_LOGO}
+          containerStyle={{backgroundColor: '#404040'}}
+          height={hp(6)}
+          width={inputWidth}
+        />
+      </TouchableOpacity>
+      {showRightMenu && (
+        <Icon
+          margin={[0, 0, 0, 5]}
+          borderRadius={10}
+          size={(wp(10), hp(6))}
+          source={globalPath.PROFILE_LOGO}
+        />
+      )}
+    </View>
   );
 };
 
@@ -33,8 +51,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 15,
-
-},
+  },
   mainView: {
     width: '100%',
     height: wp(14),
