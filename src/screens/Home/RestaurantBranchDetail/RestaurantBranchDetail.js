@@ -26,6 +26,8 @@ import {globalPath} from '../../../constants/globalPath';
 import {hp, wp} from '../../../helpers/Responsiveness';
 import Info from './Info';
 import Menu from '../Menu/Menu';
+import BranchesDetail from './Branches';
+import PromosBanner from '../BottomTabs/Promos/PromoBanner';
 export default function RestaurantBranchDetailScreen({navigation}) {
   const [activeTab, setActiveTab] = React.useState(MenuSectionButtons[0].id);
   // const [activeTab, setActiveTab] = React.useState(myListingTabs[3].id);
@@ -60,10 +62,13 @@ export default function RestaurantBranchDetailScreen({navigation}) {
           })}
         </View>
       </View>
-
+          
       <View style={{margin: 10,height:hp(70)}}>
         {activeTab === 1 && <Info />}
+        {activeTab === 2 && <PromosBanner/>}
         {activeTab === 3 && <Menu />}
+        {activeTab === 4 && <BranchesDetail  navigation={navigation}/>}
+
     </View>
       </View>
   );

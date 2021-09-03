@@ -9,13 +9,16 @@ import {FacilityData} from '../../../constants/mock';
 import {hp, wp} from '../../../helpers/Responsiveness';
 import Comments from '../DishDetails/Comments';
 import TimeTable from './TimeTable';
+import Restaurant_Description from './ResturantDesceiption';
+import { colors } from '../../../constants/colorsPallet';
 
 const Info = () => {
   return (
     <ScrollView>
+    <Restaurant_Description/>
     <View>
-      <View>
-        <Text style={{color: 'white', marginBottom: 20}}>Facilities</Text>
+      <View style={{margin:20}}>
+        <ResponsiveText size={4} color={colors.white} >Facilities</ResponsiveText>
         {/* <FacilityList data={FacilityData} /> */}
         <View style={{display: 'flex', flexDirection: 'row'}}>
           <Icon

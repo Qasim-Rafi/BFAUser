@@ -1,5 +1,5 @@
 import React from 'react'
-import { ImageBackground, StyleSheet, Text, View } from 'react-native'
+import { ScrollView, ImageBackground, StyleSheet, Text, View } from 'react-native'
 import ResponsiveText from '../../../../components/RnText'
 import RnButton from '../../../../components/RnButton'
 import Swiper from 'react-native-swiper'
@@ -11,10 +11,11 @@ const PromosBanner = () => {
     return (
 
 		<View>
+         <ResponsiveText color={colors.white}>Promotions</ResponsiveText>
+        <ScrollView>
             {promosBannerFakeDATA.map((url, index) => {
                 return (
                     <View>
-                    <ResponsiveText color={colors.white}>Promotions</ResponsiveText>
                     <ImageBackground style={styles.Advertisement2ndVarientImage} 
                     // source={{ uri: url }}
                     source={url}
@@ -25,6 +26,7 @@ const PromosBanner = () => {
                 )
             })
 			}
+            </ScrollView>
 			</View>
 
      

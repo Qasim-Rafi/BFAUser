@@ -413,6 +413,7 @@ export const PROMOSJOBS =[
      Vacancy:'5',
      Location:'Brunei Muara',
      ResturantName:'Yam Cha REsturant',
+     Logo:require('../assets/fake_Images/Jobs-logo1.png'),
   
   },
   {
@@ -422,6 +423,8 @@ export const PROMOSJOBS =[
      Vacancy:'5',
      Location:'Brunei Muara',
      ResturantName:'Yam Cha REsturant',
+     Logo:require('../assets/fake_Images/Jobs-logo2.png'),
+
   },
   {
     JobTitle:'Chef/Cook',
@@ -430,6 +433,8 @@ export const PROMOSJOBS =[
      Vacancy:'5',
      Location:'Brunei Muara',
      ResturantName:'Yam Cha REsturant',
+     Logo:require('../assets/fake_Images/Jobs-logo3.png'),
+
   },
   {
     JobTitle:'Assistant Cook',
@@ -438,6 +443,8 @@ export const PROMOSJOBS =[
      Vacancy:'5',
      Location:'Brunei Muara',
      ResturantName:'Yam Cha REsturant',
+     Logo:require('../assets/fake_Images/Jobs-logo4.png'),
+
   },
   {
     JobTitle:'Waiter & Waitress',
@@ -446,6 +453,8 @@ export const PROMOSJOBS =[
      Vacancy:'5',
      Location:'Brunei Muara',
      ResturantName:'Yam Cha REsturant',
+     Logo:require('../assets/fake_Images/Jobs-logo5.png'),
+
   },
   {
     JobTitle:'Kitchen Helper',
@@ -454,6 +463,8 @@ export const PROMOSJOBS =[
      Vacancy:'5',
      Location:'Brunei Muara',
      ResturantName:'Yam Cha REsturant',
+     Logo:require('../assets/fake_Images/Jobs-logo6.png'),
+
   },
 ];
 

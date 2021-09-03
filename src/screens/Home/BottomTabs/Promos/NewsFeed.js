@@ -36,11 +36,13 @@ const NewsFeed = (navigation) => {
             </ImageBackground>
             <View style={{ marginTop: 10, marginLeft: 20 }}>
                 <View style={{ flexDirection: 'row',justifyContent:'space-between' }}>
-                    <View style={{ backgroundColor: '#707070',flexDirection:'row',padding:8,borderRadius:20,height:hp(5) }}>
+                    <View style={{ justifyContent:'center', backgroundColor: '#707070',flexDirection:'row',padding:10,borderRadius:20,height:hp(5) }}>
                         <Icon source={globalPath.F_HEART} />
                         <ResponsiveText margin={[0,5,0,8]} color={colors.white}>224</ResponsiveText>
                     </View>
-                    <RnButton btnStyle={{ width: wp(28), }}><ResponsiveText>Order Now</ResponsiveText></RnButton>
+                    <View style={{marginRight:15}}>
+                    <RnButton  btnStyle={{ width: wp(28), }}><ResponsiveText>Order Now</ResponsiveText></RnButton>
+                    </View>
                 </View>
                 <ResponsiveText top={7} color={colors.white}>Dish of the day:</ResponsiveText>
                 <ResponsiveText margin={[0,10,0,0]} color={colors.grey}>Spaghetti marinara with freshlt imported boston lobster</ResponsiveText>

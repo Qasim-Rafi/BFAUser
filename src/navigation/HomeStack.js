@@ -28,9 +28,10 @@ function HomeStack() {
       }}
       // initialRouteName="Home"
       >
+      
+      <Stack.Screen name={routeName.SPLASH} component={Splash} />
       <Stack.Screen name={routeName.RestaurantDetail} component={RestaurantDetail} />
       <Stack.Screen name={routeName.MENU} component={Menu} />
-      <Stack.Screen name={routeName.SPLASH} component={Splash} />
       <Stack.Screen name={routeName.MAP_VIEW} component={MapView} />
       <Stack.Screen name={routeName.FilterSearch} component={FilterSearch} />
       <Stack.Screen name={routeName.DISH_DETAIL} component={DishDetails} />

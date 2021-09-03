@@ -86,9 +86,11 @@ const MORE_LOGO = require('../assets/icons/more.png');
 const HOME_LOGO = require('../assets/icons/home.png');
 const RANDOMISER_LOGO = require('../assets/icons/randomiser.png');
 const PROMOS_LOGO = require('../assets/icons/promos.png');
+const OPERATIONAL_HOURS= require('../assets/icons/operational-hours.png')
 
 export const globalPath = {
   //ICON PATHS HERE
+  OPERATIONAL_HOURS,
   LOCATION1,
   CONTACT,
   LOCATION,

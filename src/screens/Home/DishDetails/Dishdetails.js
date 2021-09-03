@@ -19,7 +19,7 @@ export default function DishDetails({navigation}) {
             </View>
         <DishDescription/>
         <CalorieCount/>
-        <MoreFromResturant/>
+        <MoreFromResturant navigation={navigation}/>
         <PeopleSay/>
         <Comments/>
         <View style={{margin:20,paddingBottom:20}}>

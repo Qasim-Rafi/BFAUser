@@ -69,9 +69,9 @@ export default function Restaurant_Description({}) {
           </ResponsiveText>
         </View>
         <View style={{alignItems: 'center'}}>
-          <Icon source={globalPath.HOME_LOGO} />
+          <Icon source={globalPath.OPERATIONAL_HOURS} />
           <ResponsiveText top={5} color={colors.yellow}>
-            More
+             Hours
           </ResponsiveText>
         </View>
       </View>
@@ -111,7 +111,12 @@ export default function Restaurant_Description({}) {
           Example.
         </ResponsiveText>
       </View>
-      
+      <View style={{paddingTop: 10,paddingLeft:20 }}>
+        <ResponsiveText fontFamily="Regular" size={4} color={colors.white}>
+          Location On Map
+        </ResponsiveText>
+      <StaticMap/>
+      </View>
       
       
     </View>

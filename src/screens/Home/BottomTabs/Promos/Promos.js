@@ -54,7 +54,7 @@ const Promos = (navigation) => {
             <ScrollView style={{flex:0.9,margin:20}}>
             
             {activeTab === 1 && <PromosBanner navigation={navigation} />}
-             {activeTab === 2 && <PromosBanner />}
+             {activeTab === 2 &&  <PromosBanner />}
               {activeTab === 3 && <NewsFeed />}
              {activeTab === 4 && <PromosJob navigation={navigation} />}
 
