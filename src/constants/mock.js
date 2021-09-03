@@ -396,3 +396,85 @@ export const FiltersDummyData = [
     ],
   },
 ];
+export const myPromosListingTabs = [
+  {
+    id: 1,
+    name: 'All',
+  },
+  {
+    id: 2,
+    name: 'Promotion',
+  },
+  {
+    id: 3,
+    name: 'News',
+  },
+  {
+    id: 4,
+    name: 'Jobs',
+  },
+];
+export const NewsFeeds = [
+  {
+    favorite:224,
+    DishName:'Spaghetti marinara with freshlt imported boston lobster',
+    Name:'Aligato'
+  },
+  {
+    favorite:224,
+    DishName:'Spaghetti marinara with freshlt imported boston lobster',
+    Name:'Aligato',
+  },
+];
+export const PROMOSJOBS =[
+  
+  {
+     JobTitle:'Waiter & Waitress',
+     Date:'5 sep 2021',
+     Experience:'1-2 years',
+     Vacancy:'5',
+     Location:'Brunei Muara',
+     ResturantName:'Yam Cha REsturant',
+  
+  },
+  {
+    JobTitle:'Deliver Boy',
+     Date:'5 sep 2021',
+     Experience:'1-2 years',
+     Vacancy:'5',
+     Location:'Brunei Muara',
+     ResturantName:'Yam Cha REsturant',
+  },
+  {
+    JobTitle:'Chef/Cook',
+     Date:'5 sep 2021',
+     Experience:'1-2 years',
+     Vacancy:'5',
+     Location:'Brunei Muara',
+     ResturantName:'Yam Cha REsturant',
+  },
+  {
+    JobTitle:'Assistant Cook',
+     Date:'5 sep 2021',
+     Experience:'1-2 years',
+     Vacancy:'5',
+     Location:'Brunei Muara',
+     ResturantName:'Yam Cha REsturant',
+  },
+  {
+    JobTitle:'Waiter & Waitress',
+     Date:'5 sep 2021',
+     Experience:'1-2 years',
+     Vacancy:'5',
+     Location:'Brunei Muara',
+     ResturantName:'Yam Cha REsturant',
+  },
+  {
+    JobTitle:'Kitchen Helper',
+     Date:'5 sep 2021',
+     Experience:'1-2 years',
+     Vacancy:'5',
+     Location:'Brunei Muara',
+     ResturantName:'Yam Cha REsturant',
+  },
+];

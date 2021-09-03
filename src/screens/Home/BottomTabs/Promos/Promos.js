@@ -3,42 +3,60 @@ import { ScrollView, StyleSheet, Text, View ,TouchableOpacity} from 'react-nativ
 import Header from '../../../../components/Header'
 import Advertisement2ndVarient from '../Home/Advertisement2ndVarient'
 import PromosBanner from './PromoBanner'
+import RnButton from '../../../../components/RnButton'
 import { colors } from '../../../../constants/colorsPallet'
 import { wp } from '../../../../helpers/Responsiveness'
 import ResponsiveText from '../../../../components/RnText'
+import { myPromosListingTabs } from '../../../../constants/mock'
+import AllPromos from './All'
+import NewsFeed from './NewsFeed'
+import PromosJob from './PromosJobs'
 
+ 
 const Promos = (navigation) => {
+    const [activeTab, setActiveTab] = React.useState(myPromosListingTabs[1].id);
+    console.log(activeTab);
     return (
 
         <View style={{backgroundColor:'#202020',flex:1}}>
             <Header navigation={navigation}/>
             <View style={styles.buttonViewStyle}>
 			
-                  <TouchableOpacity
-                    style={[styles.buttonShape,{backgroundColor:'#303030'}]}
-                    > 
-                    <Text style={{color:colors.white}}>All</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity onPress={()=> navigation.navigate(routeName.FilterSearch)}
-                     style={[styles.buttonShape,{backgroundColor:'#EDC54E'}]}
-                    >
-                    <Text style={{fontSize:14}}>Promotions</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity onPress={()=> navigation.navigate(routeName.MAP_VIEW)}
-                     style={[styles.buttonShape,{backgroundColor:'#303030'}]}
-                    >
-                    <Text style={{color:colors.white}}>News</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity onPress={()=> navigation.navigate(routeName.MAP_VIEW)}
-                     style={[styles.buttonShape,{backgroundColor:'#303030',width:wp(20),}]}
-                    >
-                    <Text style={{color:colors.white}}>Job</Text>
-                  </TouchableOpacity>
+            {myPromosListingTabs.map((items, index) => {
+              return (
+                <React.Fragment key={items.id}>
+                  <RnButton
+                    id={index}
+                    onPress={() => setActiveTab(items.id)}
+                    btnStyle={{
+                        width:wp(24),
+                         alignItems: 'center',
+                          justifyContent: 'center',
+                         marginTop: 10,
+                      backgroundColor:
+                        items.id === activeTab ? '#EDC54E' :  '#303030',
+                    }}
+                    padding={[3, 15]}>
+                    <ResponsiveText
+                      size={2.7}
+                      // fontFamily={items.id === activeTab ? 'Boldedium' : undefined}
+                      color={
+                        items.id === activeTab ? colors.black : colors.white
+                      }>
+                      {items.name}
+                    </ResponsiveText>
+                  </RnButton>
+                </React.Fragment>
+              );
+            })}
                
 		</View>
             <ScrollView style={{flex:0.9,margin:20}}>
-            <ResponsiveText color={colors.white}>Promotions</ResponsiveText>
-            <PromosBanner/>
+            
+            {activeTab === 1 && <PromosBanner navigation={navigation} />}
+             {activeTab === 2 && <PromosBanner />}
+              {activeTab === 3 && <NewsFeed />}
+             {activeTab === 4 && <PromosJob navigation={navigation} />}
 
             </ScrollView>
         </View>
@@ -74,7 +92,7 @@ const styles=StyleSheet.create({
         marginTop: 10,
     },
 	buttonViewStyle:{
-		margin:20,
+		margin:10,
 		flexDirection:'row',
 
 	}

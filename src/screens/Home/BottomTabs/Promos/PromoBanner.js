@@ -13,12 +13,15 @@ const PromosBanner = () => {
 		<View>
             {promosBannerFakeDATA.map((url, index) => {
                 return (
+                    <View>
+                    <ResponsiveText color={colors.white}>Promotions</ResponsiveText>
                     <ImageBackground style={styles.Advertisement2ndVarientImage} 
                     // source={{ uri: url }}
                     source={url}
 
                      >
                     </ImageBackground>
+                    </View>
                 )
             })
 			}

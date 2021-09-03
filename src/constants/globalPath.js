@@ -10,6 +10,7 @@ const PASSWORD_LOGO = require('../assets/icons/password.png');
 const GOOGLE_LOGO = require('../assets/icons/google.png');
 const SEARCH_LOGO = require('../assets/icons/search.png');
 const HEART = require('../assets/icons/heart.png');
+const F_HEART = require('../assets/icons/favourite-f.png');
 const LOCATION = require('../assets/icons/goto.png');
 const CONTACT = require('../assets/icons/contact.png');
 const LOCATION1 = require('../assets/icons/location1.png');
@@ -82,9 +83,9 @@ const USER_PROFILE_LOGO = require('../assets/icons/profile.png');
 //BOTTOM TABS LOGO
 const CHECKOUT_LOGO = require('../assets/icons/checkout.png');
 const MORE_LOGO = require('../assets/icons/more.png');
-const HOME_LOGO = require('../assets/icons/Home.png');
-const RANDOMISER_LOGO = require('../assets/icons/Randomiser.png');
-const PROMOS_LOGO = require('../assets/icons/Promos.png');
+const HOME_LOGO = require('../assets/icons/home.png');
+const RANDOMISER_LOGO = require('../assets/icons/randomiser.png');
+const PROMOS_LOGO = require('../assets/icons/promos.png');
 
 export const globalPath = {
   //ICON PATHS HERE
@@ -92,6 +93,7 @@ export const globalPath = {
   CONTACT,
   LOCATION,
   HEART,
+  F_HEART,
   BG_IMAGE,
   BALI_LOGO,
   USER_LOGO,

@@ -8,12 +8,14 @@ import Comments from '../DishDetails/Comments'
 import DishDescription from '../DishDetails/DishDescription'
 import HeaderButtons from './HeaderButtons'
 import TimeTable from './TimeTable'
-import ResturantDescription from './ResturantDescription'
+import RestaurantDescription from './ResturantDesceiption'
 import RnButton from '../../../components/RnButton'
 import ResponsiveText from '../../../components/RnText'
 import Icon from '../../../components/Icon'
 import { globalPath } from '../../../constants/globalPath'
 import { hp, wp } from '../../../helpers/Responsiveness'
+import StaticMap from '../../../components/StaticMap'
+import { colors } from '../../../constants/colorsPallet'
 export default function RestaurantBranchDetailScreen({navigation}) {
     return (
        
@@ -24,7 +26,23 @@ export default function RestaurantBranchDetailScreen({navigation}) {
             <View style={styles.buttonStyle}>
             <HeaderButtons/>
             </View>
-            <ResturantDescription/>
+            <RestaurantDescription/>
+            <View style={{margin:20}}>
+            <ResponsiveText color={colors.white} margin={[0,0,10,0]}>Location</ResponsiveText>
+            <StaticMap/>
+            <View style={{paddingTop: 10, }}>
+        <ResponsiveText fontFamily="Regular" size={4} color={colors.white}>
+         Phone Number
+        </ResponsiveText>
+        <ResponsiveText
+          top={5}
+          fontFamily="Regular"
+          size={3.5}
+          color={colors.grey}>
+          +632-5342-454
+        </ResponsiveText>
+      </View>
+            </View>
             <View style={{margin:20}}>
             <Text style={{color:'white',marginBottom:20}}>Facilities</Text>
             {/* <FacilityList data={FacilityData}/> */}
