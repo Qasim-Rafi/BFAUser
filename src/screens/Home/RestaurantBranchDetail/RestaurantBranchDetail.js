@@ -1,78 +1,85 @@
-import React from 'react'
-import { View, Text, ScrollView ,StyleSheet} from 'react-native'
-import { FacilityList } from '../../../components/Facility'
-import { FacilityData } from '../../../constants/mock'
-import AdvertisementBanner from '../BottomTabs/Home/AdvertisementBanner'
-import ImageHeader from '../BottomTabs/Home/ImageHeader'
-import Comments from '../DishDetails/Comments'
-import DishDescription from '../DishDetails/DishDescription'
-import HeaderButtons from './HeaderButtons'
-import TimeTable from './TimeTable'
-import RestaurantDescription from './ResturantDesceiption'
-import RnButton from '../../../components/RnButton'
-import ResponsiveText from '../../../components/RnText'
-import Icon from '../../../components/Icon'
-import { globalPath } from '../../../constants/globalPath'
-import { hp, wp } from '../../../helpers/Responsiveness'
-import StaticMap from '../../../components/StaticMap'
-import { colors } from '../../../constants/colorsPallet'
+import React from 'react';
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
+import {FacilityList} from '../../../components/Facility';
+import {
+  BranchDetailButtons,
+  FacilityData,
+  MenuSectionButtons,
+} from '../../../constants/mock';
+import AdvertisementBanner from '../BottomTabs/Home/AdvertisementBanner';
+import ImageHeader from '../BottomTabs/Home/ImageHeader';
+import Comments from '../DishDetails/Comments';
+import DishDescription from '../DishDetails/DishDescription';
+import HeaderButtons from './HeaderButtons';
+import TimeTable from './TimeTable';
+// import ResturantDescription from './ResturantDescription'
+import RnButton from '../../../components/RnButton';
+import ResponsiveText from '../../../components/RnText';
+import Icon from '../../../components/Icon';
+import {globalPath} from '../../../constants/globalPath';
+import {hp, wp} from '../../../helpers/Responsiveness';
+import Info from './Info';
+import Menu from '../Menu/Menu';
 export default function RestaurantBranchDetailScreen({navigation}) {
-    return (
-       
-        <ScrollView style={{backgroundColor:'#202020'}}>
-            <View style={styles.headerImage}>
-            <ImageHeader navigation={navigation}/>
-            </View>
-            <View style={styles.buttonStyle}>
-            <HeaderButtons/>
-            </View>
-            <RestaurantDescription/>
-            <View style={{margin:20}}>
-            <ResponsiveText color={colors.white} margin={[0,0,10,0]}>Location</ResponsiveText>
-            <StaticMap/>
-            <View style={{paddingTop: 10, }}>
-        <ResponsiveText fontFamily="Regular" size={4} color={colors.white}>
-         Phone Number
-        </ResponsiveText>
-        <ResponsiveText
-          top={5}
-          fontFamily="Regular"
-          size={3.5}
-          color={colors.grey}>
-          +632-5342-454
-        </ResponsiveText>
+  const [activeTab, setActiveTab] = React.useState(MenuSectionButtons[0].id);
+  // const [activeTab, setActiveTab] = React.useState(myListingTabs[3].id);
+
+  return (
+    <View style={{backgroundColor: '#202020'}}>
+      <View style={styles.headerImage}>
+        <ImageHeader navigation={navigation} />
       </View>
-            </View>
-            <View style={{margin:20}}>
-            <Text style={{color:'white',marginBottom:20}}>Facilities</Text>
-            {/* <FacilityList data={FacilityData}/> */}
-            <View style={{display:'flex', flexDirection:'row' }}>
-        
-                <Icon source={globalPath.WIFI_ICON} size={hp(8), wp(8)} margin={[0,0,0,20]} />
-                <Icon source={globalPath.PARKING_ICON} size={hp(8), wp(8)} margin={[0,0,0,30]} />
-                <Icon source={globalPath.MOSQUE_ICON} size={hp(8), wp(8)} margin={[0,0,0,30]}/>
-            </View>
-            
-            </View>
-            <TimeTable/>
-            <View style={{marginBottom:30}}>
-        <Comments/>
-            </View>
-            <View style={{margin:20,paddingBottom:20}}>
-        <RnButton>
-            
-            <ResponsiveText padding={0} color={'black'}>SUBMIT</ResponsiveText>
-        </RnButton>
+      <View style={styles.buttonStyle}>
+        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          {BranchDetailButtons.map((items, index) => {
+            return (
+              <React.Fragment key={items.id}>
+                <TouchableOpacity
+                  onPress={() => setActiveTab(items.id)}
+                  style={[
+                    styles.buttonView,
+                    {
+                      backgroundColor:
+                        items.id === activeTab ? '#EDC54E' : 'white',
+                    },
+                  ]}>
+                  <View
+                    style={{justifyContent: 'center', alignItems: 'center'}}>
+                    <Icon margin={[0, 0, 5, 0]} source={items.icon} />
+                    <Text>{items.title}</Text>
+                  </View>
+                </TouchableOpacity>
+              </React.Fragment>
+            );
+          })}
         </View>
-        
-        </ScrollView>
-    )
+      </View>
+
+      <View style={{margin: 10,height:hp(70)}}>
+        {activeTab === 1 && <Info />}
+        {activeTab === 3 && <Menu />}
+    </View>
+      </View>
+  );
 }
-const styles= StyleSheet.create({
-    headerImage:{
-        height:200
-    },
-    buttonStyle:{
-        padding:10
-    }
-})
+const styles = StyleSheet.create({
+  headerImage: {
+    height: 200,
+  },
+  buttonStyle: {
+    padding: 10,
+  },
+  buttonView: {
+    width: wp(21),
+    height: hp(8),
+    borderRadius: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});

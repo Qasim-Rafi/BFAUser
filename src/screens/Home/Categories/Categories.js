@@ -20,11 +20,7 @@ export default function Categories({navigation}) {
 
   };
   const onViewableItemsChanged = ({ viewableItems, changed }) => {
-    // setActiveAlphabet(viewableItems[1]?.item.title)
     console.log(viewableItems[1]?.item.title)
-    // setActiveAlphabet(viewableItems[2]?.items.title)
-    // console.log("Visible items are", viewableItems);
-    // console.log("Changed in this iteration", changed);
   }
   const renderItem = ({ item }) => {
     return (

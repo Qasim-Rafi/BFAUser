@@ -7,6 +7,7 @@ export const routeName = {
   RestaurantBranch :'RESTAURANT_BRANCH',
   DishDetails:'DishDetails',
   MAP_VIEW:"MAP_VIEW",
+  MENU:"MENU",
   // BOTTOM TABS
   HOME_BOTTOM: "Home",
   RANDOMISER_BOTTOM: "Randomiser",

@@ -19,20 +19,14 @@ export const awardWinningFakeDATA = [
   require('../assets/fake_Images/dishes-2.png'),
   require('../assets/fake_Images/dishes-3.png'),
   require('../assets/fake_Images/dishes-4.png'),
-
-  
 ];
 export const promosBannerFakeDATA = [
   require('../assets/fake_Images/promos-banner1.png'),
   require('../assets/fake_Images/promos-banner3.png'),
   require('../assets/fake_Images/Home-Add-Banner-2.png'),
- 
-
-  
 ];
 
 export const ourRecommendationFakeDATA = [
- 
   require('../assets/fake_Images/Home-Recommendations-1.png'),
   require('../assets/fake_Images/Home-Recommendations-2.png'),
   require('../assets/fake_Images/Home-Recommendations-3.png'),
@@ -46,10 +40,6 @@ export const ourRecommendationFakeDATA = [
   require('../assets/fake_Images/Home-Recommendations-3.png'),
   require('../assets/fake_Images/Home-Recommendations-4.png'),
   require('../assets/fake_Images/Home-Recommendations-1.png'),
-  
-
- 
- 
 
   // 'https://www.elitetraveler.com/wp-content/uploads/2017/12/schloss-berg-5472-turbot-and-morels-768x512.jpg',
   // 'https://www.elitetraveler.com/wp-content/uploads/2017/12/les-pres-eugenie-5472-chocolate-millefeuille.jpg',
@@ -58,7 +48,6 @@ export const ourRecommendationFakeDATA = [
 ];
 
 export const promotionsFakeDATA = [
-  
   require('../assets/fake_Images/promotions-1.png'),
   require('../assets/fake_Images/promotions-2.png'),
   require('../assets/fake_Images/promotions-3.png'),
@@ -71,12 +60,8 @@ export const promotionsFakeDATA = [
   require('../assets/fake_Images/promotions-2.png'),
   require('../assets/fake_Images/promotions-3.png'),
   require('../assets/fake_Images/promotions-4.png'),
-  
- 
-
 ];
 export const everyoneFavoriteFakeDATA = [
-  
   require('../assets/fake_Images/everyone-1.png'),
   require('../assets/fake_Images/everyone-2.png'),
   require('../assets/fake_Images/everyone-3.png'),
@@ -89,14 +74,9 @@ export const everyoneFavoriteFakeDATA = [
   require('../assets/fake_Images/everyone-2.png'),
   require('../assets/fake_Images/everyone-3.png'),
   require('../assets/fake_Images/everyone-4.png'),
-
-  
-
-
 ];
 
 export const yourFavoriteFakeDATA = [
-  
   require('../assets/fake_Images/everyone-1.png'),
   require('../assets/fake_Images/everyone-2.png'),
   require('../assets/fake_Images/everyone-3.png'),
@@ -109,7 +89,6 @@ export const yourFavoriteFakeDATA = [
   require('../assets/fake_Images/everyone-2.png'),
   require('../assets/fake_Images/everyone-3.png'),
   require('../assets/fake_Images/everyone-4.png'),
-
 ];
 
 export const BFAPartnerFakeData = [
@@ -122,8 +101,7 @@ export const BFAPartnerFakeData = [
   require('../assets/fake_Images/HOME_BFA_PARTNER-1.png'),
   require('../assets/fake_Images/HOME_BFA_PARTNER-2.png'),
   require('../assets/fake_Images/HOME_BFA_PARTNER-3.png'),
-
-]
+];
 
 export const exploreCategoryByName = [
   {
@@ -211,7 +189,7 @@ export const exploreCategoryByName = [
     data: ['Category Name', 'Category Name', 'Category Name'],
   },
   {
-    title: 'V', 
+    title: 'V',
     data: ['Category Name', 'Category Name', 'Category Name'],
   },
   {
@@ -476,5 +454,255 @@ export const PROMOSJOBS =[
      Vacancy:'5',
      Location:'Brunei Muara',
      ResturantName:'Yam Cha REsturant',
+  },
+];
+
+export const MenuSectionButtons = [
+  {
+    id: 1,
+    title: 'Appetizers',
+  },
+  {
+    id: 2,
+    title: 'Main Course',
+  },
+  {
+    id: 3,
+    title: 'Dessert',
+  },
+  {
+    id: 4,
+    title: 'Drinks',
+  },
+];
+export const BranchDetailButtons = [
+  {
+    id: 1,
+    title: 'Info',
+    icon: require('../assets/icons/info_icon.png'),
+  },
+  {
+    id: 2,
+    title: 'Promo',
+    icon: require('../assets/icons/Promo-icon.png'),
+  },
+  {
+    id: 3,
+    title: 'Menu',
+    icon: require('../assets/icons/menu_icon.png'),
+  },
+  {
+    id: 4,
+    title: 'Branches',
+    icon: require('../assets/icons/branches_icon.png'),
+  },
+];
+export const BranchMenuSectionsData = [
+  {
+    id: 1,
+    title: 'Appetizers',
+    data: [
+      {
+        id: 1,
+        title: 'Tomato Soup ',
+        price: '$ 5.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        url: require('../assets/fake_Images/menu-appetizers-1.png'),
+      },
+      {
+        id: 2,
+        title: 'Chicken Soup ',
+        price: '$ 10.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-appetizers-2.png'),
+      },
+      {
+        id: 3,
+        title: 'Tomato Soup ',
+        price: '$ 8.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-appetizers-3.png'),
+      },
+      {
+        id: 4,
+        title: 'Fish Crackers ',
+        price: '$ 8.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-appetizers-4.png'),
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: 'Main Course',
+    data: [
+      {
+        id: 1,
+        title: 'Nasi Ayam Bakar Madura',
+        price: '$11.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-course-1.png'),
+      },
+      {
+        id: 2,
+        title: 'Nasi Ayam Sambal Tomat',
+        price: '$ 13.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-course-2.png'),
+      },
+      {
+        id: 3,
+        title: 'Vegetable Rice',
+        price: '$ 10.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-course-3.png'),
+      },
+      {
+        id: 4,
+        title: 'Egg Fried Rice',
+        price: '$ 11.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-course-4.png'),
+      },
+      {
+        id: 5,
+        title: 'Chicken Shashlik',
+        price: '$15.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-course-5.png'),
+      },
+      {
+        id: 6,
+        title: 'Finger Fish',
+        price: '$ 25.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-course-6.png'),
+      },
+      {
+        id: 7,
+        title: 'Chicken Breast',
+        price: '$ 15.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-course-7.png'),
+      },
+      {
+        id: 8,
+        title: 'Chicken Chops',
+        price: '$ 15.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-course-8.png'),
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: 'Dessert',
+    data: [
+      {
+        id: 1,
+        title: 'Apple Pie',
+        price: '$11.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-dessert-1.png'),
+      },
+      {
+        id: 2,
+        title: 'Chocolate Brownie',
+        price: '$ 13.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-dessert-2.png'),
+      },
+      {
+        id: 3,
+        title: 'Chocolate Cake ',
+        price: '$ 10.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-dessert-3.png'),
+      },
+      {
+        id: 4,
+        title: 'Ice Cream',
+        price: '$ 13.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-dessert-4.png'),
+      },
+      {
+        id: 5,
+        title: 'Tutti Frutti',
+        price: '$ 10.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-dessert-5.png'),
+      },
+    ],
+  },
+  {
+    id: 4,
+    title: 'Drinks',
+    data: [
+      {
+        id: 1,
+        title: 'Mint Margarita',
+        price: '$ 5.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-drinks-1.png'),
+      },
+      {
+        id: 2,
+        title: 'Fresh Lime Soda',
+        price: '$ 5.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-drinks-2.png'),
+      },
+      {
+        id: 4,
+        title: 'Tea',
+        price: '$ 5.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-drinks-3.png'),
+      },
+      {
+        id: 5,
+        title: 'Cappuccino',
+        price: '$ 10.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-drinks-4.png'),
+      },
+      {
+        id: 6,
+        title: 'Soft Drinks',
+        price: '$ 2.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-drinks-5.png'),
+      },
+      {
+        id: 7,
+        title: 'Mineral water',
+        price: '$ 2.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-drinks-6.png'),
+      },
+    ],
   },
 ];
