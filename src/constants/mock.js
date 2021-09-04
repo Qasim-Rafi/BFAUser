@@ -717,3 +717,50 @@ export const BranchMenuSectionsData = [
     ],
   },
 ];
+
+export  const ORDER_HISTORY = [
+  {
+    Title:'Nasi Ayam Bakar Madura' ,
+    Order_id:'AMD12345',
+    Items:"3 ",
+    Status :"Dispatched",
+    Order_Price:'5.00',
+    url: require('../assets/fake_Images/menu-drinks-6.png'),
+  },{
+    Title:'Nasi Ayam Bakar Madura' ,
+    Order_id:'AMD12345',
+    Items:"3 ",
+    Status :"Dispatched",
+    Order_Price:'5.00',
+    url: require('../assets/fake_Images/menu-drinks-6.png'),
+  },{
+    Title:'Nasi Ayam Bakar Madura' ,
+    Order_id:'AMD12345',
+    Items:"3 ",
+    Status :"Dispatched",
+    Order_Price:'5.00',
+    url: require('../assets/fake_Images/menu-drinks-6.png'),
+  },{
+    Title:'Nasi Ayam Bakar Madura' ,
+    Order_id:'AMD12345',
+    Items:"3 ",
+    Status :"Dispatched",
+    Order_Price:'5.00',
+    url: require('../assets/fake_Images/menu-drinks-6.png'),
+  },{
+    Title:'Nasi Ayam Bakar Madura' ,
+    Order_id:'AMD12345',
+    Items:"3 ",
+    Status :"Dispatched",
+    Order_Price:'5.00',
+    url: require('../assets/fake_Images/menu-drinks-6.png'),
+  },{
+    Title:'Nasi Ayam Bakar Madura' ,
+    Order_id:'AMD12345',
+    Items:"3 ",
+    Status :"Dispatched",
+    Order_Price:'5.00',
+    url: require('../assets/fake_Images/menu-drinks-6.png'),
+  },
+
+]; 

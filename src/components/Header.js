@@ -33,12 +33,15 @@ const Header = ({showRightMenu = true, inputWidth = wp(72), ...props}) => {
         />
       </TouchableOpacity>
       {showRightMenu && (
-        <Icon
-          margin={[0, 0, 0, 5]}
-          borderRadius={10}
-          size={(wp(10), hp(6))}
-          source={globalPath.PROFILE_LOGO}
-        />
+        <TouchableOpacity
+          onPress={() => props.navigation.navigate(routeName.PROFILE_SCREEN)}>
+          <Icon
+            margin={[0, 0, 0, 5]}
+            borderRadius={10}
+            size={(wp(10), hp(6))}
+            source={globalPath.PROFILE_LOGO}
+          />
+        </TouchableOpacity>
       )}
     </View>
   );

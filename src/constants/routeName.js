@@ -19,5 +19,7 @@ export const routeName = {
   FeaturedSearch:"FeaturedSearch",
   SearchAll:'SearchAll',
   MAP_VIEW:'MAP_VIEW',
-  FilterSearch:'FilterSearch'
+  FilterSearch:'FilterSearch',
+  PROFILE_SCREEN:'PROFILE_SCREEN',
+  ORDER_HISTORY:'ORDER_HISTORY',
 };

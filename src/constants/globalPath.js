@@ -25,6 +25,10 @@ const MENU_ICON = require('../assets/icons/menu_icon.png');
 const PROMO_ICON = require('../assets/icons/Promo-icon.png');
 const RESTAURANT_LOGO = require('../assets/icons/Restaurant_Logo.png');
 const PROFILE_LOGO = require('../assets/icons/profileimage.png');
+const BACK_BLACK_ARROW = require('../assets/icons/back-black.png');
+const EDIT_PROFILE = require('../assets/icons/edit-profile.png');
+
+
 
 const PARKING_ICON = require('../assets/icons/parking.png');
 const WIFI_ICON = require('../assets/icons/wifi.png');
@@ -90,6 +94,8 @@ const OPERATIONAL_HOURS= require('../assets/icons/operational-hours.png')
 
 export const globalPath = {
   //ICON PATHS HERE
+  BACK_BLACK_ARROW,
+  EDIT_PROFILE,
   OPERATIONAL_HOURS,
   LOCATION1,
   CONTACT,
