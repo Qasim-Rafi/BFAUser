@@ -27,8 +27,8 @@ const RESTAURANT_LOGO = require('../assets/icons/Restaurant_Logo.png');
 const PROFILE_LOGO = require('../assets/icons/profileimage.png');
 const BACK_BLACK_ARROW = require('../assets/icons/back-black.png');
 const EDIT_PROFILE = require('../assets/icons/edit-profile.png');
-
-
+const CHECK_TICK = require('../assets/icons/check-tick-icon-14145.png')
+const RADIO_DOT = require('../assets/icons/radio.png');
 
 const PARKING_ICON = require('../assets/icons/parking.png');
 const WIFI_ICON = require('../assets/icons/wifi.png');
@@ -129,6 +129,13 @@ export const globalPath = {
   PARKING_ICON,
   MOSQUE_ICON, 
   WIFI_ICON,
+  CHECK_TICK,
+  RADIO_DOT,
+
+
+
+
+
 
   // FAKE IMAGES HERE
 HOME_BFA_PARTNER,
