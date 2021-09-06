@@ -12,6 +12,7 @@ import Promos from '../screens/Home/BottomTabs/Promos/Promos';
 import Checkout from '../screens/Home/BottomTabs/Checkout/Checkout';
 import More from '../screens/Home/BottomTabs/More/More';
 
+
 const Tab = createBottomTabNavigator();
 
 export default function BottomTabs(props) {
@@ -29,12 +30,12 @@ export default function BottomTabs(props) {
         // activeTintColor: 'red',
         // inactiveTintColor: 'lightgray',
 
-        // activeBackgroundColor: 'white',
+        // activeBackgroundColor: colors.white,
         // inactiveBackgroundColor: 'red',
         indicatorStyle: {backgroundColor: 'transparent'},
         // tabBarStyle: {borderTopWidth:0},
         tabStyle: {
-          backgroundColor:'#303030',
+          backgroundColor:colors.black2,
           padding:0,
           margin:0,
           borderTopWidth:0,
@@ -44,7 +45,7 @@ export default function BottomTabs(props) {
           //   height: 60,
           borderTopWidth: 0,
 
-          //   shadowColor: '#5bc4ff',
+          //   shadowColor: colors.skyblue1,
           padding: 5,
           //   marginBottom: -2,
           borderTopColor: 'transparent',
@@ -55,10 +56,10 @@ export default function BottomTabs(props) {
           },
           shadowRadius: 0,
           borderTopColor: 'red', //Change Like This
-          backgroundColor: '#303030',
+          backgroundColor: colors.black2,
           // borderTopWidth: 220,
           borderTopWidth: 0,
-          //   borderColor: '#303030',
+          //   borderColor: colors.black2,
           //   elevation: 0,
           elevation: 0, // for Android
 

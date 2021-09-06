@@ -41,7 +41,7 @@ export default function MapView(props) {
       <View
         style={{
           flex: 0.9,
-          backgroundColor: 'white',
+          backgroundColor: colors.white,
           justifyContent: 'center',
           alignItems: 'center',
         }}>
@@ -57,7 +57,7 @@ export default function MapView(props) {
             flex: 1,
             // justifyContent: 'space-between',
             // alignItems: 'center',
-            backgroundColor: 'black',
+            backgroundColor: colors.black,
             // top: -100,
             zIndex: 100,
           }}>
@@ -73,7 +73,7 @@ export default function MapView(props) {
                 width: 15,
                 height: 15,
                 borderWidth: 2,
-                borderColor: '#edc54e',
+                borderColor: colors.yellow,
                 borderRadius: 15,
               }}
             />
@@ -84,7 +84,7 @@ export default function MapView(props) {
                 width: 0.1,
                 borderWidth: 1,
                 borderStyle: 'dashed',
-                borderColor: '#edc54e',
+                borderColor: colors.yellow,
                 borderRadius: 1,
               }}></View>
             <Icon source={globalPath.LOCATION1} />
@@ -129,8 +129,8 @@ export default function MapView(props) {
           <Marker coordinate={coordinates[1]} />
           {/* <Polyline
           coordinates={coordinates}
-          strokeColor="#000" // fallback for when `strokeColors` is not supported by the map-provider
-          strokeColors={['#7F0000']}
+          strokeColor=colors.black // fallback for when `strokeColors` is not supported by the map-provider
+          strokeColors={[colors.darkRed]}
           strokeWidth={6}
         /> */}
         </Map>
@@ -150,6 +150,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 15,
-    backgroundColor: '#303030',
+    backgroundColor: colors.black2,
   },
 });

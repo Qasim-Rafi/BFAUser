@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, FlatList, StyleSheet, Text} from 'react-native';
+import { colors } from '../constants/colorsPallet';
 export const FacilityList = props => {
   const {data, title} = props;
 
@@ -19,7 +20,7 @@ export const FacilityList = props => {
               borderRadius: 18,
               alignItems: 'center',
               justifyContent: 'center',
-              backgroundColor: '#EDC54E',
+              backgroundColor: colors.yellow,
               marginHorizontal: 10,
               padding: 10,
               paddingHorizontal: 20,
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#EDC54E',
+    backgroundColor: colors.yellow,
     marginHorizontal: 10,
     padding: 10,
     marginTop: 10,

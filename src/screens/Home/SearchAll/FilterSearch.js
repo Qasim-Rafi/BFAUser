@@ -12,7 +12,7 @@ import { myListingTabs } from '../../../constants/mock'
 import { FiltersDummyData } from '../../../constants/mock'
 export default function FilterSearch({navigation}) {
     return(
-        <View style={{flex:1,backgroundColor:'#202020'}}>
+        <View style={{flex:1,backgroundColor:colors.black3}}>
         <View style={styles.header}>
         <TouchableOpacity onPress={()=>{navigation.goBack()}}><Icon size={wp(2) , hp(4)} source={require('../../../assets/icons/back-arrow.png')} /></TouchableOpacity>
       
@@ -44,7 +44,7 @@ export default function FilterSearch({navigation}) {
                 borderRadius:18,
               alignItems: 'center',
               justifyContent: 'center',
-              backgroundColor: '#303030',
+              backgroundColor: colors.black2,
               marginHorizontal: 10,
               padding: 10,
               marginTop: 10,
@@ -75,7 +75,7 @@ const styles=StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingHorizontal: 15,
-        backgroundColor:'#303030'
+        backgroundColor:colors.black2
     
     },
 })

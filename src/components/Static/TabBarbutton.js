@@ -18,7 +18,7 @@ export const TabBarButton = ({bgColor, ...props}) => (
           width={20}
           height={20}
         />
-        <ResponsiveText size={'h7'} color={'white'}>
+        <ResponsiveText size={'h7'} color={colors.white}>
           Sell
         </ResponsiveText>
       </View>

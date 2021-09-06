@@ -62,11 +62,11 @@ const Input = ({
           props.centerText ? {textAlign: 'center', paddingLeft: 0} : undefined,
           props.textStyle,
           ,{
-            color:"#ffffff"
+            color:colors.white
           }
         ]}
         placeholderTextColor={
-          placeholderTextColor ? placeholderTextColor : '#737373'
+          placeholderTextColor ? placeholderTextColor : colors.grey1
         }
         // secureTextEntry={showPassword ? true : false}
         secureTextEntry={secureTextEntry ? true : false}
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     display: 'flex',
     alignItems: 'center',
-    backgroundColor: '#3f3f3f',
+    backgroundColor:colors.grey4,
     borderRadius: wp(2),
     paddingLeft: 10,
   },
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     flex: 1,
     // paddingRight: 15,
     fontFamily: Fonts.Regular,
-    color: '#3f3f3f',
+    color:colors.grey4,
   },
   showPasswordBtn: {
     height: '80%',

@@ -39,7 +39,7 @@ const Notifications = (props) => {
           {backgroundColor: colors.red4, marginTop: wp(2)},
         ]}>
         <View style={styles.imageWraper}>
-          <ResponsiveText size={'h3'} color={'white'}>
+          <ResponsiveText size={'h3'} color={colors.white}>
             M
           </ResponsiveText>
           <View style={styles.userNameCircle}>
@@ -51,7 +51,7 @@ const Notifications = (props) => {
             size={'h6'}
             numberOfLines={3}
             fontFamily={'SemiBold'}
-            color={'black'}>
+            color={colors.black}>
             You could be making better deals
           </ResponsiveText>
           <View style={{paddingRight: 20, marginVertical: wp(1)}}>
@@ -75,7 +75,7 @@ const Notifications = (props) => {
               margin={[8, 8, 5, 0]}
               borderRadius={wp(5)}
               padding={[6, 2]}
-              textColor={'white'}
+              textColor={colors.white}
               fontFamily={'Bold'}
               btnStyle={styles.button1}
               title="Edit listing"
@@ -127,7 +127,7 @@ const Notifications = (props) => {
         }}
         style={[styles.notificationCard, {marginTop: wp(2)}]}>
         <View style={styles.imageWraper}>
-          <ResponsiveText size={'h3'} color={'white'}>
+          <ResponsiveText size={'h3'} color={colors.white}>
             M
           </ResponsiveText>
           <View style={styles.userNameCircle}>
@@ -171,7 +171,7 @@ const Notifications = (props) => {
           </View>
         </View>
         <View style={styles.rightSideView}>
-          <View style={[styles.redDot, {backgroundColor: 'white'}]} />
+          <View style={[styles.redDot, {backgroundColor: colors.white}]} />
           <View>
             <TouchableOpacity
               onPress={() => {
@@ -223,7 +223,7 @@ const styles = StyleSheet.create({
     width: wp(15),
     height: wp(15),
     borderRadius: wp(7.5),
-    backgroundColor: '#5A69C6',
+    backgroundColor: colors.purple,
     alignItems: 'center',
   },
   senderImage: {
@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
     borderRadius: wp(4),
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
     bottom: wp(-1),
     right: wp(-1.2),
   },
@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
     marginTop: wp(3.5),
   },
   button: {
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
     padding: 0,
     borderWidth: 1,
   },

@@ -20,7 +20,7 @@ const PromosJob = (navigation) => {
         <>
             {PROMOSJOBS.map((item, index) => {
                 return (
-                    <View style={{ backgroundColor: '#303030', height: hp(10), borderRadius: 5, marginTop: 20, flexDirection: 'row' }}>
+                    <View style={{ backgroundColor: colors.black2, height: hp(10), borderRadius: 5, marginTop: 20, flexDirection: 'row' }}>
                         <View style={{marginTop:'2%',marginLeft:'2%'}}><Icon source={item.Logo} size={65} /></View>
                         <View style={{marginTop:'2%',marginLeft:'2%'}}>
                             <View >

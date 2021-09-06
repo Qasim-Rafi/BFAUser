@@ -1,3 +1,5 @@
+
+
 import React, {useState} from 'react';
 import {
   View,
@@ -180,7 +182,7 @@ const UserSettings = (props) => {
               <Icon
                 resizeMode={'contain'}
                 source={iconPath.HELP}
-                tintColor={'black'}
+                tintColor={colors.black}
                 size="s1"
               />
             </View>

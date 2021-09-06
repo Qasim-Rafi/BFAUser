@@ -102,7 +102,7 @@ const UserDetailProfile = ({navigation, ...props}) => {
                       borderRadius: 0,
                       borderBottomWidth: 2,
                       borderColor:
-                        items.id === activeTab ? colors.red1 : 'white',
+                        items.id === activeTab ? colors.red1 : colors.white,
                     }}
                     borderRadius={0}
                     padding={[15, 0]}>
@@ -138,7 +138,7 @@ const UserDetailProfile = ({navigation, ...props}) => {
                       marginHorizontal: 6,
                       overflow: 'hidden',
                       elevation: 1.5,
-                      backgroundColor: 'white',
+                      backgroundColor: colors.white,
                     }}
                     onPress={() =>
                       navigation.navigate('ProductDetail', {chat: 0})

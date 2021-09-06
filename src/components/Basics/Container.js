@@ -1,14 +1,14 @@
 import React from 'react';
 import {Image, Dimensions, StatusBar, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-
+import { colors } from '../../constants/colorsPallet';
 export default class Container extends React.Component {
   render() {
     const {statusBarColor, backgroundImageStyle} = this.props;
     let barStyle = this.props.barStyle ? this.props.barStyle : 'dark-content';
     return (
       <SafeAreaView style={[styles.container, this.props.style]}>
-        {/*<StatusBar backgroundColor={'white'} barStyle={barStyle} />*/}
+        {/*<StatusBar backgroundColor={colors.white} barStyle={barStyle} />*/}
         {this.props.backgroundImage && (
           <Image
             source={this.props.backgroundImage}
@@ -25,7 +25,7 @@ export default class Container extends React.Component {
 const styles = {
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
   },
   backgroundImage: {
     position: 'absolute',

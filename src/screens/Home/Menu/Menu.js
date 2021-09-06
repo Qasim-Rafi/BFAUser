@@ -38,7 +38,7 @@ const Menu = props => {
             <View
               style={{
                 height: wp(20),
-                backgroundColor: '#505050',
+                backgroundColor: colors.lightBlack,
                 borderRadius: 5,
                 marginBottom: 4,
                 padding: 5,
@@ -53,7 +53,7 @@ const Menu = props => {
                     alignItems: 'center',
                     overflow: 'hidden',
                   }}>
-                  <ResponsiveText size={2.9} color={'white'}>
+                  <ResponsiveText size={2.9} color={colors.white}>
                     {data.title}
                   </ResponsiveText>
                   <ResponsiveText
@@ -99,13 +99,13 @@ const Menu = props => {
               onPress={()=>ScrollHandler(items,index)}
                 style={{
                   //   width: wp(15),
-                  borderBottomColor: '#EDC54E',
+                  borderBottomColor: colors.yellow,
                   borderBottomWidth: items.id === activeTab ? 2 : 0,
                   marginRight: 20,
                   paddingBottom: 7,
                   zIndex: 100,
                 }}>
-                <ResponsiveText size={2.5} color={'white'}>
+                <ResponsiveText size={2.5} color={colors.white}>
                   {items.title}
                 </ResponsiveText>
               </TouchableOpacity>
@@ -132,6 +132,6 @@ export default Menu;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#202020',
+    backgroundColor: colors.black3,
   },
 });

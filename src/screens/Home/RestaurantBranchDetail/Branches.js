@@ -26,7 +26,7 @@ const BranchesDetail = (props) => {
                     {ourRecommendationFakeDATA.map((url, index) => {
                         return (
 		
-		<TouchableOpacity style={{flexDirection: 'row',backgroundColor: '#303030',marginTop:10}} onPress={()=> props.navigation.navigate(routeName.DISH_DETAIL)}>
+		<TouchableOpacity style={{flexDirection: 'row',backgroundColor: colors.black2,marginTop:10}} onPress={()=> props.navigation.navigate(routeName.DISH_DETAIL)}>
                             <View style={{ marginHorizontal: 5, borderRadius: 3, overflow: 'hidden',justifyContent:'center'  }}>
                                 <Image style={{  padding: 5, overflow: 'hidden', justifyContent: 'flex-end',width:wp(22),height:hp(12) }} source={ url } >
                                 </Image>
@@ -37,10 +37,10 @@ const BranchesDetail = (props) => {
                                     <ResponsiveText fontFamily="Light" size={3.5} color={colors.grey}>Special sushi</ResponsiveText>
                                     <Rating
                                         size={2}
-										tintColor={'#303030'}
+										tintColor={colors.black2}
                                         imageSize={15}
                                         // tintColor={'transparent'}
-                                        style={{ paddingVertical: 10,color:'#303030',left:-15 }}
+                                        style={{ paddingVertical: 10,color:colors.black2,left:-15 }}
                                     />
 								</View>	
 								
@@ -67,7 +67,7 @@ const styles=StyleSheet.create({
         borderTopLeftRadius: 7,
         borderTopRightRadius: 7,
         borderBottomWidth: 0.9,
-        borderColor: '#404040'
+        borderColor: colors.black1
     },
     everyOneFavoriteItemsSection: {
         flex: 1,

@@ -13,7 +13,7 @@ import ResponsiveText from '../../../components/RnText'
 export default function DishDetails({navigation}) {
     return (
        
-        <ScrollView style={{backgroundColor:'#202020'}}>
+        <ScrollView style={{backgroundColor:colors.black3}}>
             <View style={styles.headerImage}>
             <ImageHeader navigation={navigation}/>
             </View>
@@ -27,7 +27,7 @@ export default function DishDetails({navigation}) {
         
         <RnButton>
             
-            <ResponsiveText padding={0} color={'black'}>ORDER THIS RECIPE</ResponsiveText>
+            <ResponsiveText padding={0} color={colors.black}>ORDER THIS RECIPE</ResponsiveText>
         </RnButton>
         </View>
         </ScrollView>

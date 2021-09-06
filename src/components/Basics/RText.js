@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text} from 'react-native';
 import {wp} from '../../helpers/Responsiveness';
+import { colors } from '../../constants/colorsPallet';
 // import {Colors, Fonts} from '../../config/Theme';
 
 export default class ResponsiveText extends React.Component {
@@ -21,7 +22,7 @@ export default class ResponsiveText extends React.Component {
 
 const styles = {
   text: {
-    color: 'black',
+    color: colors.black,
     // fontFamily: Fonts.Regular,
   },
 };

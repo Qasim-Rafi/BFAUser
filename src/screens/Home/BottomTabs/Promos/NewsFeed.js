@@ -20,7 +20,7 @@ const NewsFeed = (navigation) => {
         <>
             {NewsFeeds.map((url,index)=>{
                 return(
-                    <View style={{ backgroundColor: '#303030', height: hp(46), borderRadius: 5,marginTop:20 }}>
+                    <View style={{ backgroundColor: colors.black2, height: hp(46), borderRadius: 5,marginTop:20 }}>
             <View style={{ flexDirection: 'row', margin: 20 }}>
                 <View ><Icon size={40} source={globalPath.RESTAURANT_LOGO} /></View>
                 <View>

@@ -3,6 +3,7 @@ import { StyleSheet,View }  from 'react-native';
 import PropTypes from 'prop-types'
 import { Table, TableWrapper, Row, Rows, Col } from 'react-native-table-component';
 import ResponsiveText from '../../../components/RnText';
+import { colors } from '../../../constants/colorsPallet';
 
 const tableHead= ['', 'Opening Time', 'Closing Time'] ;
     const tableTitle= ['Monday', 'Tuesday', 'Wednesday', 'Thursday','Friday','Saturday','Sunday'];
@@ -22,7 +23,7 @@ export default function TimeTable({}) {
     
 return (
             <View style={{margin:20}}>
-            <View style={{backgroundColor:'#EDC54E',padding:15,alignItems:'center'}}>
+            <View style={{backgroundColor:colors.yellow,padding:15,alignItems:'center'}}>
 
             <ResponsiveText>Operation Hours</ResponsiveText>
             </View>
@@ -43,6 +44,6 @@ const styles = StyleSheet.create({
   wrapper: { flexDirection: 'row' },
   title: { flex: 1,  },
   row: {  height: 28  },
-  text: { textAlign: 'center' ,color:"#EDC54E"},
-  Headertext:{textAlign: 'center' ,color:"#FFFFFF"}
+  text: { textAlign: 'center' ,color:colors.yellow},
+  Headertext:{textAlign: 'center' ,color:colors.white}
 });

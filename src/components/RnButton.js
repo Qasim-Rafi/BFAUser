@@ -46,7 +46,7 @@ const RnButton = ({
           size={3.7}
           padding={[0, 10]}
           fontFamily={fontFamily ? fontFamily : 'Bold'}
-          color={textColor ? textColor : '#3c3625'}>
+          color={textColor ? textColor : colors.grey2}>
           {title}
         </ResponsiveText>
       )}

@@ -28,12 +28,13 @@ import Info from './Info';
 import Menu from '../Menu/Menu';
 import BranchesDetail from './Branches';
 import PromosBanner from '../BottomTabs/Promos/PromoBanner';
+import { colors } from '../../../constants/colorsPallet';
 export default function RestaurantBranchDetailScreen({navigation}) {
   const [activeTab, setActiveTab] = React.useState(MenuSectionButtons[0].id);
   // const [activeTab, setActiveTab] = React.useState(myListingTabs[3].id);
 
   return (
-    <View style={{backgroundColor: '#202020'}}>
+    <View style={{backgroundColor: colors.black3}}>
       <View style={styles.headerImage}>
         <ImageHeader navigation={navigation} />
       </View>
@@ -48,7 +49,7 @@ export default function RestaurantBranchDetailScreen({navigation}) {
                     styles.buttonView,
                     {
                       backgroundColor:
-                        items.id === activeTab ? '#EDC54E' : 'white',
+                        items.id === activeTab ? colors.yellow : colors.white,
                     },
                   ]}>
                   <View

@@ -44,7 +44,7 @@ const Info = () => {
       </View>
       <View style={{margin: 20, paddingBottom: 50}}>
         <RnButton>
-          <ResponsiveText padding={0} color={'black'}>
+          <ResponsiveText padding={0} color={colors.black}>
             SUBMIT
           </ResponsiveText>
         </RnButton>

@@ -45,11 +45,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        // backgroundColor: '#404040',
+        // backgroundColor: colors.black1,
         borderTopLeftRadius: 7,
         borderTopRightRadius: 7,
         borderBottomWidth: 0.9,
-        borderColor: '#404040'
+        borderColor: colors.black1
     },
     recommendationItemsSection: {
         flex: 1,

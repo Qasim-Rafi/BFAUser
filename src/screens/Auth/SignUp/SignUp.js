@@ -30,7 +30,7 @@ export default function Signup({ navigation }) {
           <ResponsiveText color={colors.yellow} fontFamily="Regular"  size={8} >
             Create Account
           </ResponsiveText>
-          <ResponsiveText color={'white'}>
+          <ResponsiveText color={colors.white}>
             Create a new account
           </ResponsiveText>
         </View>
@@ -67,11 +67,11 @@ export default function Signup({ navigation }) {
 
           <RnButton onPress={()=>null} fontFamily='light' margin={[20, 0]} title="SIGN UP " />
           <View style={styles.footer}>
-            <ResponsiveText margin={[3, 10]} color={'white'}>
+            <ResponsiveText margin={[3, 10]} color={colors.white}>
               or Sign up with
             </ResponsiveText>
             <Icon size={wp(8)}  margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} />
-            <ResponsiveText margin={[2, 10]} color={'white'}>
+            <ResponsiveText margin={[2, 10]} color={colors.white}>
               I already have account {' '}
               <ResponsiveText fontFamily='Bold' color={colors.yellow}  onPress={()=>navigation.navigate(routeName.LOGIN)}>Sign In</ResponsiveText>
             </ResponsiveText>
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     // height: hp(120),
     // justifyContent: 'center',
     // alignItems: 'center',
-    // backgroundColor: 'black',
+    // backgroundColor: colors.black,
   },
   screeninfo: {
     flex: 0.25,

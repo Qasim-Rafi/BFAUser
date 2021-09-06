@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   textInput: {
     borderBottomColor: 'red',
     borderBottomWidth: 2,
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
     borderRadius: wp(0),
   },
 });

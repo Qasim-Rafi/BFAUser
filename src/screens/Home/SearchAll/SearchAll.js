@@ -17,22 +17,22 @@ export default function SearchAll({navigation}) {
 
 
 	return (
-		<View style={{flex:1,backgroundColor:'#202020'}}>
+		<View style={{flex:1,backgroundColor:colors.black3}}>
 			<SearchHeader navigation={navigation}/>
 			<View style={styles.buttonViewStyle}>
 			
                   <TouchableOpacity
-                    style={[styles.buttonShape,{backgroundColor:'#EDC54E'}]}
+                    style={[styles.buttonShape,{backgroundColor:colors.yellow}]}
                     >
                     <Text>Sort</Text>
                   </TouchableOpacity>
                   <TouchableOpacity onPress={()=> navigation.navigate(routeName.FilterSearch)}
-                     style={[styles.buttonShape,{backgroundColor:'#303030'}]}
+                     style={[styles.buttonShape,{backgroundColor:colors.black2}]}
                     >
                     <Text style={{color:colors.white}}>Filter</Text>
                   </TouchableOpacity>
                   <TouchableOpacity onPress={()=> navigation.navigate(routeName.MAP_VIEW)}
-                     style={[styles.buttonShape,{backgroundColor:'#303030'}]}
+                     style={[styles.buttonShape,{backgroundColor:colors.black2}]}
                     >
                     <Text style={{color:colors.white}}>Map</Text>
                   </TouchableOpacity>
@@ -59,7 +59,7 @@ const SortResult = (props) => {
                     {ourRecommendationFakeDATA.map((url, index) => {
                         return (
 		
-		<TouchableOpacity style={{flexDirection: 'row',backgroundColor: '#303030',marginTop:10}} onPress={()=> props.navigation.navigate(routeName.DISH_DETAIL)}>
+		<TouchableOpacity style={{flexDirection: 'row',backgroundColor: colors.black2,marginTop:10}} onPress={()=> props.navigation.navigate(routeName.DISH_DETAIL)}>
                             <View style={{  height: 80, marginHorizontal: 5, borderRadius: 3, overflow: 'hidden',  }}>
                                 <Image style={{  padding: 5, overflow: 'hidden', justifyContent: 'flex-end',width:80,height:80 }} source={ url } >
                                 </Image>
@@ -70,10 +70,10 @@ const SortResult = (props) => {
                                     <ResponsiveText fontFamily="Light" size={2} color={colors.white}>Special sushi</ResponsiveText>
                                     <Rating
                                         size={2}
-										tintColor={'#303030'}
+										tintColor={colors.black2}
                                         imageSize={10}
                                         // tintColor={'transparent'}
-                                        style={{ paddingVertical: 10,color:'#303030' }}
+                                        style={{ paddingVertical: 10,color:color.black2 }}
                                     />
 								</View>	
 								<View style={{margin:20}}>
@@ -106,7 +106,7 @@ const styles=StyleSheet.create({
         borderTopLeftRadius: 7,
         borderTopRightRadius: 7,
         borderBottomWidth: 0.9,
-        borderColor: '#404040'
+        borderColor: colors.black1
     },
     everyOneFavoriteItemsSection: {
         flex: 1,

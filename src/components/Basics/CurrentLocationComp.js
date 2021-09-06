@@ -168,7 +168,7 @@ const CurrentLocationComp = ({visible, setVisibile, showLocationSlides}) => {
             styles={{
               textInput: {
                 height: wp(12),
-                color: '#5d5d5d',
+                color: colors.grey6,
               },
             }}
           />
@@ -399,7 +399,7 @@ const styles = {
     textInputContainer: {},
     textInput: {
       height: 38,
-      color: '#5d5d5d',
+      color: colors.grey6,
       fontSize: 16,
       alignContent: 'center',
     },
@@ -423,7 +423,7 @@ const styles = {
   liveLocation: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
     position: 'absolute',
     top: wp(18),
     right: wp(2),

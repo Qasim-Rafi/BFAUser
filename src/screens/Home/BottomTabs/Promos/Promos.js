@@ -18,7 +18,7 @@ const Promos = (navigation) => {
     console.log(activeTab);
     return (
 
-        <View style={{backgroundColor:'#202020',flex:1}}>
+        <View style={{backgroundColor:colors.black3,flex:1}}>
             <Header navigation={navigation}/>
             <View style={styles.buttonViewStyle}>
 			
@@ -34,7 +34,7 @@ const Promos = (navigation) => {
                           justifyContent: 'center',
                          marginTop: 10,
                       backgroundColor:
-                        items.id === activeTab ? '#EDC54E' :  '#303030',
+                        items.id === activeTab ? colors.yellow :  colors.black2,
                     }}
                     padding={[3, 15]}>
                     <ResponsiveText
@@ -74,7 +74,7 @@ const styles=StyleSheet.create({
         borderTopLeftRadius: 7,
         borderTopRightRadius: 7,
         borderBottomWidth: 0.9,
-        borderColor: '#404040'
+        borderColor: colors.black1
     },
     everyOneFavoriteItemsSection: {
         flex: 1,

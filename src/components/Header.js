@@ -10,6 +10,7 @@ import Input from './Input';
 import {globalPath} from '../constants/globalPath';
 import ResponsiveText from './RnText';
 import {routeName} from '../constants/routeName';
+import { colors } from '../constants/colorsPallet';
 
 const Header = ({showRightMenu = true, inputWidth = wp(72), ...props}) => {
   return (
@@ -27,7 +28,7 @@ const Header = ({showRightMenu = true, inputWidth = wp(72), ...props}) => {
           placeholder="Search for Dishes, Restaurants or Promo"
           padding={[0, 0, 0, 10]}
           leftIcon={globalPath.SEARCH_LOGO}
-          containerStyle={{backgroundColor: '#404040'}}
+          containerStyle={{backgroundColor: colors.black1}}
           height={hp(6)}
           width={inputWidth}
         />
@@ -69,7 +70,7 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  titleText: {color: 'black', fontFamily: Fonts.Bold, fontSize: wp(1.2)},
+  titleText: {color: colors.black, fontFamily: Fonts.Bold, fontSize: wp(1.2)},
 };
 
 export default Header;

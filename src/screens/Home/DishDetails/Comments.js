@@ -15,7 +15,7 @@ const image = { uri: "https://images.unsplash.com/photo-1440847899694-90043f91c7
                     
                 </View>
             </View>
-        <View style={{backgroundColor:'#404040',marginLeft:20,marginRight:20,borderRadius:4,height:100}}>
+        <View style={{backgroundColor:colors.black1,marginLeft:20,marginRight:20,borderRadius:4,height:100}}>
            <TextInput style={{color:colors.white}}/>
         </View>
          </>

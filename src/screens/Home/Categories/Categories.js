@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react';
-import { View, StyleSheet, Text, SectionList, TouchableOpacity, FlatList, Image } from 'react-native';
+import { View, StyleSheet, Text, SectionList, TouchableOpacity, FlatList, Image, useColorScheme } from 'react-native';
 import Icon from '../../../components/Icon';
 import Input from '../../../components/Input';
 import ResponsiveText from '../../../components/RnText';
 import { globalPath } from '../../../constants/globalPath';
 import { exploreCategoryByName } from '../../../constants/mock';
 import { hp, wp } from '../../../helpers/Responsiveness';
-
+import { colors } from '../../../constants/colorsPallet';
 export default function Categories({navigation}) {
 
 
@@ -39,12 +39,12 @@ export default function Categories({navigation}) {
   };
   return (
     <View style={styles.container}>
-      <View style={[styles.header, {backgroundColor:'#2F2F2F'}]}>
+      <View style={[styles.header, {backgroundColor:colors.grey3}]}>
     
-         <View style={{backgroundColor:'#3f3f3f', borderRadius:2}}>
+         <View style={{backgroundColor:colors.grey4, borderRadius:2}}>
         <TouchableOpacity onPress={()=>{navigation.goBack()}}><Icon  source={require('../../../assets/icons/back-arrow.png')} /></TouchableOpacity>
         </View>
-        <Text style={{ color: "#ffffff", width: wp(75), textAlign: 'center' }} >View Cuisines and Categories</Text>
+        <Text style={{ color: colors.white, width: wp(75), textAlign: 'center' }} >View Cuisines and Categories</Text>
         <Icon  source={globalPath.SEARCH_LOGO} />
         
 
@@ -53,8 +53,8 @@ export default function Categories({navigation}) {
         {exploreCategoryByName.map((item, index) => {
 
           return (
-            <TouchableOpacity style={{ marginBottom: 2, backgroundColor: activeAlphabet === item.title ? 'white' : undefined, height: 25, width: 25, justifyContent: 'center', alignItems: 'center', borderRadius: 1000 }} onPress={() => ScrollHandler(item, index)}>
-              <ResponsiveText color="#EDC54E">{item.title}</ResponsiveText>
+            <TouchableOpacity style={{ marginBottom: 2, backgroundColor: activeAlphabet === item.title ? colors.white : undefined, height: 25, width: 25, justifyContent: 'center', alignItems: 'center', borderRadius: 1000 }} onPress={() => ScrollHandler(item, index)}>
+              <ResponsiveText color={colors.yellow}>{item.title}</ResponsiveText>
             </TouchableOpacity>
           )
         })}
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     // height: hp(120),
     // justifyContent: 'center',
     // alignItems: 'center',
-    backgroundColor: 'black',
+    backgroundColor: colors.black,
   },
 
   item: {
@@ -92,15 +92,15 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 32,
-    backgroundColor: "#fff"
+    backgroundColor: colors.white
   },
   title: {
     paddingTop: 5,
-    color: '#ffffff',
+    color: colors.white,
     fontSize: 14
   },
   header: {
-    color: '#EDC54E',
+    color: colors.yellow,
     flex: 0.08,
     flexDirection: 'row',
     alignItems: 'center',

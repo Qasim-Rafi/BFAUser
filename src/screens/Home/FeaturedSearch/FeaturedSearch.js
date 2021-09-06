@@ -6,9 +6,10 @@ import SearchResturant from "./Resturant";
 import SearchPromotion from "./SearchPromotion";
 import { routeName } from '../../../constants/routeName';
 import SearchHeader from "../../../components/SearchHeader";
+import { colors } from "../../../constants/colorsPallet";
 export default function FeaturedSearch({navigation}) {
 	return(
-		<View style={{flex:1,backgroundColor:"#202020"}}>
+		<View style={{flex:1,backgroundColor:colors.black3}}>
 			<SearchHeader navigation={navigation}/>
 		
       <View style={{margin: 20}}>
@@ -29,7 +30,7 @@ const styles=StyleSheet.create({
 		// flexWrap:'wrap',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#EDC54E',
+        backgroundColor: colors.yellow,
         marginHorizontal: 10,
         padding: 10,
         marginTop: 10,
@@ -38,7 +39,7 @@ const styles=StyleSheet.create({
         flex: 0.3,
         // margin: 15,
         borderRadius: 7,
-        backgroundColor: '#303030',
+        backgroundColor: colors.black2,
         marginTop:10,
 
     }

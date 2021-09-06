@@ -11,7 +11,7 @@ import {wp, hp} from '../../../helpers/Responsiveness';
 import {VictoryPie, VictoryChart, VictoryBoxPlot} from 'victory-native';
 export default function CalorieCount(props) {
   return (
-    <View style={{backgroundColor: '#404040'}}>
+    <View style={{backgroundColor:colors.black1}}>
       <View style={{margin: 20}}>
         <ResponsiveText size={4} color={colors.white}>
           Calorie Count
@@ -19,7 +19,7 @@ export default function CalorieCount(props) {
 
         <View
           style={{
-            backgroundColor: '#40CEFB',
+            backgroundColor: colors.skyblue2,
             height: 5,
             width: '100%',
             borderRadius: 20,
@@ -30,7 +30,7 @@ export default function CalorieCount(props) {
       <View style={{height: wp(65), flexDirection: 'row'}}>
         <VictoryPie
           labels={() => null}
-          colorScale={['#40CEFB', '#EDC54E', '#3CAE3C', '#214FAB', 'white']}
+          colorScale={[colors.skyblue2, colors.yellow, colors.green1, colors.blue1, colors.white]}
           width={wp(50)}
           height={wp(50)}
           innerRadius={wp(10)}
@@ -72,7 +72,7 @@ export default function CalorieCount(props) {
                 <View
                   style={{
                     flex: 0.4,
-                    backgroundColor: 'white',
+                    backgroundColor: colors.white,
                     justifyContent: 'center',
                     alignItems: 'center',
                     borderBottomEndRadius: 20,

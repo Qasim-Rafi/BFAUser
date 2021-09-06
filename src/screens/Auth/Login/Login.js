@@ -5,6 +5,8 @@ import {
   KeyboardAvoidingView,
   ImageBackground,
   Platform,
+  useColorScheme,
+  ViewPagerAndroidBase,
 } from 'react-native';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 
@@ -30,7 +32,7 @@ export default function Login({navigation}) {
           <ResponsiveText  color={colors.yellow} fontFamily="Regular" size={8} >
             Sign In
           </ResponsiveText>
-          <ResponsiveText color={'white'}>
+          <ResponsiveText color={colors.white}>
             Please Login to Continue
           </ResponsiveText>
         </View>
@@ -51,19 +53,19 @@ export default function Login({navigation}) {
             leftIcon={globalPath.PASSWORD_LOGO}
           />
           <View style={styles.forgotPasswordContainer}>
-            <Line color="#595959" width={wp(20)} />
-            <ResponsiveText margin={[0, 10]} color={'white'}>
+            <Line color={colors.grey5} width={wp(20)} />
+            <ResponsiveText margin={[0, 10]} color={colors.white}>
               Forgot Password?
             </ResponsiveText>
-            <Line color="#595959" width={wp(20)} />
+            <Line color={colors.grey5} width={wp(20)} />
           </View>
           <RnButton onPress={()=>navigation.navigate(routeName.LANDING_SCREEN)} fontFamily='SemiBold' height={100} margin={[0, 0]} title="SIGN IN" />
           <View style={styles.footer}>
-            <ResponsiveText margin={[3, 10]} color={'white'}>
+            <ResponsiveText margin={[3, 10]} color={colors.white}>
               or Sign up with
             </ResponsiveText>
             <Icon size={wp(8)} margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} />
-            <ResponsiveText margin={[0, 10]} color={'white'}>
+            <ResponsiveText margin={[0, 10]} color={colors.white}>
               New user{' '}
               <ResponsiveText  fontFamily='Bold' color={colors.yellow}  onPress={()=>navigation.navigate(routeName.SIGN_UP)}>Sign up</ResponsiveText>
             </ResponsiveText>
@@ -80,7 +82,7 @@ const styles = StyleSheet.create({
     // height: hp(120),
     // justifyContent: 'center',
     // alignItems: 'center',
-    // backgroundColor: 'black',
+    // backgroundColor: colors.black,
   },
   screeninfo: {
     flex: 0.25,

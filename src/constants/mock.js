@@ -1,4 +1,5 @@
 import {globalPath} from './globalPath';
+import { colors } from './colorsPallet';
 
 export const advertisementBannerFakeDATA = [
   // globalPath.BALI_LOGO,globalPath.CHECKOUT_LOGO
@@ -270,13 +271,13 @@ export const FacilityData = [
 
 export const FakeCaloriesData = [
   {
-    colors: '#40CEFB',
+    colors: colors.skyblue2,
     variant: 'Protein',
     weightgeInGrams: '16.5g',
     percentage: '8%',
   },
   {
-    colors: '#EDC54E',
+    colors: colors.yellow,
     variant: 'Fats',
     weightgeInGrams: '13.5g',
     percentage: '19%',
@@ -288,7 +289,7 @@ export const FakeCaloriesData = [
     percentage: '8%',
   },
   {
-    colors: '#214FAB',
+    colors: colors.blue1,
     variant: 'Fibers',
     weightgeInGrams: '13.5g',
     percentage: '11%',

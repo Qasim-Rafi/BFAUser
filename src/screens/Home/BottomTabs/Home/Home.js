@@ -69,7 +69,7 @@ export default Home
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#202020'
+        backgroundColor: colors.black3
     },
     header: {
         flex: 0.1,
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         flex: 0.17,
         margin: 15,
         borderRadius: 7,
-        backgroundColor: '#303030'
+        backgroundColor: colors.black2
 
     },
     cuisinesContainer: {
@@ -122,13 +122,13 @@ const styles = StyleSheet.create({
         flex: 0.17,
         // margin: 15,
         borderRadius: 7,
-        backgroundColor: '#303030',
+        backgroundColor: colors.black2,
     },
     yourFavorite: {
         flex: 0.17,
         // margin: 15,
         borderRadius: 7,
-        backgroundColor: '#303030',
+        backgroundColor: colors.black2,
     },
     Advertisement2ndVarient: {
         // flex: 0.1,
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
         flex: 0.17,
         // margin: 15,
         borderRadius: 7,
-        backgroundColor: '#303030',
+        backgroundColor: colors.black2,
         marginTop:20,
 
     }
