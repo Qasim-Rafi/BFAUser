@@ -99,9 +99,7 @@ export const BFAPartnerFakeData = [
   require('../assets/fake_Images/HOME_BFA_PARTNER-4.png'),
   require('../assets/fake_Images/HOME_BFA_PARTNER-5.png'),
   require('../assets/fake_Images/HOME_BFA_PARTNER-6.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-1.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-2.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-3.png'),
+
 ];
 
 export const exploreCategoryByName = [
@@ -765,3 +763,18 @@ export  const ORDER_HISTORY = [
   },
 
 ]; 
+export const COISINES_FAKE_DATA=[
+  {title:'Ambuyat',id:1},
+ {title:'Nasi Ktok',id:2},
+ {title:'Kelupis',id:3},
+ {title:'Hotels',id:4},
+ {title:'Dishes',id:5},
+ {title:'Restaurant',id:6},
+ {title:'Pulut Panggang',id:7},
+ {title:'Bamboo',id:8},
+ {title:'Selurup',id:9},
+ {title:'Tapai',id:10},
+ {title:'Penyaran',id:11},
+  {title:'Ambuyat',id:12},
+
+]

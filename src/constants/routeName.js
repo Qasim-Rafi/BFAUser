@@ -11,7 +11,7 @@ export const routeName = {
   // BOTTOM TABS
   HOME_BOTTOM: "Home",
   RANDOMISER_BOTTOM: "Randomiser",
-  PROMOS_BOTTOM: "Promos",
+  PROMOS_BOTTOM: "Feed",
   CHECK_OUT_BOTTOM: "Checkout",
   MORE_BOTTOM: "More",
   DISH_DETAIL:"DISH_DETAIL",
@@ -22,4 +22,5 @@ export const routeName = {
   FilterSearch:'FilterSearch',
   PROFILE_SCREEN:'PROFILE_SCREEN',
   ORDER_HISTORY:'ORDER_HISTORY',
+  SELECT_COISINES:' SELECT_COISINES'
 };

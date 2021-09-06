@@ -12,7 +12,7 @@ const AwardWinningDishes = (props) => {
     return (
         <>
             <View style={styles.AwardWinningDishesHeaderSection}>
-                <ResponsiveText size={4} color={colors.white}>Award Winning Dishes</ResponsiveText>
+                <ResponsiveText margin={[0,0,0,12]} size={4} color={colors.white}>Award Winning Dishes</ResponsiveText>
                 <SeeAllButton navigation={props.navigation}/>
             </View>
             <View style={styles.AwardWinningDishesItemsSection}>
@@ -43,14 +43,15 @@ const styles = StyleSheet.create({
 
     AwardWinningDishesHeaderSection: {
         padding: 10,
+        
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        // backgroundColor: colors.black1,
+         backgroundColor: colors.black1,
         borderTopLeftRadius: 7,
         borderTopRightRadius: 7,
         borderBottomWidth: 0.9,
-        borderColor: colors.black1
+        borderColor: colors.black2,
     },
     AwardWinningDishesItemsSection: {
         flex: 1,
@@ -59,6 +60,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         justifyContent: 'center',
         overflow: 'hidden',
+        backgroundColor:colors.black2,
     }
 
 

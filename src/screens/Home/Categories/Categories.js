@@ -19,8 +19,8 @@ export default function Categories({navigation}) {
     scrollRef?.current.scrollToIndex({ index, viewOffset: hp(22) })
 
   };
-  const onViewableItemsChanged = ({ viewableItems, changed }) => {
-    console.log(viewableItems[1]?.item.title)
+  const onViewRef = ({ viewableItems, changed }) => {
+    console.log(viewableItems.current,'TEsting');
   }
   const renderItem = ({ item }) => {
     return (
@@ -67,7 +67,7 @@ export default function Categories({navigation}) {
           data={exploreCategoryByName}
           keyExtractor={(item, index) => item + index}
           renderItem={renderItem}
-          // onViewableItemsChanged={onViewableItemsChanged}
+           onViewableItemsChanged={onViewRef.current }
           viewabilityConfig={viewConfigRef.current}
 
         />

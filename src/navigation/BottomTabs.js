@@ -75,28 +75,28 @@ export default function BottomTabs(props) {
           let iconName;
 
           if (route.name === routeName.HOME_BOTTOM) {
-            iconName = focused ? globalPath.HOME_LOGO : globalPath.HOME_LOGO;
+            iconName = focused ? globalPath.HOME_LOGO : globalPath.HOME_GREY;
           } else if (route.name === routeName.RANDOMISER_BOTTOM) {
             iconName = focused
               ? globalPath.RANDOMISER_LOGO
-              : globalPath.RANDOMISER_LOGO;
+              : globalPath.RANDOM_GREY;
           } else if (route.name === routeName.PROMOS_BOTTOM) {
             iconName = focused
               ? globalPath.PROMOS_LOGO
-              : globalPath.PROMOS_LOGO;
+              : globalPath.FEED_GREY;
           } else if (route.name === routeName.CHECK_OUT_BOTTOM) {
             iconName = focused
               ? globalPath.CHECKOUT_LOGO
-              : globalPath.CHECKOUT_LOGO;
+              : globalPath.CHECKOUT_GREY;
           } else if (route.name === routeName.MORE_BOTTOM) {
-            iconName = focused ? globalPath.MFORE_LOGO : globalPath.MORE_LOGO;
+            iconName = focused ? globalPath.MORE_LOGO : globalPath.MORE_GREY;
           }
 
           // You can return any component that you like here!
           return <Icon source={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: colors.yellow,
-        tabBarInactiveTintColor: colors.yellow,
+        tabBarInactiveTintColor: colors.grey1,
       })}>
       <Tab.Screen
         name={routeName.HOME_BOTTOM}

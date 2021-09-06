@@ -36,9 +36,9 @@ const Home = ({navigation}) => {
                 //  source={{ uri: 'https://images.unsplash.com/photo-1441716844725-09cedc13a4e7?h=1024' }}
                  source={globalPath.HOME_HOME_VIEW_COISINES_AND_CATEGORIES}
                  >
-                    <RnButton  onPress={()=>navigation.navigate(routeName.Categories)} style={styles.cuisinesButton}>
-                        <ResponsiveText fontFamily={'Regular'} size={2.9}>View Cuisines and Categories</ResponsiveText>
-                        <Icon size={wp(4)}  tintColor='black' source={globalPath.RIGHT_ARROW} />
+                    <RnButton width={wp(4)} height={hp(6)}  onPress={()=>navigation.navigate(routeName.Categories)} style={styles.cuisinesButton}>
+                        <ResponsiveText fontFamily={'Regular'} size={2.6}>View Cuisines and Categories</ResponsiveText>
+                        <Icon size={wp(3.5)}  tintColor='black' source={globalPath.RIGHT_ARROW} />
                     </RnButton>
                 </ImageBackground>
                 <View style={styles.recommendationContainer}>
@@ -102,10 +102,10 @@ const styles = StyleSheet.create({
     },
     cuisinesButton: {
         backgroundColor: colors.yellow,
-        paddingVertical:5,
+        paddingVertical:4,
         // paddingHorizontal:5,
         flexDirection: 'row',
-        width: '60%',
+        width: '55%',
         justifyContent: 'space-between',
         // justifyContent: 'space-between',
 

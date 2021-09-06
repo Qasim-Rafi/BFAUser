@@ -15,6 +15,7 @@ import ProfileScreen from '../screens/Home/ProfileScreen/ProfileScreen';
 import RestaurantDetail from '../screens/Home/RestaurantBranchDetail/RestaurantBranchDetail';
 import FilterSearch from '../screens/Home/SearchAll/FilterSearch';
 import SearchAll from '../screens/Home/SearchAll/SearchAll';
+import SelectCoisines from '../screens/Auth/SelectCoisines/SelectCoisines';
 //  import LandingScreen from '../screens/Home/LandingScreen/LandingScreen';
 import BottomTabs from './BottomTabs';
 
@@ -28,7 +29,9 @@ function HomeStack() {
       }}
       // initialRouteName="Home"
       >
+
       <Stack.Screen name={routeName.SPLASH} component={Splash} />
+      <Stack.Screen name={routeName.SELECT_COISINES} component={SelectCoisines} />
       <Stack.Screen name={routeName.ORDER_HISTORY} component={Order_history}/>
       <Stack.Screen name={routeName.RestaurantDetail} component={RestaurantDetail} />
       <Stack.Screen name={routeName.PROFILE_SCREEN} component={ProfileScreen}/>

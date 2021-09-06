@@ -15,14 +15,12 @@ const BfaPartner = (props) => {
                 <SeeAllButton navigation={props.navigation} src={globalPath.DOWN_ARROW}/>
             </View>
             <View style={styles.bfaPartnerItemsSection}>
-            <ScrollView showsHorizontalScrollIndicator={false} horizontal>
                 {BFAPartnerFakeData.map((url, index) => {
                     return (
-                        <Image style={{ width: wp(22), height: wp(22), marginHorizontal: 5, borderRadius: 5, overflow: 'hidden' }} source={url} />
+                        <Image style={{ width: wp(13), height: wp(13), marginHorizontal: 5, borderRadius: 5, overflow: 'hidden' }} source={url} />
 
                     )
                 })}
-                 </ScrollView>
             </View>
         </>
     )
@@ -37,7 +35,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: colors.lightBlack,
+        backgroundColor: colors.black1,
         borderTopLeftRadius: 7,
         borderTopRightRadius: 7,
     },
@@ -48,6 +46,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         paddingVertical: 10,
         justifyContent: 'center',
+        backgroundColor:colors.black2,
         overflow: 'hidden',
     }
 

@@ -11,7 +11,7 @@ const EveryOneFavourite = (props) => {
     return (
         <>
             <View style={styles.everyOneFavoriteHeaderSection}>
-                <ResponsiveText size={4} color={colors.white}>Everyone's Favorite</ResponsiveText>
+                <ResponsiveText margin={[0,0,0,5]} size={4} color={colors.white}>Everyone's Favorite</ResponsiveText>
                 <SeeAllButton navigation={props.navigation} />
             </View>
             <View style={styles.everyOneFavoriteItemsSection}>
@@ -19,7 +19,7 @@ const EveryOneFavourite = (props) => {
                     {everyoneFavoriteFakeDATA.map((url, index) => {
                         return (
                             <TouchableOpacity onPress={()=> props.navigation.navigate(routeName.RestaurantDetail)}>
-                            <View style={{ width: wp(26), height: hp(18), marginHorizontal: 5, borderRadius: 3, overflow: 'hidden', flexDirection: 'row' }}>
+                            <View style={{marginStart:15, width: wp(26), height: hp(18), marginHorizontal: 5, borderRadius: 3, overflow: 'hidden', flexDirection: 'row' }}>
                                 <ImageBackground imageStyle={{opacity:.5}} style={{ flex: 1, padding: 5, overflow: 'hidden', justifyContent: 'flex-end' }} source={url} >
                                     <ResponsiveText fontFamily="Regular" size={2.9} color={colors.white}>Kaizen sushi</ResponsiveText>
                                     <ResponsiveText fontFamily="Light" size={2} color={colors.white}>Special sushi</ResponsiveText>
@@ -51,11 +51,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        // backgroundColor: colors.black1,
+         backgroundColor: colors.black1,
         borderTopLeftRadius: 7,
         borderTopRightRadius: 7,
         borderBottomWidth: 0.9,
-        borderColor: colors.black1
+        borderColor: colors.black2,
     },
     everyOneFavoriteItemsSection: {
         flex: 1,
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         paddingVertical: 10,
         justifyContent: 'center',
+        backgroundColor:colors.black1,
         overflow: 'hidden',
     }
 

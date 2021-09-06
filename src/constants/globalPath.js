@@ -15,6 +15,16 @@ const LOCATION = require('../assets/icons/goto.png');
 const CONTACT = require('../assets/icons/contact.png');
 const LOCATION1 = require('../assets/icons/location1.png');
 
+const HOME_GREY =require('../assets/icons/home-gray.png');
+const MORE_GREY =require('../assets/icons/More-gray.png');
+const RANDOM_GREY =require('../assets/icons/Randomiser-gray.png');
+const FEED_GREY =require('../assets/icons/feed-gray.png');
+const CHECKOUT_GREY =require('../assets/icons/Checkout-gray.png');
+
+
+
+
+
 const RIGHT_ARROW = require('../assets/icons/arrow.png');
 const DOWN_ARROW = require('../assets/icons/arrow-down.png');
 const BACK_ARROW = require('../assets/icons/back-arrow.png');
@@ -93,6 +103,11 @@ const PROMOS_LOGO = require('../assets/icons/promos.png');
 const OPERATIONAL_HOURS= require('../assets/icons/operational-hours.png')
 
 export const globalPath = {
+  HOME_GREY,
+  CHECKOUT_GREY,
+  FEED_GREY,
+  RANDOM_GREY,
+  MORE_GREY,
   //ICON PATHS HERE
   BACK_BLACK_ARROW,
   EDIT_PROFILE,

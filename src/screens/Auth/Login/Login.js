@@ -59,12 +59,10 @@ export default function Login({navigation}) {
             </ResponsiveText>
             <Line color={colors.grey5} width={wp(20)} />
           </View>
-          <RnButton onPress={()=>navigation.navigate(routeName.LANDING_SCREEN)} fontFamily='SemiBold' height={100} margin={[0, 0]} title="SIGN IN" />
+          <RnButton onPress={()=>navigation.navigate(routeName.SELECT_COISINES)} fontFamily='SemiBold' height={100} margin={[0, 0]} title="SIGN IN" />
           <View style={styles.footer}>
-            <ResponsiveText margin={[3, 10]} color={colors.white}>
-              or Sign up with
-            </ResponsiveText>
-            <Icon size={wp(8)} margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} />
+           
+            {/* <Icon size={wp(8)} margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
             <ResponsiveText margin={[0, 10]} color={colors.white}>
               New user{' '}
               <ResponsiveText  fontFamily='Bold' color={colors.yellow}  onPress={()=>navigation.navigate(routeName.SIGN_UP)}>Sign up</ResponsiveText>

@@ -12,7 +12,7 @@ const Promotion = (props) => {
     return (
         <>
             <View style={styles.everyOneFavoriteHeaderSection}>
-                <ResponsiveText size={4} color={colors.white}>Promotions</ResponsiveText>
+                <ResponsiveText margin={[0,0,0,12]} size={4} color={colors.white}>Promotions</ResponsiveText>
                 <SeeAllButton  navigation={props.navigation} />
             </View>
             <View style={styles.recommendationItemsSection}>

@@ -35,14 +35,26 @@ export default function Signup({ navigation }) {
           </ResponsiveText>
         </View>
         <View style={styles.formArea}>
-          <Input
+          <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+            <Input
+            width={wp(39)}
             margin={[0, 0, 15, 0]}
             padding={[0, 0, 0, 25]}
             iconMargin={[0, 10, 0, 0]}
-            placeholder="Full name"
-            secureTextEntry
+            placeholder="First name"
             leftIcon={globalPath.USER_LOGO}
           />
+           <Input
+            width={wp(39)}
+
+            margin={[0, 0, 15, 0]}
+            padding={[0, 0, 0, 25]}
+            iconMargin={[0, 10, 0, 0]}
+            placeholder="Last name"
+            leftIcon={globalPath.USER_LOGO}
+          />
+          </View>
+          
           <Input
             padding={[0, 0, 0, 25]}
             iconMargin={[0, 10, 0, 0]}
@@ -64,13 +76,19 @@ export default function Signup({ navigation }) {
             secureTextEntry
             leftIcon={globalPath.PASSWORD_LOGO}
           />
+          <Input
+            margin={[0, 0, 15, 0]}
+            padding={[0, 0, 0, 25]}
+            iconMargin={[0, 10, 0, 0]}
+            placeholder="Confirm Password"
+            secureTextEntry
+            leftIcon={globalPath.PASSWORD_LOGO}
+          />
 
           <RnButton onPress={()=>null} fontFamily='light' margin={[20, 0]} title="SIGN UP " />
           <View style={styles.footer}>
-            <ResponsiveText margin={[3, 10]} color={colors.white}>
-              or Sign up with
-            </ResponsiveText>
-            <Icon size={wp(8)}  margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} />
+           
+            {/* <Icon size={wp(8)}  margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
             <ResponsiveText margin={[2, 10]} color={colors.white}>
               I already have account {' '}
               <ResponsiveText fontFamily='Bold' color={colors.yellow}  onPress={()=>navigation.navigate(routeName.LOGIN)}>Sign In</ResponsiveText>
@@ -91,13 +109,13 @@ const styles = StyleSheet.create({
     // backgroundColor: colors.black,
   },
   screeninfo: {
-    flex: 0.25,
+    flex: 0.2,
     justifyContent: 'flex-end',
     paddingBottom: wp(10),
     padding: wp(5),
   },
   formArea: {
-    flex: 0.75,
+    flex: 0.8,
     borderTopRightRadius: wp(7),
     borderTopLeftRadius: wp(7),
     backgroundColor: '#2f2f2f',

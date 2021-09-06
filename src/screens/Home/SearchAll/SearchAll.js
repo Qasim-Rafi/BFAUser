@@ -11,6 +11,7 @@ import { globalPath } from '../../../constants/globalPath'
 import { myListingTabs } from '../../../constants/mock'
 import { routeName } from '../../../constants/routeName'
 import SearchHeader from '../../../components/SearchHeader'
+
 export default function SearchAll({navigation}) {
 	// const [activeTab, setActiveTab] = React.useState(myListingTabs[0].id);
 
@@ -73,7 +74,7 @@ const SortResult = (props) => {
 										tintColor={colors.black2}
                                         imageSize={10}
                                         // tintColor={'transparent'}
-                                        style={{ paddingVertical: 10,color:color.black2 }}
+                                        style={{ paddingVertical: 10,color:colors.black2 }}
                                     />
 								</View>	
 								<View style={{margin:20}}>

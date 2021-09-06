@@ -12,7 +12,7 @@ import { wp } from '../../../../helpers/Responsiveness'
 const AdvertisementBanner = () => {
     return (
 
-        <Swiper style={{}} showsButtons={false}
+        <Swiper style={{}} showsButtons={false} autoplay={true} autoplayTimeout={3}
             activeDot={<View style={{ backgroundColor: colors.yellow, width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3, }} />}
             dot={
                 <View style={{ backgroundColor: colors.white, width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3, }} />
