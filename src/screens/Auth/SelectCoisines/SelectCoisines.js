@@ -73,7 +73,7 @@ export default function SelectCoisines({navigation}) {
             navigation.navigate(routeName.LANDING_SCREEN);
           }}
           style={styles.cuisinesButton}>
-          <ResponsiveText>Next</ResponsiveText>
+          <ResponsiveText size={4}>Next</ResponsiveText>
         </RnButton>
       </View>
     </View>
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   },
   cuisinesButton: {
     backgroundColor: colors.yellow,
-    paddingVertical: 5,
+    paddingVertical: 8,
     // paddingHorizontal:5,
     flexDirection: 'row',
     width: '70%',
