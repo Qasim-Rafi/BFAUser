@@ -8,16 +8,7 @@ import Randomiser from '../screens/Home/BottomTabs/Randomiser/Randomiser'
 
 export default function CustomRadioButton(props) {
     const [checked, setCheck] = useState(props.status);
-    // if(props.id === '1' || props.id === '2' || props.id ==='3'){
-    //     console.log(props.id)
-    // }
-    
-//     if(props.status===false){
-// setCheck(false);
-//     } else
-//     {
-//         setCheck(true);
-//     }
+   
     return (
         <TouchableOpacity style={{
             backgroundColor:checked ? colors.black3: undefined, 

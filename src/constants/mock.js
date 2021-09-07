@@ -393,6 +393,21 @@ export const myPromosListingTabs = [
     name: 'Jobs',
   },
 ];
+export const RadioGroup = [
+  {
+    id: 1,
+    name: '1',
+  },
+  {
+    id: 2,
+    name: '2',
+  },
+  {
+    id: 3,
+    name: '3',
+  },
+  
+];
 export const NewsFeeds = [
   {
     favorite:224,
