@@ -9,7 +9,7 @@ import { colors } from '../../../../constants/colorsPallet'
 import { globalPath } from '../../../../constants/globalPath'
 import Icon from '../../../../components/Icon'
 import { wp } from '../../../../helpers/Responsiveness'
-const AdvertisementBanner = () => {
+const AdvertisementBanner = (data) => {
     return (
 
         <Swiper style={{}} showsButtons={false} autoplay={true} autoplayTimeout={3}

@@ -20,6 +20,7 @@ import Advertisement2ndVarient from './Advertisement2ndVarient'
 import AwardWinningDishes from './AwardWinningDishes'
 import Promotion from './Promotion'
 import Header from '../../../../components/Header'
+import { RESTURANT_BANNER } from '../../../../constants/mock'
 const Home = ({navigation}) => {
     return (
         <View style={styles.container}>
@@ -46,6 +47,9 @@ const Home = ({navigation}) => {
                 </View>
                 <View style={styles.everyoneFavorite}>
                     <EveryOneFavourite navigation={navigation}/>
+                </View>
+                <View style={styles.Advertisement2ndVarient}>
+                    <Advertisement2ndVarient data={RESTURANT_BANNER} navigation={navigation} />
                 </View>
                 <View style={styles.yourFavorite}>
                     <YourFavourite navigation={navigation}/>

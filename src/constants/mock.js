@@ -716,7 +716,10 @@ export const BranchMenuSectionsData = [
     ],
   },
 ];
-
+export const RESTURANT_BANNER =[
+  require('../assets/fake_Images/ResturantBanner.png'),
+  require('../assets/fake_Images/ResturantBanner1.png')
+]
 export  const ORDER_HISTORY = [
   {
     Title:'Nasi Ayam Bakar Madura' ,

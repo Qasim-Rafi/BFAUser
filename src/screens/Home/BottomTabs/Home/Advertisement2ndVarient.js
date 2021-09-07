@@ -7,7 +7,8 @@ import { globalPath } from '../../../../constants/globalPath'
 import { advertisementBannerFakeDATA } from '../../../../constants/mock'
 import { colors } from '../../../../constants/colorsPallet'
 import { hp } from '../../../../helpers/Responsiveness'
-const Advertisement2ndVarient = () => {
+const Advertisement2ndVarient = (data) => {
+    console.log(data,'dataa');
     return (
 
         <Swiper style={{}} showsButtons={false} autoplay={true} autoplayTimeout={3}
@@ -18,7 +19,7 @@ const Advertisement2ndVarient = () => {
             {advertisementBannerFakeDATA.map((url, index) => {
                 return (
                     <ImageBackground style={styles.Advertisement2ndVarientImage} 
-                    // source={{ uri: url }}
+                    //  source={url}
                     source={globalPath.HOME_ADD_BANNER_2}
 
                      >

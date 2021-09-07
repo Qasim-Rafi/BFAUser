@@ -25,7 +25,7 @@ import RnButton from '../../../components/RnButton';
 import {routeName} from '../../../constants/routeName';
 
 export default function SelectCoisines({navigation}) {
-  const [check, setChecked] = React.useState([]);
+  const [check, setChecked] = React.useState(false);
 
   return (
     <View style={{flex: 1, backgroundColor: colors.black3}}>
@@ -37,7 +37,7 @@ export default function SelectCoisines({navigation}) {
         <Icon />
       </View>
       <ResponsiveText margin={[20, 0, 30, 20]} color={colors.white}>
-        Pick Your Fav Coisines{' '}
+        Pick Your Favourite Coisines{' '}
       </ResponsiveText>
       <View
         style={{
@@ -61,7 +61,7 @@ export default function SelectCoisines({navigation}) {
                   padding: 10,
                   marginTop: 10,
                 }}>
-                <Text style={{fontSize: 14}}>{item.title}</Text>
+                <Text style={{fontSize: 14,color:colors.white}}>{item.title}</Text>
               </View>
             </TouchableOpacity>
           );
