@@ -18,6 +18,7 @@ import SearchAll from '../screens/Home/SearchAll/SearchAll';
 import SelectCoisines from '../screens/Auth/SelectCoisines/SelectCoisines';
 //  import LandingScreen from '../screens/Home/LandingScreen/LandingScreen';
 import BottomTabs from './BottomTabs';
+import Apply_Jobs from '../screens/Home/BottomTabs/Promos/Apply_Jobs';
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +32,8 @@ function HomeStack() {
       >
 
       <Stack.Screen name={routeName.SPLASH} component={Splash} />
+      <Stack.Screen name={routeName.APPLY_JOBS} component={Apply_Jobs} />
+
       <Stack.Screen name={routeName.SELECT_COISINES} component={SelectCoisines} />
       <Stack.Screen name={routeName.ORDER_HISTORY} component={Order_history}/>
       <Stack.Screen name={routeName.RestaurantDetail} component={RestaurantDetail} />

@@ -13,7 +13,7 @@ import NewsFeed from './NewsFeed'
 import PromosJob from './PromosJobs'
 
  
-const Promos = (navigation) => {
+const Promos = ({navigation}) => {
     const [activeTab, setActiveTab] = React.useState(myPromosListingTabs[1].id);
     console.log(activeTab);
     return (
@@ -56,7 +56,7 @@ const Promos = (navigation) => {
             {activeTab === 1 && <PromosBanner navigation={navigation} />}
              {activeTab === 2 &&  <PromosBanner />}
               {activeTab === 3 && <NewsFeed />}
-             {activeTab === 4 && <PromosJob navigation={navigation} />}
+             {activeTab === 4 && <PromosJob navigation={navigation}/>}
 
             </ScrollView>
         </View>

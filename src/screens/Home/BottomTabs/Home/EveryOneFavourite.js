@@ -7,11 +7,14 @@ import { advertisementBannerFakeDATA, everyoneFavoriteFakeDATA } from '../../../
 import { colors } from '../../../../constants/colorsPallet'
 import SeeAllButton from '../../../../components/SeeAllButton'
 import { hp, wp } from '../../../../helpers/Responsiveness';
+
+
+
 const EveryOneFavourite = (props) => {
     return (
         <>
             <View style={styles.everyOneFavoriteHeaderSection}>
-                <ResponsiveText margin={[0,0,0,5]} size={4} color={colors.white}>Everyone's Favorite</ResponsiveText>
+                <ResponsiveText margin={[0,0,0,5]} size={4} color={colors.white}>People's Choice</ResponsiveText>
                 <SeeAllButton navigation={props.navigation} />
             </View>
             <View style={styles.everyOneFavoriteItemsSection}>
