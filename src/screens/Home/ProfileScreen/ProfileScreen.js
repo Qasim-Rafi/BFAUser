@@ -90,8 +90,10 @@ export default function ProfileScreen({navigation}) {
         
         {/* <Profile /> */}
  {/* <ScrollView style={{flex:0.9,margin:20}}> */}
+ 
         {activeTab === 1 && <Profile />}
              {activeTab === 2 &&  <Optional />}
+            
 {/* </ScrollView> */}
 
 

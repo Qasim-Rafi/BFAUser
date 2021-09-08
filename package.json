@@ -23,6 +23,7 @@
     "react-native-ratings": "^8.1.0",
     "react-native-safe-area-context": "^3.3.0",
     "react-native-screens": "^3.6.0",
+    "react-native-select-dropdown": "^1.1.0",
     "react-native-svg": "^12.1.1",
     "react-native-swiper": "^1.6.0",
     "react-native-table-component": "^1.2.1",

@@ -1,59 +1,46 @@
-import React from 'react'
-import { View, Text, StyleSheet , ScrollView} from 'react-native'
-import Input from '../../../components/Input'
-import { globalPath } from '../../../constants/globalPath'
-import { colors } from '../../../constants/colorsPallet'
-import { wp } from '../../../helpers/Responsiveness'
-import { hp } from '../../../helpers/Responsiveness'
-import RnButton from '../../../components/RnButton'
+import React from 'react';
+import {View, Text, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
+import Input from '../../../components/Input';
+import {globalPath} from '../../../constants/globalPath';
+import {colors} from '../../../constants/colorsPallet';
+import {wp} from '../../../helpers/Responsiveness';
+import {hp} from '../../../helpers/Responsiveness';
+import RnButton from '../../../components/RnButton';
+import {TextInput} from 'react-native-paper';
+import ResponsiveText from '../../../components/RnText';
+import CustomInput from '../../../components/customInput';
 
 export default function Profile() {
-return (
-		<View style={styles.formArea}>
-          <Input
-            padding={[0, 0, 0, 25]}
-            iconMargin={[0, 10, 0, 0]}
-            placeholder="Full Name"
-            leftIcon={globalPath.USER_LOGO}
-          />
-          <Input
-            margin={[20, 0, 0, 0]}
-            padding={[0, 0, 0, 25]}
-            iconMargin={[0, 10, 0, 0]}
-            placeholder="Email"
-            leftIcon={globalPath.EMAIL_LOGO}
-          />
-          <Input
-            margin={[20, 0, 0, 0]}
-            padding={[0, 0, 0, 25]}
-            iconMargin={[0, 10, 0, 0]}
-            placeholder="Phone"
-            leftIcon={globalPath.PHONE_LOGO}
-          />
-          <Input
-            margin={[20, 0, wp(10), 0]}
-            padding={[0, 0, 0, 25]}
-            iconMargin={[0, 10, 0, 0]}
-            placeholder="Password"
-            secureTextEntry
-            leftIcon={globalPath.PASSWORD_LOGO}
-          />
-
-          <RnButton
-            fontFamily="SemiBold"
-            height={100}
-            margin={[0, 0]}
-            title="Update Profile"
-          />
-        </View> 
-	)
+  return (
+    <View style={styles.formArea}>
+      <View style={{flex:0.68}}>
+        <CustomInput
+          placeHolderText={'Hassanal Bolkiah'}
+          fieldName={'User Name'}
+        />
+        <CustomInput
+          placeHolderText={'hassanalbolkiah@gmail.com'}
+          fieldName={'Email'}
+        />
+        <CustomInput placeHolderText={'000-000-0000'} fieldName={'Phone'} />
+      </View>
+      <View  style={{flex:0.32}}>
+        <TouchableOpacity style={{alignSelf:'center' ,backgroundColor:colors.yellow,
+        justifyContent:'center',
+        alignItems:'center',
+        borderRadius:7, height:hp(5), width:wp(80)}}>
+          <ResponsiveText color={colors.black}>Save</ResponsiveText>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
 }
- const styles=StyleSheet.create({
-	 formArea: {
-     flex:0.70,
+const styles = StyleSheet.create({
+  formArea: {
+    flex: 0.7,
     // borderTopRightRadius: wp(8),
     // borderTopLeftRadius: wp(8),
     backgroundColor: '#202020',
-    padding: wp(10),
+    paddingTop: 10,
   },
- })
+});

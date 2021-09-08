@@ -5896,6 +5896,11 @@
   dependencies:
     "warn-once" "^0.1.0"
 
+"react-native-select-dropdown@^1.1.0":
+  "integrity" "sha512-76XFBc/axByFw8ilgaC6iA4bBYKdxPFZifiQfhrFnwJmwFXE+9XhrlvMMww5seXukrEMOp0JkLasgINSEr6kwQ=="
+  "resolved" "https://registry.npmjs.org/react-native-select-dropdown/-/react-native-select-dropdown-1.1.0.tgz"
+  "version" "1.1.0"
+
 "react-native-svg@^12.1.1":
   "integrity" "sha512-NIAJ8jCnXGCqGWXkkJ1GTzO4a3Md5at5sagYV8Vh4MXYnL4z5Rh428Wahjhh+LIjx40EE5xM5YtwyJBqOIba2Q=="
   "resolved" "https://registry.npmjs.org/react-native-svg/-/react-native-svg-12.1.1.tgz"
