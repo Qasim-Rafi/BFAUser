@@ -23,9 +23,16 @@ import {myListingTabs} from '../../../constants/mock';
 import {FiltersDummyData} from '../../../constants/mock';
 import RnButton from '../../../components/RnButton';
 import {routeName} from '../../../constants/routeName';
+import { Item } from 'react-native-paper/lib/typescript/components/List/List';
 
 export default function SelectCoisines({navigation}) {
-  const [check, setChecked] = React.useState(false);
+  const [itemList, setItemList] = useState([]);
+  let dataList = [];
+  // const addToList = (e) => {
+  //   setItemList([...itemList, e]);
+  //   console.log(itemList);
+
+  // }
 
   return (
     <View style={{flex: 1, backgroundColor: colors.black3}}>
@@ -50,13 +57,16 @@ export default function SelectCoisines({navigation}) {
         }}>
         {COISINES_FAKE_DATA.map((item, index) => {
           return (
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>{
+            itemList.includes(item.id)==false ? setItemList([...itemList, item.id]) :setItemList(itemList.filter(item => item.id !== itemList.indexOf(item.id)));
+            
+            console.log(itemList);}  }>
               <View
                 style={{
                   borderRadius: 18,
                   alignItems: 'center',
                   justifyContent: 'center',
-                  backgroundColor: check ? colors.yellow : colors.black2,
+                  backgroundColor: itemList.includes(item.id)===false ? colors.black2 :colors.yellow,
                   marginHorizontal: 10,
                   padding: 10,
                   marginTop: 10,
