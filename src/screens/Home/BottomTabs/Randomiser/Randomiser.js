@@ -36,7 +36,6 @@ const Randomiser = navigation => {
           alignItems: 'center',
         }}>
        <Header navigation={navigation} 
-       iconPath={globalPath.BACK_ARROW}
        bgroud={'arrow'}/>
       </View>
 

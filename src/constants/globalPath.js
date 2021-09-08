@@ -14,6 +14,8 @@ const F_HEART = require('../assets/icons/favourite-f.png');
 const LOCATION = require('../assets/icons/goto.png');
 const CONTACT = require('../assets/icons/contact.png');
 const LOCATION1 = require('../assets/icons/location1.png');
+const PLUS_ICON = require('../assets/icons/plus.png');
+const MINUS_ICON = require('../assets/icons/minus.png');
 
 const HOME_GREY =require('../assets/icons/home-gray.png');
 const MORE_GREY =require('../assets/icons/More-gray.png');
@@ -103,6 +105,8 @@ const PROMOS_LOGO = require('../assets/icons/promos.png');
 const OPERATIONAL_HOURS= require('../assets/icons/operational-hours.png')
 
 export const globalPath = {
+  MINUS_ICON,
+  PLUS_ICON,
   HOME_GREY,
   CHECKOUT_GREY,
   FEED_GREY,

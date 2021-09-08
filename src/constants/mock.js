@@ -1,5 +1,6 @@
 import {globalPath} from './globalPath';
 import { colors } from './colorsPallet';
+import AddToCart from '../screens/Home/DishDetails/AddToCart';
 
 export const advertisementBannerFakeDATA = [
   // globalPath.BALI_LOGO,globalPath.CHECKOUT_LOGO
@@ -731,6 +732,32 @@ export const BranchMenuSectionsData = [
     ],
   },
 ];
+export const TRANSACTION_HISTORY_FAKE_DATA=[
+  {
+    restaurant:'Yam Cha Restaurant',
+    wallet:'Visa Card',
+    price:'$30.00',
+    url: require('../assets/fake_Images/menu-appetizers-1.png'),
+  },
+  {
+    restaurant:'Yam Cha Restaurant',
+    wallet:'Google Card',
+    price:'$30.00',
+    url: require('../assets/fake_Images/menu-drinks-1.png'),
+  },
+  {
+    restaurant:'Yam Cha Restaurant',
+    wallet:'Bank Transaction',
+    price:'$30.00',
+    url: require('../assets/fake_Images/menu-drinks-2.png'),
+  },
+  {
+    restaurant:'Yam Cha Restaurant',
+    wallet:'Visa Card',
+    price:'$30.00',
+    url: require('../assets/fake_Images/menu-drinks-3.png'),
+  },
+]
 export const RESTURANT_BANNER =[
   require('../assets/fake_Images/ResturantBanner.png'),
   require('../assets/fake_Images/ResturantBanner1.png')
@@ -795,4 +822,64 @@ export const COISINES_FAKE_DATA=[
  {title:'Penyaran',id:11},
   {title:'Ambuyat',id:12},
 
+]
+export const ADD_TO_CART_FAKE_DATA=[
+  {
+    title:'Choose Soft Drink',
+    option:'Required',
+    data:[
+      {
+        name:"coke",
+        price:'$0.00'
+      },
+      {
+        name:"Sprite",
+        price:'$0.00'
+      },
+      {
+        name:"Mountain Dew",
+        price:'$0.00'
+      },
+    ]
+
+  },
+  {
+  title:'Extra Cheese',
+  option:'Optional',
+  data:[
+    {
+      name:"Cheese",
+      price:'+$5.00'
+    },
+  ]
+
+},
+{
+  title:'Add ons',
+  option:'Optional',
+  data:[
+    {
+      name:"Corn on the cob",
+      price:'+$5.00'
+    },
+    {
+      name:"Chicken Piece",
+      price:'$0.00'
+    },
+  ]
+
+},
+];
+export const AddToCartUpSize=[
+  {
+    id:1,
+    name:"French Fries"
+  },
+  {
+    id:2,
+    name:"Hot Wings"
+  },{
+    id:3,
+    name:"Nuggets"
+  },
 ]

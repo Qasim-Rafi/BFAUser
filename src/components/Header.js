@@ -12,10 +12,10 @@ import ResponsiveText from './RnText';
 import {routeName} from '../constants/routeName';
 import { colors } from '../constants/colorsPallet';
 
-const Header = ({showRightMenu = true, inputWidth = wp(72), ...props}) => {
+const Header = ({ navigation ,showRightMenu = true, inputWidth = wp(72), ...props}) => {
   return (
     <View style={styles.header}>
-      <TouchableOpacity style={{height:hp(6), width:wp(10), backgroundColor:colors.black3, 
+      <TouchableOpacity onPress={ props.iconPath? ()=>navigation.goBack() :null } style={{height:hp(6), width:wp(10), backgroundColor:colors.black3, 
       justifyContent:'center', alignItems:'center', borderRadius:10, marginEnd:5}}>
       <Icon
         margin={[0, 0, 0, 0]}
@@ -53,6 +53,7 @@ const Header = ({showRightMenu = true, inputWidth = wp(72), ...props}) => {
 
 const styles = {
   header: {
+    backgroundColor: colors.black2,
     flex: 0.1,
     flexDirection: 'row',
     alignItems: 'center',

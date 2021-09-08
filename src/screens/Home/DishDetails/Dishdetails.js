@@ -10,6 +10,7 @@ import PeopleSay from './PeopleSay'
 import Comments from './Comments'
 import RnButton from '../../../components/RnButton'
 import ResponsiveText from '../../../components/RnText'
+import { routeName } from '../../../constants/routeName'
 export default function DishDetails({navigation}) {
     return (
        
@@ -25,9 +26,9 @@ export default function DishDetails({navigation}) {
         <View style={{margin:20,paddingBottom:20}}>
         
         
-        <RnButton>
+        <RnButton onPress={()=>{navigation.navigate(routeName.ADD_TO_CART)}}>
             
-            <ResponsiveText padding={0} color={colors.black}>ORDER THIS RECIPE</ResponsiveText>
+            <ResponsiveText  padding={0} color={colors.black}>ORDER THIS RECIPE</ResponsiveText>
         </RnButton>
         </View>
         </ScrollView>
