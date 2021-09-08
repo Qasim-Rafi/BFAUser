@@ -16,7 +16,7 @@ import RnButton from '../../../../components/RnButton';
 import Header from '../../../../components/Header';
 import {hp, wp} from '../../../../helpers/Responsiveness';
 
-const Randomiser = navigation => {
+const Randomiser = ({navigation}) => {
   const [value, setValue] = useState('1');
   const [radioButton1, setRadioButton1] = useState(true);
   const [radioButton2, setRadioButton2] = useState(false);

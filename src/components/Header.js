@@ -16,7 +16,7 @@ const Header = ({showRightMenu = true, inputWidth = wp(72), ...props}) => {
   return (
     <View style={styles.header}>
       <TouchableOpacity style={{height:hp(6), width:wp(10), backgroundColor:colors.black1, 
-      justifyContent:'center', alignItems:'center', borderRadius:10, marginEnd:5}}>
+      justifyContent:'center', alignItems:'center', borderRadius:10, marginEnd:5}} >
       <Icon
         margin={[0, 0, 0, 0]}
         size={25}

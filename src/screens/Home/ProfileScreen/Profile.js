@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet , ScrollView} from 'react-native'
 import Input from '../../../components/Input'
 import { globalPath } from '../../../constants/globalPath'
 import { colors } from '../../../constants/colorsPallet'
@@ -8,7 +8,7 @@ import { hp } from '../../../helpers/Responsiveness'
 import RnButton from '../../../components/RnButton'
 
 export default function Profile() {
-	return (
+return (
 		<View style={styles.formArea}>
           <Input
             padding={[0, 0, 0, 25]}
@@ -50,7 +50,7 @@ export default function Profile() {
 }
  const styles=StyleSheet.create({
 	 formArea: {
-    flex: 0.70,
+     flex:0.70,
     // borderTopRightRadius: wp(8),
     // borderTopLeftRadius: wp(8),
     backgroundColor: '#202020',

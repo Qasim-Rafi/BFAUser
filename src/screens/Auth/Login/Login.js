@@ -8,7 +8,7 @@ import {
   useColorScheme,
   ViewPagerAndroidBase,
 } from 'react-native';
-import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
+import {ScrollView, TouchableOpacity} from 'react-native';
 
 import {hp, wp} from '../../../helpers/Responsiveness';
 import Icon from '../../../components/Icon';
@@ -23,11 +23,12 @@ import { colors } from '../../../constants/colorsPallet';
 
 export default function Login({navigation}) {
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={hp(-10)}
-      style={styles.container}>
-      <ImageBackground style={styles.container} source={globalPath.BG_IMAGE}>
+    // <KeyboardAvoidingView
+    //   behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    //   keyboardVerticalOffset={hp(-10)}
+    //   style={styles.container}>
+    <ScrollView contentContainerStyle={{flexGrow:1}}>
+      <ImageBackground style={styles.container} source={globalPath.BG_IMAGE} >
         <View style={styles.screeninfo}>
           <ResponsiveText  color={colors.yellow} fontFamily="Regular" size={8} >
             Sign In
@@ -73,12 +74,14 @@ export default function Login({navigation}) {
           </View>
         </View>
       </ImageBackground>
-    </KeyboardAvoidingView>
+      </ScrollView>
+    // </KeyboardAvoidingView>
   );
 }
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height:hp(100),
+    width:wp(100),
     // height: hp(120),
     // justifyContent: 'center',
     // alignItems: 'center',

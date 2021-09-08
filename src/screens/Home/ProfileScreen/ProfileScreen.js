@@ -30,7 +30,7 @@ export default function ProfileScreen({navigation}) {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={hp(-10)}
+      
       style={styles.container}>
       <View style={styles.container}>
         <View style={styles.screeninfo}>
@@ -89,10 +89,10 @@ export default function ProfileScreen({navigation}) {
         </View>
         
         {/* <Profile /> */}
-
+ {/* <ScrollView style={{flex:0.9,margin:20}}> */}
         {activeTab === 1 && <Profile />}
              {activeTab === 2 &&  <Optional />}
-
+{/* </ScrollView> */}
 
 
 
