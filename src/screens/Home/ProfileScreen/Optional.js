@@ -15,11 +15,14 @@ import RnButton from '../../../components/RnButton';
 import CustomInput from '../../../components/customInput';
 import ResponsiveText from '../../../components/RnText';
 import {RadioButton, RadioGroup} from 'react-native-flexi-radio-button';
-import SelectDropdown from 'react-native-select-dropdown';
 import Icon from '../../../components/Icon';
+import DropDown from '../../../components/DropDown';
+
 
 export default function Optional() {
-  const countries = ['Egypt', 'Canada', 'Australia', 'Ireland'];
+ const industry = ["Education", "Social Media", "Employer", "Business"];
+ const employmentSec = ['Private', 'Government', 'Semi-Government', ];
+
   return (
     <View style={styles.formArea}>
       <ScrollView style={{flexGrow: 1}}>
@@ -30,44 +33,21 @@ export default function Optional() {
         />
         <CustomInput placeHolderText={'Married'} fieldName={'Marital STatus'} />
         <CustomInput placeHolderText={'3'} fieldName={'No of Children'} />
-
-        <SelectDropdown
-        defaultValueByIndex={1}
-         rowTextStyle={styles.dropdown1RowTxtStyle}
-          buttonStyle={{
-            backgroundColor: colors.black1,
-            height: hp(6),
-            width: wp(85),
-            alignSelf:'center',
-            marginTop:20,
-            borderRadius:7,
-            
-          }}
-          buttonTextStyle={{color:colors.white, fontSize:14, textAlign:'left', marginStart:15}}
-           renderDropdownIcon={() => {
-              return (
-                <Icon source={globalPath.DOWN_ARROW}  size={18} />
-              );
-            }}
-          dropdownIconPosition={"right"}
-          data={countries}
-          onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index);
-          }}
-          buttonTextAfterSelection={(selectedItem, index) => {
-            return selectedItem;
-          }}
-          rowTextForSelection={(item, index) => {
-            return item;
-          }}
-        />
+        <View style={{marginTop:15}}>
+          <ResponsiveText size={3} color={colors.grey1} margin={[0,0,5,30]}>Empoyment Sector</ResponsiveText>
+          <DropDown data={employmentSec}/>
+          </View>
+        <View style={{marginTop:15}}>
+          <ResponsiveText size={3} color={colors.grey1} margin={[0,0,5,30]}>Industry</ResponsiveText>
+          <DropDown data={industry}/>
+          </View>
 
         {/* <CustomInput
           placeHolderText={'Private'}
           dropdownList={true}
           fieldName={'Employment sector'}
         /> */}
-        <CustomInput placeHolderText={'Education'} fieldName={'Industry'} />
+        {/* <CustomInput placeHolderText={'Education'} fieldName={'Industry'} /> */}
         <View
           style={{
             justifyContent: 'center',
@@ -125,5 +105,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#202020',
     paddingTop: 10,
   },
-    dropdown1RowTxtStyle: { color: "#444", textAlign: "left" },
+    
 });
