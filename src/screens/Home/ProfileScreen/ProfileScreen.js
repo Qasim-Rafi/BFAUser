@@ -19,63 +19,85 @@ import {Spacing} from '../../../constants/spacingScale';
 import Line from '../../../components/Line';
 import {routeName} from '../../../constants/routeName';
 import {colors} from '../../../constants/colorsPallet';
+import Profile from './Profile';
+import Optional from './Optional';
+import { profileTabs } from '../../../constants/mock';
 
 export default function ProfileScreen({navigation}) {
+
+ const [activeTab, setActiveTab] = React.useState(profileTabs[1].id);
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={hp(-10)}
+      
       style={styles.container}>
       <View style={styles.container}>
         <View style={styles.screeninfo}>
-            <View style={{flexDirection:'row',justifyContent:"space-between",flex:.4}}> 
+            <View style={{flexDirection:'row',justifyContent:"space-between",flex:.40}}> 
                 <TouchableOpacity style={{backgroundColor:colors.white,height:hp(5),padding:9,borderRadius:5}}onPress={()=>{navigation.goBack()}}><Icon source={globalPath.BACK_BLACK_ARROW}/></TouchableOpacity>
                 <ResponsiveText size={4}>Profile</ResponsiveText>
                 <TouchableOpacity style={{backgroundColor:colors.white,height:hp(5),padding:9,borderRadius:5}}><Icon source={globalPath.EDIT_PROFILE}/></TouchableOpacity>
             </View>
-            <View style={{justifyContent:'center',alignItems:'center',flex:.5}}>
+            <View style={{justifyContent:'center',alignItems:'center',flex:.45}}>
                 <Image style={{width:100,height:100,borderRadius:50,marginBottom:10}} source={globalPath.PROFILE_LOGO}/>
                 <ResponsiveText size={4}>Hassanal Bolkiah</ResponsiveText>
                 <ResponsiveText color={colors.lightBlack} size={3}>hassanl@gmail.com</ResponsiveText>
             </View>
         </View>
-        <View style={styles.formArea}>
-          <Input
-            padding={[0, 0, 0, 25]}
-            iconMargin={[0, 10, 0, 0]}
-            placeholder="Full Name"
-            leftIcon={globalPath.USER_LOGO}
-          />
-          <Input
-            margin={[20, 0, 0, 0]}
-            padding={[0, 0, 0, 25]}
-            iconMargin={[0, 10, 0, 0]}
-            placeholder="Email"
-            leftIcon={globalPath.EMAIL_LOGO}
-          />
-          <Input
-            margin={[20, 0, 0, 0]}
-            padding={[0, 0, 0, 25]}
-            iconMargin={[0, 10, 0, 0]}
-            placeholder="Phone"
-            leftIcon={globalPath.PHONE_LOGO}
-          />
-          <Input
-            margin={[20, 0, wp(10), 0]}
-            padding={[0, 0, 0, 25]}
-            iconMargin={[0, 10, 0, 0]}
-            placeholder="Password"
-            secureTextEntry
-            leftIcon={globalPath.PASSWORD_LOGO}
-          />
+        <View style={{flex:0.09, flexDirection:'row', marginTop:-10}}>
 
-          <RnButton
-            fontFamily="SemiBold"
-            height={100}
-            margin={[0, 0]}
-            title="Update Profile"
-          />
+             {profileTabs.map((items, index) => {
+              return (
+                <React.Fragment key={items.id}>
+                  <TouchableOpacity
+                    id={index}
+                    onPress={() => setActiveTab(items.id)}
+                    style={{
+                        width:wp(50),
+                         alignItems: 'center',
+                          justifyContent: 'center',
+                         marginTop: 10,
+                      backgroundColor:
+                        items.id === activeTab ? colors.yellow1 :  colors.black2,
+                    }}
+                    padding={[3, 15]}>
+                    <ResponsiveText
+                      size={3.5}
+                      // fontFamily={items.id === activeTab ? 'Boldedium' : undefined}
+                      color={
+                        items.id === activeTab ? colors.black : colors.white
+                      }>
+                      {items.name}
+                    </ResponsiveText>
+                  </TouchableOpacity>
+                </React.Fragment>
+              );
+            })}
+
+          
+          {/* <View style={{flex:1, backgroundColor:colors.yellow1, justifyContent:'center', alignItems:'center'}}>
+            <TouchableOpacity>
+            <ResponsiveText size={4}>Profile</ResponsiveText>
+          </TouchableOpacity>
+          </View>      */}
+        {/* <View style={{flex:1, backgroundColor:colors.black2, justifyContent:'center', alignItems:'center'}}>
+          <TouchableOpacity >
+            <ResponsiveText size={4}>Optional</ResponsiveText>
+          </TouchableOpacity>
+        </View> */}
         </View>
+        
+        {/* <Profile /> */}
+ {/* <ScrollView style={{flex:0.9,margin:20}}> */}
+ 
+        {activeTab === 1 && <Profile />}
+             {activeTab === 2 &&  <Optional />}
+            
+{/* </ScrollView> */}
+
+
+
       </View>
     </KeyboardAvoidingView>
   );
@@ -96,8 +118,8 @@ const styles = StyleSheet.create({
   },
   formArea: {
     flex: 0.65,
-    borderTopRightRadius: wp(8),
-    borderTopLeftRadius: wp(8),
+    // borderTopRightRadius: wp(8),
+    // borderTopLeftRadius: wp(8),
     backgroundColor: '#202020',
     padding: wp(10),
   },

@@ -392,6 +392,19 @@ export const myPromosListingTabs = [
     name: 'Jobs',
   },
 ];
+
+export const profileTabs = [
+  {
+    id: 1,
+    name: 'Profile',
+  },
+  {
+    id: 2,
+    name: 'Optional',
+  },
+  
+];
+
 export const RadioGroup = [
   {
     id: 1,
