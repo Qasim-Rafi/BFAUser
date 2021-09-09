@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState } from 'react';
 import {
   FlatList,
   View,
@@ -28,11 +28,8 @@ import { Item } from 'react-native-paper/lib/typescript/components/List/List';
 export default function SelectCoisines({navigation}) {
   const [itemList, setItemList] = useState([]);
   let dataList = [];
-  // const addToList = (e) => {
-  //   setItemList([...itemList, e]);
-  //   console.log(itemList);
 
-  // }
+   
 
   return (
     <View style={{flex: 1, backgroundColor: colors.black3}}>
@@ -58,7 +55,7 @@ export default function SelectCoisines({navigation}) {
         {COISINES_FAKE_DATA.map((item, index) => {
           return (
             <TouchableOpacity onPress={()=>{
-            itemList.includes(item.id)==false ? setItemList([...itemList, item.id]) :setItemList(itemList.filter(item => item.id !== itemList.indexOf(item.id)));
+            itemList.includes(item.id)==false ? setItemList([...itemList, item.id]) :itemList.splice( itemList.indexOf(item.id),1);
             
             console.log(itemList);}  }>
               <View

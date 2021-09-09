@@ -7,6 +7,7 @@ import { globalPath } from '../../../constants/globalPath';
 import { exploreCategoryByName } from '../../../constants/mock';
 import { hp, wp } from '../../../helpers/Responsiveness';
 import { colors } from '../../../constants/colorsPallet';
+import { useCallback } from 'react';
 export default function Categories({navigation}) {
 
 
@@ -19,9 +20,11 @@ export default function Categories({navigation}) {
     scrollRef?.current.scrollToIndex({ index, viewOffset: hp(22) })
 
   };
-  const onViewRef = ({ viewableItems, changed }) => {
-    console.log(viewableItems.current,'TEsting');
-  }
+   const onViewRef = useCallback(({ viewableItems, changed }) => {
+         setActiveAlphabet(changed[0].item.title);
+            console.log("Visible items are", viewableItems[0]);
+            console.log("Changed in this ", changed[0].item.title);
+        }, []);
   const renderItem = ({ item }) => {
     return (
       <View style={styles.item}>
@@ -67,9 +70,8 @@ export default function Categories({navigation}) {
           data={exploreCategoryByName}
           keyExtractor={(item, index) => item + index}
           renderItem={renderItem}
-           onViewableItemsChanged={onViewRef.current }
+           onViewableItemsChanged={onViewRef}
           viewabilityConfig={viewConfigRef.current}
-
         />
       </View>
     </View>)

@@ -15,7 +15,7 @@ import {
   MenuSectionButtons,
 } from '../../../constants/mock';
 import {hp, wp} from '../../../helpers/Responsiveness';
-
+import { useCallback } from 'react';
 const Menu = props => {
   const scrollRef = useRef(null);
   const [activeTab, setActiveTab] = React.useState(BranchMenuSectionsData[0].id);
@@ -26,6 +26,10 @@ const Menu = props => {
     console.log('Items>>>>', item, index);
     scrollRef?.current.scrollToIndex({index, viewOffset: hp(22)});
   };
+  const onViewableItemsChanged = useCallback(({viewableItems , changed})=>{
+    setActiveTab(changed[0].item.id);
+    console.log('Changess' , changed);
+  },[]);
 
   const renderItem = ({item}) => {
     return (
@@ -120,7 +124,7 @@ const Menu = props => {
           data={BranchMenuSectionsData}
           keyExtractor={(item, index) => item + index}
           renderItem={renderItem}
-          // onViewableItemsChanged={onViewableItemsChanged}
+           onViewableItemsChanged={onViewableItemsChanged}
           viewabilityConfig={viewConfigRef.current}
         />
       </View>
