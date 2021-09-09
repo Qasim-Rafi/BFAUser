@@ -22,7 +22,7 @@ import Apply_Jobs from '../screens/Home/BottomTabs/Promos/Apply_Jobs';
 import DrawerStack from './DrawerStack';
 import AddToCart from '../screens/Home/DishDetails/AddToCart';
 import TransactionHistory from '../screens/Home/BottomTabs/Checkout/TransactionHistory';
-
+import RandomiserResult from '../screens/Home/BottomTabs/Randomiser/RandomiserResult'
 const Stack = createNativeStackNavigator();
 
 function HomeStack() {
@@ -35,6 +35,7 @@ function HomeStack() {
       >
 
       <Stack.Screen name={routeName.SPLASH} component={Splash} />
+      <Stack.Screen name={routeName.RANDOMISER_RESULT} component={RandomiserResult}/>
       <Stack.Screen name={routeName.ADD_TO_CART} component={AddToCart}/>
       <Stack.Screen name={routeName.TRANSACTION_HISTORY} component ={TransactionHistory}/>
       <Stack.Screen name={routeName.APPLY_JOBS} component={Apply_Jobs} />

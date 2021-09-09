@@ -4,12 +4,13 @@ import Header from '../../../../components/Header';
 import RnButton from '../../../../components/RnButton';
 import ResponsiveText from '../../../../components/RnText';
 import {colors} from '../../../../constants/colorsPallet';
+import { globalPath } from '../../../../constants/globalPath';
 import {hp, wp} from '../../../../helpers/Responsiveness';
 
-export default function Apply_Jobs() {
+export default function Apply_Jobs({navigation}) {
   return (
     <View style={styles.main_container}>
-      <Header />
+      <Header navigation={navigation} iconPath={globalPath.BACK_ARROW} />
       <View style={{margin: 20, flex: 0.9}}>
         <ResponsiveText size={4} color={colors.yellow}>
           {' '}

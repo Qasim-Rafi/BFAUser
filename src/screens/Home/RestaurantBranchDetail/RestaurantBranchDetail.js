@@ -29,6 +29,7 @@ import Menu from '../Menu/Menu';
 import BranchesDetail from './Branches';
 import PromosBanner from '../BottomTabs/Promos/PromoBanner';
 import { colors } from '../../../constants/colorsPallet';
+import AwardsDetail from './AwardsDetail';
 export default function RestaurantBranchDetailScreen({navigation}) {
   const [activeTab, setActiveTab] = React.useState(MenuSectionButtons[0].id);
   // const [activeTab, setActiveTab] = React.useState(myListingTabs[3].id);
@@ -49,13 +50,13 @@ export default function RestaurantBranchDetailScreen({navigation}) {
                     styles.buttonView,
                     {
                       backgroundColor:
-                        items.id === activeTab ? colors.yellow : colors.white,
+                        items.id === activeTab ? colors.yellow : colors.grey,
                     },
                   ]}>
                   <View
                     style={{justifyContent: 'center', alignItems: 'center'}}>
-                    <Icon margin={[0, 0, 5, 0]} source={items.icon} />
-                    <Text>{items.title}</Text>
+                    <Icon margin={[0, 0, 5, 0]} size={18} source={items.icon} />
+                    <ResponsiveText size={3}>{items.title}</ResponsiveText>
                   </View>
                 </TouchableOpacity>
               </React.Fragment>
@@ -69,6 +70,8 @@ export default function RestaurantBranchDetailScreen({navigation}) {
         {activeTab === 2 && <PromosBanner/>}
         {activeTab === 3 && <Menu />}
         {activeTab === 4 && <BranchesDetail  navigation={navigation}/>}
+        {activeTab === 5 && <AwardsDetail  navigation={navigation}/>}
+
 
     </View>
       </View>
@@ -82,7 +85,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   buttonView: {
-    width: wp(21),
+    width: wp(17),
     height: hp(8),
     borderRadius: 4,
     justifyContent: 'center',

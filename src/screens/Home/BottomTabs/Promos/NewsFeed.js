@@ -11,10 +11,11 @@ import { myPromosListingTabs } from '../../../../constants/mock'
 import Icon from '../../../../components/Icon'
 import { globalPath } from '../../../../constants/globalPath'
 import { NewsFeeds } from '../../../../constants/mock'
+import { routeName } from '../../../../constants/routeName'
 
 
 
-const NewsFeed = (navigation) => {
+const NewsFeed = (props) => {
 
     return (
         <>
@@ -41,7 +42,7 @@ const NewsFeed = (navigation) => {
                         <ResponsiveText margin={[0,5,0,8]} color={colors.white}>224</ResponsiveText>
                     </View>
                     <View style={{marginRight:15}}>
-                    <RnButton  btnStyle={{ width: wp(28), }}><ResponsiveText>Order Now</ResponsiveText></RnButton>
+                    <RnButton onPress={()=>props.navigation.navigate(routeName.ADD_TO_CART)} btnStyle={{ width: wp(28), }}><ResponsiveText>Order Now</ResponsiveText></RnButton>
                     </View>
                 </View>
                 <ResponsiveText top={7} color={colors.white}>Dish of the day:</ResponsiveText>

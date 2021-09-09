@@ -10,21 +10,35 @@ import Input from './Input';
 import {globalPath} from '../constants/globalPath';
 import ResponsiveText from './RnText';
 import {routeName} from '../constants/routeName';
-import { colors } from '../constants/colorsPallet';
+import {colors} from '../constants/colorsPallet';
 
-const Header = ({ navigation ,showRightMenu = true, inputWidth = wp(72), ...props}) => {
+const Header = ({
+  navigation,
+  showRightMenu = true,
+  inputWidth = wp(72),
+  ...props
+}) => {
   return (
     <View style={styles.header}>
-      <TouchableOpacity style={{height:hp(6), width:wp(10), backgroundColor:colors.black1, 
-      justifyContent:'center', alignItems:'center', borderRadius:10, marginEnd:5}} >
-      <Icon
-        margin={[0, 0, 0, 0]}
-        size={25}
-        source={props.iconPath ? props.iconPath : globalPath.BALI_ICON}
-      />
+      <TouchableOpacity
+      onPress={()=>{props.iconPath ? navigation.goBack() : null}}
+        style={{
+          height: hp(6),
+          width: wp(10),
+          backgroundColor: colors.black1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderRadius: 10,
+          marginEnd: 5,
+        }}>
+        <Icon
+          margin={[0, 0, 0, 0]}
+          size={25}
+          source={props.iconPath ? props.iconPath : globalPath.BALI_ICON}
+        />
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => props.navigation.navigate(routeName.FeaturedSearch)}>
+        onPress={() => navigation.navigate(routeName.FeaturedSearch)}>
         <Input
           editable={false}
           fontSize={11}
@@ -38,7 +52,7 @@ const Header = ({ navigation ,showRightMenu = true, inputWidth = wp(72), ...prop
       </TouchableOpacity>
       {showRightMenu && (
         <TouchableOpacity
-          onPress={() => props.navigation.navigate(routeName.PROFILE_SCREEN)}>
+          onPress={() => navigation.navigate(routeName.PROFILE_SCREEN)}>
           <Icon
             margin={[0, 0, 0, 5]}
             borderRadius={10}
