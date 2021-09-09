@@ -22,6 +22,7 @@ const MORE_GREY =require('../assets/icons/More-gray.png');
 const RANDOM_GREY =require('../assets/icons/Randomiser-gray.png');
 const FEED_GREY =require('../assets/icons/feed-gray.png');
 const CHECKOUT_GREY =require('../assets/icons/Checkout-gray.png');
+const MORE_SHOP_ICON =require('../assets/icons/braches.png');
 
 
 
@@ -102,9 +103,23 @@ const MORE_LOGO = require('../assets/icons/more.png');
 const HOME_LOGO = require('../assets/icons/home.png');
 const RANDOMISER_LOGO = require('../assets/icons/randomiser.png');
 const PROMOS_LOGO = require('../assets/icons/promos.png');
-const OPERATIONAL_HOURS= require('../assets/icons/operational-hours.png')
+const OPERATIONAL_HOURS= require('../assets/icons/operational-hours.png');
+
+//More Icons
+const MORE_PROFILE = require('../assets/icons/moreIcons/profile.png');
+const MORE_REVIEWS = require('../assets/icons/moreIcons/reviews.png');
+const MORE_ORDER = require('../assets/icons/moreIcons/order.png');
+const MORE_PAYMENT = require('../assets/icons/moreIcons/payment.png');
+const MORE_LANGUAGE = require('../assets/icons/moreIcons/language.png');
+const LOGOUT = require('../assets/icons/moreIcons/logout.png')
 
 export const globalPath = {
+  LOGOUT,
+  MORE_PROFILE,
+  MORE_REVIEWS,
+  MORE_ORDER,
+  MORE_PAYMENT,
+  MORE_LANGUAGE,
   MINUS_ICON,
   PLUS_ICON,
   HOME_GREY,
@@ -150,7 +165,7 @@ export const globalPath = {
   WIFI_ICON,
   CHECK_TICK,
   RADIO_DOT,
-
+  MORE_SHOP_ICON,
 
 
 

@@ -14,10 +14,11 @@ import ResponsiveText from '../../../components/RnText';
 import {colors} from '../../../constants/colorsPallet';
 import Header from '../../../components/Header';
 import RnButton from '../../../components/RnButton';
-export default function Order_history() {
+import { globalPath } from '../../../constants/globalPath';
+export default function Order_history({navigation}) {
   return (
     <View style={{flex: 1, backgroundColor: '#202020'}}>
-      <Header />
+      <Header navigation={navigation} iconPath={globalPath.BACK_ARROW}/>
       <View style={{flex: 0.7, margin: 20}}>
         <ResponsiveText color={colors.white}>My Orders</ResponsiveText>
         {ORDER_HISTORY.map((item, index) => {

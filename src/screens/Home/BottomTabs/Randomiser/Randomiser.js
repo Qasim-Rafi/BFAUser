@@ -15,6 +15,7 @@ import CustomRadioButton from '../../../../components/RadioButton';
 import RnButton from '../../../../components/RnButton';
 import Header from '../../../../components/Header';
 import {hp, wp} from '../../../../helpers/Responsiveness';
+import { routeName } from '../../../../constants/routeName';
 
 const Randomiser = ({navigation}) => {
   const [value, setValue] = useState('1');
@@ -124,6 +125,7 @@ const Randomiser = ({navigation}) => {
           alignItems: 'center',
         }}>
         <TouchableOpacity
+        onPress={()=>navigation.navigate(routeName.RANDOMISER_RESULT)}
           style={{
             backgroundColor: colors.yellow,
             width: wp(85),

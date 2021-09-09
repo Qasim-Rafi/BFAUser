@@ -530,10 +530,16 @@ export const BranchDetailButtons = [
     title: 'Menu',
     icon: require('../assets/icons/menu_icon.png'),
   },
+  
   {
     id: 4,
     title: 'Branches',
     icon: require('../assets/icons/branches_icon.png'),
+  },
+  {
+    id: 5,
+    title: 'Awards',
+    icon: require('../assets/icons/Awards.png'),
   },
 ];
 export const BranchMenuSectionsData = [
@@ -895,4 +901,32 @@ export const AddToCartUpSize=[
     id:3,
     name:"Nuggets"
   },
-]
+];
+export const AwardsMenuSectionsData = [
+  
+      {
+        title: 'Tomato Soup ',
+        price: '$ 5.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        url: require('../assets/fake_Images/menu-appetizers-1.png'),
+      },
+      {
+        title: 'Chicken Soup ',
+        price: '$ 10.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        url: require('../assets/fake_Images/menu-appetizers-2.png'),
+      },
+      {
+        title: 'Tomato Soup ',
+        price: '$ 8.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        url: require('../assets/fake_Images/menu-appetizers-3.png'),
+      },
+      {
+        title: 'Fish Crackers ',
+        price: '$ 8.00',
+        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        url: require('../assets/fake_Images/menu-appetizers-4.png'),
+      },
+    
+  ]

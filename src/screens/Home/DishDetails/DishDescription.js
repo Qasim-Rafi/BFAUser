@@ -69,7 +69,7 @@ export default function DishDescription({}) {
           </ResponsiveText>
         </View>
         <View style={{alignItems: 'center'}}>
-          <Icon source={globalPath.HOME_LOGO} />
+          <Icon source={globalPath.MORE_SHOP_ICON} />
           <ResponsiveText top={5} color={colors.yellow}>
             More
           </ResponsiveText>
