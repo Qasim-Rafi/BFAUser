@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
 import {colors} from '../../../constants/colorsPallet';
 import ImageHeader from '../BottomTabs/Home/ImageHeader';
 import {RadioGroup, RadioButton} from 'react-native-flexi-radio-button';
@@ -7,10 +7,10 @@ import ResponsiveText from '../../../components/RnText';
 import {hp, wp} from '../../../helpers/Responsiveness';
 import AddToCartDetails from './AddToCartDetails';
 import RnButton from '../../../components/RnButton';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import CheckBox from '../../../components/Static/CheckBox';
 import Icon from '../../../components/Icon';
 import {globalPath} from '../../../constants/globalPath';
+import { routeName } from '../../../constants/routeName';
 
 export default function AddToCart({navigation}) {
   return (
@@ -95,7 +95,7 @@ export default function AddToCart({navigation}) {
               alignItems: 'center',
               justifyContent: 'center',
               borderRadius: 6,
-            }}>
+            }} onPress={()=>navigation.navigate(routeName.TRANSACTION_CONFIRMATION)}>
             <ResponsiveText > Add to cart</ResponsiveText>
           </TouchableOpacity>
         </View>

@@ -22,6 +22,7 @@ import Apply_Jobs from '../screens/Home/BottomTabs/Promos/Apply_Jobs';
 import DrawerStack from './DrawerStack';
 import AddToCart from '../screens/Home/DishDetails/AddToCart';
 import TransactionHistory from '../screens/Home/BottomTabs/Checkout/TransactionHistory';
+import TransactionConfirmation from '../screens/Home/DishDetails/TransactionConfirmation';
 
 const Stack = createNativeStackNavigator();
 
@@ -34,6 +35,7 @@ function HomeStack() {
       // initialRouteName="Home"
       >
 
+     
       <Stack.Screen name={routeName.SPLASH} component={Splash} />
       <Stack.Screen name={routeName.ADD_TO_CART} component={AddToCart}/>
       <Stack.Screen name={routeName.TRANSACTION_HISTORY} component ={TransactionHistory}/>
@@ -48,6 +50,7 @@ function HomeStack() {
       <Stack.Screen name={routeName.DISH_DETAIL} component={DishDetails} />
       <Stack.Screen name={routeName.FeaturedSearch} component={FeaturedSearch} />
       <Stack.Screen name={routeName.SearchAll} component={SearchAll} />
+       <Stack.Screen name={routeName.TRANSACTION_CONFIRMATION} component={TransactionConfirmation} />
 
       {/* <Stack.Screen name={routeName.BRANCH_DETAIL} component={ResturantDetail} /> */}
       <Stack.Screen name={ routeName.Categories} component={Categories} />
