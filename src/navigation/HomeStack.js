@@ -26,6 +26,8 @@ import TransactionConfirmation from '../screens/Home/DishDetails/TransactionConf
 import RandomiserResult from '../screens/Home/BottomTabs/Randomiser/RandomiserResult'
 import NumberVerification from '../screens/Auth/SignUp/VerificationNumber';
 import VerificationCode from '../screens/Auth/SignUp/VerificationCode';
+import OrderDetails from '../screens/Home/BottomTabs/More/OrderDetails';
+
 const Stack = createNativeStackNavigator();
 
 function HomeStack() {
@@ -63,6 +65,8 @@ function HomeStack() {
       <Stack.Screen name={routeName.LOGIN} component={Login} />
       <Stack.Screen name={routeName.SIGN_UP} component={SignUp} />
       <Stack.Screen name={routeName.LANDING_SCREEN} component={BottomTabs} />
+      <Stack.Screen name={routeName.ORDER_DETAILS} component={OrderDetails} />
+      
         
     </Stack.Navigator>
   );

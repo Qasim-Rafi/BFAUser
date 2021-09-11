@@ -15,6 +15,7 @@ import {colors} from '../../../constants/colorsPallet';
 import Header from '../../../components/Header';
 import RnButton from '../../../components/RnButton';
 import { globalPath } from '../../../constants/globalPath';
+import { routeName } from '../../../constants/routeName';
 export default function Order_history({navigation}) {
   return (
     <View style={{flex: 1, backgroundColor: '#202020'}}>
@@ -23,6 +24,7 @@ export default function Order_history({navigation}) {
         <ResponsiveText color={colors.white}>My Orders</ResponsiveText>
         {ORDER_HISTORY.map((item, index) => {
           return (
+            <TouchableOpacity onPress={()=>navigation.navigate(routeName.ORDER_DETAILS)}>
             <View
               style={{
                 backgroundColor: '#303030',
@@ -85,6 +87,7 @@ export default function Order_history({navigation}) {
                 </View>
               </View>
             </View>
+          </TouchableOpacity>
           );
         })}
       </View>

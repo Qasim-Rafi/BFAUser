@@ -2,13 +2,13 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Map, {PROVIDER_GOOGLE, Marker, Polyline} from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 
-const StaticMap = props => {
+const StaticMap = (props) => {
   return (
     <View
       style={{borderRadius: 10, overflow: 'hidden'}}>
       <Map
         provider={PROVIDER_GOOGLE} // remove if not using Google Maps
-        style={styles.map}
+        style={[styles.map,{height:props?.height}]}
         scrollEnabled={false}
         //   zoomEnabled={false}
         rotateEnabled={false}
@@ -29,7 +29,7 @@ export default StaticMap;
 const styles = StyleSheet.create({
   map: {
     width: '100%',
-    height: 200,
+    // height: props.height? props.height: 200,
     borderRadius: 20,
     overflow: 'hidden',
   },
