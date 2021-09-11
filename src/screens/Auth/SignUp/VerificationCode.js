@@ -2,28 +2,37 @@ import React from 'react';
 import {
   StyleSheet,
   View,
-  KeyboardAvoidingView,
   ImageBackground,
   Platform,
-  useColorScheme,
-  ViewPagerAndroidBase,
+  Text
 } from 'react-native';
 import {ScrollView, TouchableOpacity} from 'react-native';
-
+import {
+    CodeField,
+    Cursor,
+    useBlurOnFulfill,
+    useClearByFocusCell,
+  } from 'react-native-confirmation-code-field';
 import {hp, wp} from '../../../helpers/Responsiveness';
-import Icon from '../../../components/Icon';
-import Input from '../../../components/Input';
 import RnButton from '../../../components/RnButton';
 import ResponsiveText from '../../../components/RnText';
 import {globalPath} from '../../../constants/globalPath';
 import {Spacing} from '../../../constants/spacingScale';
-import Line from '../../../components/Line';
 import { routeName } from '../../../constants/routeName';
 import { colors } from '../../../constants/colorsPallet';
+import { TextInput } from 'react-native-gesture-handler';
 
-export default function Login({navigation}) {
+const CELL_COUNT = 6;
+
+export default function VerificationCode({navigation}) {
   const [userName ,setUserName]=React.useState('');
   const [password ,setPassword]=React.useState('');
+  const [value, setValue] = React.useState('');
+  const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
+  const [props, getCellOnLayoutHandler] = useClearByFocusCell({
+    value,
+    setValue,
+  });
 
   return (
     // <KeyboardAvoidingView
@@ -34,44 +43,41 @@ export default function Login({navigation}) {
       <ImageBackground style={styles.container} source={globalPath.BG_IMAGE} >
         <View style={styles.screeninfo}>
           <ResponsiveText  color={colors.yellow} fontFamily="Regular" size={8} >
-            Sign In
+            Verification
           </ResponsiveText>
           <ResponsiveText color={colors.white}>
-            Please Login to Continue
+            Mobile Verification
           </ResponsiveText>
         </View>
         <View style={styles.formArea}>
-          <Input
-            padding={[0, 0, 0, 25]}
-            iconMargin={[0, 10, 0, 0]}
-            placeholder="Email"
-            leftIcon={globalPath.EMAIL_LOGO}
-          />
-          <Input
-            margin={[20, 0, wp(10), 0]}
-            padding={[0, 0, 0, 25]}
-            iconMargin={[0, 10, 0, 0]}
-            placeholder="Password"
-            secureTextEntry
-            leftIcon={globalPath.PASSWORD_LOGO}
-          />
-          <View style={styles.forgotPasswordContainer}>
-            <Line color={colors.grey5} width={wp(20)} />
-            <ResponsiveText margin={[0, 10]} color={colors.white}>
-              Forgot Password?
-            </ResponsiveText>
-            <Line color={colors.grey5} width={wp(20)} />
+            <View style={{justifyContent:'center',alignItems:'center',marginBottom:20}}>
+            <ResponsiveText size={4} color={colors.yellow}> Verify your mobile number</ResponsiveText>
+            <ResponsiveText textAlign={'center'} color={colors.white}> A text message with 6 digit code send to Your Mobile number</ResponsiveText>
+            </View>
+          <View >
+          <CodeField
+        ref={ref}
+        {...props}
+        value={value}
+        onChangeText={setValue}
+        cellCount={CELL_COUNT}
+        rootStyle={styles.codeFiledRoot}
+        keyboardType="number-pad"
+        textContentType="oneTimeCode"
+        renderCell={({index, symbol, isFocused}) => (
+          <Text
+            key={index}
+            style={[styles.cell, isFocused && styles.focusCell]}
+            onLayout={getCellOnLayoutHandler(index)}>
+            {symbol || (isFocused ? <Cursor /> : null)}
+          </Text>
+        )}
+      />
+
           </View>
-          <RnButton onPress={()=>navigation.navigate(routeName.LANDING_SCREEN)} fontFamily='SemiBold' height={100} margin={[0, 0]} title="SIGN IN" />
-          <View style={styles.footer}>
-           
-            {/* <Icon size={wp(8)} margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
-            <ResponsiveText margin={[0, 10]} color={colors.white}>
-              New user{' '}
-              <ResponsiveText  fontFamily='Bold' color={colors.yellow}  onPress={()=>navigation.navigate(routeName.SIGN_UP)}>Sign up</ResponsiveText>
-            </ResponsiveText>
-            {/* <View style={styles.socialIcon}></View> */}
-          </View>
+        
+          <RnButton onPress={()=>navigation.navigate(routeName.SELECT_COISINES)} fontFamily='SemiBold'  margin={[20, 0]} title="Continue" />
+          
         </View>
       </ImageBackground>
       </ScrollView>
@@ -115,5 +121,27 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  root: {padding: 20, minHeight: 300},
+  title: {textAlign: 'center', fontSize: 40},
+  codeFiledRoot: {marginTop: 20},
+  cell: {
+    width: 50,
+    height: 50,
+    lineHeight: 38,
+    fontSize: 26,
+    borderWidth: 2,
+    borderColor: '#00000030',
+    textAlign: 'center',
+    justifyContent:'center',
+    color:colors.yellow,
+    backgroundColor:colors.black2
+
+  },
+  focusCell: {
+    borderColor:colors.grey1,
+    color:colors.yellow,
+    textAlign: 'center',
+    justifyContent:'center',
   },
 });

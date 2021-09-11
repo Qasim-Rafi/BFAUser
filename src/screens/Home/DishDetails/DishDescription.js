@@ -59,7 +59,7 @@ export default function DishDescription({}) {
         <View style={{alignItems: 'center'}}>
           <Icon source={globalPath.LOCATION} />
           <ResponsiveText top={5} color={colors.yellow}>
-            Go To{' '}
+            Go To
           </ResponsiveText>
         </View>
         <View style={{alignItems: 'center'}}>
@@ -69,7 +69,7 @@ export default function DishDescription({}) {
           </ResponsiveText>
         </View>
         <View style={{alignItems: 'center'}}>
-          <Icon source={globalPath.MORE_SHOP_ICON} />
+          <Icon source={globalPath.MORE_LOGO} />
           <ResponsiveText top={5} color={colors.yellow}>
             More
           </ResponsiveText>

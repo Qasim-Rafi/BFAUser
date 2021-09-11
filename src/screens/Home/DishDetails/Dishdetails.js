@@ -28,7 +28,7 @@ export default function DishDetails({navigation}) {
         
         <RnButton onPress={()=>{navigation.navigate(routeName.ADD_TO_CART)}}>
             
-            <ResponsiveText  padding={0} color={colors.black}>ORDER THIS RECIPE</ResponsiveText>
+            <ResponsiveText  padding={0} color={colors.black}>Order This Dish</ResponsiveText>
         </RnButton>
         </View>
         </ScrollView>

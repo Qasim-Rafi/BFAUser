@@ -42,6 +42,7 @@ const More = ({navigation}) => {
             </ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity
+          onPress={()=>navigation.navigate(routeName.MYWHITLIST)}
             style={{backgroundColor: colors.black2, flexDirection: 'row',padding:10,marginTop:10}}>
             <Icon size={20} source={globalPath.HEART} />
             <ResponsiveText margin={[0,0,0,10]} size={4} color={colors.white}>

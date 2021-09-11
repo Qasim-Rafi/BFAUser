@@ -6,6 +6,7 @@ import SignUp from '../screens/Auth/SignUp/SignUp';
 import Splash from '../screens/Auth/splash/Splash';
 import Categories from '../screens/Home/Categories/Categories';
 // stack Screens
+import MyWhitlist from '../screens/Home/BottomTabs/More/MyWhitlist';
 import DishDetails from '../screens/Home/DishDetails/Dishdetails';
 import FeaturedSearch from '../screens/Home/FeaturedSearch/FeaturedSearch';
 import MapView from '../screens/Home/MapView/MapView';
@@ -19,12 +20,12 @@ import SelectCoisines from '../screens/Auth/SelectCoisines/SelectCoisines';
 //  import LandingScreen from '../screens/Home/LandingScreen/LandingScreen';
 import BottomTabs from './BottomTabs';
 import Apply_Jobs from '../screens/Home/BottomTabs/Promos/Apply_Jobs';
-import DrawerStack from './DrawerStack';
 import AddToCart from '../screens/Home/DishDetails/AddToCart';
 import TransactionHistory from '../screens/Home/BottomTabs/Checkout/TransactionHistory';
 import TransactionConfirmation from '../screens/Home/DishDetails/TransactionConfirmation';
-
 import RandomiserResult from '../screens/Home/BottomTabs/Randomiser/RandomiserResult'
+import NumberVerification from '../screens/Auth/SignUp/VerificationNumber';
+import VerificationCode from '../screens/Auth/SignUp/VerificationCode';
 const Stack = createNativeStackNavigator();
 
 function HomeStack() {
@@ -53,8 +54,10 @@ function HomeStack() {
       <Stack.Screen name={routeName.FeaturedSearch} component={FeaturedSearch} />
       <Stack.Screen name={routeName.SearchAll} component={SearchAll} />
        <Stack.Screen name={routeName.TRANSACTION_CONFIRMATION} component={TransactionConfirmation} />
+       <Stack.Screen name={routeName.NUMBER_VERIFICATION} component={NumberVerification} />
+       <Stack.Screen name={routeName.VERIFICATION_CODE} component={VerificationCode} />
 
-      {/* <Stack.Screen name={routeName.BRANCH_DETAIL} component={ResturantDetail} /> */}
+      <Stack.Screen name={routeName.MYWHITLIST} component={MyWhitlist} />
       <Stack.Screen name={ routeName.Categories} component={Categories} />
       <Stack.Screen name={routeName.LOGIN} component={Login} />
       <Stack.Screen name={routeName.SIGN_UP} component={SignUp} />

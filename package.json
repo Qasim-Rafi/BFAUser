@@ -17,6 +17,7 @@
     "@react-navigation/native-stack": "^6.1.0",
     "react": "17.0.2",
     "react-native": "0.65.1",
+    "react-native-confirmation-code-field": "^7.1.0",
     "react-native-flexi-radio-button": "^0.2.2",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-maps": "^0.28.0",

@@ -20,8 +20,9 @@ import {Spacing} from '../../../constants/spacingScale';
 import Line from '../../../components/Line';
 import { routeName } from '../../../constants/routeName';
 import { colors } from '../../../constants/colorsPallet';
+import { TextInput } from 'react-native-gesture-handler';
 
-export default function Login({navigation}) {
+export default function NumberVerification({navigation}) {
   const [userName ,setUserName]=React.useState('');
   const [password ,setPassword]=React.useState('');
 
@@ -34,44 +35,23 @@ export default function Login({navigation}) {
       <ImageBackground style={styles.container} source={globalPath.BG_IMAGE} >
         <View style={styles.screeninfo}>
           <ResponsiveText  color={colors.yellow} fontFamily="Regular" size={8} >
-            Sign In
+            Verification
           </ResponsiveText>
           <ResponsiveText color={colors.white}>
-            Please Login to Continue
+            Mobile Verification
           </ResponsiveText>
         </View>
         <View style={styles.formArea}>
+          <TextInput />
           <Input
             padding={[0, 0, 0, 25]}
             iconMargin={[0, 10, 0, 0]}
-            placeholder="Email"
-            leftIcon={globalPath.EMAIL_LOGO}
+            keyboardType='numeric'
+
           />
-          <Input
-            margin={[20, 0, wp(10), 0]}
-            padding={[0, 0, 0, 25]}
-            iconMargin={[0, 10, 0, 0]}
-            placeholder="Password"
-            secureTextEntry
-            leftIcon={globalPath.PASSWORD_LOGO}
-          />
-          <View style={styles.forgotPasswordContainer}>
-            <Line color={colors.grey5} width={wp(20)} />
-            <ResponsiveText margin={[0, 10]} color={colors.white}>
-              Forgot Password?
-            </ResponsiveText>
-            <Line color={colors.grey5} width={wp(20)} />
-          </View>
-          <RnButton onPress={()=>navigation.navigate(routeName.LANDING_SCREEN)} fontFamily='SemiBold' height={100} margin={[0, 0]} title="SIGN IN" />
-          <View style={styles.footer}>
-           
-            {/* <Icon size={wp(8)} margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
-            <ResponsiveText margin={[0, 10]} color={colors.white}>
-              New user{' '}
-              <ResponsiveText  fontFamily='Bold' color={colors.yellow}  onPress={()=>navigation.navigate(routeName.SIGN_UP)}>Sign up</ResponsiveText>
-            </ResponsiveText>
-            {/* <View style={styles.socialIcon}></View> */}
-          </View>
+        
+          <RnButton onPress={()=>navigation.navigate(routeName.VERIFICATION_CODE)} fontFamily='SemiBold'  margin={[20, 0]} title="Continue" />
+          
         </View>
       </ImageBackground>
       </ScrollView>
