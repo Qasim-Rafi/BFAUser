@@ -38,6 +38,7 @@ function HomeStack() {
       >
 
      
+      
       <Stack.Screen name={routeName.SPLASH} component={Splash} />
       <Stack.Screen name={routeName.RANDOMISER_RESULT} component={RandomiserResult}/>
       <Stack.Screen name={routeName.ADD_TO_CART} component={AddToCart}/>
@@ -62,7 +63,7 @@ function HomeStack() {
       <Stack.Screen name={routeName.LOGIN} component={Login} />
       <Stack.Screen name={routeName.SIGN_UP} component={SignUp} />
       <Stack.Screen name={routeName.LANDING_SCREEN} component={BottomTabs} />
-
+        
     </Stack.Navigator>
   );
 }

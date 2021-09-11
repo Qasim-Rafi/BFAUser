@@ -1,20 +1,37 @@
 //Node Imports
 import { auto } from 'async'
 import { size } from 'lodash'
-import React from 'react'
+import React,{useState} from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
+import Modal from "react-native-modal";
 
 //Local Imports
 import Header from '../../../components/Header'
 import ResponsiveText from '../../../components/RnText'
 import { colors } from '../../../constants/colorsPallet'
 import { globalPath } from '../../../constants/globalPath'
+import { routeName } from '../../../constants/routeName'
 import { hp, wp } from '../../../helpers/Responsiveness'
 
 
 export default function TransactionConfirmation({navigation}) {
+const [isModalVisible, setModalVisible] = useState(false);
+
+const toggleModal = () => {	
+	 setModalVisible(!isModalVisible);
+  };
+
 	return (
 		<View style={{ flex: 1, backgroundColor:colors.black3}}>
+
+			
+
+
+
+
+
+
+
       <View style={{flex:0.09, backgroundColor:colors.black2, alignItems:'center', justifyContent:'center'}}>
 		   <Header iconPath={globalPath.BACK_ARROW} navigation={navigation}/>
 		   </View>
@@ -77,7 +94,8 @@ export default function TransactionConfirmation({navigation}) {
 		  </View>
 	  </View>
       <View style={{flex:0.2,alignItems:'center'}}>
-		  <TouchableOpacity style={{marginTop:5,justifyContent:'center',alignItems:'center',borderRadius:7, height:hp(5), width:wp(95), backgroundColor:colors.yellow}}>
+		  <TouchableOpacity style={{marginTop:5,justifyContent:'center',alignItems:'center',borderRadius:7, height:hp(5), width:wp(95), backgroundColor:colors.yellow}}
+		  onPress={toggleModal}>
 			<ResponsiveText>Confirm Payment</ResponsiveText>
 		  </TouchableOpacity>
 		  <TouchableOpacity style={{marginTop:15,justifyContent:'center',alignItems:'center',borderRadius:7, height:hp(5), width:wp(95),borderColor:colors.yellow,borderWidth:1 ,backgroundColor:colors.black3}}>
@@ -85,6 +103,57 @@ export default function TransactionConfirmation({navigation}) {
 		  </TouchableOpacity>
 	  </View>
      
+
+
+
+
+<Modal isVisible={isModalVisible} statusBarTranslucent={true} backdropOpacity={0.90} style={{justifyContent:'flex-end'}} onModalHide={()=>navigation.navigate(routeName.LANDING_SCREEN)}>
+         {/* ------------ ModalView -------------- */}
+      <View style={{flex:0.30, backgroundColor:colors.black2, borderRadius:7, marginBottom:20}}>
+				<View style={{flex:0.2, backgroundColor:colors.black1, justifyContent:'center', alignItems:'center', borderTopRightRadius:7, borderTopLeftRadius:7}}>
+					<ResponsiveText color={colors.white} size={3.5}>Payment Successful</ResponsiveText>
+				</View>
+				<View style={{flex:0.18, backgroundColor:colors.black2, justifyContent:'center', alignItems:'center',  marginHorizontal:15}}>
+					<ResponsiveText color={colors.grey1} size={2.6}>You have successfully paid:</ResponsiveText>
+				</View>
+				<View style={{flex:0.13, backgroundColor:colors.black2, flexDirection:'row',alignItems:'center', borderBottomWidth:2, borderBottomColor:colors.black1,  marginHorizontal:15}}>
+					<View style={{flex:0.45, alignItems:'flex-end'}}>
+						<ResponsiveText color={colors.yellow} size={3} margin={[0,10,0,0]}>$11.00</ResponsiveText>
+					</View>
+					<View style={{flex:0.10}}>
+						<ResponsiveText color={colors.white} size={3}>To</ResponsiveText>
+					</View>
+					<View style={{flex:0.45}}>
+						<ResponsiveText color={colors.yellow} size={3}>I-Lotus Restaurant</ResponsiveText>
+					</View>
+				</View>
+				<View style={{flex:0.2, backgroundColor:colors.black2, flexDirection:'row', marginHorizontal:15}}>
+					<View style={{flex:0.55, marginTop:5}}>
+						<ResponsiveText size={3} color={colors.white} margin={[0,0,0,15]}>Your Current Points:</ResponsiveText>
+					</View>
+					<View style={{flex:0.45,marginTop:5}}>
+						<ResponsiveText size={3} color={colors.yellow}>100 pts</ResponsiveText>
+					</View>
+					
+					
+				</View>
+				<View style={{flex:0.29, backgroundColor:colors.black2, alignItems:'center', borderBottomLeftRadius:7, borderBottomRightRadius:7}}>
+					<TouchableOpacity style={{justifyContent:'center', alignItems:'center', borderRadius:5, borderWidth:1, borderColor:colors.yellow, width:wp(83), height:hp(5),}}
+					onPress={toggleModal}>
+						<ResponsiveText size={3} color={colors.yellow}>ok</ResponsiveText>
+					</TouchableOpacity>
+				</View>
+			</View>
+      {/* ------------ ModalView End -------------- */}  
+      </Modal>
+
+
+
+
+
+
+
+	 
     </View>
 	)
 }
