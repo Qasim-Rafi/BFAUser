@@ -23,7 +23,7 @@ export default function OrderDetails({navigation}) {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <Header navigation={navigation} bgroud={'arrow'} />
+        <Header navigation={navigation} iconPath={globalPath.BACK_ARROW} />
       </View>
       <View
         style={{

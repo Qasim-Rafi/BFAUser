@@ -11,6 +11,7 @@ import { myPromosListingTabs } from '../../../../constants/mock'
 import AllPromos from './All'
 import NewsFeed from './NewsFeed'
 import PromosJob from './PromosJobs'
+import { globalPath } from '../../../../constants/globalPath'
 
  
 const Promos = ({navigation}) => {
@@ -19,12 +20,14 @@ const Promos = ({navigation}) => {
     return (
 
         <View style={{backgroundColor:colors.black3,flex:1}}>
-            <Header navigation={navigation}/>
+          <View style={{flex:0.12, justifyContent:'center', alignItems:'center',backgroundColor:colors.black2}}>
+            <Header navigation={navigation} iconPath={globalPath.BACK_ARROW} />
+            </View>
             <View style={styles.buttonViewStyle}>
 			
             {myPromosListingTabs.map((items, index) => {
               return (
-                <React.Fragment key={items.id}>
+                <React.Fragment key={items.id} >
                   <RnButton
                     id={index}
                     onPress={() => setActiveTab(items.id)}
@@ -33,6 +36,7 @@ const Promos = ({navigation}) => {
                          alignItems: 'center',
                           justifyContent: 'center',
                          marginTop: 10,
+                        
                       backgroundColor:
                         items.id === activeTab ? colors.yellow :  colors.black2,
                     }}

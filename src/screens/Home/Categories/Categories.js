@@ -45,10 +45,11 @@ export default function Categories({navigation}) {
       <View style={[styles.header, {backgroundColor:colors.grey3}]}>
     
          <View style={{backgroundColor:colors.grey4, borderRadius:2}}>
-        <TouchableOpacity onPress={()=>{navigation.goBack()}}><Icon  source={require('../../../assets/icons/back-arrow.png')} /></TouchableOpacity>
+        <TouchableOpacity style={{borderRadius:10}} onPress={()=>{navigation.goBack()}}>
+          <View style={{height:hp(5), width:wp(10), alignItems:'center', justifyContent:'center', borderRadius:10}}><Icon source={globalPath.BACK_ARROW} size={20}/></View></TouchableOpacity>
         </View>
         <Text style={{ color: colors.white, width: wp(75), textAlign: 'center' }} >View Cuisines and Categories</Text>
-        <Icon  source={globalPath.SEARCH_LOGO} />
+        <Icon  source={globalPath.SEARCH_LOGO} size={20} />
         
 
       </View>

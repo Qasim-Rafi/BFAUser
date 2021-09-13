@@ -62,7 +62,7 @@ export default function Apply_Jobs({navigation}) {
                 borderRadius: 6,
               }}>
               </View>
-              <TouchableOpacity style={{backgroundColor:colors.grey,width:wp(25),alignItems:'center',justifyContent:'center'}}><ResponsiveText>Browse</ResponsiveText></TouchableOpacity>
+              <TouchableOpacity style={{backgroundColor:colors.grey,width:wp(25),alignItems:'center',justifyContent:'center', borderTopRightRadius:7, borderBottomRightRadius:7}}><ResponsiveText>Browse</ResponsiveText></TouchableOpacity>
           </View>
         </View>
         <View

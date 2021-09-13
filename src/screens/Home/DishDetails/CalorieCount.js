@@ -8,7 +8,7 @@ import ResponsiveText from '../../../components/RnText';
 import CaloriesList from '../../../components/CalorieList';
 import {DATA, FakeCaloriesData} from '../../../constants/mock';
 import {wp, hp} from '../../../helpers/Responsiveness';
-import {VictoryPie, VictoryChart, VictoryBoxPlot} from 'victory-native';
+import {VictoryPie, VictoryChart, VictoryBoxPlot, VictoryLabel} from 'victory-native';
 export default function CalorieCount(props) {
   return (
     <View style={{backgroundColor:colors.black1}}>
@@ -29,18 +29,28 @@ export default function CalorieCount(props) {
       </View>
       <View style={{height: wp(65), flexDirection: 'row'}}>
         <VictoryPie
-          labels={() => null}
+          labels={() =>null}
           colorScale={[colors.skyblue2, colors.yellow, colors.green1, colors.blue1, colors.white]}
           width={wp(50)}
           height={wp(50)}
+          standalone={true}
           innerRadius={wp(10)}
+          labelComponent = {
+            <VictoryLabel text="label" textAnchor='middle' 
+            />
+          }
+         
           data={[
             {x: 1, y: 20},
             {x: 2, y: 15},
             {x: 3, y: 10},
             {x: 4, y: 15},
             {x: 5, y: 50},
-          ]}></VictoryPie>
+          ]}
+            
+           />
+           
+            
 
         <View
           style={{

@@ -28,7 +28,7 @@ export default function RandomiserResult({navigation}) {
                 flexDirection: 'row',
                 overflow: 'hidden',
               }}>
-              <Image style={{width: '20%', height: '100%'}} source={item.url} />
+              <Image style={{width: '20%', height: '100%', borderRadius:5}} source={item.url} />
               <View style={{flex: 1, marginLeft: 10}}>
                 <View
                   style={{

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {View, Text, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
 import {colors} from '../../../constants/colorsPallet';
 import ImageHeader from '../BottomTabs/Home/ImageHeader';
@@ -13,6 +13,8 @@ import {globalPath} from '../../../constants/globalPath';
 import { routeName } from '../../../constants/routeName';
 
 export default function AddToCart({navigation}) {
+  const [count, changeCount] = useState(1);
+
   return (
       <View style={{flex:1}}>
     <ScrollView style={styles.container}>
@@ -77,11 +79,11 @@ export default function AddToCart({navigation}) {
       <View style={{flexDirection: 'row',height:hp(9)}}>
         <View style={{flexDirection: 'row', justifyContent:'space-between', backgroundColor:colors.black1,width:wp(62),padding:16}}>
           <View style={{flexDirection: 'row'}}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=> changeCount(count>1 ? count-1 : 1)}>
               <Icon size={28} source={globalPath.MINUS_ICON} />
             </TouchableOpacity>
-            <ResponsiveText size={5} margin={[0,10]} color={colors.white}>1</ResponsiveText>
-            <TouchableOpacity>
+            <ResponsiveText size={5} margin={[0,10]} color={colors.white}>{count}</ResponsiveText>
+            <TouchableOpacity onPress={()=>changeCount(count+1)}>
               <Icon size={28} source={globalPath.PLUS_ICON} />
             </TouchableOpacity>
           </View>

@@ -34,10 +34,10 @@ const RnButton = ({
 
         {
         height:hp(5),
-        flexDirection:'row'
+        flexDirection:'row',
           // width: width ? width : undefined,
           // height: height ? height : undefined,
-          // borderRadius: borderRadius ? borderRadius : 7,
+           borderRadius: borderRadius ? borderRadius : 7,
         },
       ]}
       {...props}>

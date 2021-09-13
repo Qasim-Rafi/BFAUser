@@ -18,47 +18,53 @@ import { routeName } from '../../../../constants/routeName'
 const NewsFeed = (props) => {
 
     return (
-        <>
+        <View>
+            <ResponsiveText color={colors.white}>News Feed</ResponsiveText>
             {NewsFeeds.map((url,index)=>{
                 return(
-                    <View style={{ backgroundColor: colors.black2, height: hp(46), borderRadius: 5,marginTop:20 }}>
-            <View style={{ flexDirection: 'row', margin: 20 }}>
-                <View ><Icon size={40} source={globalPath.RESTAURANT_LOGO} /></View>
+                    <View style={{ backgroundColor: colors.black2, height: hp(46), borderRadius: 5,marginTop:10 }}>
+            <View style={{ flexDirection: 'row', marginVertical:12,marginHorizontal:15 }}>
+                <View ><Icon size={40} source={globalPath.ALIGATO} /></View>
                 <View>
-                    <ResponsiveText margin={[0, 10]} color={colors.white}>Aligato</ResponsiveText>
-                    <ResponsiveText margin={[0, 10]} color={colors.grey}>Times Square Shopping Complex</ResponsiveText>
+                    <ResponsiveText margin={[0, 7]} color={colors.white} size={2.7}>Aligato</ResponsiveText>
+                    <ResponsiveText margin={[0, 7]} color={colors.grey} size={2.7}>Times Square Shopping Complex</ResponsiveText>
                 </View>
             </View>
             <ImageBackground style={styles.Advertisement2ndVarientImage}
                 // source={{ uri: url }}
-                source={globalPath.HOME_ADD_BANNER_1}
+                source={globalPath.NEWS_FEED_IAMGE1}
 
             >
             </ImageBackground>
-            <View style={{ marginTop: 10, marginLeft: 20 }}>
+            <View style={{ marginTop: 10, marginLeft: 15 }}>
                 <View style={{ flexDirection: 'row',justifyContent:'space-between' }}>
-                    <View style={{ justifyContent:'center', backgroundColor: '#707070',flexDirection:'row',padding:10,borderRadius:20,height:hp(5) }}>
+                    <TouchableOpacity><View style={{ justifyContent:'center',alignItems:'center', backgroundColor: '#707070',flexDirection:'row',borderRadius:20,height:hp(4),width:wp(17) }}>
                         <Icon source={globalPath.F_HEART} />
-                        <ResponsiveText margin={[0,5,0,8]} color={colors.white}>224</ResponsiveText>
-                    </View>
+                        <ResponsiveText margin={[0,5,0,8]} color={colors.white} size={3}>224</ResponsiveText>
+                    </View></TouchableOpacity>
                     <View style={{marginRight:15}}>
-                    <RnButton onPress={()=>props.navigation.navigate(routeName.ADD_TO_CART)} btnStyle={{ width: wp(28), }}><ResponsiveText>Order Now</ResponsiveText></RnButton>
+                    
+                        <TouchableOpacity style={{width:wp(25), height:hp(4), borderRadius:20, backgroundColor:colors.yellow, alignItems:'center', justifyContent:'center'}}
+                         onPress={()=>props.navigation.navigate(routeName.ADD_TO_CART)}>
+                             <ResponsiveText size={3}>Order Now</ResponsiveText>
+                        </TouchableOpacity>
                     </View>
                 </View>
-                <ResponsiveText top={7} color={colors.white}>Dish of the day:</ResponsiveText>
-                <ResponsiveText margin={[0,10,0,0]} color={colors.grey}>Spaghetti marinara with freshlt imported boston lobster</ResponsiveText>
-
+                <View style={{flexDirection:'row', alignItems:'center', marginTop:7,}}>
+                <ResponsiveText top={0} color={colors.white} size={3}>Dish of the day: <ResponsiveText color={colors.grey} size={3}>Spaghetti marinara with freshlt imported boston lobster</ResponsiveText></ResponsiveText>
+                
+                </View>
             </View>
         </View>)
                 
             })}
-        </>
+        </View>
     )
         
 }
 export default NewsFeed
 const styles = StyleSheet.create({
 
-    Advertisement2ndVarientImage: { justifyContent: 'center', height: hp(18), },
+    Advertisement2ndVarientImage: { justifyContent: 'center', height: hp(25), },
 
 })

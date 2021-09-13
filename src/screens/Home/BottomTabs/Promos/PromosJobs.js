@@ -18,12 +18,13 @@ import { routeName } from '../../../../constants/routeName'
 const PromosJob = (props) => {
 
     return (
-        <>
+        <View>
+            <ResponsiveText color={colors.white}>News Feed</ResponsiveText>
             {PROMOSJOBS.map((item, index) => {
                 return (
                     <TouchableOpacity onPress={()=>props.navigation.navigate(routeName.APPLY_JOBS)}>
-                    <View style={{ backgroundColor: colors.black2, height: hp(10), borderRadius: 5, marginTop: 20, flexDirection: 'row' }}>
-                        <View style={{marginTop:'2%',marginLeft:'2%'}}><Icon source={item.Logo} size={65} /></View>
+                    <View style={{ backgroundColor: colors.black2, height: hp(10), borderRadius: 5, marginTop: 10, flexDirection: 'row' }}>
+                        <View style={{marginTop:'2%',marginLeft:'2%',}}><Icon source={item.Logo} borderRadius={5} size={65} /></View>
                         <View style={{marginTop:'2%',marginLeft:'2%'}}>
                             <View >
                                 <ResponsiveText color={colors.white}>{item.JobTitle}</ResponsiveText>
@@ -49,7 +50,7 @@ const PromosJob = (props) => {
                     </TouchableOpacity>
             )
             })}
-        </>
+        </View>
     )
 
 }

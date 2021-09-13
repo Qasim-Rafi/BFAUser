@@ -4,13 +4,14 @@ import Header from '../../../../components/Header';
 import Icon from '../../../../components/Icon';
 import ResponsiveText from '../../../../components/RnText';
 import {colors} from '../../../../constants/colorsPallet';
+import { globalPath } from '../../../../constants/globalPath';
 import { routeName } from '../../../../constants/routeName';
 import {hp, wp} from '../../../../helpers/Responsiveness';
 
 const Checkout = ({navigation}) => {
   return (
     <View style={{backgroundColor: colors.black3, flex: 1}}>
-      <Header navigation={navigation} />
+      <Header navigation={navigation} iconPath={globalPath.BACK_ARROW} />
       <View style={{flex: 0.9}}>
         <View
           style={{

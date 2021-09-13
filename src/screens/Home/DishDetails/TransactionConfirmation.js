@@ -4,6 +4,7 @@ import { size } from 'lodash'
 import React,{useState} from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import Modal from "react-native-modal";
+import { act } from 'react-test-renderer';
 
 //Local Imports
 import Header from '../../../components/Header'
@@ -16,6 +17,8 @@ import { hp, wp } from '../../../helpers/Responsiveness'
 
 export default function TransactionConfirmation({navigation}) {
 const [isModalVisible, setModalVisible] = useState(false);
+const [activeTabs, setActive] = useState('tab3');
+const [count, changeCount] = useState(95);
 
 const toggleModal = () => {	
 	 setModalVisible(!isModalVisible);
@@ -55,27 +58,28 @@ const toggleModal = () => {
       <View style={{flex:0.20, backgroundColor:colors.black2, borderRadius:5, marginHorizontal:15}}>
 		  <ResponsiveText color={colors.white} margin={[15,0,0,15]}>Add Tip?</ResponsiveText>
 		  <View style={{backgroundColor:colors.yellow, marginTop:5, height:hp(5), width:wp(85), alignSelf:'center', borderRadius:4,flexDirection:'row'}}>
-			  <View style={{backgroundColor:colors.black2, flex:1, margin:1, alignItems:'center', justifyContent:'center'}}>
-				  <ResponsiveText color={colors.yellow}>No</ResponsiveText>
-			  </View>
-			  <View style={{backgroundColor:colors.black2, flex:1, margin:1, alignItems:'center', justifyContent:'center'}}>
-				  <ResponsiveText color={colors.yellow}>$</ResponsiveText>
-			  </View>
-			  <View style={{backgroundColor:colors.black2, flex:1, margin:1, alignItems:'center', justifyContent:'center'}}>
-				  <ResponsiveText color={colors.yellow}>%</ResponsiveText>
-			  </View>
+			  
+			  <TouchableOpacity onPress={()=>{setActive('tab1'); changeCount(0);}} style={{backgroundColor:activeTabs==='tab1' ? colors.yellow : colors.black2, flex:1, margin:1, alignItems:'center', justifyContent:'center'}}>
+				  <ResponsiveText color={activeTabs==='tab1' ? colors.black : colors.yellow}>No</ResponsiveText>
+			  </TouchableOpacity>
+			  <TouchableOpacity onPress={()=>{setActive('tab2');}} style={{backgroundColor:activeTabs==='tab2' ? colors.yellow : colors.black2, flex:1, margin:1, alignItems:'center', justifyContent:'center'}}>
+				  <ResponsiveText color={activeTabs==='tab2' ? colors.black : colors.yellow}>$</ResponsiveText>
+			  </TouchableOpacity>
+			  <TouchableOpacity onPress={()=>{setActive('tab3'); count>100?changeCount(100): undefined}} style={{backgroundColor: activeTabs==='tab3' ? colors.yellow : colors.black2, flex:1, margin:1, alignItems:'center', justifyContent:'center'}}>
+				  <ResponsiveText color={activeTabs==='tab3' ? colors.black : colors.yellow}>%</ResponsiveText>
+			  </TouchableOpacity>
 		  </View>
 
 		  <View style={{backgroundColor:colors.black2, marginTop:16, height:hp(5), width:wp(85), alignSelf:'center', borderRadius:4,flexDirection:'row'}}>
-			  <View style={{backgroundColor:colors.black2,borderColor:colors.black1,borderWidth:1, flex:.22, margin:1, alignItems:'center', justifyContent:'center'}}>
+			  <TouchableOpacity onPressIn={()=>activeTabs==='tab2' || activeTabs==='tab3' ? changeCount(count>0 ? count-1 : 0) : changeCount(count)} style={{backgroundColor:colors.black2,borderColor:colors.black1,borderWidth:1, flex:.22, margin:1, alignItems:'center', justifyContent:'center'}}>
 				  <ResponsiveText color={colors.yellow} size={6} >-</ResponsiveText>
-			  </View>
+			  </TouchableOpacity>
 			  <View style={{backgroundColor:colors.black3,borderColor:colors.black1,borderWidth:1, flex:0.56, margin:1, alignItems:'center', justifyContent:'center',marginHorizontal:10}}>
-				  <ResponsiveText color={colors.yellow}  size={4}>10%</ResponsiveText>
+				  <ResponsiveText color={colors.yellow}  size={4}>{activeTabs==='tab2' ? '$' : ''}{activeTabs==='tab1' ? "": activeTabs==='tab1' ? count : count}{activeTabs==='tab3' ? '%' : ''}</ResponsiveText>
 			  </View>
-			  <View style={{backgroundColor:colors.black2,borderColor:colors.black1,borderWidth:1, flex:0.22, margin:1, alignItems:'center', justifyContent:'center'}}>
-				  <ResponsiveText color={colors.yellow} size={6}>+</ResponsiveText>
-			  </View>
+			  <TouchableOpacity onPressIn={()=>activeTabs==='tab2' || activeTabs==='tab3' ? changeCount(activeTabs==='tab3' && count<100 ? count+1 : activeTabs==='tab2'?count+1:count) : changeCount(count+1)} style={{backgroundColor:colors.black2,borderColor:colors.black1,borderWidth:1, flex:0.22, margin:1, alignItems:'center', justifyContent:'center'}}> 
+				  <ResponsiveText color={colors.yellow} size={6}>+</ResponsiveText>	  
+			  </TouchableOpacity>
 		  </View>
 
 	  </View>
@@ -86,7 +90,7 @@ const toggleModal = () => {
 		  </View>
 		  <View style={{borderBottomColor:colors.black2,paddingBottom:5, borderBottomWidth:1,marginHorizontal:15,marginTop:10, flexDirection:'row', justifyContent:'space-between'}}>
 			  <ResponsiveText color={colors.white}>Tips</ResponsiveText>
-			  <ResponsiveText color={colors.yellow}>$ 1.00</ResponsiveText>
+			  <ResponsiveText color={colors.yellow}>{activeTabs==='tab2'?'$':""}{count}{activeTabs==='tab3' ? '%' : ""}</ResponsiveText>
 		  </View>
 		  <View style={{borderBottomColor:colors.black2,paddingBottom:5,marginHorizontal:15,marginTop:10, flexDirection:'row', justifyContent:'space-between'}}>
 			  <ResponsiveText color={colors.white}>Final</ResponsiveText>
@@ -98,7 +102,7 @@ const toggleModal = () => {
 		  onPress={toggleModal}>
 			<ResponsiveText>Confirm Payment</ResponsiveText>
 		  </TouchableOpacity>
-		  <TouchableOpacity style={{marginTop:15,justifyContent:'center',alignItems:'center',borderRadius:7, height:hp(5), width:wp(95),borderColor:colors.yellow,borderWidth:1 ,backgroundColor:colors.black3}}>
+		  <TouchableOpacity onPress={()=>navigation.goBack()} style={{marginTop:15,justifyContent:'center',alignItems:'center',borderRadius:7, height:hp(5), width:wp(95),borderColor:colors.yellow,borderWidth:1 ,backgroundColor:colors.black3}}>
 			<ResponsiveText color={colors.yellow}>Cancel</ResponsiveText>
 		  </TouchableOpacity>
 	  </View>

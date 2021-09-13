@@ -15,17 +15,18 @@ import {colors} from '../constants/colorsPallet';
 const Header = ({
   navigation,
   showRightMenu = true,
-  inputWidth = wp(72),
+  inputWidth = wp(68),
+  
   ...props
 }) => {
   return (
-    <View style={styles.header}>
+    <View style={[styles.header,{paddingVertical:1}]}>
       <TouchableOpacity
       onPress={()=>{props.iconPath ? navigation.goBack() : null}}
         style={{
           height: hp(6),
-          width: wp(10),
-          backgroundColor: colors.black1,
+          width: wp(11),
+          backgroundColor:props.iconPath ? colors.black1: colors.black,
           justifyContent: 'center',
           alignItems: 'center',
           borderRadius: 10,
@@ -33,7 +34,7 @@ const Header = ({
         }}>
         <Icon
           margin={[0, 0, 0, 0]}
-          size={25}
+          size={props.iconPath ? 25 : 36}
           source={props.iconPath ? props.iconPath : globalPath.BALI_ICON}
         />
       </TouchableOpacity>
@@ -42,8 +43,8 @@ const Header = ({
         <Input
           editable={false}
           fontSize={11}
-          placeholder="Search for Dishes, Restaurants or Promo"
-          padding={[0, 0, 0, 10]}
+          placeholder="Search Dishes, Restaurants or Promo"
+          padding={[0, 0, 0, 18]}
           leftIcon={globalPath.SEARCH_LOGO}
           containerStyle={{backgroundColor: colors.black1}}
           height={hp(6)}
@@ -71,8 +72,9 @@ const styles = {
     flex: 0.1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 15,
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+    
   },
   mainView: {
     width: '100%',

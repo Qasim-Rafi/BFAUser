@@ -23,6 +23,7 @@ const RANDOM_GREY =require('../assets/icons/Randomiser-gray.png');
 const FEED_GREY =require('../assets/icons/feed-gray.png');
 const CHECKOUT_GREY =require('../assets/icons/Checkout-gray.png');
 const MORE_SHOP_ICON =require('../assets/icons/braches.png');
+const ALIGATO =require('../assets/icons/aligato.png');
 
 
 
@@ -92,6 +93,8 @@ const HOME_YOUR_FAVORITE_1 ='../assets/fake_Images/Home-Your-Favorites- (4).png'
 const HOME_YOUR_FAVORITE_2 = require('../assets/fake_Images/Home-Your-Favorites- (5).png');
 const HOME_YOUR_FAVORITE_3 = require('../assets/fake_Images/Home-Your-Favorites- (6).png');
 const HOME_YOUR_FAVORITE_4 = require('../assets/fake_Images/Home-Your-Favorites- (7).png');
+const NEWS_FEED_IAMGE1 = require('../assets/fake_Images/news-img1.png');
+
 
 // =====================================
 // TEMP FILE PATH
@@ -166,6 +169,7 @@ export const globalPath = {
   CHECK_TICK,
   RADIO_DOT,
   MORE_SHOP_ICON,
+  ALIGATO,
 
 
 
@@ -210,6 +214,7 @@ HOME_BFA_PARTNER_2,
 HOME_BFA_PARTNER_3,
 HOME_BFA_PARTNER_4,
 HOME_BFA_PARTNER_5,
-HOME_BFA_PARTNER_6
+HOME_BFA_PARTNER_6,
+NEWS_FEED_IAMGE1,
 
 };
