@@ -31,6 +31,7 @@ const RnButton = ({
         padding ? handlePadding(padding) : undefined,
         position && { alignSelf: position },
         backgroundColor && { backgroundColor },
+       
 
         {
         height:hp(5),

@@ -24,6 +24,7 @@ const Input = ({
   onChnageText,
   fontSize,
   value,
+  onSubmitEditing,
   ...props
 }) => {
   const [showPassword, setShowPassword] = React.useState(secureTextEntry);
@@ -59,6 +60,7 @@ const Input = ({
         fontSize && {fontSize},
           styles.Input,
           fontFamily && {fontFamily: Fonts[fontFamily]},
+          onSubmitEditing=props.onSubmitEditing,
           props.centerText ? {textAlign: 'center', paddingLeft: 0} : undefined,
           props.textStyle,
           ,{

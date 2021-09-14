@@ -44,18 +44,22 @@ const Home = ({navigation}) => {
           style={styles.cuisinesContainer}
           //  source={{ uri: 'https://images.unsplash.com/photo-1441716844725-09cedc13a4e7?h=1024' }}
           source={globalPath.HOME_HOME_VIEW_COISINES_AND_CATEGORIES}>
-          <RnButton
+          
+          <TouchableOpacity
+          
             onPress={() => navigation.navigate(routeName.Categories)}
             style={styles.cuisinesButton}>
             <ResponsiveText fontFamily={'Regular'} size={2.9}>
-              View Cuisines and Categories
+              Cuisines
             </ResponsiveText>
             <Icon
+            margin={[0,0,0,10]}
               size={wp(4)}
               tintColor="black"
               source={globalPath.RIGHT_ARROW}
             />
-          </RnButton>
+          </TouchableOpacity>
+         
         </ImageBackground>
         <View style={styles.recommendationContainer}>
          <Recommendation navigation={navigation}/>
@@ -122,7 +126,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     // paddingHorizontal:5,
     flexDirection: 'row',
-    width: '60%',
+    width: '28%',
     justifyContent: 'space-between',
     // justifyContent: 'space-between',
 

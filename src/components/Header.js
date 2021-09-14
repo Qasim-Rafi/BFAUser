@@ -15,10 +15,15 @@ import {colors} from '../constants/colorsPallet';
 const Header = ({
   navigation,
   showRightMenu = true,
-  inputWidth = wp(68),
+  inputWidth = wp(58),
+  
+
+
   
   ...props
 }) => {
+
+  const [searchBar, toggleSearchBar] = React.useState('false');
   return (
     <View style={[styles.header,{paddingVertical:1}]}>
       <TouchableOpacity
@@ -26,7 +31,7 @@ const Header = ({
         style={{
           height: hp(6),
           width: wp(11),
-          backgroundColor:props.iconPath ? colors.black1: colors.black,
+          backgroundColor:props.iconPath ? colors.black1: undefined,
           justifyContent: 'center',
           alignItems: 'center',
           borderRadius: 10,
@@ -38,19 +43,24 @@ const Header = ({
           source={props.iconPath ? props.iconPath : globalPath.BALI_ICON}
         />
       </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => navigation.navigate(routeName.FeaturedSearch)}>
+      <View style={{backgroundColor:searchBar==='true'? colors.black1 : colors.black2, alignItems:'center',justifyContent:'center', flexDirection:'row', borderRadius:10, marginHorizontal:2, paddingHorizontal:5}}>
+      <TouchableOpacity onPress={()=>{searchBar==='true'? navigation.navigate(routeName.FeaturedSearch) : toggleSearchBar('true')}} style={{marginStart:5}}>
+        <View><Icon source={globalPath.SEARCH_LOGO} size={25} /></View>
+      </TouchableOpacity>
+      <TouchableOpacity >
+        {/* // onPress={() => searchBar==='true'? navigation.navigate(routeName.FeaturedSearch) : undefined}> */}
         <Input
-          editable={false}
+          editable={true}
           fontSize={11}
-          placeholder="Search Dishes, Restaurants or Promo"
-          padding={[0, 0, 0, 18]}
-          leftIcon={globalPath.SEARCH_LOGO}
-          containerStyle={{backgroundColor: colors.black1}}
+          onSubmitEditing={()=>{}}
+          placeholder={searchBar==='true'? "Search Dishes, Restaurants or Promo" : ""}
+          padding={[0, 0, 0, 5]}
+          containerStyle={{backgroundColor:searchBar==='false'? colors.black2 : undefined}}
           height={hp(6)}
           width={inputWidth}
         />
       </TouchableOpacity>
+      </View>
       {showRightMenu && (
         <TouchableOpacity
           onPress={() => navigation.navigate(routeName.PROFILE_SCREEN)}>

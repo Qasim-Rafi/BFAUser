@@ -8,7 +8,7 @@ const StaticMap = (props) => {
       style={{borderRadius: 10, overflow: 'hidden'}}>
       <Map
         provider={PROVIDER_GOOGLE} // remove if not using Google Maps
-        style={[styles.map,{height:props?.height}]}
+        style={[styles.map,{height:props.height? props.height:200}]}
         scrollEnabled={false}
         //   zoomEnabled={false}
         rotateEnabled={false}
@@ -29,6 +29,7 @@ export default StaticMap;
 const styles = StyleSheet.create({
   map: {
     width: '100%',
+    
     // height: props.height? props.height: 200,
     borderRadius: 20,
     overflow: 'hidden',

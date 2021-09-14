@@ -26,7 +26,7 @@ const [email, setEmail] = useState()
  const [phoneNum, setPhoneNum] = useState()
  const [password, setPassword] = useState()
 
- const [confirmPassword, setConfirmPassword] = useState()
+ const [confirmPassword, setConfirmPassword] = useState();
 
   return (
     <KeyboardAvoidingView
@@ -35,8 +35,9 @@ const [email, setEmail] = useState()
       style={styles.container}>
       <ImageBackground style={styles.container} source={globalPath.BG_IMAGE}>
         <View style={styles.screeninfo}>
-          <ResponsiveText color={colors.yellow} fontFamily="Regular"  size={8} >
-            Create Account
+          <View style={{marginBottom:10}}><Icon source={globalPath.BALI_ICON} size={70} /></View>
+          <ResponsiveText color={colors.yellow} fontFamily="Regular"  size={7.5} >
+            Welcome to Bali!
           </ResponsiveText>
           <ResponsiveText color={colors.white}>
             Create a new account
@@ -122,9 +123,10 @@ const styles = StyleSheet.create({
     // backgroundColor: colors.black,
   },
   screeninfo: {
-    flex: 0.2,
+    flex: 0.35,
     justifyContent: 'flex-end',
-    paddingBottom: wp(10),
+    paddingBottom: wp(5),
+    alignItems:'center',
     padding: wp(5),
   },
   formArea: {
