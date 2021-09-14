@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import {View, Text, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
 import {colors} from '../../../constants/colorsPallet';
 import ImageHeader from '../BottomTabs/Home/ImageHeader';
@@ -14,6 +14,13 @@ import { routeName } from '../../../constants/routeName';
 
 export default function AddToCart({navigation}) {
   const [count, changeCount] = useState(1);
+  const [dishPrice, updateDishPrice] = useState(10)
+  const [total, updateTotal] = useState(0);
+  useEffect(()=>{updateTotal(dishPrice*count)})
+ 
+
+
+
 
   return (
       <View style={{flex:1}}>
@@ -87,7 +94,7 @@ export default function AddToCart({navigation}) {
               <Icon size={28} source={globalPath.PLUS_ICON} />
             </TouchableOpacity>
           </View>
-          <ResponsiveText size={5} color={colors.white}>$10.00</ResponsiveText>
+          <ResponsiveText size={5} color={colors.white}>${total}.00</ResponsiveText>
         </View>
         <View style={{padding:16,backgroundColor:colors.black2}}>
           <TouchableOpacity  style={{
@@ -97,7 +104,7 @@ export default function AddToCart({navigation}) {
               alignItems: 'center',
               justifyContent: 'center',
               borderRadius: 6,
-            }} onPress={()=>navigation.navigate(routeName.TRANSACTION_CONFIRMATION)}>
+            }} onPress={()=>navigation.navigate(routeName.TRANSACTION_CONFIRMATION, [total])}>
             <ResponsiveText > Add to cart</ResponsiveText>
           </TouchableOpacity>
         </View>

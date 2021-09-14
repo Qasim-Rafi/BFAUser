@@ -1,7 +1,7 @@
 //Node Imports
 import { auto } from 'async'
 import { size } from 'lodash'
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import Modal from "react-native-modal";
 import { act } from 'react-test-renderer';
@@ -15,10 +15,15 @@ import { routeName } from '../../../constants/routeName'
 import { hp, wp } from '../../../helpers/Responsiveness'
 
 
-export default function TransactionConfirmation({navigation}) {
+export default function TransactionConfirmation({route,navigation}) {
 const [isModalVisible, setModalVisible] = useState(false);
 const [activeTabs, setActive] = useState('tab3');
 const [count, changeCount] = useState(95);
+const [total, addTotal] = useState(0);
+
+useEffect(()=>{addTotal(route.params)})
+
+
 
 const toggleModal = () => {	
 	 setModalVisible(!isModalVisible);
@@ -86,7 +91,7 @@ const toggleModal = () => {
       <View style={{flex:0.2, backgroundColor:colors.black3, marginTop:20}}>
 		  <View style={{borderBottomColor:colors.black2,paddingBottom:5, borderBottomWidth:1,marginHorizontal:15,marginTop:10, flexDirection:'row', justifyContent:'space-between'}}>
 			  <ResponsiveText color={colors.white}>Total</ResponsiveText>
-			  <ResponsiveText color={colors.yellow}>$10.00</ResponsiveText>
+			  <ResponsiveText color={colors.yellow}>${total}.00</ResponsiveText>
 		  </View>
 		  <View style={{borderBottomColor:colors.black2,paddingBottom:5, borderBottomWidth:1,marginHorizontal:15,marginTop:10, flexDirection:'row', justifyContent:'space-between'}}>
 			  <ResponsiveText color={colors.white}>Tips</ResponsiveText>
