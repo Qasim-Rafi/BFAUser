@@ -1,11 +1,29 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image,TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, Image,TouchableOpacity , Alert} from 'react-native';
 import {colors} from '../../../../constants/colorsPallet';
 import ResponsiveText from '../../../../components/RnText';
 import {globalPath} from '../../../../constants/globalPath';
 import Icon from '../../../../components/Icon';
 import { routeName } from '../../../../constants/routeName';
+import AsyncStorage from '@react-native-community/async-storage';
+
+
 const More = ({navigation}) => {
+
+  const logout =()=>{
+    Alert.alert(
+      "Logout",
+      "Confirm Logout",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: async () => await AsyncStorage.removeItem('@token')  }
+      ]
+    );
+  }
   return (
     <View style={{backgroundColor: colors.black3, flex: 1,flexDirection:'column',justifyContent:'space-between'}}>
       <View>
@@ -89,7 +107,7 @@ const More = ({navigation}) => {
         </View>
       </View>
       <View>
-      <TouchableOpacity
+      <TouchableOpacity onPress={logout}
             style={{backgroundColor: colors.black2, flexDirection: 'row',padding:10,marginTop:10}}>
             <Icon size={20} margin={[0,0,0,10]} source={globalPath.LOGOUT} />
             <ResponsiveText margin={[0,0,0,10]} size={4} color={colors.white}>

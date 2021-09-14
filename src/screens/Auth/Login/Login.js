@@ -20,6 +20,7 @@ import {Spacing} from '../../../constants/spacingScale';
 import Line from '../../../components/Line';
 import {routeName} from '../../../constants/routeName';
 import {colors} from '../../../constants/colorsPallet';
+import FlashMessage ,{ showMessage, hideMessage } from "react-native-flash-message";
 
 //Redux Import
 import {useDispatch, useSelector} from 'react-redux';
@@ -28,7 +29,6 @@ import {loginUser} from '../../../redux/actions/user.actions';
 export default function Login({navigation}) {
   const [userName, setUserName] = React.useState('');
   const [password, setPassword] = React.useState('');
-
   //Redux Dispatch
   const dispatch = useDispatch();
 
@@ -48,6 +48,30 @@ export default function Login({navigation}) {
       })
     );
   };
+
+  const Validation=(item)=>{
+    if (userName === '') {
+      showMessage({
+        message: "Error",
+        description: "Username is Required",
+        type: "danger",
+        icon: { icon: "auto", position: "left" },
+      });
+
+    }
+    else if (password ==='')
+    {
+      showMessage({
+        message: "Error",
+        description: "Password is Required",
+        type: "danger",
+        icon: { icon: "auto", position: "left" },
+      });
+    }
+    else{
+      userLogin();
+    }
+  }
 
   return (
     // <KeyboardAvoidingView
@@ -89,7 +113,7 @@ export default function Login({navigation}) {
             <Line color={colors.grey5} width={wp(20)} />
           </View>
           <RnButton
-            onPress={() => userLogin()}
+            onPress={() => Validation()}
             // onPress={()=>navigation.navigate(routeName.LANDING_SCREEN)}
             fontFamily="SemiBold"
             height={100}
@@ -111,6 +135,7 @@ export default function Login({navigation}) {
           </View>
         </View>
       </ImageBackground>
+      <FlashMessage position="top" icon="auto"/>
     </ScrollView>
     // </KeyboardAvoidingView>
   );

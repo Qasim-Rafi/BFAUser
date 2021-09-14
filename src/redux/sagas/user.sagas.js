@@ -5,6 +5,7 @@ import { routeName } from '../../constants/routeName';
 import types from '../actions/types';
 import Api from '../lib/api';
 import urls from '../lib/urls';
+import FlashMessage ,{ showMessage, hideMessage } from "react-native-flash-message";
 
 //Register user saga
 export function* loginUserSaga() {
@@ -21,7 +22,15 @@ function* loginUserApi(data) {
     if (response.data != null) {
       yield AsyncStorage.setItem('@token', response.data.token);
       yield put({type: types.LOGIN_USER_SUCCESS, payload: response.data});
-      navigation.navigate(routeName.LANDING_SCREEN)
+      navigation.navigate(routeName.LANDING_SCREEN);
+    }
+    else{
+        showMessage({
+          message: "Error",
+          description: "Invalid Username or Password",
+          type: "danger",
+          icon: { icon: "auto", position: "left" },
+        });
     }
   } catch (error) {
     console.log('Where We post data');

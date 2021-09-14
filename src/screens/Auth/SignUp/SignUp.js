@@ -20,13 +20,13 @@ import { routeName } from '../../../constants/routeName';
 import { colors } from '../../../constants/colorsPallet';
 
 export default function Signup({ navigation }) {
- const [firstName,setFirstName] = useState(initialState)
- const [lastName, setLastName] = useState(initialState)
-const [email, setEmail] = useState(initialState)
- const [phoneNum, setPhoneNum] = useState(initialState)
- const [password, setPassword] = useState(initialState)
+ const [firstName,setFirstName] = useState()
+ const [lastName, setLastName] = useState()
+const [email, setEmail] = useState()
+ const [phoneNum, setPhoneNum] = useState()
+ const [password, setPassword] = useState()
 
- const [confirmPassword, setConfirmPassword] = useState(initialState)
+ const [confirmPassword, setConfirmPassword] = useState()
 
   return (
     <KeyboardAvoidingView
