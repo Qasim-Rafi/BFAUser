@@ -7,7 +7,7 @@ import {
   Platform,
 } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
-
+import { useState } from 'react';
 import { hp, wp } from '../../../helpers/Responsiveness';
 import Icon from '../../../components/Icon';
 import Input from '../../../components/Input';
@@ -20,6 +20,14 @@ import { routeName } from '../../../constants/routeName';
 import { colors } from '../../../constants/colorsPallet';
 
 export default function Signup({ navigation }) {
+ const [firstName,setFirstName] = useState(initialState)
+ const [lastName, setLastName] = useState(initialState)
+const [email, setEmail] = useState(initialState)
+ const [phoneNum, setPhoneNum] = useState(initialState)
+ const [password, setPassword] = useState(initialState)
+
+ const [confirmPassword, setConfirmPassword] = useState(initialState)
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -40,13 +48,14 @@ export default function Signup({ navigation }) {
             width={wp(39)}
             margin={[0, 0, 15, 0]}
             padding={[0, 0, 0, 25]}
+            onChnageText={text=>setFirstName(text)}
             iconMargin={[0, 10, 0, 0]}
             placeholder="First name"
             leftIcon={globalPath.USER_LOGO}
           />
            <Input
             width={wp(39)}
-
+            onChnageText={text=>setLastName(text)}
             margin={[0, 0, 15, 0]}
             padding={[0, 0, 0, 25]}
             iconMargin={[0, 10, 0, 0]}
@@ -59,11 +68,13 @@ export default function Signup({ navigation }) {
             padding={[0, 0, 0, 25]}
             iconMargin={[0, 10, 0, 0]}
             placeholder="Email"
+            onChnageText={text=>setEmail(text)}
             leftIcon={globalPath.EMAIL_LOGO}
           />
           <Input
             margin={[15, 0, 15, 0]}
             padding={[0, 0, 0, 25]}
+            onChnageText={text=>setPhoneNum(text)}
             iconMargin={[0, 10, 0, 0]}
             placeholder="Phone"
             leftIcon={globalPath.PHONE_LOGO}
@@ -73,6 +84,7 @@ export default function Signup({ navigation }) {
             padding={[0, 0, 0, 25]}
             iconMargin={[0, 10, 0, 0]}
             placeholder="Password"
+            onChnageText={text=>setPassword(text)}
             secureTextEntry
             leftIcon={globalPath.PASSWORD_LOGO}
           />
@@ -81,6 +93,7 @@ export default function Signup({ navigation }) {
             padding={[0, 0, 0, 25]}
             iconMargin={[0, 10, 0, 0]}
             placeholder="Confirm Password"
+            onChnageText={text=>setConfirmPassword(text)}
             secureTextEntry
             leftIcon={globalPath.PASSWORD_LOGO}
           />

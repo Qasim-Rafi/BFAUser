@@ -18,22 +18,46 @@ import ResponsiveText from '../../../components/RnText';
 import {globalPath} from '../../../constants/globalPath';
 import {Spacing} from '../../../constants/spacingScale';
 import Line from '../../../components/Line';
-import { routeName } from '../../../constants/routeName';
-import { colors } from '../../../constants/colorsPallet';
+import {routeName} from '../../../constants/routeName';
+import {colors} from '../../../constants/colorsPallet';
+
+//Redux Import
+import {useDispatch, useSelector} from 'react-redux';
+import {loginUser} from '../../../redux/actions/user.actions';
 
 export default function Login({navigation}) {
-  const [userName ,setUserName]=React.useState('');
-  const [password ,setPassword]=React.useState('');
+  const [userName, setUserName] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
+  //Redux Dispatch
+  const dispatch = useDispatch();
+
+  //Redux Use Selector
+  const {login_User} = useSelector(state => state);
+  console.log(login_User, 'login user');
+
+  //Redux Action Called
+  const userLogin = () => {
+    dispatch(
+      loginUser({
+        params: {
+          username: userName,
+          password: password,
+        },
+        navigation:navigation,
+      })
+    );
+  };
 
   return (
     // <KeyboardAvoidingView
     //   behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     //   keyboardVerticalOffset={hp(-10)}
     //   style={styles.container}>
-    <ScrollView contentContainerStyle={{flexGrow:1}}>
-      <ImageBackground style={styles.container} source={globalPath.BG_IMAGE} >
+    <ScrollView contentContainerStyle={{flexGrow: 1}}>
+      <ImageBackground style={styles.container} source={globalPath.BG_IMAGE}>
         <View style={styles.screeninfo}>
-          <ResponsiveText  color={colors.yellow} fontFamily="Regular" size={8} >
+          <ResponsiveText color={colors.yellow} fontFamily="Regular" size={8}>
             Sign In
           </ResponsiveText>
           <ResponsiveText color={colors.white}>
@@ -43,6 +67,7 @@ export default function Login({navigation}) {
         <View style={styles.formArea}>
           <Input
             padding={[0, 0, 0, 25]}
+            onChnageText={text => setUserName(text)}
             iconMargin={[0, 10, 0, 0]}
             placeholder="Email"
             leftIcon={globalPath.EMAIL_LOGO}
@@ -52,6 +77,7 @@ export default function Login({navigation}) {
             padding={[0, 0, 0, 25]}
             iconMargin={[0, 10, 0, 0]}
             placeholder="Password"
+            onChnageText={text => setPassword(text)}
             secureTextEntry
             leftIcon={globalPath.PASSWORD_LOGO}
           />
@@ -62,26 +88,37 @@ export default function Login({navigation}) {
             </ResponsiveText>
             <Line color={colors.grey5} width={wp(20)} />
           </View>
-          <RnButton onPress={()=>navigation.navigate(routeName.LANDING_SCREEN)} fontFamily='SemiBold' height={100} margin={[0, 0]} title="SIGN IN" />
+          <RnButton
+            onPress={() => userLogin()}
+            // onPress={()=>navigation.navigate(routeName.LANDING_SCREEN)}
+            fontFamily="SemiBold"
+            height={100}
+            margin={[0, 0]}
+            title="SIGN IN"
+          />
           <View style={styles.footer}>
-           
             {/* <Icon size={wp(8)} margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
             <ResponsiveText margin={[0, 10]} color={colors.white}>
               New user{' '}
-              <ResponsiveText  fontFamily='Bold' color={colors.yellow}  onPress={()=>navigation.navigate(routeName.SIGN_UP)}>Sign up</ResponsiveText>
+              <ResponsiveText
+                fontFamily="Bold"
+                color={colors.yellow}
+                onPress={() => navigation.navigate(routeName.SIGN_UP)}>
+                Sign up
+              </ResponsiveText>
             </ResponsiveText>
             {/* <View style={styles.socialIcon}></View> */}
           </View>
         </View>
       </ImageBackground>
-      </ScrollView>
+    </ScrollView>
     // </KeyboardAvoidingView>
   );
 }
 const styles = StyleSheet.create({
   container: {
-    height:hp(100),
-    width:wp(100),
+    height: hp(100),
+    width: wp(100),
     // height: hp(120),
     // justifyContent: 'center',
     // alignItems: 'center',
