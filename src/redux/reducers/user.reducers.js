@@ -1,35 +1,37 @@
-import types from "../actions/types";
-import * as State from "../lib/states";
+import types from '../actions/types';
 
 //Get site data from url reducer
-export const login_User = (state = State.initial, action) => {
+const initialState = {
+  status: null,
+  message: null,
+  error: false,
+  loginScreen: {
+    refreshing: false,
+    data: {
+      loggedInUserId: null,
+      loggedInUserName: '',
+      loggedInUserTypeId: '',
+      message: null,
+    },
+  },
+  signupScreen: {
+    refreshing: false,
+    data: {},
+  },
+};
+
+export const login_User = (state = initialState, action) => {
   switch (action.type) {
-    case types.LOGIN_USER_RESET:
-      return State.initial;
     case types.LOGIN_USER_SUCCESS:
-      console.log(action,"action in reducer");
+      console.log(action, 'action in reducer');
       return {
         ...state,
-        data:action.payload,
+        loginScreen: {
+          ...state.loginScreen,
+          data: action.payload,
+        },
       };
-    case types.REGISTER_GUEST_SUCCESS:
-      return {
-        ...state,
-        status: action.payload.status,
-        message: action.payload.message,
-        error: false,
-        data: action.payload.data,
-        loading: false,
-      };
-    case types.REGISTER_GUEST_FAILURE:
-      return {
-        ...state,
-        status: action.error.status,
-        message: action.error.message,
-        error: true,
-        data: null,
-        loading: false,
-      };
+   
     default:
       return state;
   }
@@ -71,39 +73,8 @@ export const login_User = (state = State.initial, action) => {
 //   }
 // };
 
-// //Get user categories reducer
-// export const userCategories = (state = State.initial, action) => {
-//   switch (action.type) {
-//     case types.GET_USER_CATS_RESET:
-//       return State.initial;
-//     case types.GET_USER_CATS_REQUEST:
-//       return {
-//         ...state,
-//         ...State.request,
-//         data: state.data,
-//       };
-//     case types.GET_USER_CATS_SUCCESS:
-//       return {
-//         ...state,
-//         status: action.payload.status,
-//         message: action.payload.message,
-//         error: false,
-//         data: action.payload.data.data,
-//         loading: false,
-//       };
-//     case types.GET_USER_CATS_FAILURE:
-//       return {
-//         ...state,
-//         status: action.error.status,
-//         message: action.error.message,
-//         error: true,
-//         data: null,
-//         loading: false,
-//       };
-//     default:
-//       return state;
-//   }
-// };
+//Get user categories reducer
+
 
 // //Get user categories reducer
 // export const addedCategory = (state = State.initial, action) => {

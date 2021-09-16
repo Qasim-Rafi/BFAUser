@@ -36,8 +36,7 @@ const Randomiser = ({navigation}) => {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-       <Header navigation={navigation} 
-       iconPath={globalPath.BACK_ARROW} />
+       <Header navigation={navigation} />
       </View>
 
       <View style={{backgroundColor: colors.black3, flex: 0.2}}>

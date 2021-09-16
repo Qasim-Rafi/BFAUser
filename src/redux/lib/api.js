@@ -34,15 +34,21 @@ class Api {
 
   static async xhr(route, body, verb, sendAuthToken) {
     const url = `${urls.HOST}${route}`;
-    let options = {
-      method: verb,
-      body: JSON.stringify(body),
-    };
+    let options = null;
+    if (body) {
+      options = {
+        method: verb,
+        body: JSON.stringify(body),
+      };
+    } else {
+      options = {
+        method: verb,
+      };
+    }
     options.headers = Api.headers();
     console.log(options, 'options');
     try {
       const resp = await fetch(url, options);
-      console.log(resp, 'response');
       return resp.json();
     } catch (err) {
       console.log(err, 'error');

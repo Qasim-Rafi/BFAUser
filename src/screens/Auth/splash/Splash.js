@@ -1,8 +1,8 @@
 import React,{useState, useEffect} from 'react';
 import {View, StyleSheet, ImageBackground, StatusBar, Text} from 'react-native';
 import {CommonActions} from '@react-navigation/native';
-import AnimatedSplash from "react-native-animated-splash-screen";
-
+import AsyncStorage from '@react-native-community/async-storage';
+import { StackActions } from '@react-navigation/native';
 import Screen from '../../../components/Screen';
 import {colors} from '../../../constants/colorsPallet';
 import {routeName} from '../../../constants/routeName';
@@ -11,23 +11,40 @@ import {hp, wp} from '../../../helpers/Responsiveness';
 import Icon from '../../../components/Icon';
 
 const Splash = ({navigation}) => {
-  // const [isLoaded, setIsLoaded] = useState(false);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setIsLoaded(true);
-  //   }, 2000);
-    
-  // }, []);
-setTimeout(() => {
+//Validation Login
+const [Token , setToken]= React.useState(null);
+
+ const fetchAndSetUser= async ()=> 
+  {
+  const token = await AsyncStorage.getItem('@token');
+  console.log(token,'token');
+   setToken(token);
+   if(Token ===null ){
+    console.log(Token,'condition True');
+
+    setTimeout(() => {
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{name: routeName.LOGIN}],
+        }),
+      );
+    }, 1500)
+  }
+  else{
+    // console.log('condition True');
     navigation.dispatch(
-      CommonActions.reset({
-        index: 0,
-        routes: [{name: routeName.LOGIN}],
-      }),
-    );
-  }, 1500)
+      StackActions.replace('Home')
+    )
+    
+  }
+  }
 
+  
+React.useEffect(() => {
+  fetchAndSetUser();
+}, [])
   
 
   return (

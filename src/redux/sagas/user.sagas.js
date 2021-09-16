@@ -6,6 +6,7 @@ import types from '../actions/types';
 import Api from '../lib/api';
 import urls from '../lib/urls';
 import FlashMessage ,{ showMessage, hideMessage } from "react-native-flash-message";
+import { StackActions } from '@react-navigation/native';
 
 //Register user saga
 export function* loginUserSaga() {
@@ -19,10 +20,10 @@ function* loginUserApi(data) {
     const response = yield Api.post(urls.LOGIN_URL, params);
     console.log(response, 'response');
     // dispatch a success action to the store with the new dog
-    if (response.data != null) {
+    if (response&&response.data != null) {
       yield AsyncStorage.setItem('@token', response.data.token);
       yield put({type: types.LOGIN_USER_SUCCESS, payload: response.data});
-      navigation.navigate(routeName.LANDING_SCREEN);
+      navigation.dispatch(StackActions.replace('Home'));
     }
     else{
         showMessage({
@@ -33,7 +34,12 @@ function* loginUserApi(data) {
         });
     }
   } catch (error) {
-    console.log('Where We post data');
+    showMessage({
+      message: "Error",
+      description: "Check Your Internet Connection",
+      type: "danger",
+      icon: { icon: "auto", position: "left" },
+    });
     yield put({type: types.LOGIN_USER_FAILURE, error: error});
   }
 }
@@ -58,34 +64,28 @@ function* loginUserApi(data) {
 //   }
 // }
 
-// //Get user categories saga
-// export function* getUserCategoriesSaga() {
-//   yield takeLatest(types.GET_USER_CATS_REQUEST, getUserCategoriesSagaApi);
-// }
-// function* getUserCategoriesSagaApi({ params }) {
-//   try {
-//     const response = yield Api.get(urls.GET_USER_CATS_URL);
+//Get user Awards saga
+export function* getRestaurantAwardsSaga() {
+  yield takeLatest(types.GET_RESTAURANT_AWARDS_REQUEST, getAwardsRestaurantSagaApi);
+}
+function* getAwardsRestaurantSagaApi() {
+  try {
+    const response = yield Api.get(urls.RESTAURANT_AWARDS);
+    console.log(response,"response");
+    if (response&&response.data != null){
+      yield put({ type: types.GET_RESTAURANT_AWARDS_SUCCESS, payload: response.data });
 
-//     //Getting savedSites reducer data.
-//     const savedSites = yield select(savedSitesSelector);
+    }else{
+    yield put({ type: types.GET_RESTAURANT_AWARDS_FAILURE, error: error });
+    }
 
-//     // dispatch a success action to the store with the new data object
+    // dispatch a success action to the store with the new data object
 
-//     yield put({ type: types.GET_USER_CATS_SUCCESS, payload: response });
-//     yield put({
-//       type: types.CATS_WITH_PRODUCTS_SUCCESS,
-//       payload: {
-//         // status
-//         ...response,
-//         data: {
-//           data: parseCats(response.data.data, savedSites.data),
-//         },
-//       },
-//     });
-//   } catch (error) {
-//     yield put({ type: types.GET_USER_CATS_FAILURE, error: error });
-//   }
-// }
+    
+  } catch (error) {
+    yield put({ type: types.GET_RESTAURANT_AWARDS_FAILURE, error: error });
+  }
+}
 
 // //Add product category
 // export function* addRUpdateCategorySaga() {

@@ -4,7 +4,24 @@ import { AwardsMenuSectionsData } from '../../../constants/mock'
 import { wp ,hp } from '../../../helpers/Responsiveness'
 import ResponsiveText from '../../../components/RnText'
 import { colors } from '../../../constants/colorsPallet'
+import {useDispatch, useSelector} from 'react-redux';
+import {awardsRestaurant} from '../../../redux/actions/user.actions';
+
 export default function AwardsDetail() {
+  const counter = useSelector((state) => state.appReducers.restaurantDetail)
+  console.log('Awards_statee',counter)
+
+  const dispatch = useDispatch();
+
+  const awards_restaurant=()=>{
+    dispatch(
+      (awardsRestaurant())
+    );
+  };
+  React.useEffect(() => {
+    awards_restaurant()
+  }, [])
+  
     return (
         <View>
             {AwardsMenuSectionsData.map((item , index)=>{

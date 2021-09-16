@@ -6,9 +6,11 @@ import {globalPath} from '../../../../constants/globalPath';
 import Icon from '../../../../components/Icon';
 import { routeName } from '../../../../constants/routeName';
 import AsyncStorage from '@react-native-community/async-storage';
+import { StackActions } from '@react-navigation/native';
 
 
 const More = ({navigation}) => {
+  
 
   const logout =()=>{
     Alert.alert(
@@ -20,7 +22,9 @@ const More = ({navigation}) => {
           onPress: () => console.log("Cancel Pressed"),
           style: "cancel"
         },
-        { text: "OK", onPress: async () => await AsyncStorage.removeItem('@token')  }
+        { text: "OK", onPress: async () => {
+          await AsyncStorage.removeItem('@token');
+          navigation.dispatch(StackActions.replace('Auth')) } }
       ]
     );
   }

@@ -9,9 +9,9 @@ export const loginUser = (data) => {
   };
 };
 
-export const loginUserReset = () => {
+export const awardsRestaurant = () => {
   return {
-    type: types.LOGIN_USER_RESET,
+    type: types.GET_RESTAURANT_AWARDS_REQUEST,
   };
 };
 

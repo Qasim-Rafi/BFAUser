@@ -2,8 +2,8 @@ import React from 'react';
 import HomeStack from './HomeStack';
 import AuthStack from './AuthStack';
 import {NavigationContainer } from '@react-navigation/native';
-import {createSwitchNavigator} from 'react-navigation'
 import AsyncStorage from '@react-native-community/async-storage';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Router = () => {
   const [Token , setToken]= React.useState('');
@@ -11,14 +11,22 @@ const Router = () => {
     async function fetchAndSetUser() 
     {
     const token = await AsyncStorage.getItem('@token');
-    console.log(token,'tokeen');
     setToken(token);
     }
     fetchAndSetUser();
   },[]);
+
+    const Stack=createNativeStackNavigator();
+  
   return (
     <NavigationContainer>
-      {Token === '' || Token === null?<AuthStack/> :<HomeStack /> }
+       <Stack.Navigator screenOptions={{
+        headerShown: false,
+      }}>
+        <Stack.Screen name="Auth" component={AuthStack} />
+        <Stack.Screen name="Home" component={HomeStack} />
+      </Stack.Navigator>
+      {/* {Token === '' || Token === null?<AuthStack/> :<HomeStack /> } */}
       
       {/* <DrawerStack/> */}
     </NavigationContainer>

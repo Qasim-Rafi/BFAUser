@@ -24,6 +24,8 @@ import {FiltersDummyData} from '../../../constants/mock';
 import RnButton from '../../../components/RnButton';
 import {routeName} from '../../../constants/routeName';
 import { Item } from 'react-native-paper/lib/typescript/components/List/List';
+import { StackActions } from '@react-navigation/native';
+
 
 export default function SelectCoisines({navigation}) {
   const [itemList, setItemList] = useState([]);
@@ -77,7 +79,7 @@ export default function SelectCoisines({navigation}) {
       <View style={{justifyContent: 'center', alignItems: 'center'}}>
         <RnButton
           onPress={() => {
-            navigation.navigate(routeName.LANDING_SCREEN);
+            navigation.dispatch(StackActions.replace('Home'));
           }}
           style={styles.cuisinesButton}>
           <ResponsiveText size={4}>Next</ResponsiveText>

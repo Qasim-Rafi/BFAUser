@@ -18,15 +18,105 @@ import { Spacing } from '../../../constants/spacingScale';
 import Line from '../../../components/Line';
 import { routeName } from '../../../constants/routeName';
 import { colors } from '../../../constants/colorsPallet';
-
+import { showMessage } from 'react-native-flash-message';
 export default function Signup({ navigation }) {
- const [firstName,setFirstName] = useState()
- const [lastName, setLastName] = useState()
-const [email, setEmail] = useState()
- const [phoneNum, setPhoneNum] = useState()
- const [password, setPassword] = useState()
+ const [firstName,setFirstName] = useState('')
+ const [lastName, setLastName] = useState('')
+const [email, setEmail] = useState('')
+ const [phoneNum, setPhoneNum] = useState('')
+ const [password, setPassword] = useState('')
+const [confirmPassword, setConfirmPassword] = useState();
+ const expressions = {
+  email: /^\w+([+.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+};
+ const validation = () => {
+  if(firstName===''){
+    showMessage({
+      message: "Error",
+      description: "First name is Required",
+      type: "danger",
+      icon: { icon: "auto", position: "left" },
+    });
 
- const [confirmPassword, setConfirmPassword] = useState();
+  }
+  else if(lastName===''){
+    showMessage({
+      message: "Error",
+      description: "Last name is Required",
+      type: "danger",
+      icon: { icon: "auto", position: "left" },
+    });
+
+  }
+  else if(email==='')
+  {
+    showMessage({
+      message: "Error",
+      description: "Email is Required",
+      type: "danger",
+      icon: { icon: "auto", position: "left" },
+    });
+
+  }
+  else if (phoneNum==='' ){
+    showMessage({
+      message: "Error",
+      description: "PhoneNumber is Required",
+      type: "danger",
+      icon: { icon: "auto", position: "left" },
+    });
+
+  }
+  else if (password===''){
+    showMessage({
+      message: "Error",
+      description: "Password is Required",
+      type: "danger",
+      icon: { icon: "auto", position: "left" },
+    });
+
+  }
+  else if(password.length < 8)
+  {
+    showMessage({
+      message: "Error",
+      description: "Password Length should be greater then 8",
+      type: "danger",
+      icon: { icon: "auto", position: "left" },
+    });
+  }
+  else if (confirmPassword===''){
+    showMessage({
+      message: "Error",
+      description: "Confirm Password is Required",
+      type: "danger",
+      icon: { icon: "auto", position: "left" },
+    });
+
+  }
+  else if (password!==confirmPassword){
+    showMessage({
+      message: "Error",
+      description: "Password is not matched",
+      type: "danger",
+      icon: { icon: "auto", position: "left" },
+    });
+
+  }
+  else if (!expressions.email.test(email) || email.includes(' ')){
+    showMessage({
+      message: "Error",
+      description: "Invalid Email",
+      type: "danger",
+      icon: { icon: "auto", position: "left" },
+    });
+
+  }
+  else{
+    navigation.navigate(routeName.LOGIN);
+  }
+
+ }
 
   return (
     <KeyboardAvoidingView
@@ -99,7 +189,7 @@ const [email, setEmail] = useState()
             leftIcon={globalPath.PASSWORD_LOGO}
           />
 
-          <RnButton onPress={()=>navigation.navigate(routeName.NUMBER_VERIFICATION)} fontFamily='light' margin={[20, 0]} title="SIGN UP " />
+          <RnButton onPress={()=>validation()} fontFamily='light' margin={[20, 0]} title="SIGN UP " />
           <View style={styles.footer}>
            
             {/* <Icon size={wp(8)}  margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}

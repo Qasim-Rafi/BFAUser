@@ -6,23 +6,16 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import {FacilityList} from '../../../components/Facility';
 import {
   BranchDetailButtons,
   FacilityData,
   MenuSectionButtons,
 } from '../../../constants/mock';
-import AdvertisementBanner from '../BottomTabs/Home/AdvertisementBanner';
 import ImageHeader from '../BottomTabs/Home/ImageHeader';
-import Comments from '../DishDetails/Comments';
-import DishDescription from '../DishDetails/DishDescription';
-import HeaderButtons from './HeaderButtons';
-import TimeTable from './TimeTable';
+
 // import ResturantDescription from './ResturantDescription'
-import RnButton from '../../../components/RnButton';
 import ResponsiveText from '../../../components/RnText';
 import Icon from '../../../components/Icon';
-import {globalPath} from '../../../constants/globalPath';
 import {hp, wp} from '../../../helpers/Responsiveness';
 import Info from './Info';
 import Menu from '../Menu/Menu';

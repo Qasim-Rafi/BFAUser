@@ -8,34 +8,26 @@ import {
   useColorScheme,
   ViewPagerAndroidBase,
 } from 'react-native';
-import {ScrollView, TouchableOpacity, ActivityIndicator} from 'react-native';
-import { DropdownAlert } from '@nghinv/react-native-dropdown-alert';
-
-
-//Local Imports
+import {ScrollView, TouchableOpacity} from 'react-native';
 import {hp, wp} from '../../../helpers/Responsiveness';
 import Icon from '../../../components/Icon';
 import Input from '../../../components/Input';
 import RnButton from '../../../components/RnButton';
 import ResponsiveText from '../../../components/RnText';
 import {globalPath} from '../../../constants/globalPath';
-import {Spacing} from '../../../constants/spacingScale';
 import Line from '../../../components/Line';
 import {routeName} from '../../../constants/routeName';
 import {colors} from '../../../constants/colorsPallet';
 import FlashMessage ,{ showMessage, hideMessage } from "react-native-flash-message";
 
+
 //Redux Import
 import {useDispatch, useSelector} from 'react-redux';
 import {loginUser} from '../../../redux/actions/user.actions';
 
-
 export default function Login({navigation}) {
   const [userName, setUserName] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [indicator, setIndicator] = React.useState(false);
-
-
   //Redux Dispatch
   const dispatch = useDispatch();
 
@@ -51,36 +43,16 @@ export default function Login({navigation}) {
           username: userName,
           password: password,
         },
-        
         navigation:navigation,
       })
     );
-   
   };
-    {()=>setIndicator(false);}
- 
 
 
-//   const doValidations = () => {
-//       if(userName===null){
-//         DropdownAlert.show({
-//           title: 'Error',
-//           message: "Username can't be empty",
-//           timeDismiss: 1500,
-//         })
-//       }
-//       else if(password===null){
-//          DropdownAlert.show({
-//           title: 'Error',
-//           message: "Username can't be empty",
-//           timeDismiss: 1500,
-//         })
-//       }
-// // userLogin()
-//   }  
 
+  //validation form
   const Validation=(item)=>{
-    if (userName === '') {
+    if (userName === '' || userName === null ) {
       showMessage({
         message: "Error",
         description: "Username is Required",
@@ -111,17 +83,12 @@ export default function Login({navigation}) {
     <ScrollView contentContainerStyle={{flexGrow: 1}}>
       <ImageBackground style={styles.container} source={globalPath.BG_IMAGE}>
         <View style={styles.screeninfo}>
-          <View style={{alignItems:'center', marginBottom:15}}>
-          <Icon source={globalPath.BALI_ICON} size={70}/>
-          </View>
-          <ResponsiveText textAlign={'center'} color={colors.yellow} fontFamily="Regular" size={7.5}>
-            Welcome to Bali!
+          <ResponsiveText color={colors.yellow} fontFamily="Regular" size={8}>
+            Sign In
           </ResponsiveText>
-          <ResponsiveText textAlign={'center'} color={colors.white}>
+          <ResponsiveText color={colors.white}>
             Please Login to Continue
           </ResponsiveText>
-         
-          
         </View>
         <View style={styles.formArea}>
           <Input
@@ -141,30 +108,20 @@ export default function Login({navigation}) {
             leftIcon={globalPath.PASSWORD_LOGO}
           />
           <View style={styles.forgotPasswordContainer}>
-            {/* <Line color={colors.grey5} width={wp(20)} />
+            <Line color={colors.grey5} width={wp(20)} />
             <ResponsiveText margin={[0, 10]} color={colors.white}>
               Forgot Password?
             </ResponsiveText>
-            <Line color={colors.grey5} width={wp(20)} /> */}
+            <Line color={colors.grey5} width={wp(20)} />
           </View>
           <RnButton
-            onPress={
-              
-              () => {
-                // doValidations();
-                setIndicator(false);
-                // userLogin();
-                navigation.navigate(routeName.LANDING_SCREEN);
-                }}
+            onPress={() => Validation()}
             // onPress={()=>navigation.navigate(routeName.LANDING_SCREEN)}
             fontFamily="SemiBold"
             height={100}
             margin={[0, 0]}
             title="SIGN IN"
           />
-          <View style={{marginTop:60}}>
-            <ActivityIndicator animating={indicator===true? true: false}    size={'large'} color={colors.yellow} />
-           </View>
           <View style={styles.footer}>
             {/* <Icon size={wp(8)} margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
             <ResponsiveText margin={[0, 10]} color={colors.white}>
@@ -195,9 +152,9 @@ const styles = StyleSheet.create({
     // backgroundColor: colors.black,
   },
   screeninfo: {
-    flex: 0.35,
+    flex: 0.25,
     justifyContent: 'flex-end',
-    paddingBottom: wp(7),
+    paddingBottom: wp(10),
     padding: wp(5),
   },
   formArea: {
@@ -211,7 +168,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     overflow: 'hidden',
     paddingHorizontal: 10,
-    marginBottom: wp(15),
+    marginBottom: wp(8),
   },
   footer: {
     flex: 1,

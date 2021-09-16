@@ -5,6 +5,8 @@ export const routeName = {
   LOGIN: 'LOGIN',
   SIGN_UP: 'SIGN_UP',
   LANDING_SCREEN: 'LANDING_SCREEN',
+  AUTH_STACK:'AUTH_STACK',
+  MAIN_STACK:'MAIN_STACK',
   Categories :'Categories',
   RestaurantBranch :'RESTAURANT_BRANCH',
   DishDetails:'DishDetails',
