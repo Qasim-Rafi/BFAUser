@@ -26,6 +26,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {loginUser} from '../../../redux/actions/user.actions';
 
 export default function Login({navigation}) {
+  const dropdownRef = React.useRef(null)
+
   const [userName, setUserName] = React.useState('');
   const [password, setPassword] = React.useState('');
   //Redux Dispatch
@@ -53,7 +55,7 @@ export default function Login({navigation}) {
   //validation form
   const Validation=(item)=>{
     if (userName === '' || userName === null ) {
-      showMessage({
+      dropdownRef.current.showMessage({
         message: "Error",
         description: "Username is Required",
         type: "danger",
@@ -63,7 +65,7 @@ export default function Login({navigation}) {
     }
     else if (password ==='')
     {
-      showMessage({
+      dropdownRef.current.showMessage({
         message: "Error",
         description: "Password is Required",
         type: "danger",
@@ -137,7 +139,7 @@ export default function Login({navigation}) {
           </View>
         </View>
       </ImageBackground>
-      <FlashMessage position="top" icon="auto"/>
+      <FlashMessage ref={dropdownRef} />
     </ScrollView>
     // </KeyboardAvoidingView>
   );

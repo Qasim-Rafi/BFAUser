@@ -2,11 +2,11 @@ import React from 'react';
 import {
   StyleSheet,
   View,
-  KeyboardAvoidingView,
+  ScrollView,
   ImageBackground,
   Platform,
 } from 'react-native';
-import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useState } from 'react';
 import { hp, wp } from '../../../helpers/Responsiveness';
 import Icon from '../../../components/Icon';
@@ -18,8 +18,11 @@ import { Spacing } from '../../../constants/spacingScale';
 import Line from '../../../components/Line';
 import { routeName } from '../../../constants/routeName';
 import { colors } from '../../../constants/colorsPallet';
-import { showMessage } from 'react-native-flash-message';
+import FlashMessage ,{ showMessage, hideMessage } from "react-native-flash-message";
+
+
 export default function Signup({ navigation }) {
+  const dropdownRef = React.useRef(null)
  const [firstName,setFirstName] = useState('')
  const [lastName, setLastName] = useState('')
 const [email, setEmail] = useState('')
@@ -30,8 +33,8 @@ const [confirmPassword, setConfirmPassword] = useState();
   email: /^\w+([+.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
 };
  const validation = () => {
-  if(firstName===''){
-    showMessage({
+  if(firstName === ''){
+    dropdownRef.current.showMessage({
       message: "Error",
       description: "First name is Required",
       type: "danger",
@@ -39,8 +42,8 @@ const [confirmPassword, setConfirmPassword] = useState();
     });
 
   }
-  else if(lastName===''){
-    showMessage({
+  else if(lastName === ''){
+    dropdownRef.current.showMessage({
       message: "Error",
       description: "Last name is Required",
       type: "danger",
@@ -50,7 +53,7 @@ const [confirmPassword, setConfirmPassword] = useState();
   }
   else if(email==='')
   {
-    showMessage({
+    dropdownRef.current.showMessage({
       message: "Error",
       description: "Email is Required",
       type: "danger",
@@ -59,7 +62,7 @@ const [confirmPassword, setConfirmPassword] = useState();
 
   }
   else if (phoneNum==='' ){
-    showMessage({
+    dropdownRef.current.showMessage({
       message: "Error",
       description: "PhoneNumber is Required",
       type: "danger",
@@ -68,7 +71,7 @@ const [confirmPassword, setConfirmPassword] = useState();
 
   }
   else if (password===''){
-    showMessage({
+    dropdownRef.current.showMessage({
       message: "Error",
       description: "Password is Required",
       type: "danger",
@@ -78,7 +81,7 @@ const [confirmPassword, setConfirmPassword] = useState();
   }
   else if(password.length < 8)
   {
-    showMessage({
+    dropdownRef.current.showMessage({
       message: "Error",
       description: "Password Length should be greater then 8",
       type: "danger",
@@ -86,7 +89,7 @@ const [confirmPassword, setConfirmPassword] = useState();
     });
   }
   else if (confirmPassword===''){
-    showMessage({
+    dropdownRef.current.showMessage({
       message: "Error",
       description: "Confirm Password is Required",
       type: "danger",
@@ -95,7 +98,7 @@ const [confirmPassword, setConfirmPassword] = useState();
 
   }
   else if (password!==confirmPassword){
-    showMessage({
+    dropdownRef.current.showMessage({
       message: "Error",
       description: "Password is not matched",
       type: "danger",
@@ -104,7 +107,7 @@ const [confirmPassword, setConfirmPassword] = useState();
 
   }
   else if (!expressions.email.test(email) || email.includes(' ')){
-    showMessage({
+    dropdownRef.current.showMessage({
       message: "Error",
       description: "Invalid Email",
       type: "danger",
@@ -119,10 +122,7 @@ const [confirmPassword, setConfirmPassword] = useState();
  }
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={hp(-2)}
-      style={styles.container}>
+    <ScrollView contentContainerStyle={{flexGrow: 1}}>
       <ImageBackground style={styles.container} source={globalPath.BG_IMAGE}>
         <View style={styles.screeninfo}>
           <View style={{marginBottom:10}}><Icon source={globalPath.BALI_ICON} size={70} /></View>
@@ -201,7 +201,8 @@ const [confirmPassword, setConfirmPassword] = useState();
           </View>
         </View>
       </ImageBackground>
-    </KeyboardAvoidingView>
+      <FlashMessage ref={dropdownRef}/>
+    </ScrollView>
   );
 }
 const styles = StyleSheet.create({

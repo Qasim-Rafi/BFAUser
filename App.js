@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import Router from './src/navigation/Router';
 import {persistor, store} from './src/redux/store';
-
+import FlashMessage from 'react-native-flash-message';
 const App = () => {
   return (
     <Provider store={store}>
@@ -14,6 +14,7 @@ const App = () => {
       <Router />
       {/*</PersistGate>*/}
       </PersistGate>
+      <FlashMessage position="top" icon="auto"/>
     </Provider>
   );
 };
