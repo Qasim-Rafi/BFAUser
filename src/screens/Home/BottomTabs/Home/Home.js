@@ -40,6 +40,30 @@ const Home = ({navigation}) => {
         <View style={styles.bfaPartnerContainer}>
           <BfaPartner navigation={navigation} />
         </View>
+      
+        <View style={styles.yourFavorite}>
+          <YourFavourite navigation={navigation} />
+        </View>
+        <View style={styles.awardWinningDishes}>
+          <AwardWinningDishes navigation={navigation} />
+        </View>
+        <View style={styles.recommendationContainer}>
+         <Recommendation navigation={navigation}/>
+        </View>
+        <View style={styles.everyoneFavorite}>
+          <EveryOneFavourite navigation={navigation} />
+        </View>
+        {/* <View style={styles.Advertisement2ndVarient}>
+          <Advertisement2ndVarient navigation={navigation} />
+        </View> */}
+{/*         
+        <View style={styles.Advertisement2ndVarient}>
+          <Advertisement2ndVarient navigation={navigation} />
+        </View> */}
+        
+        <View style={styles.awardWinningDishes}>
+          <Promotion navigation={navigation} />
+        </View>
         <ImageBackground
           style={styles.cuisinesContainer}
           //  source={{ uri: 'https://images.unsplash.com/photo-1441716844725-09cedc13a4e7?h=1024' }}
@@ -49,7 +73,7 @@ const Home = ({navigation}) => {
           
             onPress={() => navigation.navigate(routeName.Categories)}
             style={styles.cuisinesButton}>
-            <ResponsiveText fontFamily={'Regular'} size={2.9}>
+            <ResponsiveText >
               Cuisines
             </ResponsiveText>
             <Icon
@@ -61,27 +85,6 @@ const Home = ({navigation}) => {
           </TouchableOpacity>
          
         </ImageBackground>
-        <View style={styles.recommendationContainer}>
-         <Recommendation navigation={navigation}/>
-        </View>
-        <View style={styles.everyoneFavorite}>
-          <EveryOneFavourite navigation={navigation} />
-        </View>
-        <View style={styles.Advertisement2ndVarient}>
-          <Advertisement2ndVarient navigation={navigation} />
-        </View>
-        <View style={styles.yourFavorite}>
-          <YourFavourite navigation={navigation} />
-        </View>
-        <View style={styles.Advertisement2ndVarient}>
-          <Advertisement2ndVarient navigation={navigation} />
-        </View>
-        <View style={styles.awardWinningDishes}>
-          <AwardWinningDishes navigation={navigation} />
-        </View>
-        <View style={styles.awardWinningDishes}>
-          <Promotion navigation={navigation} />
-        </View>
       </ScrollView>
     </View>
   );
@@ -116,8 +119,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.black2,
   },
   cuisinesContainer: {
-    height: hp(23),
-    marginHorizontal: 15,
+    marginVertical:15,
+    height: hp(22),
     justifyContent: 'center',
     alignItems: 'center',
   },

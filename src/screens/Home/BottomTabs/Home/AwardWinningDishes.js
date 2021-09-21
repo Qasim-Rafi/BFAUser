@@ -12,7 +12,7 @@ const AwardWinningDishes = (props) => {
     return (
         <>
             <View style={styles.AwardWinningDishesHeaderSection}>
-                <ResponsiveText margin={[0,0,0,12]} size={4} color={colors.white}>Award Winning Dishes</ResponsiveText>
+                <ResponsiveText margin={[0,0,0,12]} size={4} color={colors.white}>Brunei Food Awards</ResponsiveText>
                 <SeeAllButton navigation={props.navigation}/>
             </View>
             <View style={styles.AwardWinningDishesItemsSection}>

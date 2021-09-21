@@ -12,7 +12,7 @@ const YourFavourite = (props) => {
     return (
         <>
             <View style={styles.yourFavoriteHeaderSection}>
-                <ResponsiveText margin={[0,0,0,12]} size={4} color={colors.white}>Your Favorites</ResponsiveText>
+                <ResponsiveText margin={[0,0,0,12]} size={4} color={colors.white}>Your Favourites</ResponsiveText>
                 <SeeAllButton navigation={props.navigation} />
             </View>
             <View style={styles.yourFavoriteItemsSection}>

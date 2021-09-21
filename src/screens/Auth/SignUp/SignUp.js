@@ -189,7 +189,7 @@ const [confirmPassword, setConfirmPassword] = useState();
             leftIcon={globalPath.PASSWORD_LOGO}
           />
 
-          <RnButton onPress={()=>validation()} fontFamily='light' margin={[20, 0]} title="SIGN UP " />
+          <RnButton onPress={()=>navigation.navigate(routeName.NUMBER_VERIFICATION)} fontFamily='light' margin={[20, 0]} title="SIGN UP " />
           <View style={styles.footer}>
            
             {/* <Icon size={wp(8)}  margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}

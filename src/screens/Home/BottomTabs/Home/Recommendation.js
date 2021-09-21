@@ -11,7 +11,7 @@ const Recommendation = (props) => {
     return (
         <>
             <View style={styles.recommendationHeaderSection}>
-                <ResponsiveText margin={[0,0,0,-5]} size={4} color={colors.white}>Our Recommendations</ResponsiveText>
+                <ResponsiveText margin={[0,0,0,-5]} size={4} color={colors.white}>BFA Recommendations</ResponsiveText>
                 <SeeAllButton navigation={props.navigation} />
             </View>
             <View style={styles.recommendationItemsSection}>
