@@ -8,8 +8,8 @@ import { exploreCategoryByName } from '../../../constants/mock';
 import { hp, wp } from '../../../helpers/Responsiveness';
 import { colors } from '../../../constants/colorsPallet';
 import { useCallback } from 'react';
-export default function Categories({navigation}) {
-
+export default function Categories({navigation ,route}) {
+  const { data } = route.params;
 
   const [activeAlphabet, setActiveAlphabet] = useState(null);
   const scrollRef = useRef(null)
@@ -28,15 +28,16 @@ export default function Categories({navigation}) {
   const renderItem = ({ item }) => {
     return (
       <View style={styles.item}>
-        <Text style={styles.header}>{item.title}</Text>
-        <View style={{ backgroundColor: "#383838", paddingLeft: 25, borderRadius: 10, justifyContent: 'center', height: hp(22) }}>
-          <Text style={styles.title}>{item.data[0]}</Text>
-          <Text style={styles.title}>{item.data[0]}</Text>
-          <Text style={styles.title}>{item.data[0]}</Text>
-          <Text style={styles.title}>{item.data[0]}</Text>
-          <Text style={styles.title}>{item.data[0]}</Text>
-          <Text style={styles.title}>{item.data[0]}</Text>
+        <Text style={styles.header}>{item.firstLetter}</Text>
+        <View style={{borderRadius:10,backgroundColor: colors.black2,paddingVertical:10}}>
+        {item.objCusineList.map((item,index)=>{
+          return(
+            <View style={{  paddingLeft: 25, justifyContent: 'center',paddingVertical:2}}>
+          <Text style={styles.title}>{item.name}</Text>
+        </View> )
+        })}
         </View>
+        
       </View>
     )
   };
@@ -54,11 +55,11 @@ export default function Categories({navigation}) {
 
       </View>
       <View style={{ position: 'absolute', height: hp(86), marginRight: 10, width: wp(5), backgroundColor: '#383838', zIndex: 1000, right: 0, marginTop: hp(10), alignItems: 'center', borderRadius: 10, justifyContent: 'center' }}>
-        {exploreCategoryByName.map((item, index) => {
+        {data.map((item, index) => {
 
           return (
-            <TouchableOpacity style={{ marginBottom: 2, backgroundColor: activeAlphabet === item.title ? colors.white : undefined, height: 25, width: 25, justifyContent: 'center', alignItems: 'center', borderRadius: 1000 }} onPress={() => ScrollHandler(item, index)}>
-              <ResponsiveText color={colors.yellow}>{item.title}</ResponsiveText>
+            <TouchableOpacity style={{ marginBottom: 2, backgroundColor: activeAlphabet === item.firstLetter ? colors.white : undefined, height: 25, width: 25, justifyContent: 'center', alignItems: 'center', borderRadius: 1000 }} onPress={() => ScrollHandler(item, index)}>
+              <ResponsiveText color={colors.yellow}>{item.firstLetter}</ResponsiveText>
             </TouchableOpacity>
           )
         })}
@@ -68,7 +69,7 @@ export default function Categories({navigation}) {
         <FlatList
           ref={scrollRef}
           contentContainerStyle={{ paddingVertical: 10 }}
-          data={exploreCategoryByName}
+          data={data}
           keyExtractor={(item, index) => item + index}
           renderItem={renderItem}
            onViewableItemsChanged={onViewRef}

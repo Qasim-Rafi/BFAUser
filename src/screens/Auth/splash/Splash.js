@@ -20,7 +20,7 @@ const [Token , setToken]= React.useState(null);
   const token = await AsyncStorage.getItem('@token');
   console.log(token,'token');
    setToken(token);
-   if(Token ===null ){
+   if(token ===null ){
     console.log(Token,'condition True');
 
     setTimeout(() => {

@@ -29,7 +29,18 @@ import AwardWinningDishes from './AwardWinningDishes';
 import Promotion from './Promotion';
 import Header from '../../../../components/Header';
 import { ourRecommendationFakeDATA } from '../../../../constants/mock';
+import { useDispatch ,useSelector } from 'react-redux';
+import { getUserCusine } from '../../../../redux/actions/user.actions';
+
 const Home = ({navigation}) => {
+  const dispatch=useDispatch();
+  getCusines=()=>{
+    dispatch(
+      (getUserCusine({
+        navigation:navigation,
+      }))
+    );
+  }
   return (
     <View style={styles.container}>
       <Header navigation={navigation} />
@@ -71,7 +82,7 @@ const Home = ({navigation}) => {
           
           <TouchableOpacity
           
-            onPress={() => navigation.navigate(routeName.Categories)}
+            onPress={getCusines}
             style={styles.cuisinesButton}>
             <ResponsiveText >
               Cuisines

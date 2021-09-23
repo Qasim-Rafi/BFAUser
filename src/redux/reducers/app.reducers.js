@@ -13,6 +13,10 @@ const initialState = {
     refreshing: false,
     data: {},
   },
+  cusineDetail:{
+    refreshing: false,
+    data: {},
+  }
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -25,6 +29,15 @@ export const appReducers = (state = initialState, action) => {
           data:action.payload.data
         }
       };
+      case types.GET_CUSINE_SUCCESS:
+      return {
+        ...state,
+        cusineDetail:{
+          ...state.cusineDetail,
+          data:action.payload
+        }
+      };
+
     default:
       return state;
   }

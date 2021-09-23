@@ -9,9 +9,20 @@ export const loginUser = (data) => {
   };
 };
 
+//App Actions
+
 export const awardsRestaurant = () => {
   return {
     type: types.GET_RESTAURANT_AWARDS_REQUEST,
+  };
+};
+
+//Get  Cusine
+
+export const getUserCusine = (data) => {
+  return {
+    type: types.GET_CUSINE_REQUEST,
+    data:data
   };
 };
 

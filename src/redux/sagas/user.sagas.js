@@ -87,6 +87,31 @@ function* getAwardsRestaurantSagaApi() {
   }
 }
 
+// Get Cusine Saga
+export function* getCusineSaga() {
+  yield takeLatest(types.GET_CUSINE_REQUEST, getCusineSagaApi);
+}
+function* getCusineSagaApi(data ) {
+  let {params, navigation} = data.data;
+
+  try {
+    const response = yield Api.get(urls.CUSINE_URL);
+    if (response&&response.data != null){
+      yield put({ type: types.GET_CUSINE_SUCCESS, payload: response.data });
+      navigation.navigate(routeName.Categories,{data:response.data});
+
+    }else{
+    yield put({ type: types.GET_CUSINE_FAILURE, error: error });
+    }
+
+    // dispatch a success action to the store with the new data object
+
+    
+  } catch (error) {
+    yield put({ type: types.GET_CUSINE_FAILURE, error: error });
+  }
+}
+
 // //Add product category
 // export function* addRUpdateCategorySaga() {
 //   yield takeLatest(types.ADD_PRODUCT_CAT_REQUEST, addRUpdateCategorySagaApi);
