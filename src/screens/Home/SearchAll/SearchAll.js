@@ -19,7 +19,8 @@ export default function SearchAll({navigation}) {
 
 	return (
 		<View style={{flex:1,backgroundColor:colors.black3}}>
-			<SearchHeader navigation={navigation}/>
+			{/* ÷<SearchHeader navigation={navigation}/>? */}
+                <Header navigation={navigation} iconPath={globalPath.BACK_ARROW} />
 			<View style={styles.buttonViewStyle}>
 			
                   <TouchableOpacity
