@@ -17,7 +17,7 @@ export default function FilterSearch({navigation}) {
         <TouchableOpacity onPress={()=>{navigation.goBack()}}><Icon size={wp(5) } source={require('../../../assets/icons/back-arrow.png')} /></TouchableOpacity>
       
         <ResponsiveText  color={colors.white} size={5}>Filter By</ResponsiveText>
-        <Icon source={globalPath.SEARCH_LOGO} />
+        <Icon />
         </View>
         <FlatList
         data={FiltersDummyData}
@@ -25,7 +25,7 @@ export default function FilterSearch({navigation}) {
             <>
                 <View style={{margin:20}}>
                 <ResponsiveText size={4} color={colors.white}>{item.title}</ResponsiveText>
-                <View style={{borderBottomWidth:1,borderBottomColor:colors.grey,top:15}}></View>
+                <View style={{borderBottomWidth:0.5,borderBottomColor:colors.grey1}}></View>
                 
             </View>
             <View
@@ -33,38 +33,45 @@ export default function FilterSearch({navigation}) {
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center',
+        // justifyContent: 'center',
         flexWrap: 'wrap',
         alignContent: 'center',
+        marginHorizontal:10
+        
       }}>
       {item.data.map((item, index) => {
         return (
           <View
             style={{
-                borderRadius:18,
+                borderRadius:7,
               alignItems: 'center',
               justifyContent: 'center',
-              backgroundColor: colors.black2,
+              backgroundColor: colors.black3,
               marginHorizontal: 10,
               padding: 10,
               marginTop: 10,
+              borderColor:colors.grey1,
+        borderWidth:0.5
             }}>
-            <Text style={{fontSize: 14,color:colors.white }}>
-              {item.name}({item.value})
-            </Text>
+            <ResponsiveText color={colors.white} fontFamily={'regular'}>
+              {item.name}<ResponsiveText color={colors.yellow}>({item.value})
+              </ResponsiveText>
+            </ResponsiveText>
           </View>
         );
       })}
     </View>
 
                 
-            </>
-        )
-        }
+            </>)}
+      keyExtractor={item => item.id}/>
+        <View style={{height:50,backgroundColor:colors.black2,flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+          <ResponsiveText margin={[0,20,0,20]} color={colors.yellow}>2523 Properties</ResponsiveText>
+          <TouchableOpacity style={{backgroundColor:colors.yellow,borderRadius:3,padding:6,marginRight:20}}>
+            <ResponsiveText size={3.3}>Show Result</ResponsiveText>
+          </TouchableOpacity>
 
-        keyExtractor={item => item.id}
-      />
-
+        </View>
         </View>
     )
 }
