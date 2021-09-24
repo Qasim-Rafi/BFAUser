@@ -13,7 +13,93 @@ const Checkout = ({navigation}) => {
     <View style={{backgroundColor: colors.black3, flex: 1}}>
       <Header navigation={navigation} iconPath={globalPath.BACK_ARROW} />
       <View style={{flex: 0.9}}>
+        <View style={{marginVertical:40, alignItems:'center', justifyContent:'center'}}>
+          <ResponsiveText margin={[0,0,-5,0]} color={colors.white} size={4.5}>Your Cowry Balance</ResponsiveText>
+          <ResponsiveText fontFamily={'Bold'} color={colors.white} size={12} >114</ResponsiveText>
+          <ResponsiveText margin={[-5,0,0,0]} color={colors.white} size={4.5} >Choose Payment Method:</ResponsiveText>
+        </View>
+        <View style={{ justifyContent:'center'}}>
         <View
+            style={{
+              backgroundColor: colors.black2,
+              paddingHorizontal:20,
+              paddingVertical:15,
+              marginHorizontal:20,
+              borderRadius:10,
+              
+              flexDirection: 'row',
+              // justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Icon
+              size={50}
+              source={globalPath.COWRIES}
+            />
+            <TouchableOpacity>
+            <ResponsiveText margin={[0, 0, 0, 15]} size={3.5} color={colors.white}>
+              Cowries
+            </ResponsiveText>
+            <ResponsiveText margin={[-3, 0, 0, 15]} size={3} color={colors.grey}>
+              Scan to pay with your loyalty points
+            </ResponsiveText>
+            </TouchableOpacity>
+          </View>
+        <View
+            style={{
+              backgroundColor: colors.black2,
+              paddingHorizontal:20,
+              paddingVertical:15,
+              marginHorizontal:20,
+              borderRadius:10,
+              marginTop: 10,
+              flexDirection: 'row',
+              // justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Icon
+              size={50}
+              source={require('../../../../assets/icons/card.png')}
+            />
+            <TouchableOpacity onPress={()=>navigation.navigate(routeName.MANAGE_CARDS)} >
+            <ResponsiveText margin={[0, 0, 0, 15]} size={3.5} color={colors.white}>
+              Cards
+            </ResponsiveText>
+            <ResponsiveText margin={[-3, 0, 0, 15]} size={3} color={colors.grey}>
+              Scan to pay with your preferred card
+            </ResponsiveText>
+            </TouchableOpacity>
+          </View>
+          <View
+            style={{
+              backgroundColor: colors.black2,
+              paddingHorizontal:20,
+              paddingVertical:15,
+              marginHorizontal:20,
+              borderRadius:10,
+              marginTop: 10,
+              flexDirection: 'row',
+              // justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Icon
+              size={50}
+              source={globalPath.CASH}
+            />
+            <TouchableOpacity>
+            <ResponsiveText margin={[0, 0, 0, 15]} size={3.5} color={colors.white}>
+              Cash
+            </ResponsiveText>
+            <ResponsiveText margin={[-3, 0, 0, 15]} size={3} color={colors.grey}>
+              Scan to earn more cowries
+            </ResponsiveText>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+
+
+
+        {/* <View
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
@@ -80,6 +166,8 @@ const Checkout = ({navigation}) => {
             </TouchableOpacity>
           </View>
         </View>
+       */}
+      
       </View>
     </View>
   );

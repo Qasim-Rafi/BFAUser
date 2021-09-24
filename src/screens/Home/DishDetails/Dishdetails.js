@@ -19,16 +19,24 @@ export default function DishDetails({navigation}) {
             <ImageHeader navigation={navigation}/>
             </View>
         <DishDescription/>
-        <CalorieCount/>
-        <MoreFromResturant navigation={navigation}/>
-        <PeopleSay/>
-        <Comments/>
         <View style={{margin:20,paddingBottom:20}}>
         
         
         <RnButton onPress={()=>{navigation.navigate(routeName.ADD_TO_CART)}}>
             
-            <ResponsiveText  padding={0} color={colors.black}>Order This Dish</ResponsiveText>
+            <ResponsiveText  padding={0} color={colors.black}>Add to Order</ResponsiveText>
+        </RnButton>
+        </View>
+        <CalorieCount/>
+        <MoreFromResturant navigation={navigation}/>
+        <PeopleSay/>
+        {/* <Comments/> */}
+        <View style={{margin:20,paddingBottom:20}}>
+        
+        
+        <RnButton onPress={()=>{navigation.navigate(routeName.ADD_TO_CART)}}>
+            
+            <ResponsiveText  padding={0} color={colors.black}>Add to Order</ResponsiveText>
         </RnButton>
         </View>
         </ScrollView>

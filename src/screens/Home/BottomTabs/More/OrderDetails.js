@@ -1,6 +1,6 @@
 //Node Imports
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 
 //Local Imports
 import {colors} from '../../../../constants/colorsPallet';
@@ -21,18 +21,19 @@ export default function OrderDetails({navigation}) {
           flex: 0.1,
           backgroundColor: colors.black2,
           justifyContent: 'center',
-          alignItems: 'center',
+          // alignItems: 'center',
         }}>
         <Header navigation={navigation} iconPath={globalPath.BACK_ARROW} />
       </View>
       <View
         style={{
-          flex: 0.08,
+          flex: 0.07,
           backgroundColor: colors.black3,
           justifyContent: 'center',
-          marginHorizontal: 15,
+          marginHorizontal: 20,
+          marginVertical:15,
         }}>
-        <ResponsiveText size={3.5} color={colors.yellow}>
+        <ResponsiveText size={4} color={colors.yellow}>
           Order Details
         </ResponsiveText>
       </View>
@@ -44,57 +45,89 @@ export default function OrderDetails({navigation}) {
           justifyContent: 'center',
           marginHorizontal: 15,
         }}>
-        <View style={{flex: 0.4}}>
-          <StaticMap height={100} />
-        </View>
-        <View style={{flex: 0.6}}>
-          <View style={{flex: 0.3, justifyContent: 'center', marginStart: 15}}>
-            <ResponsiveText
-              color={colors.grey1}
-              size={2.5}
-              margin={[15, 0, 0, 0]}>
-              Jalan Rakyat Joti Rimba
-            </ResponsiveText>
-            <ResponsiveText color={colors.grey1} size={2.5}>
-              Bandar Seri Begawan, Brunei
-            </ResponsiveText>
-          </View>
-
-          <View
+        <View style={{flex: 1}}>
+        <View
             style={{
-              flex: 0.2,
+              flex: 0.3,
               flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginTop: 10,
               alignItems: 'center',
+              
             }}>
             <View style={{flex: 0.3, justifyContent: 'center'}}>
               <ResponsiveText
-                size={2.5}
+                size={3}
                 color={colors.white}
-                margin={[5, 0, 0, 15]}>
+                margin={[0, 0, 0, 15]}>
+                Name:
+              </ResponsiveText>
+            </View>
+            <View style={{flex: 0.7, justifyContent: 'center'}}>
+              <ResponsiveText
+                size={3}
+                color={colors.grey}
+                margin={[0, 0, 0, 15]}>
+                 Qasim
+              </ResponsiveText>
+            </View>
+          </View>
+          <View
+            style={{
+              flex: 0.3,
+              flexDirection: 'row',
+              alignItems: 'center',
+              
+            }}>
+            <View style={{flex: 0.3, justifyContent: 'center'}}>
+              <ResponsiveText
+                size={3}
+                color={colors.white}
+                margin={[0, 0, 0, 15]}>
                 Id:
               </ResponsiveText>
             </View>
             <View style={{flex: 0.7, justifyContent: 'center'}}>
               <ResponsiveText
-                size={2.5}
-                color={colors.grey1}
-                margin={[5, 0, 0, 15]}>
-                AMD123456
+                size={3}
+                color={colors.grey}
+                margin={[0, 0, 0, 15]}>
+                11
               </ResponsiveText>
             </View>
           </View>
           <View
             style={{
-              flex: 0.5,
+              flex: 0.3,
               flexDirection: 'row',
               alignItems: 'center',
-              marginTop: -15,
+              
             }}>
             <View style={{flex: 0.3, justifyContent: 'center'}}>
               <ResponsiveText
-                size={2.5}
+                size={3}
+                color={colors.white}
+                margin={[0, 0, 0, 15]}>
+                Location:
+              </ResponsiveText>
+            </View>
+            <View style={{flex: 0.7, justifyContent: 'center'}}>
+              <ResponsiveText
+                size={3}
+                color={colors.grey}
+                margin={[0, 0, 0, 15]}>
+                Customer Location
+              </ResponsiveText>
+            </View>
+          </View>
+          <View
+            style={{
+              flex: 0.3,
+              flexDirection: 'row',
+              alignItems: 'center',
+              
+            }}>
+            <View style={{flex: 0.3, justifyContent: 'center'}}>
+              <ResponsiveText
+                size={3}
                 color={colors.white}
                 margin={[0, 0, 0, 15]}>
                 Time:
@@ -102,13 +135,14 @@ export default function OrderDetails({navigation}) {
             </View>
             <View style={{flex: 0.7, justifyContent: 'center'}}>
               <ResponsiveText
-                size={2.5}
-                color={colors.grey1}
+                size={3}
+                color={colors.grey}
                 margin={[0, 0, 0, 15]}>
                 11 July,2021, 6:30PM
               </ResponsiveText>
             </View>
           </View>
+      
         </View>
       </View>
       <View
@@ -152,12 +186,12 @@ export default function OrderDetails({navigation}) {
           }}>
           <View
             style={{flex: 0.6, justifyContent: 'center', marginHorizontal: 15}}>
-            <ResponsiveText size={3} color={colors.grey1}>
+            <ResponsiveText size={3} color={colors.grey}>
               Fish Crackers
             </ResponsiveText>
           </View>
           <View style={{flex: 0.2, justifyContent: 'center'}}>
-            <ResponsiveText size={3} color={colors.grey1}>
+            <ResponsiveText size={3} color={colors.grey}>
               1
             </ResponsiveText>
           </View>
@@ -177,12 +211,12 @@ export default function OrderDetails({navigation}) {
           }}>
           <View
             style={{flex: 0.6, justifyContent: 'center', marginHorizontal: 15}}>
-            <ResponsiveText size={3} color={colors.grey1}>
+            <ResponsiveText size={3} color={colors.grey}>
               Egg Fried Rice
             </ResponsiveText>
           </View>
           <View style={{flex: 0.2, justifyContent: 'center'}}>
-            <ResponsiveText size={3} color={colors.grey1}>
+            <ResponsiveText size={3} color={colors.grey}>
               2
             </ResponsiveText>
           </View>
@@ -202,12 +236,12 @@ export default function OrderDetails({navigation}) {
           }}>
           <View
             style={{flex: 0.6, justifyContent: 'center', marginHorizontal: 15}}>
-            <ResponsiveText size={3} color={colors.grey1}>
+            <ResponsiveText size={3} color={colors.grey}>
               Chocolate Brownie
             </ResponsiveText>
           </View>
           <View style={{flex: 0.2, justifyContent: 'center'}}>
-            <ResponsiveText size={3} color={colors.grey1}>
+            <ResponsiveText size={3} color={colors.grey}>
               3
             </ResponsiveText>
           </View>
@@ -292,6 +326,9 @@ export default function OrderDetails({navigation}) {
           </View>
         </View>
       </View>
+    
+    
+    
     </View>
   );
 }

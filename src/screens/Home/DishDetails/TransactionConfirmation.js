@@ -52,7 +52,9 @@ const toggleModal = () => {
 		  </View>
 		  <View style={{marginStart:15, marginTop:10,marginEnd:15,paddingBottom:5, flexDirection:'row', justifyContent:'space-between', borderBottomWidth:1,borderBottomColor:colors.black2}}>
 			<ResponsiveText color={colors.white}>Payment Method</ResponsiveText>
+			<TouchableOpacity onPress={()=>navigation.navigate(routeName.CHECK_OUT_BOTTOM)}>
 			<ResponsiveText color={colors.yellow}>Card</ResponsiveText>
+			</TouchableOpacity>
 		  </View>
 		  <View style={{marginStart:15, marginTop:10,marginEnd:15,paddingBottom:5, flexDirection:'row', justifyContent:'space-between',}}>
 			<ResponsiveText color={colors.white}>Total</ResponsiveText>

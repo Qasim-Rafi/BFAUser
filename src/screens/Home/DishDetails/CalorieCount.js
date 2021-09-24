@@ -35,10 +35,7 @@ export default function CalorieCount(props) {
           height={wp(50)}
           standalone={true}
           innerRadius={wp(10)}
-          labelComponent = {
-            <VictoryLabel text="label" textAnchor='middle' 
-            />
-          }
+          
          
           data={[
             {x: 1, y: 20},
@@ -96,6 +93,12 @@ export default function CalorieCount(props) {
           })}
         </View>
       </View>
+      <Text style={{
+position: 'absolute',
+top:'15%',
+color: '#FFE600',
+left:'20%'
+}}> 85% </Text>
       <CaloriesList data={DATA} />
     </View>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image,TouchableOpacity , Alert} from 'react-native';
+import {StyleSheet, Text, View, Image,TouchableOpacity , Alert, ScrollView} from 'react-native';
 import {colors} from '../../../../constants/colorsPallet';
 import ResponsiveText from '../../../../components/RnText';
 import {globalPath} from '../../../../constants/globalPath';
@@ -30,12 +30,11 @@ const More = ({navigation}) => {
   }
   return (
     <View style={{backgroundColor: colors.black3, flex: 1,flexDirection:'column',justifyContent:'space-between'}}>
-      <View>
         <View
           style={{
             backgroundColor: colors.yellow,
             flexDirection: 'row',
-            paddingVertical:20
+            paddingVertical:20,
           }}>
           <Image
             style={{
@@ -54,72 +53,111 @@ const More = ({navigation}) => {
             </ResponsiveText>
           </View>
         </View>
-        <View style={{margin: 20}}>
+
+        
+        <ScrollView style={{flex:0.5}}>
+        <View style={{margin: 20,}}>
+          <ResponsiveText color={colors.white} size={4} >Profile</ResponsiveText>
           <TouchableOpacity
           onPress={()=>navigation.navigate(routeName.PROFILE_SCREEN)}
-            style={{backgroundColor: colors.black2, flexDirection: 'row',padding:10,marginTop:20}} >
+            style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,borderRadius:7}} >
+
             <Icon size={20} source={globalPath.MORE_PROFILE} />
-            <ResponsiveText margin={[0,0,0,10]} size={4} color={colors.white}>
+            <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
               Profile
             </ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity
           onPress={()=>navigation.navigate(routeName.MYWHITLIST)}
-            style={{backgroundColor: colors.black2, flexDirection: 'row',padding:10,marginTop:10}}>
+            style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
             <Icon size={20} source={globalPath.HEART} />
-            <ResponsiveText margin={[0,0,0,10]} size={4} color={colors.white}>
-              My WhitList
+            <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
+              Favourites
             </ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity
-            style={{backgroundColor: colors.black2, flexDirection: 'row',padding:10,marginTop:10}}>
+            style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
             <Icon size={20} source={globalPath.MORE_REVIEWS} />
-            <ResponsiveText margin={[0,0,0,10]} size={4} color={colors.white}>
+            <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
               My Reviews
             </ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity
           onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
-            style={{backgroundColor: colors.black2, flexDirection: 'row',padding:10,marginTop:10}}>
-            <Icon size={20} source={globalPath.MORE_ORDER} />
-            <ResponsiveText margin={[0,0,0,10]} size={4} color={colors.white}>
-              Order
+            style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
+            <Icon size={20} source={globalPath.PREFERANCES} />
+            <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
+              Preferences
             </ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity
-          onPress={()=>navigation.navigate(routeName.TRANSACTION_HISTORY)}
-            style={{backgroundColor: colors.black2, flexDirection: 'row',padding:10,marginTop:10}}>
+          onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
+            style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
+            <Icon size={20} source={globalPath.INTERACTIVE} />
+            <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
+              Bali Interactive
+            </ResponsiveText>
+          </TouchableOpacity>
+          <TouchableOpacity
+          onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
+            style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
+            <Icon size={20} source={globalPath.JOBS} />
+            <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
+              Jobs Listing
+            </ResponsiveText>
+          </TouchableOpacity>
+
+          <ResponsiveText margin={[10,0,0,0]} color={colors.white} size={4} >
+            Payment information
+            </ResponsiveText>
+          <TouchableOpacity
+          onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
+            style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
             <Icon size={20} source={globalPath.MORE_PAYMENT} />
-            <ResponsiveText margin={[0,0,0,10]} size={4} color={colors.white}>
+            <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
               Payment History
             </ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity
-            style={{backgroundColor: colors.black2, flexDirection: 'row',padding:10,marginTop:10}}>
-            <Icon size={20} source={require('../../../../assets/icons/manage-card.png')} />
-            <ResponsiveText margin={[0,0,0,10]} size={4} color={colors.white}>
+          onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
+            style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
+            <Icon size={20} source={globalPath.CARD_MANAGEMENT} />
+            <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
               Card Management
             </ResponsiveText>
           </TouchableOpacity>
+          <ResponsiveText margin={[10,0,0,0]} color={colors.white} size={4} >
+            Others
+            </ResponsiveText>
           <TouchableOpacity
-            style={{backgroundColor: colors.black2, flexDirection: 'row',padding:10,marginTop:10}}>
-            <Icon size={20} source={globalPath.MORE_LANGUAGE} />
-            <ResponsiveText margin={[0,0,0,10]} size={4} color={colors.white}>
-              Language
+          onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
+            style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
+            <Icon size={20} source={globalPath.SETTINGS} />
+            <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
+               Settings
+            </ResponsiveText>
+          </TouchableOpacity>
+          <TouchableOpacity
+          onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
+            style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
+            <Icon size={20} source={globalPath.FAQ} />
+            <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
+              FAQ
+            </ResponsiveText>
+          </TouchableOpacity>
+          <TouchableOpacity
+          onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
+            style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
+            <Icon size={20} source={globalPath.CONTACT} />
+            <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
+              Contact Us
             </ResponsiveText>
           </TouchableOpacity>
         </View>
+        </ScrollView>
       </View>
-      <View>
-      <TouchableOpacity onPress={logout}
-            style={{backgroundColor: colors.black2, flexDirection: 'row',padding:10,marginTop:10}}>
-            <Icon size={20} margin={[0,0,0,10]} source={globalPath.LOGOUT} />
-            <ResponsiveText margin={[0,0,0,10]} size={4} color={colors.white}>
-              Logout
-            </ResponsiveText>
-          </TouchableOpacity>
-      </View>
-    </View>
+      
+  
   );
 };
 
