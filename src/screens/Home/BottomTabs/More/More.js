@@ -76,6 +76,8 @@ const More = ({navigation}) => {
             </ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity
+          // onPress={()=>navigation.navigate(routeName.)}
+
             style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
             <Icon size={20} source={globalPath.MORE_REVIEWS} />
             <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
@@ -83,7 +85,7 @@ const More = ({navigation}) => {
             </ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity
-          onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
+          // onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
             style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
             <Icon size={20} source={globalPath.PREFERANCES} />
             <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
@@ -91,7 +93,7 @@ const More = ({navigation}) => {
             </ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity
-          onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
+          // onPress={()=>navigation.navigate(routeName.)}
             style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
             <Icon size={20} source={globalPath.INTERACTIVE} />
             <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
@@ -99,7 +101,7 @@ const More = ({navigation}) => {
             </ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity
-          onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
+          // onPress={()=>navigation.navigate(routeName.)}
             style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
             <Icon size={20} source={globalPath.JOBS} />
             <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
@@ -111,7 +113,7 @@ const More = ({navigation}) => {
             Payment information
             </ResponsiveText>
           <TouchableOpacity
-          onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
+          // onPress={()=>navigation.navigate(routeName.)}
             style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
             <Icon size={20} source={globalPath.MORE_PAYMENT} />
             <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
@@ -119,7 +121,7 @@ const More = ({navigation}) => {
             </ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity
-          onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
+          onPress={()=>navigation.navigate(routeName.MANAGE_CARDS)}
             style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
             <Icon size={20} source={globalPath.CARD_MANAGEMENT} />
             <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
@@ -130,7 +132,7 @@ const More = ({navigation}) => {
             Others
             </ResponsiveText>
           <TouchableOpacity
-          onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
+          onPress={()=>navigation.navigate(routeName.SETTINGS)}
             style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
             <Icon size={20} source={globalPath.SETTINGS} />
             <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
@@ -138,7 +140,7 @@ const More = ({navigation}) => {
             </ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity
-          onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
+          // onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
             style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
             <Icon size={20} source={globalPath.FAQ} />
             <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
@@ -146,7 +148,7 @@ const More = ({navigation}) => {
             </ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity
-          onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
+          // onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
             style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
             <Icon size={20} source={globalPath.CONTACT} />
             <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
