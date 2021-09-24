@@ -8,6 +8,7 @@ import NumberVerification from '../screens/Auth/SignUp/VerificationNumber';
 import VerificationCode from '../screens/Auth/SignUp/VerificationCode';
 import SelectCoisines from '../screens/Auth/SelectCoisines/SelectCoisines';
 
+
 const Stack = createNativeStackNavigator();
 
 
@@ -19,6 +20,10 @@ function AuthStack() {
     }}
        initialRouteName={routeName.SPLASH}
     >
+
+
+
+
       <Stack.Screen name={routeName.SPLASH} component={Splash} />
       <Stack.Screen name={routeName.LOGIN} component={Login} />
       <Stack.Screen name={routeName.SIGN_UP} component={SignUp} />

@@ -25,6 +25,28 @@ const CHECKOUT_GREY =require('../assets/icons/Checkout-gray.png');
 const MORE_SHOP_ICON =require('../assets/icons/braches.png');
 const ALIGATO =require('../assets/icons/aligato.png');
 
+const CARD_MANAGEMENT =require('../assets/icons/card-management.png');
+const CARD =require('../assets/icons/card.png');
+const CARDS_IMG =require('../assets/icons/Cards.png');
+const CASH =require('../assets/icons/cash.png');
+const CONTACT_US =require('../assets/icons/contact us.png');
+const COWRIES =require('../assets/icons/cowries.png');
+const DELETE_ICON =require('../assets/icons/deleteicon.png');
+const FAQ =require('../assets/icons/faq.png');
+const FAVOURITES =require('../assets/icons/favourites.png');
+const ICON_VIEW =require('../assets/icons/icon-view.png');
+const INTERACTIVE =require('../assets/icons/Interactive.png');
+const JOBS =require('../assets/icons/jobs.png');
+const MASTER_CARD =require('../assets/icons/mastercard-1.png');
+const VISA_CARD =require('../assets/icons/visacard-1.png');
+// const PAYMENT_ICON =require('../assets/icons/payment.png');
+const PREFERANCES =require('../assets/icons/Preferences.png');
+const PROFILE_ICON =require('../assets/icons/profile.png');
+const REVIEWS =require('../assets/icons/reviews.png');
+const SETTINGS =require('../assets/icons/settings.png');
+const SLIDER_VIEW =require('../assets/icons/sliders-view.png');
+const SWITCH =require('../assets/icons/switch.png');
+
 
 
 
@@ -170,6 +192,26 @@ export const globalPath = {
   RADIO_DOT,
   MORE_SHOP_ICON,
   ALIGATO,
+  CARD_MANAGEMENT,
+  CARDS_IMG,
+  CASH,
+  CONTACT_US,
+  COWRIES,
+  DELETE_ICON,
+  FAQ,
+  FAVOURITES,
+  ICON_VIEW,
+  INTERACTIVE,
+  JOBS,
+  MASTER_CARD,
+  // PAYMENT_ICON,
+  PREFERANCES,
+  PROFILE_ICON,
+  REVIEWS,
+  SETTINGS,
+  SLIDER_VIEW,
+  SWITCH,
+  VISA_CARD,
 
 
 

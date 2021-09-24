@@ -73,9 +73,11 @@ const Checkout = ({navigation}) => {
               size={(wp(3), hp(3))}
               source={require('../../../../assets/icons/manage-card.png')}
             />
+            <TouchableOpacity onPress={()=>navigation.navigate(routeName.MANAGE_CARDS)}>
             <ResponsiveText margin={[0, 0, 0, 10]} color={colors.white}>
               Manage Cards
             </ResponsiveText>
+            </TouchableOpacity>
           </View>
         </View>
       </View>

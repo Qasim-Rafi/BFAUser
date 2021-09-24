@@ -930,3 +930,16 @@ export const AwardsMenuSectionsData = [
       },
     
   ]
+
+  export const CARD_DATA = [
+    {
+      cardType: 'Visa',
+      cardNo: '**********0000',
+      url: require('../assets/icons/visacard-1.png'),
+    },
+    {
+      cardType: 'Master',
+      cardNo: '**********0000',
+      url: require('../assets/icons/mastercard-2.png'),
+    },
+  ];

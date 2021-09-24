@@ -24,6 +24,7 @@ import FlashMessage ,{ showMessage, hideMessage } from "react-native-flash-messa
 //Redux Import
 import {useDispatch, useSelector} from 'react-redux';
 import {loginUser} from '../../../redux/actions/user.actions';
+import { StackActions } from '@react-navigation/routers';
 
 export default function Login({navigation}) {
   const dropdownRef = React.useRef(null)
@@ -117,8 +118,8 @@ export default function Login({navigation}) {
             <Line color={colors.grey5} width={wp(20)} />
           </View>
           <RnButton
-            onPress={() => Validation()}
-            // onPress={()=>navigation.navigate(routeName.LANDING_SCREEN)}
+            // onPress={() => Validation()}
+            onPress={()=>navigation.dispatch(StackActions.replace('Home'))}
             fontFamily="SemiBold"
             height={100}
             margin={[0, 0]}

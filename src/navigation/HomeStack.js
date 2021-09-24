@@ -26,6 +26,10 @@ import TransactionConfirmation from '../screens/Home/DishDetails/TransactionConf
 import RandomiserResult from '../screens/Home/BottomTabs/Randomiser/RandomiserResult'
 
 import OrderDetails from '../screens/Home/BottomTabs/More/OrderDetails';
+import Settings from '../screens/Home/Settings/Settings';
+import AddCard from '../screens/Home/CardManagement/AddCard';
+import ViewCard from '../screens/Home/CardManagement/ViewCard';
+import ManageCards from '../screens/Home/CardManagement/ManageCards';
 
 const Stack = createNativeStackNavigator();
 
@@ -61,6 +65,11 @@ function HomeStack() {
       <Stack.Screen name={routeName.MYWHITLIST} component={MyWhitlist} />
       <Stack.Screen name={ routeName.Categories} component={Categories} />
       <Stack.Screen name={routeName.ORDER_DETAILS} component={OrderDetails} />
+      <Stack.Screen name={routeName.SETTINGS} component={Settings} />
+      <Stack.Screen name={routeName.ADD_CARD} component={AddCard} />
+      <Stack.Screen name={routeName.VIEW_CARD} component={ViewCard} />
+      <Stack.Screen name={routeName.MANAGE_CARDS} component={ManageCards} />
+
       
         
     </Stack.Navigator>

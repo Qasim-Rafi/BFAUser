@@ -7,7 +7,7 @@ import { check } from 'yargs'
 import Randomiser from '../screens/Home/BottomTabs/Randomiser/Randomiser'
 
 export default function CustomRadioButton(props) {
-    const [checked, setCheck] = useState(props.status);
+    const [checked, setCheck] = useState(props.isCheck);
    
     return (
         <TouchableOpacity style={{

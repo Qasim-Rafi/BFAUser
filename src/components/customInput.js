@@ -18,7 +18,7 @@ export default function CustomInput(props) {
 		<View style={{marginTop:15}}>
 			<ResponsiveText color={colors.grey1} size={3} margin={[0,0,2,30]}>{props.fieldName ? props.fieldName : undefined}</ResponsiveText>
          <View style={{backgroundColor:colors.black1, 
-         height:hp(6.), width:wp(85), alignSelf:'center',
+         height:hp(6.), width:props.width? props.width : wp(85), alignSelf:'center',
 		 borderRadius:7, flexDirection:'row'}}>
 		 <TextInput placeholder= {props.placeHolderText ? props.placeHolderText:undefined} placeholderTextColor={colors.white} style={{marginStart:20}}/>
 			

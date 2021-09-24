@@ -25,15 +25,16 @@ const Header = ({
 
   const [searchBar, toggleSearchBar] = React.useState('false');
   return (
-    <View style={[styles.header,{paddingVertical:1}]}>
+    <View style={[styles.header,{paddingVertical:1, justifyContent: props.iconPath ? undefined : 'center'}]}>
       <TouchableOpacity
       onPress={()=>{props.iconPath ? navigation.goBack() : null}}
         style={{
-          height: hp(6),
-          width: wp(11),
+          height: hp(6.4),
+          width: wp(10.4),
           backgroundColor:props.iconPath ? colors.black1: undefined,
           justifyContent: 'center',
           alignItems: 'center',
+    
           borderRadius: 10,
           marginEnd: 5,
         }}>
@@ -43,6 +44,8 @@ const Header = ({
           source={props.iconPath ? props.iconPath : globalPath.BALI_ICON}
         />
       </TouchableOpacity>
+      {props.iconPath ? <View />
+      : 
       <View style={{backgroundColor:searchBar==='true'? colors.black1 : colors.black2, alignItems:'center',justifyContent:'center', flexDirection:'row', borderRadius:10, marginHorizontal:2, paddingHorizontal:5}}>
       <TouchableOpacity onPress={()=>{searchBar==='true'? navigation.navigate(routeName.FeaturedSearch) : toggleSearchBar('true')}} style={{marginStart:5}}>
         <View><Icon source={globalPath.SEARCH_LOGO} size={25} /></View>
@@ -60,9 +63,12 @@ const Header = ({
           width={inputWidth}
         />
       </TouchableOpacity>
-      </View>
+      </View>}
       {showRightMenu && (
-        <TouchableOpacity
+        
+        props.iconPath ? <View/> 
+          :
+          <TouchableOpacity
           onPress={() => navigation.navigate(routeName.PROFILE_SCREEN)}>
           <Icon
             margin={[0, 0, 0, 5]}
@@ -82,7 +88,7 @@ const styles = {
     flex: 0.1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    // justifyContent: 'center',
     paddingHorizontal: 20,
     
   },
