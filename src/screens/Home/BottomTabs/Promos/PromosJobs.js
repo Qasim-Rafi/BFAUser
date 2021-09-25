@@ -19,7 +19,7 @@ const PromosJob = (props) => {
 
     return (
         <View>
-            <ResponsiveText color={colors.white}>News Feed</ResponsiveText>
+            <ResponsiveText color={colors.white}>Jobs Feed</ResponsiveText>
             {PROMOSJOBS.map((item, index) => {
                 return (
                     <TouchableOpacity onPress={()=>props.navigation.navigate(routeName.APPLY_JOBS)}>

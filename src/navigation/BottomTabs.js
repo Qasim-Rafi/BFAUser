@@ -11,6 +11,7 @@ import Randomiser from '../screens/Home/BottomTabs/Randomiser/Randomiser';
 import Promos from '../screens/Home/BottomTabs/Promos/Promos';
 import Checkout from '../screens/Home/BottomTabs/Checkout/Checkout';
 import More from '../screens/Home/BottomTabs/More/More';
+import CartDetails from '../screens/Home/BottomTabs/CartDetails/CartDetails';
 
 
 const Tab = createBottomTabNavigator();
@@ -84,7 +85,7 @@ export default function BottomTabs(props) {
             iconName = focused
               ? globalPath.PROMOS_LOGO
               : globalPath.FEED_GREY;
-          } else if (route.name === routeName.CHECK_OUT_BOTTOM) {
+          } else if (route.name === "Cart") {
             iconName = focused
               ? globalPath.CHECKOUT_LOGO
               : globalPath.CHECKOUT_GREY;
@@ -114,8 +115,8 @@ export default function BottomTabs(props) {
         options={{headerShown: false}}
       />
       <Tab.Screen
-        name={routeName.CHECK_OUT_BOTTOM}
-        component={Checkout}
+        name={"Cart"}
+        component={CartDetails}
         options={{headerShown: false}}
       />
       <Tab.Screen

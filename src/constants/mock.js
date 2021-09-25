@@ -943,3 +943,30 @@ export const AwardsMenuSectionsData = [
       url: require('../assets/icons/mastercard-2.png'),
     },
   ];
+
+  export const Cart_Details = [
+    {
+      title : "Fish Crackers",
+      description: "lorem ipsum dolor sit amet, consectetur adipis",
+      quantity: '8',
+      price: '8.00',
+      url: require('../assets/fake_Images/cart-1.png'),
+    },
+
+
+    {
+      title : "Egg Fied Rice",
+      description: "lorem ipsum dolor sit amet, consectetur adipis",
+      quantity: '1',
+      price: '10.00',
+      url: require('../assets/fake_Images/cart-2.png'),
+    },
+
+    {
+      title : "Chocolate Brownie",
+      description: "lorem ipsum dolor sit amet, consectetur adipis",
+      quantity: '1',
+      price: '13.00',
+      url: require('../assets/fake_Images/cart-3.png'),
+    },
+  ]

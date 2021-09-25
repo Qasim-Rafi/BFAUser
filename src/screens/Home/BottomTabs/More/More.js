@@ -7,7 +7,7 @@ import Icon from '../../../../components/Icon';
 import { routeName } from '../../../../constants/routeName';
 import AsyncStorage from '@react-native-community/async-storage';
 import { StackActions } from '@react-navigation/native';
-
+import {hp, wp} from '../../../../helpers/Responsiveness'
 
 const More = ({navigation}) => {
   
@@ -36,6 +36,7 @@ const More = ({navigation}) => {
             flexDirection: 'row',
             paddingVertical:20,
           }}>
+            
           <Image
             style={{
               width: 80,
@@ -52,7 +53,14 @@ const More = ({navigation}) => {
               hassanl@gmail.com
             </ResponsiveText>
           </View>
+          <TouchableOpacity onPress={logout}>
+          <View style={{flexDirection:'row', width:wp(40) ,justifyContent:'flex-end',marginTop:-5,paddingHorizontal:20}}>
+              <Icon source={globalPath.LOGOUT} size={20} tintColor={colors.black} />
+              <ResponsiveText margin={[0,0,0,5]} size={3} >Logout</ResponsiveText>
+            </View>
+            </TouchableOpacity>
         </View>
+        
 
         
         <ScrollView style={{flex:0.5}}>
@@ -101,7 +109,7 @@ const More = ({navigation}) => {
             </ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity
-          // onPress={()=>navigation.navigate(routeName.)}
+          onPress={()=>navigation.navigate(routeName.PROMOS_BOTTOM)}
             style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
             <Icon size={20} source={globalPath.JOBS} />
             <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
@@ -113,7 +121,7 @@ const More = ({navigation}) => {
             Payment information
             </ResponsiveText>
           <TouchableOpacity
-          // onPress={()=>navigation.navigate(routeName.)}
+          onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
             style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
             <Icon size={20} source={globalPath.MORE_PAYMENT} />
             <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>

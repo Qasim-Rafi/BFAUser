@@ -26,7 +26,24 @@ export default function ViewCard({navigation}) {
                 <CustomInput fieldName={"Expiration Date (MM/YY)"} textMargin={[0,0,0,20]} placeHolderText={""} />
                 <CustomInput fieldName={"Security Code (CVV)"} textMargin={[0,0,0,20]} placeHolderText={""} />
                 <ResponsiveText size={3} margin={[10,30,0,30]} color={colors.grey1}>Your payment will be proceeded internationally. Additional bank fees may apply.</ResponsiveText>
-                
+                <TouchableOpacity
+          onPress={() => {
+            navigation.navigate(routeName.TRANSACTION_CONFIRMATION);
+          }}
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: wp(75),
+            marginTop: 25,
+            height: hp(5),
+            alignSelf: 'center',
+            borderRadius: 7,
+            backgroundColor: colors.yellow,
+          }}>
+          <ResponsiveText color={colors.black} size={3.5}>
+            Confirm Card
+          </ResponsiveText>
+        </TouchableOpacity>
             </View>
         </View>
     )

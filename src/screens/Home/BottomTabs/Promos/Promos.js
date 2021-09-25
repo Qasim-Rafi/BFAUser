@@ -21,7 +21,7 @@ const Promos = ({navigation}) => {
 
         <View style={{backgroundColor:colors.black3,flex:1}}>
           <View style={{flex:0.12, justifyContent:'center', alignItems:'center',backgroundColor:colors.black2}}>
-            <Header navigation={navigation} iconPath={globalPath.BACK_ARROW} />
+            <Header navigation={navigation} />
             </View>
             <View style={styles.buttonViewStyle}>
 			

@@ -107,7 +107,7 @@ export default function ManageCards({navigation}) {
             alignItems: 'center',
             width: wp(75),
             marginTop: 40,
-            height: hp(6),
+            height: hp(5),
             alignSelf: 'center',
             borderRadius: 7,
             backgroundColor: colors.yellow,

@@ -137,7 +137,7 @@ export default function AddCard({navigation}) {
             alignItems: 'center',
             width: wp(75),
             marginTop: 10,
-            height: hp(6),
+            height: hp(5),
             alignSelf: 'center',
             borderRadius: 7,
             backgroundColor: colors.yellow,

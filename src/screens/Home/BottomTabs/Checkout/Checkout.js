@@ -35,7 +35,7 @@ const Checkout = ({navigation}) => {
               size={50}
               source={globalPath.COWRIES}
             />
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>navigation.navigate(routeName.TRANSACTION_CONFIRMATION)}>
             <ResponsiveText margin={[0, 0, 0, 15]} size={3.5} color={colors.white}>
               Cowries
             </ResponsiveText>
@@ -85,7 +85,7 @@ const Checkout = ({navigation}) => {
               size={50}
               source={globalPath.CASH}
             />
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>navigation.navigate(routeName.TRANSACTION_CONFIRMATION)}>
             <ResponsiveText margin={[0, 0, 0, 15]} size={3.5} color={colors.white}>
               Cash
             </ResponsiveText>
