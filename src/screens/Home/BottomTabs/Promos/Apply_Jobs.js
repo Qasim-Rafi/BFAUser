@@ -27,7 +27,15 @@ export default function Apply_Jobs({navigation}) {
               width: wp(90),
               height: hp(7),
               borderRadius: 6,
-            }}></View>
+            }}>
+              <TextInput
+
+              placeholderTextColor={colors.grey}
+              editable={false}
+              style={{padding:10,}}
+              placeholder="Chef Required For BBQ"
+            />
+            </View>
         </View>
         <View style={styles.marginTop}>
           <ResponsiveText size={4} color={colors.white}>
@@ -42,16 +50,16 @@ export default function Apply_Jobs({navigation}) {
             <TextInput
               multiline={true}
               placeholderTextColor={colors.grey}
-              numberOfLines={3}
-              style={{margin: 10}}
-              placeholder="Example"
+              
+              style={{margin: 10, color:colors.grey}}
+              value={"1. An excellent cook must be able to follow instructions in cooking and delivering well-prepared meals. 2. They must be deft in moving around the kitchen and apt in multi-tasking. Experience in using various ingredients and cooking techniques is also important."}
             />
           </View>
         </View>
         <View style={styles.marginTop}>
           <ResponsiveText size={4} color={colors.white}>
             {' '}
-            Image Url
+            Upload CV
           </ResponsiveText>
           <View style={{flexDirection:'row'}}>
             <View
