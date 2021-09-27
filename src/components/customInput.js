@@ -20,7 +20,7 @@ export default function CustomInput(props) {
          <View style={{backgroundColor:colors.black1, 
          height:hp(6.), width:props.width? props.width : wp(85), alignSelf:'center',
 		 borderRadius:7, flexDirection:'row'}}>
-		 <TextInput placeholder= {props.placeHolderText ? props.placeHolderText:undefined} placeholderTextColor={colors.white} style={{marginStart:20}}/>
+		 <TextInput placeholder= {props.placeHolderText ? props.placeHolderText:undefined} placeholderTextColor={colors.white} style={{marginStart:20,color:colors.white, width:wp(40)}}/>
 			
 			
 		 </View>

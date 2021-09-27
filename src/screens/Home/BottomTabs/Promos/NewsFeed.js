@@ -19,7 +19,7 @@ const NewsFeed = (props) => {
 
     return (
         <View>
-            <ResponsiveText color={colors.white}>News Feed</ResponsiveText>
+            <ResponsiveText color={colors.white}>Inbox</ResponsiveText>
             {NewsFeeds.map((url,index)=>{
                 return(
                     <View style={{ backgroundColor: colors.black2, height: hp(46), borderRadius: 5,marginTop:10 }}>
@@ -44,10 +44,10 @@ const NewsFeed = (props) => {
                     </View></TouchableOpacity>
                     <View style={{marginRight:15}}>
                     
-                        <TouchableOpacity style={{width:wp(25), height:hp(4), borderRadius:20, backgroundColor:colors.yellow, alignItems:'center', justifyContent:'center'}}
+                        {/* <TouchableOpacity style={{width:wp(25), height:hp(4), borderRadius:20, backgroundColor:colors.yellow, alignItems:'center', justifyContent:'center'}}
                          onPress={()=>props.navigation.navigate(routeName.ADD_TO_CART)}>
                              <ResponsiveText size={3}>Order Now</ResponsiveText>
-                        </TouchableOpacity>
+                        </TouchableOpacity> */}
                     </View>
                 </View>
                 <View style={{flexDirection:'row', alignItems:'center', marginTop:7,}}>

@@ -12,6 +12,7 @@ import Promos from '../screens/Home/BottomTabs/Promos/Promos';
 import Checkout from '../screens/Home/BottomTabs/Checkout/Checkout';
 import More from '../screens/Home/BottomTabs/More/More';
 import CartDetails from '../screens/Home/BottomTabs/CartDetails/CartDetails';
+import Order_history from '../screens/Home/Order_History/Order_history';
 
 
 const Tab = createBottomTabNavigator();
@@ -81,14 +82,18 @@ export default function BottomTabs(props) {
             iconName = focused
               ? globalPath.RANDOMISER_LOGO
               : globalPath.RANDOM_GREY;
-          } else if (route.name === routeName.PROMOS_BOTTOM) {
-            iconName = focused
-              ? globalPath.PROMOS_LOGO
-              : globalPath.FEED_GREY;
+            } else if (route.name === "Orders") {
+              iconName = focused
+                ? globalPath.ORDERS
+                : globalPath.ORDERS_GREY;
           } else if (route.name === "Cart") {
             iconName = focused
-              ? globalPath.CHECKOUT_LOGO
-              : globalPath.CHECKOUT_GREY;
+              ? globalPath.CART_ICON
+              : globalPath.CART_ICON_GREY;
+            } else if (route.name === "Inbox") {
+              iconName = focused
+                ? globalPath.INBOX
+                : globalPath.INBOX_GREY;
           } else if (route.name === routeName.MORE_BOTTOM) {
             iconName = focused ? globalPath.MORE_LOGO : globalPath.MORE_GREY;
           }
@@ -110,8 +115,8 @@ export default function BottomTabs(props) {
         options={{headerShown: false}}
       />
       <Tab.Screen
-        name={routeName.PROMOS_BOTTOM}
-        component={Promos}
+        name={"Orders"}
+        component={Order_history}
         options={{headerShown: false}}
       />
       <Tab.Screen
@@ -119,6 +124,12 @@ export default function BottomTabs(props) {
         component={CartDetails}
         options={{headerShown: false}}
       />
+      <Tab.Screen
+        name={"Inbox"}
+        component={Promos}
+        options={{headerShown: false}}
+      />
+      
       <Tab.Screen
         name={routeName.MORE_BOTTOM}
         component={More}

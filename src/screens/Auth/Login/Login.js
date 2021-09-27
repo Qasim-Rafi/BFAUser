@@ -86,8 +86,9 @@ export default function Login({navigation}) {
     <ScrollView contentContainerStyle={{flexGrow: 1}}>
       <ImageBackground style={styles.container} source={globalPath.BG_IMAGE}>
         <View style={styles.screeninfo}>
+          <Icon source={globalPath.BALI_ICON} size={60} />
           <ResponsiveText color={colors.yellow} fontFamily="Regular" size={8}>
-            Sign In
+            Welcome to Bali!
           </ResponsiveText>
           <ResponsiveText color={colors.white}>
             Please Login to Continue
@@ -155,13 +156,14 @@ const styles = StyleSheet.create({
     // backgroundColor: colors.black,
   },
   screeninfo: {
-    flex: 0.25,
+    flex: 0.32,
     justifyContent: 'flex-end',
     paddingBottom: wp(10),
+    alignItems:'center',
     padding: wp(5),
   },
   formArea: {
-    flex: 0.77,
+    flex: 0.70,
     borderTopRightRadius: wp(8),
     borderTopLeftRadius: wp(8),
     backgroundColor: '#2f2f2f',

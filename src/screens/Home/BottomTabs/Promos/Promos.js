@@ -15,7 +15,7 @@ import { globalPath } from '../../../../constants/globalPath'
 
  
 const Promos = ({navigation}) => {
-    const [activeTab, setActiveTab] = React.useState(myPromosListingTabs[1].id);
+    const [activeTab, setActiveTab] = React.useState(myPromosListingTabs[2].id);
     console.log(activeTab);
     return (
 

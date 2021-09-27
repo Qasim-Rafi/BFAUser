@@ -385,7 +385,7 @@ export const myPromosListingTabs = [
   },
   {
     id: 3,
-    name: 'News',
+    name: 'Inbox',
   },
   {
     id: 4,
@@ -755,24 +755,28 @@ export const TRANSACTION_HISTORY_FAKE_DATA=[
   {
     restaurant:'Yam Cha Restaurant',
     wallet:'Visa Card',
+    orderId:'12321123453',
     price:'$30.00',
     url: require('../assets/fake_Images/menu-appetizers-1.png'),
   },
   {
     restaurant:'Yam Cha Restaurant',
     wallet:'Google Card',
+    orderId:'12321123453',
     price:'$30.00',
     url: require('../assets/fake_Images/menu-drinks-1.png'),
   },
   {
     restaurant:'Yam Cha Restaurant',
     wallet:'Bank Transaction',
+    orderId:'12321123453',
     price:'$30.00',
     url: require('../assets/fake_Images/menu-drinks-2.png'),
   },
   {
     restaurant:'Yam Cha Restaurant',
     wallet:'Visa Card',
+    orderId:'12321123453',
     price:'$30.00',
     url: require('../assets/fake_Images/menu-drinks-3.png'),
   },

@@ -53,7 +53,7 @@ const Header = ({
       <TouchableOpacity >
         {/* // onPress={() => searchBar==='true'? navigation.navigate(routeName.FeaturedSearch) : undefined}> */}
         <Input
-          editable={true}
+          editable={searchBar==='true'? true : false}
           fontSize={11}
           onSubmitEditing={()=>{}}
           placeholder={searchBar==='true'? "Search Dishes, Restaurants or Promo" : ""}

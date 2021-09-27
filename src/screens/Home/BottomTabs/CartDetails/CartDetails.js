@@ -22,7 +22,7 @@ export default function CartDetails({navigation}) {
             {
                 Cart_Details.map((item)=>{ 
                     return(          
-            <View style={{backgroundColor:colors.black2,marginHorizontal:20, flexDirection:'row', padding:5, borderRadius:7}}>
+            <View style={{backgroundColor:colors.black2,marginHorizontal:20, flexDirection:'row', padding:5,marginBottom:5, borderRadius:7}}>
                 <View>
                     <Icon size={60} borderRadius={7} source={item.url} /></View>
                 <View style={{justifyContent:'center', width:wp(65)}}>

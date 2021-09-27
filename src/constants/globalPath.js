@@ -46,6 +46,13 @@ const REVIEWS =require('../assets/icons/reviews.png');
 const SETTINGS =require('../assets/icons/settings.png');
 const SLIDER_VIEW =require('../assets/icons/sliders-view.png');
 const SWITCH =require('../assets/icons/switch.png');
+const CART_ICON =require('../assets/icons/cart.png');
+const CART_ICON_GREY =require('../assets/icons/crat-gray.png');
+const INBOX =require('../assets/icons/inbox.png');
+const INBOX_GREY =require('../assets/icons/inbox-gray.png');
+const ORDERS =require('../assets/icons/orders.png');
+const ORDERS_GREY =require('../assets/icons/orders-gray.png');
+
 
 
 
@@ -212,7 +219,12 @@ export const globalPath = {
   SLIDER_VIEW,
   SWITCH,
   VISA_CARD,
-
+  CART_ICON,
+  CART_ICON_GREY,
+  INBOX,
+  INBOX_GREY,
+  ORDERS,
+  ORDERS_GREY,
 
 
 

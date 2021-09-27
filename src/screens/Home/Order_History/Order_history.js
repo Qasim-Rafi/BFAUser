@@ -19,7 +19,7 @@ import { routeName } from '../../../constants/routeName';
 export default function Order_history({navigation}) {
   return (
     <View style={{flex: 1, backgroundColor: '#202020'}}>
-      <Header navigation={navigation} iconPath={globalPath.BACK_ARROW}/>
+      <Header navigation={navigation}/>
       <View style={{flex: 0.7, margin: 20}}>
         <ResponsiveText color={colors.white}>My Orders</ResponsiveText>
         {ORDER_HISTORY.map((item, index) => {
@@ -30,11 +30,12 @@ export default function Order_history({navigation}) {
                 backgroundColor: '#303030',
                 height: hp(10),
                 borderRadius: 5,
+                alignItems:'center',
                 marginTop: 10,
                 flexDirection: 'row',
               }}>
               <View>
-                <Icon source={item.url} size={60} />
+                <Icon borderRadius={7} source={item.url} size={60} />
               </View>
               <View style={{marginTop: '2%', marginLeft: '2%'}}>
                 <View

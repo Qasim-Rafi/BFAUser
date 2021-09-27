@@ -12,7 +12,7 @@ const BfaPartner = (props) => {
         <>
             <View style={styles.bfaPartnerHeaderSection}>
                 <ResponsiveText margin={5} size={4} color={colors.white}>BFA Partners</ResponsiveText>
-                <SeeAllButton navigation={props.navigation} src={globalPath.DOWN_ARROW}/>
+                <SeeAllButton src={globalPath.DOWN_ARROW}/>
             </View>
             <View style={styles.bfaPartnerItemsSection}>
                 {BFAPartnerFakeData.map((url, index) => {

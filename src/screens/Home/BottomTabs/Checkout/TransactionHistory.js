@@ -14,7 +14,7 @@ export default function TransactionHistory({navigation}) {
           flex: 0.1,
           backgroundColor: colors.black2,
           justifyContent: 'center',
-          alignItems: 'center',
+          
         }}>
         <Header navigation={navigation} iconPath={globalPath.BACK_ARROW}/>
       </View>
@@ -40,20 +40,28 @@ export default function TransactionHistory({navigation}) {
                   alignItems: 'center',
                   overflow: 'hidden',
                 }}>
-                <ResponsiveText size={4} color={colors.white}>
+                <ResponsiveText size={3.5} color={colors.white}>
                   {item.restaurant}
                 </ResponsiveText>
               </View>
-              <ResponsiveText color={'grey'} numberOfLines={2} size={2.7}>
-                {item.wallet}
+              <ResponsiveText color={colors.grey}  size={2.7}>
+                Order Id:  {item.orderId}
               </ResponsiveText>
             </View>
-            <View style={{width: '15%', overflow: 'hidden'}}>
+            <View style={{width: '20%',justifyContent:'center', overflow: 'hidden',}}>
               <ResponsiveText
-                margin={[4, 0, 0, 0]}
+                margin={[0, 0, 0, 0]}
                 color={colors.yellow}
-                position="flex-end">
+                >
                 {item.price}
+              </ResponsiveText>
+              <ResponsiveText
+                margin={[0, 0, 0, 0]}
+                color={colors.grey}
+                size={2.4}
+                
+                >
+                {item.wallet}
               </ResponsiveText>
             </View>
           </View>
