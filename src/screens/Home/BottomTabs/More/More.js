@@ -84,7 +84,7 @@ const More = ({navigation}) => {
             </ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity
-          // onPress={()=>navigation.navigate(routeName.)}
+          onPress={()=>navigation.navigate(routeName.MY_REVIEWS)}
 
             style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
             <Icon size={20} source={globalPath.MORE_REVIEWS} />
@@ -93,7 +93,7 @@ const More = ({navigation}) => {
             </ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity
-          // onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
+          onPress={()=>navigation.navigate(routeName.PREFERENCES)}
             style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
             <Icon size={20} source={globalPath.PREFERANCES} />
             <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
@@ -109,7 +109,7 @@ const More = ({navigation}) => {
             </ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity
-          onPress={()=>navigation.navigate(routeName.PROMOS_BOTTOM)}
+          onPress={()=>navigation.navigate(routeName.JOB_LISTING)}
             style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
             <Icon size={20} source={globalPath.JOBS} />
             <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
@@ -156,7 +156,7 @@ const More = ({navigation}) => {
             </ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity
-          // onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
+          onPress={()=>navigation.navigate(routeName.CONTACT_US)}
             style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
             <Icon size={20} source={globalPath.CONTACT} />
             <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>

@@ -4,7 +4,7 @@ import ResponsiveText from '../../../../components/RnText'
 import { Rating, AirbnbRating } from 'react-native-ratings';
 import { routeName } from '../../../../constants/routeName';
 
-import { advertisementBannerFakeDATA, awardWinningFakeDATA } from '../../../../constants/mock'
+import { advertisementBannerFakeDATA, awardWinningFakeDATA, promotionsFakeDATA } from '../../../../constants/mock'
 import { colors } from '../../../../constants/colorsPallet'
 import SeeAllButton from '../../../../components/SeeAllButton'
 import { hp, wp } from '../../../../helpers/Responsiveness';
@@ -17,7 +17,7 @@ const AwardWinningDishes = (props) => {
             </View>
             <View style={styles.AwardWinningDishesItemsSection}>
                 <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-                    {awardWinningFakeDATA.map((url, index) => {
+                    {promotionsFakeDATA.map((url, index) => {
                         return (
                             <TouchableOpacity onPress={()=> props.navigation.navigate(routeName.DISH_DETAIL)}>
                             <View style={{ width: wp(26), height: hp(18), marginHorizontal: 5, borderRadius: 3, overflow: 'hidden', flexDirection: 'row' }}>

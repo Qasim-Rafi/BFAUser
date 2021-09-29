@@ -32,6 +32,10 @@ import ViewCard from '../screens/Home/CardManagement/ViewCard';
 import ManageCards from '../screens/Home/CardManagement/ManageCards';
 import CartDetails from '../screens/Home/BottomTabs/CartDetails/CartDetails';
 import Checkout from '../screens/Home/BottomTabs/Checkout/Checkout';
+import JobListing from '../screens/Home/JobListing/JobListing'
+import Preferences from '../screens/Home/BottomTabs/More/Preferences';
+import ContactUs from '../screens/Home/BottomTabs/More/ContactUs';
+import MyReviews from '../screens/Home/BottomTabs/More/MyReviews'
 
 const Stack = createNativeStackNavigator();
 
@@ -72,6 +76,10 @@ function HomeStack() {
       <Stack.Screen name={routeName.VIEW_CARD} component={ViewCard} />
       <Stack.Screen name={routeName.MANAGE_CARDS} component={ManageCards} />
       <Stack.Screen name={routeName.CART_DETAILS} component={CartDetails} />
+      <Stack.Screen name={routeName.JOB_LISTING} component={JobListing} />
+      <Stack.Screen name={routeName.PREFERENCES} component={Preferences} />
+      <Stack.Screen name={routeName.CONTACT_US} component={ContactUs} />
+      <Stack.Screen name={routeName.MY_REVIEWS} component={MyReviews} />
       <Stack.Screen name={routeName.SELECT_PAYMENT_METHOD} component={Checkout} />
 
 

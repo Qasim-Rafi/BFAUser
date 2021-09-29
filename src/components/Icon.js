@@ -15,6 +15,8 @@ const Icon = ({
   size,
   position,
   source,
+  borderColor,
+  borderWidth,
   url,
   borderRadius,
   tintColor,
@@ -28,6 +30,8 @@ const Icon = ({
       style={[
         margin ? handleMargin(margin) : undefined,
         padding ? handlePadding(padding) : undefined,
+        borderWidth ? borderWidth : undefined,
+        borderColor ? borderColor : undefined,
         styles.container,
         position && {alignSelf: position},
         style,

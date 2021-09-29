@@ -3,6 +3,7 @@ import {View, Text, Image} from 'react-native';
 import Header from '../../../../components/Header';
 import {TRANSACTION_HISTORY_FAKE_DATA} from '../../../../constants/mock';
 import {hp, wp} from '../../../../helpers/Responsiveness';
+import Icon from '../../../../components/Icon';
 import {colors} from '../../../../constants/colorsPallet';
 import ResponsiveText from '../../../../components/RnText';
 import { globalPath } from '../../../../constants/globalPath';
@@ -24,7 +25,7 @@ export default function TransactionHistory({navigation}) {
           return(
             <View
             style={{
-              height: wp(15),
+              
               backgroundColor: colors.black2,
               borderRadius: 5,
               marginBottom: 4,
@@ -32,8 +33,8 @@ export default function TransactionHistory({navigation}) {
               flexDirection: 'row',
               overflow: 'hidden',
             }}>
-            <Image style={{width: '17%', height: '100%',borderRadius:5}} source={item.url} />
-            <View style={{flex: 1, marginLeft: 10}}>
+            <Icon source={item.url} borderRadius={7} size={60} />
+            <View style={{flex: 1, marginLeft: 10, justifyContent:'center'}}>
               <View
                 style={{
                   flexDirection: 'row',

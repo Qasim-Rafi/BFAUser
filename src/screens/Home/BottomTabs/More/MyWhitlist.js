@@ -1,72 +1,126 @@
 import React from 'react';
 import {
+  StyleSheet,
   View,
-  Text,
-  ImageBackground,
-  ScrollView,
-  TouchableOpacity,
+  KeyboardAvoidingView,
+  Image,
+  Platform,
+  TouchableOpacity
 } from 'react-native';
-import Header from '../../../../components/Header';
-import {colors} from '../../../../constants/colorsPallet';
-import {globalPath} from '../../../../constants/globalPath';
-import {ourRecommendationFakeDATA} from '../../../../constants/mock';
-import {wp, hp} from '../../../../helpers/Responsiveness';
+import { hp,wp } from '../../../../helpers/Responsiveness';
 import ResponsiveText from '../../../../components/RnText';
-import {FlatList} from 'react-native-gesture-handler';
-import Icon from '../../../../components/Icon';
-const Item = ({item}) => (
-  <TouchableOpacity
-    style={{marginHorizontal: 8, marginVertical: 10}}
-    onPress={() => props.navigation.navigate(routeName.DISH_DETAIL)}>
-    <View
-      style={{
-        width: wp(26),
-        height: hp(18),
-        borderRadius: 3,
-        overflow: 'hidden',
-        flexDirection: 'row',
-      }}>
-      <ImageBackground
-        imageStyle={{opacity: 0.5}}
-        style={{
-          flex: 1,
-          padding: 5,
-          overflow: 'hidden',
-          justifyContent: 'space-between',
-          backgroundColor: 'rgba(0,0,0,1)',
+import { colors } from '../../../../constants/colorsPallet';
+import FavouriteDishes from './FavouriteDishes';
+import { favouriteTabs, profileTabs } from '../../../../constants/mock';
+import Header from '../../../../components/Header';
+import { globalPath } from '../../../../constants/globalPath';
+import FavouriteRestaurants from './FavouriteRestaurants';
 
-        }}
-        source={item}>
-        <View style={{alignItems:'flex-end'}}>
-            <Icon size={15} source={globalPath.F_HEART}/>
-        </View>
-        <View >
-          <ResponsiveText fontFamily="Regular" size={2.9} color={colors.white}>
-            Kaizen sushi
-          </ResponsiveText>
-          <ResponsiveText fontFamily="Light" size={2} color={colors.white}>
-            Special sushi
-          </ResponsiveText>
-        </View>
-      </ImageBackground>
-    </View>
-  </TouchableOpacity>
-);
+export default function MyWhitelist({navigation}) {
 
-export default function MyWhitlist({navigation}) {
-  const renderItem = ({item}) => <Item item={item} />;
+ const [activeTab, setActiveTab] = React.useState(favouriteTabs[0].id);
+
   return (
-    <View style={{backgroundColor: colors.black3, flex: 1}}>
-      <Header navigation={navigation} iconPath={globalPath.BACK_ARROW} />
-      <View style={{flex: 0.9, margin: 20}}>
-        <FlatList
-          horizontal={false}
-          numColumns={3}
-          data={ourRecommendationFakeDATA}
-          renderItem={renderItem}
-          keyExtractor={item => item.id}
-        />
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      
+      style={styles.container}>
+      <View style={styles.container}>
+        <View style={{flex:0.1, justifyContent:'center', backgroundColor:colors.black2}}>
+            <Header iconPath={globalPath.BACK_ARROW} navigation={navigation} />
+        </View>
+        <View style={{flex:0.09, flexDirection:'row', marginTop:-10}}>
+
+             {favouriteTabs.map((items, index) => {
+              return (
+                <React.Fragment key={items.id}>
+                  <TouchableOpacity
+                    id={index}
+                    onPress={() => setActiveTab(items.id)}
+                    style={{
+                        width:wp(50),
+                         alignItems: 'center',
+                          justifyContent: 'center',
+                         marginTop: 10,
+                      backgroundColor:
+                        items.id === activeTab ? colors.yellow1 :  colors.black2,
+                    }}
+                    padding={[3, 15]}>
+                    <ResponsiveText
+                      size={3.5}
+                      // fontFamily={items.id === activeTab ? 'Boldedium' : undefined}
+                      color={
+                        items.id === activeTab ? colors.black : colors.white
+                      }>
+                      {items.name}
+                    </ResponsiveText>
+                  </TouchableOpacity>
+                </React.Fragment>
+              );
+            })}
+
+          
+          {/* <View style={{flex:1, backgroundColor:colors.yellow1, justifyContent:'center', alignItems:'center'}}>
+            <TouchableOpacity>
+            <ResponsiveText size={4}>Profile</ResponsiveText>
+          </TouchableOpacity>
+          </View>      */}
+        {/* <View style={{flex:1, backgroundColor:colors.black2, justifyContent:'center', alignItems:'center'}}>
+          <TouchableOpacity >
+            <ResponsiveText size={4}>Optional</ResponsiveText>
+          </TouchableOpacity>
+        </View> */}
+        </View>
+        
+        {/* <Profile /> */}
+ {/* <ScrollView style={{flex:0.9,margin:20}}> */}
+ 
+        {activeTab === 1 && <FavouriteDishes />}
+             {activeTab === 2 &&  <FavouriteRestaurants />}
+            
+{/* </ScrollView> */}
+
+
+
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.yellow,
+    // height: hp(120),
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // backgroundColor: 'black',
+  },
+  screeninfo: {
+    flex: 0.35,
+    paddingBottom: wp(10),
+    padding: wp(5),
+  },
+  formArea: {
+    flex: 0.65,
+    // borderTopRightRadius: wp(8),
+    // borderTopLeftRadius: wp(8),
+    backgroundColor: '#202020',
+    padding: wp(10),
+  },
+  forgotPasswordContainer: {
+    flexDirection: 'row',
+    overflow: 'hidden',
+    paddingHorizontal: 10,
+    marginBottom: wp(8),
+  },
+  footer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  socialIcon: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});

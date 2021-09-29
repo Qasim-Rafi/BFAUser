@@ -12,16 +12,16 @@ export const advertisementBannerFakeDATA = [
   // 'https://images.unsplash.com/photo-1440964829947-ca3277bd37f8?h=1024',
   // 'https://images.unsplash.com/photo-1440847899694-90043f91c7f9?h=1024'
 ];
-export const awardWinningFakeDATA = [
-  require('../assets/fake_Images/dishes-1.png'),
-  require('../assets/fake_Images/dishes-2.png'),
-  require('../assets/fake_Images/dishes-3.png'),
-  require('../assets/fake_Images/dishes-4.png'),
-  require('../assets/fake_Images/dishes-1.png'),
-  require('../assets/fake_Images/dishes-2.png'),
-  require('../assets/fake_Images/dishes-3.png'),
-  require('../assets/fake_Images/dishes-4.png'),
-];
+// export const awardWinningFakeDATA = [
+//   require('../assets/fake_Images/dishes-1.png'),
+//   require('../assets/fake_Images/dishes-2.png'),
+//   require('../assets/fake_Images/dishes-3.png'),
+//   require('../assets/fake_Images/dishes-4.png'),
+//   require('../assets/fake_Images/dishes-1.png'),
+//   require('../assets/fake_Images/dishes-2.png'),
+//   require('../assets/fake_Images/dishes-3.png'),
+//   require('../assets/fake_Images/dishes-4.png'),
+// ];
 export const promosBannerFakeDATA = [
   require('../assets/fake_Images/promos-banner1.png'),
   require('../assets/fake_Images/promos-banner3.png'),
@@ -401,6 +401,18 @@ export const profileTabs = [
   {
     id: 2,
     name: 'Optional',
+  },
+  
+];
+
+export const favouriteTabs = [
+  {
+    id: 1,
+    name: 'Favourite Dishes',
+  },
+  {
+    id: 2,
+    name: 'Favourite Restaurants',
   },
   
 ];
@@ -972,5 +984,151 @@ export const AwardsMenuSectionsData = [
       quantity: '1',
       price: '13.00',
       url: require('../assets/fake_Images/cart-3.png'),
+    },
+  ];
+
+  export const PROMOS_JOBS =[
+  
+    {
+       JobTitle:'Waiter & Waitress',
+       Date:'5 sep 2021',
+       Experience:'1-2 years',
+       Vacancy:'5',
+       Location:'Brunei Muara',
+       RestaurantName:'Yam Cha Restaurant',
+       Logo:require('../assets/fake_Images/Jobs-logo1.png'),  
+    },
+    {
+      JobTitle:'Deliver Boy',
+       Date:'5 sep 2021',
+       Experience:'1-2 years',
+       Vacancy:'5',
+       Location:'Brunei Muara',
+       RestaurantName:'Yam Cha Restaurant',
+       Logo:require('../assets/fake_Images/Jobs-logo2.png'),
+    },
+    {
+      JobTitle:'Chef/Cook',
+       Date:'5 sep 2021',
+       Experience:'1-2 years',
+       Vacancy:'5',
+       Location:'Brunei Muara',
+       RestaurantName:'Yam Cha Restaurant',
+       Logo:require('../assets/fake_Images/Jobs-logo3.png'), 
+    },
+    {
+      JobTitle:'Assistant Cook',
+       Date:'5 sep 2021',
+       Experience:'1-2 years',
+       Vacancy:'5',
+       Location:'Brunei Muara',
+       RestaurantName:'Yam Cha Restaurant',
+       Logo:require('../assets/fake_Images/Jobs-logo4.png'), 
+    },
+    {
+      JobTitle:'Waiter & Waitress',
+       Date:'5 sep 2021',
+       Experience:'1-2 years',
+       Vacancy:'5',
+       Location:'Brunei Muara',
+       RestaurantName:'Yam Cha Restaurant',
+       Logo:require('../assets/fake_Images/Jobs-logo5.png'),  
+    },
+    {
+      JobTitle:'Kitchen Helper',
+       Date:'5 sep 2021',
+       Experience:'1-2 years',
+       Vacancy:'5',
+       Location:'Brunei Muara',
+       RestaurantName:'Yam Cha Restaurant',
+       Logo:require('../assets/fake_Images/Jobs-logo6.png'),
+    },
+  ];
+
+  export const CUISINES_DATA =[
+    {title:'Arabic',id:1},
+   {title:'Bruneian',id:2},
+   {title:'Bangladeshi',id:3},
+   {title:'Chinese',id:4},
+   {title:'Filipino',id:5},
+   {title:'Indian',id:6},
+   {title:'Indonesian',id:7},
+   {title:'Japanese',id:8},
+   {title:'Korean',id:9},
+   {title:'Malaysian',id:10},
+   {title:'Mexican',id:11},
+    {title:'Pakistani',id:12},
+    {title:'Singaporean',id:13},
+    {title:'Thailand',id:14},
+    {title:'Vietnamese',id:15},
+    {title:'Western',id:16},
+  
+  ];
+  export const POPULER_DISHES_DATA =[
+    {title:'Kaizen Sushi',id:1},
+   {title:'Pizza Paratha',id:2},
+   {title:'Beef Burger',id:3},
+   {title:'Chicken Tikka Pizza',id:4},
+   {title:'Cheese Pizza',id:5},
+   {title:'Beef Karahi',id:6},
+   {title:'Alfredo Pasta',id:7},
+   {title:'Cappuccino',id:8},
+   {title:'Egg Fried Rice',id:9},
+   {title:'Cocktail Grilled Chicken',id:10},
+   {title:'Chicken Biryani',id:11},
+    
+  
+  ];
+  export const OTHERS_DATA =[
+    {title:'Award Winning',id:1},
+   {title:'Bakery',id:2},
+   {title:'Budget',id:3},
+   {title:'Buffet',id:4},
+   {title:'Coffee & Tea',id:5},
+   {title:'dessert',id:6},
+   {title:'Fast Food',id:7},
+   {title:'Food Stails',id:8},
+   {title:'Healthy',id:9},
+   {title:'Home Based',id:10},
+   {title:'New Dishes',id:11},
+    {title:'New Eatery',id:12},
+    {title:'Sea Food',id:12},
+    {title:'Special Recommendation',id:12},
+    {title:'Steambaat',id:12},
+    {title:'Vegetarian',id:12},
+  
+  ];
+
+
+  export const MY_REVIEWS_DATA = [
+    {
+      title:"Christine Smith",
+      comment:"This recipe is very complex. it has all it takes to start off a good day.",
+      date:'1 day ago',
+      url:require('../assets/fake_Images/reviews-pic-1.png')
+    },
+    {
+      title:"Habiba Nisa",
+      comment:"Yes, I would like to try different restaurants each time. unfortunately, some of them aren't good.",
+      date:'12 Sep 2021',
+      url:require('../assets/fake_Images/reviews-pic-2.png')
+    },
+    {
+      title:"George",
+      comment:"I would definitely do this again, very tasteful.",
+      date:'10 Sep 2021',
+      url:require('../assets/fake_Images/reviews-pic-3.png')
+    },
+    {
+      title:"Awang Shahrul",
+      comment:"Came for lunch with my sister. We loved our Thai-style mains which were amazing with lots of flavour, very impressive for a vegetarian restaurant.",
+      date:'05 Sep 2021',
+      url:require('../assets/fake_Images/reviews-pic-4.png')
+    },
+    {
+      title:"Talha Gani",
+      comment:"My family and I like to try new flavors and visit different types of restaurants, so every weekend we liked to ate out. However, due to the pandemic we have been making our own food, which is great because you eat healthier and save a lot of money",
+      date:'01 Sep 2021',
+      url:require('../assets/fake_Images/reviews-pic-5.png')
     },
   ]
