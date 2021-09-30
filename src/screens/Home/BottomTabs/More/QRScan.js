@@ -17,6 +17,12 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import routeName from '../../../../constants/routeName'
 import QRCodeScanner from 'react-native-qrcode-scanner';
+import {colors} from '../../../../constants/colorsPallet';
+import {hp} from '../../../../helpers/Responsiveness';
+import {wp} from '../../../../helpers/Responsiveness';
+import {globalPath} from '../../../../constants/globalPath';
+import Icon from '../../../../components/Icon';
+import ResponsiveText from '../../../../components/RnText';
 
 
 
@@ -34,45 +40,36 @@ const QRScan = ({navigation})=> {
 
 
       return (
-        <>
-          <StatusBar barStyle="dark-content" />
+        <View style={{flex:1, backgroundColor:colors.black3}} >
+          <View style={{flex:0.2,justifyContent:'center',alignItems:'center',paddingBottom:30, backgroundColor:colors.black3}}>
+                <ResponsiveText size={7} color={colors.yellow} >Scan Qr Code</ResponsiveText>
+          </View>
           <SafeAreaView>
-            <ScrollView
-              contentInsetAdjustmentBehavior="automatic"
-              style={styles.scrollView}>
+            
               
-              <View style={styles.body}>
+              <View >
                 { result &&
-                  <View style={styles.sectionContainer}>
-                    <Text style={styles.centerText}>{result}</Text>
+                  <View >
+                    <Text>{result}</Text>
                   </View>
                 }
             
                 { scan &&
-                  <View style={styles.sectionContainer}>
+                  <View>
                     <QRCodeScanner
                       reactivate={true}
                       showMarker={true}
                       
                     //   ref={(node) => { this.scanner = node }}
                       onRead={onSuccess}
-                      topContent={
-                        <Text style={styles.centerText}>
-                          Scan your QRCode!
-                        </Text>
-                      }
-                      bottomContent={
-                        <TouchableOpacity style={styles.buttonTouchable} onPress={() => setScan(false)}>
-                          <Text style={styles.buttonText}>Cancel Scan</Text>
-                        </TouchableOpacity>
-                      }
+                      
                     />
                   </View>
                 }
               </View>
-            </ScrollView>
+            
           </SafeAreaView>
-        </>
+          </View>
       );
 }
 
