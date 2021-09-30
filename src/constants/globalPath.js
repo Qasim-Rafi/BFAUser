@@ -52,6 +52,7 @@ const INBOX =require('../assets/icons/inbox.png');
 const INBOX_GREY =require('../assets/icons/inbox-gray.png');
 const ORDERS =require('../assets/icons/orders.png');
 const ORDERS_GREY =require('../assets/icons/orders-gray.png');
+const QR_SCAN =require('../assets/icons/QR-Scanner.png');
 
 
 
@@ -225,6 +226,7 @@ export const globalPath = {
   INBOX_GREY,
   ORDERS,
   ORDERS_GREY,
+  QR_SCAN,
 
 
 

@@ -7,6 +7,8 @@ import { globalPath } from '../../../../constants/globalPath'
 import { hp, wp } from '../../../../helpers/Responsiveness'
 import Header from '../../../../components/Header'
 import { Cart_Details } from '../../../../constants/mock'
+import TransactionConfirmation from '../../DishDetails/TransactionConfirmation'
+import { routeName } from '../../../../constants/routeName'
 
 export default function CartDetails({navigation}) {
     return (
@@ -62,7 +64,7 @@ export default function CartDetails({navigation}) {
                         <ResponsiveText color={colors.yellow}  size={4} >$ 60.00</ResponsiveText>
                     </View>
                     </View>  
-                    <TouchableOpacity style={{height:hp(5), width:wp(80), backgroundColor:colors.yellow, borderRadius:7, justifyContent:'center',alignItems:'center', alignSelf:'center', marginTop:15, marginBottom:30}} >
+                    <TouchableOpacity onPress={()=>navigation.navigate(routeName.TRANSACTION_CONFIRMATION)} style={{height:hp(5), width:wp(80), backgroundColor:colors.yellow, borderRadius:7, justifyContent:'center',alignItems:'center', alignSelf:'center', marginTop:15, marginBottom:30}} >
                         <ResponsiveText size={3.5} >Check out</ResponsiveText>
                     </TouchableOpacity>
                     </View>

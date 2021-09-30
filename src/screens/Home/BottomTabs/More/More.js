@@ -121,6 +121,14 @@ const More = ({navigation}) => {
             Payment information
             </ResponsiveText>
           <TouchableOpacity
+          onPress={()=>navigation.navigate(routeName.SCAN_SCREEN)}
+            style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
+            <Icon size={20} source={globalPath.QR_SCAN} />
+            <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
+              Scan QR Code
+            </ResponsiveText>
+          </TouchableOpacity>
+          <TouchableOpacity
           onPress={()=>navigation.navigate(routeName.TRANSACTION_HISTORY)}
             style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
             <Icon size={20} source={globalPath.MORE_PAYMENT} />

@@ -20,6 +20,7 @@ const [isModalVisible, setModalVisible] = useState(false);
 const [activeTabs, setActive] = useState('tab3');
 const [count, changeCount] = useState(95);
 const [total, addTotal] = useState(0);
+const[pickup, setPickup] = useState(true);
 
 useEffect(()=>{addTotal(route.params)})
 
@@ -32,37 +33,36 @@ const toggleModal = () => {
 	return (
 		<View style={{ flex: 1, backgroundColor:colors.black3}}>
 
-			
-
-
-
-
-
-
-
-      <View style={{flex:0.09, backgroundColor:colors.black2, justifyContent:'center'}}>
+      <View style={{flex:0.1, backgroundColor:colors.black2, justifyContent:'center'}}>
 		   <Header iconPath={globalPath.BACK_ARROW} navigation={navigation}/>
 		   </View>
-      <View style={{flex:0.29, backgroundColor:colors.black3 }}>
-		  <ResponsiveText margin={[25,0,0,15]} color={colors.yellow}>Transaction Confirmation</ResponsiveText>
-		  <ResponsiveText margin={[15,0,0,15]} color={colors.white}>Confirm payment for the following:</ResponsiveText>
-		  <View style={{marginStart:15, marginTop:15,marginEnd:15,paddingBottom:5, flexDirection:'row', justifyContent:'space-between', borderBottomWidth:1,borderBottomColor:colors.black2}}>
+      <View style={{flex:0.9, backgroundColor:colors.black3 }}>
+		  <ResponsiveText margin={[25,0,0,20]} color={colors.yellow}>Transaction Confirmation</ResponsiveText>
+		  <ResponsiveText margin={[15,0,0,20]} color={colors.white}>Confirm payment for the following:</ResponsiveText>
+		  <View style={{marginHorizontal:20, marginTop:15,paddingBottom:5, flexDirection:'row', justifyContent:'space-between', borderBottomWidth:1,borderBottomColor:colors.black2}}>
 			<ResponsiveText color={colors.white}>Restaurant Name</ResponsiveText>
 			<ResponsiveText color={colors.yellow}>I-Lotus Restaurant</ResponsiveText>
 		  </View>
-		  <View style={{marginStart:15, marginTop:10,marginEnd:15,paddingBottom:5, flexDirection:'row', justifyContent:'space-between', borderBottomWidth:1,borderBottomColor:colors.black2}}>
+		  <View style={{marginHorizontal:20, marginTop:10,paddingBottom:5, flexDirection:'row', justifyContent:'space-between',}}>
 			<ResponsiveText color={colors.white}>Payment Method</ResponsiveText>
 			<TouchableOpacity style={{backgroundColor:colors.yellow, justifyContent:'center', alignItems:'center', borderRadius:7, paddingHorizontal:5}} onPress={()=>navigation.navigate(routeName.SELECT_PAYMENT_METHOD)}>
 			<ResponsiveText color={colors.black} size={3} >Card</ResponsiveText>
 			</TouchableOpacity>
 		  </View>
-		  <View style={{marginStart:15, marginTop:10,marginEnd:15,paddingBottom:5, flexDirection:'row', justifyContent:'space-between',}}>
-			<ResponsiveText color={colors.white}>Total</ResponsiveText>
-			<ResponsiveText color={colors.yellow}>$ 10.00</ResponsiveText>
+		  
+		  <View style={{backgroundColor:colors.yellow, marginTop:15, height:hp(5), width:wp(90), alignSelf:'center', borderRadius:4,flexDirection:'row'}}>
+			  
+			  <TouchableOpacity onPress={()=>{setPickup(true);}} style={{backgroundColor:pickup ? colors.yellow : colors.black2, flex:1, margin:1, alignItems:'center', justifyContent:'center'}}>
+				  <ResponsiveText color={pickup ? colors.black : colors.yellow}>Take Away</ResponsiveText>
+			  </TouchableOpacity>
+			  <TouchableOpacity onPress={()=>{setPickup(false);}} style={{backgroundColor:pickup ? colors.black2 : colors.yellow, flex:1, margin:1, alignItems:'center', justifyContent:'center'}}>
+				  <ResponsiveText color={pickup ? colors.yellow : colors.black}>Dine In</ResponsiveText>
+			  </TouchableOpacity>
+			  
 		  </View>
 
-	  </View>
-      <View style={{flex:0.20, backgroundColor:colors.black2, borderRadius:5, marginHorizontal:15}}>
+	  
+      <View style={{ paddingBottom:10,backgroundColor:colors.black2, borderRadius:5, marginHorizontal:20, marginTop:15}}>
 		  <ResponsiveText color={colors.white} margin={[15,0,0,15]}>Add Tip?</ResponsiveText>
 		  <View style={{backgroundColor:colors.yellow, marginTop:5, height:hp(5), width:wp(85), alignSelf:'center', borderRadius:4,flexDirection:'row'}}>
 			  
@@ -90,7 +90,7 @@ const toggleModal = () => {
 		  </View>
 
 	  </View>
-      <View style={{flex:0.2, backgroundColor:colors.black3, marginTop:20}}>
+      <View style={{backgroundColor:colors.black3, marginTop:10, paddingHorizontal:5}}>
 		  <View style={{borderBottomColor:colors.black2,paddingBottom:5, borderBottomWidth:1,marginHorizontal:15,marginTop:10, flexDirection:'row', justifyContent:'space-between'}}>
 			  <ResponsiveText color={colors.white}>Total</ResponsiveText>
 			  <ResponsiveText color={colors.yellow}>${total}.00</ResponsiveText>
@@ -104,12 +104,12 @@ const toggleModal = () => {
 			  <ResponsiveText color={colors.yellow}>$ 11.00</ResponsiveText>
 		  </View>
 	  </View>
-      <View style={{flex:0.2,alignItems:'center'}}>
-		  <TouchableOpacity style={{marginTop:5,justifyContent:'center',alignItems:'center',borderRadius:7, height:hp(5), width:wp(95), backgroundColor:colors.yellow}}
+      <View style={{alignItems:'center', }}>
+		  <TouchableOpacity style={{marginTop:30,justifyContent:'center',alignItems:'center',borderRadius:7, height:hp(5), width:wp(90), backgroundColor:colors.yellow}}
 		  onPress={toggleModal}>
 			<ResponsiveText>Confirm Payment</ResponsiveText>
 		  </TouchableOpacity>
-		  <TouchableOpacity onPress={()=>navigation.goBack()} style={{marginTop:15,justifyContent:'center',alignItems:'center',borderRadius:7, height:hp(5), width:wp(95),borderColor:colors.yellow,borderWidth:1 ,backgroundColor:colors.black3}}>
+		  <TouchableOpacity onPress={()=>navigation.goBack()} style={{marginTop:15,justifyContent:'center',alignItems:'center',borderRadius:7, height:hp(5), width:wp(90),borderColor:colors.yellow,borderWidth:1 ,backgroundColor:colors.black3}}>
 			<ResponsiveText color={colors.yellow}>Cancel</ResponsiveText>
 		  </TouchableOpacity>
 	  </View>
@@ -164,7 +164,7 @@ const toggleModal = () => {
 
 
 
-	 
+	  </View>
     </View>
 	)
 }
