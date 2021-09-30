@@ -36,6 +36,8 @@ import JobListing from '../screens/Home/JobListing/JobListing'
 import Preferences from '../screens/Home/BottomTabs/More/Preferences';
 import ContactUs from '../screens/Home/BottomTabs/More/ContactUs';
 import MyReviews from '../screens/Home/BottomTabs/More/MyReviews'
+import QRScan from '../screens/Home/BottomTabs/More/QRScan';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -80,6 +82,7 @@ function HomeStack() {
       <Stack.Screen name={routeName.PREFERENCES} component={Preferences} />
       <Stack.Screen name={routeName.CONTACT_US} component={ContactUs} />
       <Stack.Screen name={routeName.MY_REVIEWS} component={MyReviews} />
+      <Stack.Screen name={routeName.SCAN_QR} component={QRScan} />
       <Stack.Screen name={routeName.SELECT_PAYMENT_METHOD} component={Checkout} />
 
 
