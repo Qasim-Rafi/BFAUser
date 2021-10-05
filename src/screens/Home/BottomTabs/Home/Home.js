@@ -30,9 +30,12 @@ import Promotion from './Promotion';
 import Header from '../../../../components/Header';
 import { ourRecommendationFakeDATA } from '../../../../constants/mock';
 import { useDispatch ,useSelector } from 'react-redux';
-import { getUserCusine } from '../../../../redux/actions/user.actions';
+import { getRestaurantAllDishes, getUserCusine, awardsRestaurant } from '../../../../redux/actions/user.actions';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const Home = ({navigation}) => {
+  const token = async()=> await AsyncStorage.getItem('@token');
+
   const dispatch=useDispatch();
   getCusines=()=>{
     dispatch(
@@ -41,15 +44,25 @@ const Home = ({navigation}) => {
       }))
     );
   }
+
+  React.useEffect(()=>{
+    // dispatch(getRestaurantAllDishes());
+    console.log('token is: ', token);
+    // dispatch(awardsRestaurant());
+  })
+
+
   return (
+    
     <View style={styles.container}>
+      
       <Header navigation={navigation} />
       <ScrollView style={{flex: 0.9}}>
         <View style={styles.advertisementBanner}>
           <AdvertisementBanner navigation={navigation} />
         </View>
         <View style={styles.bfaPartnerContainer}>
-          <BfaPartner navigation={navigation} />
+          <BfaPartner token={token} navigation={navigation} />
         </View>
       
         <View style={styles.yourFavorite}>

@@ -26,6 +26,13 @@ export const getUserCusine = (data) => {
   };
 };
 
+export const getRestaurantAllDishes = () => {
+  return {
+    type: types.GET_RESTAURANT_ALL_DISHES_REQUEST,
+    
+  };
+};
+
 //Register actions
 
 

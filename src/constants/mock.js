@@ -1,6 +1,9 @@
 import {globalPath} from './globalPath';
 import { colors } from './colorsPallet';
 import AddToCart from '../screens/Home/DishDetails/AddToCart';
+import AsyncStorage from '@react-native-community/async-storage';
+
+
 
 export const advertisementBannerFakeDATA = [
   // globalPath.BALI_LOGO,globalPath.CHECKOUT_LOGO
@@ -1132,3 +1135,6 @@ export const AwardsMenuSectionsData = [
       url:require('../assets/fake_Images/reviews-pic-5.png')
     },
   ]
+
+ 
+  

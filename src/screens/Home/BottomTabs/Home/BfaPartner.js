@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, StyleSheet, View ,ScrollView} from 'react-native'
+import { Image, StyleSheet, View ,ScrollView, TouchableOpacity} from 'react-native'
 import ResponsiveText from '../../../../components/RnText'
 
 import { advertisementBannerFakeDATA, BFAPartnerFakeData } from '../../../../constants/mock'
@@ -7,13 +7,20 @@ import { colors } from '../../../../constants/colorsPallet'
 import SeeAllButton from '../../../../components/SeeAllButton'
 import { globalPath } from '../../../../constants/globalPath'
 import { wp } from '../../../../helpers/Responsiveness'
-const BfaPartner = (props) => {
+import urls from '../../../../redux/lib/urls'
+import AsyncStorage from '@react-native-community/async-storage'
+const BfaPartner = ({props}) => {
+    
+
+    
+
     return (
         <>
             <View style={styles.bfaPartnerHeaderSection}>
                 <ResponsiveText margin={5} size={4} color={colors.white}>BFA Partners</ResponsiveText>
                 <SeeAllButton src={globalPath.DOWN_ARROW}/>
             </View>
+            <TouchableOpacity >
             <View style={styles.bfaPartnerItemsSection}>
                 {BFAPartnerFakeData.map((url, index) => {
                     return (
@@ -22,6 +29,7 @@ const BfaPartner = (props) => {
                     )
                 })}
             </View>
+            </TouchableOpacity>
         </>
     )
 }

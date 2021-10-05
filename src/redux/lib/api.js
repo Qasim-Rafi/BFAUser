@@ -1,20 +1,28 @@
 import urls from './urls';
 import axios from 'axios';
 import {store} from '../store';
+import AsyncStorage from '@react-native-community/async-storage';
+
+const accessToken = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIyIiwiTmFtZSI6Imx1cW1hbiIsIlVzZXJUeXBlSWQiOiIxIiwiUmVzdGF1cmFudElkIjoiMCIsIm5iZiI6MTYzMzM1MzQ1NiwiZXhwIjoxNjMzNzg1NDU2LCJpYXQiOjE2MzMzNTM0NTZ9.vJTIPSCbwxuIXPHkes70y6OoHLJoNVd7Wd-497LyMhSaJfJqmtqKG4pj-h7RyAmCRb0sJmzm3SXgvLE2mNwwrA";
+
 class Api {
+
+  
   static headers() {
-    const userData = store.getState().login_User.data;
+    // const userData = store.getState().login_User.data;
     // debugger;
     return {
-      // Authorization: `Bearer ${}`,
-      'Content-Type': 'multipart/form-data',
-      Accept: 'application/x-www-form-urlencoded',
+      // Authorization: `Bearer ${accessToken}`,   
+      // Authorization: btoa('luqman:password'), 
+      // 'Authorization': 'Bearer ' + accessToken,
+      // 'Content-Type': 'multipart/form-data',
+      // Accept: 'application/x-www-form-urlencoded',
       Accept: 'application/json',
       'Content-Type': 'application/json',
     };
   }
 
-  static get(route, params, sendAuthToken = false) {
+  static get(route, params, sendAuthToken = true) {
     return this.xhr(route, null, 'GET', sendAuthToken);
   }
 

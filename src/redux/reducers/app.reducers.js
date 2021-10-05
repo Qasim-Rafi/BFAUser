@@ -16,6 +16,10 @@ const initialState = {
   cusineDetail:{
     refreshing: false,
     data: {},
+  },
+  restaurantDishesDetail:{
+    refreshing: false,
+    data: {},
   }
 };
 
@@ -34,6 +38,14 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         cusineDetail:{
           ...state.cusineDetail,
+          data:action.payload
+        }
+      };
+      case types.GET_RESTAURANT_ALL_DISHES_SUCCESS:
+      return {
+        ...state,
+        cusineDetail:{
+          ...state.restaurantDishesDetail,
           data:action.payload
         }
       };

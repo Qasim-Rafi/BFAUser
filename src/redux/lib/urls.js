@@ -9,4 +9,5 @@ export default urls = {
   REGISTER_URL :'/api/Auth/Register',
   RESTAURANT_AWARDS:'/api/RestaruantAwards/GetRestaruantAwardsId/1',
   CUSINE_URL:'/api/Cusine/GetCusine',
+  RESTAURANT_DISH_ALL:'/api/RestaurantDish/GetRestaurantDishAll',
 };
