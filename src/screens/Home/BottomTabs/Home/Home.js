@@ -32,6 +32,8 @@ import { ourRecommendationFakeDATA } from '../../../../constants/mock';
 import { useDispatch ,useSelector } from 'react-redux';
 import { getRestaurantAllDishes, getUserCusine, awardsRestaurant } from '../../../../redux/actions/user.actions';
 import AsyncStorage from '@react-native-community/async-storage';
+import axios from 'axios';
+import urls from '../../../../redux/lib/urls';
 
 const Home = ({navigation}) => {
   const token = async()=> await AsyncStorage.getItem('@token');
@@ -45,11 +47,21 @@ const Home = ({navigation}) => {
     );
   }
 
-  React.useEffect(()=>{
-    // dispatch(getRestaurantAllDishes());
-    console.log('token is: ', token);
-    // dispatch(awardsRestaurant());
-  })
+  async function callAPI () {
+    const url = urls.HOST+urls.PACKAGES_ALL_URL;
+    const config = {
+      headers: { Authorization: `Bearer ${'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIyIiwiTmFtZSI6Imx1cW1hbiIsIlVzZXJUeXBlSWQiOiIxIiwiUmVzdGF1cmFudElkIjoiMCIsIm5iZiI6MTYzMzM1MzQ1NiwiZXhwIjoxNjMzNzg1NDU2LCJpYXQiOjE2MzMzNTM0NTZ9.vJTIPSCbwxuIXPHkes70y6OoHLJoNVd7Wd-497LyMhSaJfJqmtqKG4pj-h7RyAmCRb0sJmzm3SXgvLE2mNwwrA'}` },
+    };
+      const resp = await axios.get(url, config);
+      console.log(resp);
+  }
+
+  React.useEffect(() => {
+        // callAPI();
+        // dispatch(awardsRestaurant());
+        dispatch(getRestaurantAllDishes())
+
+  }, []);
 
 
   return (

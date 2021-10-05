@@ -5,8 +5,14 @@ import { routeName } from '../../constants/routeName';
 import types from '../actions/types';
 import Api from '../lib/api';
 import urls from '../lib/urls';
+import axios from 'axios';
 import FlashMessage ,{ showMessage, hideMessage } from "react-native-flash-message";
 import { StackActions } from '@react-navigation/native';
+
+
+
+
+
 
 //Register user saga
 export function* loginUserSaga() {
@@ -70,7 +76,7 @@ export function* getRestaurantAwardsSaga() {
 }
 function* getAwardsRestaurantSagaApi() {
   try {
-    const response = yield Api.get(urls.RESTAURANT_AWARDS);
+    const response = yield Api.get(urls.PACKAGES_ALL_URL)
     console.log(response,"response");
     if (response&&response.data != null){
       yield put({ type: types.GET_RESTAURANT_AWARDS_SUCCESS, payload: response.data });

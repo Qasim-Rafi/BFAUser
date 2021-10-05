@@ -22,6 +22,8 @@ class Api {
     };
   }
 
+  
+
   static get(route, params, sendAuthToken = true) {
     return this.xhr(route, null, 'GET', sendAuthToken);
   }
@@ -47,13 +49,16 @@ class Api {
       options = {
         method: verb,
         body: JSON.stringify(body),
+        headers: { Authorization: `Bearer ${await AsyncStorage.getItem('@token')}` },
       };
     } else {
       options = {
         method: verb,
+      headers: { Authorization: `Bearer ${await AsyncStorage.getItem('@token')}` },
+
       };
     }
-    options.headers = Api.headers();
+    // options.headers = Api.headers();
     console.log(options, 'options');
     try {
       const resp = await fetch(url, options);
