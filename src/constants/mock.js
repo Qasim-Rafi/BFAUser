@@ -103,33 +103,6 @@ export const BFAPartnerFakeData = [
   require('../assets/fake_Images/HOME_BFA_PARTNER-4.png'),
   require('../assets/fake_Images/HOME_BFA_PARTNER-5.png'),
   require('../assets/fake_Images/HOME_BFA_PARTNER-6.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-1.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-2.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-3.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-4.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-5.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-6.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-1.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-2.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-3.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-4.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-5.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-6.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-1.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-2.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-3.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-4.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-5.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-6.png'),
-
-];
-export const BFAPartnerLessData = [
-  require('../assets/fake_Images/HOME_BFA_PARTNER-1.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-2.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-3.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-4.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-5.png'),
-  require('../assets/fake_Images/HOME_BFA_PARTNER-6.png'),
 
 ];
 
@@ -438,11 +411,11 @@ export const profileTabs = [
 export const favouriteTabs = [
   {
     id: 1,
-    name: 'Favorite Dishes',
+    name: 'Favourite Dishes',
   },
   {
     id: 2,
-    name: 'Favorite Restaurants',
+    name: 'Favourite Restaurants',
   },
   
 ];
@@ -992,29 +965,26 @@ export const AwardsMenuSectionsData = [
 
   export const Cart_Details = [
     {
-      id:1,
       title : "Fish Crackers",
       description: "lorem ipsum dolor sit amet, consectetur adipis",
-      quantity: 8,
+      quantity: '8',
       price: '8.00',
       url: require('../assets/fake_Images/cart-1.png'),
     },
 
 
     {
-      id:2,
       title : "Egg Fied Rice",
       description: "lorem ipsum dolor sit amet, consectetur adipis",
-      quantity: 1,
+      quantity: '1',
       price: '10.00',
       url: require('../assets/fake_Images/cart-2.png'),
     },
 
     {
-      id:3,
       title : "Chocolate Brownie",
       description: "lorem ipsum dolor sit amet, consectetur adipis",
-      quantity: 1,
+      quantity: '1',
       price: '13.00',
       url: require('../assets/fake_Images/cart-3.png'),
     },

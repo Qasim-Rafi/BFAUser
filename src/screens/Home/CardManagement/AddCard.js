@@ -10,7 +10,7 @@ import CustomInput from '../../../components/customInput';
 import {routeName} from '../../../constants/routeName';
 
 export default function AddCard({navigation}) {
-  const [checked, setCheck] = React.useState(false);
+  const [checked, setCheck] = React.useState(true);
 
   return (
     <View style={{flex: 1, backgroundColor: colors.black3}}>

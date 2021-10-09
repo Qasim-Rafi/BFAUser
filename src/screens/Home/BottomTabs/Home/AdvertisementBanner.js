@@ -26,7 +26,7 @@ const AdvertisementBanner = (data) => {
                         <View style={styles.advertisementBannerTitleOverlay}>
                             <ResponsiveText fontFamily={'SemiBold'} size={3.2} color={colors.white}>Pandok Sari Wangi</ResponsiveText>
                             <ResponsiveText fontFamily={'Light'} size={3} color={colors.white}>Seafood Restaurant</ResponsiveText>
-                            <RnButton >
+                            <RnButton>
                                 <ResponsiveText>Order Now</ResponsiveText>
                                 <Icon size={wp(3)} margin={[0,0,0,5]}  tintColor='black' source={globalPath.RIGHT_ARROW} />
 
@@ -45,16 +45,12 @@ export default AdvertisementBanner
 
 const styles = StyleSheet.create({
 
-    advertisementBannerImage: { 
-        flex: 1, 
-        justifyContent: 'center',
-        alignItems:'center', 
-    },
+    advertisementBannerImage: { flex: 1, justifyContent: 'center' },
     advertisementBannerTitleOverlay: {
         width: "40%",
         justifyContent: 'center',
         alignItems: "center",
-        // backgroundColor:  'rgba(52, 52, 52, 0.7)',
+        backgroundColor:  'rgba(52, 52, 52, 0.7)',
         opacity: 1,
         padding: 10
     }

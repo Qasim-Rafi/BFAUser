@@ -55,18 +55,9 @@ const Promos = ({navigation}) => {
             })}
                
 		</View>
-            <ScrollView style={{flex:0.9,marginHorizontal:20}}>
+            <ScrollView style={{flex:0.9,margin:20}}>
             
-            {activeTab === 1 ?  
-            <View>
-            <PromosBanner navigation={navigation} />
-            <NewsFeed navigation={navigation}/>
-            <PromosJob navigation={navigation}/>
-            </View>
-            :
-            undefined
-          
-          }
+            {activeTab === 1 && <PromosBanner navigation={navigation} />}
              {activeTab === 2 &&  <PromosBanner />}
               {activeTab === 3 && <NewsFeed navigation={navigation}/>}
              {activeTab === 4 && <PromosJob navigation={navigation}/>}
@@ -105,8 +96,7 @@ const styles=StyleSheet.create({
         marginTop: 10,
     },
 	buttonViewStyle:{
-		marginHorizontal:10,
-    marginTop:10,
+		margin:10,
 		flexDirection:'row',
 
 	}

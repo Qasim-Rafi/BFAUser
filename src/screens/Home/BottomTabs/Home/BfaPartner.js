@@ -2,7 +2,7 @@ import React from 'react'
 import { Image, StyleSheet, View ,ScrollView, TouchableOpacity} from 'react-native'
 import ResponsiveText from '../../../../components/RnText'
 
-import { advertisementBannerFakeDATA, BFAPartnerFakeData, BFAPartnerLessData } from '../../../../constants/mock'
+import { advertisementBannerFakeDATA, BFAPartnerFakeData } from '../../../../constants/mock'
 import { colors } from '../../../../constants/colorsPallet'
 import SeeAllButton from '../../../../components/SeeAllButton'
 import { globalPath } from '../../../../constants/globalPath'
@@ -11,42 +11,25 @@ import urls from '../../../../redux/lib/urls'
 import AsyncStorage from '@react-native-community/async-storage'
 const BfaPartner = ({props}) => {
     
-const [moreData, setMoreData] = React.useState(false);
-const [title, setTitle] = React.useState("More");
+
     
 
     return (
-        <>  
-            
+        <>
             <View style={styles.bfaPartnerHeaderSection}>
                 <ResponsiveText margin={5} size={4} color={colors.white}>BFA Partners</ResponsiveText>
-                <TouchableOpacity onPress={()=>{
-                setMoreData(!moreData);
-                setTitle(title==="More" ? "Less" : "More");
-                console.log('state:', moreData);
-                }} >
-                <SeeAllButton title={title} src={title==="More" ? globalPath.DOWN_ARROW : globalPath.UP_ARROW }/>
-            </TouchableOpacity>
-
+                <SeeAllButton src={globalPath.DOWN_ARROW}/>
             </View>
-            
-            {  moreData ? <View style={styles.bfaPartnerItemsSection}>
+            <TouchableOpacity >
+            <View style={styles.bfaPartnerItemsSection}>
                 {BFAPartnerFakeData.map((url, index) => {
                     return (
-                        <Image  style={{ width: wp(12), height: wp(12), marginHorizontal: 5,marginVertical:5, borderRadius: 5, overflow: 'hidden' }} source={url} />
+                        <Image style={{ width: wp(13), height: wp(13), marginHorizontal: 5, borderRadius: 5, overflow: 'hidden' }} source={url} />
+
                     )
                 })}
             </View>
-            :
-            <View style={styles.bfaPartnerItemsSection}>
-                {BFAPartnerLessData.map((url, index) => {
-                    return (
-                        <Image  style={{ width: wp(12), height: wp(12), marginHorizontal: 5,marginVertical:5, borderRadius: 5, overflow: 'hidden' }} source={url} />
-                    )
-                })}
-            </View>
-            }
-            
+            </TouchableOpacity>
         </>
     )
 }
@@ -67,9 +50,9 @@ const styles = StyleSheet.create({
     bfaPartnerItemsSection: {
         
         flex: 1,
-        flexWrap:'wrap',
-        flexDirection:'row',
-        paddingVertical:5,
+        flexDirection: 'row',
+        display: 'flex',
+        paddingVertical: 10,
         justifyContent: 'center',
         backgroundColor:colors.black2,
         overflow: 'hidden',

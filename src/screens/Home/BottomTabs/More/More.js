@@ -48,9 +48,9 @@ const More = ({navigation}) => {
             source={globalPath.PROFILE_LOGO}
           />
           <View style={{justifyContent: 'center',marginLeft:10}}>
-            <ResponsiveText size={4}>Umar Gani</ResponsiveText>
+            <ResponsiveText size={4}>Hassanal Bolkiah</ResponsiveText>
             <ResponsiveText color={colors.lightBlack} size={3}>
-              umargani@gmail.com
+              hassanl@gmail.com
             </ResponsiveText>
           </View>
           <TouchableOpacity onPress={logout}>

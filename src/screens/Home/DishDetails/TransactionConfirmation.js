@@ -84,7 +84,7 @@ const toggleModal = () => {
 			  <View style={{backgroundColor:colors.black3,borderColor:colors.black1,borderWidth:1, flex:0.56, margin:1, alignItems:'center', justifyContent:'center',marginHorizontal:10}}>
 				  <ResponsiveText color={colors.yellow}  size={4}>{activeTabs==='tab2' ? '$' : ''}{activeTabs==='tab1' ? "": activeTabs==='tab1' ? count : count}{activeTabs==='tab3' ? '%' : ''}</ResponsiveText>
 			  </View>
-			  <TouchableOpacity onPressIn={()=>activeTabs==='tab2' || activeTabs==='tab3' ? changeCount(activeTabs==='tab3' && count<100 ? count+1 : activeTabs==='tab2'?count+1:count) : undefined} style={{backgroundColor:colors.black2,borderColor:colors.black1,borderWidth:1, flex:0.22, margin:1, alignItems:'center', justifyContent:'center'}}> 
+			  <TouchableOpacity onPressIn={()=>activeTabs==='tab2' || activeTabs==='tab3' ? changeCount(activeTabs==='tab3' && count<100 ? count+1 : activeTabs==='tab2'?count+1:count) : changeCount(count+1)} style={{backgroundColor:colors.black2,borderColor:colors.black1,borderWidth:1, flex:0.22, margin:1, alignItems:'center', justifyContent:'center'}}> 
 				  <ResponsiveText color={colors.yellow} size={6}>+</ResponsiveText>	  
 			  </TouchableOpacity>
 		  </View>

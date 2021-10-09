@@ -67,7 +67,7 @@ export default function FilterSearch({navigation}) {
       keyExtractor={item => item.id}/>
         <View style={{height:50,backgroundColor:colors.black2,flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
           <ResponsiveText margin={[0,20,0,20]} color={colors.yellow}>2523 Properties</ResponsiveText>
-          <TouchableOpacity onPress={()=>navigation.goBack()} style={{backgroundColor:colors.yellow,borderRadius:3,padding:6,marginRight:20}}>
+          <TouchableOpacity style={{backgroundColor:colors.yellow,borderRadius:3,padding:6,marginRight:20}}>
             <ResponsiveText size={3.3}>Show Result</ResponsiveText>
           </TouchableOpacity>
 

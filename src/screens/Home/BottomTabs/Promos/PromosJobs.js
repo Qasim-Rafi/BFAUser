@@ -18,7 +18,7 @@ import { routeName } from '../../../../constants/routeName'
 const PromosJob = (props) => {
 
     return (
-        <View style={{marginTop:30}} >
+        <View>
             <ResponsiveText color={colors.white}>Jobs</ResponsiveText>
             {PROMOSJOBS.map((item, index) => {
                 return (
