@@ -31,7 +31,8 @@ export default function FavouriteRestaurants({navigation}) {
               return(
 <TouchableOpacity
     style={{marginHorizontal: 8, marginVertical: 10}}
-    onPress={() => navigation.navigate(routeName.DISH_DETAIL)}>
+    // onPress={() => navigation.navigate(routeName.DISH_DETAIL)}
+    >
     <View
       style={{
         width: wp(26),
