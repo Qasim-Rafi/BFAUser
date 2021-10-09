@@ -8,34 +8,16 @@ import {hp, wp} from '../../../helpers/Responsiveness';
 import AddToCartDetails from './AddToCartDetails';
 import RnButton from '../../../components/RnButton';
 import CheckBox from '../../../components/Static/CheckBox';
-import {useDispatch, useSelector} from 'react-redux'
 import Icon from '../../../components/Icon';
 import {globalPath} from '../../../constants/globalPath';
 import { routeName } from '../../../constants/routeName';
-import { addDish } from '../../../redux/actions/user.actions';
-import { appReducers } from '../../../redux/reducers/app.reducers';
 
 export default function AddToCart({navigation}) {
   const [count, changeCount] = useState(1);
   const [dishPrice, updateDishPrice] = useState(10)
   const [total, updateTotal] = useState(0);
-  const dispatch = useDispatch;
-  // const {Cart} = useSelector(state => state)
-
-  const [obj, setobj] = ([{
-    title : "Fish Crackers",
-    description: "lorem ipsum dolor sit amet, consectetur adipis",
-    quantity: 8,
-    price: '8.00',
-    url: require('../../../assets/fake_Images/cart-1.png'),
-  }])
-
   useEffect(()=>{updateTotal(dishPrice*count)})
  
-
-  const addDishToCart = (dish)=>{
-    dispatch(addDish(dish))
-  }
 
 
 
@@ -122,11 +104,7 @@ export default function AddToCart({navigation}) {
               alignItems: 'center',
               justifyContent: 'center',
               borderRadius: 6,
-            }} onPress={()=>{
-              // navigation.navigate(routeName.TRANSACTION_CONFIRMATION, [total])
-              // addDishToCart(obj)
-              // console.log('Cart', Cart);
-            }}>
+            }} onPress={()=>navigation.navigate(routeName.TRANSACTION_CONFIRMATION, [total])}>
             <ResponsiveText > Add to cart</ResponsiveText>
           </TouchableOpacity>
         </View>

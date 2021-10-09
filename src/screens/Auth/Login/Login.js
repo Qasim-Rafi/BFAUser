@@ -119,8 +119,8 @@ export default function Login({navigation}) {
             <Line color={colors.grey5} width={wp(20)} />
           </View>
           <RnButton
-            // onPress={() => Validation()}
-            onPress={()=>navigation.dispatch(StackActions.replace('Home'))}
+            onPress={() => Validation()}
+            // onPress={()=>navigation.dispatch(StackActions.replace('Home'))}
             fontFamily="SemiBold"
             height={100}
             margin={[0, 0]}
