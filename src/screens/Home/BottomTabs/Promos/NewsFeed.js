@@ -18,7 +18,7 @@ import { routeName } from '../../../../constants/routeName'
 const NewsFeed = (props) => {
 
     return (
-        <View>
+        <View style={{marginTop:30}} >
             <ResponsiveText color={colors.white}>Inbox</ResponsiveText>
             {NewsFeeds.map((url,index)=>{
                 return(

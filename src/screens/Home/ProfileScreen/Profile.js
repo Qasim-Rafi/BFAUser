@@ -15,11 +15,11 @@ export default function Profile() {
     <View style={styles.formArea}>
       <View style={{flex:0.68}}>
         <CustomInput
-          placeHolderText={'Hassanal Bolkiah'}
+          placeHolderText={'Umar Gani'}
           fieldName={'User Name'}
         />
         <CustomInput
-          placeHolderText={'hassanalbolkiah@gmail.com'}
+          placeHolderText={'umargani@gmail.com'}
           fieldName={'Email'}
         />
         <CustomInput placeHolderText={'000-000-0000'} fieldName={'Phone'} />

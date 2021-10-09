@@ -1,5 +1,5 @@
-import React from 'react'
-import { View, Text, Touchable, TouchableOpacity } from 'react-native'
+import React, { useEffect } from 'react'
+import { View, Text, Touchable, TouchableOpacity, Alert } from 'react-native'
 import Icon from '../../../../components/Icon'
 import ResponsiveText from '../../../../components/RnText'
 import { colors } from '../../../../constants/colorsPallet'
@@ -11,6 +11,53 @@ import TransactionConfirmation from '../../DishDetails/TransactionConfirmation'
 import { routeName } from '../../../../constants/routeName'
 
 export default function CartDetails({navigation}) {
+                const [random, setRandom] = React.useState(Cart_Details)
+                // const [newArray, setArray] = React.useState([]);
+
+                const [qty, setQty] = React.useState(10)
+
+                // const dataArray = Cart_Details;
+
+                // console.log(newArray);
+
+
+                const changeValue = (item, id)=> {
+                    const newArray = random.filter((item)=>{
+                        item.id===id ? item.quantity=item.quantity+1 : undefined;
+                        return random
+                      });
+                      console.log('quantity', item.quantity);
+                    setRandom(newArray);
+                }
+
+
+
+                const onItemRemove = (position) => {
+                    const newArray = random.filter((item,i)=>{
+                      return position !== i;
+                    });
+                    setRandom(newArray);
+                }
+
+                const onItemIncrease = (item, id) => {
+                    const newArray = random.filter((item)=>{
+                        item.id===id ? item.quantity=item.quantity+1 : undefined;
+                        return random
+                      });
+                      console.log('quantity', item.quantity);
+                    setRandom(newArray);
+                }
+
+                const onItemDecrease = (item, id) => {
+                    const newArray = random.filter((item)=>{
+                        item.id===id ? item.quantity=item.quantity-1 : undefined;
+                        return random
+                      });
+                      console.log('quantity', item.quantity);
+                    setRandom(newArray);
+                }
+                
+            
     return (
         <View style={{backgroundColor:colors.black3, flex:1}}>
             <View style={{flex:0.1, alignItems:'center', justifyContent:'center', backgroundColor:colors.black2}}>
@@ -22,7 +69,7 @@ export default function CartDetails({navigation}) {
             <View>
             <ResponsiveText margin={[15,20,15,20]} color={colors.yellow} size={4}>My Cart</ResponsiveText>
             {
-                Cart_Details.map((item)=>{ 
+                random.map((item, index)=>{ 
                     return(          
             <View style={{backgroundColor:colors.black2,marginHorizontal:20, flexDirection:'row', padding:5,marginBottom:5, borderRadius:7}}>
                 <View>
@@ -33,13 +80,21 @@ export default function CartDetails({navigation}) {
                     <ResponsiveText size={3} color={colors.yellow} margin={[0,0,0,10]} >$ {item.price}</ResponsiveText>
                 </View>
                 <View >
-                    <TouchableOpacity style={{backgroundColor:colors.yellow, height:hp(2),borderTopLeftRadius:2,borderTopRightRadius:2, alignItems:'center', width:wp(6)}}>
+                    <TouchableOpacity onPress={()=>{
+                        // onItemRemove(index);
+                        onItemDecrease(item, item.id)
+                    }} style={{backgroundColor:colors.yellow, height:hp(2),borderTopLeftRadius:2,borderTopRightRadius:2, alignItems:'center', width:wp(6)}}>
                         <ResponsiveText margin={[-3,0,0,0]}>-</ResponsiveText>
                     </TouchableOpacity>
                     <View style={{height:hp(3), width:wp(6), backgroundColor:colors.black3, justifyContent:'center', alignItems:'center', borderColor:colors.yellow, borderWidth:1}}>
                         <ResponsiveText color={colors.yellow} size={3}>{item.quantity}</ResponsiveText>
                     </View>
-                    <TouchableOpacity style={{backgroundColor:colors.yellow, height:hp(2),borderBottomRightRadius:2,borderBottomLeftRadius:2,alignItems:'center', width:wp(6)}}>
+                    <TouchableOpacity onPress={()=>{
+                        
+                        onItemIncrease(item, item.id)
+                        
+                        // onItemIncrease(index, item.quantity)
+                    }} style={{backgroundColor:colors.yellow, height:hp(2),borderBottomRightRadius:2,borderBottomLeftRadius:2,alignItems:'center', width:wp(6)}}>
                         <ResponsiveText margin={[-3,0,0,0]} >+</ResponsiveText>
                     </TouchableOpacity>
                 </View>
