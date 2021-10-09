@@ -61,6 +61,7 @@ const QR_SCAN =require('../assets/icons/QR-Scanner.png');
 
 const RIGHT_ARROW = require('../assets/icons/arrow.png');
 const DOWN_ARROW = require('../assets/icons/arrow-down.png');
+const UP_ARROW = require('../assets/icons/arrow.png');
 const BACK_ARROW = require('../assets/icons/back-arrow.png');
 const BALI_ICON = require('../assets/icons/bali-icon.png');
 const BRANCH_ICON = require('../assets/icons/branches_icon.png');
@@ -185,6 +186,7 @@ export const globalPath = {
   USER_PROFILE_LOGO,
   RIGHT_ARROW,
   DOWN_ARROW,
+  UP_ARROW,
   BALI_ICON,
   PROFILE_LOGO,
   BACK_ARROW,

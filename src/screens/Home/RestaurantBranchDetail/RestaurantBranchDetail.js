@@ -28,7 +28,7 @@ export default function RestaurantBranchDetailScreen({navigation}) {
   // const [activeTab, setActiveTab] = React.useState(myListingTabs[3].id);
 
   return (
-    <View style={{backgroundColor: colors.black3}}>
+    <View style={{backgroundColor: colors.black3, flex:1}}>
       <View style={styles.headerImage}>
         <ImageHeader navigation={navigation} />
       </View>
@@ -58,8 +58,9 @@ export default function RestaurantBranchDetailScreen({navigation}) {
         </View>
       </View>
           
-      <View style={{margin: 10,height:hp(70)}}>
-        {activeTab === 1 && <Info />}
+      <View style={{margin: 10, backgroundColor:colors.black3}}>
+        
+      {activeTab === 1 && <Info />}
         {activeTab === 2 && <PromosBanner/>}
         {activeTab === 3 && <Menu />}
         {activeTab === 4 && <BranchesDetail  navigation={navigation}/>}
