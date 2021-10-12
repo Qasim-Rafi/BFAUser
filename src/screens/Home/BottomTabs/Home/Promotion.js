@@ -19,9 +19,9 @@ const Promotion = (props) => {
                 <ScrollView showsHorizontalScrollIndicator={false} horizontal>
                     {promotionsFakeDATA.map((url, index) => {
                         return (
-                            <TouchableOpacity onPress={()=> props.navigation.navigate(routeName.DISH_DETAIL)}>
+                            <TouchableOpacity onPress={()=> props.navigation.navigate(routeName.DISH_DETAIL, {dish:url})}>
                             <View style={{ width: wp(26), height: hp(18), marginHorizontal: 5, borderRadius: 3, overflow: 'hidden', flexDirection: 'row' }}>
-                                <ImageBackground imageStyle={{opacity:.5}} style={{ flex:1 }} source={url} >
+                                <ImageBackground imageStyle={{opacity:.5}} style={{ flex:1 }} source={url.url} >
                                 <View style={styles.promotionoffView}>
                                     <ResponsiveText size={2}>Flat 25% Off</ResponsiveText>
                                 </View>

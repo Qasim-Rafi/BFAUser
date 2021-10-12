@@ -11,6 +11,18 @@ import { NavigationHelpersContext } from '@react-navigation/core'
 
 export default function Preferences({navigation}) {
   const [itemList, setItemList] = React.useState([]);
+  const toggleSelection =(item)=>{
+    if(itemList.includes(item)){
+      const newArray = itemList.filter((item1)=>{
+        return item!==item1
+     });
+     setItemList(newArray);
+    }
+    else
+    {
+      itemList.length<5 ? setItemList([...itemList, item]) : undefined
+    }
+  }
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.black3 }}>
@@ -45,19 +57,19 @@ export default function Preferences({navigation}) {
           }}>
           {CUISINES_DATA.map((item, index) => {
             return (
-              <TouchableOpacity>
+              <TouchableOpacity onPress={()=>toggleSelection(item)} >
                 <View
                   style={{
                     borderRadius: 18,
                     alignItems: 'center',
                     justifyContent: 'center',
-                    backgroundColor: itemList.includes(item.id) === false ? colors.black2 : colors.yellow,
+                    backgroundColor: itemList.includes(item) ? colors.yellow : colors.black2,
                     marginHorizontal: 5,
                     paddingVertical: 10,
                     paddingHorizontal:20,
                     marginTop: 10,
                   }}>
-                  <Text style={{ fontSize: 14, color: colors.white }}>{item.title}</Text>
+                  <Text style={{ fontSize: 14, color: itemList.includes(item) ? colors.black : colors.white, }}>{item.title}</Text>
                 </View>
               </TouchableOpacity>
             );
@@ -83,19 +95,19 @@ export default function Preferences({navigation}) {
           }}>
           {POPULER_DISHES_DATA.map((item, index) => {
             return (
-              <TouchableOpacity>
+              <TouchableOpacity onPress={()=>toggleSelection(item)} >
                 <View
                   style={{
                     borderRadius: 18,
                     alignItems: 'center',
                     justifyContent: 'center',
-                    backgroundColor: itemList.includes(item.id) === false ? colors.black2 : colors.yellow,
+                    backgroundColor: itemList.includes(item) ? colors.yellow : colors.black2,
                     marginHorizontal: 5,
                     paddingVertical: 10,
                     paddingHorizontal:20,
                     marginTop: 10,
                   }}>
-                  <Text style={{ fontSize: 14, color: colors.white }}>{item.title}</Text>
+                  <Text style={{ fontSize: 14, color: itemList.includes(item) ? colors.black : colors.white,}}>{item.title}</Text>
                 </View>
               </TouchableOpacity>
             );
@@ -121,19 +133,19 @@ export default function Preferences({navigation}) {
           }}>
           {OTHERS_DATA.map((item, index) => {
             return (
-              <TouchableOpacity>
+              <TouchableOpacity onPress={()=>toggleSelection(item)} >
                 <View
                   style={{
                     borderRadius: 18,
                     alignItems: 'center',
                     justifyContent: 'center',
-                    backgroundColor: itemList.includes(item.id) === false ? colors.black2 : colors.yellow,
+                    backgroundColor: itemList.includes(item) ? colors.yellow : colors.black2,
                     marginHorizontal: 5,
                     paddingVertical: 10,
                     paddingHorizontal:20,
                     marginTop: 10,
                   }}>
-                  <Text style={{ fontSize: 14, color: colors.white }}>{item.title}</Text>
+                  <Text style={{ fontSize: 14, color: itemList.includes(item) ? colors.black : colors.white, }}>{item.title}</Text>
                 </View>
               </TouchableOpacity>
             );

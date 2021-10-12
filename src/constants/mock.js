@@ -1,5 +1,6 @@
 import {globalPath} from './globalPath';
 import { colors } from './colorsPallet';
+import React from 'react';
 import AddToCart from '../screens/Home/DishDetails/AddToCart';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -32,68 +33,273 @@ export const promosBannerFakeDATA = [
 ];
 
 export const ourRecommendationFakeDATA = [
-  require('../assets/fake_Images/Home-Recommendations-1.png'),
-  require('../assets/fake_Images/Home-Recommendations-2.png'),
-  require('../assets/fake_Images/Home-Recommendations-3.png'),
-  require('../assets/fake_Images/Home-Recommendations-4.png'),
-  require('../assets/fake_Images/Home-Recommendations-1.png'),
-  require('../assets/fake_Images/Home-Recommendations-2.png'),
-  require('../assets/fake_Images/Home-Recommendations-3.png'),
-  require('../assets/fake_Images/Home-Recommendations-4.png'),
-  require('../assets/fake_Images/Home-Recommendations-1.png'),
-  require('../assets/fake_Images/Home-Recommendations-2.png'),
-  require('../assets/fake_Images/Home-Recommendations-3.png'),
-  require('../assets/fake_Images/Home-Recommendations-4.png'),
-  require('../assets/fake_Images/Home-Recommendations-1.png'),
-
-  // 'https://www.elitetraveler.com/wp-content/uploads/2017/12/schloss-berg-5472-turbot-and-morels-768x512.jpg',
-  // 'https://www.elitetraveler.com/wp-content/uploads/2017/12/les-pres-eugenie-5472-chocolate-millefeuille.jpg',
-  // 'https://www.elitetraveler.com/wp-content/uploads/2017/12/alinea-3648-steelhead-trout-roe.jpg',
-  // 'https://www.elitetraveler.com/wp-content/uploads/2013/06/troisgros-5472-John-Dory-1.jpg',
+  {
+    id:1,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/Home-Recommendations-1.png'),
+  },
+  {
+    id:2,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/Home-Recommendations-2.png'),
+  },
+  {
+    id:3,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/Home-Recommendations-3.png'),
+  },
+  {
+    id:4,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/Home-Recommendations-4.png'),
+  },
+  {
+    id:5,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/Home-Recommendations-1.png'),
+  },
+  {
+    id:6,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/Home-Recommendations-2.png'),
+  },
+  {
+    id:7,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/Home-Recommendations-3.png'),
+  },
+  {
+    id:8,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/Home-Recommendations-4.png'),
+  },
 ];
 
 export const promotionsFakeDATA = [
-  require('../assets/fake_Images/promotions-1.png'),
-  require('../assets/fake_Images/promotions-2.png'),
-  require('../assets/fake_Images/promotions-3.png'),
-  require('../assets/fake_Images/promotions-4.png'),
-  require('../assets/fake_Images/promotions-1.png'),
-  require('../assets/fake_Images/promotions-2.png'),
-  require('../assets/fake_Images/promotions-3.png'),
-  require('../assets/fake_Images/promotions-4.png'),
-  require('../assets/fake_Images/promotions-1.png'),
-  require('../assets/fake_Images/promotions-2.png'),
-  require('../assets/fake_Images/promotions-3.png'),
-  require('../assets/fake_Images/promotions-4.png'),
+  {
+    id:1,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/promotions-1.png'),
+  },
+  {
+    id:2,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/promotions-2.png'),
+  },
+  {
+    id:3,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/promotions-3.png'),
+  },
+  {
+    id:4,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/promotions-4.png'),
+  },
+  {
+    id:5,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/promotions-1.png'),
+  },
+  {
+    id:6,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/promotions-2.png'),
+  },
+  {
+    id:7,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/promotions-3.png'),
+  },
+  {
+    id:8,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/promotions-4.png'),
+  },
+
 ];
 export const everyoneFavoriteFakeDATA = [
-  require('../assets/fake_Images/everyone-1.png'),
-  require('../assets/fake_Images/everyone-2.png'),
-  require('../assets/fake_Images/everyone-3.png'),
-  require('../assets/fake_Images/everyone-4.png'),
-  require('../assets/fake_Images/everyone-1.png'),
-  require('../assets/fake_Images/everyone-2.png'),
-  require('../assets/fake_Images/everyone-3.png'),
-  require('../assets/fake_Images/everyone-4.png'),
-  require('../assets/fake_Images/everyone-1.png'),
-  require('../assets/fake_Images/everyone-2.png'),
-  require('../assets/fake_Images/everyone-3.png'),
-  require('../assets/fake_Images/everyone-4.png'),
+  {
+    id:1,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/promotions-1.png'),
+  },
+  {
+    id:2,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/promotions-2.png'),
+  },
+  {
+    id:3,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/promotions-3.png'),
+  },
+  {
+    id:4,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/promotions-4.png'),
+  },
+  {
+    id:5,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/promotions-1.png'),
+  },
+  {
+    id:6,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/promotions-2.png'),
+  },
+  {
+    id:7,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/promotions-3.png'),
+  },
+  {
+    id:8,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/promotions-4.png'),
+  },
+
 ];
 
 export const yourFavoriteFakeDATA = [
-  require('../assets/fake_Images/everyone-1.png'),
-  require('../assets/fake_Images/everyone-2.png'),
-  require('../assets/fake_Images/everyone-3.png'),
-  require('../assets/fake_Images/everyone-4.png'),
-  require('../assets/fake_Images/everyone-1.png'),
-  require('../assets/fake_Images/everyone-2.png'),
-  require('../assets/fake_Images/everyone-3.png'),
-  require('../assets/fake_Images/everyone-4.png'),
-  require('../assets/fake_Images/everyone-1.png'),
-  require('../assets/fake_Images/everyone-2.png'),
-  require('../assets/fake_Images/everyone-3.png'),
-  require('../assets/fake_Images/everyone-4.png'),
+  {
+    id:1,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/everyone-1.png'),
+  },
+  {
+    id:2,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/everyone-2.png'),
+  },
+  {
+    id:3,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/everyone-3.png'),
+  },
+  {
+    id:4,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/everyone-4.png'),
+  },
+  {
+    id:5,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/everyone-1.png'),
+  },
+  {
+    id:6,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/everyone-2.png'),
+  },
+  {
+    id:7,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/everyone-3.png'),
+  },
+  {
+    id:8,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/everyone-4.png'),
+  },
+
 ];
 
 export const BFAPartnerFakeData = [
@@ -593,14 +799,14 @@ export const BranchMenuSectionsData = [
         id: 1,
         title: 'Tomato Soup ',
         price: '$ 5.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
         url: require('../assets/fake_Images/menu-appetizers-1.png'),
       },
       {
         id: 2,
         title: 'Chicken Soup ',
         price: '$ 10.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-appetizers-2.png'),
       },
@@ -608,7 +814,7 @@ export const BranchMenuSectionsData = [
         id: 3,
         title: 'Tomato Soup ',
         price: '$ 8.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-appetizers-3.png'),
       },
@@ -616,7 +822,7 @@ export const BranchMenuSectionsData = [
         id: 4,
         title: 'Fish Crackers ',
         price: '$ 8.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-appetizers-4.png'),
       },
@@ -630,7 +836,7 @@ export const BranchMenuSectionsData = [
         id: 1,
         title: 'Nasi Ayam Bakar Madura',
         price: '$11.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-1.png'),
       },
@@ -638,7 +844,7 @@ export const BranchMenuSectionsData = [
         id: 2,
         title: 'Nasi Ayam Sambal Tomat',
         price: '$ 13.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-2.png'),
       },
@@ -646,7 +852,7 @@ export const BranchMenuSectionsData = [
         id: 3,
         title: 'Vegetable Rice',
         price: '$ 10.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-3.png'),
       },
@@ -654,7 +860,7 @@ export const BranchMenuSectionsData = [
         id: 4,
         title: 'Egg Fried Rice',
         price: '$ 11.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-4.png'),
       },
@@ -662,7 +868,7 @@ export const BranchMenuSectionsData = [
         id: 5,
         title: 'Chicken Shashlik',
         price: '$15.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-5.png'),
       },
@@ -670,7 +876,7 @@ export const BranchMenuSectionsData = [
         id: 6,
         title: 'Finger Fish',
         price: '$ 25.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-6.png'),
       },
@@ -678,7 +884,7 @@ export const BranchMenuSectionsData = [
         id: 7,
         title: 'Chicken Breast',
         price: '$ 15.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-7.png'),
       },
@@ -686,7 +892,7 @@ export const BranchMenuSectionsData = [
         id: 8,
         title: 'Chicken Chops',
         price: '$ 15.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-8.png'),
       },
@@ -700,7 +906,7 @@ export const BranchMenuSectionsData = [
         id: 1,
         title: 'Apple Pie',
         price: '$11.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-dessert-1.png'),
       },
@@ -708,7 +914,7 @@ export const BranchMenuSectionsData = [
         id: 2,
         title: 'Chocolate Brownie',
         price: '$ 13.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-dessert-2.png'),
       },
@@ -716,7 +922,7 @@ export const BranchMenuSectionsData = [
         id: 3,
         title: 'Chocolate Cake ',
         price: '$ 10.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-dessert-3.png'),
       },
@@ -724,7 +930,7 @@ export const BranchMenuSectionsData = [
         id: 4,
         title: 'Ice Cream',
         price: '$ 13.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-dessert-4.png'),
       },
@@ -732,7 +938,7 @@ export const BranchMenuSectionsData = [
         id: 5,
         title: 'Tutti Frutti',
         price: '$ 10.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-dessert-5.png'),
       },
@@ -746,7 +952,7 @@ export const BranchMenuSectionsData = [
         id: 1,
         title: 'Mint Margarita',
         price: '$ 5.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-drinks-1.png'),
       },
@@ -754,7 +960,7 @@ export const BranchMenuSectionsData = [
         id: 2,
         title: 'Fresh Lime Soda',
         price: '$ 5.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-drinks-2.png'),
       },
@@ -762,7 +968,7 @@ export const BranchMenuSectionsData = [
         id: 4,
         title: 'Tea',
         price: '$ 5.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-drinks-3.png'),
       },
@@ -770,7 +976,7 @@ export const BranchMenuSectionsData = [
         id: 5,
         title: 'Cappuccino',
         price: '$ 10.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-drinks-4.png'),
       },
@@ -778,7 +984,7 @@ export const BranchMenuSectionsData = [
         id: 6,
         title: 'Soft Drinks',
         price: '$ 2.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-drinks-5.png'),
       },
@@ -786,7 +992,7 @@ export const BranchMenuSectionsData = [
         id: 7,
         title: 'Mineral water',
         price: '$ 2.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-drinks-6.png'),
       },
@@ -950,25 +1156,32 @@ export const AddToCartUpSize=[
 ];
 export const AwardsMenuSectionsData = [
   
-      {
+      { id:1,
         title: 'Tomato Soup ',
         price: '$ 5.00',
+        quantity: 1,
         des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
         url: require('../assets/fake_Images/menu-appetizers-1.png'),
       },
-      {
+      
+      { id:1,
+        quantity: 1,
         title: 'Chicken Soup ',
         price: '$ 10.00',
         des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
         url: require('../assets/fake_Images/menu-appetizers-2.png'),
       },
       {
+        id:1,
+        quantity: 1,
         title: 'Tomato Soup ',
         price: '$ 8.00',
         des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
         url: require('../assets/fake_Images/menu-appetizers-3.png'),
       },
       {
+        id:1,
+        quantity: 1,
         title: 'Fish Crackers ',
         price: '$ 8.00',
         des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
@@ -991,33 +1204,33 @@ export const AwardsMenuSectionsData = [
   ];
 
   export const Cart_Details = [
-    {
-      id:1,
-      title : "Fish Crackers",
-      description: "lorem ipsum dolor sit amet, consectetur adipis",
-      quantity: 8,
-      price: '8.00',
-      url: require('../assets/fake_Images/cart-1.png'),
-    },
+    // {
+    //   id:1,
+    //   title : "Fish Crackers",
+    //   description: "lorem ipsum dolor sit amet, consectetur adipis",
+    //   quantity: 1,
+    //   price: '8.00',
+    //   url: require('../assets/fake_Images/cart-1.png'),
+    // },
 
 
-    {
-      id:2,
-      title : "Egg Fied Rice",
-      description: "lorem ipsum dolor sit amet, consectetur adipis",
-      quantity: 1,
-      price: '10.00',
-      url: require('../assets/fake_Images/cart-2.png'),
-    },
+    // {
+    //   id:2,
+    //   title : "Egg Fied Rice",
+    //   description: "lorem ipsum dolor sit amet, consectetur adipis",
+    //   quantity: 1,
+    //   price: '10.00',
+    //   url: require('../assets/fake_Images/cart-2.png'),
+    // },
 
-    {
-      id:3,
-      title : "Chocolate Brownie",
-      description: "lorem ipsum dolor sit amet, consectetur adipis",
-      quantity: 1,
-      price: '13.00',
-      url: require('../assets/fake_Images/cart-3.png'),
-    },
+    // {
+    //   id:3,
+    //   title : "Chocolate Brownie",
+    //   description: "lorem ipsum dolor sit amet, consectetur adipis",
+    //   quantity: 1,
+    //   price: '13.00',
+    //   url: require('../assets/fake_Images/cart-3.png'),
+    // },
   ];
 
   export const PROMOS_JOBS =[

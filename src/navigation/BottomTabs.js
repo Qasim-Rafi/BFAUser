@@ -13,6 +13,7 @@ import Checkout from '../screens/Home/BottomTabs/Checkout/Checkout';
 import More from '../screens/Home/BottomTabs/More/More';
 import CartDetails from '../screens/Home/BottomTabs/CartDetails/CartDetails';
 import Order_history from '../screens/Home/Order_History/Order_history';
+import { Cart_Details } from '../constants/mock';
 
 
 const Tab = createBottomTabNavigator();
@@ -87,6 +88,7 @@ export default function BottomTabs(props) {
                 ? globalPath.ORDERS
                 : globalPath.ORDERS_GREY;
           } else if (route.name === "Cart") {
+            
             iconName = focused
               ? globalPath.CART_ICON
               : globalPath.CART_ICON_GREY;

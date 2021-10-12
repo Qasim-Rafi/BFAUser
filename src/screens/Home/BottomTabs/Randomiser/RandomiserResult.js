@@ -18,7 +18,7 @@ export default function RandomiserResult({navigation}) {
             {AwardsMenuSectionsData.map((item , index)=>{
                 return(
                     <TouchableOpacity
-                    onPress={()=>navigation.navigate(routeName.DISH_DETAIL)}
+                    onPress={()=>navigation.navigate(routeName.DISH_DETAIL,{dish:item})}
               style={{
                 height: wp(20),
                 backgroundColor: colors.black2,

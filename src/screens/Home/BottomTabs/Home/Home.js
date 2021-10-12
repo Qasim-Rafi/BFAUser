@@ -39,7 +39,7 @@ const Home = ({navigation}) => {
   const token = async()=> await AsyncStorage.getItem('@token');
 
   const dispatch=useDispatch();
-  getCusines=()=>{
+ const getCusines=()=>{
     dispatch(
       (getUserCusine({
         navigation:navigation,

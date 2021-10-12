@@ -61,7 +61,7 @@ export default function RestaurantBranchDetailScreen({navigation}) {
       <View style={{margin: 10,height:hp(70)}}>
         {activeTab === 1 && <Info />}
         {activeTab === 2 && <PromosBanner/>}
-        {activeTab === 3 && <Menu />}
+        {activeTab === 3 && <Menu navigation={navigation} />}
         {activeTab === 4 && <BranchesDetail  navigation={navigation}/>}
         {activeTab === 5 && <AwardsDetail  navigation={navigation}/>}
 

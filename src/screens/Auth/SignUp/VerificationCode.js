@@ -76,7 +76,7 @@ export default function VerificationCode({navigation}) {
 
           </View>
         
-          <RnButton onPress={()=>navigation.navigate(routeName.SELECT_COISINES)} fontFamily='SemiBold'  margin={[20, 0]} title="Continue" />
+          <RnButton onPress={()=>navigation.navigate(routeName.PREFERENCES)} fontFamily='SemiBold'  margin={[20, 0]} title="Continue" />
           
         </View>
       </ImageBackground>

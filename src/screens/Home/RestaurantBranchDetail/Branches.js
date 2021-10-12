@@ -26,9 +26,9 @@ const BranchesDetail = (props) => {
                     {ourRecommendationFakeDATA.map((url, index) => {
                         return (
 		
-		<TouchableOpacity style={{flexDirection: 'row',backgroundColor: colors.black2,marginTop:10}} onPress={()=> props.navigation.navigate(routeName.DISH_DETAIL)}>
+		<TouchableOpacity style={{flexDirection: 'row',backgroundColor: colors.black2,marginTop:10}} onPress={()=> props.navigation.navigate(routeName.DISH_DETAIL,{dish:url})}>
                             <View style={{ marginHorizontal: 5, borderRadius: 3, overflow: 'hidden',justifyContent:'center'  }}>
-                                <Image style={{  padding: 5, overflow: 'hidden', justifyContent: 'flex-end',width:wp(22),height:hp(12) }} source={ url } >
+                                <Image style={{  padding: 5, overflow: 'hidden', justifyContent: 'flex-end',width:wp(22),height:hp(12) }} source={url.url} >
                                 </Image>
 								</View>
 							<View style={{flex:1,justifyContent:'space-between',flexDirection:'row'}}>	

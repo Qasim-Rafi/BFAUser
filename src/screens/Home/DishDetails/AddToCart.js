@@ -14,13 +14,20 @@ import {globalPath} from '../../../constants/globalPath';
 import { routeName } from '../../../constants/routeName';
 import { addDish } from '../../../redux/actions/user.actions';
 import { appReducers } from '../../../redux/reducers/app.reducers';
+import {Cart_Details} from '../../../constants/mock'
+import SharedData from '../BottomTabs/CartDetails/SharedData';
 
-export default function AddToCart({navigation}) {
+
+export default function AddToCart({route ,navigation}) {
   const [count, changeCount] = useState(1);
   const [dishPrice, updateDishPrice] = useState(10)
   const [total, updateTotal] = useState(0);
   const dispatch = useDispatch;
-  // const {Cart} = useSelector(state => state)
+  const [dish, addDish] = React.useState('');
+    React.useEffect(()=>{addDish(route.params.dish)
+      updateTotal(dishPrice*count);
+        })
+ 
 
   const [obj, setobj] = ([{
     title : "Fish Crackers",
@@ -30,14 +37,17 @@ export default function AddToCart({navigation}) {
     url: require('../../../assets/fake_Images/cart-1.png'),
   }])
 
-  useEffect(()=>{updateTotal(dishPrice*count)})
  
 
-  const addDishToCart = (dish)=>{
-    dispatch(addDish(dish))
-  }
+  // const addDishToCart = (dish)=>{
+  //   dispatch(addDish(dish))
+  // }
 
-
+  const AddToCart =()=>{
+    // Cart_Details.includes(dish) ? undefined : Cart_Details.push(dish);  
+    SharedData.setData(dish);
+          
+}
 
 
   return (
@@ -123,9 +133,12 @@ export default function AddToCart({navigation}) {
               justifyContent: 'center',
               borderRadius: 6,
             }} onPress={()=>{
-              // navigation.navigate(routeName.TRANSACTION_CONFIRMATION, [total])
-              // addDishToCart(obj)
-              // console.log('Cart', Cart);
+           
+              SharedData.setData(dish);
+              console.log(SharedData.data);
+              navigation.navigate(routeName.LANDING_SCREEN)
+              
+              
             }}>
             <ResponsiveText > Add to cart</ResponsiveText>
           </TouchableOpacity>

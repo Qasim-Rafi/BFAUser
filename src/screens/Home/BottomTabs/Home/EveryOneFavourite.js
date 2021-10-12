@@ -35,7 +35,7 @@ const EveryOneFavourite = props => {
       </View>
       <View style={styles.everyOneFavoriteItemsSection}>
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-          {arrayData.map((url, index) => {
+          {everyoneFavoriteFakeDATA.map((url, index) => {
             return (
               <TouchableOpacity
                 onPress={() =>
@@ -58,7 +58,7 @@ const EveryOneFavourite = props => {
                       overflow: 'hidden',
                       justifyContent: 'flex-end',
                     }}
-                    source={url}>
+                    source={url.url}>
                     <ResponsiveText
                       fontFamily="Regular"
                       size={2.9}

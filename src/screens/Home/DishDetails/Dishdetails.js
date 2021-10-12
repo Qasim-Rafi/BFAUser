@@ -11,7 +11,16 @@ import Comments from './Comments'
 import RnButton from '../../../components/RnButton'
 import ResponsiveText from '../../../components/RnText'
 import { routeName } from '../../../constants/routeName'
-export default function DishDetails({navigation}) {
+import {Cart_Details} from '../../../constants/mock'
+
+
+export default function DishDetails({route, navigation}) {
+    const [dish, addDish] = React.useState('');
+    React.useEffect(()=>{addDish(route.params.dish)
+        })
+
+       
+
     return (
        
         <ScrollView style={{backgroundColor:colors.black3}}>
@@ -22,7 +31,12 @@ export default function DishDetails({navigation}) {
         <View style={{margin:20,paddingBottom:20}}>
         
         
-        <RnButton onPress={()=>{navigation.navigate(routeName.ADD_TO_CART)}}>
+        <RnButton onPress={()=>{
+            
+            navigation.navigate(routeName.ADD_TO_CART,{dish:dish})
+            
+
+            }}>
             
             <ResponsiveText  padding={0} color={colors.black}>Add to Order</ResponsiveText>
         </RnButton>
@@ -34,7 +48,11 @@ export default function DishDetails({navigation}) {
         <View style={{margin:20,paddingBottom:20}}>
         
         
-        <RnButton onPress={()=>{navigation.navigate(routeName.ADD_TO_CART)}}>
+        <RnButton onPress={()=>{
+            
+            navigation.navigate(routeName.ADD_TO_CART,{dish:dish})
+            
+            }}>
             
             <ResponsiveText  padding={0} color={colors.black}>Add to Order</ResponsiveText>
         </RnButton>

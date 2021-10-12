@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { View, Text, Touchable, TouchableOpacity, Alert } from 'react-native'
+import { View, Text, Touchable, TouchableOpacity, Alert, ScrollView } from 'react-native'
 import Icon from '../../../../components/Icon'
 import ResponsiveText from '../../../../components/RnText'
 import { colors } from '../../../../constants/colorsPallet'
@@ -9,52 +9,59 @@ import Header from '../../../../components/Header'
 import { Cart_Details } from '../../../../constants/mock'
 import TransactionConfirmation from '../../DishDetails/TransactionConfirmation'
 import { routeName } from '../../../../constants/routeName'
-
-export default function CartDetails({navigation}) {
-                const [random, setRandom] = React.useState(Cart_Details)
-                // const [newArray, setArray] = React.useState([]);
-
-                const [qty, setQty] = React.useState(10)
-
-                // const dataArray = Cart_Details;
-
-                // console.log(newArray);
+import { set } from 'react-native-reanimated'
+import SharedData from './SharedData'
 
 
-                const changeValue = (item, id)=> {
-                    const newArray = random.filter((item)=>{
-                        item.id===id ? item.quantity=item.quantity+1 : undefined;
-                        return random
-                      });
-                      console.log('quantity', item.quantity);
-                    setRandom(newArray);
-                }
+         const CartDetails = ({navigation}) => {
+                
+                const [random, setRandom] = React.useState([SharedData.state.data]);
+
+
+                
+                React.useEffect(()=>{
+                    setRandom(SharedData.state.data);
+                },[random])
+                
+
+
+                // const changeValue = (item, id)=> {
+                //     const newArray = random.filter((item)=>{
+                //         item.id===id ? item.quantity=item.quantity+1 : undefined;
+                //         return random
+                //       });
+                //       console.log('quantity', item.quantity);
+                //     setRandom(newArray);
+                // }
 
 
 
-                const onItemRemove = (position) => {
-                    const newArray = random.filter((item,i)=>{
-                      return position !== i;
+                const onItemRemove = (data,position) => {
+                    const newArray = SharedData.data.filter((item,i)=>{
+                       return data===item? position !== i : SharedData.data;
                     });
                     setRandom(newArray);
+                    SharedData.UpdateData(newArray);
+                    console.log(Cart_Details);
                 }
+              
 
-                const onItemIncrease = (item, id) => {
-                    const newArray = random.filter((item)=>{
-                        item.id===id ? item.quantity=item.quantity+1 : undefined;
-                        return random
-                      });
-                      console.log('quantity', item.quantity);
-                    setRandom(newArray);
-                }
+                const onItemIncrease = (item) => {
+                    const newArray = random.filter((item1)=>{
+                      item1===item? item1=item : undefined;
+                      return random
+                    });
+                    // console.log('quantity', item.data.quantity);
+                  setRandom(newArray);
+                  }
 
-                const onItemDecrease = (item, id) => {
-                    const newArray = random.filter((item)=>{
-                        item.id===id ? item.quantity=item.quantity-1 : undefined;
-                        return random
-                      });
-                      console.log('quantity', item.quantity);
-                    setRandom(newArray);
+                  const onItemDecrease = (item) => {
+                    const newArray = random.filter((item1)=>{
+                      item1===item? item1=item : undefined;
+                      return random
+                    });
+                    // console.log('quantity', item.data.quantity);
+                  setRandom(newArray);
                 }
                 
             
@@ -66,23 +73,30 @@ export default function CartDetails({navigation}) {
 
 
             <View style={{flex:0.9, justifyContent:'space-between'}}>
+            <ScrollView>
             <View>
+                <View style={{flexDirection:'row', justifyContent:'space-between',alignItems:'center', width:wp(100)}} >
             <ResponsiveText margin={[15,20,15,20]} color={colors.yellow} size={4}>My Cart</ResponsiveText>
-            {
+            
+            </View>
+            {random.length===0?
+                undefined 
+                :
                 random.map((item, index)=>{ 
                     return(          
-            <View style={{backgroundColor:colors.black2,marginHorizontal:20, flexDirection:'row', padding:5,marginBottom:5, borderRadius:7}}>
+            <View style={{backgroundColor:colors.black2,marginHorizontal:20, flexDirection:'row', padding:5,marginBottom:10, borderRadius:7}}>
                 <View>
                     <Icon size={60} borderRadius={7} source={item.url} /></View>
-                <View style={{justifyContent:'center', width:wp(65)}}>
+                <View style={{justifyContent:'center', width:wp(60)}}>
                     <ResponsiveText size={3.5} color={colors.white} margin={[0,0,0,10]} >{item.title}</ResponsiveText>
                     <ResponsiveText size={2.5} color={colors.grey} margin={[-5,0,0,10]} >{item.description}</ResponsiveText>
                     <ResponsiveText size={3} color={colors.yellow} margin={[0,0,0,10]} >$ {item.price}</ResponsiveText>
                 </View>
-                <View >
+                
+                <View style={{marginLeft:-15}}>
                     <TouchableOpacity onPress={()=>{
-                        // onItemRemove(index);
-                        onItemDecrease(item, item.id)
+                        item.quantity=item.quantity>1?item.quantity-1:item.quantity;
+                        onItemDecrease(item)
                     }} style={{backgroundColor:colors.yellow, height:hp(2),borderTopLeftRadius:2,borderTopRightRadius:2, alignItems:'center', width:wp(6)}}>
                         <ResponsiveText margin={[-3,0,0,0]}>-</ResponsiveText>
                     </TouchableOpacity>
@@ -90,17 +104,25 @@ export default function CartDetails({navigation}) {
                         <ResponsiveText color={colors.yellow} size={3}>{item.quantity}</ResponsiveText>
                     </View>
                     <TouchableOpacity onPress={()=>{
-                        
-                        onItemIncrease(item, item.id)
-                        
+                        item.quantity=item.quantity+1;
+                        onItemIncrease(item)
                         // onItemIncrease(index, item.quantity)
                     }} style={{backgroundColor:colors.yellow, height:hp(2),borderBottomRightRadius:2,borderBottomLeftRadius:2,alignItems:'center', width:wp(6)}}>
                         <ResponsiveText margin={[-3,0,0,0]} >+</ResponsiveText>
                     </TouchableOpacity>
-                </View>
                 
+                </View>
+                <View style={{marginLeft:15}} >
+                <TouchableOpacity onPress={()=>{
+                    onItemRemove(item,index)
+                    }}>
+                    <Icon source={globalPath.DELETE_ICON} tintColor={colors.yellow} margin={[-20,0,0,0]} size={30} />
+                    </TouchableOpacity>
+                </View>
             </View>
-                )})} 
+                )})
+            
+            }
             </View>
             
 
@@ -123,8 +145,11 @@ export default function CartDetails({navigation}) {
                         <ResponsiveText size={3.5} >Check out</ResponsiveText>
                     </TouchableOpacity>
                     </View>
+                    </ScrollView>
             </View>
         
         </View>
     )
 }
+
+export default CartDetails ;

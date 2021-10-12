@@ -16,10 +16,11 @@ import {
 } from '../../../constants/mock';
 import {hp, wp} from '../../../helpers/Responsiveness';
 import { useCallback } from 'react';
-const Menu = props => {
+import { routeName } from '../../../constants/routeName';
+const Menu = (props) => {
   const scrollRef = useRef(null);
   const [activeTab, setActiveTab] = React.useState(BranchMenuSectionsData[0].id);
-
+  
   const viewConfigRef = React.useRef({viewAreaCoveragePercentThreshold: 90});
   const ScrollHandler = (item, index) => {
     setActiveTab(item.id);
@@ -50,6 +51,7 @@ const Menu = props => {
                 overflow: 'hidden',
               }}>
               <Image style={{width: '20%', height: '100%'}} source={data.url} />
+              
               <View style={{flex: 1, marginLeft: 10}}>
                 <View
                   style={{
@@ -70,7 +72,7 @@ const Menu = props => {
                   </ResponsiveText>
                 </View>
                 <ResponsiveText color={'grey'} numberOfLines={2} size={2.7}>
-                  {data.des}
+                  {data.description}
                 </ResponsiveText>
               </View>
               <View style={{width: '15%', overflow: 'hidden'}}>
