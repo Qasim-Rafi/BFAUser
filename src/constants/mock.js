@@ -790,6 +790,310 @@ export const BranchDetailButtons = [
     icon: require('../assets/icons/Awards.png'),
   },
 ];
+export const MenuTabButtons = [
+  {
+    id: 1,
+    title: 'Full Menu',
+    icon: require('../assets/icons/info_icon.png'),
+  },
+  {
+    id: 2,
+    title: 'Favorites',
+    icon: require('../assets/icons/favourites.png'),
+  },
+  {
+    id: 3,
+    title: 'Brunei Food Awards',
+    icon: require('../assets/icons/Awards.png'),
+  },
+  
+  {
+    id: 4,
+    title: 'Search',
+    icon: require('../assets/icons/search.png'),
+  },
+ 
+];
+export const FullMenuList = [
+  {
+    id: 1,
+    title: 'Starter',
+    data: [
+      {
+        id: 1,
+        title: 'Tomato Soup ',
+        price: '$ 5.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        url: require('../assets/fake_Images/menu-appetizers-1.png'),
+      },
+      {
+        id: 2,
+        title: 'Chicken Soup ',
+        price: '$ 10.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-appetizers-2.png'),
+      },
+      {
+        id: 3,
+        title: 'Tomato Soup ',
+        price: '$ 8.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-appetizers-3.png'),
+      },
+      {
+        id: 4,
+        title: 'Fish Crackers ',
+        price: '$ 8.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-appetizers-4.png'),
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: 'Main Dish 1',
+    data: [
+      {
+        id: 1,
+        title: 'Nasi Ayam Bakar Madura',
+        price: '$11.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-course-1.png'),
+      },
+      {
+        id: 2,
+        title: 'Nasi Ayam Sambal Tomat',
+        price: '$ 13.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-course-2.png'),
+      },
+      {
+        id: 3,
+        title: 'Vegetable Rice',
+        price: '$ 10.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-course-3.png'),
+      },
+      {
+        id: 4,
+        title: 'Egg Fried Rice',
+        price: '$ 11.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-course-4.png'),
+      },
+      {
+        id: 5,
+        title: 'Chicken Shashlik',
+        price: '$15.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-course-5.png'),
+      },
+      {
+        id: 6,
+        title: 'Finger Fish',
+        price: '$ 25.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-course-6.png'),
+      },
+      {
+        id: 7,
+        title: 'Chicken Breast',
+        price: '$ 15.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-course-7.png'),
+      },
+      {
+        id: 8,
+        title: 'Chicken Chops',
+        price: '$ 15.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-course-8.png'),
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: 'Main Dish 2',
+    data: [
+      {
+        id: 1,
+        title: 'Nasi Ayam Bakar Madura',
+        price: '$11.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-course-1.png'),
+      },
+      {
+        id: 2,
+        title: 'Nasi Ayam Sambal Tomat',
+        price: '$ 13.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-course-2.png'),
+      },
+      {
+        id: 3,
+        title: 'Vegetable Rice',
+        price: '$ 10.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-course-3.png'),
+      },
+      {
+        id: 4,
+        title: 'Egg Fried Rice',
+        price: '$ 11.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-course-4.png'),
+      },
+      {
+        id: 5,
+        title: 'Chicken Shashlik',
+        price: '$15.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-course-5.png'),
+      },
+      {
+        id: 6,
+        title: 'Finger Fish',
+        price: '$ 25.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-course-6.png'),
+      },
+      {
+        id: 7,
+        title: 'Chicken Breast',
+        price: '$ 15.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-course-7.png'),
+      },
+      {
+        id: 8,
+        title: 'Chicken Chops',
+        price: '$ 15.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-course-8.png'),
+      },
+    ],
+  },
+  {
+    id: 4,
+    title: 'Dessert',
+    data: [
+      {
+        id: 1,
+        title: 'Apple Pie',
+        price: '$11.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-dessert-1.png'),
+      },
+      {
+        id: 2,
+        title: 'Chocolate Brownie',
+        price: '$ 13.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-dessert-2.png'),
+      },
+      {
+        id: 3,
+        title: 'Chocolate Cake ',
+        price: '$ 10.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-dessert-3.png'),
+      },
+      {
+        id: 4,
+        title: 'Ice Cream',
+        price: '$ 13.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-dessert-4.png'),
+      },
+      {
+        id: 5,
+        title: 'Tutti Frutti',
+        price: '$ 10.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-dessert-5.png'),
+      },
+    ],
+  },
+  {
+    id: 5,
+    title: 'Drinks',
+    data: [
+      {
+        id: 1,
+        title: 'Mint Margarita',
+        price: '$ 5.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-drinks-1.png'),
+      },
+      {
+        id: 2,
+        title: 'Fresh Lime Soda',
+        price: '$ 5.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-drinks-2.png'),
+      },
+      {
+        id: 4,
+        title: 'Tea',
+        price: '$ 5.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-drinks-3.png'),
+      },
+      {
+        id: 5,
+        title: 'Cappuccino',
+        price: '$ 10.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-drinks-4.png'),
+      },
+      {
+        id: 6,
+        title: 'Soft Drinks',
+        price: '$ 2.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-drinks-5.png'),
+      },
+      {
+        id: 7,
+        title: 'Mineral water',
+        price: '$ 2.00',
+        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+
+        url: require('../assets/fake_Images/menu-drinks-6.png'),
+      },
+    ],
+  },
+ 
+];
 export const BranchMenuSectionsData = [
   {
     id: 1,

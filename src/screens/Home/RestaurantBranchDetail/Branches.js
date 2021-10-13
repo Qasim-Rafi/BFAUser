@@ -20,27 +20,25 @@ const BranchesDetail = (props) => {
             <View style={styles.everyOneFavoriteItemsSection}>
                 <ScrollView showsHorizontalScrollIndicator={false} >
                 <View style={{justifyContent:'center',alignItems:'center'}}>
-                    <ResponsiveText size={4.5} color={colors.white} >I-Lotus Restaurant</ResponsiveText>
-                    <ResponsiveText size={4} color={colors.grey}>View other Branches from this Restaurant</ResponsiveText>
+                    <ResponsiveText size={4} color={colors.white} >I-Lotus Restaurant</ResponsiveText>
+                    <ResponsiveText size={3.5} color={colors.grey}>View other Branches from this Restaurant</ResponsiveText>
                 </View>
                     {ourRecommendationFakeDATA.map((url, index) => {
                         return (
 		
-		<TouchableOpacity style={{flexDirection: 'row',backgroundColor: colors.black2,marginTop:10}} onPress={()=> props.navigation.navigate(routeName.DISH_DETAIL,{dish:url})}>
-                            <View style={{ marginHorizontal: 5, borderRadius: 3, overflow: 'hidden',justifyContent:'center'  }}>
-                                <Image style={{  padding: 5, overflow: 'hidden', justifyContent: 'flex-end',width:wp(22),height:hp(12) }} source={url.url} >
-                                </Image>
-								</View>
-							<View style={{flex:1,justifyContent:'space-between',flexDirection:'row'}}>	
-							<View style={{margin:15}}>
-                                    <ResponsiveText fontFamily="Regular" size={4} color={colors.white}>Kaizen sushi</ResponsiveText>
-                                    <ResponsiveText fontFamily="Light" size={3.5} color={colors.grey}>Special sushi</ResponsiveText>
+		<TouchableOpacity style={{flexDirection: 'row',backgroundColor: colors.black2,borderRadius:5,marginTop:10, padding:5}} onPress={()=> props.navigation.navigate(routeName.DISH_DETAIL,{dish:url})}>
+                                <Icon source={url.url} borderRadius={5} size={70} />
+								
+							<View style={{flex:1,justifyContent:'space-between',flexDirection:'row',}}>	
+							<View style={{padding:5, }}>
+                                    <ResponsiveText fontFamily="Regular" size={3} color={colors.white}>Kaizen sushi</ResponsiveText>
+                                    <ResponsiveText fontFamily="Light" size={2.5} color={colors.grey}>Special sushi</ResponsiveText>
                                     <Rating
                                         size={2}
 										tintColor={colors.black2}
                                         imageSize={15}
                                         // tintColor={'transparent'}
-                                        style={{ paddingVertical: 10,color:colors.black2,left:-15 }}
+                                        style={{ paddingVertical: 5,color:colors.black2,left:-1 }}
                                     />
 								</View>	
 								

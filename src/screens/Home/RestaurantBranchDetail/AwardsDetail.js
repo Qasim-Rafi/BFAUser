@@ -6,6 +6,7 @@ import ResponsiveText from '../../../components/RnText'
 import { colors } from '../../../constants/colorsPallet'
 import {useDispatch, useSelector} from 'react-redux';
 import {awardsRestaurant} from '../../../redux/actions/user.actions';
+import Icon from '../../../components/Icon'
 
 export default function AwardsDetail() {
   const counter = useSelector((state) => state.appReducers.restaurantDetail)
@@ -36,7 +37,8 @@ export default function AwardsDetail() {
                 flexDirection: 'row',
                 overflow: 'hidden',
               }}>
-              <Image style={{width: '20%', height: '100%'}} source={item.url} />
+                <Icon source={item.url} borderRadius={5} size={70}  />
+            
               <View style={{flex: 1, marginLeft: 10}}>
                 <View
                   style={{
