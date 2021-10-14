@@ -61,7 +61,7 @@ const QR_SCAN =require('../assets/icons/QR-Scanner.png');
 
 const RIGHT_ARROW = require('../assets/icons/arrow.png');
 const DOWN_ARROW = require('../assets/icons/arrow-down.png');
-const UP_ARROW = require('../assets/icons/arrow.png');
+const UP_ARROW = require('../assets/icons/arrow-up.png');
 const BACK_ARROW = require('../assets/icons/back-arrow.png');
 const BALI_ICON = require('../assets/icons/bali-icon.png');
 const BRANCH_ICON = require('../assets/icons/branches_icon.png');
@@ -146,9 +146,11 @@ const MORE_ORDER = require('../assets/icons/moreIcons/order.png');
 const MORE_PAYMENT = require('../assets/icons/moreIcons/payment.png');
 const MORE_LANGUAGE = require('../assets/icons/moreIcons/language.png');
 const LOGOUT = require('../assets/icons/moreIcons/logout.png')
+const BFA_LOGO = require('../assets/icons/BFA_Logo2020.png')
 
 export const globalPath = {
   LOGOUT,
+  BFA_LOGO,
   MORE_PROFILE,
   MORE_REVIEWS,
   MORE_ORDER,

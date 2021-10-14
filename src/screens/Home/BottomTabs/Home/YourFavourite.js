@@ -12,8 +12,10 @@ const YourFavourite = (props) => {
     return (
         <>
             <View style={styles.yourFavoriteHeaderSection}>
-                <ResponsiveText margin={[0,0,0,12]} size={4} color={colors.white}>Your Favourites</ResponsiveText>
+                <ResponsiveText margin={[0,0,0,0]} size={4} color={colors.white}>Your Favourites</ResponsiveText>
+                <View style={{marginRight:-10}} >
                 <SeeAllButton navigation={props.navigation} />
+                </View>
             </View>
             <View style={styles.yourFavoriteItemsSection}>
                 <ScrollView showsHorizontalScrollIndicator={false} horizontal>
@@ -42,14 +44,14 @@ export default YourFavourite;
 const styles = StyleSheet.create({
 
     yourFavoriteHeaderSection: {
-        padding: 10,
+        marginHorizontal:15,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         // backgroundColor: colors.black1,
         borderTopLeftRadius: 7,
         borderTopRightRadius: 7,
-        borderBottomWidth: 0.9,
+        borderBottomWidth: 1,
         borderColor: colors.black1
     },
     yourFavoriteItemsSection: {
@@ -57,6 +59,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         display: 'flex',
         paddingVertical: 10,
+        marginLeft:10,
         justifyContent: 'center',
         overflow: 'hidden',
     }

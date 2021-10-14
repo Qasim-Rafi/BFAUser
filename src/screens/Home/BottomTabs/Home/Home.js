@@ -67,9 +67,11 @@ const Home = ({navigation}) => {
   return (
     
     <View style={styles.container}>
+    
+    <Header navigation={navigation} />
+      <ScrollView style={{flex: 0.9, }}>
       
-      <Header navigation={navigation} />
-      <ScrollView style={{flex: 0.9}}>
+
         <View style={styles.advertisementBanner}>
           <AdvertisementBanner navigation={navigation} />
         </View>
@@ -142,6 +144,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   advertisementBanner: {
+    
     // flex: 0.1,
     height: 200,
     // backgroundColor:'red',
@@ -188,7 +191,7 @@ const styles = StyleSheet.create({
     flex: 0.17,
     // margin: 15,
     borderRadius: 7,
-    backgroundColor: colors.black2,
+    backgroundColor: colors.black3,
   },
   Advertisement2ndVarient: {
     // flex: 0.1,

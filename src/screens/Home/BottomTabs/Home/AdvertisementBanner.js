@@ -9,7 +9,8 @@ import { colors } from '../../../../constants/colorsPallet'
 import { globalPath } from '../../../../constants/globalPath'
 import Icon from '../../../../components/Icon'
 import { wp } from '../../../../helpers/Responsiveness'
-const AdvertisementBanner = (data) => {
+import Header from '../../../../components/Header'
+const AdvertisementBanner = ({navigation}) => {
     return (
 
         <Swiper style={{}} showsButtons={false} autoplay={true} autoplayTimeout={3}
@@ -17,6 +18,8 @@ const AdvertisementBanner = (data) => {
             dot={
                 <View style={{ backgroundColor: colors.white, width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3, }} />
             }>
+
+                
             {advertisementBannerFakeDATA.map((url, index) => {
                 return (
                     <ImageBackground style={styles.advertisementBannerImage}

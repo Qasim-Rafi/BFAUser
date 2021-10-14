@@ -84,7 +84,7 @@ const Header = ({
 
 const styles = {
   header: {
-    backgroundColor: colors.black2,
+    
     flex: 0.1,
     flexDirection: 'row',
     alignItems: 'center',
