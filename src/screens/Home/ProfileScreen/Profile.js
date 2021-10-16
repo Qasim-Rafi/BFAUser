@@ -13,25 +13,37 @@ import CustomInput from '../../../components/customInput';
 export default function Profile() {
   return (
     <View style={styles.formArea}>
+      <ScrollView>
       <View style={{flex:0.68}}>
+        
+      <CustomInput
+          placeHolderText={'Pg'}
+          fieldName={'First Name'}
+        />
         <CustomInput
-          placeHolderText={'Umar Gani'}
+          placeHolderText={'Hassan'}
+          fieldName={'Last Name'}
+        />
+        <CustomInput
+          placeHolderText={'PG Hassan PHD'}
           fieldName={'User Name'}
         />
         <CustomInput
-          placeHolderText={'umargani@gmail.com'}
+          placeHolderText={'pghassan@gmail.com'}
           fieldName={'Email'}
         />
         <CustomInput placeHolderText={'000-000-0000'} fieldName={'Phone'} />
       </View>
-      <View  style={{flex:0.32}}>
+      <View  style={{flex:0.32,marginTop:40, marginBottom:20}}>
         <TouchableOpacity style={{alignSelf:'center' ,backgroundColor:colors.yellow,
         justifyContent:'center',
         alignItems:'center',
         borderRadius:7, height:hp(5), width:wp(80)}}>
           <ResponsiveText color={colors.black}>Save</ResponsiveText>
         </TouchableOpacity>
+        
       </View>
+      </ScrollView>
     </View>
   );
 }

@@ -12,8 +12,10 @@ const AwardWinningDishes = (props) => {
     return (
         <>
             <View style={styles.AwardWinningDishesHeaderSection}>
-                <ResponsiveText margin={[0,0,0,12]} size={4} color={colors.white}>Brunei Food Awards</ResponsiveText>
+                <ResponsiveText margin={[0,0,0,-5]} size={4} color={colors.white}>Brunei Food Awards</ResponsiveText>
+                <View style={{marginRight:-15}}>
                 <SeeAllButton navigation={props.navigation}/>
+                </View>
             </View>
             <View style={styles.AwardWinningDishesItemsSection}>
                 <ScrollView showsHorizontalScrollIndicator={false} horizontal>
@@ -23,8 +25,8 @@ const AwardWinningDishes = (props) => {
                             )}>
                             <View style={{ width: wp(26), height: hp(18), marginHorizontal: 5, borderRadius: 3, overflow: 'hidden', flexDirection: 'row' }}>
                                 <ImageBackground imageStyle={{opacity:.5}} style={{ flex: 1, padding: 5, overflow: 'hidden', justifyContent: 'flex-end' }} source={url.url} >
-                                    <ResponsiveText fontFamily="Regular" size={2.9} color={colors.white}>Kaizen sushi</ResponsiveText>
-                                    <ResponsiveText fontFamily="Light" size={2} color={colors.white}>Special sushi</ResponsiveText>
+                                    <ResponsiveText fontFamily="Regular" size={3} color={colors.white}>Kaizen sushi</ResponsiveText>
+                                    <ResponsiveText fontFamily="Light" size={2.5} margin={[-5,0,0,0]} color={colors.white}>Special sushi</ResponsiveText>
 
                                 </ImageBackground>
                             </View></TouchableOpacity>
@@ -43,15 +45,19 @@ export default AwardWinningDishes;
 const styles = StyleSheet.create({
 
     AwardWinningDishesHeaderSection: {
-        padding: 10,
-        
+        paddingHorizontal:5,
+        paddingTop:10,
+        paddingBottom:5,
+        marginRight:15,
+        marginBottom:5,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
          backgroundColor: colors.black1,
         borderTopLeftRadius: 7,
         borderTopRightRadius: 7,
-        borderBottomWidth: 0.9,
+        marginLeft:15,
+        borderBottomWidth: 1,
         borderColor: colors.black2,
     },
     AwardWinningDishesItemsSection: {
@@ -60,8 +66,9 @@ const styles = StyleSheet.create({
         display: 'flex',
         paddingVertical: 10,
         justifyContent: 'center',
+        paddingLeft:10,
         overflow: 'hidden',
-        backgroundColor:colors.black2,
+        backgroundColor:colors.black1,
     }
 
 

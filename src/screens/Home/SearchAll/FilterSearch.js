@@ -12,13 +12,15 @@ import { myListingTabs } from '../../../constants/mock'
 import { FiltersDummyData } from '../../../constants/mock'
 export default function FilterSearch({navigation}) {
     return(
-        <View style={{flex:1,backgroundColor:colors.black3}}>
+        <View style={{flex:1, backgroundColor:colors.white,}}>
+        {/* <View style={{flex:1,marginLeft:50,backgroundColor:colors.black3, justifyContent:'center'}}>
         <View style={styles.header}>
-        <TouchableOpacity onPress={()=>{navigation.goBack()}}><Icon size={wp(5) } source={require('../../../assets/icons/back-arrow.png')} /></TouchableOpacity>
+        <TouchableOpacity style={{borderRadius:5,marginLeft:5, padding:10, backgroundColor:colors.black1, alignItems:'center',justifyContent:'center'}} ><Icon size={25} source={require('../../../assets/icons/x.png')} /></TouchableOpacity>
       
         <ResponsiveText  color={colors.white} size={5}>Filter By</ResponsiveText>
         <Icon />
         </View>
+        <View style={{flex:0.9}} >
         <FlatList
         data={FiltersDummyData}
         renderItem={({item, index}) => (
@@ -73,11 +75,19 @@ export default function FilterSearch({navigation}) {
 
         </View>
         </View>
+    </View> */}
+
+
+        <View style={{height:300, width:300, backgroundColor:'orange'}}></View>
+        <View style={{height:100, width:100, backgroundColor:'green',position:'absolute',top:100, left:50,}}></View>
+
+        
+        </View> 
     )
 }
 const styles=StyleSheet.create({
     header: {
-        flex: 0.41,
+        flex: 0.1,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',

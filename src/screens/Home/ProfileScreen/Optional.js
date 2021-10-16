@@ -26,6 +26,31 @@ export default function Optional() {
   return (
     <View style={styles.formArea}>
       <ScrollView style={{flexGrow: 1}}>
+        <View style={{marginTop:20, marginBottom:-30, marginLeft:20}} >
+      <ResponsiveText color={colors.grey1} size={3} margin={[0, 0, 0, 10]}>
+            Are you interested in receiving potential job offers?
+          </ResponsiveText>
+          <RadioGroup
+            color={colors.yellow}
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+              marginTop: -5,
+              marginBottom: 30,
+            }}>
+            <RadioButton value={'item1'} style={{marginStart: 0}}>
+              <ResponsiveText color={colors.grey1} margin={[0, 7, 0, 7]}>
+                Yes
+              </ResponsiveText>
+            </RadioButton>
+
+            <RadioButton value={'item2'} style={{marginStart: 10}}>
+              <ResponsiveText color={colors.grey1} margin={[0, 7, 0, 7]}>
+                No
+              </ResponsiveText>
+            </RadioButton>
+          </RadioGroup>
+          </View>
         <CustomInput placeHolderText={'20/8/1980'} fieldName={'Birthday'} />
         <CustomInput
           placeHolderText={'Graduate'}
@@ -51,34 +76,12 @@ export default function Optional() {
         <View
           style={{
             justifyContent: 'center',
-            marginTop: 25,
+            marginTop: 40,
             marginBottom: 50,
             width: wp(90),
             alignSelf: 'center',
           }}>
-          <ResponsiveText color={colors.grey1} size={3} margin={[0, 0, 0, 10]}>
-            Are you interested in receiving potential job offers?
-          </ResponsiveText>
-          <RadioGroup
-            color={colors.yellow}
-            style={{
-              flex: 1,
-              flexDirection: 'row',
-              marginTop: -5,
-              marginBottom: 30,
-            }}>
-            <RadioButton value={'item1'} style={{marginStart: 0}}>
-              <ResponsiveText color={colors.grey1} margin={[0, 7, 0, 7]}>
-                Yes
-              </ResponsiveText>
-            </RadioButton>
-
-            <RadioButton value={'item2'} style={{marginStart: 10}}>
-              <ResponsiveText color={colors.grey1} margin={[0, 7, 0, 7]}>
-                No
-              </ResponsiveText>
-            </RadioButton>
-          </RadioGroup>
+          
           <TouchableOpacity
             style={{
               alignSelf: 'center',

@@ -12,10 +12,12 @@ const Promotion = (props) => {
     return (
         <>
             <View style={styles.everyOneFavoriteHeaderSection}>
-                <ResponsiveText margin={[0,0,0,12]} size={4} color={colors.white}>Promotions</ResponsiveText>
+                <ResponsiveText margin={[0,0,0,0]} size={4} color={colors.white}>Promotions</ResponsiveText>
+                <View style={{marginRight:-10,}} >
                 <SeeAllButton  navigation={props.navigation} />
+                </View>
             </View>
-            <View style={styles.recommendationItemsSection}>
+            <View style={styles.everyOneFavoriteItemsSection}>
                 <ScrollView showsHorizontalScrollIndicator={false} horizontal>
                     {promotionsFakeDATA.map((url, index) => {
                         return (
@@ -26,8 +28,8 @@ const Promotion = (props) => {
                                     <ResponsiveText size={2}>Flat 25% Off</ResponsiveText>
                                 </View>
                                 <View style={{ flex: 1, padding: 5,overflow: 'hidden', justifyContent: 'flex-end'}}>
-                                    <ResponsiveText fontFamily="Regular" size={2.9} color={colors.white}>Kaizen sushi</ResponsiveText>
-                                    <ResponsiveText fontFamily="Light" size={2} color={colors.white}>Special sushi</ResponsiveText>
+                                    <ResponsiveText fontFamily="Regular" size={3} color={colors.white}>Kaizen sushi</ResponsiveText>
+                                    <ResponsiveText fontFamily="Light" size={2.5} margin={[-5,0,0,0]} color={colors.white}>Special sushi</ResponsiveText>
                                 </View>
                                 </ImageBackground>
                             </View></TouchableOpacity>
@@ -46,17 +48,22 @@ export default Promotion;
 const styles = StyleSheet.create({
     promotionoffView:
     {
-        backgroundColor:'rgba(237, 197, 78, 0.7)',height:'15%',position:"relative",width:"60%",top:20,justifyContent:'center'
+        backgroundColor:'rgba(237, 197, 78, 0.7)',height:'15%',position:"relative",width:"60%",top:20,justifyContent:'center', alignItems:'center', borderTopRightRadius:3,paddingTop:1, borderBottomRightRadius:3,
     },
     everyOneFavoriteHeaderSection: {
-        padding: 10,
+        paddingTop: 10,
+        paddingBottom:5,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         // backgroundColor: colors.black1,
         borderTopLeftRadius: 7,
         borderTopRightRadius: 7,
-        borderBottomWidth: 0.9,
+        borderBottomWidth: 1,
+        marginLeft:15,
+        marginRight:15,
+        borderBottomColor:colors.black2,
+        marginBottom:5,
         borderColor: colors.black1
     },
     everyOneFavoriteItemsSection: {
@@ -64,6 +71,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         display: 'flex',
         paddingVertical: 10,
+        paddingLeft:10,
         justifyContent: 'center',
         overflow: 'hidden',
     }

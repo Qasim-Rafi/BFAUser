@@ -7,6 +7,7 @@ import Splash from '../screens/Auth/splash/Splash';
 import NumberVerification from '../screens/Auth/SignUp/VerificationNumber';
 import VerificationCode from '../screens/Auth/SignUp/VerificationCode';
 import SelectCoisines from '../screens/Auth/SelectCoisines/SelectCoisines';
+import FilterSearch from '../screens/Home/SearchAll/FilterSearch';
 
 
 const Stack = createNativeStackNavigator();
@@ -18,7 +19,7 @@ function AuthStack() {
     screenOptions={{
       headerShown: false,
     }}
-       initialRouteName={routeName.SPLASH}
+      //  initialRouteName={routeName.SPLASH}
     >
 
 

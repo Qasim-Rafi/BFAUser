@@ -36,7 +36,7 @@ const More = ({navigation}) => {
             flexDirection: 'row',
             paddingVertical:20,
           }}>
-            
+            <TouchableOpacity onPress={()=>navigation.navigate(routeName.PROFILE_SCREEN)} > 
           <Image
             style={{
               width: 80,
@@ -47,10 +47,11 @@ const More = ({navigation}) => {
             }}
             source={globalPath.PROFILE_LOGO}
           />
+          </TouchableOpacity>
           <View style={{justifyContent: 'center',marginLeft:10}}>
-            <ResponsiveText size={4}>Umar Gani</ResponsiveText>
+            <ResponsiveText size={4}>Pg Hassan PHD</ResponsiveText>
             <ResponsiveText color={colors.lightBlack} size={3}>
-              umargani@gmail.com
+              pghassan@gmail.com
             </ResponsiveText>
           </View>
           <TouchableOpacity onPress={logout}>

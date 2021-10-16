@@ -68,10 +68,7 @@ const Home = ({navigation}) => {
     
     <View style={styles.container}>
     
-    <Header navigation={navigation} />
       <ScrollView style={{flex: 0.9, }}>
-      
-
         <View style={styles.advertisementBanner}>
           <AdvertisementBanner navigation={navigation} />
         </View>
@@ -99,7 +96,7 @@ const Home = ({navigation}) => {
           <Advertisement2ndVarient navigation={navigation} />
         </View> */}
         
-        <View style={styles.awardWinningDishes}>
+        <View style={styles.recommendationContainer}>
           <Promotion navigation={navigation} />
         </View>
         <ImageBackground
@@ -124,6 +121,9 @@ const Home = ({navigation}) => {
          
         </ImageBackground>
       </ScrollView>
+      <View style={{flex: 0.1, position:'absolute',top:0}} >
+    <Header screen={"home"} navigation={navigation} />
+    </View>
     </View>
   );
 };
@@ -178,19 +178,20 @@ const styles = StyleSheet.create({
   },
   recommendationContainer: {
     flex: 0.32,
-    margin: 15,
+    marginVertical:10,
     borderRadius: 7,
   },
   everyoneFavorite: {
     flex: 0.17,
     // margin: 15,
     borderRadius: 7,
-    backgroundColor: colors.black2,
+    backgroundColor: colors.black1,
   },
   yourFavorite: {
     flex: 0.17,
     // margin: 15,
     borderRadius: 7,
+    
     backgroundColor: colors.black3,
   },
   Advertisement2ndVarient: {
@@ -204,7 +205,7 @@ const styles = StyleSheet.create({
     flex: 0.17,
     // margin: 15,
     borderRadius: 7,
-    backgroundColor: colors.black2,
+    backgroundColor: colors.black1,
     marginTop: 20,
   },
 });

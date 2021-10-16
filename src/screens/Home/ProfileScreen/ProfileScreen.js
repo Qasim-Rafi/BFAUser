@@ -41,8 +41,8 @@ export default function ProfileScreen({navigation}) {
             </View>
             <View style={{justifyContent:'center',alignItems:'center',flex:.45}}>
                 <Image style={{width:100,height:100,borderRadius:50,marginBottom:10}} source={globalPath.PROFILE_LOGO}/>
-                <ResponsiveText size={4}>Umar Gani</ResponsiveText>
-                <ResponsiveText color={colors.lightBlack} size={3}>umargani@gmail.com</ResponsiveText>
+                <ResponsiveText size={4}>Pg Hassan PHD</ResponsiveText>
+                {/* <ResponsiveText color={colors.lightBlack} size={3}>umargani@gmail.com</ResponsiveText> */}
             </View>
         </View>
         <View style={{flex:0.09, flexDirection:'row', marginTop:-10}}>
