@@ -8,6 +8,7 @@ import SeeAllButton from '../../../../components/SeeAllButton'
 import { globalPath } from '../../../../constants/globalPath'
 import { wp } from '../../../../helpers/Responsiveness'
 import urls from '../../../../redux/lib/urls'
+import { hp } from '../../../../helpers/Responsiveness'
 import AsyncStorage from '@react-native-community/async-storage'
 import Icon from '../../../../components/Icon'
 const BfaPartner = ({props}) => {
@@ -20,18 +21,20 @@ const [title, setTitle] = React.useState("More");
         <View style={{backgroundColor:colors.black3}} >
             
             <View style={styles.bfaPartnerHeaderSection}>
-                <ResponsiveText size={4} color={colors.white}>BFA Partners</ResponsiveText>
-                <TouchableOpacity style={{marginRight:-10}} onPress={()=>{
-                setMoreData(!moreData);
+                <ResponsiveText size={4} color={colors.white}>Bali Partners</ResponsiveText>
+                <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingLeft: 10 }} 
+                onPress={()=>{
+                
                 setTitle(title==="More" ? "Less" : "More");
-                console.log('state:', moreData);
+                
                 }} >
-                <SeeAllButton title={title} src={title==="More" ? globalPath.DOWN_ARROW : globalPath.UP_ARROW }/>
+                        <ResponsiveText size={3.2} margin={[0, 10, 0, 0]} color={colors.yellow}>Show All</ResponsiveText>
+            <Icon size={wp(1.6),hp(1.6)} source={title==="More"?globalPath.DOWN_ARROW:globalPath.UP_ARROW} />
             </TouchableOpacity>
 
             </View>
             
-            {  moreData ? <View style={styles.bfaPartnerItemsSection}>
+            {  title==="Less" ? <View style={styles.bfaPartnerItemsSection}>
                 {BFAPartnerFakeData.map((url, index) => {
                     return (
                         // <Icon source={url} size={35} borderRadius={5} />

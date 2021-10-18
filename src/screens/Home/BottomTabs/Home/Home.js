@@ -34,6 +34,7 @@ import { getRestaurantAllDishes, getUserCusine, awardsRestaurant } from '../../.
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import urls from '../../../../redux/lib/urls';
+import CuisinesSlider from './CuisinesSlider';
 
 const Home = ({navigation}) => {
   const token = async()=> await AsyncStorage.getItem('@token');
@@ -99,7 +100,14 @@ const Home = ({navigation}) => {
         <View style={styles.recommendationContainer}>
           <Promotion navigation={navigation} />
         </View>
-        <ImageBackground
+
+        <View style={styles.cuisinesContainer}>
+          <CuisinesSlider navigation={navigation} />
+        </View>
+
+
+
+        {/* <ImageBackground
           style={styles.cuisinesContainer}
           //  source={{ uri: 'https://images.unsplash.com/photo-1441716844725-09cedc13a4e7?h=1024' }}
           source={globalPath.HOME_HOME_VIEW_COISINES_AND_CATEGORIES}>
@@ -119,9 +127,9 @@ const Home = ({navigation}) => {
             />
           </TouchableOpacity>
          
-        </ImageBackground>
+        </ImageBackground> */}
       </ScrollView>
-      <View style={{flex: 0.1, position:'absolute',top:0}} >
+      <View style={{flex: 0.1, position:'absolute',top:0, }} >
     <Header screen={"home"} navigation={navigation} />
     </View>
     </View>
@@ -144,12 +152,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   advertisementBanner: {
-    
-    // flex: 0.1,
     height: 200,
-    // backgroundColor:'red',
-    // overflow:'hidden',
-    // maxHeight:400
   },
   bfaPartnerContainer: {
     flex: 0.17,
@@ -158,10 +161,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.black2,
   },
   cuisinesContainer: {
-    marginVertical:15,
-    height: hp(22),
-    justifyContent: 'center',
-    alignItems: 'center',
+    height: 170,
+    marginTop:10,
+    marginBottom:20,
+
   },
   cuisinesButton: {
     backgroundColor: colors.yellow,
@@ -185,7 +188,7 @@ const styles = StyleSheet.create({
     flex: 0.17,
     // margin: 15,
     borderRadius: 7,
-    backgroundColor: colors.black1,
+    backgroundColor: colors.black3,
   },
   yourFavorite: {
     flex: 0.17,
@@ -205,7 +208,7 @@ const styles = StyleSheet.create({
     flex: 0.17,
     // margin: 15,
     borderRadius: 7,
-    backgroundColor: colors.black1,
+    backgroundColor: colors.black3,
     marginTop: 20,
   },
 });

@@ -19,8 +19,11 @@ import ResponsiveText from '../../../components/RnText';
 import {globalPath} from '../../../constants/globalPath';
 import {Spacing} from '../../../constants/spacingScale';
 import { routeName } from '../../../constants/routeName';
+import { StackActions } from '@react-navigation/routers';
+
 import { colors } from '../../../constants/colorsPallet';
 import { TextInput } from 'react-native-gesture-handler';
+import Preferences from '../../Home/BottomTabs/More/Preferences';
 
 const CELL_COUNT = 6;
 
@@ -77,7 +80,9 @@ export default function VerificationCode({navigation}) {
           </View>
         
           <RnButton onPress={()=>navigation.navigate(routeName.PREFERENCES)} fontFamily='SemiBold'  margin={[20, 0]} title="Continue" />
-          
+         
+
+
         </View>
       </ImageBackground>
       </ScrollView>

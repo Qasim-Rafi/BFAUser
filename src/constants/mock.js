@@ -7,30 +7,68 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 
 export const advertisementBannerFakeDATA = [
-  // globalPath.BALI_LOGO,globalPath.CHECKOUT_LOGO
-  'https://images.unsplash.com/photo-1441742917377-57f78ee0e582?h=1024',
-  'https://images.unsplash.com/photo-1441716844725-09cedc13a4e7?h=1024',
-  'https://images.unsplash.com/photo-1441448770220-76743f9e6af6?h=1024',
-  'https://images.unsplash.com/photo-1441260038675-7329ab4cc264?h=1024',
-  // 'https://images.unsplash.com/photo-1441126270775-739547c8680c?h=1024',
-  // 'https://images.unsplash.com/photo-1440964829947-ca3277bd37f8?h=1024',
-  // 'https://images.unsplash.com/photo-1440847899694-90043f91c7f9?h=1024'
+  {
+    restaurantName: "PappaRich",
+    dishName: "Malaysian Delights",
+    url: require('../assets/fake_Images/PappaRich.png'),
+  },
+  {
+    restaurantName: "Dynasty Restaurant",
+    dishName: "Chinese Restaurant",
+    url: require('../assets/fake_Images/Dynasty_Restaurant.png'),
+  },
+  {
+    restaurantName: "Tasek Brasserie",
+    dishName: " ",
+    url: require('../assets/fake_Images/tasek_brasserie.png'),
+  },
+  
+  
+  
+  
+  
 ];
-// export const awardWinningFakeDATA = [
-//   require('../assets/fake_Images/dishes-1.png'),
-//   require('../assets/fake_Images/dishes-2.png'),
-//   require('../assets/fake_Images/dishes-3.png'),
-//   require('../assets/fake_Images/dishes-4.png'),
-//   require('../assets/fake_Images/dishes-1.png'),
-//   require('../assets/fake_Images/dishes-2.png'),
-//   require('../assets/fake_Images/dishes-3.png'),
-//   require('../assets/fake_Images/dishes-4.png'),
-// ];
+
+export const cuisineSliderData = [
+  require('../assets/fake_Images/cuisineAmerican.png'),
+  require('../assets/fake_Images/pakistani.png'),
+  require('../assets/fake_Images/Lebanese.png'),
+  require('../assets/fake_Images/malaysian.png'),
+  require('../assets/fake_Images/japanese.png'),
+]
+
 export const promosBannerFakeDATA = [
   require('../assets/fake_Images/promos-banner1.png'),
   require('../assets/fake_Images/promos-banner3.png'),
   require('../assets/fake_Images/Home-Add-Banner-2.png'),
 ];
+
+export const CuisinesData = [
+  {
+    id:1,
+      title : "American",
+      description: "Special sushi",
+      url: require('../assets/fake_Images/cuisine-American.png'),
+  },
+  {
+    id:2,
+      title : "Chinese",
+      description: "Special sushi",
+      url: require('../assets/fake_Images/cuisine-chinese.png'),
+  },
+  {
+    id:3,
+      title : "Indian",
+      description: "Special sushi",
+      url: require('../assets/fake_Images/cuisine-indian.png'),
+  },
+  {
+    id:4,
+      title : "Pakistani",
+      description: "Special sushi",
+      url: require('../assets/fake_Images//cuisine-Pakistani.png'),
+  },
+]
 
 export const ourRecommendationFakeDATA = [
   {

@@ -14,7 +14,7 @@ const Promotion = (props) => {
             <View style={styles.everyOneFavoriteHeaderSection}>
                 <ResponsiveText margin={[0,0,0,0]} size={4} color={colors.white}>Promotions</ResponsiveText>
                 <View style={{marginRight:-10,}} >
-                <SeeAllButton  navigation={props.navigation} />
+                <SeeAllButton title={"Promotions"} data={promotionsFakeDATA} navigation={props.navigation} />
                 </View>
             </View>
             <View style={styles.everyOneFavoriteItemsSection}>

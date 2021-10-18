@@ -83,7 +83,7 @@ export default function Login({navigation}) {
     //   behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     //   keyboardVerticalOffset={hp(-10)}
     //   style={styles.container}>
-    <ScrollView contentContainerStyle={{flexGrow: 1}}>
+    <ScrollView contentContainerStyle={{flexGrow: 1, backgroundColor:colors.black}}>
       <ImageBackground style={styles.container} source={globalPath.BG_IMAGE}>
         <View style={styles.screeninfo}>
           <Icon source={globalPath.BALI_ICON} size={60} />
@@ -112,11 +112,11 @@ export default function Login({navigation}) {
             leftIcon={globalPath.PASSWORD_LOGO}
           />
           <View style={styles.forgotPasswordContainer}>
-            <Line color={colors.grey5} width={wp(20)} />
+            {/* <Line color={colors.grey5} width={wp(20)} />
             <ResponsiveText margin={[0, 10]} color={colors.white}>
               Forgot Password?
             </ResponsiveText>
-            <Line color={colors.grey5} width={wp(20)} />
+            <Line color={colors.grey5} width={wp(20)} /> */}
           </View>
           <RnButton
             // onPress={() => Validation()}

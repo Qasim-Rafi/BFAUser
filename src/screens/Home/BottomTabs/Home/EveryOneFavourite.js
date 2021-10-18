@@ -32,7 +32,7 @@ const EveryOneFavourite = (props) => {
           People's Choice 
         </ResponsiveText>
         <View style={{marginRight:-10}} >
-        <SeeAllButton navigation={props.navigation} />
+        <SeeAllButton title={"People's Choice"} data={everyoneFavoriteFakeDATA} navigation={props.navigation} />
         </View>
       </View>
       <View style={styles.everyOneFavoriteItemsSection}>

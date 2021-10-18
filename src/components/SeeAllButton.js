@@ -10,8 +10,11 @@ import { hp, wp } from '../helpers/Responsiveness'
 const SeeAllButton = (props) => {
     
     return (
-        <TouchableOpacity onPress={()=> props.navigation? props.navigation.navigate(routeName.SearchAll) : undefined} style={styles.button}  >
-    <ResponsiveText size={3.2} margin={[0, 10, 0, 0]} color={colors.yellow}>{props.title ? props.title : "Show All"}</ResponsiveText>
+        <TouchableOpacity onPress={()=> props.navigation? props.navigation.navigate(routeName.ALL_DISHES_LIST,{
+            data:props.data,
+            title:props.title,
+        }) : undefined} style={styles.button}  >
+    <ResponsiveText size={3.2} margin={[0, 10, 0, 0]} color={colors.yellow}>Show All</ResponsiveText>
             <Icon size={wp(1.6),hp(1.6)} source={props.src?props.src:globalPath.RIGHT_ARROW} />
         </TouchableOpacity>
     )

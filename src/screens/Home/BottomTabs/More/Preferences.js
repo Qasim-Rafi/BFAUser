@@ -6,6 +6,7 @@ import RnButton from '../../../../components/RnButton'
 import { globalPath } from '../../../../constants/globalPath'
 import ResponsiveText from '../../../../components/RnText'
 import { wp, hp } from '../../../../helpers/Responsiveness'
+import { StackActions } from '@react-navigation/routers'
 import { CUISINES_DATA, OTHERS_DATA, POPULER_DISHES_DATA,} from '../../../../constants/mock'
 import { NavigationHelpersContext } from '@react-navigation/core'
 
@@ -127,7 +128,7 @@ export default function Preferences({navigation}) {
             alignItems: 'center',
             justifyContent: 'center',
             paddingHorizontal:20,
-            marginBottom:40,
+            marginBottom:20,
             flexWrap: 'wrap',
             // alignContent: 'center',
           }}>
@@ -150,6 +151,10 @@ export default function Preferences({navigation}) {
               </TouchableOpacity>
             );
           })}
+
+        </View>
+        <View style={{paddingHorizontal:40, marginBottom:20}} >
+        <RnButton onPress={()=>navigation.dispatch(StackActions.replace('Home'))} fontFamily='SemiBold'  margin={[20, 0]} title="Continue" />
 
         </View>
         </ScrollView>

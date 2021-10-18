@@ -2,29 +2,28 @@ import React from 'react'
 import { Image, ScrollView, StyleSheet, View, ImageBackground, TouchableOpacity } from 'react-native'
 import ResponsiveText from '../../../../components/RnText'
 
-import { advertisementBannerFakeDATA, ourRecommendationFakeDATA } from '../../../../constants/mock'
+import { advertisementBannerFakeDATA, CuisinesData, ourRecommendationFakeDATA } from '../../../../constants/mock'
 import { colors } from '../../../../constants/colorsPallet'
 import SeeAllButton from '../../../../components/SeeAllButton'
 import { routeName  } from '../../../../constants/routeName'
 import { hp, wp } from '../../../../helpers/Responsiveness'
-const Recommendation = (props) => {
+const AllCuisines = (props) => {
     return (
         <>
             <View style={styles.recommendationHeaderSection}>
-                <ResponsiveText margin={[0,0,0,0]} size={4} color={colors.white}>BFA Recommendations</ResponsiveText>
+                <ResponsiveText margin={[0,0,0,0]} size={4} color={colors.white}>Cuisines</ResponsiveText>
                 <View style={{marginRight:-10}} >
-                <SeeAllButton title={"BFA Recommendation"} data={ourRecommendationFakeDATA} navigation={props.navigation} />
+                <SeeAllButton />
                 </View>
             </View>
             <View style={styles.recommendationItemsSection}>
                 <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-                    {ourRecommendationFakeDATA.map((url, index) => {
+                    {CuisinesData.map((url, index) => {
                         return (
                             <TouchableOpacity onPress={()=> props.navigation.navigate(routeName.DISH_DETAIL,{dish:url})}>
                             <View  style={{ width: wp(26), height: hp(18), borderRadius: 3, marginHorizontal: 5, overflow: 'hidden', flexDirection: 'row' }}>
-                                <ImageBackground imageStyle={{opacity:.5}} imageStyle={{opacity:.5}} style={{ flex: 1, padding: 5, overflow: 'hidden', justifyContent: 'flex-end',backgroundColor: 'rgba(0,0,0,1)' }} source={url.url} >
-                                    <ResponsiveText fontFamily="Regular" size={3} margin={[0,0,-5,0]} color={colors.white}>Kaizen sushi</ResponsiveText>
-                                    <ResponsiveText fontFamily="Light" size={2.5} color={colors.white}>Special sushi</ResponsiveText>
+                                <ImageBackground imageStyle={{opacity:0.5}} style={{ flex: 1, padding: 5, overflow: 'hidden', justifyContent: 'flex-end',backgroundColor: 'rgba(0,0,0,1)' }} source={url.url} >
+                                    <ResponsiveText fontFamily="Regular" size={3} margin={[0,0,10,0]} color={colors.white}>{url.title}</ResponsiveText>
                                 </ImageBackground>
                             </View>
                             </TouchableOpacity>
@@ -38,7 +37,7 @@ const Recommendation = (props) => {
     )
 }
 
-export default Recommendation;
+export default AllCuisines;
 
 const styles = StyleSheet.create({
 

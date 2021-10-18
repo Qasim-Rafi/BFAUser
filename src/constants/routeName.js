@@ -45,4 +45,5 @@ export const routeName = {
   CONTACT_US:'CONTACT_US',
   MY_REVIEWS:'MY_REVIEWS',
   SCAN_QR:'SCAN_QR',
+  ALL_DISHES_LIST:'ALL_DISHES_LIST',
 };

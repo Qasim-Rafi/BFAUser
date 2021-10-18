@@ -9,13 +9,14 @@ import { colors } from '../../../../constants/colorsPallet'
 import SeeAllButton from '../../../../components/SeeAllButton'
 import { hp, wp } from '../../../../helpers/Responsiveness';
 const YourFavourite = (props) => {
-    const firstName = "Pengiran"
+    const firstName = "Pg"
+    const title = firstName+"'s Favorites";
     return (
         <>
             <View style={styles.yourFavoriteHeaderSection}>
                 <ResponsiveText margin={[0,0,0,0]} size={4} color={colors.white}>{firstName}'s Favourites</ResponsiveText>
                 <View style={{marginRight:-10}} >
-                <SeeAllButton navigation={props.navigation} />
+                <SeeAllButton title={title} data={yourFavoriteFakeDATA} navigation={props.navigation} />
                 </View>
             </View>
             <View style={styles.yourFavoriteItemsSection}>

@@ -8,6 +8,7 @@ import NumberVerification from '../screens/Auth/SignUp/VerificationNumber';
 import VerificationCode from '../screens/Auth/SignUp/VerificationCode';
 import SelectCoisines from '../screens/Auth/SelectCoisines/SelectCoisines';
 import FilterSearch from '../screens/Home/SearchAll/FilterSearch';
+import Preferences from '../screens/Home/BottomTabs/More/Preferences';
 
 
 const Stack = createNativeStackNavigator();
@@ -31,6 +32,7 @@ function AuthStack() {
       <Stack.Screen name={routeName.NUMBER_VERIFICATION} component={NumberVerification} />
        <Stack.Screen name={routeName.VERIFICATION_CODE} component={VerificationCode} />
        <Stack.Screen name={routeName.SELECT_COISINES} component={SelectCoisines} />
+       <Stack.Screen name={routeName.PREFERENCES} component={Preferences} />
         </Stack.Navigator>
   )}
   export default AuthStack

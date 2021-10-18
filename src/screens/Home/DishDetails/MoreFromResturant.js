@@ -17,9 +17,9 @@ const MoreFromResturant = ({navigation}) => {
                     {ourRecommendationFakeDATA.map((url, index) => {
                         return (
                             <View style={{ width: 90, height: 130, marginHorizontal: 5, borderRadius: 3, overflow: 'hidden', flexDirection: 'row' }}>
-                                <ImageBackground style={{ flex: 1, padding: 5, overflow: 'hidden', justifyContent: 'flex-end' }} source={url } >
-                                    <ResponsiveText fontFamily="Regular" size={2.9} color={colors.white}>Kaizen sushi</ResponsiveText>
-                                    <ResponsiveText fontFamily="Light" size={2} color={colors.white}>Special sushi</ResponsiveText>
+                                <ImageBackground style={{ flex: 1, padding: 5, overflow: 'hidden', justifyContent: 'flex-end' }} source={url.url } >
+                                    <ResponsiveText fontFamily="Regular" size={2.9} color={colors.white}>{url.title}</ResponsiveText>
+                                    <ResponsiveText fontFamily="Light" size={2} color={colors.white}>{url.description}</ResponsiveText>
 
                                 </ImageBackground>
                             </View>

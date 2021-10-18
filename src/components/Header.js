@@ -41,7 +41,7 @@ const Header = ({
         }}>
         <Icon
           margin={[0, 0, 0, 0]}
-          size={props.iconPath ? 25 : 36}
+          size={props.iconPath ? 25 : 44}
           source={props.iconPath ? props.iconPath : globalPath.BALI_ICON}
         />
       </TouchableOpacity>
@@ -84,7 +84,7 @@ const Header = ({
           <Icon
             margin={[0, 0, 0, 5]}
             borderRadius={30}
-            size={(wp(10), hp(6))}
+            size={props.iconPath ? (wp(10), hp(6)) : 42}
             resizeMode={'cover'}
             source={globalPath.PROFILE_LOGO}
           />
