@@ -16,7 +16,7 @@ const MoreFromResturant = ({navigation}) => {
                 <ScrollView showsHorizontalScrollIndicator={false} horizontal>
                     {ourRecommendationFakeDATA.map((url, index) => {
                         return (
-                            <View style={{ width: 90, height: 130, marginHorizontal: 5, borderRadius: 3, overflow: 'hidden', flexDirection: 'row' }}>
+                            <View style={{ width: 90, height: 130, marginRight: 5, borderRadius: 3, overflow: 'hidden', flexDirection: 'row' }}>
                                 <ImageBackground style={{ flex: 1, padding: 5, overflow: 'hidden', justifyContent: 'flex-end' }} source={url.url } >
                                     <ResponsiveText fontFamily="Regular" size={2.9} color={colors.white}>{url.title}</ResponsiveText>
                                     <ResponsiveText fontFamily="Light" size={2} color={colors.white}>{url.description}</ResponsiveText>
@@ -38,7 +38,7 @@ export default MoreFromResturant;
 const styles = StyleSheet.create({
 
     yourFavoriteHeaderSection: {
-        padding: 10,
+        paddingVertical: 10,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',

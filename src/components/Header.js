@@ -70,7 +70,7 @@ const Header = ({
          
         />
       </TouchableOpacity>
-      <TouchableOpacity onPress={()=>{searchBar==='true'? navigation.navigate(routeName.FeaturedSearch) : toggleSearchBar('true')}} style={{marginStart:5, borderRadius:10,}}>
+      <TouchableOpacity onPress={()=>{searchBar==='true'? navigation.navigate(routeName.SearchAll) : toggleSearchBar('true')}} style={{marginStart:5, borderRadius:10,}}>
         <Icon source={globalPath.SEARCH_LOGO} size={25} />
       </TouchableOpacity>
       

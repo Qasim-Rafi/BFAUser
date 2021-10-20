@@ -187,6 +187,50 @@ export const ourRecommendationFakeDATA = [
   },
 ];
 
+export const Search_Result = [
+  {
+    id:1,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/Home-Recommendations-1.png'),
+  },
+  {
+    id:2,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/Home-Recommendations-2.png'),
+  },
+  {
+    id:3,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/Home-Recommendations-3.png'),
+  },
+  {
+    id:4,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/Home-Recommendations-4.png'),
+  },
+  {
+    id:5,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/Home-Recommendations-1.png'),
+  },
+  
+];
+
 export const promotionsFakeDATA = [
   {
     id:1,

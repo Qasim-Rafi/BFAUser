@@ -1,20 +1,26 @@
 import React, { useState } from 'react'
-import {ScrollView, View, StyleSheet,TouchableOpacity ,Text,ImageBackground,Image} from 'react-native'
+import {ScrollView, View, StyleSheet,TouchableOpacity ,FlatList,Text,ImageBackground,Image} from 'react-native'
 import Header from '../../../components/Header'
 import ResponsiveText from '../../../components/RnText'
 import { colors } from '../../../constants/colorsPallet'
 import { hp, wp } from '../../../helpers/Responsiveness'
-import { advertisementBannerFakeDATA, ourRecommendationFakeDATA } from '../../../constants/mock'
+import { advertisementBannerFakeDATA, ourRecommendationFakeDATA, Search_Result } from '../../../constants/mock'
 import { Rating } from 'react-native-ratings'
 import Icon from '../../../components/Icon'
 import { globalPath } from '../../../constants/globalPath'
 import { myListingTabs } from '../../../constants/mock'
 import { routeName } from '../../../constants/routeName'
 import SearchHeader from '../../../components/SearchHeader'
+import Modal from "react-native-modal";
+import { FiltersDummyData } from '../../../constants/mock'
+
 
 export default function SearchAll({navigation}) {
 	// const [activeTab, setActiveTab] = React.useState(myListingTabs[0].id);
-
+    const [isModalVisible, setModalVisible] = React.useState(false);
+    const toggleModal = () => {	
+        setModalVisible(!isModalVisible);
+     };
 
 
 	return (
@@ -28,7 +34,7 @@ export default function SearchAll({navigation}) {
                     >
                     <Text>Sort</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={()=> navigation.navigate(routeName.FilterSearch)}
+                  <TouchableOpacity onPress={toggleModal}
                      style={[styles.buttonShape,{backgroundColor:colors.black2}]}
                     >
                     <Text style={{color:colors.white}}>Filter</Text>
@@ -45,8 +51,98 @@ export default function SearchAll({navigation}) {
 				<ResponsiveText color={colors.white}>Now SHowing Dish Result For "Chicken" </ResponsiveText>
 				<ResponsiveText color={colors.white} size={3}>5 Result Found </ResponsiveText>
 			</View>
-		<SortResult navigation={navigation} />
+           
+            <SortResult navigation={navigation} />
+           
+            
+        
 		
+        <Modal isVisible={isModalVisible} backdropOpacity={0.90} style={{justifyContent:'flex-end'}} 
+            animationIn={'slideInRight'}
+            animationOut={'slideOutRight'}
+            // onModalHide={()=>navigation.navigate(routeName.LANDING_SCREEN)}
+            coverScreen={true}
+            >
+         {/* ------------ ModalView -------------- */}
+
+         
+        <View style={{flex:1,marginLeft:40,backgroundColor:colors.black3, justifyContent:'center'}}>
+        <View style={{
+        flex: 0.1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingLeft:10,
+        backgroundColor:colors.black2}}>
+        <TouchableOpacity onPress={toggleModal} style={{borderRadius:5,marginLeft:5, padding:10, backgroundColor:colors.black1, alignItems:'center',justifyContent:'center'}} ><Icon size={20} source={require('../../../assets/icons/x.png')} /></TouchableOpacity>
+      
+        <ResponsiveText  color={colors.white} size={4}>Filter By</ResponsiveText>
+        <TouchableOpacity onPress={toggleModal} style={{paddingVertical:8,marginRight:-50, paddingHorizontal:10,borderRadius:5, backgroundColor:colors.yellow}} >
+        <ResponsiveText  color={colors.black} size={3.4}>Reset</ResponsiveText>
+        </TouchableOpacity>
+        <Icon />
+        </View>
+        <View style={{flex:0.9}} >
+        <FlatList
+        data={FiltersDummyData}
+        renderItem={({item, index}) => (
+            <>
+                <View style={{margin:20}}>
+                <ResponsiveText size={4} color={colors.white}>{item.title}</ResponsiveText>
+                <View style={{borderBottomWidth:0.5,borderBottomColor:colors.grey1}}></View>
+                
+            </View>
+            <View
+      style={{
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        // justifyContent: 'center',
+        flexWrap: 'wrap',
+        alignContent: 'center',
+        marginHorizontal:10
+        
+      }}>
+      {item.data.map((item, index) => {
+        return (
+          <View
+            style={{
+                borderRadius:7,
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: colors.black3,
+              marginHorizontal: 10,
+              padding: 10,
+              marginTop: 10,
+              borderColor:colors.grey1,
+        borderWidth:0.5
+            }}>
+            <ResponsiveText color={colors.white} fontFamily={'regular'}>
+              {item.name}<ResponsiveText color={colors.yellow}>({item.value})
+              </ResponsiveText>
+            </ResponsiveText>
+          </View>
+        );
+      })}
+    </View>
+
+                
+            </>)}
+      keyExtractor={item => item.id}/>
+        <View style={{height:50,backgroundColor:colors.black2,flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+          <ResponsiveText margin={[0,20,0,20]} color={colors.yellow}>2523 Properties</ResponsiveText>
+          <TouchableOpacity onPress={toggleModal} style={{backgroundColor:colors.yellow,borderRadius:3,padding:6,marginRight:20}}>
+            <ResponsiveText size={3.3}>Show Result</ResponsiveText>
+          </TouchableOpacity>
+
+        </View>
+        </View>
+        </View>
+        
+      
+      {/* ------------ ModalView End -------------- */}  
+      </Modal>
+      
 		</View>
 	)
 }
@@ -58,24 +154,24 @@ const SortResult = (props) => {
             
             <View style={styles.everyOneFavoriteItemsSection}>
                 <ScrollView showsHorizontalScrollIndicator={false} >
-                    {ourRecommendationFakeDATA.map((url, index) => {
+                    {Search_Result.map((url, index) => {
                         return (
 		
-		<TouchableOpacity style={{flexDirection: 'row',backgroundColor: colors.black2,marginTop:10}} onPress={()=> props.navigation.navigate(routeName.DISH_DETAIL,{dish:url})}>
-                            <View style={{  height: 80, marginHorizontal: 5, borderRadius: 3, overflow: 'hidden',  }}>
-                                <Image style={{  padding: 5, overflow: 'hidden', justifyContent: 'flex-end',width:80,height:80 }} source={url.url} >
-                                </Image>
+		<TouchableOpacity style={{flexDirection: 'row',backgroundColor: colors.black2,marginTop:10,marginHorizontal:15, borderRadius:5}} onPress={()=> props.navigation.navigate(routeName.DISH_DETAIL,{dish:url})}>
+                            <View style={{justifyContent:'center', borderRadius: 5, overflow: 'hidden',  }}>
+                                <Icon source={url.url} size={70} borderRadius={7} />
+                                
 								</View>
 							<View style={{flex:1,justifyContent:'space-between',flexDirection:'row'}}>	
-							<View>
-                                    <ResponsiveText fontFamily="Regular" size={2.9} color={colors.white}>Kaizen sushi</ResponsiveText>
-                                    <ResponsiveText fontFamily="Light" size={2} color={colors.white}>Special sushi</ResponsiveText>
+							<View style={{justifyContent:'center', marginLeft:5}} >
+                                    <ResponsiveText  size={3} color={colors.white}>Kaizen sushi</ResponsiveText>
+                                    <ResponsiveText size={2.7} color={colors.white}>Special sushi</ResponsiveText>
                                     <Rating
                                         size={2}
 										tintColor={colors.black2}
                                         imageSize={10}
                                         // tintColor={'transparent'}
-                                        style={{ paddingVertical: 10,color:colors.black2 }}
+                                        style={{ paddingVertical: 10,color:colors.black2, marginLeft:-25, marginTop:-5 }}
                                     />
 								</View>	
 								<View style={{margin:20}}>
@@ -89,7 +185,7 @@ const SortResult = (props) => {
                     })}
                 </ScrollView>
             </View>
-
+            
         </>
     )
 }
@@ -114,7 +210,7 @@ const styles=StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         display: 'flex',
-        paddingVertical: 10,
+        paddingBottom:20,
         justifyContent: 'center',
         overflow: 'hidden',
     },

@@ -13,7 +13,7 @@ import { FiltersDummyData } from '../../../constants/mock'
 export default function FilterSearch({navigation}) {
     return(
         <View style={{flex:1, backgroundColor:colors.white,}}>
-        {/* <View style={{flex:1,marginLeft:50,backgroundColor:colors.black3, justifyContent:'center'}}>
+        <View style={{flex:1,marginLeft:50,backgroundColor:colors.black3, justifyContent:'center'}}>
         <View style={styles.header}>
         <TouchableOpacity style={{borderRadius:5,marginLeft:5, padding:10, backgroundColor:colors.black1, alignItems:'center',justifyContent:'center'}} ><Icon size={25} source={require('../../../assets/icons/x.png')} /></TouchableOpacity>
       
@@ -75,12 +75,10 @@ export default function FilterSearch({navigation}) {
 
         </View>
         </View>
-    </View> */}
+    </View>
 
 
-        <View style={{height:300, width:300, backgroundColor:'orange'}}></View>
-        <View style={{height:100, width:100, backgroundColor:'green',position:'absolute',top:100, left:50,}}></View>
-
+        
         
         </View> 
     )

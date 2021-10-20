@@ -42,8 +42,11 @@ export default function DishDetails({route, navigation}) {
         </RnButton>
         </View>
         <CalorieCount/>
+        <View style={{marginLeft:20, marginVertical:10}} >
         <MoreFromResturant navigation={navigation}/>
         <PeopleSay/>
+        </View>
+
         {/* <Comments/> */}
         <View style={{margin:20,paddingBottom:20}}>
         
