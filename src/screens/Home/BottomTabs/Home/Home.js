@@ -34,7 +34,7 @@ import { getRestaurantAllDishes, getUserCusine, awardsRestaurant } from '../../.
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import urls from '../../../../redux/lib/urls';
-import CuisinesSlider from './CuisinesSlider';
+import AllCuisines from './AllCuisines';
 
 const Home = ({navigation}) => {
   const token = async()=> await AsyncStorage.getItem('@token');
@@ -102,7 +102,8 @@ const Home = ({navigation}) => {
         </View>
 
         <View style={styles.cuisinesContainer}>
-          <CuisinesSlider navigation={navigation} />
+          {/* <CuisinesSlider navigation={navigation} /> */}
+          <AllCuisines navigation={navigation} />
         </View>
 
 
@@ -161,7 +162,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.black2,
   },
   cuisinesContainer: {
-    height: 170,
+    
     marginTop:10,
     marginBottom:20,
 

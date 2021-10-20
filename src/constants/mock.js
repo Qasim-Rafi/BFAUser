@@ -8,6 +8,11 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 export const advertisementBannerFakeDATA = [
   {
+    restaurantName: "Pandok Sari Wangi",
+    dishName: "Seafood Restaurant",
+    url: require('../assets/fake_Images/pandok_sari_wangi.png'),
+  },
+  {
     restaurantName: "PappaRich",
     dishName: "Malaysian Delights",
     url: require('../assets/fake_Images/PappaRich.png'),
@@ -22,10 +27,6 @@ export const advertisementBannerFakeDATA = [
     dishName: " ",
     url: require('../assets/fake_Images/tasek_brasserie.png'),
   },
-  
-  
-  
-  
   
 ];
 
@@ -44,29 +45,78 @@ export const promosBannerFakeDATA = [
 ];
 
 export const CuisinesData = [
+  // {
+  //   id:1,
+  //     title : "American",
+  //     description: "Special sushi",
+  //     url: require('../assets/fake_Images/cuisine-American.png'),
+  // },
+  // {
+  //   id:2,
+  //     title : "Chinese",
+  //     description: "Special sushi",
+  //     url: require('../assets/fake_Images/cuisine-chinese.png'),
+  // },
+  // {
+  //   id:3,
+  //     title : "Indian",
+  //     description: "Special sushi",
+  //     url: require('../assets/fake_Images/cuisine-indian.png'),
+  // },
+  // {
+  //   id:4,
+  //     title : "Pakistani",
+  //     description: "Special sushi",
+  //     url: require('../assets/fake_Images//cuisine-Pakistani.png'),
+  // },
   {
     id:1,
-      title : "American",
+      title : "Arabian",
       description: "Special sushi",
       url: require('../assets/fake_Images/cuisine-American.png'),
   },
   {
     id:2,
-      title : "Chinese",
+      title : "Bruneian",
+      description: "Special sushi",
+      url: require('../assets/fake_Images/dishes-1.png'),
+  },
+  {
+    id:3,
+      title : "Bangladeshi",
+      description: "Special sushi",
+      url: require('../assets/fake_Images/cuisine-Pakistani.png'),
+  },
+  
+  {
+    id:4,
+      title : "Filipino",
       description: "Special sushi",
       url: require('../assets/fake_Images/cuisine-chinese.png'),
   },
   {
-    id:3,
+    id:5,
       title : "Indian",
       description: "Special sushi",
       url: require('../assets/fake_Images/cuisine-indian.png'),
   },
   {
-    id:4,
-      title : "Pakistani",
+    id:6,
+      title : "Japanese",
       description: "Special sushi",
-      url: require('../assets/fake_Images//cuisine-Pakistani.png'),
+      url: require('../assets/fake_Images/cuisine-chinese.png'),
+  },
+  {
+    id:7,
+      title : "Korean",
+      description: "Special sushi",
+      url: require('../assets/fake_Images/cuisine-chinese.png'),
+  },
+  {
+    id:8,
+      title : "Malaysian",
+      description: "Special sushi",
+      url: require('../assets/fake_Images/cuisine-Pakistani.png'),
   },
 ]
 
