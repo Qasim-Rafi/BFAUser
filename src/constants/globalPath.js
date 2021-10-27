@@ -148,9 +148,11 @@ const MORE_LANGUAGE = require('../assets/icons/moreIcons/language.png');
 const LOGOUT = require('../assets/icons/moreIcons/logout.png')
 const BFA_LOGO = require('../assets/icons/BFA_Logo2020.png')
 const READ_MORE = require('../assets/icons/readmore.png')
+const FILTER_ICON = require('../assets/icons/filter.png')
 
 export const globalPath = {
   LOGOUT,
+  FILTER_ICON,
   READ_MORE,
   BFA_LOGO,
   MORE_PROFILE,
