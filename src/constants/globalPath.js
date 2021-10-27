@@ -149,9 +149,15 @@ const LOGOUT = require('../assets/icons/moreIcons/logout.png')
 const BFA_LOGO = require('../assets/icons/BFA_Logo2020.png')
 const READ_MORE = require('../assets/icons/readmore.png')
 const FILTER_ICON = require('../assets/icons/filter.png')
+const WALLET_ICON = require('../assets/icons/wallet.png')
+const SCANNER_ICON = require('../assets/icons/scanner_yellow.png')
+const SCANNER_ICON_GREY = require('../assets/icons/scanner_gray.png')
 
 export const globalPath = {
   LOGOUT,
+  SCANNER_ICON_GREY,
+  WALLET_ICON,
+  SCANNER_ICON,
   FILTER_ICON,
   READ_MORE,
   BFA_LOGO,

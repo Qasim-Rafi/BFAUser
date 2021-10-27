@@ -14,6 +14,8 @@ import More from '../screens/Home/BottomTabs/More/More';
 import CartDetails from '../screens/Home/BottomTabs/CartDetails/CartDetails';
 import Order_history from '../screens/Home/Order_History/Order_history';
 import { Cart_Details } from '../constants/mock';
+import BarcodeReader from '../screens/Home/BottomTabs/Scanner/BarcodeReader';
+import RandomiserWheel from '../screens/Home/BottomTabs/Randomiser/RandomWheel';
 
 
 const Tab = createBottomTabNavigator();
@@ -79,14 +81,14 @@ export default function BottomTabs(props) {
 
           if (route.name === routeName.HOME_BOTTOM) {
             iconName = focused ? globalPath.HOME_LOGO : globalPath.HOME_GREY;
-          } else if (route.name === routeName.RANDOMISER_BOTTOM) {
+          } else if (route.name === "Randomiser") {
             iconName = focused
               ? globalPath.RANDOMISER_LOGO
               : globalPath.RANDOM_GREY;
-            } else if (route.name === "Orders") {
+            } else if (route.name === "Scanner") {
               iconName = focused
-                ? globalPath.ORDERS
-                : globalPath.ORDERS_GREY;
+                ? globalPath.SCANNER_ICON
+                : globalPath.SCANNER_ICON_GREY;
           } else if (route.name === "Cart") {
             
             iconName = focused
@@ -96,9 +98,7 @@ export default function BottomTabs(props) {
               iconName = focused
                 ? globalPath.INBOX
                 : globalPath.INBOX_GREY;
-          } else if (route.name === routeName.MORE_BOTTOM) {
-            iconName = focused ? globalPath.MORE_LOGO : globalPath.MORE_GREY;
-          }
+          } 
 
           // You can return any component that you like here!
           return <Icon source={iconName} size={size} color={color} />;
@@ -112,13 +112,13 @@ export default function BottomTabs(props) {
         options={{headerShown: false}}
       />
       <Tab.Screen
-        name={routeName.RANDOMISER_BOTTOM}
+        name={"Randomiser"}
         component={Randomiser}
         options={{headerShown: false}}
       />
       <Tab.Screen
-        name={"Orders"}
-        component={Order_history}
+        name={"Scanner"}
+        component={BarcodeReader}
         options={{headerShown: false}}
       />
       <Tab.Screen
@@ -132,11 +132,6 @@ export default function BottomTabs(props) {
         options={{headerShown: false}}
       />
       
-      <Tab.Screen
-        name={routeName.MORE_BOTTOM}
-        component={More}
-        options={{headerShown: false}}
-      />
     </Tab.Navigator>
   );
 }

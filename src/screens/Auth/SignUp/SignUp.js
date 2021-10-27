@@ -123,13 +123,13 @@ const [confirmPassword, setConfirmPassword] = useState();
 
   return (
     <ScrollView contentContainerStyle={{flexGrow: 1}}>
-      <ImageBackground style={styles.container} source={globalPath.BG_IMAGE}>
+      <View style={{flex:1, backgroundColor:colors.black}} >
         <View style={styles.screeninfo}>
-          <View style={{marginBottom:10}}><Icon source={globalPath.BALI_ICON} size={70} /></View>
-          <ResponsiveText color={colors.yellow} fontFamily="Regular"  size={7.5} >
-            Welcome to Bali!
+          <View style={{marginBottom:5}}><Icon source={globalPath.BALI_ICON} size={60} /></View>
+          <ResponsiveText  color={colors.yellow} fontFamily="Regular"  size={7.5} >
+            Sign Up
           </ResponsiveText>
-          <ResponsiveText color={colors.white}>
+          <ResponsiveText margin={[-5,0,0,0]} color={colors.white}>
             Create a new account
           </ResponsiveText>
         </View>
@@ -200,7 +200,7 @@ const [confirmPassword, setConfirmPassword] = useState();
             {/* <View style={styles.socialIcon}></View> */}
           </View>
         </View>
-      </ImageBackground>
+      </View>
       <FlashMessage ref={dropdownRef}/>
     </ScrollView>
   );
@@ -214,17 +214,16 @@ const styles = StyleSheet.create({
     // backgroundColor: colors.black,
   },
   screeninfo: {
-    flex: 0.35,
-    justifyContent: 'flex-end',
-    paddingBottom: wp(5),
+    flex: 0.60,
+    justifyContent:'center',
     alignItems:'center',
-    padding: wp(5),
+    
   },
   formArea: {
-    flex: 0.8,
+    flex: 0.40,
     borderTopRightRadius: wp(7),
     borderTopLeftRadius: wp(7),
-    backgroundColor: '#2f2f2f',
+    backgroundColor:colors.black3,
     padding: wp(10),
   },
   forgotPasswordContainer: {

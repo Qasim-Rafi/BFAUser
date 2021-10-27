@@ -84,13 +84,13 @@ export default function Login({navigation}) {
     //   keyboardVerticalOffset={hp(-10)}
     //   style={styles.container}>
     <ScrollView contentContainerStyle={{flexGrow: 1, backgroundColor:colors.black}}>
-      <View style={{flex:1, backgroundColor:colors.black3}}>
+      <View style={{flex:1, backgroundColor:colors.black}}>
         <View style={styles.screeninfo}>
           <Icon source={globalPath.BALI_ICON} size={60} />
-          <ResponsiveText color={colors.yellow} fontFamily="Regular" size={8}>
-            Welcome to Bali!
+          <ResponsiveText margin={[5,0,0,0]} color={colors.yellow} fontFamily="Regular" size={8}>
+            Sign In
           </ResponsiveText>
-          <ResponsiveText color={colors.white}>
+          <ResponsiveText margin={[-5,0,0,0]} color={colors.white}>
             Please Login to Continue
           </ResponsiveText>
         </View>
@@ -157,16 +157,14 @@ const styles = StyleSheet.create({
   },
   screeninfo: {
     flex: 0.32,
-    justifyContent: 'flex-end',
-    paddingBottom: wp(10),
+    justifyContent: 'center',
     alignItems:'center',
-    padding: wp(5),
   },
   formArea: {
     flex: 0.70,
     borderTopRightRadius: wp(8),
     borderTopLeftRadius: wp(8),
-    backgroundColor: '#2f2f2f',
+    backgroundColor:colors.black3,
     padding: wp(10),
   },
   forgotPasswordContainer: {

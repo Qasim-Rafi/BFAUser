@@ -39,11 +39,19 @@ const Header = ({
           borderRadius: 10,
           marginEnd: 5,
         }}>
+          <View style={{flexDirection:'row', alignItems:'center'}} >
         <Icon
           margin={[0, 0, 0, 0]}
           size={props.iconPath ? 25 : 44}
           source={props.iconPath ? props.iconPath : globalPath.BALI_ICON}
         />
+        <Icon
+          margin={[0, 0, 0, 0]}
+          size={props.iconPath ? 25 : 30}
+          tintColor={colors.yellow}
+          source={props.iconPath ? undefined : globalPath.WALLET_ICON}
+        />
+        </View>
       </TouchableOpacity>
       {props.iconPath ? <View />
       : 
@@ -62,7 +70,7 @@ const Header = ({
           width={inputWidth}
         /> */}
         <TextInput
-         style={{height:hp(6), width:wp(58),color:colors.white}}
+         style={{height:hp(6), width:wp(55),color:colors.white}}
          editable={searchBar==='true'? true : false}
          fontSize={11}
          placeholderTextColor={colors.white}
@@ -80,9 +88,9 @@ const Header = ({
         props.iconPath ? <View/> 
           :
           <TouchableOpacity
-          onPress={() => navigation.navigate(routeName.PROFILE_SCREEN)}>
+          style={{marginRight:-10}}
+          onPress={() => navigation.navigate(routeName.MORE_BOTTOM)}>
           <Icon
-            margin={[0, 0, 0, 5]}
             borderRadius={30}
             size={props.iconPath ? (wp(10), hp(6)) : 42}
             resizeMode={'cover'}

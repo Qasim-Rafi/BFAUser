@@ -10,7 +10,9 @@ import {hp, wp} from '../../../../helpers/Responsiveness';
 export default function Apply_Jobs({navigation}) {
   return (
     <View style={styles.main_container}>
+      <View style={{flex:0.1,backgroundColor:colors.black2, justifyContent:'center'}} >
       <Header navigation={navigation} iconPath={globalPath.BACK_ARROW} />
+      </View>
       <View style={{margin: 20, flex: 0.9}}>
         <ResponsiveText size={4} color={colors.yellow}>
           {' '}

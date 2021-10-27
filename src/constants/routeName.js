@@ -21,7 +21,7 @@ export const routeName = {
   RANDOMISER_BOTTOM: "Randomiser",
   PROMOS_BOTTOM: "Feed",
   CHECK_OUT_BOTTOM: "Checkout",
-  MORE_BOTTOM: "More",
+  MORE_BOTTOM: "MORE_BOTTOM",
   DISH_DETAIL:"DISH_DETAIL",
   RestaurantDetail:"RestaurantDetail",
   FeaturedSearch:"FeaturedSearch",
@@ -45,5 +45,7 @@ export const routeName = {
   CONTACT_US:'CONTACT_US',
   MY_REVIEWS:'MY_REVIEWS',
   SCAN_QR:'SCAN_QR',
+  BARCODE_READER:'BARCODE_READER',
   ALL_DISHES_LIST:'ALL_DISHES_LIST',
+  RANDOM_WHEEL:'RANDOM_WHEEL',
 };

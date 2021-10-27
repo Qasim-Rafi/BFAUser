@@ -27,6 +27,21 @@ export const advertisementBannerFakeDATA = [
     dishName: " ",
     url: require('../assets/fake_Images/tasek_brasserie.png'),
   },
+  {
+    restaurantName: "BIBD Bank Islam Brunei",
+    dishName: "Darussalam",
+    url: require('../assets/fake_Images/BIBD.png'),
+  },
+  {
+    restaurantName: "Brunei National Day",
+    dishName: "23th of February",
+    url: require('../assets/fake_Images/BRUNEI.png'),
+  },
+  {
+    restaurantName: "Covid-19",
+    dishName: "Stay Home, Stay Safe",
+    url: require('../assets/fake_Images/corona.png'),
+  },
   
 ];
 
@@ -184,6 +199,74 @@ export const ourRecommendationFakeDATA = [
       quantity: 1,
       price: '8.00',
       url: require('../assets/fake_Images/Home-Recommendations-4.png'),
+  },
+];
+
+
+export const whatsNew = [
+  {
+    id:1,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/whatnew-1.png'),
+  },
+  {
+    id:2,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/whatnew-2.png'),
+  },
+  {
+    id:3,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/whatnew-3.png'),
+  },
+  {
+    id:4,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/whatnew-4.png'),
+  },
+  {
+    id:5,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/whatnew-1.png'),
+  },
+  {
+    id:6,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/whatnew-2.png'),
+  },
+  {
+    id:7,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/whatnew-3.png'),
+  },
+  {
+    id:8,
+      title : "Kaizen sushi",
+      description: "Special sushi",
+      quantity: 1,
+      price: '8.00',
+      url: require('../assets/fake_Images/whatnew-4.png'),
   },
 ];
 

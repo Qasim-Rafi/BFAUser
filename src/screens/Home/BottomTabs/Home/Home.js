@@ -19,6 +19,7 @@ import {routeName} from '../../../../constants/routeName';
 import {colors} from '../../../../constants/colorsPallet';
 import Fonts from '../../../../helpers/Fonts';
 import AdvertisementBanner from './AdvertisementBanner';
+
 import SeeAllButton from '../../../../components/SeeAllButton';
 import BfaPartner from './BfaPartner';
 import Recommendation from './Recommendation';
@@ -35,6 +36,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import urls from '../../../../redux/lib/urls';
 import AllCuisines from './AllCuisines';
+import WhatsNew from './WhatNew';
+import JobsList from './JobsList';
 
 const Home = ({navigation}) => {
   const token = async()=> await AsyncStorage.getItem('@token');
@@ -96,7 +99,9 @@ const Home = ({navigation}) => {
         <View style={styles.Advertisement2ndVarient}>
           <Advertisement2ndVarient navigation={navigation} />
         </View> */}
-        
+        <View style={styles.recommendationContainer}>
+         <WhatsNew navigation={navigation} />
+        </View>
         <View style={styles.recommendationContainer}>
           <Promotion navigation={navigation} />
         </View>
@@ -105,7 +110,9 @@ const Home = ({navigation}) => {
           {/* <CuisinesSlider navigation={navigation} /> */}
           <AllCuisines navigation={navigation} />
         </View>
-
+        <View style={styles.recommendationContainer}>
+          <JobsList navigation={navigation} />
+        </View>
 
 
         {/* <ImageBackground

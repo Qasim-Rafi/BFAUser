@@ -38,6 +38,10 @@ import ContactUs from '../screens/Home/BottomTabs/More/ContactUs';
 import MyReviews from '../screens/Home/BottomTabs/More/MyReviews'
 import QRScan from '../screens/Home/BottomTabs/More/QRScan';
 import AllDishesList from '../screens/Home/BottomTabs/Home/AllDishesList';
+import BarcodeReader from '../screens/Home/BottomTabs/Scanner/BarcodeReader';
+import More from '../screens/Home/BottomTabs/More/More';
+import RandomiserWheel from '../screens/Home/BottomTabs/Randomiser/RandomWheel';
+
 
 
 const Stack = createNativeStackNavigator();
@@ -69,6 +73,7 @@ function HomeStack() {
       <Stack.Screen name={routeName.FeaturedSearch} component={FeaturedSearch} />
       <Stack.Screen name={routeName.SearchAll} component={SearchAll} />
        <Stack.Screen name={routeName.TRANSACTION_CONFIRMATION} component={TransactionConfirmation} />
+       <Stack.Screen name={routeName.MORE_BOTTOM} component={More} />
        
 
       <Stack.Screen name={routeName.MYWHITLIST} component={MyWhitlist} />
@@ -84,8 +89,11 @@ function HomeStack() {
       <Stack.Screen name={routeName.CONTACT_US} component={ContactUs} />
       <Stack.Screen name={routeName.MY_REVIEWS} component={MyReviews} />
       <Stack.Screen name={routeName.SCAN_QR} component={QRScan} />
+      <Stack.Screen name={routeName.BARCODE_READER} component={BarcodeReader} />
       <Stack.Screen name={routeName.ALL_DISHES_LIST} component={AllDishesList} />
       <Stack.Screen name={routeName.SELECT_PAYMENT_METHOD} component={Checkout} />
+      
+      
 
 
       

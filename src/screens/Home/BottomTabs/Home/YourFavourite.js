@@ -11,6 +11,7 @@ import { hp, wp } from '../../../../helpers/Responsiveness';
 const YourFavourite = (props) => {
     const firstName = "Pg"
     const title = firstName+"'s Favorites";
+    const favButons = ["Fav Dishes", "Fav Restaurant", "Fav Cuisine", "User defined Cuisine", "Fav Orders", "User define orders"]
     return (
         <>
             <View style={styles.yourFavoriteHeaderSection}>
@@ -19,7 +20,20 @@ const YourFavourite = (props) => {
                 <SeeAllButton title={title} data={yourFavoriteFakeDATA} navigation={props.navigation} />
                 </View>
             </View>
-            <View style={styles.yourFavoriteItemsSection}>
+            <View style={{flexDirection:'row',paddingHorizontal:5, flexWrap:'wrap', justifyContent:'center'}}>
+                {
+                    favButons.map((item)=>{
+                        return(
+                            <View style={{backgroundColor:colors.black2,marginTop:5, borderColor:colors.black1, borderWidth:1,height:hp(7), width:wp(30), alignItems:'center', justifyContent:'center' }} >
+                                <ResponsiveText textAlign={'center'} size={3.5} color={colors.white} >{item}</ResponsiveText>
+                            </View>
+                        )
+                    })
+                }
+                
+                
+            </View>
+            {/* <View style={styles.yourFavoriteItemsSection}>
                 <ScrollView showsHorizontalScrollIndicator={false} horizontal>
                     {yourFavoriteFakeDATA.map((url, index) => {
                         return (
@@ -35,7 +49,7 @@ const YourFavourite = (props) => {
                         )
                     })}
                 </ScrollView>
-            </View>
+            </View> */}
 
         </>
     )

@@ -98,7 +98,7 @@ const More = ({navigation}) => {
             style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
             <Icon size={20} source={globalPath.PREFERANCES} />
             <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
-              Preferences
+              Food Preference
             </ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity
@@ -127,6 +127,14 @@ const More = ({navigation}) => {
             <Icon size={20} source={globalPath.QR_SCAN} />
             <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
               Scan QR Code
+            </ResponsiveText>
+          </TouchableOpacity>
+          <TouchableOpacity
+          onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
+            style={{backgroundColor: colors.black2, flexDirection: 'row',paddingHorizontal:20, paddingVertical:10,marginTop:5, borderRadius:7}}>
+            <Icon size={20} source={globalPath.ORDERS} />
+            <ResponsiveText margin={[0,0,0,10]} size={3.5} color={colors.grey}>
+              Orders
             </ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity
