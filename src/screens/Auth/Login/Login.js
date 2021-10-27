@@ -84,7 +84,7 @@ export default function Login({navigation}) {
     //   keyboardVerticalOffset={hp(-10)}
     //   style={styles.container}>
     <ScrollView contentContainerStyle={{flexGrow: 1, backgroundColor:colors.black}}>
-      <ImageBackground style={styles.container} source={globalPath.BG_IMAGE}>
+      <View style={{flex:1, backgroundColor:colors.black3}}>
         <View style={styles.screeninfo}>
           <Icon source={globalPath.BALI_ICON} size={60} />
           <ResponsiveText color={colors.yellow} fontFamily="Regular" size={8}>
@@ -140,7 +140,7 @@ export default function Login({navigation}) {
             {/* <View style={styles.socialIcon}></View> */}
           </View>
         </View>
-      </ImageBackground>
+      </View>
       <FlashMessage ref={dropdownRef} />
     </ScrollView>
     // </KeyboardAvoidingView>
