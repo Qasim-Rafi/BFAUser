@@ -15,7 +15,7 @@ import SearchHeader from '../../../components/SearchHeader'
 
 const BranchesDetail = (props) => {
     return (
-        <>
+        <View style={{marginTop:10, flex:1}}>
             
             <View style={styles.everyOneFavoriteItemsSection}>
                 <ScrollView showsHorizontalScrollIndicator={false} >
@@ -50,14 +50,15 @@ const BranchesDetail = (props) => {
                 </ScrollView>
             </View>
 
-        </>
+        </View>
     )
 }
 export default  BranchesDetail
 
 const styles=StyleSheet.create({
 	everyOneFavoriteHeaderSection: {
-        padding: 10,
+        paddingHorizontal: 10,
+        paddingVertical:10,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -71,7 +72,7 @@ const styles=StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         display: 'flex',
-        paddingVertical: 10,
+        paddingBottom: 10,
         justifyContent: 'center',
         overflow: 'hidden',
     },

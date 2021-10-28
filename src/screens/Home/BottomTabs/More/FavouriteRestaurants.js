@@ -52,7 +52,7 @@ export default function FavouriteRestaurants({navigation}) {
           backgroundColor: 'rgba(0,0,0,1)',
 
         }}
-        source={item}>
+        source={item.url}>
         <View style={{alignItems:'flex-end'}}>
             <Icon size={15} source={globalPath.F_HEART}/>
         </View>

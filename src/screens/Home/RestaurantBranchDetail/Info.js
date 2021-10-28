@@ -17,7 +17,7 @@ const Info = () => {
     <ScrollView>
     <Restaurant_Description/>
     <View>
-      <View style={{margin:20}}>
+      <View style={{marginHorizontal:20, marginVertical:10}}>
         <ResponsiveText size={4} color={colors.white} >Facilities</ResponsiveText>
         {/* <FacilityList data={FacilityData} /> */}
         <View style={{display: 'flex', flexDirection: 'row'}}>

@@ -62,7 +62,7 @@ export default function RestaurantBranchDetailScreen({navigation}) {
         </View>
       </View>
           
-      <View style={{height:hp(70)}}>
+      <View style={{height:hp(70), paddingHorizontal:20, paddingVertical:10,}}>
         {activeTab === 1 && <Info />}
         {activeTab === 2 && <PromosBanner/>}
         {activeTab === 3 && <Menu navigation={navigation} />}

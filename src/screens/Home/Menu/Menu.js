@@ -96,6 +96,8 @@ const Menu = (props) => {
         style={{
           flexDirection: 'row',
           borderBottomColor: 'grey',
+          marginHorizontal:10,
+          marginVertical:10,
           borderBottomWidth: 1,
         }}>
         {BranchMenuSectionsData.map((items, index) => {
@@ -139,5 +141,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.black3,
+    marginTop:10,
   },
 });

@@ -24,7 +24,7 @@ export default function AwardsDetail() {
   }, [])
   
     return (
-        <View>
+        <View style={{flex:1, marginTop:20}} >
             {AwardsMenuSectionsData.map((item , index)=>{
                 return(
                     <View

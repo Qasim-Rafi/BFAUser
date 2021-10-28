@@ -9,10 +9,10 @@ import { colors } from '../../../../constants/colorsPallet'
 import { hp } from '../../../../helpers/Responsiveness'
 const PromosBanner = () => {
     return (
-
-		<View style={{marginTop:30,}} >
+        <ScrollView style={{flexGrow: 1}}>
+		<View style={{flex:1, marginTop:15,}} >
             
-         <ResponsiveText color={colors.white}>Promotions</ResponsiveText>
+         <ResponsiveText  color={colors.white}>Promotions</ResponsiveText>
          <ScrollView style={{flexGrow: 1}}>
             {promosBannerFakeDATA.map((url, index) => {
                 return (
@@ -29,6 +29,7 @@ const PromosBanner = () => {
 			}
             </ScrollView>
 			</View>
+            </ScrollView>
 
      
 

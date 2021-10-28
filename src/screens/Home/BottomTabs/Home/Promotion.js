@@ -10,7 +10,7 @@ import SeeAllButton from '../../../../components/SeeAllButton'
 import { hp, wp } from '../../../../helpers/Responsiveness';
 const Promotion = (props) => {
     return (
-        <>
+        <ScrollView>
             <View style={styles.everyOneFavoriteHeaderSection}>
                 <ResponsiveText margin={[0,0,0,0]} size={4} color={colors.white}>Promotions</ResponsiveText>
                 <View style={{marginRight:-10,}} >
@@ -39,7 +39,7 @@ const Promotion = (props) => {
                 </ScrollView>
             </View>
 
-        </>
+        </ScrollView>
     )
 }
 
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         backgroundColor:'rgba(237, 197, 78, 0.7)',height:'15%',position:"relative",width:"60%",top:20,justifyContent:'center', alignItems:'center', borderTopRightRadius:3,paddingTop:1, borderBottomRightRadius:3,
     },
     everyOneFavoriteHeaderSection: {
-        paddingTop: 10,
+        
         paddingBottom:5,
         flexDirection: 'row',
         justifyContent: 'space-between',

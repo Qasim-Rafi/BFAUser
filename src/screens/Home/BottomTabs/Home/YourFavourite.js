@@ -24,7 +24,7 @@ const YourFavourite = (props) => {
                 {
                     favButons.map((item)=>{
                         return(
-                            <View style={{backgroundColor:colors.black2,marginTop:5, borderColor:colors.black1, borderWidth:1,height:hp(7), width:wp(30), alignItems:'center', justifyContent:'center' }} >
+                            <View style={{backgroundColor:colors.black2,marginTop:5, borderColor:colors.black1, borderWidth:1,height:hp(7), width:wp(30), alignItems:'center', justifyContent:'center',paddingHorizontal:10 }} >
                                 <ResponsiveText textAlign={'center'} size={3.5} color={colors.white} >{item}</ResponsiveText>
                             </View>
                         )

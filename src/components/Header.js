@@ -46,7 +46,7 @@ const Header = ({
           source={props.iconPath ? props.iconPath : globalPath.BALI_ICON}
         />
         <Icon
-          margin={[0, 0, 0, 0]}
+          margin={[0, 15, 0, 0]}
           size={props.iconPath ? 25 : 30}
           tintColor={colors.yellow}
           source={props.iconPath ? undefined : globalPath.WALLET_ICON}
@@ -55,7 +55,7 @@ const Header = ({
       </TouchableOpacity>
       {props.iconPath ? <View />
       : 
-      <View style={{alignItems:'center',justifyContent:'center', flexDirection:'row', borderRadius:7, marginHorizontal:2, paddingHorizontal:10,backgroundColor:searchBar==='true'? 'rgba(64,64,64,0.5)' :undefined,}}>
+      <View style={{alignItems:'center',justifyContent:'center', flexDirection:'row', borderRadius:7, marginHorizontal:10 ,paddingHorizontal:10,backgroundColor:searchBar==='true'? 'rgba(64,64,64,0.5)' :undefined,}}>
       <TouchableOpacity >
         {/* // onPress={() => searchBar==='true'? navigation.navigate(routeName.FeaturedSearch) : undefined}> */}
         {/* <Input
@@ -70,7 +70,7 @@ const Header = ({
           width={inputWidth}
         /> */}
         <TextInput
-         style={{height:hp(6), width:wp(55),color:colors.white}}
+         style={{height:hp(6), width:wp(50),color:colors.white,}}
          editable={searchBar==='true'? true : false}
          fontSize={11}
          placeholderTextColor={colors.white}
@@ -91,6 +91,7 @@ const Header = ({
           style={{marginRight:-10}}
           onPress={() => navigation.navigate(routeName.MORE_BOTTOM)}>
           <Icon
+          
             borderRadius={30}
             size={props.iconPath ? (wp(10), hp(6)) : 42}
             resizeMode={'cover'}
