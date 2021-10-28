@@ -1,7 +1,7 @@
 
 
 //Node Imports
-import React, { useState } from 'react';
+import React from 'react';
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
 import {
     Image, StyleSheet, TouchableOpacity, View, Text,
@@ -22,7 +22,7 @@ import RnButton from '../../../../components/RnButton';
 import Header from '../../../../components/Header';
 import { hp, wp } from '../../../../helpers/Responsiveness';
 import { routeName } from '../../../../constants/routeName';
-import WheelOfFortune from 'react-native-wheel-of-fortune'
+import WheelOfFortune from 'react-native-wheel-of-fortune';
 import Modal from "react-native-modal";
 
 
@@ -122,7 +122,7 @@ export default class RandomWheel extends React.Component {
                                 // alert('Dish ID: ',participants[this.state.winnerIndex])
                             //    alert('Dish ID: '+participants[this.state.winnerIndex])
                             }}
-                        />
+                        /> 
 
 
 

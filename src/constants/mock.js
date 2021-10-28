@@ -33,8 +33,8 @@ export const advertisementBannerFakeDATA = [
     url: require('../assets/fake_Images/BIBD.png'),
   },
   {
-    restaurantName: "Brunei National Day",
-    dishName: "23th of February",
+    restaurantName: "",
+    dishName: "",
     url: require('../assets/fake_Images/BRUNEI.png'),
   },
   {

@@ -16,6 +16,7 @@ import Order_history from '../screens/Home/Order_History/Order_history';
 import { Cart_Details } from '../constants/mock';
 import BarcodeReader from '../screens/Home/BottomTabs/Scanner/BarcodeReader';
 import RandomiserWheel from '../screens/Home/BottomTabs/Randomiser/RandomWheel';
+import RandomWheel from '../screens/Home/BottomTabs/Randomiser/RandomWheel';
 
 
 const Tab = createBottomTabNavigator();
@@ -113,7 +114,7 @@ export default function BottomTabs(props) {
       />
       <Tab.Screen
         name={"Randomiser"}
-        component={Randomiser}
+        component={RandomWheel}
         options={{headerShown: false}}
       />
       <Tab.Screen
