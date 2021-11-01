@@ -49,12 +49,20 @@ class Api {
       options = {
         method: verb,
         body: JSON.stringify(body),
-        headers: { Authorization: `Bearer ${await AsyncStorage.getItem('@token')}` },
+        headers: { 
+          // Authorization: `Bearer ${await AsyncStorage.getItem('@token')}`,
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
       };
     } else {
       options = {
         method: verb,
-      headers: { Authorization: `Bearer ${await AsyncStorage.getItem('@token')}` },
+        headers: { Authorization: `Bearer ${await AsyncStorage.getItem('@token')}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      
+      },
 
       };
     }

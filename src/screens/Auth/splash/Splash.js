@@ -23,7 +23,7 @@ const Splash = ({ navigation }) => {
     const token = await AsyncStorage.getItem('@token');
     console.log(token, 'token');
     setToken(token);
-    if (Token === null) {
+    if (token === null) {
       setTimeout(() => {
 
         setLogo(false)

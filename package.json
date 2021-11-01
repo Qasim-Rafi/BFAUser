@@ -24,6 +24,7 @@
     "react-native-flash-message": "^0.1.23",
     "react-native-flexi-radio-button": "^0.2.2",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-indicators": "^0.17.0",
     "react-native-maps": "^0.28.0",
     "react-native-maps-directions": "^1.8.0",
     "react-native-modal": "^13.0.0",

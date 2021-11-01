@@ -518,7 +518,7 @@ export const yourFavoriteFakeDATA = [
 ];
 
 export const BFAPartnerFakeData = [
-  require('../assets/fake_Images/HOME_BFA_PARTNER-1.png'),
+  require('../assets/fake_Images/aminahArif.png'),
   require('../assets/fake_Images/HOME_BFA_PARTNER-2.png'),
   require('../assets/fake_Images/HOME_BFA_PARTNER-3.png'),
   require('../assets/fake_Images/HOME_BFA_PARTNER-4.png'),
@@ -545,7 +545,7 @@ export const BFAPartnerFakeData = [
 
 ];
 export const BFAPartnerLessData = [
-  require('../assets/fake_Images/HOME_BFA_PARTNER-1.png'),
+  require('../assets/fake_Images/aminahArif.png'),
   require('../assets/fake_Images/HOME_BFA_PARTNER-2.png'),
   require('../assets/fake_Images/HOME_BFA_PARTNER-3.png'),
   require('../assets/fake_Images/HOME_BFA_PARTNER-4.png'),

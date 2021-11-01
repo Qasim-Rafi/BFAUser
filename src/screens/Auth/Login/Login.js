@@ -19,7 +19,16 @@ import Line from '../../../components/Line';
 import {routeName} from '../../../constants/routeName';
 import {colors} from '../../../constants/colorsPallet';
 import FlashMessage ,{ showMessage, hideMessage } from "react-native-flash-message";
-
+import {
+  BallIndicator,
+  BarIndicator,
+  DotIndicator,
+  MaterialIndicator,
+  PulseIndicator,
+  SkypeIndicator,
+  UIActivityIndicator,
+  WaveIndicator,
+} from 'react-native-indicators';
 
 //Redux Import
 import {useDispatch, useSelector} from 'react-redux';
@@ -28,7 +37,7 @@ import { StackActions } from '@react-navigation/routers';
 
 export default function Login({navigation}) {
   const dropdownRef = React.useRef(null)
-
+  const [loading, setLoading] = React.useState(false);
   const [userName, setUserName] = React.useState('');
   const [password, setPassword] = React.useState('');
   //Redux Dispatch
@@ -36,7 +45,8 @@ export default function Login({navigation}) {
 
   //Redux Use Selector
   const {login_User} = useSelector(state => state);
-  console.log(login_User, 'login user');
+  console.log( 'login user: ',login_User);
+  
 
   //Redux Action Called
   const userLogin = () => {
@@ -74,11 +84,28 @@ export default function Login({navigation}) {
       });
     }
     else{
+      setLoading(true);
       userLogin();
     }
   }
 
+
+
+  // React.useEffect(()=>{
+  //   setLoading(false);
+  // })
+
   return (
+    <>
+
+    {
+      loading ? 
+      <View style={{flex:1, justifyContent:'center', alignItems:'center', backgroundColor:colors.black}} >
+      <BarIndicator count={5} color={colors.yellow} size={50} />
+      </View>
+      :
+
+    
     // <KeyboardAvoidingView
     //   behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     //   keyboardVerticalOffset={hp(-10)}
@@ -119,8 +146,8 @@ export default function Login({navigation}) {
             <Line color={colors.grey5} width={wp(20)} /> */}
           </View>
           <RnButton
-            // onPress={() => Validation()}
-            onPress={()=>navigation.dispatch(StackActions.replace('Home'))}
+            onPress={() => Validation()}
+            // onPress={()=>navigation.dispatch(StackActions.replace('Home'))}
             fontFamily="SemiBold"
             height={100}
             margin={[0, 0]}
@@ -143,6 +170,8 @@ export default function Login({navigation}) {
       </View>
       <FlashMessage ref={dropdownRef} />
     </ScrollView>
+          }
+          </>
     // </KeyboardAvoidingView>
   );
 }

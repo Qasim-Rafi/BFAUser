@@ -11,4 +11,6 @@ export default urls = {
   RESTAURANT_AWARDS:'/api/RestaruantAwards/GetRestaruantAwardsId/1',
   CUSINE_URL:'/api/Cusine/GetCusine',
   RESTAURANT_DISH_ALL:'/api/RestaurantDish/GetRestaurantDishAll',
+  GET_USER : "/api/Users/GetUser",
+
 };

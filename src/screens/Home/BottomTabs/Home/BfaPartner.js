@@ -38,7 +38,9 @@ const [title, setTitle] = React.useState("More");
                 {BFAPartnerFakeData.map((url, index) => {
                     return (
                         // <Icon source={url} size={35} borderRadius={5} />
-                        <Icon margin={[3,0,3,0]} source={url} size={55} borderRadius={5} />
+                        <View style={{backgroundColor:colors.white, borderRadius:5, marginVertical:3}} >
+                        <Icon source={url} size={55} borderRadius={5} />
+                        </View>
                     
                     )
                 })}
@@ -48,8 +50,9 @@ const [title, setTitle] = React.useState("More");
                 {BFAPartnerLessData.map((url, index) => {
                     return (
                         // <Image  style={{ width: wp(12), height: wp(12), marginHorizontal: 5,marginVertical:5, borderRadius: 5, overflow: 'hidden' }} source={url} />
-
-                        <Icon source={url} margin={[3,0,3,0]} size={55} borderRadius={5} />
+                        <View style={{backgroundColor:colors.white, borderRadius:5, marginVertical:3}} >
+                        <Icon source={url} size={55} borderRadius={5} />
+                        </View>
                     )
                 })}
             </View>
