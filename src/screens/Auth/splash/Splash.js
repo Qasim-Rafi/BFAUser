@@ -21,6 +21,8 @@ const Splash = ({ navigation }) => {
 
   const fetchAndSetUser = async () => {
     const token = await AsyncStorage.getItem('@token');
+    const id = await AsyncStorage.getItem('@userId');
+    console.log('user Id: ', id);
     console.log(token, 'token');
     setToken(token);
     if (token === null) {

@@ -28,6 +28,7 @@ function* loginUserApi(data) {
     // dispatch a success action to the store with the new dog
     if (response&&response.data != null) {
       yield AsyncStorage.setItem('@token', response.data.token);
+      yield AsyncStorage.setItem('@userId', response.data.loggedInUserId);
       yield put({type: types.LOGIN_USER_SUCCESS, payload: response.data});
       navigation.dispatch(StackActions.replace('Home'));
     }
@@ -115,6 +116,31 @@ function* getCusineSagaApi(data ) {
     
   } catch (error) {
     yield put({ type: types.GET_CUSINE_FAILURE, error: error });
+  }
+}
+
+// Get User Saga
+export function* getUserSaga() {
+  yield takeLatest(types.GET_USERS_BY_ID_REQUEST, getUserSagaApi);
+}
+function* getUserSagaApi(data ) {
+  let {params, navigation} = data.data;
+
+  try {
+    const response = yield Api.get(urls.GET_USER);
+    if (response&&response.data != null){
+      yield put({ type: types.GET_USERS_BY_ID_SUCCESS, payload: response.data });
+      navigation.navigate(routeName.MORE_BOTTOM,{data:response.data});
+
+    }else{
+    yield put({ type: types.GET_USERS_BY_ID_FAILURE, error: error });
+    }
+
+    // dispatch a success action to the store with the new data object
+
+    
+  } catch (error) {
+    yield put({ type: types.GET_USERS_BY_ID_FAILURE, error: error });
   }
 }
 

@@ -26,6 +26,15 @@ export const getUserCusine = (data) => {
   };
 };
 
+//Get  User
+
+export const getUserProfile = (data) => {
+  return {
+    type: types.GET_USERS_BY_ID_REQUEST,
+    data:data
+  };
+};
+
 export const getRestaurantAllDishes = () => {
   return {
     type: types.GET_RESTAURANT_ALL_DISHES_REQUEST,

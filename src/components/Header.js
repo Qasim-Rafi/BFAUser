@@ -12,6 +12,8 @@ import ResponsiveText from './RnText';
 import {routeName} from '../constants/routeName';
 import {colors} from '../constants/colorsPallet';
 import { color } from 'react-native-reanimated';
+import { useDispatch } from 'react-redux';
+import { getUserProfile } from '../redux/actions/user.actions';
 
 const Header = ({
   navigation,
@@ -23,6 +25,18 @@ const Header = ({
   
   ...props
 }) => {
+  
+
+  const dispatch=useDispatch();
+ const getUser=()=>{
+   
+    dispatch(
+      (getUserProfile({
+        
+        navigation:navigation,
+      }))
+    );
+  }
 
   const [searchBar, toggleSearchBar] = React.useState('false');
   return (
@@ -89,7 +103,7 @@ const Header = ({
           :
           <TouchableOpacity
           style={{marginRight:-10}}
-          onPress={() => navigation.navigate(routeName.MORE_BOTTOM)}>
+          onPress={getUser}>
           <Icon
           
             borderRadius={30}

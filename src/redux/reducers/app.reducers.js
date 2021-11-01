@@ -20,7 +20,11 @@ const initialState = {
   restaurantDishesDetail:{
     refreshing: false,
     data: {},
-  }
+  },
+  userProfile:{
+    refreshing: false,
+    data: {},
+  },
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -46,6 +50,14 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         cusineDetail:{
           ...state.restaurantDishesDetail,
+          data:action.payload
+        }
+      };
+      case types.GET_USERS_BY_ID_SUCCESS:
+      return {
+        ...state,
+        cusineDetail:{
+          ...state.userProfile,
           data:action.payload
         }
       };

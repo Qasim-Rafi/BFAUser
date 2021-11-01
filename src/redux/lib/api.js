@@ -3,7 +3,6 @@ import axios from 'axios';
 import {store} from '../store';
 import AsyncStorage from '@react-native-community/async-storage';
 
-const accessToken = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIyIiwiTmFtZSI6Imx1cW1hbiIsIlVzZXJUeXBlSWQiOiIxIiwiUmVzdGF1cmFudElkIjoiMCIsIm5iZiI6MTYzMzM1MzQ1NiwiZXhwIjoxNjMzNzg1NDU2LCJpYXQiOjE2MzMzNTM0NTZ9.vJTIPSCbwxuIXPHkes70y6OoHLJoNVd7Wd-497LyMhSaJfJqmtqKG4pj-h7RyAmCRb0sJmzm3SXgvLE2mNwwrA";
 
 class Api {
 
@@ -50,7 +49,7 @@ class Api {
         method: verb,
         body: JSON.stringify(body),
         headers: { 
-          // Authorization: `Bearer ${await AsyncStorage.getItem('@token')}`,
+          Authorization: `Bearer ${await AsyncStorage.getItem('@token')}`,
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },

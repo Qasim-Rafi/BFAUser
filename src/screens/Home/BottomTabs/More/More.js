@@ -9,8 +9,9 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { StackActions } from '@react-navigation/native';
 import {hp, wp} from '../../../../helpers/Responsiveness'
 
-const More = ({navigation}) => {
-  
+const More = ({route,navigation}) => {
+  const profileData = route.params.data;
+  console.log('Profile: ',profileData);
 
   const logout =()=>{
     Alert.alert(
@@ -30,11 +31,19 @@ const More = ({navigation}) => {
   }
   return (
     <View style={{backgroundColor: colors.black3, flex: 1,flexDirection:'column',justifyContent:'space-between'}}>
+        <View style={{flex:0.05, backgroundColor:colors.yellow, flexDirection:'row', justifyContent:'flex-end', alignItems:'center', paddingTop:10}} >
+        <TouchableOpacity onPress={logout}>
+          <View style={{flexDirection:'row', width:wp(40) ,justifyContent:'flex-end',paddingHorizontal:20}}>
+              <Icon source={globalPath.LOGOUT} size={20} tintColor={colors.black} />
+              <ResponsiveText margin={[0,0,0,5]} size={3} >Logout</ResponsiveText>
+            </View>
+            </TouchableOpacity>
+        </View>
         <View
           style={{
             backgroundColor: colors.yellow,
             flexDirection: 'row',
-            paddingVertical:20,
+            paddingBottom:20,
           }}>
             <TouchableOpacity onPress={()=>navigation.navigate(routeName.PROFILE_SCREEN)} > 
           <Image
@@ -49,17 +58,12 @@ const More = ({navigation}) => {
           />
           </TouchableOpacity>
           <View style={{justifyContent: 'center',marginLeft:10}}>
-            <ResponsiveText size={4}>Pg Hassan PHD</ResponsiveText>
+            <ResponsiveText size={4}>{profileData.username}</ResponsiveText>
             <ResponsiveText color={colors.lightBlack} size={3}>
-              pghassan@gmail.com
+              {profileData.email}
             </ResponsiveText>
           </View>
-          <TouchableOpacity onPress={logout}>
-          <View style={{flexDirection:'row', width:wp(40) ,justifyContent:'flex-end',marginTop:-5,paddingHorizontal:20}}>
-              <Icon source={globalPath.LOGOUT} size={20} tintColor={colors.black} />
-              <ResponsiveText margin={[0,0,0,5]} size={3} >Logout</ResponsiveText>
-            </View>
-            </TouchableOpacity>
+          
         </View>
         
 
