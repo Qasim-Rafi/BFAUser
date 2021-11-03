@@ -11,6 +11,8 @@ import { hp, wp } from '../../../helpers/Responsiveness';
 import ResponsiveText from '../../../components/RnText';
 
 import Icon from '../../../components/Icon';
+import { useDispatch } from 'react-redux';
+import { getBfaPartners } from '../../../redux/actions/user.actions';
 
 const Splash = ({ navigation }) => {
 
@@ -18,6 +20,7 @@ const Splash = ({ navigation }) => {
   const [Token, setToken] = React.useState(null);
   const [logo, setLogo] = React.useState(true);
   const [text, setText] = React.useState(false);
+  const dispatch= useDispatch();
 
   const fetchAndSetUser = async () => {
     const token = await AsyncStorage.getItem('@token');
@@ -30,6 +33,7 @@ const Splash = ({ navigation }) => {
 
         setLogo(false)
         setTimeout(() => {
+        
           navigation.dispatch(
             CommonActions.reset({
               index: 0,
@@ -41,16 +45,28 @@ const Splash = ({ navigation }) => {
     }
     else {
       // console.log('condition True');
-      navigation.dispatch(
-        StackActions.replace('Home')
-      )
+      
 
+      setTimeout(() => {
+
+        setLogo(false)
+        setTimeout(() => {
+        
+        navigation.dispatch(
+          StackActions.replace('Home')
+        )
+        }, 2000)
+      }, 2000)
     }
   }
 
 
   React.useEffect(() => {
+    dispatch(getBfaPartners({navigation:navigation}))
     fetchAndSetUser();
+    
+
+
   }, [])
 
 

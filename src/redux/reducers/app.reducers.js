@@ -25,6 +25,11 @@ const initialState = {
     refreshing: false,
     data: {},
   },
+
+  bfaPartners:{
+    refreshing: false,
+    data: {},
+  },
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -58,6 +63,14 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         cusineDetail:{
           ...state.userProfile,
+          data:action.payload
+        }
+      };
+      case types.GET_BFA_PARTNERS_SUCCESS:
+      return {
+        ...state,
+        bfaPartners:{
+          ...state.bfaPartners,
           data:action.payload
         }
       };

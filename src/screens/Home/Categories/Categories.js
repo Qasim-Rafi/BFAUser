@@ -11,8 +11,7 @@ import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 export default function Categories({navigation ,route}) {
   const { data } = route.params;
- const state = useSelector(state => state.appReducer.cusineDetail.data);
- console.log('state: ', state);
+
   const [activeAlphabet, setActiveAlphabet] = useState(null);
   const scrollRef = useRef(null)
   const viewConfigRef = React.useRef({ viewAreaCoveragePercentThreshold: 50 })

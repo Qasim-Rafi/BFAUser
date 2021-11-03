@@ -35,6 +35,15 @@ export const getUserProfile = (data) => {
   };
 };
 
+//Get  BFA PARTNERS
+
+export const getBfaPartners = (data) => {
+  return {
+    type: types.GET_BFA_PARTNERS_REQUEST,
+    data:data
+  };
+};
+
 export const getRestaurantAllDishes = () => {
   return {
     type: types.GET_RESTAURANT_ALL_DISHES_REQUEST,

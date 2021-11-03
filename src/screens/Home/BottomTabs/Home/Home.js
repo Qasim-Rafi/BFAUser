@@ -31,16 +31,16 @@ import Promotion from './Promotion';
 import Header from '../../../../components/Header';
 import { ourRecommendationFakeDATA } from '../../../../constants/mock';
 import { useDispatch ,useSelector } from 'react-redux';
-import { getRestaurantAllDishes, getUserCusine, awardsRestaurant } from '../../../../redux/actions/user.actions';
+import { getRestaurantAllDishes, getUserCusine, awardsRestaurant, getBfaPartners } from '../../../../redux/actions/user.actions';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import urls from '../../../../redux/lib/urls';
 import AllCuisines from './AllCuisines';
 import WhatsNew from './WhatNew';
 import JobsList from './JobsList';
+import { bfaPartnerSelecter } from '../../../../redux/lib/selectors';
 
 const Home = ({navigation}) => {
-  const token = async()=> await AsyncStorage.getItem('@token');
 
   const dispatch=useDispatch();
  const getCusines=()=>{
@@ -51,20 +51,13 @@ const Home = ({navigation}) => {
     );
   }
 
-  async function callAPI () {
-    const url = urls.HOST+urls.PACKAGES_ALL_URL;
-    const config = {
-      headers: { Authorization: `Bearer ${'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIyIiwiTmFtZSI6Imx1cW1hbiIsIlVzZXJUeXBlSWQiOiIxIiwiUmVzdGF1cmFudElkIjoiMCIsIm5iZiI6MTYzMzM1MzQ1NiwiZXhwIjoxNjMzNzg1NDU2LCJpYXQiOjE2MzMzNTM0NTZ9.vJTIPSCbwxuIXPHkes70y6OoHLJoNVd7Wd-497LyMhSaJfJqmtqKG4pj-h7RyAmCRb0sJmzm3SXgvLE2mNwwrA'}` },
-    };
-      const resp = await axios.get(url, config);
-      console.log(resp);
-  }
+
 
   React.useEffect(() => {
         // callAPI();
         // dispatch(awardsRestaurant());
-        dispatch(getRestaurantAllDishes())
-
+        // dispatch(getRestaurantAllDishes())
+        // dispatch(getBfaPartners({navigation:navigation}))
   }, []);
 
 
@@ -77,7 +70,7 @@ const Home = ({navigation}) => {
           <AdvertisementBanner navigation={navigation} />
         </View>
         <View style={styles.bfaPartnerContainer}>
-          <BfaPartner token={token} navigation={navigation} />
+          <BfaPartner navigation={navigation} />
         </View>
       
         <View style={styles.yourFavorite}>

@@ -2,6 +2,8 @@
 
 export default urls = {
   HOST: "https://egreatlearning.com/web",
+    BASE_URL: "https://egreatlearning.com/web/",
+
 
 
   //Auth Urls
@@ -12,5 +14,6 @@ export default urls = {
   CUSINE_URL:'/api/Cusine/GetCusine',
   RESTAURANT_DISH_ALL:'/api/RestaurantDish/GetRestaurantDishAll',
   GET_USER : "/api/Users/GetUser/2",
+  GET_BFA_PARTNERS : "/api/AdminBFAPartner/GetAdminBFAPartnerAll/10",
 
 };

@@ -119,6 +119,34 @@ function* getCusineSagaApi(data ) {
   }
 }
 
+
+// Get BFA PARTNERS Saga
+export function* getBfaParntersSaga() {
+  yield takeLatest(types.GET_BFA_PARTNERS_REQUEST, getBfaPartnersSagaApi);
+}
+function* getBfaPartnersSagaApi(data ) {
+  let {params, navigation} = data.data;
+
+  try {
+    const response = yield Api.get(urls.GET_BFA_PARTNERS);
+    if (response&&response.data != null){
+      yield put({ type: types.GET_BFA_PARTNERS_SUCCESS, payload: response.data });
+      
+      
+      
+
+    }else{
+    yield put({ type: types.GET_BFA_PARTNERS_FAILURE, error: error });
+    }
+
+    // dispatch a success action to the store with the new data object
+
+    
+  } catch (error) {
+    yield put({ type: types.GET_BFA_PARTNERS_FAILURE, error: error });
+  }
+}
+
 // Get User Saga
 export function* getUserSaga() {
   yield takeLatest(types.GET_USERS_BY_ID_REQUEST, getUserSagaApi);
