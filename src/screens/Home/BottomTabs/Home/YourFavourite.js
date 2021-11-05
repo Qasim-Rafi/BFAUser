@@ -9,7 +9,7 @@ import { colors } from '../../../../constants/colorsPallet'
 import SeeAllButton from '../../../../components/SeeAllButton'
 import { hp, wp } from '../../../../helpers/Responsiveness';
 const YourFavourite = (props) => {
-    const firstName = "Pg"
+    const firstName = "PG"
     const title = firstName+"'s Favorites";
     const favButons = ["Fav Dishes", "Fav Restaurant", "Fav Cuisine", "User defined Cuisine", "Fav Orders", "User define orders"]
     return (

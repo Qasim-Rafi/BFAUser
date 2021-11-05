@@ -128,16 +128,15 @@ function* getCusineSagaApi(data ) {
 export function* getBfaParntersSaga() {
   yield takeLatest(types.GET_BFA_PARTNERS_REQUEST, getBfaPartnersSagaApi);
 }
-function* getBfaPartnersSagaApi(data ) {
-  let {params, navigation} = data.data;
+function* getBfaPartnersSagaApi(data) {
+ const params = data.data
 
   try {
-    const response = yield Api.get(urls.GET_BFA_PARTNERS);
+    const url = urls.GET_BFA_PARTNERS+params
+    const response = yield Api.get(url);
     if (response&&response.data != null){
       yield put({ type: types.GET_BFA_PARTNERS_SUCCESS, payload: response.data });
-      // navigation.dispatch(
-      //   StackActions.replace('Home')
-      // )
+      
       
       
 
@@ -157,14 +156,12 @@ function* getBfaPartnersSagaApi(data ) {
 export function* getUserSaga() {
   yield takeLatest(types.GET_USERS_BY_ID_REQUEST, getUserSagaApi);
 }
-function* getUserSagaApi(data ) {
-  let {params, navigation} = data.data;
+function* getUserSagaApi() {
 
   try {
     const response = yield Api.get(urls.GET_USER);
     if (response&&response.data != null){
       yield put({ type: types.GET_USERS_BY_ID_SUCCESS, payload: response.data });
-      navigation.navigate(routeName.MORE_BOTTOM,{data:response.data});
 
     }else{
     yield put({ type: types.GET_USERS_BY_ID_FAILURE, error: error });

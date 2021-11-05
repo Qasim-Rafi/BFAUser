@@ -27,17 +27,6 @@ const Header = ({
 }) => {
   
 
-  const dispatch=useDispatch();
- const getUser=()=>{
-   
-    dispatch(
-      (getUserProfile({
-        
-        navigation:navigation,
-      }))
-    );
-  }
-
   const [searchBar, toggleSearchBar] = React.useState('false');
   return (
     <View style={[styles.header,{paddingVertical:1, justifyContent: props.iconPath ? undefined : 'center'}]}>
@@ -103,9 +92,11 @@ const Header = ({
           :
           <TouchableOpacity
           style={{marginRight:-10}}
-          onPress={getUser}>
+          onPress={()=>{
+            navigation.navigate(routeName.MORE_BOTTOM)
+          }}
+          >
           <Icon
-          
             borderRadius={30}
             size={props.iconPath ? (wp(10), hp(6)) : 42}
             resizeMode={'cover'}

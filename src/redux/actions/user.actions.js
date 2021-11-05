@@ -28,10 +28,9 @@ export const getUserCusine = (data) => {
 
 //Get  User
 
-export const getUserProfile = (data) => {
+export const getUserProfile = () => {
   return {
     type: types.GET_USERS_BY_ID_REQUEST,
-    data:data
   };
 };
 

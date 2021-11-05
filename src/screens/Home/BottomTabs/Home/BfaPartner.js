@@ -7,22 +7,24 @@ import { colors } from '../../../../constants/colorsPallet'
 import SeeAllButton from '../../../../components/SeeAllButton'
 import { globalPath } from '../../../../constants/globalPath'
 import { wp } from '../../../../helpers/Responsiveness'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import urls from '../../../../redux/lib/urls'
 import { hp } from '../../../../helpers/Responsiveness'
 import AsyncStorage from '@react-native-community/async-storage'
 import Icon from '../../../../components/Icon'
+import { getBfaPartners } from '../../../../redux/actions/user.actions'
 const BfaPartner = ({props}) => {
-    
+const dispatch=useDispatch();
 const loading = useSelector(state=>state.appReducers.bfaPartners.refreshing);
 // console.log('loading', loading);
 const [moreData, setMoreData] = React.useState(false);
-const [title, setTitle] = React.useState("More");
-
 let bfaPartners = useSelector(state=>state.appReducers.bfaPartners.data);
+const [title, setTitle] = React.useState(bfaPartners.length<7? "More" : "Less");
+
 // console.log('BFA Partners: ', bfaPartners);
 const images = [       
-] 
+];
+const lessImages = []; 
 if(loading===false){
     bfaPartners.map((item)=>{
         var img = item.imageDataB;
@@ -31,11 +33,26 @@ if(loading===false){
         }
         else {                
             images.push(urls.BASE_URL+src);
-        }       
+        }
+        
         //  console.log('All Images: ',images);
         
     })
   }
+if(loading===false){
+  for(var i = 0; i<6; i++){
+    var img = bfaPartners[i].imageDataB;
+    var src = img.replace(/\\/g, "/"); 
+    if(lessImages.includes(urls.BASE_URL+src)){
+    }
+    else {                
+        lessImages.push(urls.BASE_URL+src);
+    }   
+  }
+}
+
+  console.log('lessImages: ', lessImages);
+  console.log('More Images: ', images);
 
 
 
@@ -47,7 +64,12 @@ if(loading===false){
                 <ResponsiveText size={4} color={colors.white}>Bali Partners</ResponsiveText>
                 <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingLeft: 10 }} 
                 onPress={()=>{
-                
+                if(title==="Less"){
+                    // dispatch(getBfaPartners(6));
+                }
+                else{
+                    dispatch(getBfaPartners(1000));
+                }
                 setTitle(title==="More" ? "Less" : "More");
                 
                 }} >
@@ -57,8 +79,27 @@ if(loading===false){
 
             </View>
             
-            <View style={[styles.bfaPartnerItemsSection, {height:title==="More" ? hp(8.5) : undefined}]}>
-                {images.map((url, index) => {
+            <View style={styles.bfaPartnerItemsSection}>
+                {
+                title === "More" ? 
+                lessImages.map((url, index) => {
+                    return (
+                        // <Icon source={url} size={35} borderRadius={5} />
+                        <View style={{backgroundColor:colors.white, borderRadius:5,marginRight:5, marginVertical:3}} >
+                        <Icon 
+                        source={{
+                        uri: url,
+                      }}
+                    
+                    // source={url}
+                      
+                      size={55} borderRadius={5} />
+                        </View>
+                    
+                    )
+                })
+                :
+                images.map((url, index) => {
                     return (
                         // <Icon source={url} size={35} borderRadius={5} />
                         <View style={{backgroundColor:colors.white, borderRadius:5,marginRight:5, marginVertical:3}} >

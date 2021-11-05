@@ -18,7 +18,7 @@ const Splash = ({ navigation }) => {
 
   //Validation Login
   const [Token, setToken] = React.useState(null);
-  const [logo, setLogo] = React.useState(true);
+  const [logo, setLogo] = React.useState(false);
   const [text, setText] = React.useState(false);
   const dispatch= useDispatch();
 
@@ -30,7 +30,7 @@ const Splash = ({ navigation }) => {
     setToken(token);
     if (token === null) {
       setTimeout(() => {
-
+        setTimeout(() => {
         setLogo(false)
         setTimeout(() => {
         
@@ -42,6 +42,7 @@ const Splash = ({ navigation }) => {
           );
         }, 2000)
       }, 2000)
+    }, 0)
     }
     else {
       navigation.dispatch(
@@ -81,16 +82,23 @@ const Splash = ({ navigation }) => {
         logo ?
           <Icon source={globalPath.BALI_ICON} size={150} />
           :
-          <View>
-          <View style={{paddingLeft:20}}>
-          <ResponsiveText color={colors.grey} size={3} >In </ResponsiveText>
-          <ResponsiveText margin={[-5,0,0,10]} color={colors.yellow} fontFamily={'Bold'} size={3.2} >Collaboration</ResponsiveText>
-          <View style={{alignSelf:'flex-end', marginRight:20, marginTop:-5}} >
-          <ResponsiveText color={colors.grey} size={3} >with</ResponsiveText>
-          </View>
-          </View>
-        <Icon source={globalPath.BFA_LOGO} size={150} />
+          undefined
+      }
+
+      {
+        text ? 
+        <View>
+        <View style={{paddingLeft:20}}>
+        <ResponsiveText color={colors.grey} size={3} >In </ResponsiveText>
+        <ResponsiveText margin={[-5,0,0,10]} color={colors.yellow} fontFamily={'Bold'} size={3.2} >Collaboration</ResponsiveText>
+        <View style={{alignSelf:'flex-end', marginRight:20, marginTop:-5}} >
+        <ResponsiveText color={colors.grey} size={3} >with</ResponsiveText>
         </View>
+        </View>
+      <Icon source={globalPath.BFA_LOGO} size={150} />
+      </View>
+      :
+      undefined
       }
 
     </View>

@@ -22,7 +22,7 @@ const initialState = {
     data: {},
   },
   userProfile:{
-    refreshing: false,
+    loading: false,
     data: {},
   },
 
@@ -61,9 +61,27 @@ export const appReducers = (state = initialState, action) => {
       case types.GET_USERS_BY_ID_SUCCESS:
       return {
         ...state,
-        cusineDetail:{
+        userProfile:{
           ...state.userProfile,
-          data:action.payload
+          data:action.payload,
+          loading:false
+          
+        }
+      };
+      case types.GET_USERS_BY_ID_FAILURE:
+      return {
+        ...state,
+        userProfile:{
+          ...state.userProfile,
+          loading:false
+        }
+      };
+      case types.GET_USERS_BY_ID_REQUEST:
+      return {
+        ...state,
+        userProfile:{
+          ...state.userProfile,
+          loading:true,
         }
       };
       case types.GET_BFA_PARTNERS_SUCCESS:
@@ -73,6 +91,7 @@ export const appReducers = (state = initialState, action) => {
           ...state.bfaPartners,
           data:action.payload,
           refreshing:false
+          
         }
       };
 
@@ -84,6 +103,16 @@ export const appReducers = (state = initialState, action) => {
           refreshing:false
         }
       };
+
+      case types.GET_BFA_PARTNERS_REQUEST:
+      return {
+        ...state,
+        bfaPartners:{
+          ...state.bfaPartners,
+          refreshing:true
+        }
+      };
+      
 
     default:
       return state;

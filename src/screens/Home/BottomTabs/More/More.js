@@ -8,10 +8,26 @@ import { routeName } from '../../../../constants/routeName';
 import AsyncStorage from '@react-native-community/async-storage';
 import { StackActions } from '@react-navigation/native';
 import {hp, wp} from '../../../../helpers/Responsiveness'
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { getUserProfile } from '../../../../redux/actions/user.actions';
+import { BarIndicator } from 'react-native-indicators';
 
 const More = ({route,navigation}) => {
-  const profileData = route.params.data;
+  const profileData = useSelector(state=>state.appReducers.userProfile.data);
   console.log('Profile: ',profileData);
+  const loading = useSelector(state=>state.appReducers.userProfile.loading);
+  console.log('loading', loading);
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(getUserProfile());
+  console.log('loading', loading);
+
+}, []);
+
+
+
 
   const logout =()=>{
     Alert.alert(
@@ -30,7 +46,9 @@ const More = ({route,navigation}) => {
     );
   }
   return (
-    <View style={{backgroundColor: colors.black3, flex: 1,flexDirection:'column',justifyContent:'space-between'}}>
+    <>
+
+<View style={{backgroundColor: colors.black3, flex: 1,flexDirection:'column',justifyContent:'space-between'}}>
         <View style={{flex:0.05, backgroundColor:colors.yellow, flexDirection:'row', justifyContent:'flex-end', alignItems:'center', paddingTop:10}} >
         <TouchableOpacity onPress={logout}>
           <View style={{flexDirection:'row', width:wp(40) ,justifyContent:'flex-end',paddingHorizontal:20}}>
@@ -187,8 +205,19 @@ const More = ({route,navigation}) => {
         </View>
         </ScrollView>
       </View>
+
+      {
+  loading === true ?
+  <View style={{position:'absolute', top:0,left:0,bottom:0, right:0,backgroundColor: 'rgba(65, 65, 65, 0.5)', flex:1}}>
+    <BarIndicator color={colors.yellow} size={50}  />
+  </View>
+  :
+  undefined
+}
+
+    
       
-  
+  </>
   );
 };
 

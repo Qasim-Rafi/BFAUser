@@ -62,7 +62,7 @@ console.log('loading', loading);
         // callAPI();
         // dispatch(awardsRestaurant());
         // dispatch(getRestaurantAllDishes())
-        dispatch(getBfaPartners({navigation:navigation}));
+        dispatch(getBfaPartners(6));
   }, []);
 
 
@@ -71,13 +71,7 @@ console.log('loading', loading);
     
     <>
 
-      {
-        loading === true ?
-        <View style={{flex:1, alignItems:'center', justifyContent:'center', backgroundColor:colors.black}}>
-          <BarIndicator color={colors.yellow} size={50} />
-        </View>
-
-        :
+      
         <View style={styles.container}>
       <ScrollView style={{flex: 0.9, }}>
         <View style={styles.advertisementBanner}>
@@ -148,7 +142,14 @@ console.log('loading', loading);
     <Header screen={"home"} navigation={navigation} />
     </View>
     </View>
-      }
+    {
+        loading === true ?
+        <View style={{position:'absolute', top:0,left:0,bottom:0, right:0,backgroundColor: 'rgba(65, 65, 65, 0.5)', flex:1}}>
+          <BarIndicator color={colors.yellow} size={50} />
+        </View>
+        :
+        undefined
+        }
       </>
   );
 };
