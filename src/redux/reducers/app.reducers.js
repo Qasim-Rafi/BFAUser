@@ -27,7 +27,7 @@ const initialState = {
   },
 
   bfaPartners:{
-    refreshing: false,
+    refreshing: true,
     data: {},
   },
 };
@@ -71,7 +71,17 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         bfaPartners:{
           ...state.bfaPartners,
-          data:action.payload
+          data:action.payload,
+          refreshing:false
+        }
+      };
+
+      case types.GET_BFA_PARTNERS_FAILURE:
+      return {
+        ...state,
+        bfaPartners:{
+          ...state.bfaPartners,
+          refreshing:false
         }
       };
 

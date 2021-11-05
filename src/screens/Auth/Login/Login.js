@@ -63,11 +63,11 @@ console.log('login: ', loginSuccess);
     );
   };
 
-  React.useEffect(()=>{
-    if(loginSuccess!=null){
-      dispatch(getBfaPartners({navigation:navigation}));
-    }
-  })
+  // React.useEffect(()=>{
+  //   if(loginSuccess!=null){
+  //     dispatch(getBfaPartners({navigation:navigation}));
+  //   }
+  // })
 
 
 

@@ -44,8 +44,11 @@ const Splash = ({ navigation }) => {
       }, 2000)
     }
     else {
+      navigation.dispatch(
+            StackActions.replace('Home')
+          )
       // console.log('condition True');
-      dispatch(getBfaPartners({navigation:navigation}))
+      // dispatch(getBfaPartners({navigation:navigation}))
 
       // setTimeout(() => {
 

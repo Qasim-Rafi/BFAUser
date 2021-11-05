@@ -38,9 +38,14 @@ import urls from '../../../../redux/lib/urls';
 import AllCuisines from './AllCuisines';
 import WhatsNew from './WhatNew';
 import JobsList from './JobsList';
+
 import { bfaPartnerSelecter } from '../../../../redux/lib/selectors';
+import { BarIndicator } from 'react-native-indicators';
 
 const Home = ({navigation}) => {
+
+  const loading = useSelector(state=>state.appReducers.bfaPartners.refreshing);
+console.log('loading', loading);
 
   const dispatch=useDispatch();
  const getCusines=()=>{
@@ -57,14 +62,23 @@ const Home = ({navigation}) => {
         // callAPI();
         // dispatch(awardsRestaurant());
         // dispatch(getRestaurantAllDishes())
-        // dispatch(getBfaPartners({navigation:navigation}))
+        dispatch(getBfaPartners({navigation:navigation}));
   }, []);
 
 
   return (
+
     
-    <View style={styles.container}>
-    
+    <>
+
+      {
+        loading === true ?
+        <View style={{flex:1, alignItems:'center', justifyContent:'center', backgroundColor:colors.black}}>
+          <BarIndicator color={colors.yellow} size={50} />
+        </View>
+
+        :
+        <View style={styles.container}>
       <ScrollView style={{flex: 0.9, }}>
         <View style={styles.advertisementBanner}>
           <AdvertisementBanner navigation={navigation} />
@@ -134,6 +148,8 @@ const Home = ({navigation}) => {
     <Header screen={"home"} navigation={navigation} />
     </View>
     </View>
+      }
+      </>
   );
 };
 

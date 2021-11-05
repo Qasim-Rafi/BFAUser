@@ -14,14 +14,16 @@ import AsyncStorage from '@react-native-community/async-storage'
 import Icon from '../../../../components/Icon'
 const BfaPartner = ({props}) => {
     
+const loading = useSelector(state=>state.appReducers.bfaPartners.refreshing);
+// console.log('loading', loading);
 const [moreData, setMoreData] = React.useState(false);
 const [title, setTitle] = React.useState("More");
 
 let bfaPartners = useSelector(state=>state.appReducers.bfaPartners.data);
-console.log('BFA Partners: ', bfaPartners);
+// console.log('BFA Partners: ', bfaPartners);
 const images = [       
 ] 
-if(bfaPartners!=null){
+if(loading===false){
     bfaPartners.map((item)=>{
         var img = item.imageDataB;
         var src = img.replace(/\\/g, "/"); 
@@ -30,7 +32,7 @@ if(bfaPartners!=null){
         else {                
             images.push(urls.BASE_URL+src);
         }       
-         console.log('All Images: ',images);
+        //  console.log('All Images: ',images);
         
     })
   }
