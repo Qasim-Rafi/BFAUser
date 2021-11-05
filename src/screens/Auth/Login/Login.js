@@ -32,7 +32,7 @@ import {
 
 //Redux Import
 import {useDispatch, useSelector} from 'react-redux';
-import {loginUser} from '../../../redux/actions/user.actions';
+import {getBfaPartners, loginUser} from '../../../redux/actions/user.actions';
 import { StackActions } from '@react-navigation/routers';
 
 export default function Login({navigation}) {
@@ -42,6 +42,8 @@ export default function Login({navigation}) {
   const [password, setPassword] = React.useState('');
   //Redux Dispatch
   const dispatch = useDispatch();
+const loginSuccess = useSelector(state=>state.login_User.loginScreen.data);
+console.log('login: ', loginSuccess);
 
   //Redux Use Selector
   const {login_User} = useSelector(state => state);
@@ -60,6 +62,12 @@ export default function Login({navigation}) {
       })
     );
   };
+
+  React.useEffect(()=>{
+    if(loginSuccess!=null){
+      dispatch(getBfaPartners({navigation:navigation}));
+    }
+  })
 
 
 
@@ -98,18 +106,14 @@ export default function Login({navigation}) {
   return (
     <>
 
-    {
+    {/* {
       loading ? 
       <View style={{flex:1, justifyContent:'center', alignItems:'center', backgroundColor:colors.black}} >
       <BarIndicator count={5} color={colors.yellow} size={50} />
       </View>
-      :
+      : */}
 
-    
-    // <KeyboardAvoidingView
-    //   behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-    //   keyboardVerticalOffset={hp(-10)}
-    //   style={styles.container}>
+   
     <ScrollView contentContainerStyle={{flexGrow: 1, backgroundColor:colors.black}}>
       <View style={{flex:1, backgroundColor:colors.black}}>
         <View style={styles.screeninfo}>
@@ -170,7 +174,7 @@ export default function Login({navigation}) {
       </View>
       <FlashMessage ref={dropdownRef} />
     </ScrollView>
-          }
+          
           </>
     // </KeyboardAvoidingView>
   );

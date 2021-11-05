@@ -18,6 +18,10 @@ const initialState = {
     refreshing: false,
     data: {},
   },
+  loginScreen: {
+    refreshing: false,
+    data: {},
+  },
 };
 
 export const login_User = (state = initialState, action) => {

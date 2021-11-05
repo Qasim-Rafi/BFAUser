@@ -45,24 +45,24 @@ const Splash = ({ navigation }) => {
     }
     else {
       // console.log('condition True');
-      
+      dispatch(getBfaPartners({navigation:navigation}))
 
-      setTimeout(() => {
+      // setTimeout(() => {
 
-        setLogo(false)
-        setTimeout(() => {
+      //   setLogo(false)
+      //   setTimeout(() => {
         
-        navigation.dispatch(
-          StackActions.replace('Home')
-        )
-        }, 2000)
-      }, 2000)
+      //   navigation.dispatch(
+      //     StackActions.replace('Home')
+      //   )
+      //   }, 2000)
+      // }, 2000)
     }
   }
 
 
   React.useEffect(() => {
-    dispatch(getBfaPartners({navigation:navigation}))
+    
     fetchAndSetUser();
     
 

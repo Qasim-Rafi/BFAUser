@@ -14,6 +14,7 @@ import { StackActions } from '@react-navigation/native';
 
 
 
+
 //Register user saga
 export function* loginUserSaga() {
   console.log('saga function Works');
@@ -30,7 +31,7 @@ function* loginUserApi(data) {
       yield AsyncStorage.setItem('@token', response.data.token);
       yield AsyncStorage.setItem('@userId', response.data.loggedInUserId);
       yield put({type: types.LOGIN_USER_SUCCESS, payload: response.data});
-      navigation.dispatch(StackActions.replace('Home'));
+      
     }
     else{
         showMessage({
@@ -131,7 +132,9 @@ function* getBfaPartnersSagaApi(data ) {
     const response = yield Api.get(urls.GET_BFA_PARTNERS);
     if (response&&response.data != null){
       yield put({ type: types.GET_BFA_PARTNERS_SUCCESS, payload: response.data });
-      
+      navigation.dispatch(
+        StackActions.replace('Home')
+      )
       
       
 
