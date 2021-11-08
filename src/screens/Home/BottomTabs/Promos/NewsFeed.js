@@ -26,7 +26,7 @@ console.log("News Data: ", NewsData);
                 return(
                     <View style={{ backgroundColor: colors.black2, height: hp(46), borderRadius: 5,marginTop:10 }}>
             <View style={{ flexDirection: 'row', marginVertical:12,marginHorizontal:15 }}>
-                <View ><Icon size={40} source={globalPath.ALIGATO} /></View>
+                <View ><Icon size={40} source={{uri: item.resLogo}} /></View>
                 <View>
                     <ResponsiveText margin={[0, 7]} color={colors.white} size={2.7}>{item.restaurantName}</ResponsiveText>
                     <ResponsiveText margin={[0, 7]} color={colors.grey} size={2.7}>{item.description}</ResponsiveText>

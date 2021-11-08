@@ -32,15 +32,15 @@ const JobListing = ({navigation}) => {
                                 <ResponsiveText color={colors.white}>{item.jobTitle}</ResponsiveText>
                             </View>
                             <View style={{ flexDirection: 'row' }}>
-                                <ResponsiveText size={2.8} color={colors.yellow}>RestaurantName</ResponsiveText>
-                                <ResponsiveText size={2.8} color={colors.grey}>Location</ResponsiveText>
+                                <ResponsiveText size={2.8} color={colors.yellow}>{item.restuarantName}</ResponsiveText>
+                                <ResponsiveText size={2.8} margin={[0,0,0,5]} color={colors.grey}>{item.areaName}</ResponsiveText>
                             </View>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-between',width:wp(60) }}>
                                 <View style={{ flexDirection: 'row' }}>
                                     <ResponsiveText size={2.8} color={colors.grey}>Date:</ResponsiveText>
                                     <ResponsiveText size={2.8} color={colors.white}>{item.postedOn}</ResponsiveText>
                                 </View>
-                                <View style={{ flexDirection: 'row' }}>
+                                <View style={{ marginLeft:5,flexDirection: 'row' }}>
                                     <ResponsiveText size={2.8} color={colors.grey}>Experience:</ResponsiveText>
                                     <ResponsiveText size={2.8} color={colors.white}>1-2 years</ResponsiveText>
                                 </View>
