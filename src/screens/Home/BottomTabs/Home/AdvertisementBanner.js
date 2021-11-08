@@ -4,6 +4,7 @@ import ResponsiveText from '../../../../components/RnText'
 import RnButton from '../../../../components/RnButton'
 import Swiper from 'react-native-swiper'
 
+import Svg, { Defs, LinearGradient, Stop } from 'react-native-svg'
 import { advertisementBannerFakeDATA } from '../../../../constants/mock'
 import { colors } from '../../../../constants/colorsPallet'
 import { globalPath } from '../../../../constants/globalPath'
@@ -11,19 +12,27 @@ import Icon from '../../../../components/Icon'
 import { hp, wp } from '../../../../helpers/Responsiveness'
 import Header from '../../../../components/Header'
 import { useSelector } from 'react-redux'
+
 const AdvertisementBanner = ({navigation}) => {
     const addBanner = useSelector(state=>state.appReducers.addBanner.data);
     console.log("Add BAnners Data: ", addBanner);
+    console.log("banner length: ", addBanner.length);
     return (
-
-        <Swiper style={{}} showsButtons={false} autoplay={true} autoplayTimeout={3}
+        <>
+        {
+            addBanner.length===undefined ? undefined
+            :
+        
+            
+      <Swiper style={{}} showsButtons={false} autoplay={true} autoplayTimeout={3}
             activeDot={<View style={{ backgroundColor: colors.yellow, width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: -20, }} />}
             dot={
                 <View style={{ backgroundColor: colors.white, width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: -20, }} />
             }>
 
                 
-            {addBanner.map((item, index) => {
+            { 
+            addBanner.map((item, index) => {
                 return (
                     <View style={{flex:1}} >
 
@@ -49,10 +58,15 @@ const AdvertisementBanner = ({navigation}) => {
                     </ImageBackground>
                     </View>
                 )
-            })}
+            })
+            
+        }
 
         </Swiper>
-
+  
+       
+        }
+        </>
     )
 }
 
