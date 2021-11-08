@@ -44,15 +44,8 @@ export default function Login({ navigation }) {
   const [password, setPassword] = React.useState('');
   //Redux Dis/patch
   const dispatch = useDispatch();
-<<<<<<< Updated upstream
-
-
-
-
-=======
   const loading = useSelector(state=>state.login_User.loginScreen.refreshing);
 
->>>>>>> Stashed changes
   
 
 
