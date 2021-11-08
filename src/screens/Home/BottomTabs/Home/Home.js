@@ -31,7 +31,7 @@ import Promotion from './Promotion';
 import Header from '../../../../components/Header';
 import { ourRecommendationFakeDATA } from '../../../../constants/mock';
 import { useDispatch ,useSelector } from 'react-redux';
-import { getRestaurantAllDishes, getUserCusine, awardsRestaurant, getBfaPartners } from '../../../../redux/actions/user.actions';
+import { getRestaurantAllDishes, getUserCusine, awardsRestaurant, getBfaPartners, getAddBannerData } from '../../../../redux/actions/user.actions';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import urls from '../../../../redux/lib/urls';
@@ -46,6 +46,7 @@ const Home = ({navigation}) => {
 
   const loading = useSelector(state=>state.appReducers.bfaPartners.refreshing);
 console.log('loading', loading);
+
 
   const dispatch=useDispatch();
  const getCusines=()=>{
@@ -63,6 +64,12 @@ console.log('loading', loading);
         // dispatch(awardsRestaurant());
         // dispatch(getRestaurantAllDishes())
         dispatch(getBfaPartners(6));
+        dispatch(
+          (getUserCusine({
+            navigation:navigation,
+          }))
+        );
+        dispatch(getAddBannerData());
   }, []);
 
 

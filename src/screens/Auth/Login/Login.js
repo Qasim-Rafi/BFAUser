@@ -42,12 +42,10 @@ export default function Login({navigation}) {
   const [password, setPassword] = React.useState('');
   //Redux Dispatch
   const dispatch = useDispatch();
-const loginSuccess = useSelector(state=>state.login_User.loginScreen.data);
-console.log('login: ', loginSuccess);
 
-  //Redux Use Selector
-  const {login_User} = useSelector(state => state);
-  console.log( 'login user: ',login_User);
+
+
+
   
 
   //Redux Action Called

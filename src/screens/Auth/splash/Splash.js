@@ -30,8 +30,10 @@ const Splash = ({ navigation }) => {
     setToken(token);
     if (token === null) {
       setTimeout(() => {
+        setLogo(true)
         setTimeout(() => {
         setLogo(false)
+        setText(true)
         setTimeout(() => {
         
           navigation.dispatch(

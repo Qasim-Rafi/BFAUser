@@ -25,11 +25,16 @@ const initialState = {
     loading: false,
     data: {},
   },
+  addBanner:{
+    loading: false,
+    data: {},
+  },
 
   bfaPartners:{
     refreshing: true,
     data: {},
   },
+
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -82,6 +87,31 @@ export const appReducers = (state = initialState, action) => {
         userProfile:{
           ...state.userProfile,
           loading:true,
+        }
+      };
+      case types.GET_ADD_BANNER_DATA_REQUEST:
+      return {
+        ...state,
+        addBanner:{
+          ...state.addBanner,
+          loading:true,
+        }
+      };
+      case types.GET_ADD_BANNER_DATA_SUCCESS:
+      return {
+        ...state,
+        addBanner:{
+          ...state.addBanner,
+          data:action.payload,
+          loading:false,
+        }
+      };
+      case types.GET_ADD_BANNER_DATA_FAILURE:
+      return {
+        ...state,
+        addBanner:{
+          ...state.addBanner,
+          loading:false,
         }
       };
       case types.GET_BFA_PARTNERS_SUCCESS:

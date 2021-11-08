@@ -10,7 +10,10 @@ import { globalPath } from '../../../../constants/globalPath'
 import Icon from '../../../../components/Icon'
 import { hp, wp } from '../../../../helpers/Responsiveness'
 import Header from '../../../../components/Header'
+import { useSelector } from 'react-redux'
 const AdvertisementBanner = ({navigation}) => {
+    const addBanner = useSelector(state=>state.appReducers.addBanner.data);
+    console.log("Add BAnners Data: ", addBanner);
     return (
 
         <Swiper style={{}} showsButtons={false} autoplay={true} autoplayTimeout={3}
@@ -20,23 +23,20 @@ const AdvertisementBanner = ({navigation}) => {
             }>
 
                 
-            {advertisementBannerFakeDATA.map((url, index) => {
+            {addBanner.map((item, index) => {
                 return (
                     <View style={{flex:1}} >
 
                     <ImageBackground imageStyle={{opacity:0.8}} style={styles.advertisementBannerImage}
                     //  source={{ uri: url }}
-                     source={url.url}
+                     source={{uri:item.fullPath}}
                       >
                         <View style={styles.advertisementBannerTitleOverlay}>
                   
-                            <ResponsiveText fontFamily={'SemiBold'} size={4.5} color={colors.white}>{url.restaurantName}</ResponsiveText>
-                            {
-                                url.dishName!==" " ?
-                            <ResponsiveText fontFamily={'light'} margin={[-3,0,5,0]} size={3} color={colors.white}>{url.dishName}</ResponsiveText>
-                            :
-                            undefined
-                            }
+                            <ResponsiveText fontFamily={'SemiBold'} size={4.5} color={colors.white}>{item.adSlideTitle}</ResponsiveText>
+                                
+                            <ResponsiveText fontFamily={'light'} margin={[-3,0,5,0]} size={3} color={colors.white}>{item.restaurantName}</ResponsiveText>
+                            
                             
                             {/* <TouchableOpacity style={{height:hp(3.5), width:wp(28), backgroundColor:colors.yellow,
                             borderRadius:5,justifyContent:'center',alignItems:'center',alignSelf:'center', flexDirection:'row'

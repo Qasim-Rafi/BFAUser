@@ -34,6 +34,13 @@ export const getUserProfile = () => {
   };
 };
 
+// get Add Banner Data
+export const getAddBannerData = () => {
+  return {
+    type: types.GET_ADD_BANNER_DATA_REQUEST,
+  };
+};
+
 //Get  BFA PARTNERS
 
 export const getBfaPartners = (data) => {
