@@ -42,13 +42,10 @@ import { bfaPartnerSelecter } from '../../../../redux/lib/selectors';
 
 const Home = ({navigation}) => {
 
-<<<<<<< Updated upstream
   const loading = useSelector(state=>state.appReducers.bfaPartners.refreshing);
 // console.log('loading', loading);
 
 
-=======
->>>>>>> Stashed changes
   const dispatch=useDispatch();
  const getCusines=()=>{
     dispatch(
@@ -64,7 +61,6 @@ const Home = ({navigation}) => {
         // callAPI();
         // dispatch(awardsRestaurant());
         // dispatch(getRestaurantAllDishes())
-<<<<<<< Updated upstream
         dispatch(getBfaPartners(6));
         dispatch(
           (getUserCusine({
@@ -73,11 +69,9 @@ const Home = ({navigation}) => {
         );
         dispatch(getAddBannerData());
         dispatch(getPromoNewsData());
-=======
-        // dispatch(getBfaPartners({navigation:navigation}))
->>>>>>> Stashed changes
   }, []);
 
+  //jhjjgh
 
   return (
     
