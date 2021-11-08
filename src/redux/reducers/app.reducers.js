@@ -39,6 +39,11 @@ const initialState = {
     data: {},
   },
 
+  promoJobs:{
+    refreshing: true,
+    data: {},
+  },
+
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -140,6 +145,34 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         PromoNews:{
           ...state.PromoNews,
+          loading:false,
+        }
+      };
+
+      case types.GET_PROMO_JOBS_REQUEST:
+      return {
+        ...state,
+        promoJobs:{
+          ...state.promoJobs,
+          loading:true,
+        }
+      };
+
+      case types.GET_PROMO_JOBS_SUCCESS:
+      return {
+        ...state,
+        promoJobs:{
+          ...state.promoJobs,
+          data:action.payload,
+          loading:false,
+        }
+      };
+
+      case types.GET_PROMO_JOBS_FAILURE:
+      return {
+        ...state,
+        promoJobs:{
+          ...state.promoJobs,
           loading:false,
         }
       };

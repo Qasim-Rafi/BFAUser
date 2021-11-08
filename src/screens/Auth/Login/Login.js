@@ -75,7 +75,7 @@ export default function Login({ navigation }) {
     console.log("ErrorMessage: ", setErrorString);
 
     if(errorString===errorString){
-      setErrorString("Invalid username or password  ");
+      setErrorString("Invalid username or password ");
       console.log("ErrorMessage: ", errorString);
     }
 
@@ -135,7 +135,7 @@ export default function Login({ navigation }) {
                 <ResponsiveText margin={[-5, 0, 0, 0]} color={colors.white}>
                   Please Login to Continue
                 </ResponsiveText>
-                <ResponsiveText margin={[10, 0, 0, 0]} color={colors.red} fontFamily="Regular" size={5}>
+                <ResponsiveText margin={[10, 0, 0, 0]} color={colors.red} fontFamily="Regular" size={3}>
                   {errorString}
                 </ResponsiveText>
               

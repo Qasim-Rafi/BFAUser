@@ -48,6 +48,13 @@ export const getPromoNewsData = () => {
   };
 };
 
+// GET PROMO JOBS
+export const getPromoJobsData = () => {
+  return {
+    type: types.GET_PROMO_JOBS_REQUEST,
+  };
+};
+
 //Get  BFA PARTNERS
 
 export const getBfaPartners = (data) => {
