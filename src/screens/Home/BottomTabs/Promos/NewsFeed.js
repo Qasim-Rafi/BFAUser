@@ -12,27 +12,29 @@ import Icon from '../../../../components/Icon'
 import { globalPath } from '../../../../constants/globalPath'
 import { NewsFeeds } from '../../../../constants/mock'
 import { routeName } from '../../../../constants/routeName'
+import { useSelector } from 'react-redux'
 
 
 
 const NewsFeed = (props) => {
-
+const NewsData = useSelector(state=>state.appReducers.PromoNews.data);
+console.log("News Data: ", NewsData);
     return (
         <View style={{marginTop:30}} >
             <ResponsiveText color={colors.white}>Inbox</ResponsiveText>
-            {NewsFeeds.map((url,index)=>{
+            {NewsData.map((item,index)=>{
                 return(
                     <View style={{ backgroundColor: colors.black2, height: hp(46), borderRadius: 5,marginTop:10 }}>
             <View style={{ flexDirection: 'row', marginVertical:12,marginHorizontal:15 }}>
                 <View ><Icon size={40} source={globalPath.ALIGATO} /></View>
                 <View>
-                    <ResponsiveText margin={[0, 7]} color={colors.white} size={2.7}>Aligato</ResponsiveText>
-                    <ResponsiveText margin={[0, 7]} color={colors.grey} size={2.7}>Times Square Shopping Complex</ResponsiveText>
+                    <ResponsiveText margin={[0, 7]} color={colors.white} size={2.7}>{item.restaurantName}</ResponsiveText>
+                    <ResponsiveText margin={[0, 7]} color={colors.grey} size={2.7}>{item.description}</ResponsiveText>
                 </View>
             </View>
             <ImageBackground style={styles.Advertisement2ndVarientImage}
                 // source={{ uri: url }}
-                source={globalPath.NEWS_FEED_IAMGE1}
+                source={{uri: item.fullPath}}
 
             >
             </ImageBackground>
@@ -51,7 +53,7 @@ const NewsFeed = (props) => {
                     </View>
                 </View>
                 <View style={{flexDirection:'row', alignItems:'center', marginTop:7,}}>
-                <ResponsiveText top={0} color={colors.white} size={3}>Dish of the day: <ResponsiveText color={colors.grey} size={3}>Spaghetti marinara with freshlt imported boston lobster</ResponsiveText></ResponsiveText>
+                <ResponsiveText top={0} color={colors.white} size={3}>{item.newsTitle}<ResponsiveText color={colors.grey} size={3}>{item.description}</ResponsiveText></ResponsiveText>
                 
                 </View>
             </View>

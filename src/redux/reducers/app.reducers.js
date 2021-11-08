@@ -29,6 +29,10 @@ const initialState = {
     loading: false,
     data: {},
   },
+  PromoNews:{
+    loading: false,
+    data: {},
+  },
 
   bfaPartners:{
     refreshing: true,
@@ -111,6 +115,31 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         addBanner:{
           ...state.addBanner,
+          loading:false,
+        }
+      };
+      case types.GET_PROMO_NEWS_REQUEST:
+      return {
+        ...state,
+        PromoNews:{
+          ...state.PromoNews,
+          loading:false,
+        }
+      };
+      case types.GET_PROMO_NEWS_SUCCESS:
+      return {
+        ...state,
+        PromoNews:{
+          ...state.PromoNews,
+          data:action.payload,
+          loading:false,
+        }
+      };
+      case types.GET_PROMO_NEWS_FAILURE:
+      return {
+        ...state,
+        PromoNews:{
+          ...state.PromoNews,
           loading:false,
         }
       };

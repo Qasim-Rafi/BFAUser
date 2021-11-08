@@ -31,7 +31,7 @@ import Promotion from './Promotion';
 import Header from '../../../../components/Header';
 import { ourRecommendationFakeDATA } from '../../../../constants/mock';
 import { useDispatch ,useSelector } from 'react-redux';
-import { getRestaurantAllDishes, getUserCusine, awardsRestaurant, getBfaPartners, getAddBannerData } from '../../../../redux/actions/user.actions';
+import { getRestaurantAllDishes, getUserCusine, awardsRestaurant, getBfaPartners, getAddBannerData, getPromoNewsData } from '../../../../redux/actions/user.actions';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import urls from '../../../../redux/lib/urls';
@@ -45,7 +45,7 @@ import { BarIndicator } from 'react-native-indicators';
 const Home = ({navigation}) => {
 
   const loading = useSelector(state=>state.appReducers.bfaPartners.refreshing);
-console.log('loading', loading);
+// console.log('loading', loading);
 
 
   const dispatch=useDispatch();
@@ -70,6 +70,7 @@ console.log('loading', loading);
           }))
         );
         dispatch(getAddBannerData());
+        dispatch(getPromoNewsData());
   }, []);
 
 

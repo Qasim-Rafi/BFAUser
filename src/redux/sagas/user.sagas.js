@@ -125,7 +125,7 @@ function* getCusineSagaApi(data ) {
 
 //Get Add Banner Data
 export function* getAddBannerSaga() {
-  yield takeLatest(types.GET_CUSINE_REQUEST, getAddBannerSagaApi);
+  yield takeLatest(types.GET_ADD_BANNER_DATA_REQUEST, getAddBannerSagaApi);
 }
 function* getAddBannerSagaApi(data ) {
 
@@ -145,6 +145,31 @@ function* getAddBannerSagaApi(data ) {
     
   } catch (error) {
     yield put({ type: types.GET_ADD_BANNER_DATA_FAILURE, error: error });
+  }
+}
+
+// get Promo News
+export function* getPromoNewsSaga() {
+  yield takeLatest(types.GET_PROMO_NEWS_REQUEST, getPromoNewsSagaApi);
+}
+function* getPromoNewsSagaApi(data ) {
+
+
+  try {
+    const response = yield Api.get(urls.GET_PROMO_NEWS);
+    if (response&&response.data != null){
+      yield put({ type: types.GET_PROMO_NEWS_SUCCESS, payload: response.data });
+      // navigation.navigate(routeName.Categories,{data:response.data});
+
+    }else{
+    yield put({ type: types.GET_PROMO_NEWS_FAILURE, error: error });
+    }
+
+    // dispatch a success action to the store with the new data object
+
+    
+  } catch (error) {
+    yield put({ type: types.GET_PROMO_NEWS_FAILURE, error: error });
   }
 }
 

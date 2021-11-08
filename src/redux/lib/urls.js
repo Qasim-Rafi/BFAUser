@@ -15,6 +15,7 @@ export default urls = {
   RESTAURANT_DISH_ALL:'api/RestaurantDish/GetRestaurantDishAll',
   GET_USER : "api/Users/GetUser/2",
   GET_BFA_PARTNERS : "api/AdminBFAPartner/GetAdminBFAPartnerAll/",
-  GET_ADD_BANNER:"api/HomeAdSlideShowAdmin/GetHomeAdSlideShowAdminAll"
+  GET_ADD_BANNER:"api/HomeAdSlideShowAdmin/GetHomeAdSlideShowAdminAll",
+  GET_PROMO_NEWS:"api/PromoItemNews/GetPromoNewsAdminAll",
 
 };

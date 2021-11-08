@@ -15,8 +15,7 @@ import { useSelector } from 'react-redux'
 
 const AdvertisementBanner = ({navigation}) => {
     const addBanner = useSelector(state=>state.appReducers.addBanner.data);
-    console.log("Add BAnners Data: ", addBanner);
-    console.log("banner length: ", addBanner.length);
+    
     return (
         <>
         {

@@ -41,6 +41,13 @@ export const getAddBannerData = () => {
   };
 };
 
+// get Promo News
+export const getPromoNewsData = () => {
+  return {
+    type: types.GET_PROMO_NEWS_REQUEST,
+  };
+};
+
 //Get  BFA PARTNERS
 
 export const getBfaPartners = (data) => {

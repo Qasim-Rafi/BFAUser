@@ -20,7 +20,7 @@ const loading = useSelector(state=>state.appReducers.bfaPartners.refreshing);
 const [moreData, setMoreData] = React.useState(false);
 let bfaPartners = useSelector(state=>state.appReducers.bfaPartners.data);
 const [title, setTitle] = React.useState(bfaPartners.length<=6? "Less" : "More");
-console.log("array length", bfaPartners.length);
+// console.log("array length", bfaPartners.length);
 // console.log('BFA Partners: ', bfaPartners);
 const images = [       
 ];
@@ -51,8 +51,6 @@ if(loading===false){
   }
 }
 
-  console.log('lessImages: ', lessImages);
-  console.log('More Images: ', images);
 
 
 
