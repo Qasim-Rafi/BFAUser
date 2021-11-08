@@ -8,7 +8,10 @@ import SeeAllButton from '../../../../components/SeeAllButton'
 import { routeName  } from '../../../../constants/routeName'
 import { globalPath } from '../../../../constants/globalPath'
 import { hp, wp } from '../../../../helpers/Responsiveness'
+import { useSelector } from 'react-redux'
 const JobsList = (props) => {
+    const JobsList = useSelector(state=>state.appReducers.promoJobs.data);
+    console.log("Jobs data: ", JobsList);
     return (
         <>
             <View style={styles.recommendationHeaderSection}>
@@ -24,12 +27,12 @@ const JobsList = (props) => {
             </View>
             <View style={styles.recommendationItemsSection}>
                 <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-                    {PROMOS_JOBS.map((url, index) => {
+                    {JobsList.map((url, index) => {
                         return (
                             <TouchableOpacity onPress={()=> props.navigation.navigate(routeName.APPLY_JOBS)}>
                             <View  style={{ width: wp(26), height: hp(18), borderRadius: 3, marginHorizontal: 5, overflow: 'hidden', flexDirection: 'row' }}>
-                                <ImageBackground imageStyle={{opacity:.5}} imageStyle={{opacity:.3}} style={{ flex: 1, padding: 5, overflow: 'hidden', justifyContent: 'flex-end',backgroundColor: 'rgba(0,0,0,1)' }} source={url.Logo} >
-                                    <ResponsiveText fontFamily="Regular" size={3} margin={[0,0,5,0]} color={colors.white}>{url.JobTitle}</ResponsiveText>
+                                <ImageBackground imageStyle={{opacity:.5}} imageStyle={{opacity:.3}} style={{ flex: 1, padding: 5, overflow: 'hidden', justifyContent: 'flex-end',backgroundColor: 'rgba(0,0,0,1)' }} source={require('../../../../assets/fake_Images/Jobs-logo1.png')} >
+                                    <ResponsiveText fontFamily="Regular" size={3} margin={[0,0,5,0]} color={colors.white}>{url.jobTitle}</ResponsiveText>
                                     
                                 </ImageBackground>
                             </View>

@@ -153,6 +153,31 @@ function* getAddBannerSagaApi(data ) {
 }
 
 // get Promo News
+export function* getPromoJobsSaga() {
+  yield takeLatest(types.GET_PROMO_JOBS_REQUEST, getJobsNewsSagaApi);
+}
+function* getJobsNewsSagaApi(data ) {
+
+
+  try {
+    const response = yield Api.get(urls.GET_PROMO_JOBS);
+    if (response&&response.data != null){
+      yield put({ type: types.GET_PROMO_JOBS_SUCCESS, payload: response.data });
+      // navigation.navigate(routeName.Categories,{data:response.data});
+
+    }else{
+    yield put({ type: types.GET_PROMO_JOBS_FAILURE, error: error });
+    }
+
+    // dispatch a success action to the store with the new data object
+
+    
+  } catch (error) {
+    yield put({ type: types.GET_PROMO_JOBS_FAILURE, error: error });
+  }
+}
+
+// get promo Jobs
 export function* getPromoNewsSaga() {
   yield takeLatest(types.GET_PROMO_NEWS_REQUEST, getPromoNewsSagaApi);
 }

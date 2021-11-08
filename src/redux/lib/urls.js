@@ -17,5 +17,6 @@ export default urls = {
   GET_BFA_PARTNERS : "api/AdminBFAPartner/GetAdminBFAPartnerAll/",
   GET_ADD_BANNER:"api/HomeAdSlideShowAdmin/GetHomeAdSlideShowAdminAll",
   GET_PROMO_NEWS:"api/PromoItemNews/GetPromoNewsAdminAll",
+  GET_PROMO_JOBS:"api/PromoJobsAdmin/GetPromoJobsAdminAll",
 
 };
