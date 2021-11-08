@@ -42,13 +42,10 @@ import { bfaPartnerSelecter } from '../../../../redux/lib/selectors';
 
 const Home = ({navigation}) => {
 
-<<<<<<< Updated upstream
   const loading = useSelector(state=>state.appReducers.bfaPartners.refreshing);
 // console.log('loading', loading);
 
 
-=======
->>>>>>> Stashed changes
   const dispatch=useDispatch();
  const getCusines=()=>{
     dispatch(
