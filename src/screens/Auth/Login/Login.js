@@ -44,15 +44,8 @@ export default function Login({ navigation }) {
   const [password, setPassword] = React.useState('');
   //Redux Dis/patch
   const dispatch = useDispatch();
-<<<<<<< Updated upstream
-
-
-
-
-=======
   const loading = useSelector(state=>state.login_User.loginScreen.refreshing);
 
->>>>>>> Stashed changes
   
 
 
@@ -82,7 +75,7 @@ export default function Login({ navigation }) {
     console.log("ErrorMessage: ", setErrorString);
 
     if(errorString===errorString){
-      setErrorString("Invalid username or password !!!");
+      setErrorString("Invalid username or password  ");
       console.log("ErrorMessage: ", errorString);
     }
 
@@ -95,7 +88,7 @@ export default function Login({ navigation }) {
     
     // console.log("error is: ", textError);
     if (userName === '' || userName === null) {
-      setErrorString("Username is required!");
+      setErrorString("Username is missing");
       // dropdownRef.current.showMessage({
       //   message: "Error",
       //   description: "Username is Required",
@@ -105,7 +98,7 @@ export default function Login({ navigation }) {
 
     }
     else if (password === '') {
-      setErrorString("Password is required!");
+      setErrorString("Password is missing");
 
       // dropdownRef.current.showMessage({
       //   message: "Error",
