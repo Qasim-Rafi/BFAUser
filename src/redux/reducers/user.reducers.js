@@ -21,11 +21,23 @@ const initialState = {
   loginScreen: {
     refreshing: false,
     data: {},
+    errorMsg:''
   },
-};
+};   
 
 export const login_User = (state = initialState, action) => {
   switch (action.type) {
+    case types.LOGIN_USER_REQUEST:
+      console.log(action, 'action in reducer');
+      return {
+        ...state,
+        loginScreen: {
+          ...state.loginScreen,
+          data: action.payload,
+          refreshing:true,
+        },
+      };
+    
     case types.LOGIN_USER_SUCCESS:
       console.log(action, 'action in reducer');
       return {
@@ -33,7 +45,19 @@ export const login_User = (state = initialState, action) => {
         loginScreen: {
           ...state.loginScreen,
           data: action.payload,
+          refreshing:false,
         },
+      };
+        case types.LOGIN_USER_FAILURE:
+      console.log(action, 'action in reducer');
+      return {
+        ...state,
+        loginScreen: {
+          ...state.loginScreen,
+          refreshing:false,
+          errorMsg:action.error,
+        },
+        
       };
    
     default:

@@ -37,20 +37,24 @@ function* loginUserApi(data) {
       
     }
     else{
-        showMessage({
-          message: "Error",
-          description: "Invalid Username or Password",
-          type: "danger",
-          icon: { icon: "auto", position: "left" },
-        });
+    yield put({type: types.LOGIN_USER_FAILURE, error: error});
+
+        // showMessage({
+        //   message: "Error",
+        //   description: "Invalid Username or Password",
+        //   type: "danger",
+        //   icon: { icon: "auto", position: "left" },
+        // });
     }
   } catch (error) {
-    showMessage({
-      message: "Error",
-      description: "Check Your Internet Connection",
-      type: "danger",
-      icon: { icon: "auto", position: "left" },
-    });
+    yield put({type: types.LOGIN_USER_FAILURE, error: error});
+
+    // showMessage({
+    //   message: "Error",
+    //   description: "Check Your Internet Connection",
+    //   type: "danger",
+    //   icon: { icon: "auto", position: "left" },
+    // });
     yield put({type: types.LOGIN_USER_FAILURE, error: error});
   }
 }

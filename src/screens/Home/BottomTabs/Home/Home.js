@@ -38,16 +38,17 @@ import urls from '../../../../redux/lib/urls';
 import AllCuisines from './AllCuisines';
 import WhatsNew from './WhatNew';
 import JobsList from './JobsList';
-
 import { bfaPartnerSelecter } from '../../../../redux/lib/selectors';
-import { BarIndicator } from 'react-native-indicators';
 
 const Home = ({navigation}) => {
 
+<<<<<<< Updated upstream
   const loading = useSelector(state=>state.appReducers.bfaPartners.refreshing);
 // console.log('loading', loading);
 
 
+=======
+>>>>>>> Stashed changes
   const dispatch=useDispatch();
  const getCusines=()=>{
     dispatch(
@@ -63,6 +64,7 @@ const Home = ({navigation}) => {
         // callAPI();
         // dispatch(awardsRestaurant());
         // dispatch(getRestaurantAllDishes())
+<<<<<<< Updated upstream
         dispatch(getBfaPartners(6));
         dispatch(
           (getUserCusine({
@@ -71,16 +73,16 @@ const Home = ({navigation}) => {
         );
         dispatch(getAddBannerData());
         dispatch(getPromoNewsData());
+=======
+        // dispatch(getBfaPartners({navigation:navigation}))
+>>>>>>> Stashed changes
   }, []);
 
 
   return (
-
     
-    <>
-
-      
-        <View style={styles.container}>
+    <View style={styles.container}>
+    
       <ScrollView style={{flex: 0.9, }}>
         <View style={styles.advertisementBanner}>
           <AdvertisementBanner navigation={navigation} />
@@ -150,15 +152,6 @@ const Home = ({navigation}) => {
     <Header screen={"home"} navigation={navigation} />
     </View>
     </View>
-    {
-        loading === true ?
-        <View style={{position:'absolute', top:0,left:0,bottom:0, right:0,backgroundColor: 'rgba(65, 65, 65, 0.5)', flex:1}}>
-          <BarIndicator color={colors.yellow} size={50} />
-        </View>
-        :
-        undefined
-        }
-      </>
   );
 };
 
