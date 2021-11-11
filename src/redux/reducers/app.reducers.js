@@ -17,6 +17,10 @@ const initialState = {
     refreshing: false,
     data: {},
   },
+  bfaRecommendationDetail:{
+    refreshing: false,
+    data: {},
+  },
   restaurantDishesDetail:{
     refreshing: false,
     data: {},
@@ -82,6 +86,35 @@ export const appReducers = (state = initialState, action) => {
           
         }
       };
+      case types.GET_BFA_RECOMMENDATION_REQUEST:
+      return {
+        ...state,
+        bfaRecommendationDetail:{
+          ...state.bfaRecommendationDetail,
+          loading:false
+          
+        }
+      };
+      case types.GET_BFA_RECOMMENDATION_SUCCESS:
+      return {
+        ...state,
+        bfaRecommendationDetail:{
+          ...state.bfaRecommendationDetail,
+          data:action.payload,
+          loading:false
+          
+        }
+      };
+      case types.GET_BFA_RECOMMENDATION_FAILURE:
+      return {
+        ...state,
+        bfaRecommendationDetail:{
+          ...state.bfaRecommendationDetail,
+          loading:false
+          
+        }
+      };
+      
       case types.GET_USERS_BY_ID_FAILURE:
       return {
         ...state,

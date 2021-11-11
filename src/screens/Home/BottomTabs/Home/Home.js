@@ -19,7 +19,6 @@ import {routeName} from '../../../../constants/routeName';
 import {colors} from '../../../../constants/colorsPallet';
 import Fonts from '../../../../helpers/Fonts';
 import AdvertisementBanner from './AdvertisementBanner';
-
 import SeeAllButton from '../../../../components/SeeAllButton';
 import BfaPartner from './BfaPartner';
 import Recommendation from './Recommendation';
@@ -29,9 +28,9 @@ import Advertisement2ndVarient from './Advertisement2ndVarient';
 import AwardWinningDishes from './AwardWinningDishes';
 import Promotion from './Promotion';
 import Header from '../../../../components/Header';
-import { ourRecommendationFakeDATA } from '../../../../constants/mock';
+import { ourRecommendationFakeDATA } from '../../../../constants/mock';0
 import { useDispatch ,useSelector } from 'react-redux';
-import { getRestaurantAllDishes, getUserCusine, awardsRestaurant, getBfaPartners, getAddBannerData, getPromoNewsData, getPromoJobsData } from '../../../../redux/actions/user.actions';
+import { getRestaurantAllDishes, getUserCusine, awardsRestaurant, getBfaPartners, getAddBannerData,getBfaRecommendations ,getPromoNewsData, getPromoJobsData } from '../../../../redux/actions/user.actions';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import urls from '../../../../redux/lib/urls';
@@ -39,6 +38,7 @@ import AllCuisines from './AllCuisines';
 import WhatsNew from './WhatNew';
 import JobsList from './JobsList';
 import { bfaPartnerSelecter } from '../../../../redux/lib/selectors';
+import { getBfaRecommendationSaga } from '../../../../redux/sagas/user.sagas';
 
 const Home = ({navigation}) => {
 
@@ -70,9 +70,8 @@ const Home = ({navigation}) => {
         dispatch(getAddBannerData());
         dispatch(getPromoNewsData());
         dispatch(getPromoJobsData());
+        dispatch(getBfaRecommendations())
   }, []);
-
-  //jhjjgh
 
   return (
     

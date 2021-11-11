@@ -126,6 +126,30 @@ function* getCusineSagaApi(data ) {
     yield put({ type: types.GET_CUSINE_FAILURE, error: error });
   }
 }
+//Get Bfa Recommendations
+export function* getBfaRecommendationSaga() {
+  yield takeLatest(types.GET_BFA_RECOMMENDATION_REQUEST, getBfaRecommendationSagaApi);
+}
+function* getBfaRecommendationSagaApi(data ) {
+
+
+  try {
+    const response = yield Api.get(urls.CUSINE_URL);
+    if (response&&response.data != null){
+      yield put({ type: types.GET_BFA_RECOMMENDATION_SUCCESS, payload: response.data });
+      // navigation.navigate(routeName.Categories,{data:response.data});
+
+    }else{
+    yield put({ type: types.GET_BFA_RECOMMENDATION_FAILURE, error: error });
+    }
+
+    // dispatch a success action to the store with the new data object
+
+    
+  } catch (error) {
+    yield put({ type: types.GET_BFA_RECOMMENDATION_SUCCESS, error: error });
+  }
+}
 
 //Get Add Banner Data
 export function* getAddBannerSaga() {
@@ -185,7 +209,7 @@ function* getPromoNewsSagaApi(data ) {
 
 
   try {
-    const response = yield Api.get(urls.GET_PROMO_NEWS);
+    const response = yield Api.get(urls.RESTAURANT_DISH_ALL);
     if (response&&response.data != null){
       yield put({ type: types.GET_PROMO_NEWS_SUCCESS, payload: response.data });
       // navigation.navigate(routeName.Categories,{data:response.data});
