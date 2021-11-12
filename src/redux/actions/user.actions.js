@@ -25,6 +25,14 @@ export const getUserCusine = (data) => {
     data:data
   };
 };
+//get bfa Recommendation
+export const getRecommendation = (data) => {
+  return {
+    type: types.GET_BFA_RECOMMENDATION_REQUEST,
+    data:data
+  };
+};
+
 
 //Get  User
 

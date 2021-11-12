@@ -201,6 +201,30 @@ function* getPromoNewsSagaApi(data ) {
     yield put({ type: types.GET_PROMO_NEWS_FAILURE, error: error });
   }
 }
+//Get Bfa Recommendation
+export function* getRecommendationSaga() {
+  yield takeLatest(types.GET_BFA_RECOMMENDATION_REQUEST, getRecommendationSagaApi);
+}
+function* getRecommendationSagaApi(data ) {
+
+
+  try {
+    const response = yield Api.get(urls.RESTAURANT_DISH_ALL);
+    if (response&&response.data != null){
+      yield put({ type: types.GET_BFA_RECOMMENDATION_SUCCESS, payload: response.data });
+      // navigation.navigate(routeName.Categories,{data:response.data});
+
+    }else{
+    yield put({ type: types.GET_BFA_RECOMMENDATION_FAILURE, error: error });
+    }
+
+    // dispatch a success action to the store with the new data object
+
+    
+  } catch (error) {
+    yield put({ type: types.GET_BFA_RECOMMENDATION_FAILURE, error: error });
+  }
+}
 
 
 // Get BFA PARTNERS Saga

@@ -7,10 +7,48 @@ import { colors } from '../../../../constants/colorsPallet'
 import SeeAllButton from '../../../../components/SeeAllButton'
 import { routeName  } from '../../../../constants/routeName'
 import { hp, wp } from '../../../../helpers/Responsiveness'
+import { useSelector } from 'react-redux'
 const Recommendation = (props) => {
+    const bfaRecommendation=useSelector(state=>state.appReducers.recommendationDetail.data)
+    console.log("Recomendationns : ",bfaRecommendation)
     return (
-        <>
+        
+         <>
             <View style={styles.recommendationHeaderSection}>
+                <ResponsiveText margin={[0,0,0,0]} size={4} color={colors.white}>Recommendation</ResponsiveText>
+                <View style={{ marginRight: -10 }} >
+                    <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingLeft: 10 }}
+                    onPress={()=>props.navigation.navigate(routeName.DISH_DETAIL)}
+                    >
+                        <ResponsiveText size={3.2} margin={[0, 10, 0, 0]} color={colors.yellow}>Show All</ResponsiveText>
+                        {/* <Icon size={wp(1.6), hp(1.6)} margin={[0,10,0,0]} source={globalPath.RIGHT_ARROW} /> */}
+                    </TouchableOpacity>
+                </View>
+            </View>
+            <View style={styles.recommendationItemsSection}>
+                <ScrollView showsHorizontalScrollIndicator={false} horizontal>
+                    {
+                    bfaRecommendation.length > 0 ? 
+                    bfaRecommendation.map((item, index) => {
+                        return (
+                            <TouchableOpacity onPress={()=> props.navigation.navigate(routeName.APPLY_JOBS)}>
+                            <View  style={{ width: wp(26), height: hp(18), borderRadius: 3, marginHorizontal: 5, overflow: 'hidden', flexDirection: 'row' }}>
+                                <ImageBackground imageStyle={{opacity:.5}} style={{ flex: 1, padding: 5, overflow: 'hidden', justifyContent: 'flex-end',backgroundColor: 'rgba(0,0,0,1)' }} source={{uri: item.resLogo}} >
+                                    <ResponsiveText fontFamily="Regular" size={3} margin={[0,0,5,0]} color={colors.white}>{item.dishName}</ResponsiveText>
+                                    <ResponsiveText fontFamily="Light" size={2.5} color={colors.white}>{item.description}</ResponsiveText>
+
+                                </ImageBackground>
+                            </View>
+                            </TouchableOpacity>
+
+                        )
+                    })
+                    :undefined
+                }
+                </ScrollView>
+            </View>
+
+            {/* <View style={styles.recommendationHeaderSection}>
                 <ResponsiveText margin={[0,0,0,0]} size={4} color={colors.white}>BFA Recommendations</ResponsiveText>
                 <View style={{marginRight:-10}} >
                 <SeeAllButton title={"BFA Recommendation"} data={ourRecommendationFakeDATA} navigation={props.navigation} />
@@ -32,7 +70,7 @@ const Recommendation = (props) => {
                         )
                     })}
                 </ScrollView>
-            </View>
+            </View> */}
 
         </>
     )

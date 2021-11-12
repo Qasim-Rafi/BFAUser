@@ -13,6 +13,10 @@ const initialState = {
     refreshing: false,
     data: {},
   },
+  recommendationDetail: {
+    refreshing: false,
+    data: {},
+  },
   cusineDetail:{
     refreshing: false,
     data: {},
@@ -90,6 +94,31 @@ export const appReducers = (state = initialState, action) => {
           loading:false
         }
       };
+      case types.GET_BFA_RECOMMENDATION_REQUEST:
+        return {
+          ...state,
+          recommendationDetail:{
+            ...state.recommendationDetail,
+            loading:true,
+          }
+        };
+        case types.GET_BFA_RECOMMENDATION_SUCCESS:
+          return {
+            ...state,
+            recommendationDetail:{
+              ...state.recommendationDetail,
+              data:action.payload,
+              loading:false
+            }
+          };
+          case types.GET_BFA_RECOMMENDATION_FAILURE:
+          return {
+            ...state,
+            recommendationDetail:{
+              ...state.recommendationDetail,
+              loading:false
+            }
+          };
       case types.GET_USERS_BY_ID_REQUEST:
       return {
         ...state,
