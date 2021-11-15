@@ -31,7 +31,7 @@ import JobsList from './JobsList';
 import Header from '../../../../components/Header';
 import { ourRecommendationFakeDATA } from '../../../../constants/mock';0
 import { useDispatch ,useSelector } from 'react-redux';
-import { getRestaurantAllDishes, getUserCusine, awardsRestaurant, getBfaPartners, getAddBannerData,getRecommendation ,getPromoNewsData, getPromoJobsData } from '../../../../redux/actions/user.actions';
+import { getRestaurantAllDishes, getUserCusine, awardsRestaurant, getBfaPartners, getAddBannerData,getBfaRecommendations ,getPromoNewsData, getPromoJobsData } from '../../../../redux/actions/user.actions';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import urls from '../../../../redux/lib/urls';
@@ -70,7 +70,7 @@ const Home = ({navigation}) => {
         dispatch(getAddBannerData());
         dispatch(getPromoNewsData());
         dispatch(getPromoJobsData());
-        dispatch(getRecommendation())
+        dispatch(getBfaRecommendations())
   }, []);
 
   return (

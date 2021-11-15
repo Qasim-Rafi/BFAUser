@@ -9,8 +9,8 @@ import { routeName  } from '../../../../constants/routeName'
 import { hp, wp } from '../../../../helpers/Responsiveness'
 import { useSelector } from 'react-redux'
 const Recommendation = (props) => {
-    const bfaRecommendation=useSelector(state=>state.appReducers.recommendationDetail.data)
-    console.log("Recomendationns : ",bfaRecommendation)
+    const bfaRecommendation=useSelector(state=>state.appReducers.bfaRecommendationDetail.data)
+    console.log("Bfa Recommendations: ",bfaRecommendation);
     return (
         
          <>

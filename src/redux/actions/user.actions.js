@@ -25,15 +25,13 @@ export const getUserCusine = (data) => {
     data:data
   };
 };
-//get bfa Recommendation
-export const getRecommendation = (data) => {
+//Get Recommendations
+export const getBfaRecommendations = (data) => {
   return {
     type: types.GET_BFA_RECOMMENDATION_REQUEST,
     data:data
   };
 };
-
-
 //Get  User
 
 export const getUserProfile = () => {
