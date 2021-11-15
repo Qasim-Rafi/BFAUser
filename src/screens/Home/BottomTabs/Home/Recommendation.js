@@ -15,7 +15,7 @@ const Recommendation = (props) => {
         
          <>
             <View style={styles.recommendationHeaderSection}>
-                <ResponsiveText margin={[0,0,0,0]} size={4} color={colors.white}>Recommendation</ResponsiveText>
+                <ResponsiveText margin={[0,0,0,0]} size={4} color={colors.white}>BFA Recommendation</ResponsiveText>
                 <View style={{ marginRight: -10 }} >
                     <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingLeft: 10 }}
                     onPress={()=>props.navigation.navigate(routeName.DISH_DETAIL)}
@@ -31,11 +31,11 @@ const Recommendation = (props) => {
                     bfaRecommendation.length > 0 ? 
                     bfaRecommendation.map((item, index) => {
                         return (
-                            <TouchableOpacity onPress={()=> props.navigation.navigate(routeName.APPLY_JOBS)}>
+                            <TouchableOpacity onPress={()=> props.navigation.navigate(routeName.DishDetails,{dish:item})}>
                             <View  style={{ width: wp(26), height: hp(18), borderRadius: 3, marginHorizontal: 5, overflow: 'hidden', flexDirection: 'row' }}>
                                 <ImageBackground imageStyle={{opacity:.5}} style={{ flex: 1, padding: 5, overflow: 'hidden', justifyContent: 'flex-end',backgroundColor: 'rgba(0,0,0,1)' }} source={{uri: item.resLogo}} >
                                     <ResponsiveText fontFamily="Regular" size={3} margin={[0,0,5,0]} color={colors.white}>{item.dishName}</ResponsiveText>
-                                    <ResponsiveText fontFamily="Light" size={2.5} color={colors.white}>{item.description}</ResponsiveText>
+                                    <ResponsiveText fontFamily="Light" size={2.5} color={colors.white}>{item.cusineName}</ResponsiveText>
 
                                 </ImageBackground>
                             </View>

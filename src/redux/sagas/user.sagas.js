@@ -134,7 +134,7 @@ function* getBfaRecommendationSagaApi(data ) {
 
 
   try {
-    const response = yield Api.get(urls.CUSINE_URL);
+    const response = yield Api.get(urls.RESTAURANT_DISH_ALL);
     if (response&&response.data != null){
       yield put({ type: types.GET_BFA_RECOMMENDATION_SUCCESS, payload: response.data });
       // navigation.navigate(routeName.Categories,{data:response.data});
