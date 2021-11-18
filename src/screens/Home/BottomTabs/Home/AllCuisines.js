@@ -47,7 +47,7 @@ const AllCuisines = (props) => {
                         return (
                             data.objCusineList.map((item) => {
                                 return (
-                                    <TouchableOpacity onPress={() => props.navigation.navigate(routeName.DISH_DETAIL, { dish: url })}>
+                                    <TouchableOpacity onPress={() => props.navigation.navigate(routeName.DISH_DETAIL, { dish: data})}>
                                         <View style={{ width: wp(26), height: hp(18), borderRadius: 3, marginHorizontal: 5, overflow: 'hidden', flexDirection: 'row' }}>
                                             <ImageBackground imageStyle={{ opacity: 0.5 }} style={{ flex: 1, padding: 5, overflow: 'hidden', justifyContent: 'flex-end', backgroundColor: 'rgba(0,0,0,1)' }} source={require('../../../../assets/fake_Images/cuisine-chinese.png')} >
                                                 <ResponsiveText fontFamily="Regular" size={3} margin={[0, 0, 10, 0]} color={colors.white}>{item.name}</ResponsiveText>

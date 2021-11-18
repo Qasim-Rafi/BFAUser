@@ -78,6 +78,33 @@ function* loginUserApi(data) {
 //     yield put({ type: types.REGISTER_GUEST_FAILURE, error: error });
 //   }
 // }
+//Add Order
+export function* addOrderSaga() {
+  console.log('saga function Works');
+  yield takeLatest(types.ADD_ORDER_REQUEST, addOrderApi);
+}
+function* addOrderApi(data) {
+  console.log(data, 'action in saga');
+  let {params, navigation} = data.data;
+  try {
+    const response = yield Api.post(urls.ADD_ORDERS, params);
+    console.log(response, 'response');
+    // dispatch a success action to the store with the new dog
+    if (response&&response.data != null) {
+      yield AsyncStorage.setItem('@token', response.data.token);
+      yield AsyncStorage.setItem('@userId', response.data.loggedInUserId);
+      yield put({type: types.ADD_ORDER_SUCCESS, payload: response.data});
+      // navigation.dispatch(
+      //   StackActions.replace('Home')
+      // ) 
+    }
+    else{
+    yield put({type: types.ADD_ORDER_FAILURE, error: error});
+    }
+  } catch (error) {
+    yield put({type: types.ADD_ORDER_FAILURE, error: error});
+  }
+}
 
 //Get user Awards saga
 export function* getRestaurantAwardsSaga() {

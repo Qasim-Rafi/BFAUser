@@ -18,5 +18,6 @@ export default urls = {
   GET_ADD_BANNER:"api/HomeAdSlideShowAdmin/GetHomeAdSlideShowAdminAll",
   GET_PROMO_NEWS:"api/PromoItemNews/GetPromoNewsAdminAll",
   GET_PROMO_JOBS:"api/PromoJobsAdmin/GetPromoJobsAdminAll",
+ADD_ORDERS:"api/Order/AddOrder"
 
 };

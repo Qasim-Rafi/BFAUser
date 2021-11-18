@@ -7,6 +7,7 @@ class SharedData extends React.Component {
         item : {},
         data : []
     }
+    
 
 
     setData(data) {

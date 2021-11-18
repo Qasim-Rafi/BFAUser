@@ -9,6 +9,13 @@ export const loginUser = (data) => {
   };
 };
 
+//Add order
+export const AddOrder = (data) => {
+  return {
+    type: types.ADD_ORDER_REQUEST,
+    data:data,
+  };
+};
 //App Actions
 
 export const awardsRestaurant = () => {

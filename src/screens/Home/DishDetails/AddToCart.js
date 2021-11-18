@@ -12,13 +12,13 @@ import {useDispatch, useSelector} from 'react-redux'
 import Icon from '../../../components/Icon';
 import {globalPath} from '../../../constants/globalPath';
 import { routeName } from '../../../constants/routeName';
-import { addDish } from '../../../redux/actions/user.actions';
+import { addDish, AddOrder } from '../../../redux/actions/user.actions';
 import { appReducers } from '../../../redux/reducers/app.reducers';
 import {Cart_Details} from '../../../constants/mock'
 import SharedData from '../BottomTabs/CartDetails/SharedData';
-
-
 export default function AddToCart({route ,navigation}) {
+  // const addAdminBranch=useSelector(state=>state.appReducers.AddOrder.data)
+  // console.log("Add Admin: ",addAdminBranch);
   const [count, changeCount] = useState(1);
   const [dishPrice, updateDishPrice] = useState(10)
   const [total, updateTotal] = useState(0);
@@ -39,11 +39,13 @@ export default function AddToCart({route ,navigation}) {
 
  
 
-  // const addDishToCart = (dish)=>{
-  //   dispatch(addDish(dish))
-  // }
+  const data = (item)=>{
+    
+  }
 
   const AddToCart =()=>{
+    // dispatch(AddOrder({navigation:navigation}))
+
     // Cart_Details.includes(dish) ? undefined : Cart_Details.push(dish);  
     SharedData.setData(dish);
           
@@ -132,7 +134,7 @@ export default function AddToCart({route ,navigation}) {
               alignItems: 'center',
               justifyContent: 'center',
               borderRadius: 6,
-            }} onPress={()=>{
+            }} onPress={()=>{      
            
               SharedData.setData(dish);
               console.log(SharedData.data);

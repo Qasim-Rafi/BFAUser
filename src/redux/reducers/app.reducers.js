@@ -52,6 +52,10 @@ const initialState = {
     data: {},
   },
 
+      AddOrder:{
+    refreshing: true,
+    data: {},
+  },
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -65,6 +69,31 @@ export const appReducers = (state = initialState, action) => {
         }
       };
       case types.GET_CUSINE_SUCCESS:
+      return {
+        ...state,
+        cusineDetail:{
+          ...state.cusineDetail,
+          data:action.payload
+        }
+      };
+      case types.ADD_ORDER_REQUEST:
+      return {
+        ...state,
+        AddOrder:{
+          ...state.AddOrder,
+        }
+      };
+      
+      case types.GET_CUSINE_SUCCESS:
+      return {
+        ...state,
+        cusineDetail:{
+          ...state.cusineDetail,
+          data:action.payload
+        }
+      };
+      
+      case types.ADD_ORDER_FAILURE:
       return {
         ...state,
         cusineDetail:{
