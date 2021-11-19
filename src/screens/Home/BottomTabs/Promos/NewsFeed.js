@@ -35,9 +35,9 @@ const NewsFeed = (props, navigation) => {
                     <ResponsiveText size={5} color={colors.white}>Inbox</ResponsiveText>
                 </View>
                 {
-                    bfaRecommendation.length > 0 ? 
+                    NewsData.length > 0 ? 
 
-                yourFavoriteFakeDATA.map((item, index) => {
+                NewsData.map((item, index) => {
                     return (
 
                         <View style={{ marginHorizontal: 9, backgroundColor: colors.black2, height: hp(46), borderRadius: 5, marginTop: 10 }}>
@@ -62,10 +62,12 @@ const NewsFeed = (props, navigation) => {
                                     </View></TouchableOpacity>
                                     <View style={{ marginRight: 15 }}>
 
-                                        {/* <TouchableOpacity style={{width:wp(25), height:hp(4), borderRadius:20, backgroundColor:colors.yellow, alignItems:'center', justifyContent:'center'}}
-                         onPress={()=>props.navigation.navigate(routeName.ADD_TO_CART)}>
+                                        <TouchableOpacity style={{width:wp(25), height:hp(4), borderRadius:20, backgroundColor:colors.yellow, alignItems:'center', justifyContent:'center'}}
+                        //  onPress={()=>props.navigation.navigate(routeName.DishDetails)}>
+         onPress={()=> props.navigation.navigate(routeName.DISH_DETAIL,{dish:item})}>
+
                              <ResponsiveText size={3}>Order Now</ResponsiveText>
-                        </TouchableOpacity> */}
+                        </TouchableOpacity>
                                     </View>
                                 </View>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 7, }}>
