@@ -129,15 +129,13 @@ export default function Login({ navigation }) {
             <View style={{ flex: 1, backgroundColor: colors.black }}>
               <View style={styles.screeninfo}>
                 <Icon source={globalPath.BALI_ICON} size={60} />
-                <ResponsiveText margin={[5, 0, 0, 0]} color={colors.yellow} fontFamily="Regular" size={8}>
+                <ResponsiveText margin={[1, 0, 0, 0]} color={colors.yellow} fontFamily="Regular" size={8}>
                   Sign In
                 </ResponsiveText>
-                <ResponsiveText margin={[-5, 0, 0, 0]} color={colors.white}>
+                <ResponsiveText margin={[1, 0, 0, 0]} color={colors.white}>
                   Please Login to Continue
                 </ResponsiveText>
-                <ResponsiveText margin={[10, 0, 0, 0]} color={colors.red} fontFamily="Regular" size={3}>
-                  {errorString}
-                </ResponsiveText>
+
               
                 {/* {
                   textError==true?
@@ -174,6 +172,9 @@ export default function Login({ navigation }) {
             </ResponsiveText>
             <Line color={colors.grey5} width={wp(20)} /> */}
                 </View>
+                <ResponsiveText textAlign='center' margin={[-15, 0,7, 0]} color={colors.red} fontFamily="Regular" size={3}>
+                  {errorString}
+                </ResponsiveText>
                 
                 <TouchableOpacity style={styles.signin} onPress={Validation}>
                 {loading == true ?
@@ -238,12 +239,12 @@ fontWeight:'400'
     justifyContent:'center'
   },
   screeninfo: {
-    flex: 0.32,
+    flex: 0.50,
     justifyContent: 'center',
     alignItems: 'center',
   },
   formArea: {
-    flex: 0.70,
+    flex: 0.99,
     borderTopRightRadius: wp(8),
     borderTopLeftRadius: wp(8),
     backgroundColor: colors.black3,

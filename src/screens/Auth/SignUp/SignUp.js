@@ -123,16 +123,16 @@ const [confirmPassword, setConfirmPassword] = useState();
 
   return (
     <ScrollView contentContainerStyle={{flexGrow: 1}}>
-      <View style={{flex:1, backgroundColor:colors.black}} >
-        <View style={styles.screeninfo}>
-          <View style={{marginBottom:5}}><Icon source={globalPath.BALI_ICON} size={60} /></View>
-          <ResponsiveText  color={colors.yellow} fontFamily="Regular"  size={7.5} >
-            Sign Up
-          </ResponsiveText>
-          <ResponsiveText margin={[-5,0,0,0]} color={colors.white}>
-            Create a new account
-          </ResponsiveText>
-        </View>
+      <View style={{ flex: 1, backgroundColor: colors.black }}>
+              <View style={styles.screeninfo}>
+                <Icon source={globalPath.BALI_ICON} size={60} />
+                <ResponsiveText margin={[1, 0, 0, 0]} color={colors.yellow} fontFamily="Regular" size={8}>
+                  Sign In
+                </ResponsiveText>
+                <ResponsiveText margin={[1, 0, 0, 0]} color={colors.white}>
+                  Please Login to Continue
+                </ResponsiveText>
+            </View>
         <View style={styles.formArea}>
           <View style={{flexDirection:'row',justifyContent:'space-between'}}>
             <Input
@@ -214,15 +214,15 @@ const styles = StyleSheet.create({
     // backgroundColor: colors.black,
   },
   screeninfo: {
-    flex: 0.60,
+    flex: 0.900,
     justifyContent:'center',
     alignItems:'center',
     
   },
   formArea: {
     flex: 0.40,
-    borderTopRightRadius: wp(7),
-    borderTopLeftRadius: wp(7),
+    borderTopRightRadius: wp(8),
+    borderTopLeftRadius: wp(8),
     backgroundColor:colors.black3,
     padding: wp(10),
   },

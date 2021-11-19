@@ -13,7 +13,7 @@ const WhatsNew = (props) => {
             <View style={styles.recommendationHeaderSection}>
                 <ResponsiveText margin={[0,0,0,0]} size={4} color={colors.white}>What's New</ResponsiveText>
                 <View style={{marginRight:-10}} >
-                <SeeAllButton title={"Whats New"} data={whatsNew} navigation={props.navigation} />
+                <SeeAllButton title={"What's New"} data={whatsNew} navigation={props.navigation} />
                 </View>
             </View>
             <View style={styles.recommendationItemsSection}>

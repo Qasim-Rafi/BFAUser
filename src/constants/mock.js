@@ -827,22 +827,22 @@ export const FiltersDummyData = [
   },
 ];
 export const myPromosListingTabs = [
-  {
-    id: 1,
-    name: 'All',
-  },
-  {
-    id: 2,
-    name: 'Promotion',
-  },
+  // {
+  //   id: 1,
+  //   name: 'All',
+  // },
+  // {
+  //   id: 2,
+  //   name: 'Promotion',
+  // },
   {
     id: 3,
     name: 'Inbox',
   },
-  {
-    id: 4,
-    name: 'Jobs',
-  },
+  // {
+  //   id: 4,
+  //   name: 'Jobs',
+  // },
 ];
 
 export const profileTabs = [

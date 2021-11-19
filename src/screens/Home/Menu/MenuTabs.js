@@ -13,7 +13,6 @@ import Menu from './Menu';
 import AwardsDetail from '../RestaurantBranchDetail/AwardsDetail';
 import PromosBanner from '../BottomTabs/Promos/PromoBanner';
 import FullMenu from './FullMenu';
-
 export default function MenuTabs(props) {
   const [activeTab, setActiveTab] = React.useState(MenuSectionButtons[0].id);
 

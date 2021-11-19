@@ -236,7 +236,7 @@ function* getPromoNewsSagaApi(data ) {
 
 
   try {
-    const response = yield Api.get(urls.RESTAURANT_DISH_ALL);
+    const response = yield Api.get(urls.GET_PROMO_NEWS);
     if (response&&response.data != null){
       yield put({ type: types.GET_PROMO_NEWS_SUCCESS, payload: response.data });
       // navigation.navigate(routeName.Categories,{data:response.data});

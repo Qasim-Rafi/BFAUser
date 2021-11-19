@@ -33,8 +33,8 @@ const JobsList = (props) => {
                             <TouchableOpacity onPress={()=> props.navigation.navigate(routeName.APPLY_JOBS)}>
                             <View  style={{ width: wp(26), height: hp(18), borderRadius: 3, marginHorizontal: 5, overflow: 'hidden', flexDirection: 'row' }}>
                                 <ImageBackground imageStyle={{opacity:.5}} style={{ flex: 1, padding: 5, overflow: 'hidden', justifyContent: 'flex-end',backgroundColor: 'rgba(0,0,0,1)' }} source={{uri: item.resLogo}} >
-                                    <ResponsiveText fontFamily="Regular" size={3} margin={[0,0,5,0]} color={colors.white}>{item.jobTitle}</ResponsiveText>
-                                    <ResponsiveText fontFamily="Light" size={2.5} color={colors.white}>{item.salaryRange}</ResponsiveText>
+                                    <ResponsiveText fontFamily="Regular" size={3} margin={[0,0,5,0]} color={colors.white}>{item.postedByName}</ResponsiveText>
+                                    <ResponsiveText fontFamily="Light" size={2.5} color={colors.white}>{item.jobTitle}</ResponsiveText>
 
                                 </ImageBackground>
                             </View>

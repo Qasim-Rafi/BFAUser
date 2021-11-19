@@ -91,11 +91,11 @@ const Splash = ({ navigation }) => {
         text ? 
         <View>
         <View style={{paddingLeft:20}}>
-        <ResponsiveText color={colors.grey} size={3} >In </ResponsiveText>
-        <ResponsiveText margin={[-5,0,0,10]} color={colors.yellow} fontFamily={'Bold'} size={3.2} >Collaboration</ResponsiveText>
-        <View style={{alignSelf:'flex-end', marginRight:20, marginTop:-5}} >
-        <ResponsiveText color={colors.grey} size={3} >with</ResponsiveText>
-        </View>
+        <ResponsiveText color={colors.grey} size={3} >In Collaboration with</ResponsiveText>
+        {/* <ResponsiveText margin={[-5,0,0,10]} color={colors.yellow} fontFamily={'Bold'} size={3.2} >Collaboration</ResponsiveText> */}
+        {/* <View style={{alignSelf:'flex-end', marginRight:20, marginTop:-5}} > */}
+        {/* <ResponsiveText color={colors.grey} size={3} >with</ResponsiveText> */}
+        {/* </View> */}
         </View>
       <Icon source={globalPath.BFA_LOGO} size={150} />
       </View>
