@@ -16,8 +16,8 @@ import {Cart_Details} from '../../../constants/mock'
 
 export default function DishDetails({route, navigation}) {
     const [dish, addDish] = React.useState('');
-    React.useEffect(()=>{addDish(route.params.dish)
-        })
+    // React.useEffect(()=>{addDish(route.params.dish)
+    //     })
 
        
 

@@ -112,9 +112,6 @@ export default function Login({ navigation }) {
       userLogin();
     }
   }
-
-
-
   // React.useEffect(()=>{
   //   setLoading(false);
   // })
@@ -131,7 +128,7 @@ export default function Login({ navigation }) {
                 <Icon source={globalPath.BALI_ICON} size={60} />
                 <ResponsiveText margin={[1, 0, 0, 0]} color={colors.yellow} fontFamily="Regular" size={8}>
                   Sign In
-                </ResponsiveText>
+                </ResponsiveText>   
                 <ResponsiveText margin={[1, 0, 0, 0]} color={colors.white}>
                   Please Login to Continue
                 </ResponsiveText>
