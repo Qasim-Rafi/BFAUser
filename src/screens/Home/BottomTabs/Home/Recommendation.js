@@ -21,7 +21,7 @@ const Recommendation = (props) => {
                     onPress={()=>props.navigation.navigate(routeName.DISH_DETAIL)}
                     >
                      <View style={{marginRight:0}}>
-                <SeeAllButton title={"Brunei Food Awards"} data={bfaRecommendation} navigation={props.navigation}/>
+                <SeeAllButton title={"BFA Recommendation"} data={bfaRecommendation} navigation={props.navigation}/>
                 </View>
                         
                     </TouchableOpacity>
