@@ -52,7 +52,7 @@ const initialState = {
     data: {},
   },
 
-      AddOrder:{
+  AddOrder:{
     refreshing: true,
     data: {},
   },
@@ -81,24 +81,26 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         AddOrder:{
           ...state.AddOrder,
+          loading:true
         }
       };
       
-      case types.GET_CUSINE_SUCCESS:
+      case types.ADD_ORDER_SUCCESS:
       return {
         ...state,
-        cusineDetail:{
-          ...state.cusineDetail,
-          data:action.payload
+        AddOrder:{
+          ...state.AddOrder,
+          data:action.payload,
+          loading:false
         }
       };
       
       case types.ADD_ORDER_FAILURE:
       return {
         ...state,
-        cusineDetail:{
-          ...state.cusineDetail,
-          data:action.payload
+        AddOrder:{
+          ...state.AddOrder,
+          loading:false
         }
       };
       case types.GET_RESTAURANT_ALL_DISHES_SUCCESS:

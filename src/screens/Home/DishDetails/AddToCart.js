@@ -17,8 +17,10 @@ import { appReducers } from '../../../redux/reducers/app.reducers';
 import {Cart_Details} from '../../../constants/mock'
 import SharedData from '../BottomTabs/CartDetails/SharedData';
 export default function AddToCart({route ,navigation}) {
-  // const addAdminBranch=useSelector(state=>state.appReducers.AddOrder.data)
+  // const addAdminBranch=useSelector(state=>state.appReducers.AddOrder.data);
+  const loading=useSelector(state=>state.appReducers.AddOrder.loading);
   // console.log("Add Admin: ",addAdminBranch);
+  
   const [count, changeCount] = useState(1);
   const [dishPrice, updateDishPrice] = useState(10)
   const [total, updateTotal] = useState(0);

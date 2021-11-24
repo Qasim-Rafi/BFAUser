@@ -11,6 +11,7 @@ export const loginUser = (data) => {
 
 //Add order
 export const AddOrder = (data) => {
+  console.log("Requesting");
   return {
     type: types.ADD_ORDER_REQUEST,
     data:data,
