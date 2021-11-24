@@ -20,8 +20,10 @@ const Recommendation = (props) => {
                     <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingLeft: 10 }}
                     onPress={()=>props.navigation.navigate(routeName.DISH_DETAIL)}
                     >
-                        <ResponsiveText size={3.2} margin={[0, 10, 0, 0]} color={colors.yellow}>Show All</ResponsiveText>
-                        {/* <Icon size={wp(1.6), hp(1.6)} margin={[0,10,0,0]} source={globalPath.RIGHT_ARROW} /> */}
+                     <View style={{marginRight:0}}>
+                <SeeAllButton title={"Brunei Food Awards"} data={bfaRecommendation} navigation={props.navigation}/>
+                </View>
+                        
                     </TouchableOpacity>
                 </View>
             </View>
