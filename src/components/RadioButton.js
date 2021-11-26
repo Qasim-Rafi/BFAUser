@@ -4,7 +4,7 @@ import Icon from './Icon'
 import { colors } from '../constants/colorsPallet'
 import { globalPath } from '../constants/globalPath'
 import { check } from 'yargs'
-import Randomiser from '../screens/Home/BottomTabs/Randomiser/Randomiser'
+// import Randomiser from '../screens/Home/BottomTabs/Randomiser/Randomiserrr'
 
 export default function CustomRadioButton(props) {
     const [checked, setCheck] = useState(props.isCheck);

@@ -17,9 +17,9 @@ import { appReducers } from '../../../redux/reducers/app.reducers';
 import {Cart_Details} from '../../../constants/mock'
 import SharedData from '../BottomTabs/CartDetails/SharedData';
 export default function AddToCart({route ,navigation}) {
-  // const addAdminBranch=useSelector(state=>state.appReducers.AddOrder.data);
+  const addAdminBranch=useSelector(state=>state.appReducers.AddOrder.data);
   const loading=useSelector(state=>state.appReducers.AddOrder.loading);
-  // console.log("Add Admin: ",addAdminBranch);
+  console.log("Add Admin: ",addAdminBranch);
   
   const [count, changeCount] = useState(1);
   const [dishPrice, updateDishPrice] = useState(10)
@@ -31,25 +31,29 @@ export default function AddToCart({route ,navigation}) {
         })
  
 
-  const [obj, setobj] = ([{
-    title : "Fish Crackers",
-    description: "lorem ipsum dolor sit amet, consectetur adipis",
-    quantity: 8,
-    price: '8.00',
-    url: require('../../../assets/fake_Images/cart-1.png'),
-  }])
-
- 
-
-  const data = (item)=>{
-    
-  }
+  const data=()=> [{
+    "id": 0,
+  customerId: 10,
+  status: 1,
+  orderStatus: 1,
+  couponNo: "superior",
+  orderPlacedfrom: "karachi",
+  dishId: 26,
+  remarks: "Good"
+    // title : "Fish Crackers",
+    // description: "lorem ipsum dolor sit amet, consectetur adipis",
+    // quantity: 8,
+    // price: '8.00',
+    // url: require('../../../assets/fake_Images/cart-1.png'),
+  }];
 
   const AddToCart =()=>{
-    // dispatch(AddOrder({navigation:navigation}))
+    dispatch(AddOrder({navigation:navigation}))
+  console.log("obj: ",Date);
+
 
     // Cart_Details.includes(dish) ? undefined : Cart_Details.push(dish);  
-    SharedData.setData(dish);
+    // SharedData.setData(dish);
           
 }
 
@@ -137,7 +141,9 @@ export default function AddToCart({route ,navigation}) {
               justifyContent: 'center',
               borderRadius: 6,
             }} onPress={()=>{      
-           
+              {AddToCart}
+  console.log("Data: ",data);
+
               SharedData.setData(dish);
               console.log(SharedData.data);
               navigation.navigate(routeName.LANDING_SCREEN)

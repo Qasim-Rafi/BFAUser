@@ -107,28 +107,29 @@ function* addOrderApi(data) {
 }
 
 //Get user Awards saga
-export function* getRestaurantAwardsSaga() {
-  yield takeLatest(types.GET_RESTAURANT_AWARDS_REQUEST, getAwardsRestaurantSagaApi);
+export function* getBruneiFoodsAwardsSaga() {
+  yield takeLatest(types.GET_BRUNEI_FOOD_AWARDS_REQUEST, getFoodsAwardsSagaApi);
 }
-function* getAwardsRestaurantSagaApi() {
+function*getFoodsAwardsSagaApi(data ) {
+
+
   try {
-    const response = yield Api.get(urls.PACKAGES_ALL_URL)
-    console.log(response,"response");
+    const response = yield Api.get(urls.RESTAURANT_AWARDS);
     if (response&&response.data != null){
-      yield put({ type: types.GET_RESTAURANT_AWARDS_SUCCESS, payload: response.data });
+      yield put({ type: types.GET_BRUNEI_FOOD_AWARDS_SUCCESS, payload: response.data });
+      // navigation.navigate(routeName.Categories,{data:response.data});
 
     }else{
-    yield put({ type: types.GET_RESTAURANT_AWARDS_FAILURE, error: error });
+    yield put({ type: types.GET_BRUNEI_FOOD_AWARDS_FAILURE, error: error });
     }
 
     // dispatch a success action to the store with the new data object
 
     
   } catch (error) {
-    yield put({ type: types.GET_RESTAURANT_AWARDS_FAILURE, error: error });
+    yield put({ type: types.GET_BRUNEI_FOOD_AWARDS_FAILURE, error: error });
   }
 }
-
 // Get Cusine Saga
 export function* getCusineSaga() {
   yield takeLatest(types.GET_CUSINE_REQUEST, getCusineSagaApi);
@@ -151,6 +152,30 @@ function* getCusineSagaApi(data ) {
     
   } catch (error) {
     yield put({ type: types.GET_CUSINE_FAILURE, error: error });
+  }
+}
+//PROMOTIONS
+export function* getpromotionsSaga() {
+  yield takeLatest(types.GET_PROMOTIONS_REQUEST, getPromotionsSagaApi);
+}
+function* getPromotionsSagaApi(data ) {
+
+
+  try {
+    const response = yield Api.get(urls.PROMOTIONS);
+    if (response&&response.data != null){
+      yield put({ type: types.GET_PROMOTIONS_SUCCESS, payload: response.data });
+      // navigation.navigate(routeName.Categories,{data:response.data});
+
+    }else{
+    yield put({ type: types.GET_PROMOTIONS_FAILURE, error: error });
+    }
+
+    // dispatch a success action to the store with the new data object
+
+    
+  } catch (error) {
+    yield put({ type: types.GET_PROMOTIONS_FAILURE, error: error });
   }
 }
 //Get Bfa Recommendations

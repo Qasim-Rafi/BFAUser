@@ -3,36 +3,46 @@ import { Image, ScrollView, StyleSheet, View, ImageBackground,TouchableOpacity }
 import ResponsiveText from '../../../../components/RnText'
 import { Rating, AirbnbRating } from 'react-native-ratings';
 import { routeName } from '../../../../constants/routeName';
-
-import { advertisementBannerFakeDATA, awardWinningFakeDATA, promotionsFakeDATA } from '../../../../constants/mock'
+import { advertisementBannerFakeDATA, awardWinningFakeDATA, promotionsFakeDATA, yourFavoriteFakeDATA } from '../../../../constants/mock'
 import { colors } from '../../../../constants/colorsPallet'
 import SeeAllButton from '../../../../components/SeeAllButton'
 import { hp, wp } from '../../../../helpers/Responsiveness';
+import { useSelector } from 'react-redux';
 const AwardWinningDishes = (props) => {
+    const FoodsAwards=useSelector(state=>state.appReducers.bruneiFoodsAwards.data)
+       const loading=useSelector(state=>state.appReducers.bruneiFoodsAwards.loading)
+       console.log("Brunei Foods Awards: ", FoodsAwards);
+        console.log("Brunei Length: ",FoodsAwards.length)
+    console.log("Brunei Foods Awards  Loading: ",loading);
     return (
         <>
             <View style={styles.AwardWinningDishesHeaderSection}>
                 <ResponsiveText margin={[0,0,0,-5]} size={4} color={colors.white}>Brunei Food Awards</ResponsiveText>
-                <View style={{marginRight:-15}}>
-                <SeeAllButton title={"Brunei Food Awards"} data={promotionsFakeDATA} navigation={props.navigation}/>
+                <View style={{marginRight:-15}}> 
+                <SeeAllButton title={"Brunei Food Awards"} data={FoodsAwards} navigation={props.navigation}/>
                 </View>
             </View>
             <View style={styles.AwardWinningDishesItemsSection}>
                 <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-                    {promotionsFakeDATA.map((url, index) => {
+                    {
+                    FoodsAwards.length > 0 ? 
+
+                    FoodsAwards.map((url, index) => {
                         return (
                             <TouchableOpacity onPress={()=> props.navigation.navigate(routeName.DISH_DETAIL, {dish:url}
                             )}>
                             <View style={{ width: wp(26), height: hp(18), marginHorizontal: 5, borderRadius: 3, overflow: 'hidden', flexDirection: 'row' }}>
-                                <ImageBackground imageStyle={{opacity:.5}} style={{ flex: 1, padding: 5, overflow: 'hidden', justifyContent: 'flex-end' }} source={url.url} >
-                                    <ResponsiveText fontFamily="Regular" size={3} color={colors.white}>Kaizen sushi</ResponsiveText>
-                                    <ResponsiveText fontFamily="Light" size={2.5} margin={[-5,0,0,0]} color={colors.white}>Special sushi</ResponsiveText>
+                                <ImageBackground imageStyle={{opacity:.5}} style={{ flex: 1, padding: 5, overflow: 'hidden', justifyContent: 'flex-end' }} source={require('../../../../assets/fake_Images/Recommendations-3.png')} >
+                                    <ResponsiveText fontFamily="Regular" size={3} color={colors.white}>{url.restaurantName}</ResponsiveText>
+                                    <ResponsiveText fontFamily="Light" size={2.5} margin={[-5,0,0,0]} color={colors.white}>{url.awardName}</ResponsiveText>
 
                                 </ImageBackground>
                             </View></TouchableOpacity>
 
                         )
-                    })}
+                    })
+                :undefined
+                }
                 </ScrollView>
             </View>
 

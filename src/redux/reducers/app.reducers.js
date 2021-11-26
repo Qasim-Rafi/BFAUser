@@ -9,8 +9,8 @@ const initialState = {
     refreshing: false,
     data: {},
   },
-  restaurantDetail: {
-    refreshing: false,
+  bruneiFoodsAwards: {
+    refreshing: true,
     data: {},
   },
   recommendationDetail: {
@@ -56,16 +56,41 @@ const initialState = {
     refreshing: true,
     data: {},
   },
+  promotions:{
+    refreshing: true,
+    data: {},
+  },
+  
 };
 
 export const appReducers = (state = initialState, action) => {
   switch (action.type) {
-    case types.GET_RESTAURANT_AWARDS_SUCCESS:
+    case types.GET_BRUNEI_FOOD_AWARDS_REQUEST:
       return {
         ...state,
-        restaurantDetail:{
-          ...state.restaurantDetail,
-          data:action.payload.data
+        bruneiFoodsAwards:{
+          ...state.bruneiFoodsAwards,
+          loading:true,
+
+        }
+      };
+    case types.GET_BRUNEI_FOOD_AWARDS_SUCCESS:
+      return {
+        ...state,
+        bruneiFoodsAwards:{
+          ...state.bruneiFoodsAwards,
+
+          data:action.payload,
+          loading:false,
+        }
+      };
+    case types.GET_BRUNEI_FOOD_AWARDS_FAILURE:
+      return {
+        ...state,
+        bruneiFoodsAwards:{
+          ...state.bruneiFoodsAwards,
+          loading:false,
+
         }
       };
       case types.GET_CUSINE_SUCCESS:
@@ -100,6 +125,33 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         AddOrder:{
           ...state.AddOrder,
+          loading:false
+        }
+      };
+      case types.GET_PROMOTIONS_REQUEST:
+      return {
+        ...state,
+        promotions:{
+          ...state.promotions,
+          loading:true
+        }
+      };
+      
+      case types.GET_PROMOTIONS_SUCCESS:
+      return {
+        ...state,
+        promotions:{
+          ...state.promotions,
+          data:action.payload,
+          loading:false
+        }
+      };
+      
+      case types.GET_PROMOTIONS_FAILURE:
+      return {
+        ...state,
+        promotions:{
+          ...state.promotions,
           loading:false
         }
       };

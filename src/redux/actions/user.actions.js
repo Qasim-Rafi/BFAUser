@@ -11,17 +11,26 @@ export const loginUser = (data) => {
 
 //Add order
 export const AddOrder = (data) => {
-  console.log("Requesting");
   return {
     type: types.ADD_ORDER_REQUEST,
     data:data,
   };
 };
-//App Actions
+//PROMOTIONS
 
-export const awardsRestaurant = () => {
+export const getPromotions = (data) => {
   return {
-    type: types.GET_RESTAURANT_AWARDS_REQUEST,
+    type: types.GET_PROMOTIONS_REQUEST,
+    data:data
+  };
+};
+//Brunei Food Awards
+
+
+export const getBruneiFoodRewards = (data) => {
+  return {
+    type: types.GET_BRUNEI_FOOD_AWARDS_REQUEST,
+    data:data,
   };
 };
 
