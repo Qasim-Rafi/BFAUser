@@ -26,7 +26,7 @@ useEffect(()=>{addTotal(route.params)})
 
 
 
-const toggleModal = () => {	
+const toggleModal = ({navigation,route}) => {	
 	 setModalVisible(!isModalVisible);
   };
 
@@ -45,8 +45,8 @@ const toggleModal = () => {
 		  </View>
 		  <View style={{marginHorizontal:20, marginTop:10,paddingBottom:5, flexDirection:'row', justifyContent:'space-between',}}>
 			<ResponsiveText color={colors.white}>Payment Method</ResponsiveText>
-			{/* <TouchableOpacity style={{backgroundColor:colors.yellow, justifyContent:'center', alignItems:'center', borderRadius:7, paddingHorizontal:5}} onPress={()=>navigation.navigate(routeName.SELECT_PAYMENT_METHOD)}>
-			<ResponsiveText color={colors.black} size={3} >Card</ResponsiveText> */}
+			<TouchableOpacity style={{backgroundColor:colors.yellow, justifyContent:'center', alignItems:'center', borderRadius:7, paddingHorizontal:5}} onPress={()=>navigation.navigate(routeName.SELECT_PAYMENT_METHOD)}>
+			<ResponsiveText color={colors.black} size={3} >{route.params}</ResponsiveText>
 			</TouchableOpacity>
 		  </View>
 		  

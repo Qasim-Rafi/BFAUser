@@ -130,7 +130,7 @@ export default function AddCard({navigation}) {
         </ResponsiveText>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate(routeName.MANAGE_CARDS);
+            navigation.navigate(routeName.TRANSACTION_CONFIRMATION,'Card');
           }}
           style={{
             justifyContent: 'center',

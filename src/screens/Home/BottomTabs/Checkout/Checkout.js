@@ -8,7 +8,7 @@ import { globalPath } from '../../../../constants/globalPath';
 import { routeName } from '../../../../constants/routeName';
 import {hp, wp} from '../../../../helpers/Responsiveness';
 
-const Checkout = ({navigation}) => {
+const Checkout = ({navigation,route}) => {
   return (
     <View style={{backgroundColor: colors.black3, flex: 1}}>
       <Header navigation={navigation} iconPath={globalPath.BACK_ARROW} />
@@ -35,7 +35,7 @@ const Checkout = ({navigation}) => {
               size={50}
               source={globalPath.COWRIES}
             />
-            <TouchableOpacity onPress={()=>navigation.navigate(routeName.TRANSACTION_CONFIRMATION)}>
+            <TouchableOpacity onPress={()=>navigation.navigate(routeName.TRANSACTION_CONFIRMATION,'BCoin')}>
             <ResponsiveText margin={[0, 0, 5, 20]} size={4.5} color={colors.white}>
             Bcoin
             </ResponsiveText>
@@ -57,7 +57,7 @@ const Checkout = ({navigation}) => {
               style={styles.imageView}
               source={require('../../../../assets/icons/bank_cards.png')}
             />
-            <TouchableOpacity onPress={()=>navigation.navigate(routeName.MANAGE_CARDS)} >
+            <TouchableOpacity onPress={()=>navigation.navigate(routeName.MANAGE_CARDS,'Card')} >
             <ResponsiveText margin={[0, 0, 5, 20]} size={4.5} color={colors.white}>
               Cards
             </ResponsiveText>
@@ -84,7 +84,7 @@ const Checkout = ({navigation}) => {
               style={styles.cashImage}
               source={require('../../../../assets/fake_Images/Notes.png')}
             />
-            <TouchableOpacity onPress={()=>navigation.navigate(routeName.TRANSACTION_CONFIRMATION)}>
+            <TouchableOpacity onPress={()=>navigation.navigate('TRANSACTION_CONFIRMATION','Cash')}>
             <ResponsiveText margin={[0, 0, 5, 20]} size={4.5} color={colors.white}>
               Cash
             </ResponsiveText>
