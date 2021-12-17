@@ -11,57 +11,72 @@ import {globalPath} from '../constants/globalPath';
 import ResponsiveText from './RnText';
 import {routeName} from '../constants/routeName';
 import {colors} from '../constants/colorsPallet';
-import { color } from 'react-native-reanimated';
-import { useDispatch } from 'react-redux';
-import { getUserProfile } from '../redux/actions/user.actions';
+import {color} from 'react-native-reanimated';
+import {useDispatch} from 'react-redux';
+import {getUserProfile} from '../redux/actions/user.actions';
 
 const Header = ({
   navigation,
   showRightMenu = true,
   inputWidth = wp(58),
-  
 
-
-  
   ...props
 }) => {
-  
-
   const [searchBar, toggleSearchBar] = React.useState('false');
   return (
-    <View style={[styles.header,{paddingVertical:1, justifyContent: props.iconPath ? undefined : 'center'}]}>
+    <View
+      style={[
+        styles.header,
+        {
+          paddingVertical: 1,
+          justifyContent: props.iconPath ? undefined : 'center',
+        },
+      ]}>
       <TouchableOpacity
-      onPress={()=>{props.iconPath ? navigation.goBack() : null}}
+        onPress={() => {
+          props.iconPath ? navigation.goBack() : null;
+        }}
         style={{
           height: hp(6.4),
           width: wp(10.4),
           // backgroundColor:props.iconPath ? colors.black1: undefined,
           justifyContent: 'center',
           alignItems: 'center',
-    
+
           borderRadius: 10,
           marginEnd: 5,
         }}>
-          <View style={{flexDirection:'row', alignItems:'center'}} >
-        <Icon
-          margin={[0, 0, 0, 0]}
-          size={props.iconPath ? 25 : 44}
-          source={props.iconPath ? props.iconPath : globalPath.BALI_ICON}
-        />
-        <Icon
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Icon
+            margin={[0, 0, 0, 0]}
+            size={props.iconPath ? 25 : 44}
+            source={props.iconPath ? props.iconPath : globalPath.BALI_ICON}
+          />
+          {/* <Icon
           margin={[0, 15, 0, 0]}
           size={props.iconPath ? 25 : 30}
           tintColor={colors.yellow}
           source={props.iconPath ? undefined : globalPath.WALLET_ICON}
-        />
+        /> */}
         </View>
       </TouchableOpacity>
-      {props.iconPath ? <View />
-      : 
-      <View style={{alignItems:'center',justifyContent:'center', flexDirection:'row', borderRadius:7, marginHorizontal:10 ,paddingHorizontal:10,backgroundColor:searchBar==='true'? 'rgba(64,64,64,0.5)' :undefined,}}>
-      <TouchableOpacity >
-        {/* // onPress={() => searchBar==='true'? navigation.navigate(routeName.FeaturedSearch) : undefined}> */}
-        {/* <Input
+      {props.iconPath ? (
+        <View />
+      ) : (
+        <View
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'row',
+            borderRadius: 7,
+            marginHorizontal: 10,
+            paddingHorizontal: 10,
+            backgroundColor:
+              searchBar === 'true' ? 'rgba(64,64,64,0.5)' : undefined,
+          }}>
+          <TouchableOpacity>
+            {/* // onPress={() => searchBar==='true'? navigation.navigate(routeName.FeaturedSearch) : undefined}> */}
+            {/* <Input
           editable={searchBar==='true'? true : false}
           fontSize={11}
           onSubmitEditing={()=>{}}
@@ -72,51 +87,57 @@ const Header = ({
           height={hp(6)}
           width={inputWidth}
         /> */}
-        <TextInput
-         style={{height:hp(6), width:wp(50),color:colors.white,}}
-         editable={searchBar==='true'? true : false}
-         fontSize={11}
-         placeholderTextColor={colors.white}
-         placeholder={searchBar==='true'? "Search Dishes, Restaurants or Promo" : ""}
-         
-        />
-      </TouchableOpacity>
-      <TouchableOpacity onPress={()=>{searchBar==='true'? navigation.navigate(routeName.SearchAll) : toggleSearchBar('true')}} style={{marginStart:5, borderRadius:10,}}>
-        <Icon source={globalPath.SEARCH_LOGO} size={25} />
-      </TouchableOpacity>
-      
-      </View>}
-      {showRightMenu && (
-        
-        props.iconPath ? <View/> 
-          :
+            <TextInput
+              style={{height: hp(6), width: wp(50), color: colors.white}}
+              editable={searchBar === 'true' ? true : false}
+              fontSize={11}
+              placeholderTextColor={colors.white}
+              placeholder={
+                searchBar === 'true'
+                  ? 'Search Dishes, Restaurants or Promo'
+                  : ''
+              }
+            />
+          </TouchableOpacity>
           <TouchableOpacity
-          style={{marginRight:-10}}
-          onPress={()=>{
-            navigation.navigate(routeName.MORE_BOTTOM)
-          }}
-          >
-          <Icon
-            borderRadius={30}
-            size={props.iconPath ? (wp(10), hp(6)) : 42}
-            resizeMode={'cover'}
-            source={globalPath.PROFILE_LOGO}
-          />
-        </TouchableOpacity>
+            onPress={() => {
+              searchBar === 'true'
+                ? navigation.navigate(routeName.SearchAll)
+                : toggleSearchBar('true');
+            }}
+            style={{marginStart: 5, borderRadius: 10}}>
+            <Icon source={globalPath.SEARCH_LOGO} size={25} />
+          </TouchableOpacity>
+        </View>
       )}
+      {showRightMenu &&
+        (props.iconPath ? (
+          <View />
+        ) : (
+          <TouchableOpacity
+            style={{marginRight: -10}}
+            onPress={() => {
+              navigation.navigate(routeName.MORE_BOTTOM);
+            }}>
+            <Icon
+              borderRadius={30}
+              size={props.iconPath ? (wp(10), hp(6)) : 42}
+              resizeMode={'cover'}
+              source={globalPath.PROFILE_LOGO}
+            />
+          </TouchableOpacity>
+        ))}
     </View>
   );
 };
 
 const styles = {
   header: {
-    
     flex: 0.1,
     flexDirection: 'row',
     alignItems: 'center',
     // justifyContent: 'center',
     paddingHorizontal: 20,
-    
   },
   mainView: {
     width: '100%',

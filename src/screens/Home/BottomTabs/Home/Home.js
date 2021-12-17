@@ -29,67 +29,73 @@ import AwardWinningDishes from './AwardWinningDishes';
 import Promotion from './Promotion';
 import JobsList from './JobsList';
 import Header from '../../../../components/Header';
-import { ourRecommendationFakeDATA } from '../../../../constants/mock';0
-import { useDispatch ,useSelector } from 'react-redux';
-import { getRestaurantAllDishes, getUserCusine, getPromotions,getBruneiFoodRewards, getBfaPartners,AddOrder,getAddBannerData,getBfaRecommendations ,getPromoNewsData, getPromoJobsData } from '../../../../redux/actions/user.actions';
+import {ourRecommendationFakeDATA} from '../../../../constants/mock';
+0;
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  getRestaurantAllDishes,
+  getUserCusine,
+  getPromotions,
+  getBruneiFoodRewards,
+  getBfaPartners,
+  AddOrder,
+  getAddBannerData,
+  getBfaRecommendations,
+  getPromoNewsData,
+  getPromoJobsData,
+} from '../../../../redux/actions/user.actions';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import urls from '../../../../redux/lib/urls';
 import AllCuisines from './AllCuisines';
 import WhatsNew from './WhatNew';
-import { bfaPartnerSelecter } from '../../../../redux/lib/selectors';
-import { getBfaRecommendationSaga } from '../../../../redux/sagas/user.sagas';
+import {bfaPartnerSelecter} from '../../../../redux/lib/selectors';
+import {getBfaRecommendationSaga} from '../../../../redux/sagas/user.sagas';
 
 const Home = ({navigation}) => {
+  const loading = useSelector(
+    state => state.appReducers.bfaPartners.refreshing,
+  );
+  // console.log('loading', loading);
 
-  const loading = useSelector(state=>state.appReducers.bfaPartners.refreshing);
-// console.log('loading', loading);
-
-
-  const dispatch=useDispatch();
- const getCusines=()=>{
+  const dispatch = useDispatch();
+  const getCusines = () => {
     dispatch(
-      (getUserCusine({
-        navigation:navigation,
-      }))
+      getUserCusine({
+        navigation: navigation,
+      }),
     );
-  }
-
-
+  };
 
   React.useEffect(() => {
-        // callAPI();
-        // dispatch(getRestaurantAllDishes())
-        dispatch(getBfaPartners(6));
-        dispatch(getPromotions());
+    // callAPI();
+    // dispatch(getRestaurantAllDishes())
+    dispatch(getBfaPartners(6));
+    dispatch(getPromotions());
 
-        dispatch(
-          (getUserCusine({
-          
-            navigation:navigation,
-          }))
-        );
-        dispatch(getAddBannerData());
-        // dispatch(awardsRestaurant());
-        dispatch(getPromoNewsData());
-        dispatch(getPromoJobsData());
-        dispatch(getBfaRecommendations())
-        dispatch(getBruneiFoodRewards());
-
+    dispatch(
+      getUserCusine({
+        navigation: navigation,
+      }),
+    );
+    dispatch(getAddBannerData());
+    // dispatch(awardsRestaurant());
+    dispatch(getPromoNewsData());
+    dispatch(getPromoJobsData());
+    dispatch(getBfaRecommendations());
+    dispatch(getBruneiFoodRewards());
   }, []);
 
   return (
-    
     <View style={styles.container}>
-    
-      <ScrollView style={{flex: 0.9, }}>
+      <ScrollView style={{flex: 0.9}}>
         <View style={styles.advertisementBanner}>
           <AdvertisementBanner navigation={navigation} />
         </View>
         <View style={styles.bfaPartnerContainer}>
           <BfaPartner navigation={navigation} />
         </View>
-      
+
         <View style={styles.yourFavorite}>
           <YourFavourite navigation={navigation} />
         </View>
@@ -97,7 +103,7 @@ const Home = ({navigation}) => {
           <AwardWinningDishes navigation={navigation} />
         </View>
         <View style={styles.recommendationContainer}>
-        <Recommendation navigation={navigation}/>
+          <Recommendation navigation={navigation} />
         </View>
         <View style={styles.everyoneFavorite}>
           <EveryOneFavourite navigation={navigation} />
@@ -105,12 +111,12 @@ const Home = ({navigation}) => {
         {/* <View style={styles.Advertisement2ndVarient}>
           <Advertisement2ndVarient navigation={navigation} />
         </View> */}
-{/*         
+        {/*         
         <View style={styles.Advertisement2ndVarient}>
           <Advertisement2ndVarient navigation={navigation} />
         </View> */}
         <View style={styles.recommendationContainer}>
-         <WhatsNew navigation={navigation} />
+          <WhatsNew navigation={navigation} />
         </View>
         <View style={styles.recommendationContainer}>
           <Promotion navigation={navigation} />
@@ -123,7 +129,6 @@ const Home = ({navigation}) => {
         <View style={styles.recommendationContainer}>
           <JobsList navigation={navigation} />
         </View>
-
 
         {/* <ImageBackground
           style={styles.cuisinesContainer}
@@ -147,9 +152,9 @@ const Home = ({navigation}) => {
          
         </ImageBackground> */}
       </ScrollView>
-      <View style={{flex: 0.1, position:'absolute',top:0, }} >
-    <Header screen={"home"} navigation={navigation} />
-    </View>
+      <View style={{flex: 0.1, position: 'absolute', top: 0}}>
+        <Header screen={'home'} navigation={navigation} />
+      </View>
     </View>
   );
 };
@@ -160,7 +165,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.black3,
-    alignItems:'center',
+    alignItems: 'center',
   },
   header: {
     flex: 0.1,
@@ -179,10 +184,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.black2,
   },
   cuisinesContainer: {
-    
-    marginTop:10,
-    marginBottom:20,
-
+    marginTop: 10,
+    marginBottom: 20,
   },
   cuisinesButton: {
     backgroundColor: colors.yellow,
@@ -199,7 +202,7 @@ const styles = StyleSheet.create({
   },
   recommendationContainer: {
     flex: 0.32,
-    marginVertical:10,
+    marginVertical: 10,
     borderRadius: 7,
   },
   everyoneFavorite: {
@@ -212,7 +215,7 @@ const styles = StyleSheet.create({
     flex: 0.17,
     // margin: 15,
     borderRadius: 7,
-    
+
     backgroundColor: colors.black3,
   },
   Advertisement2ndVarient: {

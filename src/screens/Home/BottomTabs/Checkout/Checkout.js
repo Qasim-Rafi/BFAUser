@@ -1,99 +1,127 @@
 import React from 'react';
-import {StyleSheet,Image, Text, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, Image, Text, View, TouchableOpacity} from 'react-native';
 import Header from '../../../../components/Header';
 import Icon from '../../../../components/Icon';
 import ResponsiveText from '../../../../components/RnText';
 import {colors} from '../../../../constants/colorsPallet';
-import { globalPath } from '../../../../constants/globalPath';
-import { routeName } from '../../../../constants/routeName';
+import {globalPath} from '../../../../constants/globalPath';
+import {routeName} from '../../../../constants/routeName';
 import {hp, wp} from '../../../../helpers/Responsiveness';
 
-const Checkout = ({navigation,route}) => {
+const Checkout = ({navigation, route}) => {
   return (
     <View style={{backgroundColor: colors.black3, flex: 1}}>
       <Header navigation={navigation} iconPath={globalPath.BACK_ARROW} />
       <View style={{flex: 0.9}}>
-        <View style={{marginVertical:40, alignItems:'center', justifyContent:'center'}}>
-          <ResponsiveText margin={[0,0,-5,0]} color={colors.white} size={4.5}>Your Bcoin Balance</ResponsiveText>
-          <ResponsiveText fontFamily={'Bold'} color={colors.white} size={12} >114</ResponsiveText>
-          <ResponsiveText margin={[-5,0,0,0]} color={colors.white} size={4.5} >Choose Payment Method:</ResponsiveText>
+        <View
+          style={{
+            marginVertical: 40,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <ResponsiveText
+            margin={[0, 0, -5, 0]}
+            color={colors.white}
+            size={4.5}>
+            Your Bcoin Balance
+          </ResponsiveText>
+          <ResponsiveText fontFamily={'Bold'} color={colors.white} size={12}>
+            114
+          </ResponsiveText>
+          <ResponsiveText
+            margin={[-5, 0, 0, 0]}
+            color={colors.white}
+            size={4.5}>
+            Choose Payment Method:
+          </ResponsiveText>
         </View>
-        <View style={{ justifyContent:'center'}}>
-        <View
-            style={{
-              backgroundColor: colors.black2,
-              paddingHorizontal:20,
-              paddingVertical:15,
-              marginHorizontal:20,
-              borderRadius:10,
-              
-              flexDirection: 'row',
-              // justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <Icon
-              size={50}
-              source={globalPath.COWRIES}
-            />
-            <TouchableOpacity onPress={()=>navigation.navigate(routeName.TRANSACTION_CONFIRMATION,'BCoin')}>
-            <ResponsiveText margin={[0, 0, 5, 20]} size={4.5} color={colors.white}>
-            Bcoin
-            </ResponsiveText>
-            </TouchableOpacity>
-          </View>
-        <View
-            style={{
-              backgroundColor: colors.black2,
-              paddingHorizontal:20,
-              paddingVertical:15,
-              marginHorizontal:20,
-              borderRadius:10,
-              marginTop: 10,
-              flexDirection: 'row',
-              // justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <Image
-              style={styles.imageView}
-              source={require('../../../../assets/icons/bank_cards.png')}
-            />
-            <TouchableOpacity onPress={()=>navigation.navigate(routeName.MANAGE_CARDS,'Card')} >
-            <ResponsiveText margin={[0, 0, 5, 20]} size={4.5} color={colors.white}>
-              Cards
-            </ResponsiveText>
+        <View style={{justifyContent: 'center'}}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('TRANSACTION_CONFIRMATION', 'Bcoin')
+            }>
+            <View
+              style={{
+                backgroundColor: colors.black2,
+                paddingHorizontal: 20,
+                paddingVertical: 15,
+                marginHorizontal: 20,
+                borderRadius: 10,
 
-            </TouchableOpacity>
-          </View>
-          <View
-            style={{
-              backgroundColor: colors.black2,
-              paddingHorizontal:20,
-              paddingVertical:15,
-              marginHorizontal:20,
-              borderRadius:10,
-              marginTop: 10,
-              flexDirection: 'row',
-              // justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            {/* <Icon
+                flexDirection: 'row',
+                // justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Icon size={50} source={globalPath.COWRIES} />
+
+              <ResponsiveText
+                margin={[0, 0, 5, 20]}
+                size={4.5}
+                color={colors.white}>
+                Bcoin
+              </ResponsiveText>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => navigation.navigate(routeName.MANAGE_CARDS, 'Card')}>
+            <View
+              style={{
+                backgroundColor: colors.black2,
+                paddingHorizontal: 20,
+                paddingVertical: 15,
+                marginHorizontal: 20,
+                borderRadius: 10,
+                marginTop: 10,
+                flexDirection: 'row',
+                // justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Image
+                style={styles.imageView}
+                source={require('../../../../assets/icons/bank_cards.png')}
+              />
+              <ResponsiveText
+                margin={[0, 0, 5, 20]}
+                size={4.5}
+                color={colors.white}>
+                Cards
+              </ResponsiveText>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('TRANSACTION_CONFIRMATION', 'Cash')
+            }>
+            <View
+              style={{
+                backgroundColor: colors.black2,
+                paddingHorizontal: 20,
+                paddingVertical: 15,
+                marginHorizontal: 20,
+                borderRadius: 10,
+                marginTop: 10,
+                flexDirection: 'row',
+                // justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              {/* <Icon
               size={50}
               source={globalPath.CASH}
             /> */}
-            <Image
-              style={styles.cashImage}
-              source={require('../../../../assets/fake_Images/Notes.png')}
-            />
-            <TouchableOpacity onPress={()=>navigation.navigate('TRANSACTION_CONFIRMATION','Cash')}>
-            <ResponsiveText margin={[0, 0, 5, 20]} size={4.5} color={colors.white}>
-              Cash
-            </ResponsiveText>
-            </TouchableOpacity>
-          </View>
+              <Image
+                style={styles.cashImage}
+                source={require('../../../../assets/fake_Images/Notes.png')}
+              />
+              <ResponsiveText
+                margin={[0, 0, 5, 20]}
+                size={4.5}
+                color={colors.white}>
+                Cash
+              </ResponsiveText>
+            </View>
+          </TouchableOpacity>
         </View>
-
-
-
 
         {/* <View
           style={{
@@ -163,7 +191,6 @@ const Checkout = ({navigation,route}) => {
           </View>
         </View>
        */}
-      
       </View>
     </View>
   );
@@ -179,15 +206,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  imageView:{
-    borderRadius:5,
+  imageView: {
+    borderRadius: 5,
     width: 60,
     resizeMode: 'cover',
     height: 40,
     paddingTop: 50,
   },
-  cashImage:{
-    borderRadius:2,
+  cashImage: {
+    borderRadius: 2,
     width: 60,
     resizeMode: 'cover',
     height: 30,
