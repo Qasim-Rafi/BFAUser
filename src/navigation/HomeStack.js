@@ -42,8 +42,6 @@ import BarcodeReader from '../screens/Home/BottomTabs/Scanner/BarcodeReader';
 import More from '../screens/Home/BottomTabs/More/More';
 import RandomiserWheel from '../screens/Home/BottomTabs/Randomiser/RandomWheel';
 
-import Wallet from '../screens/Home/Wallet/Wallet';
-
 
 
 const Stack = createNativeStackNavigator();
@@ -64,7 +62,6 @@ function HomeStack() {
       <Stack.Screen name={routeName.ADD_TO_CART} component={AddToCart}/>
       <Stack.Screen name={routeName.TRANSACTION_HISTORY} component ={TransactionHistory}/>
       <Stack.Screen name={routeName.APPLY_JOBS} component={Apply_Jobs} />
-      <Stack.Screen name={routeName.WALLET} component={Wallet} />
       
       <Stack.Screen name={routeName.ORDER_HISTORY} component={Order_history}/>
       <Stack.Screen name={routeName.RestaurantDetail} component={RestaurantDetail} />
