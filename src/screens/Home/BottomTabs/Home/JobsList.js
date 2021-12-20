@@ -42,7 +42,7 @@ const JobsList = props => {
                 return (
                   <TouchableOpacity
                     onPress={() =>
-                      props.navigation.navigate(routeName.JOB_LISTING, {
+                      props.navigation.navigate(routeName.APPLY_JOBS, {
                         dish: url,
                       })
                     }>
