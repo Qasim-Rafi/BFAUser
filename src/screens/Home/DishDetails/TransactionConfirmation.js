@@ -72,7 +72,7 @@ export default function TransactionConfirmation({route, navigation}) {
           <ResponsiveText color={colors.white}>Payment Method</ResponsiveText>
           <TouchableOpacity
             style={{
-              backgroundColor: colors.yellow,
+              backgroundColor: colors.black3,
               justifyContent: 'center',
               alignItems: 'center',
               borderRadius: 7,
@@ -693,7 +693,7 @@ export default function TransactionConfirmation({route, navigation}) {
             <ResponsiveText color={colors.white}>Total</ResponsiveText>
             <ResponsiveText color={colors.yellow}>${total}54.00</ResponsiveText>
           </View>
-          <View
+          {/* <View
             style={{
               borderBottomColor: colors.black2,
               paddingBottom: 5,
@@ -709,7 +709,7 @@ export default function TransactionConfirmation({route, navigation}) {
               {count}
               {activeTabs === 'tab3' ? '%' : ''}
             </ResponsiveText>
-          </View>
+          </View> */}
           <View
             style={{
               borderBottomColor: colors.black2,
