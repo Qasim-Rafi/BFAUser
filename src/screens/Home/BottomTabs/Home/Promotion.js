@@ -11,6 +11,7 @@ import ResponsiveText from '../../../../components/RnText';
 import {Rating, AirbnbRating} from 'react-native-ratings';
 
 import {
+  promosBannerFakeDATA,
   advertisementBannerFakeDATA,
   promotionsFakeDATA,
 } from '../../../../constants/mock';
@@ -20,8 +21,8 @@ import SeeAllButton from '../../../../components/SeeAllButton';
 import {hp, wp} from '../../../../helpers/Responsiveness';
 import {useSelector} from 'react-redux';
 const Promotion = props => {
-  const Promotions = useSelector(state => state.appReducers.promotions.data);
-  console.log('promotions: ', Promotions);
+  // const Promotions = useSelector(state => state.appReducers.promotions.data);
+  // console.log('promotions: ', Promotions);
 
   return (
     <ScrollView>
@@ -32,20 +33,20 @@ const Promotion = props => {
         <View style={{marginRight: -10}}>
           <SeeAllButton
             title={'Promotions'}
-            data={Promotions}
+            data={promosBannerFakeDATA}
             navigation={props.navigation}
           />
         </View>
       </View>
       <View style={styles.everyOneFavoriteItemsSection}>
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-          {Promotions.length > 0
-            ? Promotions.map((url, index) => {
+          {promosBannerFakeDATA.length > 0
+            ? promosBannerFakeDATA.map((url, index) => {
                 return (
                   <TouchableOpacity
                     onPress={() =>
-                      props.navigation.navigate(routeName.JOB_LISTING, {
-                        dish: url,
+                      props.navigation.navigate(routeName.DISH_DETAIL, {
+                        dish: item,
                       })
                     }>
                     <View
@@ -59,32 +60,30 @@ const Promotion = props => {
                       }}>
                       <ImageBackground
                         imageStyle={{opacity: 0.5}}
-                        style={{flex: 1}}
-                        source={{uri: url.fullPath}}>
-                        <View style={styles.promotionoffView}>
-                          <ResponsiveText size={2}>Flat 25% Off</ResponsiveText>
-                        </View>
-                        <View
-                          style={{
-                            flex: 1,
-                            padding: 5,
-                            overflow: 'hidden',
-                            justifyContent: 'flex-end',
-                          }}>
-                          <ResponsiveText
-                            fontFamily="Regular"
-                            size={3}
-                            color={colors.white}>
-                            {url.restaurantName}
-                          </ResponsiveText>
-                          <ResponsiveText
-                            fontFamily="Light"
-                            size={2.5}
-                            margin={[-5, 0, 0, 0]}
-                            color={colors.white}>
-                            {url.adSlideTitle}}
-                          </ResponsiveText>
-                        </View>
+                        imageStyle={{opacity: 0.5}}
+                        style={{
+                          flex: 1,
+                          padding: 5,
+                          overflow: 'hidden',
+                          justifyContent: 'flex-end',
+                          backgroundColor: 'rgba(0,0,0,1)',
+                        }}
+                        source={url.url}>
+                        <ResponsiveText
+                          fontFamily="Regular"
+                          size={3}
+                          margin={[0, 0, -5, 0]}
+                          color={colors.white}>
+                          {url.title}
+                        </ResponsiveText>
+                        <ResponsiveText
+                          fontFamily="Regular"
+                          size={3}
+                          margin={[0, 0, -5, 0]}
+                          color={colors.white}>
+                          {url.description}
+                        </ResponsiveText>
+                        {/* <ResponsiveText fontFamily="Light" size={2.5} color={colors.white}>{url.description}</ResponsiveText> */}
                       </ImageBackground>
                     </View>
                   </TouchableOpacity>

@@ -1,62 +1,124 @@
 import {globalPath} from './globalPath';
-import { colors } from './colorsPallet';
+import {colors} from './colorsPallet';
 import React from 'react';
 import AddToCart from '../screens/Home/DishDetails/AddToCart';
 import AsyncStorage from '@react-native-community/async-storage';
 
-
-
 export const advertisementBannerFakeDATA = [
   {
-    restaurantName: "Pandok Sari Wangi",
-    dishName: "Seafood Restaurant",
+    restaurantName: 'Pandok Sari Wangi',
+    dishName: 'Seafood Restaurant',
     url: require('../assets/fake_Images/pandok_sari_wangi.png'),
   },
   {
-    restaurantName: "PappaRich",
-    dishName: "Malaysian Delights",
+    restaurantName: 'PappaRich',
+    dishName: 'Malaysian Delights',
     url: require('../assets/fake_Images/PappaRich.png'),
   },
   {
-    restaurantName: "Dynasty Restaurant",
-    dishName: "Chinese Restaurant",
+    restaurantName: 'Dynasty Restaurant',
+    dishName: 'Chinese Restaurant',
     url: require('../assets/fake_Images/Dynasty_Restaurant.png'),
   },
   {
-    restaurantName: "Tasek Brasserie",
-    dishName: " ",
+    restaurantName: 'Tasek Brasserie',
+    dishName: ' ',
     url: require('../assets/fake_Images/tasek_brasserie.png'),
   },
   {
-    restaurantName: "BIBD Bank Islam Brunei",
-    dishName: "Darussalam",
+    restaurantName: 'BIBD Bank Islam Brunei',
+    dishName: 'Darussalam',
     url: require('../assets/fake_Images/BIBD.png'),
   },
   {
-    restaurantName: "",
-    dishName: "",
+    restaurantName: '',
+    dishName: '',
     url: require('../assets/fake_Images/BRUNEI.png'),
   },
   {
-    restaurantName: "Covid-19",
-    dishName: "Stay Home, Stay Safe",
+    restaurantName: 'Covid-19',
+    dishName: 'Stay Home, Stay Safe',
     url: require('../assets/fake_Images/corona.png'),
   },
-  
 ];
 
 export const cuisineSliderData = [
-  require('../assets/fake_Images/cuisineAmerican.png'),
-  require('../assets/fake_Images/pakistani.png'),
-  require('../assets/fake_Images/Lebanese.png'),
-  require('../assets/fake_Images/malaysian.png'),
-  require('../assets/fake_Images/japanese.png'),
-]
+  {
+    id: 5,
+    title: 'Ambuyat',
+    description: 'Bruneian',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/Ambuyat.png'),
+  },
+  {
+    id: 6,
+    title: 'Biryani',
+    description: ' Bangladeshi',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/biryani.jpg'),
+  },
+  {
+    id: 7,
+    title: 'Soto',
+    description: 'Indonesian',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/soto.jpg'),
+  },
+  {
+    id: 8,
+    title: 'Sushi',
+    description: 'Japanese',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/japanese.png'),
+  },
+  // require('../assets/fake_Images/cuisineAmerican.png'),
+  // require('../assets/fake_Images/pakistani.png'),
+  // require('../assets/fake_Images/Lebanese.png'),
+  // require('../assets/fake_Images/malaysian.png'),
+  // require('../assets/fake_Images/japanese.png'),
+];
 
 export const promosBannerFakeDATA = [
-  require('../assets/fake_Images/promos-banner1.png'),
-  require('../assets/fake_Images/promos-banner3.png'),
-  require('../assets/fake_Images/Home-Add-Banner-2.png'),
+  {
+    id: 5,
+    title: 'Fried Chicken ',
+    description: 'KFC',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/KFC.jpg'),
+  },
+  {
+    id: 6,
+    title: 'Satay Ayam',
+    description: ' A.Ayam Restaurant',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/satay.jpg'),
+  },
+  {
+    id: 7,
+    title: 'Cucur Pisang Madu',
+    description: 'Cucur Pisang Madu Bn',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/soto.jpg'),
+  },
+  {
+    id: 8,
+    title: 'Soto Special',
+    description: 'Soto PABO Restaurant',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/soto.jpg'),
+  },
+
+  // require('../assets/fake_Images/promos-banner1.png'),
+  // require('../assets/fake_Images/promos-banner3.png'),
+  // require('../assets/fake_Images/Home-Add-Banner-2.png'),
 ];
 
 export const CuisinesData = [
@@ -85,437 +147,425 @@ export const CuisinesData = [
   //     url: require('../assets/fake_Images//cuisine-Pakistani.png'),
   // },
   {
-    id:1,
-      title : "Arabian",
-      description: "Special sushi",
-      url: require('../assets/fake_Images/cuisine-American.png'),
+    id: 1,
+    title: 'Arabian',
+    description: 'Special sushi',
+    url: require('../assets/fake_Images/cuisine-American.png'),
   },
   {
-    id:2,
-      title : "Bruneian",
-      description: "Special sushi",
-      url: require('../assets/fake_Images/dishes-1.png'),
+    id: 2,
+    title: 'Bruneian',
+    description: 'Special sushi',
+    url: require('../assets/fake_Images/dishes-1.png'),
   },
   {
-    id:3,
-      title : "Bangladeshi",
-      description: "Special sushi",
-      url: require('../assets/fake_Images/cuisine-Pakistani.png'),
+    id: 3,
+    title: 'Bangladeshi',
+    description: 'Special sushi',
+    url: require('../assets/fake_Images/cuisine-Pakistani.png'),
   },
-  
-  {
-    id:4,
-      title : "Filipino",
-      description: "Special sushi",
-      url: require('../assets/fake_Images/cuisine-chinese.png'),
-  },
-  {
-    id:5,
-      title : "Indian",
-      description: "Special sushi",
-      url: require('../assets/fake_Images/cuisine-indian.png'),
-  },
-  {
-    id:6,
-      title : "Japanese",
-      description: "Special sushi",
-      url: require('../assets/fake_Images/cuisine-chinese.png'),
-  },
-  {
-    id:7,
-      title : "Korean",
-      description: "Special sushi",
-      url: require('../assets/fake_Images/cuisine-chinese.png'),
-  },
-  {
-    id:8,
-      title : "Malaysian",
-      description: "Special sushi",
-      url: require('../assets/fake_Images/cuisine-Pakistani.png'),
-  },
-]
 
-export const ourRecommendationFakeDATA = [
   {
-    id:1,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/Home-Recommendations-1.png'),
+    id: 4,
+    title: 'Filipino',
+    description: 'Special sushi',
+    url: require('../assets/fake_Images/cuisine-chinese.png'),
   },
   {
-    id:2,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/Home-Recommendations-2.png'),
+    id: 5,
+    title: 'Indian',
+    description: 'Special sushi',
+    url: require('../assets/fake_Images/cuisine-indian.png'),
   },
   {
-    id:3,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/Home-Recommendations-3.png'),
+    id: 6,
+    title: 'Japanese',
+    description: 'Special sushi',
+    url: require('../assets/fake_Images/cuisine-chinese.png'),
   },
   {
-    id:4,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/Home-Recommendations-4.png'),
+    id: 7,
+    title: 'Korean',
+    description: 'Special sushi',
+    url: require('../assets/fake_Images/cuisine-chinese.png'),
   },
   {
-    id:5,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/Home-Recommendations-1.png'),
-  },
-  {
-    id:6,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/Home-Recommendations-2.png'),
-  },
-  {
-    id:7,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/Home-Recommendations-3.png'),
-  },
-  {
-    id:8,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/Home-Recommendations-4.png'),
+    id: 8,
+    title: 'Malaysian',
+    description: 'Special sushi',
+    url: require('../assets/fake_Images/cuisine-Pakistani.png'),
   },
 ];
 
-
+export const ourRecommendationFakeDATA = [
+  {
+    id: 1,
+    title: 'Kaizen sushi',
+    description: 'Special sushi',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/Home-Recommendations-1.png'),
+  },
+  {
+    id: 2,
+    title: 'Kaizen sushi',
+    description: 'Special sushi',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/Home-Recommendations-2.png'),
+  },
+  {
+    id: 3,
+    title: 'Kaizen sushi',
+    description: 'Special sushi',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/Home-Recommendations-3.png'),
+  },
+  {
+    id: 4,
+    title: 'Kaizen sushi',
+    description: 'Special sushi',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/Home-Recommendations-4.png'),
+  },
+  {
+    id: 5,
+    title: 'Kaizen sushi',
+    description: 'Special sushi',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/Home-Recommendations-1.png'),
+  },
+  {
+    id: 6,
+    title: 'Kaizen sushi',
+    description: 'Special sushi',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/Home-Recommendations-2.png'),
+  },
+  {
+    id: 7,
+    title: 'Kaizen sushi',
+    description: 'Special sushi',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/Home-Recommendations-3.png'),
+  },
+  {
+    id: 8,
+    title: 'Kaizen sushi',
+    description: 'Special sushi',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/Home-Recommendations-4.png'),
+  },
+];
 
 export const whatsNew = [
   {
-    id:1,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/whatnew-1.png'),
+    id: 1,
+    title: 'Goldiana Cafe and Lounge',
+    description: 'Yam Pau',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/Goldiana-cafe.jpg'),
   },
   {
-    id:2,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/whatnew-2.png'),
+    id: 2,
+    title: 'Udang Galah Masak Samba',
+    description: 'Ya Nur Restaurant',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/Thai-Food-Tom-Yam-Kung.jpg'),
   },
   {
-    id:3,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/whatnew-3.png'),
+    id: 3,
+    title: 'Green Curry Udang Galah',
+    description: ' Stoneville Restaurant',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/Udang_Galah.jpg'),
   },
   {
-    id:4,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/whatnew-4.png'),
+    id: 4,
+    title: 'Broasted Chicken',
+    description: ' Sugarbun',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/Sugarbun_Logo.png'),
   },
-  {
-    id:5,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/whatnew-1.png'),
-  },
-  {
-    id:6,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/whatnew-2.png'),
-  },
-  {
-    id:7,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/whatnew-3.png'),
-  },
-  {
-    id:8,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/whatnew-4.png'),
-  },
+  // {
+  //   id: 5,
+  //   title: 'Kaizen sushi',
+  //   description: 'Special sushi',
+  //   quantity: 1,
+  //   price: '8.00',
+  //   url: require('../assets/fake_Images/whatnew-1.png'),
+  // },
+  // {
+  //   id: 6,
+  //   title: 'Kaizen sushi',
+  //   description: 'Special sushi',
+  //   quantity: 1,
+  //   price: '8.00',
+  //   url: require('../assets/fake_Images/whatnew-2.png'),
+  // },
+  // {
+  //   id: 7,
+  //   title: 'Kaizen sushi',
+  //   description: 'Special sushi',
+  //   quantity: 1,
+  //   price: '8.00',
+  //   url: require('../assets/fake_Images/whatnew-3.png'),
+  // },
+  // {
+  //   id: 8,
+  //   title: 'Kaizen sushi',
+  //   description: 'Special sushi',
+  //   quantity: 1,
+  //   price: '8.00',
+  //   url: require('../assets/fake_Images/whatnew-4.png'),
+  // },
 ];
 
 export const Search_Result = [
   {
-    id:1,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/Home-Recommendations-1.png'),
+    id: 1,
+    title: 'Kaizen sushi',
+    description: 'Special sushi',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/Home-Recommendations-1.png'),
   },
   {
-    id:2,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/Home-Recommendations-2.png'),
+    id: 2,
+    title: 'Kaizen sushi',
+    description: 'Special sushi',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/Home-Recommendations-2.png'),
   },
   {
-    id:3,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/Home-Recommendations-3.png'),
+    id: 3,
+    title: 'Kaizen sushi',
+    description: 'Special sushi',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/Home-Recommendations-3.png'),
   },
   {
-    id:4,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/Home-Recommendations-4.png'),
+    id: 4,
+    title: 'Kaizen sushi',
+    description: 'Special sushi',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/Home-Recommendations-4.png'),
   },
   {
-    id:5,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/Home-Recommendations-1.png'),
+    id: 5,
+    title: 'Kaizen sushi',
+    description: 'Special sushi',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/Home-Recommendations-1.png'),
   },
-  
 ];
 
 export const promotionsFakeDATA = [
   {
-    id:1,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/promotions-1.png'),
+    id: 1,
+    title: 'Kaizen sushi',
+    description: 'Special sushi',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/promotions-1.png'),
   },
   {
-    id:2,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/promotions-2.png'),
+    id: 2,
+    title: 'Kaizen sushi',
+    description: 'Special sushi',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/promotions-2.png'),
   },
   {
-    id:3,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/promotions-3.png'),
+    id: 3,
+    title: 'Kaizen sushi',
+    description: 'Special sushi',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/promotions-3.png'),
   },
   {
-    id:4,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/promotions-4.png'),
+    id: 4,
+    title: 'Kaizen sushi',
+    description: 'Special sushi',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/promotions-4.png'),
   },
   {
-    id:5,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/promotions-1.png'),
+    id: 5,
+    title: 'Kaizen sushi',
+    description: 'Special sushi',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/promotions-1.png'),
   },
   {
-    id:6,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/promotions-2.png'),
+    id: 6,
+    title: 'Kaizen sushi',
+    description: 'Special sushi',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/promotions-2.png'),
   },
   {
-    id:7,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/promotions-3.png'),
+    id: 7,
+    title: 'Kaizen sushi',
+    description: 'Special sushi',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/promotions-3.png'),
   },
   {
-    id:8,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/promotions-4.png'),
+    id: 8,
+    title: 'Kaizen sushi',
+    description: 'Special sushi',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/promotions-4.png'),
   },
-
 ];
 export const everyoneFavoriteFakeDATA = [
   {
-    id:1,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/promotions-1.png'),
+    id: 1,
+    title: 'Spicy Chicken',
+    description: 'Ayamku Restaurant',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/dishes-3.png'),
   },
   {
-    id:2,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/promotions-2.png'),
+    id: 2,
+    title: 'Chicken Teriyaki Don',
+    description: 'Nas Eatery',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/Teriyaki-chicken.jpg'),
   },
   {
-    id:3,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/promotions-3.png'),
+    id: 3,
+    title: 'Lamb Shank Biryan',
+    description: 'Sri Seroja Restaurant',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/lamb-biryani.jpg'),
   },
   {
-    id:4,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/promotions-4.png'),
+    id: 4,
+    title: 'Kway Teow',
+    description: 'PappaRich Restauran',
+    quantity: 1,
+    price: '8.00',
+    url: require('../assets/fake_Images/Kuey-Teow.jpg'),
   },
-  {
-    id:5,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/promotions-1.png'),
-  },
-  {
-    id:6,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/promotions-2.png'),
-  },
-  {
-    id:7,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/promotions-3.png'),
-  },
-  {
-    id:8,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/promotions-4.png'),
-  },
-
+  // {
+  //   id: 5,
+  //   title: 'Kaizen sushi',
+  //   description: 'Special sushi',
+  //   quantity: 1,
+  //   price: '8.00',
+  //   url: require('../assets/fake_Images/promotions-1.png'),
+  // },
+  // {
+  //   id: 6,
+  //   title: 'Kaizen sushi',
+  //   description: 'Special sushi',
+  //   quantity: 1,
+  //   price: '8.00',
+  //   url: require('../assets/fake_Images/promotions-2.png'),
+  // },
+  // {
+  //   id: 7,
+  //   title: 'Kaizen sushi',
+  //   description: 'Special sushi',
+  //   quantity: 1,
+  //   price: '8.00',
+  //   url: require('../assets/fake_Images/promotions-3.png'),
+  // },
+  // {
+  //   id: 8,
+  //   title: 'Kaizen sushi',
+  //   description: 'Special sushi',
+  //   quantity: 1,
+  //   price: '8.00',
+  //   url: require('../assets/fake_Images/promotions-4.png'),
+  // },
 ];
 
 export const yourFavoriteFakeDATA = [
   {
-    id:1,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/everyone-1.png'),
+    id: 1,
+    title: 'Favourite   Dishes',
+    // description: 'Special sushi',
+    // quantity: 1,
+    // price: '8.00',
+    url: require('../assets/fake_Images/dishes-3.png'),
   },
   {
-    id:2,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/everyone-2.png'),
-  },
-  {
-    id:3,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/everyone-3.png'),
-  },
-  {
-    id:4,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/everyone-4.png'),
-  },
-  {
-    id:5,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/everyone-1.png'),
-  },
-  {
-    id:6,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/everyone-2.png'),
-  },
-  {
-    id:7,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/everyone-3.png'),
-  },
-  {
-    id:8,
-      title : "Kaizen sushi",
-      description: "Special sushi",
-      quantity: 1,
-      price: '8.00',
-      url: require('../assets/fake_Images/everyone-4.png'),
-  },
+    id: 2,
+    title: 'Favourite Restaurants',
 
+    url: require('../assets/fake_Images/favourites-3.png'),
+  },
+  {
+    id: 3,
+    title: 'Favourite Cuisine',
+
+    url: require('../assets/fake_Images/pao_baji_india.jpg'),
+  },
+  {
+    id: 4,
+    title: 'Favourite Order at Pandok Sari Wangi',
+
+    url: require('../assets/fake_Images/pandok_sari_wangi.png'),
+  },
+  // {
+  //   id: 5,
+  //   title: 'Kaizen sushi',
+  //   description: 'Special sushi',
+  //   quantity: 1,
+  //   price: '8.00',
+  //   url: require('../assets/fake_Images/everyone-1.png'),
+  // },
+  // {
+  //   id: 6,
+  //   title: 'Kaizen sushi',
+  //   description: 'Special sushi',
+  //   quantity: 1,
+  //   price: '8.00',
+  //   url: require('../assets/fake_Images/everyone-2.png'),
+  // },
+  // {
+  //   id: 7,
+  //   title: 'Kaizen sushi',
+  //   description: 'Special sushi',
+  //   quantity: 1,
+  //   price: '8.00',
+  //   url: require('../assets/fake_Images/everyone-3.png'),
+  // },
+  // {
+  //   id: 8,
+  //   title: 'Kaizen sushi',
+  //   description: 'Special sushi',
+  //   quantity: 1,
+  //   price: '8.00',
+  //   url: require('../assets/fake_Images/everyone-4.png'),
+  // },
 ];
 
 export const BFAPartnerFakeData = [
@@ -543,7 +593,6 @@ export const BFAPartnerFakeData = [
   require('../assets/fake_Images/HOME_BFA_PARTNER-4.png'),
   require('../assets/fake_Images/HOME_BFA_PARTNER-5.png'),
   require('../assets/fake_Images/HOME_BFA_PARTNER-6.png'),
-
 ];
 export const BFAPartnerLessData = [
   require('../assets/fake_Images/aminahArif.png'),
@@ -552,7 +601,6 @@ export const BFAPartnerLessData = [
   require('../assets/fake_Images/HOME_BFA_PARTNER-4.png'),
   require('../assets/fake_Images/HOME_BFA_PARTNER-5.png'),
   require('../assets/fake_Images/HOME_BFA_PARTNER-6.png'),
-
 ];
 
 export const exploreCategoryByName = [
@@ -854,7 +902,6 @@ export const profileTabs = [
     id: 2,
     name: 'Optional',
   },
-  
 ];
 
 export const favouriteTabs = [
@@ -866,7 +913,6 @@ export const favouriteTabs = [
     id: 2,
     name: 'Favorite Restaurants',
   },
-  
 ];
 
 export const RadioGroup = [
@@ -882,81 +928,73 @@ export const RadioGroup = [
     id: 3,
     name: '3',
   },
-  
 ];
 export const NewsFeeds = [
   {
-    favorite:224,
-    DishName:'Spaghetti marinara with freshlt imported boston lobster',
-    Name:'Aligato'
+    favorite: 224,
+    DishName: 'Spaghetti marinara with freshlt imported boston lobster',
+    Name: 'Aligato',
   },
   {
-    favorite:224,
-    DishName:'Spaghetti marinara with freshlt imported boston lobster',
-    Name:'Aligato',
+    favorite: 224,
+    DishName: 'Spaghetti marinara with freshlt imported boston lobster',
+    Name: 'Aligato',
   },
 ];
-export const PROMOSJOBS =[
-  
+export const PROMOSJOBS = [
   {
-     JobTitle:'Waiter & Waitress',
-     Date:'5 sep 2021',
-     Experience:'1-2 years',
-     Vacancy:'5',
-     Location:'Brunei Muara',
-     ResturantName:'Yam Cha REsturant',
-     Logo:require('../assets/fake_Images/Jobs-logo1.png'),
-  
+    JobTitle: 'Waiter & Waitress',
+    Date: '5 sep 2021',
+    Experience: '1-2 years',
+    Vacancy: '5',
+    Location: 'Brunei Muara',
+    ResturantName: 'Yam Cha REsturant',
+    Logo: require('../assets/fake_Images/Jobs-logo1.png'),
   },
   {
-    JobTitle:'Deliver Boy',
-     Date:'5 sep 2021',
-     Experience:'1-2 years',
-     Vacancy:'5',
-     Location:'Brunei Muara',
-     ResturantName:'Yam Cha REsturant',
-     Logo:require('../assets/fake_Images/Jobs-logo2.png'),
-
+    JobTitle: 'Deliver Boy',
+    Date: '5 sep 2021',
+    Experience: '1-2 years',
+    Vacancy: '5',
+    Location: 'Brunei Muara',
+    ResturantName: 'Yam Cha REsturant',
+    Logo: require('../assets/fake_Images/Jobs-logo2.png'),
   },
   {
-    JobTitle:'Chef/Cook',
-     Date:'5 sep 2021',
-     Experience:'1-2 years',
-     Vacancy:'5',
-     Location:'Brunei Muara',
-     ResturantName:'Yam Cha REsturant',
-     Logo:require('../assets/fake_Images/Jobs-logo3.png'),
-
+    JobTitle: 'Chef/Cook',
+    Date: '5 sep 2021',
+    Experience: '1-2 years',
+    Vacancy: '5',
+    Location: 'Brunei Muara',
+    ResturantName: 'Yam Cha REsturant',
+    Logo: require('../assets/fake_Images/Jobs-logo3.png'),
   },
   {
-    JobTitle:'Assistant Cook',
-     Date:'5 sep 2021',
-     Experience:'1-2 years',
-     Vacancy:'5',
-     Location:'Brunei Muara',
-     ResturantName:'Yam Cha REsturant',
-     Logo:require('../assets/fake_Images/Jobs-logo4.png'),
-
+    JobTitle: 'Assistant Cook',
+    Date: '5 sep 2021',
+    Experience: '1-2 years',
+    Vacancy: '5',
+    Location: 'Brunei Muara',
+    ResturantName: 'Yam Cha REsturant',
+    Logo: require('../assets/fake_Images/Jobs-logo4.png'),
   },
   {
-    JobTitle:'Waiter & Waitress',
-     Date:'5 sep 2021',
-     Experience:'1-2 years',
-     Vacancy:'5',
-     Location:'Brunei Muara',
-     ResturantName:'Yam Cha REsturant',
-     Logo:require('../assets/fake_Images/Jobs-logo5.png'),
-
+    JobTitle: 'Waiter & Waitress',
+    Date: '5 sep 2021',
+    Experience: '1-2 years',
+    Vacancy: '5',
+    Location: 'Brunei Muara',
+    ResturantName: 'Yam Cha REsturant',
+    Logo: require('../assets/fake_Images/Jobs-logo5.png'),
   },
   {
-    JobTitle:'Kitchen Helper',
-     Date:'5 sep 2021',
-     Experience:'1-2 years',
-     Vacancy:'5',
-     Location:'Brunei Muara',
-     ResturantName:'Yam Cha REsturant',
-     Logo:require('../assets/fake_Images/Jobs-logo6.png'),
-
+    JobTitle: 'Kitchen Helper',
+    Date: '5 sep 2021',
+    Experience: '1-2 years',
+    Vacancy: '5',
+    Location: 'Brunei Muara',
+    ResturantName: 'Yam Cha REsturant',
+    Logo: require('../assets/fake_Images/Jobs-logo6.png'),
   },
 ];
 
@@ -994,7 +1032,7 @@ export const BranchDetailButtons = [
     title: 'Menu',
     icon: require('../assets/icons/menu_icon.png'),
   },
-  
+
   {
     id: 4,
     title: 'Branches',
@@ -1022,13 +1060,12 @@ export const MenuTabButtons = [
     title: 'Brunei Food Awards',
     icon: require('../assets/icons/Awards.png'),
   },
-  
+
   {
     id: 4,
     title: 'Search',
     icon: require('../assets/icons/search.png'),
   },
- 
 ];
 export const FullMenuList = [
   {
@@ -1039,14 +1076,16 @@ export const FullMenuList = [
         id: 1,
         title: 'Tomato Soup ',
         price: '$ 5.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
         url: require('../assets/fake_Images/menu-appetizers-1.png'),
       },
       {
         id: 2,
         title: 'Chicken Soup ',
         price: '$ 10.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-appetizers-2.png'),
       },
@@ -1054,7 +1093,8 @@ export const FullMenuList = [
         id: 3,
         title: 'Tomato Soup ',
         price: '$ 8.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-appetizers-3.png'),
       },
@@ -1062,7 +1102,8 @@ export const FullMenuList = [
         id: 4,
         title: 'Fish Crackers ',
         price: '$ 8.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-appetizers-4.png'),
       },
@@ -1076,7 +1117,8 @@ export const FullMenuList = [
         id: 1,
         title: 'Nasi Ayam Bakar Madura',
         price: '$11.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-1.png'),
       },
@@ -1084,7 +1126,8 @@ export const FullMenuList = [
         id: 2,
         title: 'Nasi Ayam Sambal Tomat',
         price: '$ 13.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-2.png'),
       },
@@ -1092,7 +1135,8 @@ export const FullMenuList = [
         id: 3,
         title: 'Vegetable Rice',
         price: '$ 10.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-3.png'),
       },
@@ -1100,7 +1144,8 @@ export const FullMenuList = [
         id: 4,
         title: 'Egg Fried Rice',
         price: '$ 11.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-4.png'),
       },
@@ -1108,7 +1153,8 @@ export const FullMenuList = [
         id: 5,
         title: 'Chicken Shashlik',
         price: '$15.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-5.png'),
       },
@@ -1116,7 +1162,8 @@ export const FullMenuList = [
         id: 6,
         title: 'Finger Fish',
         price: '$ 25.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-6.png'),
       },
@@ -1124,7 +1171,8 @@ export const FullMenuList = [
         id: 7,
         title: 'Chicken Breast',
         price: '$ 15.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-7.png'),
       },
@@ -1132,7 +1180,8 @@ export const FullMenuList = [
         id: 8,
         title: 'Chicken Chops',
         price: '$ 15.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-8.png'),
       },
@@ -1146,7 +1195,8 @@ export const FullMenuList = [
         id: 1,
         title: 'Nasi Ayam Bakar Madura',
         price: '$11.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-1.png'),
       },
@@ -1154,7 +1204,8 @@ export const FullMenuList = [
         id: 2,
         title: 'Nasi Ayam Sambal Tomat',
         price: '$ 13.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-2.png'),
       },
@@ -1162,7 +1213,8 @@ export const FullMenuList = [
         id: 3,
         title: 'Vegetable Rice',
         price: '$ 10.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-3.png'),
       },
@@ -1170,7 +1222,8 @@ export const FullMenuList = [
         id: 4,
         title: 'Egg Fried Rice',
         price: '$ 11.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-4.png'),
       },
@@ -1178,7 +1231,8 @@ export const FullMenuList = [
         id: 5,
         title: 'Chicken Shashlik',
         price: '$15.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-5.png'),
       },
@@ -1186,7 +1240,8 @@ export const FullMenuList = [
         id: 6,
         title: 'Finger Fish',
         price: '$ 25.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-6.png'),
       },
@@ -1194,7 +1249,8 @@ export const FullMenuList = [
         id: 7,
         title: 'Chicken Breast',
         price: '$ 15.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-7.png'),
       },
@@ -1202,7 +1258,8 @@ export const FullMenuList = [
         id: 8,
         title: 'Chicken Chops',
         price: '$ 15.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-8.png'),
       },
@@ -1216,7 +1273,8 @@ export const FullMenuList = [
         id: 1,
         title: 'Apple Pie',
         price: '$11.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-dessert-1.png'),
       },
@@ -1224,7 +1282,8 @@ export const FullMenuList = [
         id: 2,
         title: 'Chocolate Brownie',
         price: '$ 13.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-dessert-2.png'),
       },
@@ -1232,7 +1291,8 @@ export const FullMenuList = [
         id: 3,
         title: 'Chocolate Cake ',
         price: '$ 10.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-dessert-3.png'),
       },
@@ -1240,7 +1300,8 @@ export const FullMenuList = [
         id: 4,
         title: 'Ice Cream',
         price: '$ 13.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-dessert-4.png'),
       },
@@ -1248,7 +1309,8 @@ export const FullMenuList = [
         id: 5,
         title: 'Tutti Frutti',
         price: '$ 10.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-dessert-5.png'),
       },
@@ -1262,7 +1324,8 @@ export const FullMenuList = [
         id: 1,
         title: 'Mint Margarita',
         price: '$ 5.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-drinks-1.png'),
       },
@@ -1270,7 +1333,8 @@ export const FullMenuList = [
         id: 2,
         title: 'Fresh Lime Soda',
         price: '$ 5.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-drinks-2.png'),
       },
@@ -1278,7 +1342,8 @@ export const FullMenuList = [
         id: 4,
         title: 'Tea',
         price: '$ 5.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-drinks-3.png'),
       },
@@ -1286,7 +1351,8 @@ export const FullMenuList = [
         id: 5,
         title: 'Cappuccino',
         price: '$ 10.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-drinks-4.png'),
       },
@@ -1294,7 +1360,8 @@ export const FullMenuList = [
         id: 6,
         title: 'Soft Drinks',
         price: '$ 2.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-drinks-5.png'),
       },
@@ -1302,13 +1369,13 @@ export const FullMenuList = [
         id: 7,
         title: 'Mineral water',
         price: '$ 2.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-drinks-6.png'),
       },
     ],
   },
- 
 ];
 export const BranchMenuSectionsData = [
   {
@@ -1319,14 +1386,16 @@ export const BranchMenuSectionsData = [
         id: 1,
         title: 'Tomato Soup ',
         price: '$ 5.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
         url: require('../assets/fake_Images/menu-appetizers-1.png'),
       },
       {
         id: 2,
         title: 'Chicken Soup ',
         price: '$ 10.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-appetizers-2.png'),
       },
@@ -1334,7 +1403,8 @@ export const BranchMenuSectionsData = [
         id: 3,
         title: 'Tomato Soup ',
         price: '$ 8.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-appetizers-3.png'),
       },
@@ -1342,7 +1412,8 @@ export const BranchMenuSectionsData = [
         id: 4,
         title: 'Fish Crackers ',
         price: '$ 8.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-appetizers-4.png'),
       },
@@ -1356,7 +1427,8 @@ export const BranchMenuSectionsData = [
         id: 1,
         title: 'Nasi Ayam Bakar Madura',
         price: '$11.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-1.png'),
       },
@@ -1364,7 +1436,8 @@ export const BranchMenuSectionsData = [
         id: 2,
         title: 'Nasi Ayam Sambal Tomat',
         price: '$ 13.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-2.png'),
       },
@@ -1372,7 +1445,8 @@ export const BranchMenuSectionsData = [
         id: 3,
         title: 'Vegetable Rice',
         price: '$ 10.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-3.png'),
       },
@@ -1380,7 +1454,8 @@ export const BranchMenuSectionsData = [
         id: 4,
         title: 'Egg Fried Rice',
         price: '$ 11.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-4.png'),
       },
@@ -1388,7 +1463,8 @@ export const BranchMenuSectionsData = [
         id: 5,
         title: 'Chicken Shashlik',
         price: '$15.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-5.png'),
       },
@@ -1396,7 +1472,8 @@ export const BranchMenuSectionsData = [
         id: 6,
         title: 'Finger Fish',
         price: '$ 25.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-6.png'),
       },
@@ -1404,7 +1481,8 @@ export const BranchMenuSectionsData = [
         id: 7,
         title: 'Chicken Breast',
         price: '$ 15.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-7.png'),
       },
@@ -1412,7 +1490,8 @@ export const BranchMenuSectionsData = [
         id: 8,
         title: 'Chicken Chops',
         price: '$ 15.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-course-8.png'),
       },
@@ -1426,7 +1505,8 @@ export const BranchMenuSectionsData = [
         id: 1,
         title: 'Apple Pie',
         price: '$11.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-dessert-1.png'),
       },
@@ -1434,7 +1514,8 @@ export const BranchMenuSectionsData = [
         id: 2,
         title: 'Chocolate Brownie',
         price: '$ 13.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-dessert-2.png'),
       },
@@ -1442,7 +1523,8 @@ export const BranchMenuSectionsData = [
         id: 3,
         title: 'Chocolate Cake ',
         price: '$ 10.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-dessert-3.png'),
       },
@@ -1450,7 +1532,8 @@ export const BranchMenuSectionsData = [
         id: 4,
         title: 'Ice Cream',
         price: '$ 13.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-dessert-4.png'),
       },
@@ -1458,7 +1541,8 @@ export const BranchMenuSectionsData = [
         id: 5,
         title: 'Tutti Frutti',
         price: '$ 10.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-dessert-5.png'),
       },
@@ -1472,7 +1556,8 @@ export const BranchMenuSectionsData = [
         id: 1,
         title: 'Mint Margarita',
         price: '$ 5.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-drinks-1.png'),
       },
@@ -1480,7 +1565,8 @@ export const BranchMenuSectionsData = [
         id: 2,
         title: 'Fresh Lime Soda',
         price: '$ 5.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-drinks-2.png'),
       },
@@ -1488,7 +1574,8 @@ export const BranchMenuSectionsData = [
         id: 4,
         title: 'Tea',
         price: '$ 5.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-drinks-3.png'),
       },
@@ -1496,7 +1583,8 @@ export const BranchMenuSectionsData = [
         id: 5,
         title: 'Cappuccino',
         price: '$ 10.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-drinks-4.png'),
       },
@@ -1504,7 +1592,8 @@ export const BranchMenuSectionsData = [
         id: 6,
         title: 'Soft Drinks',
         price: '$ 2.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-drinks-5.png'),
       },
@@ -1512,392 +1601,386 @@ export const BranchMenuSectionsData = [
         id: 7,
         title: 'Mineral water',
         price: '$ 2.00',
-        description: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+        description:
+          'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
 
         url: require('../assets/fake_Images/menu-drinks-6.png'),
       },
     ],
   },
 ];
-export const TRANSACTION_HISTORY_FAKE_DATA=[
+export const TRANSACTION_HISTORY_FAKE_DATA = [
   {
-    restaurant:'Yam Cha Restaurant',
-    wallet:'Visa Card',
-    orderId:'12321123453',
-    price:'$30.00',
+    restaurant: 'Yam Cha Restaurant',
+    wallet: 'Visa Card',
+    orderId: '12321123453',
+    price: '$30.00',
     url: require('../assets/fake_Images/menu-appetizers-1.png'),
   },
   {
-    restaurant:'Yam Cha Restaurant',
-    wallet:'Google Card',
-    orderId:'12321123453',
-    price:'$30.00',
+    restaurant: 'Yam Cha Restaurant',
+    wallet: 'Google Card',
+    orderId: '12321123453',
+    price: '$30.00',
     url: require('../assets/fake_Images/menu-drinks-1.png'),
   },
   {
-    restaurant:'Yam Cha Restaurant',
-    wallet:'Bank Transaction',
-    orderId:'12321123453',
-    price:'$30.00',
+    restaurant: 'Yam Cha Restaurant',
+    wallet: 'Bank Transaction',
+    orderId: '12321123453',
+    price: '$30.00',
     url: require('../assets/fake_Images/menu-drinks-2.png'),
   },
   {
-    restaurant:'Yam Cha Restaurant',
-    wallet:'Visa Card',
-    orderId:'12321123453',
-    price:'$30.00',
+    restaurant: 'Yam Cha Restaurant',
+    wallet: 'Visa Card',
+    orderId: '12321123453',
+    price: '$30.00',
     url: require('../assets/fake_Images/menu-drinks-3.png'),
   },
-]
-export const RESTURANT_BANNER =[
-  require('../assets/fake_Images/ResturantBanner.png'),
-  require('../assets/fake_Images/ResturantBanner1.png')
-]
-export  const ORDER_HISTORY = [
-  {
-    Title:'Nasi Ayam Bakar Madura' ,
-    Order_id:'AMD12345',
-    Items:"3 ",
-    Status :"Dispatched",
-    Order_Price:'5.00',
-    url: require('../assets/fake_Images/menu-drinks-6.png'),
-  },{
-    Title:'Nasi Ayam Bakar Madura' ,
-    Order_id:'AMD12345',
-    Items:"3 ",
-    Status :"Dispatched",
-    Order_Price:'5.00',
-    url: require('../assets/fake_Images/menu-drinks-6.png'),
-  },{
-    Title:'Nasi Ayam Bakar Madura' ,
-    Order_id:'AMD12345',
-    Items:"3 ",
-    Status :"Dispatched",
-    Order_Price:'5.00',
-    url: require('../assets/fake_Images/menu-drinks-6.png'),
-  },{
-    Title:'Nasi Ayam Bakar Madura' ,
-    Order_id:'AMD12345',
-    Items:"3 ",
-    Status :"Dispatched",
-    Order_Price:'5.00',
-    url: require('../assets/fake_Images/menu-drinks-6.png'),
-  },{
-    Title:'Nasi Ayam Bakar Madura' ,
-    Order_id:'AMD12345',
-    Items:"3 ",
-    Status :"Dispatched",
-    Order_Price:'5.00',
-    url: require('../assets/fake_Images/menu-drinks-6.png'),
-  },{
-    Title:'Nasi Ayam Bakar Madura' ,
-    Order_id:'AMD12345',
-    Items:"3 ",
-    Status :"Dispatched",
-    Order_Price:'5.00',
-    url: require('../assets/fake_Images/menu-drinks-6.png'),
-  },
-
-]; 
-export const COISINES_FAKE_DATA=[
-  {title:'Ambuyat',id:1},
- {title:'Nasi Ktok',id:2},
- {title:'Kelupis',id:3},
- {title:'Hotels',id:4},
- {title:'Dishes',id:5},
- {title:'Restaurant',id:6},
- {title:'Pulut Panggang',id:7},
- {title:'Bamboo',id:8},
- {title:'Selurup',id:9},
- {title:'Tapai',id:10},
- {title:'Penyaran',id:11},
-  {title:'Ambuyat',id:12},
-
-]
-export const ADD_TO_CART_FAKE_DATA=[
-  {
-    title:'Choose Soft Drink',
-    option:'Required',
-    data:[
-      {
-        name:"coke",
-        price:'$0.00'
-      },
-      {
-        name:"Sprite",
-        price:'$0.00'
-      },
-      {
-        name:"Mountain Dew",
-        price:'$0.00'
-      },
-    ]
-
-  },
-  {
-  title:'Extra Cheese',
-  option:'Optional',
-  data:[
-    {
-      name:"Cheese",
-      price:'+$5.00'
-    },
-  ]
-
-},
-{
-  title:'Add ons',
-  option:'Optional',
-  data:[
-    {
-      name:"Corn on the cob",
-      price:'+$5.00'
-    },
-    {
-      name:"Chicken Piece",
-      price:'$0.00'
-    },
-  ]
-
-},
 ];
-export const AddToCartUpSize=[
+export const RESTURANT_BANNER = [
+  require('../assets/fake_Images/ResturantBanner.png'),
+  require('../assets/fake_Images/ResturantBanner1.png'),
+];
+export const ORDER_HISTORY = [
   {
-    id:1,
-    name:"French Fries"
+    Title: 'Nasi Ayam Bakar Madura',
+    Order_id: 'AMD12345',
+    Items: '3 ',
+    Status: 'Dispatched',
+    Order_Price: '5.00',
+    url: require('../assets/fake_Images/menu-drinks-6.png'),
   },
   {
-    id:2,
-    name:"Hot Wings"
-  },{
-    id:3,
-    name:"Nuggets"
+    Title: 'Nasi Ayam Bakar Madura',
+    Order_id: 'AMD12345',
+    Items: '3 ',
+    Status: 'Dispatched',
+    Order_Price: '5.00',
+    url: require('../assets/fake_Images/menu-drinks-6.png'),
+  },
+  {
+    Title: 'Nasi Ayam Bakar Madura',
+    Order_id: 'AMD12345',
+    Items: '3 ',
+    Status: 'Dispatched',
+    Order_Price: '5.00',
+    url: require('../assets/fake_Images/menu-drinks-6.png'),
+  },
+  {
+    Title: 'Nasi Ayam Bakar Madura',
+    Order_id: 'AMD12345',
+    Items: '3 ',
+    Status: 'Dispatched',
+    Order_Price: '5.00',
+    url: require('../assets/fake_Images/menu-drinks-6.png'),
+  },
+  {
+    Title: 'Nasi Ayam Bakar Madura',
+    Order_id: 'AMD12345',
+    Items: '3 ',
+    Status: 'Dispatched',
+    Order_Price: '5.00',
+    url: require('../assets/fake_Images/menu-drinks-6.png'),
+  },
+  {
+    Title: 'Nasi Ayam Bakar Madura',
+    Order_id: 'AMD12345',
+    Items: '3 ',
+    Status: 'Dispatched',
+    Order_Price: '5.00',
+    url: require('../assets/fake_Images/menu-drinks-6.png'),
+  },
+];
+export const COISINES_FAKE_DATA = [
+  {title: 'Ambuyat', id: 1},
+  {title: 'Nasi Ktok', id: 2},
+  {title: 'Kelupis', id: 3},
+  {title: 'Hotels', id: 4},
+  {title: 'Dishes', id: 5},
+  {title: 'Restaurant', id: 6},
+  {title: 'Pulut Panggang', id: 7},
+  {title: 'Bamboo', id: 8},
+  {title: 'Selurup', id: 9},
+  {title: 'Tapai', id: 10},
+  {title: 'Penyaran', id: 11},
+  {title: 'Ambuyat', id: 12},
+];
+export const ADD_TO_CART_FAKE_DATA = [
+  {
+    title: 'Choose Soft Drink',
+    option: 'Required',
+    data: [
+      {
+        name: 'coke',
+        price: '$0.00',
+      },
+      {
+        name: 'Sprite',
+        price: '$0.00',
+      },
+      {
+        name: 'Mountain Dew',
+        price: '$0.00',
+      },
+    ],
+  },
+  {
+    title: 'Extra Cheese',
+    option: 'Optional',
+    data: [
+      {
+        name: 'Cheese',
+        price: '+$5.00',
+      },
+    ],
+  },
+  {
+    title: 'Add ons',
+    option: 'Optional',
+    data: [
+      {
+        name: 'Corn on the cob',
+        price: '+$5.00',
+      },
+      {
+        name: 'Chicken Piece',
+        price: '$0.00',
+      },
+    ],
+  },
+];
+export const AddToCartUpSize = [
+  {
+    id: 1,
+    name: 'French Fries',
+  },
+  {
+    id: 2,
+    name: 'Hot Wings',
+  },
+  {
+    id: 3,
+    name: 'Nuggets',
   },
 ];
 export const AwardsMenuSectionsData = [
-  
-      { id:1,
-        title: 'Tomato Soup ',
-        price: '$ 5.00',
-        quantity: 1,
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
-        url: require('../assets/fake_Images/menu-appetizers-1.png'),
-      },
-      
-      { id:1,
-        quantity: 1,
-        title: 'Chicken Soup ',
-        price: '$ 10.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
-        url: require('../assets/fake_Images/menu-appetizers-2.png'),
-      },
-      {
-        id:1,
-        quantity: 1,
-        title: 'Tomato Soup ',
-        price: '$ 8.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
-        url: require('../assets/fake_Images/menu-appetizers-3.png'),
-      },
-      {
-        id:1,
-        quantity: 1,
-        title: 'Fish Crackers ',
-        price: '$ 8.00',
-        des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
-        url: require('../assets/fake_Images/menu-appetizers-4.png'),
-      },
-    
-  ]
+  {
+    id: 1,
+    title: 'Tomato Soup ',
+    price: '$ 5.00',
+    quantity: 1,
+    des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+    url: require('../assets/fake_Images/menu-appetizers-1.png'),
+  },
 
-  export const CARD_DATA = [
-    {
-      cardType: 'Visa',
-      cardNo: '**********0000',
-      url: require('../assets/icons/visacard-1.png'),
-    },
-    {
-      cardType: 'Master',
-      cardNo: '**********0000',
-      url: require('../assets/icons/mastercard-2.png'),
-    },
-  ];
+  {
+    id: 1,
+    quantity: 1,
+    title: 'Chicken Soup ',
+    price: '$ 10.00',
+    des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+    url: require('../assets/fake_Images/menu-appetizers-2.png'),
+  },
+  {
+    id: 1,
+    quantity: 1,
+    title: 'Tomato Soup ',
+    price: '$ 8.00',
+    des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+    url: require('../assets/fake_Images/menu-appetizers-3.png'),
+  },
+  {
+    id: 1,
+    quantity: 1,
+    title: 'Fish Crackers ',
+    price: '$ 8.00',
+    des: 'Lorem Impsum dolor sit amet, conseceutur adipis cing elit maunis',
+    url: require('../assets/fake_Images/menu-appetizers-4.png'),
+  },
+];
 
-  export const Cart_Details = [
-    // {
-    //   id:1,
-    //   title : "Fish Crackers",
-    //   description: "lorem ipsum dolor sit amet, consectetur adipis",
-    //   quantity: 1,
-    //   price: '8.00',
-    //   url: require('../assets/fake_Images/cart-1.png'),
-    // },
+export const CARD_DATA = [
+  {
+    cardType: 'Visa',
+    cardNo: '**********0000',
+    url: require('../assets/icons/visacard-1.png'),
+  },
+  {
+    cardType: 'Master',
+    cardNo: '**********0000',
+    url: require('../assets/icons/mastercard-2.png'),
+  },
+];
 
+export const Cart_Details = [
+  // {
+  //   id:1,
+  //   title : "Fish Crackers",
+  //   description: "lorem ipsum dolor sit amet, consectetur adipis",
+  //   quantity: 1,
+  //   price: '8.00',
+  //   url: require('../assets/fake_Images/cart-1.png'),
+  // },
+  // {
+  //   id:2,
+  //   title : "Egg Fied Rice",
+  //   description: "lorem ipsum dolor sit amet, consectetur adipis",
+  //   quantity: 1,
+  //   price: '10.00',
+  //   url: require('../assets/fake_Images/cart-2.png'),
+  // },
+  // {
+  //   id:3,
+  //   title : "Chocolate Brownie",
+  //   description: "lorem ipsum dolor sit amet, consectetur adipis",
+  //   quantity: 1,
+  //   price: '13.00',
+  //   url: require('../assets/fake_Images/cart-3.png'),
+  // },
+];
 
-    // {
-    //   id:2,
-    //   title : "Egg Fied Rice",
-    //   description: "lorem ipsum dolor sit amet, consectetur adipis",
-    //   quantity: 1,
-    //   price: '10.00',
-    //   url: require('../assets/fake_Images/cart-2.png'),
-    // },
+export const PROMOS_JOBS = [
+  {
+    JobTitle: 'Waiter & Waitress',
+    Date: '5 sep 2021',
+    Experience: '1-2 years',
+    Vacancy: '5',
+    Location: 'Brunei Muara',
+    RestaurantName: 'Yam Cha Restaurant',
+    Logo: require('../assets/fake_Images/Jobs-logo1.png'),
+  },
+  {
+    JobTitle: 'Deliver Boy',
+    Date: '5 sep 2021',
+    Experience: '1-2 years',
+    Vacancy: '5',
+    Location: 'Brunei Muara',
+    RestaurantName: 'Yam Cha Restaurant',
+    Logo: require('../assets/fake_Images/Jobs-logo2.png'),
+  },
+  {
+    JobTitle: 'Chef/Cook',
+    Date: '5 sep 2021',
+    Experience: '1-2 years',
+    Vacancy: '5',
+    Location: 'Brunei Muara',
+    RestaurantName: 'Yam Cha Restaurant',
+    Logo: require('../assets/fake_Images/Jobs-logo3.png'),
+  },
+  {
+    JobTitle: 'Assistant Cook',
+    Date: '5 sep 2021',
+    Experience: '1-2 years',
+    Vacancy: '5',
+    Location: 'Brunei Muara',
+    RestaurantName: 'Yam Cha Restaurant',
+    Logo: require('../assets/fake_Images/Jobs-logo4.png'),
+  },
+  {
+    JobTitle: 'Waiter & Waitress',
+    Date: '5 sep 2021',
+    Experience: '1-2 years',
+    Vacancy: '5',
+    Location: 'Brunei Muara',
+    RestaurantName: 'Yam Cha Restaurant',
+    Logo: require('../assets/fake_Images/Jobs-logo5.png'),
+  },
+  {
+    JobTitle: 'Kitchen Helper',
+    Date: '5 sep 2021',
+    Experience: '1-2 years',
+    Vacancy: '5',
+    Location: 'Brunei Muara',
+    RestaurantName: 'Yam Cha Restaurant',
+    Logo: require('../assets/fake_Images/Jobs-logo6.png'),
+  },
+];
 
-    // {
-    //   id:3,
-    //   title : "Chocolate Brownie",
-    //   description: "lorem ipsum dolor sit amet, consectetur adipis",
-    //   quantity: 1,
-    //   price: '13.00',
-    //   url: require('../assets/fake_Images/cart-3.png'),
-    // },
-  ];
+export const CUISINES_DATA = [
+  {title: 'Arabic', id: 1},
+  {title: 'Bruneian', id: 2},
+  {title: 'Bangladeshi', id: 3},
+  {title: 'Chinese', id: 4},
+  {title: 'Filipino', id: 5},
+  {title: 'Indian', id: 6},
+  {title: 'Indonesian', id: 7},
+  {title: 'Japanese', id: 8},
+  {title: 'Korean', id: 9},
+  {title: 'Malaysian', id: 10},
+  {title: 'Mexican', id: 11},
+  {title: 'Pakistani', id: 12},
+  {title: 'Singaporean', id: 13},
+  {title: 'Thailand', id: 14},
+  {title: 'Vietnamese', id: 15},
+  {title: 'Western', id: 16},
+];
+export const POPULER_DISHES_DATA = [
+  {title: 'Kaizen Sushi', id: 1},
+  {title: 'Pizza Paratha', id: 2},
+  {title: 'Beef Burger', id: 3},
+  {title: 'Chicken Tikka Pizza', id: 4},
+  {title: 'Cheese Pizza', id: 5},
+  {title: 'Beef Karahi', id: 6},
+  {title: 'Alfredo Pasta', id: 7},
+  {title: 'Cappuccino', id: 8},
+  {title: 'Egg Fried Rice', id: 9},
+  {title: 'Cocktail Grilled Chicken', id: 10},
+  {title: 'Chicken Biryani', id: 11},
+];
+export const OTHERS_DATA = [
+  {title: 'Award Winning', id: 1},
+  {title: 'Bakery', id: 2},
+  {title: 'Budget', id: 3},
+  {title: 'Buffet', id: 4},
+  {title: 'Coffee & Tea', id: 5},
+  {title: 'dessert', id: 6},
+  {title: 'Fast Food', id: 7},
+  {title: 'Food Stails', id: 8},
+  {title: 'Healthy', id: 9},
+  {title: 'Home Based', id: 10},
+  {title: 'New Dishes', id: 11},
+  {title: 'New Eatery', id: 12},
+  {title: 'Sea Food', id: 12},
+  {title: 'Special Recommendation', id: 12},
+  {title: 'Steambaat', id: 12},
+  {title: 'Vegetarian', id: 12},
+];
 
-  export const PROMOS_JOBS =[
-  
-    {
-       JobTitle:'Waiter & Waitress',
-       Date:'5 sep 2021',
-       Experience:'1-2 years',
-       Vacancy:'5',
-       Location:'Brunei Muara',
-       RestaurantName:'Yam Cha Restaurant',
-       Logo:require('../assets/fake_Images/Jobs-logo1.png'),  
-    },
-    {
-      JobTitle:'Deliver Boy',
-       Date:'5 sep 2021',
-       Experience:'1-2 years',
-       Vacancy:'5',
-       Location:'Brunei Muara',
-       RestaurantName:'Yam Cha Restaurant',
-       Logo:require('../assets/fake_Images/Jobs-logo2.png'),
-    },
-    {
-      JobTitle:'Chef/Cook',
-       Date:'5 sep 2021',
-       Experience:'1-2 years',
-       Vacancy:'5',
-       Location:'Brunei Muara',
-       RestaurantName:'Yam Cha Restaurant',
-       Logo:require('../assets/fake_Images/Jobs-logo3.png'), 
-    },
-    {
-      JobTitle:'Assistant Cook',
-       Date:'5 sep 2021',
-       Experience:'1-2 years',
-       Vacancy:'5',
-       Location:'Brunei Muara',
-       RestaurantName:'Yam Cha Restaurant',
-       Logo:require('../assets/fake_Images/Jobs-logo4.png'), 
-    },
-    {
-      JobTitle:'Waiter & Waitress',
-       Date:'5 sep 2021',
-       Experience:'1-2 years',
-       Vacancy:'5',
-       Location:'Brunei Muara',
-       RestaurantName:'Yam Cha Restaurant',
-       Logo:require('../assets/fake_Images/Jobs-logo5.png'),  
-    },
-    {
-      JobTitle:'Kitchen Helper',
-       Date:'5 sep 2021',
-       Experience:'1-2 years',
-       Vacancy:'5',
-       Location:'Brunei Muara',
-       RestaurantName:'Yam Cha Restaurant',
-       Logo:require('../assets/fake_Images/Jobs-logo6.png'),
-    },
-  ];
-
-  export const CUISINES_DATA =[
-    {title:'Arabic',id:1},
-   {title:'Bruneian',id:2},
-   {title:'Bangladeshi',id:3},
-   {title:'Chinese',id:4},
-   {title:'Filipino',id:5},
-   {title:'Indian',id:6},
-   {title:'Indonesian',id:7},
-   {title:'Japanese',id:8},
-   {title:'Korean',id:9},
-   {title:'Malaysian',id:10},
-   {title:'Mexican',id:11},
-    {title:'Pakistani',id:12},
-    {title:'Singaporean',id:13},
-    {title:'Thailand',id:14},
-    {title:'Vietnamese',id:15},
-    {title:'Western',id:16},
-  
-  ];
-  export const POPULER_DISHES_DATA =[
-    {title:'Kaizen Sushi',id:1},
-   {title:'Pizza Paratha',id:2},
-   {title:'Beef Burger',id:3},
-   {title:'Chicken Tikka Pizza',id:4},
-   {title:'Cheese Pizza',id:5},
-   {title:'Beef Karahi',id:6},
-   {title:'Alfredo Pasta',id:7},
-   {title:'Cappuccino',id:8},
-   {title:'Egg Fried Rice',id:9},
-   {title:'Cocktail Grilled Chicken',id:10},
-   {title:'Chicken Biryani',id:11},
-    
-  
-  ];
-  export const OTHERS_DATA =[
-    {title:'Award Winning',id:1},
-   {title:'Bakery',id:2},
-   {title:'Budget',id:3},
-   {title:'Buffet',id:4},
-   {title:'Coffee & Tea',id:5},
-   {title:'dessert',id:6},
-   {title:'Fast Food',id:7},
-   {title:'Food Stails',id:8},
-   {title:'Healthy',id:9},
-   {title:'Home Based',id:10},
-   {title:'New Dishes',id:11},
-    {title:'New Eatery',id:12},
-    {title:'Sea Food',id:12},
-    {title:'Special Recommendation',id:12},
-    {title:'Steambaat',id:12},
-    {title:'Vegetarian',id:12},
-  
-  ];
-
-
-  export const MY_REVIEWS_DATA = [
-    {
-      title:"Christine Smith",
-      comment:"This recipe is very complex. it has all it takes to start off a good day.",
-      date:'1 day ago',
-      url:require('../assets/fake_Images/reviews-pic-1.png')
-    },
-    {
-      title:"Habiba Nisa",
-      comment:"Yes, I would like to try different restaurants each time. unfortunately, some of them aren't good.",
-      date:'12 Sep 2021',
-      url:require('../assets/fake_Images/reviews-pic-2.png')
-    },
-    {
-      title:"George",
-      comment:"I would definitely do this again, very tasteful.",
-      date:'10 Sep 2021',
-      url:require('../assets/fake_Images/reviews-pic-3.png')
-    },
-    {
-      title:"Awang Shahrul",
-      comment:"Came for lunch with my sister. We loved our Thai-style mains which were amazing with lots of flavour, very impressive for a vegetarian restaurant.",
-      date:'05 Sep 2021',
-      url:require('../assets/fake_Images/reviews-pic-4.png')
-    },
-    {
-      title:"Talha Gani",
-      comment:"My family and I like to try new flavors and visit different types of restaurants, so every weekend we liked to ate out. However, due to the pandemic we have been making our own food, which is great because you eat healthier and save a lot of money",
-      date:'01 Sep 2021',
-      url:require('../assets/fake_Images/reviews-pic-5.png')
-    },
-  ]
-
- 
-  
+export const MY_REVIEWS_DATA = [
+  {
+    title: 'Christine Smith',
+    comment:
+      'This recipe is very complex. it has all it takes to start off a good day.',
+    date: '1 day ago',
+    url: require('../assets/fake_Images/reviews-pic-1.png'),
+  },
+  {
+    title: 'Habiba Nisa',
+    comment:
+      "Yes, I would like to try different restaurants each time. unfortunately, some of them aren't good.",
+    date: '12 Sep 2021',
+    url: require('../assets/fake_Images/reviews-pic-2.png'),
+  },
+  {
+    title: 'George',
+    comment: 'I would definitely do this again, very tasteful.',
+    date: '10 Sep 2021',
+    url: require('../assets/fake_Images/reviews-pic-3.png'),
+  },
+  {
+    title: 'Awang Shahrul',
+    comment:
+      'Came for lunch with my sister. We loved our Thai-style mains which were amazing with lots of flavour, very impressive for a vegetarian restaurant.',
+    date: '05 Sep 2021',
+    url: require('../assets/fake_Images/reviews-pic-4.png'),
+  },
+  {
+    title: 'Talha Gani',
+    comment:
+      'My family and I like to try new flavors and visit different types of restaurants, so every weekend we liked to ate out. However, due to the pandemic we have been making our own food, which is great because you eat healthier and save a lot of money',
+    date: '01 Sep 2021',
+    url: require('../assets/fake_Images/reviews-pic-5.png'),
+  },
+];
