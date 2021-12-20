@@ -14,6 +14,7 @@ import {colors} from '../constants/colorsPallet';
 import { color } from 'react-native-reanimated';
 import { useDispatch } from 'react-redux';
 import { getUserProfile } from '../redux/actions/user.actions';
+import Wallet from '../screens/Home/Wallet/Wallet';
 
 const Header = ({
   navigation,
@@ -31,7 +32,7 @@ const Header = ({
   return (
     <View style={[styles.header,{paddingVertical:1, justifyContent: props.iconPath ? undefined : 'center'}]}>
       <TouchableOpacity
-      onPress={()=>{props.iconPath ? navigation.goBack() : null}}
+      onPress={()=>{props.iconPath ? navigation.goBack() : navigation.navigate(routeName.WALLET)}}
         style={{
           height: hp(6.4),
           width: wp(10.4),
@@ -48,12 +49,12 @@ const Header = ({
           size={props.iconPath ? 25 : 44}
           source={props.iconPath ? props.iconPath : globalPath.BALI_ICON}
         />
-        <Icon
+        {/* <Icon
           margin={[0, 15, 0, 0]}
           size={props.iconPath ? 25 : 30}
           tintColor={colors.yellow}
           source={props.iconPath ? undefined : globalPath.WALLET_ICON}
-        />
+        /> */}
         </View>
       </TouchableOpacity>
       {props.iconPath ? <View />

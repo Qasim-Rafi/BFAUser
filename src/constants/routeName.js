@@ -16,6 +16,7 @@ export const routeName = {
   DishDetails:'DishDetails',
   MAP_VIEW:"MAP_VIEW",
   MENU:"MENU",
+  WALLET: 'Wallet',
   // BOTTOM TABS
   HOME_BOTTOM: "Home",
   RANDOMISER_BOTTOM: "Randomiser",

@@ -43,7 +43,7 @@ const AdvertisementBanner = ({navigation}) => {
                   
                             <ResponsiveText fontFamily={'SemiBold'} size={4.5} color={colors.white}>{item.adSlideTitle}</ResponsiveText>
                                 
-                            <ResponsiveText fontFamily={'light'} margin={[-3,0,5,0]} size={3} color={colors.white}>{item.restaurantName}</ResponsiveText>
+                            <ResponsiveText fontFamily={'light'} margin={[-3,0,5,0]} size={3} color={colors.white}>{item.description}</ResponsiveText>
                             
                             
                             {/* <TouchableOpacity style={{height:hp(3.5), width:wp(28), backgroundColor:colors.yellow,
