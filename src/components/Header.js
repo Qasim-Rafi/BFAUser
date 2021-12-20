@@ -33,9 +33,7 @@ const Header = ({
         },
       ]}>
       <TouchableOpacity
-        onPress={() => {
-          props.iconPath ? navigation.goBack() : null;
-        }}
+      onPress={()=>{props.iconPath ? navigation.goBack() : navigation.navigate(routeName.WALLET)}}
         style={{
           height: hp(6.4),
           width: wp(10.4),
@@ -46,13 +44,13 @@ const Header = ({
           borderRadius: 10,
           marginEnd: 5,
         }}>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Icon
-            margin={[0, 0, 0, 0]}
-            size={props.iconPath ? 25 : 44}
-            source={props.iconPath ? props.iconPath : globalPath.BALI_ICON}
-          />
-          {/* <Icon
+          <View style={{flexDirection:'row', alignItems:'center'}} >
+        <Icon
+          margin={[0, 0, 0, 0]}
+          size={props.iconPath ? 25 : 44}
+          source={props.iconPath ? props.iconPath : globalPath.BALI_ICON}
+        />
+        {/* <Icon
           margin={[0, 15, 0, 0]}
           size={props.iconPath ? 25 : 30}
           tintColor={colors.yellow}
