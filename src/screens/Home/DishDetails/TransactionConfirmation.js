@@ -20,7 +20,6 @@ export default function TransactionConfirmation({route, navigation}) {
   const [count, changeCount] = useState(95);
   const [total, addTotal] = useState(0);
   const [pickup, setPickup] = useState(true);
-  import Home from '../BottomTabs/Home/Home';
 
   useEffect(() => {
     addTotal(route.params);
