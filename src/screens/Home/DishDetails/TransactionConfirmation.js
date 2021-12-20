@@ -73,7 +73,7 @@ export default function TransactionConfirmation({route, navigation}) {
           <ResponsiveText color={colors.white}>Payment Method</ResponsiveText>
           <TouchableOpacity
             style={{
-              backgroundColor: colors.yellow,
+              backgroundColor: colors.black3,
               justifyContent: 'center',
               alignItems: 'center',
               borderRadius: 7,
