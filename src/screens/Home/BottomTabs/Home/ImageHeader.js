@@ -8,12 +8,15 @@ import { advertisementBannerFakeDATA } from '../../../../constants/mock'
 import { colors } from '../../../../constants/colorsPallet'
 import Icon from '../../../../components/Icon'
 import { globalPath } from '../../../../constants/globalPath'
-const image = { uri: "https://i.ndtvimg.com/i/2016-06/noodles-625_625x350_41466064269.jpg" };
+
+import IMG from '../../../../assets/fake_Images/salmon_asparagus.jpg'
+
+// const image = { uri: "." };
 
 const ImageHeader = (props) => {
     return (
         <View style={styles.container}>
-        <ImageBackground  imageStyle={{opacity:0.8}} source={image} resizeMode="cover" style={styles.image}>
+        <ImageBackground  imageStyle={{opacity:0.8}} source={IMG} resizeMode="cover" style={styles.image}>
           <TouchableOpacity onPress={()=>{props.navigation.goBack()}} style={{margin:20}}>
             <Icon source={globalPath.BACK_ARROW}/>
              </TouchableOpacity>
