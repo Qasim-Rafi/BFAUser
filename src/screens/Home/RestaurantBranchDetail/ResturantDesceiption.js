@@ -22,10 +22,10 @@ export default function Restaurant_Description({}) {
           }}>
           <View style={styles.priceDesc}>
             <ResponsiveText size={4} color={colors.white}>
-              Salman Sashimi Sushi
+              Excapade Sushi
             </ResponsiveText>
             <ResponsiveText size={3.7} color={colors.grey}>
-              1-Lotus Resturant
+              Salmon Asparagus
             </ResponsiveText>
             <ResponsiveText size={4} color={colors.yellow}>
               $10.00
@@ -84,7 +84,7 @@ export default function Restaurant_Description({}) {
           fontFamily="Regular"
           size={3.5}
           color={colors.grey}>
-          Lorem Ipsum is simply dummy text of the printing.
+          No. G1, Ground Floor, Times Square Shopping Centre Simpang 13-29, Jalan Berakas Kg, Bandar Seri Begawan
         </ResponsiveText>
       </View>
       <View style={{paddingTop: 10,paddingLeft:20 }}>
@@ -96,7 +96,7 @@ export default function Restaurant_Description({}) {
           fontFamily="Regular"
           size={3.5}
           color={colors.grey}>
-          Lorem Ipsum is simply dummy .
+          Brunei Muara
         </ResponsiveText>
       </View>
       <View style={{paddingTop: 10,paddingLeft:20 }}>
@@ -108,7 +108,7 @@ export default function Restaurant_Description({}) {
           fontFamily="Regular"
           size={3.5}
           color={colors.grey}>
-          Example.
+          Mall
         </ResponsiveText>
       </View>
       <View style={{paddingTop: 10,paddingLeft:20 }}>

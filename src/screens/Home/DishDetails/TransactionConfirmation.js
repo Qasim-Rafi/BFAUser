@@ -14,6 +14,8 @@ import { globalPath } from '../../../constants/globalPath'
 import { routeName } from '../../../constants/routeName'
 import { hp, wp } from '../../../helpers/Responsiveness'
 
+import Home from '../BottomTabs/Home/Home';
+
 
 export default function TransactionConfirmation({route,navigation}) {
 const [isModalVisible, setModalVisible] = useState(false);
@@ -118,7 +120,7 @@ const toggleModal = ({navigation,route}) => {
 
 
 
-<Modal isVisible={isModalVisible} statusBarTranslucent={true} backdropOpacity={0.90} style={{justifyContent:'flex-end'}} onModalHide={()=>navigation.navigate(routeName.LANDING_SCREEN)}>
+<Modal isVisible={isModalVisible} statusBarTranslucent={true} backdropOpacity={0.90} style={{justifyContent:'flex-end'}} onModalHide={()=>navigation.push('Home')}>
          {/* ------------ ModalView -------------- */}
       <View style={{flex:0.30, backgroundColor:colors.black2, borderRadius:7, marginBottom:20}}>
 				<View style={{flex:0.2, backgroundColor:colors.black1, justifyContent:'center', alignItems:'center', borderTopRightRadius:7, borderTopLeftRadius:7}}>
