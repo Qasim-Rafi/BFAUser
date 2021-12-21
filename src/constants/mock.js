@@ -49,7 +49,7 @@ export const cuisineSliderData = [
     description: 'Bruneian',
     quantity: 1,
     price: '8.00',
-    url: require('../assets/fake_Images/Ambuyat.png'),
+    url: require('../assets/fake_Images/biryani.jpg'),
   },
   {
     id: 6,

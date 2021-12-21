@@ -46,7 +46,7 @@ const Promotion = props => {
                   <TouchableOpacity
                     onPress={() =>
                       props.navigation.navigate(routeName.DISH_DETAIL, {
-                        dish: item,
+                        dish: url,
                       })
                     }>
                     <View
