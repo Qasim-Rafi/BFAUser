@@ -34,7 +34,7 @@ const Header = ({
       ]}>
       <TouchableOpacity
         onPress={() => {
-          props.iconPath ? navigation.goBack() : null;
+          props.iconPath ? navigation.goBack() : navigation.navigate(routeName.WALLET);
         }}
         style={{
           height: hp(6.4),
