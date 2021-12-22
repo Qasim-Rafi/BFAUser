@@ -17,6 +17,8 @@ export const routeName = {
   MAP_VIEW:"MAP_VIEW",
   MENU:"MENU",
   WALLET:'Wallet',
+  TOP_UP:'Top-up',
+  TRANSFER:'Transfer',
   // BOTTOM TABS
   HOME_BOTTOM: "Home",
   RANDOMISER_BOTTOM: "Randomiser",
