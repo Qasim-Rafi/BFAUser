@@ -45,6 +45,9 @@ export default function Login({ navigation }) {
   //Redux Dis/patch
   const dispatch = useDispatch();
   const loading = useSelector(state=>state.login_User.loginScreen.refreshing);
+  const loginResponse = useSelector(state => state.login_User.loginScreen.errorMsg)
+
+  console.log(loginResponse, 'LOgin screen error');
 
   
 
@@ -74,17 +77,19 @@ export default function Login({ navigation }) {
   const Validation = (item) => {
     console.log("ErrorMessage: ", setErrorString);
 
-    if(errorString===errorString){
-      setErrorString("Invalid username or password ");
-      console.log("ErrorMessage: ", errorString);
-    }
+    // if
+    // (errorString===errorString){
+    //   setErrorString("Invalid username or password ");
+    //   console.log("ErrorMessage: ", errorString);
+    // }
 
-    else{
-      setErrorString("Network connection error!!!");
-      console.log("ErrorMessage: ", errorString);
+    // else{
+    //   setErrorString("Network connection error!!!");
+    //   console.log("ErrorMessage: ", errorString);
 
     
-    }
+    // }
+
     
     // console.log("error is: ", textError);
     if (userName === '' || userName === null) {
@@ -106,6 +111,11 @@ export default function Login({ navigation }) {
       //   type: "danger",
       //   icon: { icon: "auto", position: "left" },
       // });
+    }else if( loginResponse ){
+      setErrorString('ServerResponse: ' + loginResponse )
+      console.log('loginResponse');
+      console.log(loginResponse);
+      // console.log(loginResponse.message)
     }
     else {
       // setLoading(true);

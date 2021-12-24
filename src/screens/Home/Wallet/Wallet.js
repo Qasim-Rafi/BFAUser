@@ -35,6 +35,8 @@ const Wallet = (props) => {
     const walletAmount = 0
     const comingAmount = route.params
 
+    console.log(comingAmount)
+
     const [number, setNumber] = useState(0)
     const [modalVisible, setModalVisible] = useState(false)
 
@@ -140,7 +142,7 @@ const Wallet = (props) => {
                 </View>
 
                 <Text style={{ color: 'white', fontSize: 19 }}>Your BCoin Balance is:</Text>
-                <Text style={{ color: 'white', fontSize: 70 }} >${walletAmount + comingAmount}</Text>
+                <Text style={{ color: 'white', fontSize: 70 }} >${typeof(comingAmount) === 'undefined' ? 0 : walletAmount+comingAmount }</Text>
 
                 <Modal
                     animationType="slide"

@@ -27,10 +27,11 @@ function* loginUserApi(data) {
     if (response && response.data != null) {
       yield AsyncStorage.setItem('@token', response.data.token);
       yield AsyncStorage.setItem('@userId', response.data.loggedInUserId);
-      yield put({type: types.LOGIN_USER_SUCCESS, payload: response.data});
+      yield put({type: types.LOGIN_USER_SUCCESS, payload: response});
       navigation.dispatch(StackActions.replace('Home'));
     } else {
-      yield put({type: types.LOGIN_USER_FAILURE, error: error});
+      yield put({type: types.LOGIN_USER_FAILURE, error: response.message});
+      console.log(response.message, 'error saga else');
 
       // showMessage({
       //   message: "Error",
@@ -40,7 +41,8 @@ function* loginUserApi(data) {
       // });
     }
   } catch (error) {
-    yield put({type: types.LOGIN_USER_FAILURE, error: error});
+    yield put({type: types.LOGIN_USER_FAILURE, error: response.message});
+    console.log(response.message, 'error saga catch');
 
     // showMessage({
     //   message: "Error",
