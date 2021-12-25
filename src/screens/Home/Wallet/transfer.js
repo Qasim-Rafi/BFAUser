@@ -18,7 +18,6 @@ const Transfer = (props) => {
     const route = useRoute()
 
     // const [isModalVisible, setModalVisible] = useState(false);
-    const [checked, setCheck] = useState(true);
 
     const transferAmount = route.params
 
@@ -113,7 +112,7 @@ const Transfer = (props) => {
                         alignSelf: 'center',
                         borderRadius: 7,
                         backgroundColor: colors.yellow,
-                        marginTop: 350
+                        // marginTop: 350
                     }}>
                     <ResponsiveText color={colors.black} size={3.5}>
                         Click to Pay

@@ -134,7 +134,7 @@ const TopUp = (props) => {
                         justifyContent: 'center',
                         alignItems: 'center',
                         width: wp(75),
-                        marginTop: 250,
+                        marginTop: 40,
                         height: hp(5),
                         alignSelf: 'center',
                         borderRadius: 7,
