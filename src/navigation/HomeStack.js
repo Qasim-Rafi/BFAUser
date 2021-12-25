@@ -1,6 +1,6 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import * as React from 'react';
-import { routeName } from '../constants/routeName';
+import {routeName} from '../constants/routeName';
 import Login from '../screens/Auth/Login/Login';
 import SignUp from '../screens/Auth/SignUp/SignUp';
 import Splash from '../screens/Auth/splash/Splash';
@@ -23,7 +23,7 @@ import Apply_Jobs from '../screens/Home/BottomTabs/Promos/Apply_Jobs';
 import AddToCart from '../screens/Home/DishDetails/AddToCart';
 import TransactionHistory from '../screens/Home/BottomTabs/Checkout/TransactionHistory';
 import TransactionConfirmation from '../screens/Home/DishDetails/TransactionConfirmation';
-import RandomiserResult from '../screens/Home/BottomTabs/Randomiser/RandomiserResult'
+import RandomiserResult from '../screens/Home/BottomTabs/Randomiser/RandomiserResult';
 
 import OrderDetails from '../screens/Home/BottomTabs/More/OrderDetails';
 import Settings from '../screens/Home/Settings/Settings';
@@ -32,17 +32,16 @@ import ViewCard from '../screens/Home/CardManagement/ViewCard';
 import ManageCards from '../screens/Home/CardManagement/ManageCards';
 import CartDetails from '../screens/Home/BottomTabs/CartDetails/CartDetails';
 import Checkout from '../screens/Home/BottomTabs/Checkout/Checkout';
-import JobListing from '../screens/Home/JobListing/JobListing'
+import JobListing from '../screens/Home/JobListing/JobListing';
 import Preferences from '../screens/Home/BottomTabs/More/Preferences';
 import ContactUs from '../screens/Home/BottomTabs/More/ContactUs';
-import MyReviews from '../screens/Home/BottomTabs/More/MyReviews'
+import MyReviews from '../screens/Home/BottomTabs/More/MyReviews';
 import QRScan from '../screens/Home/BottomTabs/More/QRScan';
 import AllDishesList from '../screens/Home/BottomTabs/Home/AllDishesList';
 import BarcodeReader from '../screens/Home/BottomTabs/Scanner/BarcodeReader';
 import More from '../screens/Home/BottomTabs/More/More';
 import RandomiserWheel from '../screens/Home/BottomTabs/Randomiser/RandomWheel';
-import Wallet from '../screens/Home/Wallet/Wallet'
-
+import Wallet from '../screens/Home/Wallet/Wallet';
 
 const Stack = createNativeStackNavigator();
 
@@ -53,32 +52,43 @@ function HomeStack() {
         headerShown: false,
       }}
       // initialRouteName="SPLASH"
-      >
-
-     
-      
+    >
       <Stack.Screen name={routeName.LANDING_SCREEN} component={BottomTabs} />
-      <Stack.Screen name={routeName.RANDOMISER_RESULT} component={RandomiserResult}/>
-      <Stack.Screen name={routeName.ADD_TO_CART} component={AddToCart}/>
-      <Stack.Screen name={routeName.TRANSACTION_HISTORY} component ={TransactionHistory}/>
+      <Stack.Screen
+        name={routeName.RANDOMISER_RESULT}
+        component={RandomiserResult}
+      />
+      <Stack.Screen name={routeName.ADD_TO_CART} component={AddToCart} />
+      <Stack.Screen
+        name={routeName.TRANSACTION_HISTORY}
+        component={TransactionHistory}
+      />
       <Stack.Screen name={routeName.APPLY_JOBS} component={Apply_Jobs} />
       <Stack.Screen name={routeName.WALLET} component={Wallet} />
-      
-      <Stack.Screen name={routeName.ORDER_HISTORY} component={Order_history}/>
-      <Stack.Screen name={routeName.RestaurantDetail} component={RestaurantDetail} />
-      <Stack.Screen name={routeName.PROFILE_SCREEN} component={ProfileScreen}/>
+
+      <Stack.Screen name={routeName.ORDER_HISTORY} component={Order_history} />
+      <Stack.Screen
+        name={routeName.RestaurantDetail}
+        component={RestaurantDetail}
+      />
+      <Stack.Screen name={routeName.PROFILE_SCREEN} component={ProfileScreen} />
       <Stack.Screen name={routeName.MENU} component={Menu} />
       <Stack.Screen name={routeName.MAP_VIEW} component={MapView} />
       <Stack.Screen name={routeName.FilterSearch} component={FilterSearch} />
       <Stack.Screen name={routeName.DISH_DETAIL} component={DishDetails} />
-      <Stack.Screen name={routeName.FeaturedSearch} component={FeaturedSearch} />
+      <Stack.Screen
+        name={routeName.FeaturedSearch}
+        component={FeaturedSearch}
+      />
       <Stack.Screen name={routeName.SearchAll} component={SearchAll} />
-       <Stack.Screen name={routeName.TRANSACTION_CONFIRMATION} component={TransactionConfirmation} />
-       <Stack.Screen name={routeName.MORE_BOTTOM} component={More} />
-       
+      <Stack.Screen
+        name={routeName.TRANSACTION_CONFIRMATION}
+        component={TransactionConfirmation}
+      />
+      <Stack.Screen name={routeName.MORE_BOTTOM} component={More} />
 
       <Stack.Screen name={routeName.MYWHITLIST} component={MyWhitlist} />
-      <Stack.Screen name={ routeName.Categories} component={Categories} />
+      <Stack.Screen name={routeName.Categories} component={Categories} />
       <Stack.Screen name={routeName.ORDER_DETAILS} component={OrderDetails} />
       <Stack.Screen name={routeName.SETTINGS} component={Settings} />
       <Stack.Screen name={routeName.ADD_CARD} component={AddCard} />
@@ -91,14 +101,14 @@ function HomeStack() {
       <Stack.Screen name={routeName.MY_REVIEWS} component={MyReviews} />
       <Stack.Screen name={routeName.SCAN_QR} component={QRScan} />
       <Stack.Screen name={routeName.BARCODE_READER} component={BarcodeReader} />
-      <Stack.Screen name={routeName.ALL_DISHES_LIST} component={AllDishesList} />
-      <Stack.Screen name={routeName.SELECT_PAYMENT_METHOD} component={Checkout} />
-      
-      
-
-
-      
-        
+      <Stack.Screen
+        name={routeName.ALL_DISHES_LIST}
+        component={AllDishesList}
+      />
+      <Stack.Screen
+        name={routeName.SELECT_PAYMENT_METHOD}
+        component={Checkout}
+      />
     </Stack.Navigator>
   );
 }
