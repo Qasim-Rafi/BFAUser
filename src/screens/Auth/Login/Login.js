@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
   StyleSheet,
   View,
@@ -37,19 +37,19 @@ import { StackActions } from '@react-navigation/routers';
 
 export default function Login({ navigation }) {
   const dropdownRef = React.useRef(null)
-// const showError
+  // const showError
   // const [loading, setLoading] = React.useState(false);
   const [errorString, setErrorString] = React.useState('');
   const [userName, setUserName] = React.useState('');
   const [password, setPassword] = React.useState('');
   //Redux Dis/patch
   const dispatch = useDispatch();
-  const loading = useSelector(state=>state.login_User.loginScreen.refreshing);
-  const loginResponse = useSelector(state => state.login_User.loginScreen.errorMsg)
+  const loading = useSelector(state => state.login_User.loginScreen.refreshing);
+  const {loginResponse} = useSelector(state => state.login_User.loginScreen.errorMsg)
 
   console.log(loginResponse, 'LOgin screen error');
 
-  
+
 
 
   //Redux Action Called
@@ -71,11 +71,21 @@ export default function Login({ navigation }) {
   //   }
   // })
 
+  // useEffect(() => {
+
+
+  // }, [loginResponse])
+
+  useMemo(() => {
+    console.log('usememo');
+    setErrorString(loginResponse);
+  }, [loginResponse]);
 
 
   //validation form
   const Validation = (item) => {
-    console.log("ErrorMessage: ", setErrorString);
+    console.log("ErrorMessage: ", errorString);
+    setErrorString('')
 
     // if
     // (errorString===errorString){
@@ -87,11 +97,16 @@ export default function Login({ navigation }) {
     //   setErrorString("Network connection error!!!");
     //   console.log("ErrorMessage: ", errorString);
 
-    
+
     // }
 
-    
+
     // console.log("error is: ", textError);
+
+
+    // if (userName && password) {
+    //   setErrorString('Please Enter Username and Password to proceed')
+    // } else 
     if (userName === '' || userName === null) {
       setErrorString("Username is missing");
       // dropdownRef.current.showMessage({
@@ -111,16 +126,20 @@ export default function Login({ navigation }) {
       //   type: "danger",
       //   icon: { icon: "auto", position: "left" },
       // });
-    }else if( loginResponse ){
-      setErrorString('ServerResponse: ' + loginResponse )
-      console.log('loginResponse');
-      console.log(loginResponse);
-      // console.log(loginResponse.message)
     }
     else {
       // setLoading(true);
       userLogin();
+      if (loginResponse !== '') {
+        console.log('loginResponse');
+        console.log(loginResponse);
+        setErrorString('ServerResponse: ' + loginResponse)
+
+        // console.log(loginResponse.message)
+      }
     }
+
+
   }
   // React.useEffect(()=>{
   //   setLoading(false);
@@ -129,22 +148,22 @@ export default function Login({ navigation }) {
   return (
     <>
 
-      
 
 
-          <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: colors.black }}>
-            <View style={{ flex: 1, backgroundColor: colors.black }}>
-              <View style={styles.screeninfo}>
-                <Icon source={globalPath.BALI_ICON} size={60} />
-                <ResponsiveText margin={[1, 0, 0, 0]} color={colors.yellow} fontFamily="Regular" size={8}>
-                  Sign In
-                </ResponsiveText>   
-                <ResponsiveText margin={[1, 0, 0, 0]} color={colors.white}>
-                  Please Login to Continue
-                </ResponsiveText>
 
-              
-                {/* {
+      <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: colors.black }}>
+        <View style={{ flex: 1, backgroundColor: colors.black }}>
+          <View style={styles.screeninfo}>
+            <Icon source={globalPath.BALI_ICON} size={60} />
+            <ResponsiveText margin={[1, 0, 0, 0]} color={colors.yellow} fontFamily="Regular" size={8}>
+              Sign In
+            </ResponsiveText>
+            <ResponsiveText margin={[1, 0, 0, 0]} color={colors.white}>
+              Please Login to Continue
+            </ResponsiveText>
+
+
+            {/* {
                   textError==true?
                 <ResponsiveText margin={[10, 0, 0, 0]} color={colors.red3} fontFamily="Regular" size={5}>
                   Invalid User Password
@@ -154,47 +173,47 @@ export default function Login({ navigation }) {
                   
                   </ResponsiveText>
 } */}
-              </View>
-              <View style={styles.formArea}>
-                <Input
-                  padding={[0, 0, 0, 25]}
-                  onChnageText={text => setUserName(text)}
-                  iconMargin={[0, 10, 0, 0]}
-                  placeholder="Email"
-                  leftIcon={globalPath.EMAIL_LOGO}
-                />
-                <Input
-                  margin={[20, 0, wp(10), 0]}
-                  padding={[0, 0, 0, 25]}
-                  iconMargin={[0, 10, 0, 0]}
-                  placeholder="Password"
-                  onChnageText={text => setPassword(text)}
-                  secureTextEntry
-                  leftIcon={globalPath.PASSWORD_LOGO}
-                />
-                <View style={styles.forgotPasswordContainer}>
-                  {/* <Line color={colors.grey5} width={wp(20)} />
+          </View>
+          <View style={styles.formArea}>
+            <Input
+              padding={[0, 0, 0, 25]}
+              onChnageText={text => setUserName(text)}
+              iconMargin={[0, 10, 0, 0]}
+              placeholder="Email"
+              leftIcon={globalPath.EMAIL_LOGO}
+            />
+            <Input
+              margin={[20, 0, wp(10), 0]}
+              padding={[0, 0, 0, 25]}
+              iconMargin={[0, 10, 0, 0]}
+              placeholder="Password"
+              onChnageText={text => setPassword(text)}
+              secureTextEntry
+              leftIcon={globalPath.PASSWORD_LOGO}
+            />
+            <View style={styles.forgotPasswordContainer}>
+              {/* <Line color={colors.grey5} width={wp(20)} />
             <ResponsiveText margin={[0, 10]} color={colors.white}>
               Forgot Password?
             </ResponsiveText>
             <Line color={colors.grey5} width={wp(20)} /> */}
-                </View>
-                <ResponsiveText textAlign='center' margin={[-15, 0,7, 0]} color={colors.red} fontFamily="Regular" size={3}>
-                  {errorString}
+            </View>
+            <ResponsiveText textAlign='center' margin={[-15, 0, 7, 0]} color={colors.red} fontFamily="Regular" size={3}>
+              {errorString}
+            </ResponsiveText>
+
+            <TouchableOpacity style={styles.signin} onPress={Validation}>
+              {loading == true ?
+                <  SkypeIndicator count={5} color={colors.black} size={30} />
+                :
+
+                <ResponsiveText color={colors.black} size={4}>
+                  Sign In
                 </ResponsiveText>
-                
-                <TouchableOpacity style={styles.signin} onPress={Validation}>
-                {loading == true ?
-            <  SkypeIndicator count={5} color={colors.black} size={30} />
-          :
+              }
+            </TouchableOpacity>
 
-                  <ResponsiveText color={colors.black} size={4}>
-                      Sign In
-                  </ResponsiveText>
-                  }
-                </TouchableOpacity>
-
-                {/* <RnButton
+            {/* <RnButton
                 onPress={() => Validation()}
                 // onPress={()=>navigation.dispatch(StackActions.replace('Home'))}
                 fontFamily="SemiBold"
@@ -203,24 +222,24 @@ export default function Login({ navigation }) {
                 title="SIGN IN"
 
               /> */}
-                <View style={styles.footer}>
-                  {/* <Icon size={wp(8)} margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
-                  <ResponsiveText margin={[0, 10]} color={colors.white}>
-                    New user{' '}
-                    <ResponsiveText
-                      fontFamily="Bold"
-                      color={colors.yellow}
-                      onPress={() => navigation.navigate(routeName.SIGN_UP)}>
-                      Sign up
-                    </ResponsiveText>
-                  </ResponsiveText>
-                  {/* <View style={styles.socialIcon}></View> */}
-                </View>
-              </View>
+            <View style={styles.footer}>
+              {/* <Icon size={wp(8)} margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
+              <ResponsiveText margin={[0, 10]} color={colors.white}>
+                New user{' '}
+                <ResponsiveText
+                  fontFamily="Bold"
+                  color={colors.yellow}
+                  onPress={() => navigation.navigate(routeName.SIGN_UP)}>
+                  Sign up
+                </ResponsiveText>
+              </ResponsiveText>
+              {/* <View style={styles.socialIcon}></View> */}
             </View>
-            <FlashMessage ref={dropdownRef} />
-          </ScrollView>
-      
+          </View>
+        </View>
+        <FlashMessage ref={dropdownRef} />
+      </ScrollView>
+
     </>
     // </KeyboardAvoidingView>
   );
@@ -234,16 +253,16 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
     // backgroundColor: colors.black,
   },
-  errorText:{
-fontWeight:'400'
+  errorText: {
+    fontWeight: '400'
   },
   signin: {
-    backgroundColor:colors.yellow,
-    width:wp(80),
-    height:hp(6),
-    borderRadius: 7,alignItems:'center',
-    alignContent:'center',
-    justifyContent:'center'
+    backgroundColor: colors.yellow,
+    width: wp(80),
+    height: hp(6),
+    borderRadius: 7, alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center'
   },
   screeninfo: {
     flex: 0.50,
