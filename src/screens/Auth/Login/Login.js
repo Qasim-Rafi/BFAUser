@@ -142,7 +142,9 @@ export default function Login({navigation}) {
               padding={[0, 0, 0, 25]}
               onChnageText={text => setUserName(text)}
               iconMargin={[0, 10, 0, 0]}
+              secureTextEntry={false}
               placeholder="Email"
+              check_textInputChange={false}
               leftIcon={globalPath.EMAIL_LOGO}
             />
             <Input
@@ -151,7 +153,8 @@ export default function Login({navigation}) {
               iconMargin={[0, 10, 0, 0]}
               placeholder="Password"
               onChnageText={text => setPassword(text)}
-              secureTextEntry
+              secureTextEntry={true}
+              check_textInputChange={false}
               leftIcon={globalPath.PASSWORD_LOGO}
             />
             <View style={styles.forgotPasswordContainer}>
