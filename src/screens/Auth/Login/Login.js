@@ -45,9 +45,11 @@ export default function Login({ navigation }) {
   //Redux Dis/patch
   const dispatch = useDispatch();
   const loading = useSelector(state => state.login_User.loginScreen.refreshing);
-  const {loginResponse} = useSelector(state => state.login_User.loginScreen.errorMsg)
+  const loginResponse = useSelector(state => state.login_User.loginScreen.data)
+  const loginNetworkErr = useSelector(state => state.login_User.loginScreen.errorMsg)
 
   console.log(loginResponse, 'LOgin screen error');
+  console.log(loginNetworkErr, 'LOgin network error');
 
 
 
@@ -71,15 +73,6 @@ export default function Login({ navigation }) {
   //   }
   // })
 
-  // useEffect(() => {
-
-
-  // }, [loginResponse])
-
-  useMemo(() => {
-    console.log('usememo');
-    setErrorString(loginResponse);
-  }, [loginResponse]);
 
 
   //validation form
@@ -104,9 +97,9 @@ export default function Login({ navigation }) {
     // console.log("error is: ", textError);
 
 
-    // if (userName && password) {
-    //   setErrorString('Please Enter Username and Password to proceed')
-    // } else 
+    if (userName === '' && password === '') {
+      setErrorString('Please Enter Username and Password to proceed')
+    } else 
     if (userName === '' || userName === null) {
       setErrorString("Username is missing");
       // dropdownRef.current.showMessage({
@@ -130,12 +123,19 @@ export default function Login({ navigation }) {
     else {
       // setLoading(true);
       userLogin();
-      if (loginResponse !== '') {
-        console.log('loginResponse');
-        console.log(loginResponse);
-        setErrorString('ServerResponse: ' + loginResponse)
-
-        // console.log(loginResponse.message)
+      if(loginNetworkErr === undefined){
+        if (loginResponse.success === false ) {
+          setTimeout(() => {
+            console.log('loginResponse');
+            console.log(loginResponse.success);
+            console.log(loginResponse.message);
+            setErrorString('ServerResponse: ' + loginResponse.message)
+          }, 2000);
+          // console.log(loginResponse.message)
+        }
+      }else{
+        setErrorString(loginNetworkErr)
+        console.log('loginNetworkErr',loginNetworkErr);
       }
     }
 

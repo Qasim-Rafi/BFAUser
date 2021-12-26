@@ -55,7 +55,8 @@ export const login_User = (state = initialState, action) => {
         loginScreen: {
           ...state.loginScreen,
           refreshing:false,
-          errorMsg:action.error,
+          data: action.payload,
+          errorMsg: action.error
         },
         
       };

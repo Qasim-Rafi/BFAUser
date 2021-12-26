@@ -30,7 +30,7 @@ function* loginUserApi(data) {
       yield put({type: types.LOGIN_USER_SUCCESS, payload: response});
       navigation.dispatch(StackActions.replace('Home'));
     } else {
-      yield put({type: types.LOGIN_USER_FAILURE, error: response.message});
+      yield put({type: types.LOGIN_USER_FAILURE, payload: response});
       console.log(response.message, 'error saga else');
 
       // showMessage({
@@ -41,8 +41,8 @@ function* loginUserApi(data) {
       // });
     }
   } catch (error) {
-    yield put({type: types.LOGIN_USER_FAILURE, error: response.message});
-    console.log(response.message, 'error saga catch');
+    yield put({type: types.LOGIN_USER_FAILURE, error: error});
+    console.log(error, 'error saga catch');
 
     // showMessage({
     //   message: "Error",
