@@ -1,6 +1,6 @@
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
-import {routeName} from '../constants/routeName';
+import { routeName } from '../constants/routeName';
 import Login from '../screens/Auth/Login/Login';
 import SignUp from '../screens/Auth/SignUp/SignUp';
 import Splash from '../screens/Auth/splash/Splash';
@@ -41,7 +41,9 @@ import AllDishesList from '../screens/Home/BottomTabs/Home/AllDishesList';
 import BarcodeReader from '../screens/Home/BottomTabs/Scanner/BarcodeReader';
 import More from '../screens/Home/BottomTabs/More/More';
 import RandomiserWheel from '../screens/Home/BottomTabs/Randomiser/RandomWheel';
-import Wallet from '../screens/Home/Wallet/Wallet';
+import Wallet from '../screens/Home/Wallet/Wallet'
+import TopUp from '../screens/Home/Wallet/topUp'
+import Transfer from '../screens/Home/Wallet/transfer';
 
 const Stack = createNativeStackNavigator();
 
@@ -51,7 +53,7 @@ function HomeStack() {
       screenOptions={{
         headerShown: false,
       }}
-      // initialRouteName="SPLASH"
+    // initialRouteName="SPLASH"
     >
       <Stack.Screen name={routeName.LANDING_SCREEN} component={BottomTabs} />
       <Stack.Screen
@@ -64,13 +66,13 @@ function HomeStack() {
         component={TransactionHistory}
       />
       <Stack.Screen name={routeName.APPLY_JOBS} component={Apply_Jobs} />
+
       <Stack.Screen name={routeName.WALLET} component={Wallet} />
+      <Stack.Screen name={routeName.TRANSFER} component={Transfer} />
+      <Stack.Screen name={routeName.TOP_UP} component={TopUp} />
 
       <Stack.Screen name={routeName.ORDER_HISTORY} component={Order_history} />
-      <Stack.Screen
-        name={routeName.RestaurantDetail}
-        component={RestaurantDetail}
-      />
+      <Stack.Screen name={routeName.RestaurantDetail} component={RestaurantDetail} />
       <Stack.Screen name={routeName.PROFILE_SCREEN} component={ProfileScreen} />
       <Stack.Screen name={routeName.MENU} component={Menu} />
       <Stack.Screen name={routeName.MAP_VIEW} component={MapView} />

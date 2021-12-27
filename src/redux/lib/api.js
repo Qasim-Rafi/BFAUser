@@ -88,6 +88,8 @@ class Api {
         error:
           'Unable to connect to the internet. Please retry after checking your internet connection',
       };
+      console.log(error, 'Error message from API.js')
+      console.log(err.response, 'Err message from API.js')
       throw err.response ? {...err.response.data, error} : err;
     }
   }
