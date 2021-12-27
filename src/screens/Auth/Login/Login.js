@@ -76,10 +76,11 @@ export default function Login({ navigation }) {
 
   useEffect(() => {
     loginResponse ? setErrorString(loginResponse.message) : null
-  }, [loginResponse])
+    loginNetworkErr ? setErrorString(loginNetworkErr.message) : null
+  }, [loginResponse, loginNetworkErr])
 
   //validation form
-  const Validation = async (item) => {
+  const Validation = (item) => {
     console.log("ErrorMessage: ", errorString);
     setErrorString('')
 
@@ -127,22 +128,10 @@ export default function Login({ navigation }) {
       // setLoading(true);
       userLogin();
       setErrorString('')
-      await loginResponse
 
-      if(loginNetworkErr === undefined){
+      // console.log(loginNetworkErr.message, 'network check......');
 
-       
-
-        // if (loginResponse.success === false ) {
-        //     console.log('loginResponse');
-        //     console.log(loginResponse.success);
-        //     console.log(loginResponse.message);
-        //     setErrorString('ServerResponse: ' + loginResponse.message)
-        // }
-      }else{
-        setErrorString(loginNetworkErr)
-        console.log('loginNetworkErr',loginNetworkErr);
-      }
+      
     }
     
     
