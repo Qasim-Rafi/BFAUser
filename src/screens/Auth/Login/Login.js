@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect } from 'react';
 import {
   StyleSheet,
   View,
@@ -47,6 +47,7 @@ export default function Login({ navigation }) {
   const loading = useSelector(state => state.login_User.loginScreen.refreshing);
   const loginResponse = useSelector(state => state.login_User.loginScreen.data)
   const loginNetworkErr = useSelector(state => state.login_User.loginScreen.errorMsg)
+  
 
   console.log(loginResponse, 'LOgin screen error');
   console.log(loginNetworkErr, 'LOgin network error');
@@ -73,10 +74,12 @@ export default function Login({ navigation }) {
   //   }
   // })
 
-
+  useEffect(() => {
+    loginResponse ? setErrorString(loginResponse.message) : null
+  }, [loginResponse])
 
   //validation form
-  const Validation = (item) => {
+  const Validation = async (item) => {
     console.log("ErrorMessage: ", errorString);
     setErrorString('')
 
@@ -123,22 +126,26 @@ export default function Login({ navigation }) {
     else {
       // setLoading(true);
       userLogin();
+      setErrorString('')
+      await loginResponse
+
       if(loginNetworkErr === undefined){
-        if (loginResponse.success === false ) {
-          setTimeout(() => {
-            console.log('loginResponse');
-            console.log(loginResponse.success);
-            console.log(loginResponse.message);
-            setErrorString('ServerResponse: ' + loginResponse.message)
-          }, 2000);
-          // console.log(loginResponse.message)
-        }
+
+       
+
+        // if (loginResponse.success === false ) {
+        //     console.log('loginResponse');
+        //     console.log(loginResponse.success);
+        //     console.log(loginResponse.message);
+        //     setErrorString('ServerResponse: ' + loginResponse.message)
+        // }
       }else{
         setErrorString(loginNetworkErr)
         console.log('loginNetworkErr',loginNetworkErr);
       }
     }
-
+    
+    
 
   }
   // React.useEffect(()=>{
@@ -172,7 +179,7 @@ export default function Login({ navigation }) {
                 <ResponsiveText>
                   
                   </ResponsiveText>
-} */}
+                } */}
           </View>
           <View style={styles.formArea}>
             <Input
