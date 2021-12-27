@@ -21,9 +21,10 @@ const initialState = {
   loginScreen: {
     refreshing: false,
     data: {},
-    errorMsg:''
+    messag: '',
+    success: '',
   },
-};   
+};
 
 export const login_User = (state = initialState, action) => {
   switch (action.type) {
@@ -33,11 +34,11 @@ export const login_User = (state = initialState, action) => {
         ...state,
         loginScreen: {
           ...state.loginScreen,
-          data: action.payload,
-          refreshing:true,
+          refreshing: true,
+
         },
       };
-    
+
     case types.LOGIN_USER_SUCCESS:
       console.log(action, 'action in reducer');
       return {
@@ -45,21 +46,23 @@ export const login_User = (state = initialState, action) => {
         loginScreen: {
           ...state.loginScreen,
           data: action.payload,
-          refreshing:false,
+          refreshing: false,
         },
       };
-        case types.LOGIN_USER_FAILURE:
+    case types.LOGIN_USER_FAILURE:
       console.log(action, 'action in reducer');
       return {
         ...state,
         loginScreen: {
           ...state.loginScreen,
-          refreshing:false,
-          errorMsg:action.error,
+          refreshing: false,
+          message: action.payload.message,
+          success: action.payload.success,
+
+
         },
-        
       };
-   
+
     default:
       return state;
   }
@@ -102,7 +105,6 @@ export const login_User = (state = initialState, action) => {
 // };
 
 //Get user categories reducer
-
 
 // //Get user categories reducer
 // export const addedCategory = (state = State.initial, action) => {

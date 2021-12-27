@@ -8,16 +8,16 @@ import {
   useColorScheme,
   ViewPagerAndroidBase,
 } from 'react-native';
-import {ScrollView, TouchableOpacity} from 'react-native';
-import {hp, wp} from '../../../helpers/Responsiveness';
+import { ScrollView, TouchableOpacity } from 'react-native';
+import { hp, wp } from '../../../helpers/Responsiveness';
 import Icon from '../../../components/Icon';
 import Input from '../../../components/Input';
 import RnButton from '../../../components/RnButton';
 import ResponsiveText from '../../../components/RnText';
-import {globalPath} from '../../../constants/globalPath';
+import { globalPath } from '../../../constants/globalPath';
 import Line from '../../../components/Line';
-import {routeName} from '../../../constants/routeName';
-import {colors} from '../../../constants/colorsPallet';
+import { routeName } from '../../../constants/routeName';
+import { colors } from '../../../constants/colorsPallet';
 import FlashMessage, {
   showMessage,
   hideMessage,
@@ -34,11 +34,11 @@ import {
 } from 'react-native-indicators';
 
 //Redux Import
-import {useDispatch, useSelector} from 'react-redux';
-import {getBfaPartners, loginUser} from '../../../redux/actions/user.actions';
-import {StackActions} from '@react-navigation/routers';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBfaPartners, loginUser } from '../../../redux/actions/user.actions';
+import { StackActions } from '@react-navigation/routers';
 
-export default function Login({navigation}) {
+export default function Login({ navigation }) {
   const dropdownRef = React.useRef(null);
   // const showError
   // const [loading, setLoading] = React.useState(false);
@@ -48,6 +48,16 @@ export default function Login({navigation}) {
   //Redux Dis/patch
   const dispatch = useDispatch();
   const loading = useSelector(state => state.login_User.loginScreen.refreshing);
+  const data = useSelector(state => state.login_User.loginScreen.data);
+  const success = useSelector(state => state.login_User.loginScreen.success);
+  const message = useSelector(state => state.login_User.loginScreen.message);
+
+  setTimeout(() => {
+    success
+  }, 3000);
+  console.log('success is:', success);
+  console.log('message is:', message);
+  console.log('data is:', data);
 
   //Redux Action Called
   const userLogin = () => {
@@ -73,12 +83,16 @@ export default function Login({navigation}) {
   const Validation = item => {
     console.log('ErrorMessage: ', setErrorString);
 
-    if (errorString === errorString) {
-      setErrorString('Invalid username or password ');
-      console.log('ErrorMessage: ', errorString);
-    } else {
-      setErrorString('Network connection error!!!');
-      console.log('ErrorMessage: ', errorString);
+    if (success === true) {
+      // alert(success);
+
+      userLogin();
+    }
+
+    else {
+      { message }
+
+      // alert("message: " + message)
     }
 
     // console.log("error is: ", textError);
@@ -111,8 +125,8 @@ export default function Login({navigation}) {
   return (
     <>
       <ScrollView
-        contentContainerStyle={{flexGrow: 1, backgroundColor: colors.black}}>
-        <View style={{flex: 1, backgroundColor: colors.black}}>
+        contentContainerStyle={{ flexGrow: 1, backgroundColor: colors.black }}>
+        <View style={{ flex: 1, backgroundColor: colors.black }}>
           <View style={styles.screeninfo}>
             <Icon source={globalPath.BALI_ICON} size={60} />
             <ResponsiveText
@@ -142,9 +156,7 @@ export default function Login({navigation}) {
               padding={[0, 0, 0, 25]}
               onChnageText={text => setUserName(text)}
               iconMargin={[0, 10, 0, 0]}
-              secureTextEntry={false}
               placeholder="Email"
-              check_textInputChange={false}
               leftIcon={globalPath.EMAIL_LOGO}
             />
             <Input
@@ -154,7 +166,6 @@ export default function Login({navigation}) {
               placeholder="Password"
               onChnageText={text => setPassword(text)}
               secureTextEntry={true}
-              check_textInputChange={false}
               leftIcon={globalPath.PASSWORD_LOGO}
             />
             <View style={styles.forgotPasswordContainer}>
@@ -170,7 +181,7 @@ export default function Login({navigation}) {
               color={colors.red}
               fontFamily="Regular"
               size={3}>
-              {errorString}
+              {message}
             </ResponsiveText>
 
             <TouchableOpacity style={styles.signin} onPress={Validation}>

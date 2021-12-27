@@ -5,6 +5,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  RefreshControl,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -12,11 +13,11 @@ import Icon from '../../../../components/Icon';
 import ResponsiveText from '../../../../components/RnText';
 import Input from '../../../../components/Input';
 import RnButton from '../../../../components/RnButton';
-import {globalPath} from '../../../../constants/globalPath';
-import {hp, wp} from '../../../../helpers/Responsiveness';
+import { globalPath } from '../../../../constants/globalPath';
+import { hp, wp } from '../../../../helpers/Responsiveness';
 import Swiper from 'react-native-swiper';
-import {routeName} from '../../../../constants/routeName';
-import {colors} from '../../../../constants/colorsPallet';
+import { routeName } from '../../../../constants/routeName';
+import { colors } from '../../../../constants/colorsPallet';
 import Fonts from '../../../../helpers/Fonts';
 import AdvertisementBanner from './AdvertisementBanner';
 import SeeAllButton from '../../../../components/SeeAllButton';
@@ -29,9 +30,9 @@ import AwardWinningDishes from './AwardWinningDishes';
 import Promotion from './Promotion';
 import JobsList from './JobsList';
 import Header from '../../../../components/Header';
-import {ourRecommendationFakeDATA} from '../../../../constants/mock';
+import { ourRecommendationFakeDATA } from '../../../../constants/mock';
 0;
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getRestaurantAllDishes,
   getUserCusine,
@@ -49,23 +50,52 @@ import axios from 'axios';
 import urls from '../../../../redux/lib/urls';
 import AllCuisines from './AllCuisines';
 import WhatsNew from './WhatNew';
-import {bfaPartnerSelecter} from '../../../../redux/lib/selectors';
-import {getBfaRecommendationSaga} from '../../../../redux/sagas/user.sagas';
-
-const Home = ({navigation}) => {
-  const loading = useSelector(
-    state => state.appReducers.bfaPartners.refreshing,
+import { bfaPartnerSelecter } from '../../../../redux/lib/selectors';
+import { getBfaRecommendationSaga } from '../../../../redux/sagas/user.sagas';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
+const Home = ({ navigation }) => {
+  const loading = useSelector(state => state.appReducers.bfaPartners.refreshing,
   );
-  // console.log('loading', loading);
 
-  const dispatch = useDispatch();
-  const getCusines = () => {
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(6000).then(() => setRefreshing(false));
+
+    dispatch(getBfaPartners(6));
+    dispatch(getPromotions());
+
     dispatch(
       getUserCusine({
         navigation: navigation,
       }),
     );
-  };
+    dispatch(getAddBannerData());
+    // dispatch(awardsRestaurant());
+    dispatch(getPromoNewsData());
+    dispatch(getPromoJobsData());
+    dispatch(getBfaRecommendations());
+    dispatch(getBruneiFoodRewards());
+
+
+
+  },
+    []);
+
+  // console.log('loading', loading);
+
+  const dispatch = useDispatch();
+  // const getCusines = () => {
+  //   dispatch(
+  //     getUserCusine({
+  //       navigation: navigation,
+  //     }),
+  //   );
+  // };
 
   React.useEffect(() => {
     // callAPI();
@@ -87,8 +117,20 @@ const Home = ({navigation}) => {
   }, []);
 
   return (
+
     <View style={styles.container}>
-      <ScrollView style={{flex: 0.9}}>
+      <ScrollView style={{ flex: 1 }}
+        showsVerticalScrollIndicator={false}
+        // contentContainerStyle={{ flex: 1 }}
+        refreshControl={
+          <RefreshControl
+            colors={Colors.yellow}
+            size={30}
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />
+        }
+      >
         <View style={styles.advertisementBanner}>
           <AdvertisementBanner navigation={navigation} />
         </View>
@@ -152,7 +194,7 @@ const Home = ({navigation}) => {
          
         </ImageBackground> */}
       </ScrollView>
-      <View style={{flex: 0.1, position: 'absolute', top: 0}}>
+      <View style={{ flex: 0.1, position: 'absolute', top: 0 }}>
         <Header screen={'home'} navigation={navigation} />
       </View>
     </View>
@@ -217,6 +259,12 @@ const styles = StyleSheet.create({
     borderRadius: 7,
 
     backgroundColor: colors.black3,
+  },
+  scrollView: {
+    flex: 0.9,
+    backgroundColor: 'pink',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   Advertisement2ndVarient: {
     // flex: 0.1,
