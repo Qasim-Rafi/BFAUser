@@ -123,7 +123,7 @@ const Wallet = (props) => {
                     </TouchableOpacity>
                 </View>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'center' }} >
+                <View style={{ flexDirection: 'row', justifyContent: 'center' ,alignItems:'center',width:'100%' }} >
                     <TouchableOpacity onPress={() => setNumber(parseFloat(number) + 0.01)} >
                         <Image source={_1BCent} style={{ marginHorizontal: -20, height: 100, width: 100 }} />
                     </TouchableOpacity>

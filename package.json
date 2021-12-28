@@ -39,6 +39,7 @@
     "react-native-svg": "^12.1.1",
     "react-native-swiper": "^1.6.0",
     "react-native-table-component": "^1.2.1",
+    "react-native-vector-icons": "^9.0.0",
     "react-native-wheel-of-fortune": "^1.5.4",
     "react-redux": "^7.2.4",
     "redux": "^4.1.1",
