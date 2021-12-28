@@ -5,6 +5,8 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
+  Modal,
+  Button
 } from 'react-native';
 import ResponsiveText from '../../../../components/RnText';
 
@@ -24,6 +26,9 @@ import {hp} from '../../../../helpers/Responsiveness';
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from '../../../../components/Icon';
 import {getBfaPartners} from '../../../../redux/actions/user.actions';
+
+import { WebView } from 'react-native-webview'
+
 const BfaPartner = ({props}) => {
   const dispatch = useDispatch();
   const loading = useSelector(
@@ -31,6 +36,8 @@ const BfaPartner = ({props}) => {
   );
   // console.log('loading', loading);
   const [moreData, setMoreData] = React.useState(false);
+  const [modalVisble, setModalVisible] = React.useState(false)
+
   let bfaPartners = useSelector(state => state.appReducers.bfaPartners.data);
   const [title, setTitle] = React.useState(
     bfaPartners.length <= 6 ? 'Less' : 'More',
@@ -111,15 +118,17 @@ const BfaPartner = ({props}) => {
                       marginRight: 5,
                       marginVertical: 3,
                     }}>
-                    <Icon
-                      source={{
-                        uri: url,
-                      }}
-                      // source={url}
+                      <TouchableOpacity onPress={()=>setModalVisible(true)} >
+                        <Icon
+                          source={{
+                            uri: url,
+                          }}
+                          // source={url}
 
-                      size={55}
-                      borderRadius={5}
-                    />
+                          size={55}
+                          borderRadius={5}
+                        />
+                      </TouchableOpacity>
                   </View>
                 );
               })
@@ -133,20 +142,34 @@ const BfaPartner = ({props}) => {
                       marginRight: 5,
                       marginVertical: 3,
                     }}>
-                    <Icon
-                      source={{
-                        uri: url,
-                      }}
-                      // source={url}
+                      <TouchableOpacity onPress={()=>setModalVisible(true)} >
+                        <Icon
+                          source={{
+                            uri: url,
+                          }}
+                          // source={url}
 
-                      size={55}
-                      borderRadius={5}
-                    />
+                          size={55}
+                          borderRadius={5}
+                        />
+                      </TouchableOpacity>
                   </View>
                 );
               })
           : undefined}
       </View>
+
+      {/* <Modal visible={modalVisble} style={{height:'80%', width:'80%'}} >
+        <View style={{flex:1,justifyContent:'center'}} >
+          {console.log(bfaPartners)}
+          <WebView 
+            source={{uri: 'https://www.jollibeefoods.com/'}} 
+            // style={{height:'80%',width:'80%'}}
+          />
+          <Button title={'Close'} onPress={()=>setModalVisible(false)} />
+        </View>
+      </Modal> */}
+
     </View>
   );
 };

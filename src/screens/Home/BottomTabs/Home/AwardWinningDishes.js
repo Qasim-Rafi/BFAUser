@@ -74,7 +74,7 @@ const AwardWinningDishes = props => {
                           backgroundColor: 'rgba(0,0,0,1)',
                         }}
                         source={{
-                          uri: url.imageDataB.replace(/ /g, ''),
+                          uri: url.imageData.replace(/ /g, ''),
                         }}>
                         <ResponsiveText
                           fontFamily="Regular"
