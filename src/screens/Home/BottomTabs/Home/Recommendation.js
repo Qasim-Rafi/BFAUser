@@ -13,11 +13,11 @@ import {
   advertisementBannerFakeDATA,
   ourRecommendationFakeDATA,
 } from '../../../../constants/mock';
-import {colors} from '../../../../constants/colorsPallet';
+import { colors } from '../../../../constants/colorsPallet';
 import SeeAllButton from '../../../../components/SeeAllButton';
-import {routeName} from '../../../../constants/routeName';
-import {hp, wp} from '../../../../helpers/Responsiveness';
-import {useSelector} from 'react-redux';
+import { routeName } from '../../../../constants/routeName';
+import { hp, wp } from '../../../../helpers/Responsiveness';
+import { useSelector } from 'react-redux';
 const Recommendation = props => {
   const bfaRecommendation = useSelector(
     state => state.appReducers.bfaRecommendationDetail.data,
@@ -29,7 +29,7 @@ const Recommendation = props => {
         <ResponsiveText margin={[0, 0, 0, 0]} size={4} color={colors.white}>
           BFA Recommendation
         </ResponsiveText>
-        <View style={{marginRight: -10}}>
+        <View style={{ marginRight: -10 }}>
           <TouchableOpacity
             style={{
               flexDirection: 'row',
@@ -38,7 +38,7 @@ const Recommendation = props => {
               paddingLeft: 10,
             }}
             onPress={() => props.navigation.navigate(routeName.DISH_DETAIL)}>
-            <View style={{marginRight: 0}}>
+            <View style={{ marginRight: 0 }}>
               <SeeAllButton
                 title={'BFA Recommendation'}
                 data={bfaRecommendation}
@@ -52,50 +52,50 @@ const Recommendation = props => {
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           {bfaRecommendation.length > 0
             ? bfaRecommendation.map((item, index) => {
-                return (
-                  <TouchableOpacity
-                    onPress={() =>
-                      props.navigation.navigate(routeName.DISH_DETAIL, {
-                        dish: item,
-                      })
-                    }>
-                    <View
+              return (
+                <TouchableOpacity
+                  onPress={() =>
+                    props.navigation.navigate(routeName.DISH_DETAIL, {
+                      dish: item,
+                    })
+                  }>
+                  <View
+                    style={{
+                      width: wp(26),
+                      height: hp(18),
+                      borderRadius: 3,
+                      marginHorizontal: 5,
+                      overflow: 'hidden',
+                      flexDirection: 'row',
+                    }}>
+                    <ImageBackground
+                      imageStyle={{ opacity: 0.5 }}
                       style={{
-                        width: wp(26),
-                        height: hp(18),
-                        borderRadius: 3,
-                        marginHorizontal: 5,
+                        flex: 1,
+                        padding: 5,
                         overflow: 'hidden',
-                        flexDirection: 'row',
-                      }}>
-                      <ImageBackground
-                        imageStyle={{opacity: 0.5}}
-                        style={{
-                          flex: 1,
-                          padding: 5,
-                          overflow: 'hidden',
-                          justifyContent: 'flex-end',
-                          backgroundColor: 'rgba(0,0,0,1)',
-                        }}
-                        source={{uri: item.imageDataB}}>
-                        <ResponsiveText
-                          fontFamily="Regular"
-                          size={3}
-                          margin={[0, 0, 5, 0]}
-                          color={colors.white}>
-                          {item.dishName}
-                        </ResponsiveText>
-                        <ResponsiveText
-                          fontFamily="Light"
-                          size={2.5}
-                          color={colors.white}>
-                          {item.cusineName}
-                        </ResponsiveText>
-                      </ImageBackground>
-                    </View>
-                  </TouchableOpacity>
-                );
-              })
+                        justifyContent: 'flex-end',
+                        backgroundColor: 'rgba(0,0,0,1)',
+                      }}
+                      source={{ uri: item.imageDataB }}>
+                      <ResponsiveText
+                        fontFamily="Regular"
+                        size={3}
+                        margin={[0, 0, 5, 0]}
+                        color={colors.white}>
+                        {item.dishName}
+                      </ResponsiveText>
+                      <ResponsiveText
+                        fontFamily="Light"
+                        size={2.5}
+                        color={colors.white}>
+                        {item.cusineName}
+                      </ResponsiveText>
+                    </ImageBackground>
+                  </View>
+                </TouchableOpacity>
+              );
+            })
             : undefined}
         </ScrollView>
       </View>

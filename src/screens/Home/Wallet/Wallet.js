@@ -123,7 +123,7 @@ const Wallet = (props) => {
                     </TouchableOpacity>
                 </View>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'center' }} >
+                <View style={{ flexDirection: 'row', justifyContent: 'center', width: '100%' }} >
                     <TouchableOpacity onPress={() => setNumber(parseFloat(number) + 0.01)} >
                         <Image source={_1BCent} style={{ marginHorizontal: -20, height: 100, width: 100 }} />
                     </TouchableOpacity>
@@ -142,7 +142,7 @@ const Wallet = (props) => {
                 </View>
 
                 <Text style={{ color: 'white', fontSize: 19 }}>Your BCoin Balance is:</Text>
-                <Text style={{ color: 'white', fontSize: 70 }} >${typeof(comingAmount) === 'undefined' ? 0 : walletAmount+comingAmount }</Text>
+                <Text style={{ color: 'white', fontSize: 70 }} >${typeof (comingAmount) === 'undefined' ? 0 : walletAmount + comingAmount}</Text>
 
                 <Modal
                     animationType="slide"

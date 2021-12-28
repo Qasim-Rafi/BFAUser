@@ -9,7 +9,7 @@ import { hp, wp } from '../../../helpers/Responsiveness';
 import { colors } from '../../../constants/colorsPallet';
 import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
-export default function Categories({navigation ,route}) {
+export default function Categories({ navigation, route }) {
   const { data } = route.params;
 
   const [activeAlphabet, setActiveAlphabet] = useState(null);
@@ -21,38 +21,38 @@ export default function Categories({navigation ,route}) {
     scrollRef?.current.scrollToIndex({ index, viewOffset: hp(22) })
 
   };
-   const onViewRef = useCallback(({ viewableItems, changed }) => {
-         setActiveAlphabet(changed[0].item.title);
-            console.log("Visible items are", viewableItems[0]);
-            console.log("Changed in this ", changed[0].item.title);
-        }, []);
+  const onViewRef = useCallback(({ viewableItems, changed }) => {
+    setActiveAlphabet(changed[0].item.title);
+    console.log("Visible items are", viewableItems[0]);
+    console.log("Changed in this ", changed[0].item.title);
+  }, []);
   const renderItem = ({ item }) => {
     return (
       <View style={styles.item}>
         <Text style={styles.header}>{item.firstLetter}</Text>
-        <View style={{borderRadius:10,backgroundColor: colors.black2,paddingVertical:10}}>
-        {item.objCusineList.map((item,index)=>{
-          return(
-            <View style={{  paddingLeft: 25, justifyContent: 'center',paddingVertical:2}}>
-          <Text style={styles.title}>{item.name}</Text>
-        </View> )
-        })}
+        <View style={{ borderRadius: 10, backgroundColor: colors.black2, paddingVertical: 10 }}>
+          {item.objCusineList.map((item, index) => {
+            return (
+              <View style={{ paddingLeft: 25, justifyContent: 'center', paddingVertical: 2 }}>
+                <Text style={styles.title}>{item.name}</Text>
+              </View>)
+          })}
         </View>
-        
+
       </View>
     )
   };
   return (
     <View style={styles.container}>
-      <View style={[styles.header, {backgroundColor:colors.grey3}]}>
-    
-         <View style={{backgroundColor:colors.grey4, borderRadius:2}}>
-        <TouchableOpacity style={{borderRadius:10}} onPress={()=>{navigation.goBack()}}>
-          <View style={{height:hp(5), width:wp(10), alignItems:'center', justifyContent:'center', borderRadius:10}}><Icon source={globalPath.BACK_ARROW} size={20}/></View></TouchableOpacity>
+      <View style={[styles.header, { backgroundColor: colors.grey3 }]}>
+
+        <View style={{ backgroundColor: colors.grey4, borderRadius: 2 }}>
+          <TouchableOpacity style={{ borderRadius: 10 }} onPress={() => { navigation.goBack() }}>
+            <View style={{ height: hp(5), width: wp(10), alignItems: 'center', justifyContent: 'center', borderRadius: 10 }}><Icon source={globalPath.BACK_ARROW} size={20} /></View></TouchableOpacity>
         </View>
         <Text style={{ color: colors.white, width: wp(75), textAlign: 'center' }} >View Cuisines and Categories</Text>
-        <Icon  source={globalPath.SEARCH_LOGO} size={20} />
-        
+        <Icon source={globalPath.SEARCH_LOGO} size={20} />
+
 
       </View>
       <View style={{ position: 'absolute', height: hp(86), marginRight: 10, width: wp(5), backgroundColor: '#383838', zIndex: 1000, right: 0, marginTop: hp(10), alignItems: 'center', borderRadius: 10, justifyContent: 'center' }}>
@@ -73,7 +73,7 @@ export default function Categories({navigation ,route}) {
           data={data}
           keyExtractor={(item, index) => item + index}
           renderItem={renderItem}
-           onViewableItemsChanged={onViewRef}
+          onViewableItemsChanged={onViewRef}
           viewabilityConfig={viewConfigRef.current}
         />
       </View>
@@ -82,7 +82,7 @@ export default function Categories({navigation ,route}) {
 
 const styles = StyleSheet.create({
   container: {
-    position:'relative',
+    position: 'relative',
     flex: 1,
     // height: hp(120),
     // justifyContent: 'center',

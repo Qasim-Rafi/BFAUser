@@ -14,21 +14,23 @@ import {
   BFAPartnerLessData,
   image,
 } from '../../../../constants/mock';
-import {colors} from '../../../../constants/colorsPallet';
+import { colors } from '../../../../constants/colorsPallet';
 import SeeAllButton from '../../../../components/SeeAllButton';
-import {globalPath} from '../../../../constants/globalPath';
-import {wp} from '../../../../helpers/Responsiveness';
-import {useDispatch, useSelector} from 'react-redux';
+import { globalPath } from '../../../../constants/globalPath';
+import { wp } from '../../../../helpers/Responsiveness';
+import { useDispatch, useSelector } from 'react-redux';
 import urls from '../../../../redux/lib/urls';
-import {hp} from '../../../../helpers/Responsiveness';
+import { hp } from '../../../../helpers/Responsiveness';
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from '../../../../components/Icon';
-import {getBfaPartners} from '../../../../redux/actions/user.actions';
-const BfaPartner = ({props}) => {
+import { Linking } from 'react-native';
+import { getBfaPartners } from '../../../../redux/actions/user.actions';
+const BfaPartner = ({ props }) => {
   const dispatch = useDispatch();
   const loading = useSelector(
     state => state.appReducers.bfaPartners.refreshing,
   );
+
   // console.log('loading', loading);
   const [moreData, setMoreData] = React.useState(false);
   let bfaPartners = useSelector(state => state.appReducers.bfaPartners.data);
@@ -63,12 +65,13 @@ const BfaPartner = ({props}) => {
   }
 
   return (
-    <View style={{backgroundColor: colors.black3}}>
+    <View style={{ backgroundColor: colors.black3 }}>
       <View style={styles.bfaPartnerHeaderSection}>
         <ResponsiveText size={4} color={colors.white}>
           Bali Partners
         </ResponsiveText>
         <TouchableOpacity
+
           style={{
             flexDirection: 'row',
             alignItems: 'center',
@@ -89,12 +92,15 @@ const BfaPartner = ({props}) => {
             color={colors.yellow}>
             {title}
           </ResponsiveText>
+
+
           <Icon
             size={(wp(1.6), hp(1.6))}
             source={
               title === 'More' ? globalPath.DOWN_ARROW : globalPath.UP_ARROW
             }
           />
+
         </TouchableOpacity>
       </View>
 
@@ -102,51 +108,57 @@ const BfaPartner = ({props}) => {
         {images.length > 0
           ? title === 'More'
             ? lessImages.map((url, index) => {
-                return (
-                  // <Icon source={url} size={35} borderRadius={5} />
-                  <View
-                    style={{
-                      backgroundColor: colors.white,
-                      borderRadius: 5,
-                      marginRight: 5,
-                      marginVertical: 3,
-                    }}>
-                    <Icon
-                      source={{
-                        uri: url,
-                      }}
-                      // source={url}
 
-                      size={55}
-                      borderRadius={5}
-                    />
-                  </View>
-                );
-              })
+              return (
+                // <Icon source={url} size={35} borderRadius={5} />
+
+
+                <View
+                  style={{
+                    backgroundColor: colors.white,
+                    borderRadius: 5,
+                    marginRight: 5,
+                    marginVertical: 3,
+                  }}>
+                  <Icon
+                    source={{
+                      uri: url,
+                    }}
+                    // source={url}
+
+                    size={55}
+                    borderRadius={5}
+                  />
+                </View>
+
+              );
+            })
             : images.map((url, index) => {
-                return (
-                  // <Icon source={url} size={35} borderRadius={5} />
-                  <View
-                    style={{
-                      backgroundColor: colors.white,
-                      borderRadius: 5,
-                      marginRight: 5,
-                      marginVertical: 3,
-                    }}>
-                    <Icon
-                      source={{
-                        uri: url,
-                      }}
-                      // source={url}
+              return (
+                // <Icon source={url} size={35} borderRadius={5} />
+                <View
+                  style={{
+                    backgroundColor: colors.white,
+                    borderRadius: 5,
+                    marginRight: 5,
+                    marginVertical: 3,
+                  }}>
+                  <Icon
+                    source={{
+                      uri: url,
+                    }}
+                    // source={url}
 
-                      size={55}
-                      borderRadius={5}
-                    />
-                  </View>
-                );
-              })
+                    size={55}
+                    borderRadius={5}
+                  />
+                </View>
+              );
+            })
           : undefined}
+
       </View>
+
     </View>
   );
 };
