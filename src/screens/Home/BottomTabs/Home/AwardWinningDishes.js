@@ -8,18 +8,20 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import ResponsiveText from '../../../../components/RnText';
-import {Rating, AirbnbRating} from 'react-native-ratings';
-import {routeName} from '../../../../constants/routeName';
+import { Rating, AirbnbRating } from 'react-native-ratings';
+import { routeName } from '../../../../constants/routeName';
 import {
   advertisementBannerFakeDATA,
   awardWinningFakeDATA,
   promotionsFakeDATA,
+  ORDER_HISTORY,
+  TRANSACTION_HISTORY_FAKE_DATA,
   yourFavoriteFakeDATA,
 } from '../../../../constants/mock';
-import {colors} from '../../../../constants/colorsPallet';
+import { colors } from '../../../../constants/colorsPallet';
 import SeeAllButton from '../../../../components/SeeAllButton';
-import {hp, wp} from '../../../../helpers/Responsiveness';
-import {useSelector} from 'react-redux';
+import { hp, wp } from '../../../../helpers/Responsiveness';
+import { useSelector } from 'react-redux';
 const AwardWinningDishes = props => {
   const FoodsAwards = useSelector(
     state => state.appReducers.bruneiFoodsAwards.data,
@@ -36,64 +38,66 @@ const AwardWinningDishes = props => {
         <ResponsiveText margin={[0, 0, 0, -5]} size={4} color={colors.white}>
           Brunei Food Awards
         </ResponsiveText>
-        <View style={{marginRight: -15}}>
+        <View style={{ marginRight: -15 }}>
           <SeeAllButton
             title={'Brunei Food Awards'}
-            data={FoodsAwards}
+            data={TRANSACTION_HISTORY_FAKE_DATA}
             navigation={props.navigation}
           />
         </View>
       </View>
       <View style={styles.AwardWinningDishesItemsSection}>
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-          {FoodsAwards.length > 0
-            ? FoodsAwards.map((url, index) => {
-                return (
-                  <TouchableOpacity
-                    onPress={() =>
-                      props.navigation.navigate(routeName.DISH_DETAIL, {
-                        dish: url,
-                      })
-                    }>
-                    <View
+          {TRANSACTION_HISTORY_FAKE_DATA.length > 0
+            ? TRANSACTION_HISTORY_FAKE_DATA.map((url, index) => {
+              return (
+                <TouchableOpacity
+                  onPress={() =>
+                    props.navigation.navigate(routeName.DISH_DETAIL, {
+                      dish: url,
+                    })
+                  }>
+                  <View
+                    style={{
+                      width: wp(26),
+                      height: hp(18),
+                      marginHorizontal: 5,
+                      borderRadius: 3,
+                      overflow: 'hidden',
+                      flexDirection: 'row',
+                    }}>
+                    <ImageBackground
+                      imageStyle={{ opacity: 0.5 }}
                       style={{
-                        width: wp(26),
-                        height: hp(18),
-                        marginHorizontal: 5,
-                        borderRadius: 3,
+                        flex: 1,
+                        padding: 5,
                         overflow: 'hidden',
-                        flexDirection: 'row',
-                      }}>
-                      <ImageBackground
-                        imageStyle={{opacity: 0.5}}
-                        style={{
-                          flex: 1,
-                          padding: 5,
-                          overflow: 'hidden',
-                          justifyContent: 'flex-end',
-                          backgroundColor: 'rgba(0,0,0,1)',
-                        }}
-                        source={{
-                          uri: url.imageData.replace(/ /g, ''),
-                        }}>
-                        <ResponsiveText
-                          fontFamily="Regular"
-                          size={3}
-                          margin={[0, 0, 5, 0]}
-                          color={colors.white}>
-                          {url.restaurantName}
-                        </ResponsiveText>
-                        <ResponsiveText
-                          fontFamily="Light"
-                          size={2.5}
-                          color={colors.white}>
-                          {url.awardName}
-                        </ResponsiveText>
-                      </ImageBackground>
-                    </View>
-                  </TouchableOpacity>
-                );
-              })
+                        justifyContent: 'flex-end',
+                        backgroundColor: 'rgba(0,0,0,1)',
+                      }}
+                      // source={{
+                      //   uri: url.imageData.replace(/ /g, '')
+                      // }}
+                      source={url.url}>
+
+                      <ResponsiveText
+                        fontFamily="Regular"
+                        size={3}
+                        margin={[0, 0, 5, 0]}
+                        color={colors.white}>
+                        {url.restaurant}
+                      </ResponsiveText>
+                      <ResponsiveText
+                        fontFamily="Light"
+                        size={2.5}
+                        color={colors.white}>
+                        {url.awardName}
+                      </ResponsiveText>
+                    </ImageBackground>
+                  </View>
+                </TouchableOpacity>
+              );
+            })
             : undefined}
         </ScrollView>
       </View>

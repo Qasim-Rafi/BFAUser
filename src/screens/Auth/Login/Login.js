@@ -62,6 +62,7 @@ export default function Login({ navigation }) {
         params: {
           username: userName,
           password: password,
+          usertype: "3"
         },
         navigation: navigation,
       })
@@ -147,7 +148,9 @@ export default function Login({ navigation }) {
 
 
 
-      <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: colors.black }}>
+      <ScrollView
+        keyboardShouldPersistTaps="always"
+        contentContainerStyle={{ flexGrow: 1, backgroundColor: colors.black }}>
         <View style={{ flex: 1, backgroundColor: colors.black }}>
           <View style={styles.screeninfo}>
             <Icon source={globalPath.BALI_ICON} size={60} />
