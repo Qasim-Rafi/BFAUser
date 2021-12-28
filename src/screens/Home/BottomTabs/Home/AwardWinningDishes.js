@@ -14,6 +14,8 @@ import {
   advertisementBannerFakeDATA,
   awardWinningFakeDATA,
   promotionsFakeDATA,
+  ORDER_HISTORY,
+  TRANSACTION_HISTORY_FAKE_DATA,
   yourFavoriteFakeDATA,
 } from '../../../../constants/mock';
 import { colors } from '../../../../constants/colorsPallet';
@@ -39,15 +41,15 @@ const AwardWinningDishes = props => {
         <View style={{ marginRight: -15 }}>
           <SeeAllButton
             title={'Brunei Food Awards'}
-            data={FoodsAwards}
+            data={TRANSACTION_HISTORY_FAKE_DATA}
             navigation={props.navigation}
           />
         </View>
       </View>
       <View style={styles.AwardWinningDishesItemsSection}>
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-          {FoodsAwards.length > 0
-            ? FoodsAwards.map((url, index) => {
+          {TRANSACTION_HISTORY_FAKE_DATA.length > 0
+            ? TRANSACTION_HISTORY_FAKE_DATA.map((url, index) => {
               return (
                 <TouchableOpacity
                   onPress={() =>
@@ -73,15 +75,17 @@ const AwardWinningDishes = props => {
                         justifyContent: 'flex-end',
                         backgroundColor: 'rgba(0,0,0,1)',
                       }}
-                      source={{
-                        uri: url.imageDataB.replace(/ /g, ''),
-                      }}>
+                      // source={{
+                      //   uri: url.imageData.replace(/ /g, '')
+                      // }}
+                      source={url.url}>
+
                       <ResponsiveText
                         fontFamily="Regular"
                         size={3}
                         margin={[0, 0, 5, 0]}
                         color={colors.white}>
-                        {url.restaurantName}
+                        {url.restaurant}
                       </ResponsiveText>
                       <ResponsiveText
                         fontFamily="Light"
