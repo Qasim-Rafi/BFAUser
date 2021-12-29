@@ -47,6 +47,7 @@ const BfaPartner = ({props}) => {
   // console.log('BFA Partners: ', bfaPartners);
   const images = [];
   const lessImages = [];
+  const siteAdd = []
   if (loading === false) {
     bfaPartners.map(item => {
       var img = item.imageDataB;
@@ -59,6 +60,14 @@ const BfaPartner = ({props}) => {
       //  console.log('All Images: ',images);
     });
   }
+
+  if(loading===false){
+    bfaPartners.map((item, index)=>{
+      siteAdd.push(bfaPartners[index].siteUrl)
+    })
+  }
+  // console.log(siteAdd);
+
   if (loading === false) {
     for (var i = 0; i < 6; i++) {
       var img = bfaPartners[i].imageDataB;
@@ -69,6 +78,26 @@ const BfaPartner = ({props}) => {
       }
     }
   }
+
+  console.log('----------------------');
+  console.log(siteAdd);
+  console.log('----------------------')
+
+  const modalView = (index,visibilty) =>  (
+    <View>
+      <Modal visible={true} style={{height:'80%', width:'80%'}} >
+        <View style={{flex:1,justifyContent:'center'}} >
+          {console.log(siteAdd[index])}
+          <WebView 
+            source={{uri: siteAdd[index]}} 
+            // style={{height:'80%',width:'80%'}}
+          />
+          <Button title={'Close'} onPress={()=>setModalVisible(false)} />
+        </View>
+      </Modal>
+    </View>
+    )
+  
 
   return (
     <View style={{ backgroundColor: colors.black3 }}>
@@ -114,6 +143,7 @@ const BfaPartner = ({props}) => {
         {images.length > 0
           ? title === 'More'
             ? lessImages.map((url, index) => {
+              console.log(siteAdd[index])
                 return (
                   // <Icon source={url} size={35} borderRadius={5} />
                   <View
@@ -123,7 +153,7 @@ const BfaPartner = ({props}) => {
                       marginRight: 5,
                       marginVertical: 3,
                     }}>
-                      <TouchableOpacity onPress={()=>setModalVisible(true)} >
+                      <TouchableOpacity onPress={()=>modalView(index,true)} >
                         <Icon
                           source={{
                             uri: url,
@@ -138,6 +168,7 @@ const BfaPartner = ({props}) => {
                 );
               })
             : images.map((url, index) => {
+              console.log(bfaPartners[index])
                 return (
                   // <Icon source={url} size={35} borderRadius={5} />
                   <View
@@ -147,7 +178,7 @@ const BfaPartner = ({props}) => {
                       marginRight: 5,
                       marginVertical: 3,
                     }}>
-                      <TouchableOpacity onPress={()=>setModalVisible(true)} >
+                      <TouchableOpacity onPress={()=>modalView(index,true)} >
                         <Icon
                           source={{
                             uri: url,
@@ -157,6 +188,7 @@ const BfaPartner = ({props}) => {
                           size={55}
                           borderRadius={5}
                         />
+                        
                       </TouchableOpacity>
                   </View>
                 );
@@ -165,16 +197,6 @@ const BfaPartner = ({props}) => {
 
       </View>
 
-      {/* <Modal visible={modalVisble} style={{height:'80%', width:'80%'}} >
-        <View style={{flex:1,justifyContent:'center'}} >
-          {console.log(bfaPartners)}
-          <WebView 
-            source={{uri: 'https://www.jollibeefoods.com/'}} 
-            // style={{height:'80%',width:'80%'}}
-          />
-          <Button title={'Close'} onPress={()=>setModalVisible(false)} />
-        </View>
-      </Modal> */}
 
     </View>
   );
