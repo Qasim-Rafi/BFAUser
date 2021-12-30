@@ -115,7 +115,7 @@ const Home = ({ navigation }) => {
     // dispatch(getPromoNewsData());
     // dispatch(getPromoJobsData());
 
-    // dispatch(getBfaRecommendations());
+    dispatch(getBfaRecommendations());
     // dispatch(getBruneiFoodRewards());
   }, []);
 

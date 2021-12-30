@@ -30,49 +30,47 @@ export default function AllDishesList({ route, navigation }) {
         <ResponsiveText size={4} margin={[0, 0, 5, 10]} color={colors.yellow} >{title}</ResponsiveText>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: wp(100) }} >
           {
-            data > 0 ?
-              data.map((item) => {
-                return (
-                  <TouchableOpacity
-                    style={{ marginHorizontal: 8, marginVertical: 10 }}
-                  // onPress={() => navigation.navigate(routeName.DISH_DETAIL)}
-                  >
-                    <View
+            data.map((item) => {
+              return (
+                <TouchableOpacity
+                  style={{ marginHorizontal: 8, marginVertical: 10 }}
+                // onPress={() => navigation.navigate(routeName.DISH_DETAIL)}
+                >
+                  <View
+                    style={{
+                      width: wp(26),
+                      height: hp(18),
+                      borderRadius: 7,
+                      overflow: 'hidden',
+                      flexDirection: 'row',
+                    }}>
+                    <ImageBackground
+                      imageStyle={{ opacity: 0.5 }}
                       style={{
-                        width: wp(26),
-                        height: hp(18),
-                        borderRadius: 7,
+                        flex: 1,
+                        padding: 5,
                         overflow: 'hidden',
-                        flexDirection: 'row',
-                      }}>
-                      <ImageBackground
-                        imageStyle={{ opacity: 0.5 }}
-                        style={{
-                          flex: 1,
-                          padding: 5,
-                          overflow: 'hidden',
-                          justifyContent: 'space-between',
+                        justifyContent: 'space-between',
 
-                          backgroundColor: 'rgba(0,0,0,1)',
+                        backgroundColor: 'rgba(0,0,0,1)',
 
-                        }}
-                        source={item.url}>
-                        <View style={{ alignItems: 'flex-end' }}>
-                        </View>
-                        <View >
-                          <ResponsiveText fontFamily="Regular" size={2.9} color={colors.white}>
-                            {item.title}
-                          </ResponsiveText>
-                          <ResponsiveText fontFamily="Light" size={2} color={colors.white}>
-                            {item.description}
-                          </ResponsiveText>
-                        </View>
-                      </ImageBackground>
-                    </View>
-                  </TouchableOpacity>
-                )
-              })
-              : undefined}
+                      }}
+                      source={item.url}>
+                      <View style={{ alignItems: 'flex-end' }}>
+                      </View>
+                      <View >
+                        <ResponsiveText fontFamily="Regular" size={2.9} color={colors.white}>
+                          {item.title}
+                        </ResponsiveText>
+                        <ResponsiveText fontFamily="Light" size={2} color={colors.white}>
+                          {item.description}
+                        </ResponsiveText>
+                      </View>
+                    </ImageBackground>
+                  </View>
+                </TouchableOpacity>
+              )
+            })}
         </View>
 
       </View>
