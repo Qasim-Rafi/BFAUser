@@ -10,16 +10,16 @@ import ResponsiveText from '../../../../components/RnText';
 import RnButton from '../../../../components/RnButton';
 import Swiper from 'react-native-swiper';
 
-import Svg, {Defs, LinearGradient, Stop} from 'react-native-svg';
-import {advertisementBannerFakeDATA} from '../../../../constants/mock';
-import {colors} from '../../../../constants/colorsPallet';
-import {globalPath} from '../../../../constants/globalPath';
+import Svg, { Defs, LinearGradient, Stop } from 'react-native-svg';
+import { advertisementBannerFakeDATA } from '../../../../constants/mock';
+import { colors } from '../../../../constants/colorsPallet';
+import { globalPath } from '../../../../constants/globalPath';
 import Icon from '../../../../components/Icon';
-import {hp, wp} from '../../../../helpers/Responsiveness';
+import { hp, wp } from '../../../../helpers/Responsiveness';
 import Header from '../../../../components/Header';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
-const AdvertisementBanner = ({navigation}) => {
+const AdvertisementBanner = ({ navigation }) => {
   const addBanner = useSelector(state => state.appReducers.addBanner.data);
 
   return (
@@ -30,6 +30,7 @@ const AdvertisementBanner = ({navigation}) => {
           showsButtons={false}
           autoplay={true}
           autoplayTimeout={3}
+          removeClippedSubviews={true}
           activeDot={
             <View
               style={{
@@ -60,12 +61,12 @@ const AdvertisementBanner = ({navigation}) => {
           }>
           {addBanner.map((item, index) => {
             return (
-              <View style={{flex: 1}}>
+              <View style={{ flex: 1 }}>
                 <ImageBackground
-                  imageStyle={{opacity: 0.8}}
+                  imageStyle={{ opacity: 0.8 }}
                   style={styles.advertisementBannerImage}
                   //  source={{ uri: url }}
-                  source={{uri: item.fullPath}}>
+                  source={{ uri: item.fullPath }}>
                   <View style={styles.advertisementBannerTitleOverlay}>
                     <ResponsiveText
                       fontFamily={'SemiBold'}
@@ -79,7 +80,7 @@ const AdvertisementBanner = ({navigation}) => {
                       margin={[-3, 0, 5, 0]}
                       size={3}
                       color={colors.white}>
-                      {item.restaurantName}
+                      {item.description}
                     </ResponsiveText>
 
                     {/* <TouchableOpacity style={{height:hp(3.5), width:wp(28), backgroundColor:colors.yellow,
