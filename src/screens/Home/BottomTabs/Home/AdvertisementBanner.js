@@ -30,7 +30,7 @@ const AdvertisementBanner = ({ navigation }) => {
           showsButtons={false}
           autoplay={true}
           autoplayTimeout={3}
-          removeClippedSubviews={true}
+          removeClippedSubviews={false}
           activeDot={
             <View
               style={{

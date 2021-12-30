@@ -104,15 +104,17 @@ const Home = ({ navigation }) => {
     // callAPI();
     // dispatch(getRestaurantAllDishes())
 
-    // dispatch(
-    //   getUserCusine({
-    //     navigation: navigation,
-    //   }),
-    // );
+    dispatch(
+      getUserCusine({
+        navigation: navigation,
+      }),
+    );
 
     // dispatch(awardsRestaurant());
+
     // dispatch(getPromoNewsData());
     // dispatch(getPromoJobsData());
+
     // dispatch(getBfaRecommendations());
     // dispatch(getBruneiFoodRewards());
   }, []);
