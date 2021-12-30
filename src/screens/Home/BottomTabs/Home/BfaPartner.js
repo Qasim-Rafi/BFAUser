@@ -102,7 +102,7 @@ const BfaPartner = ({ props }) => {
           />
 
         </TouchableOpacity>
-      </View>
+      </View>P*
 
       <View style={styles.bfaPartnerItemsSection}>
         {images.length > 0
