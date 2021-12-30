@@ -160,20 +160,20 @@ const Home = ({ navigation }) => {
         <View style={styles.Advertisement2ndVarient}>
           <Advertisement2ndVarient navigation={navigation} />
         </View> */}
-        <View style={styles.recommendationContainer}>
+        {/* <View style={styles.recommendationContainer}>
           <WhatsNew navigation={navigation} />
         </View>
         <View style={styles.recommendationContainer}>
           <Promotion navigation={navigation} />
-        </View>
+        </View> */}
 
         <View style={styles.cuisinesContainer}>
           {/* <CuisinesSlider navigation={navigation} /> */}
           <AllCuisines navigation={navigation} />
         </View>
-        <View style={styles.recommendationContainer}>
+        {/* <View style={styles.recommendationContainer}>
           <JobsList navigation={navigation} />
-        </View>
+        </View> */}
 
         {/* <ImageBackground
           style={styles.cuisinesContainer}
