@@ -41,7 +41,7 @@ const BfaPartner = ({props}) => {
 
   let bfaPartners = useSelector(state => state.appReducers.bfaPartners.data);
   const [title, setTitle] = React.useState(
-    bfaPartners.length <= 6 ? 'More' : 'Less' ,
+    bfaPartners.length <= 6 ? 'Less' : 'More' ,
   );
   // console.log("array length", bfaPartners.length);
   // console.log('BFA Partners: ', bfaPartners);
