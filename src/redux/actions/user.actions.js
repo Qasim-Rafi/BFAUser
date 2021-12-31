@@ -5,7 +5,7 @@ import types from "./types";
 export const loginUser = (data) => {
   return {
     type: types.LOGIN_USER_REQUEST,
-    data:data,
+    data: data,
   };
 };
 
@@ -13,7 +13,7 @@ export const loginUser = (data) => {
 export const AddOrder = (data) => {
   return {
     type: types.ADD_ORDER_REQUEST,
-    data:data,
+    data: data,
   };
 };
 //PROMOTIONS
@@ -21,7 +21,7 @@ export const AddOrder = (data) => {
 export const getPromotions = (data) => {
   return {
     type: types.GET_PROMOTIONS_REQUEST,
-    data:data
+    data: data
   };
 };
 //Brunei Food Awards
@@ -30,7 +30,7 @@ export const getPromotions = (data) => {
 export const getBruneiFoodRewards = (data) => {
   return {
     type: types.GET_BRUNEI_FOOD_AWARDS_REQUEST,
-    data:data,
+    data: data,
   };
 };
 
@@ -39,14 +39,14 @@ export const getBruneiFoodRewards = (data) => {
 export const getUserCusine = (data) => {
   return {
     type: types.GET_CUSINE_REQUEST,
-    data:data
+    data: data
   };
 };
 //Get Recommendations
 export const getBfaRecommendations = (data) => {
   return {
     type: types.GET_BFA_RECOMMENDATION_REQUEST,
-    data:data
+    data: data
   };
 };
 //Get  User
@@ -83,14 +83,14 @@ export const getPromoJobsData = () => {
 export const getBfaPartners = (data) => {
   return {
     type: types.GET_BFA_PARTNERS_REQUEST,
-    data:data
+    data: data
   };
 };
 
 export const getRestaurantAllDishes = () => {
   return {
     type: types.GET_RESTAURANT_ALL_DISHES_REQUEST,
-    
+
   };
 };
 

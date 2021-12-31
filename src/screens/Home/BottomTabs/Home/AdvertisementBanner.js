@@ -9,7 +9,17 @@ import {
 import ResponsiveText from '../../../../components/RnText';
 import RnButton from '../../../../components/RnButton';
 import Swiper from 'react-native-swiper';
-
+import {
+  BallIndicator,
+  BarIndicator,
+  DotIndicator,
+  MaterialIndicator,
+  PacmanIndicator,
+  PulseIndicator,
+  SkypeIndicator,
+  UIActivityIndicator,
+  WaveIndicator
+} from 'react-native-indicators'
 import Svg, { Defs, LinearGradient, Stop } from 'react-native-svg';
 import { advertisementBannerFakeDATA } from '../../../../constants/mock';
 import { colors } from '../../../../constants/colorsPallet';
@@ -21,6 +31,8 @@ import { useSelector } from 'react-redux';
 
 const AdvertisementBanner = ({ navigation }) => {
   const addBanner = useSelector(state => state.appReducers.addBanner.data);
+  const loading = useSelector(state => state.appReducers.addBanner.loading);
+  console.log("Banner loading: ", loading)
 
   return (
     <>
@@ -30,7 +42,7 @@ const AdvertisementBanner = ({ navigation }) => {
           showsButtons={false}
           autoplay={true}
           autoplayTimeout={3}
-          removeClippedSubviews={true}
+          removeClippedSubviews={false}
           activeDot={
             <View
               style={{
@@ -67,7 +79,16 @@ const AdvertisementBanner = ({ navigation }) => {
                   style={styles.advertisementBannerImage}
                   //  source={{ uri: url }}
                   source={{ uri: item.fullPath }}>
+                  {
+                    loading === true ?
+                      <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, backgroundColor: 'rgba(65, 65, 65, 0)', flex: 1 }}>
+                        <DotIndicator color={colors.yellow} size={5} />
+                      </View>
+                      :
+                      undefined
+                  }
                   <View style={styles.advertisementBannerTitleOverlay}>
+
                     <ResponsiveText
                       fontFamily={'SemiBold'}
                       size={4.5}
@@ -90,12 +111,19 @@ const AdvertisementBanner = ({ navigation }) => {
                                 <Icon size={wp(3)} margin={[0,0,0,5]}  tintColor='black' source={globalPath.READ_MORE} />
 
                             </TouchableOpacity> */}
+
                   </View>
+
+
                 </ImageBackground>
+
+
               </View>
             );
           })}
+
         </Swiper>
+
       )}
     </>
   );
