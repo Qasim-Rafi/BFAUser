@@ -5,8 +5,6 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
-  Modal,
-  Button
 } from 'react-native';
 import ResponsiveText from '../../../../components/RnText';
 
@@ -25,10 +23,8 @@ import urls from '../../../../redux/lib/urls';
 import { hp } from '../../../../helpers/Responsiveness';
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from '../../../../components/Icon';
+import { Linking } from 'react-native';
 import { getBfaPartners } from '../../../../redux/actions/user.actions';
-
-// import { WebView } from 'react-native-webview's
-
 const BfaPartner = ({ props }) => {
   const dispatch = useDispatch();
   const loading = useSelector(
@@ -37,8 +33,6 @@ const BfaPartner = ({ props }) => {
 
   // console.log('loading', loading);
   const [moreData, setMoreData] = React.useState(false);
-  const [modalVisble, setModalVisible] = React.useState(false)
-
   let bfaPartners = useSelector(state => state.appReducers.bfaPartners.data);
   const [title, setTitle] = React.useState(
     bfaPartners.length <= 6 ? 'Less' : 'More',
@@ -47,7 +41,6 @@ const BfaPartner = ({ props }) => {
   // console.log('BFA Partners: ', bfaPartners);
   const images = [];
   const lessImages = [];
-  const siteAdd = []
   if (loading === false) {
     bfaPartners.map(item => {
       var img = item.imageDataB;
@@ -60,14 +53,6 @@ const BfaPartner = ({ props }) => {
       //  console.log('All Images: ',images);
     });
   }
-
-  if (loading === false) {
-    bfaPartners.map((item, index) => {
-      siteAdd.push(bfaPartners[index].siteUrl)
-    })
-  }
-  // console.log(siteAdd);
-
   if (loading === false) {
     for (var i = 0; i < 6; i++) {
       var img = bfaPartners[i].imageDataB;
@@ -78,25 +63,6 @@ const BfaPartner = ({ props }) => {
       }
     }
   }
-
-  console.log('----------------------');
-  console.log(siteAdd);
-  console.log('----------------------')
-
-  const modalView = (index, visibilty) => (
-    <View>
-      <Modal visible={true} style={{ height: '80%', width: '80%' }} >
-        <View style={{ flex: 1, justifyContent: 'center' }} >
-          {console.log(siteAdd[index])}
-          <WebView
-            source={{ uri: siteAdd[index] }}
-          // style={{height:'80%',width:'80%'}}
-          />
-          <Button title={'Close'} onPress={() => setModalVisible(false)} />
-        </View>
-      </Modal>
-    </View>
-  )
 
   useEffect(() => {
     dispatch(getBfaPartners(6))
@@ -147,9 +113,11 @@ const BfaPartner = ({ props }) => {
         {images.length > 0
           ? title === 'More'
             ? lessImages.map((url, index) => {
-              console.log(siteAdd[index])
+
               return (
                 // <Icon source={url} size={35} borderRadius={5} />
+
+
                 <View
                   style={{
                     backgroundColor: colors.white,
@@ -157,22 +125,20 @@ const BfaPartner = ({ props }) => {
                     marginRight: 5,
                     marginVertical: 3,
                   }}>
-                  <TouchableOpacity onPress={() => modalView(index, true)} >
-                    <Icon
-                      source={{
-                        uri: url,
-                      }}
-                      // source={url}
+                  <Icon
+                    source={{
+                      uri: url,
+                    }}
+                    // source={url}
 
-                      size={55}
-                      borderRadius={5}
-                    />
-                  </TouchableOpacity>
+                    size={55}
+                    borderRadius={5}
+                  />
                 </View>
+
               );
             })
             : images.map((url, index) => {
-              console.log(bfaPartners[index])
               return (
                 // <Icon source={url} size={35} borderRadius={5} />
                 <View
@@ -182,25 +148,21 @@ const BfaPartner = ({ props }) => {
                     marginRight: 5,
                     marginVertical: 3,
                   }}>
-                  <TouchableOpacity onPress={() => modalView(index, true)} >
-                    <Icon
-                      source={{
-                        uri: url,
-                      }}
-                      // source={url}
+                  <Icon
+                    source={{
+                      uri: url,
+                    }}
+                    // source={url}
 
-                      size={55}
-                      borderRadius={5}
-                    />
-
-                  </TouchableOpacity>
+                    size={55}
+                    borderRadius={5}
+                  />
                 </View>
               );
             })
           : undefined}
 
       </View>
-
 
     </View>
   );
