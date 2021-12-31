@@ -45,6 +45,7 @@ import {
   getPromoNewsData,
   getPromoJobsData,
 } from '../../../../redux/actions/user.actions';
+import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import urls from '../../../../redux/lib/urls';
@@ -150,6 +151,7 @@ const Home = ({ navigation }) => {
         <View style={styles.recommendationContainer}>
           <Recommendation navigation={navigation} />
         </View>
+
         <View style={styles.everyoneFavorite}>
           <EveryOneFavourite navigation={navigation} />
         </View>
