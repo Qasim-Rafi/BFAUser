@@ -8,26 +8,38 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import ResponsiveText from '../../../../components/RnText';
-
+import {
+  BallIndicator,
+  BarIndicator,
+  DotIndicator,
+  MaterialIndicator,
+  PacmanIndicator,
+  PulseIndicator,
+  SkypeIndicator,
+  UIActivityIndicator,
+  WaveIndicator,
+} from 'react-native-indicators';
 import {
   advertisementBannerFakeDATA,
   ourRecommendationFakeDATA,
 } from '../../../../constants/mock';
-import {colors} from '../../../../constants/colorsPallet';
+import { colors } from '../../../../constants/colorsPallet';
 import SeeAllButton from '../../../../components/SeeAllButton';
-import {routeName} from '../../../../constants/routeName';
-import {hp, wp} from '../../../../helpers/Responsiveness';
-import {useSelector} from 'react-redux';
+import { routeName } from '../../../../constants/routeName';
+import { hp, wp } from '../../../../helpers/Responsiveness';
+import { useSelector } from 'react-redux';
 const JobsList = props => {
   const List = useSelector(state => state.appReducers.promoJobs.data);
+  const List_Loading = useSelector(state => state.appReducers.promoJobs.loading);
   console.log('Job List: ', List);
+  console.log('Loading: ', List_Loading);
   return (
     <>
       <View style={styles.recommendationHeaderSection}>
         <ResponsiveText margin={[0, 0, 0, 0]} size={4} color={colors.white}>
           Jobs
         </ResponsiveText>
-        <View style={{marginRight: -10}}>
+        <View style={{ marginRight: -10 }}>
           <SeeAllButton
             title={'Jobs'}
             data={List}
@@ -39,57 +51,65 @@ const JobsList = props => {
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           {List.length > 0
             ? List.map((url, index) => {
-                return (
-                  <TouchableOpacity
-                    onPress={() =>
-                      props.navigation.navigate(routeName.APPLY_JOBS, {
-                        dish: url,
-                      })
-                    }>
-                    <View
+              return (
+                <TouchableOpacity
+                  onPress={() =>
+                    props.navigation.navigate(routeName.APPLY_JOBS, {
+                      dish: url,
+                    })
+                  }>
+                  <View
+                    style={{
+                      width: wp(26),
+                      height: hp(18),
+                      borderRadius: 3,
+                      marginHorizontal: 5,
+                      overflow: 'hidden',
+                      flexDirection: 'row',
+                    }}>
+                    <ImageBackground
+                      imageStyle={{ opacity: 0.5 }}
+                      imageStyle={{ opacity: 0.5 }}
                       style={{
-                        width: wp(26),
-                        height: hp(18),
-                        borderRadius: 3,
-                        marginHorizontal: 5,
+                        flex: 1,
+                        padding: 5,
                         overflow: 'hidden',
-                        flexDirection: 'row',
+                        justifyContent: 'flex-end',
+                        backgroundColor: 'rgba(0,0,0,1)',
+                      }}
+                      // source={url.url.}>
+                      source={{
+                        uri: url.resLogo.replace(/ /g, ''),
                       }}>
-                      <ImageBackground
-                        imageStyle={{opacity: 0.5}}
-                        imageStyle={{opacity: 0.5}}
-                        style={{
-                          flex: 1,
-                          padding: 5,
-                          overflow: 'hidden',
-                          justifyContent: 'flex-end',
-                          backgroundColor: 'rgba(0,0,0,1)',
-                        }}
-                        // source={url.url.}>
-                        source={{
-                          uri: url.resLogo.replace(/ /g, ''),
-                        }}>
-                        {/* source={{uri: url.fullPath}}> */}
-                        <ResponsiveText
-                          fontFamily="Regular"
-                          size={3}
-                          margin={[0, 0, -5, 0]}
-                          color={colors.white}>
-                          {url.jobTitle}
-                        </ResponsiveText>
-                        <ResponsiveText
-                          fontFamily="Light"
-                          size={2.5}
-                          color={colors.white}>
-                          {url.adSlideTitle}
-                        </ResponsiveText>
-                      </ImageBackground>
-                    </View>
-                  </TouchableOpacity>
-                );
-              })
+                      {/* source={{uri: url.fullPath}}> */}
+                      <ResponsiveText
+                        fontFamily="Regular"
+                        size={3}
+                        margin={[0, 0, -5, 0]}
+                        color={colors.white}>
+                        {url.jobTitle}
+                      </ResponsiveText>
+                      <ResponsiveText
+                        fontFamily="Light"
+                        size={2.5}
+                        color={colors.white}>
+                        {url.adSlideTitle}
+                      </ResponsiveText>
+                    </ImageBackground>
+                  </View>
+                </TouchableOpacity>
+              );
+            })
             : undefined}
         </ScrollView>
+        {
+          List_Loading === true ?
+            <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, backgroundColor: 'rgba(65, 65, 65, 0)', flex: 1 }}>
+              < DotIndicator color={colors.yellow} size={5} />
+            </View>
+            :
+            undefined
+        }
       </View>
     </>
   );

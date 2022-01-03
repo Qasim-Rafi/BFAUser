@@ -8,7 +8,17 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import ResponsiveText from '../../../../components/RnText';
-
+import {
+  BallIndicator,
+  BarIndicator,
+  DotIndicator,
+  MaterialIndicator,
+  PacmanIndicator,
+  PulseIndicator,
+  SkypeIndicator,
+  UIActivityIndicator,
+  WaveIndicator,
+} from 'react-native-indicators';
 import {
   advertisementBannerFakeDATA,
   CuisinesData,
@@ -27,7 +37,9 @@ import { getUserCusine } from '../../../../redux/actions/user.actions';
 const AllCuisines = props => {
   const token = async () => await AsyncStorage.getItem('@token');
   const cuisines = useSelector(state => state.appReducers.cusineDetail.data);
+  const cuisinesLoader = useSelector(state => state.appReducers.cusineDetail.loading);
   console.log('Cuisines: ', cuisines);
+  console.log('Cuisines: ', cuisinesLoader);
   console.log('cuisines length:', cuisines.length);
   const dispatch = useDispatch();
 
@@ -113,6 +125,14 @@ const AllCuisines = props => {
             })
             : undefined}
         </ScrollView>
+        {
+          cuisinesLoader === true ?
+            <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, backgroundColor: 'rgba(65, 65, 65, 0)', flex: 1 }}>
+              < DotIndicator color={colors.yellow} size={5} />
+            </View>
+            :
+            undefined
+        }
       </View>
     </>
   );

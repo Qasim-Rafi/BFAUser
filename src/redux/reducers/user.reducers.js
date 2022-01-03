@@ -14,6 +14,7 @@ const initialState = {
       message: null,
     },
   },
+
   signupScreen: {
     refreshing: false,
     data: {},
@@ -65,6 +66,8 @@ export const login_User = (state = initialState, action) => {
       return state;
   }
 };
+
+
 
 // //Registered user reducer
 // export const user = (state = State.initial, action) => {

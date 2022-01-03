@@ -8,7 +8,17 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import ResponsiveText from '../../../../components/RnText';
-
+import {
+  BallIndicator,
+  BarIndicator,
+  DotIndicator,
+  MaterialIndicator,
+  PacmanIndicator,
+  PulseIndicator,
+  SkypeIndicator,
+  UIActivityIndicator,
+  WaveIndicator,
+} from 'react-native-indicators';
 import {
   advertisementBannerFakeDATA,
   ourRecommendationFakeDATA,
@@ -22,7 +32,11 @@ const Recommendation = props => {
   const bfaRecommendation = useSelector(
     state => state.appReducers.bfaRecommendationDetail.data,
   );
+  const bfaRecommendation_Loading = useSelector(
+    state => state.appReducers.bfaRecommendationDetail.loading,
+  );
   console.log('Bfa Recommendations: ', bfaRecommendation);
+  console.log('Bfa Recommendations: ', bfaRecommendation_Loading);
   return (
     <>
       <View style={styles.recommendationHeaderSection}>
@@ -98,6 +112,14 @@ const Recommendation = props => {
             })
             : undefined}
         </ScrollView>
+        {
+          bfaRecommendation_Loading === true ?
+            <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, backgroundColor: 'rgba(65, 65, 65, 0)', flex: 1 }}>
+              < DotIndicator color={colors.yellow} size={5} />
+            </View>
+            :
+            undefined
+        }
       </View>
 
       {/* <View style={styles.recommendationHeaderSection}>

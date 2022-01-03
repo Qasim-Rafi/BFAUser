@@ -18,4 +18,6 @@ export default urls = {
   GET_PROMO_NEWS: 'api/PromoItemNews/GetPromoNewsAdminAll',
   GET_PROMO_JOBS: 'api/PromoJobsAdmin/GetPromoJobsAdminAll',
   ADD_ORDERS: 'api/Order/AddOrder',
+  PEOPLE_CHOICE: 'api/PeopleChoice/GetPeopleChoiceAll',
+
 };
