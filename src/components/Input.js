@@ -105,7 +105,7 @@ const Input = ({
             placeholderTextColor ? placeholderTextColor : colors.grey1
           }
           // secureTextEntry={showPassword ? true : false}
-          secureTextEntry={visible}
+          secureTextEntry={secureTextEntry?visible:false}
           onChangeText={onChnageText ? txt => onChnageText(txt) : null}
         />
 

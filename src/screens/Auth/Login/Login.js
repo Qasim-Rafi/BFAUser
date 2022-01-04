@@ -187,7 +187,7 @@ export default function Login({ navigation }) {
               iconMargin={[0, 10, 0, 0]}
               placeholder="Password"
               onChnageText={text => setPassword(text)}
-              secureTextEntry
+              secureTextEntry={true}
               leftIcon={globalPath.PASSWORD_LOGO}
             />
             <View style={styles.forgotPasswordContainer}>
