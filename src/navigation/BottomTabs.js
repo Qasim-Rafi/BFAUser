@@ -43,12 +43,13 @@ export default function BottomTabs(props) {
         tabStyle: {
           backgroundColor: colors.black1,
           borderBottomWidth: 0,
-
           padding: 0,
           margin: 0,
           borderTopWidth: 0,
           border: 0,
-          elevation: 0
+          elevation: 0,
+          marginTop: -1,
+          
         },
         style: {
           //   height: 60,
