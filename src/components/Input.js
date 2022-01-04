@@ -7,11 +7,11 @@ import {
   KeyboardAvoidingView,
   StatusBar,
 } from 'react-native';
-import { colors } from '../constants/colorsPallet';
-import { iconPath } from '../constants/globalPath';
-import { handleMargin, handlePadding } from '../constants/theme';
+import {colors} from '../constants/colorsPallet';
+import {iconPath} from '../constants/globalPath';
+import {handleMargin, handlePadding} from '../constants/theme';
 import Fonts from '../helpers/Fonts';
-import { wp } from '../helpers/Responsiveness';
+import {wp} from '../helpers/Responsiveness';
 import Icon from './Icon';
 import Feather from 'react-native-vector-icons/Feather';
 const Input = ({
@@ -66,9 +66,9 @@ const Input = ({
           margin ? handleMargin(margin) : undefined,
           padding ? handlePadding(padding) : undefined,
           props.style,
-          height && { height },
-          width && { width },
-          { zIndex: zIndex },
+          height && {height},
+          width && {width},
+          {zIndex: zIndex},
           containerStyle,
         ]}>
         {props.leftIcon && (
@@ -86,12 +86,12 @@ const Input = ({
           editable={props.editable}
           // secureTextEntry={false}
           style={[
-            fontSize && { fontSize },
+            fontSize && {fontSize},
             styles.Input,
-            fontFamily && { fontFamily: Fonts[fontFamily] },
+            fontFamily && {fontFamily: Fonts[fontFamily]},
             (onSubmitEditing = props.onSubmitEditing),
             props.centerText
-              ? { textAlign: 'center', paddingLeft: 0 }
+              ? {textAlign: 'center', paddingLeft: 0}
               : undefined,
             props.textStyle,
             ,

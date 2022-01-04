@@ -45,7 +45,6 @@ import {
   getPromoNewsData,
   getPromoJobsData,
 } from '../../../../redux/actions/user.actions';
-import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import urls from '../../../../redux/lib/urls';
@@ -112,10 +111,8 @@ const Home = ({ navigation }) => {
     );
 
     // dispatch(awardsRestaurant());
-
     // dispatch(getPromoNewsData());
     // dispatch(getPromoJobsData());
-
     dispatch(getBfaRecommendations());
     // dispatch(getBruneiFoodRewards());
   }, []);
@@ -151,7 +148,6 @@ const Home = ({ navigation }) => {
         <View style={styles.recommendationContainer}>
           <Recommendation navigation={navigation} />
         </View>
-
         <View style={styles.everyoneFavorite}>
           <EveryOneFavourite navigation={navigation} />
         </View>
@@ -162,20 +158,20 @@ const Home = ({ navigation }) => {
         <View style={styles.Advertisement2ndVarient}>
           <Advertisement2ndVarient navigation={navigation} />
         </View> */}
-        {/* <View style={styles.recommendationContainer}>
+        <View style={styles.recommendationContainer}>
           <WhatsNew navigation={navigation} />
         </View>
         <View style={styles.recommendationContainer}>
           <Promotion navigation={navigation} />
-        </View> */}
+        </View>
 
         <View style={styles.cuisinesContainer}>
           {/* <CuisinesSlider navigation={navigation} /> */}
           <AllCuisines navigation={navigation} />
         </View>
-        {/* <View style={styles.recommendationContainer}>
+        <View style={styles.recommendationContainer}>
           <JobsList navigation={navigation} />
-        </View> */}
+        </View>
 
         {/* <ImageBackground
           style={styles.cuisinesContainer}

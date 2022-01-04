@@ -8,17 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import ResponsiveText from '../../../../components/RnText';
-import {
-  BallIndicator,
-  BarIndicator,
-  DotIndicator,
-  MaterialIndicator,
-  PacmanIndicator,
-  PulseIndicator,
-  SkypeIndicator,
-  UIActivityIndicator,
-  WaveIndicator
-} from 'react-native-indicators'
+
 import {
   advertisementBannerFakeDATA,
   ourRecommendationFakeDATA,
@@ -32,12 +22,7 @@ const Recommendation = props => {
   const bfaRecommendation = useSelector(
     state => state.appReducers.bfaRecommendationDetail.data,
   );
-  const loading = useSelector(
-    state => state.appReducers.bfaRecommendationDetail.loading,
-  );
   console.log('Bfa Recommendations: ', bfaRecommendation);
-  console.log('Bfa Recommendations loading: ', loading);
-
   return (
     <>
       <View style={styles.recommendationHeaderSection}>
@@ -83,7 +68,6 @@ const Recommendation = props => {
                       overflow: 'hidden',
                       flexDirection: 'row',
                     }}>
-
                     <ImageBackground
                       imageStyle={{ opacity: 0.5 }}
                       style={{
@@ -94,7 +78,6 @@ const Recommendation = props => {
                         backgroundColor: 'rgba(0,0,0,1)',
                       }}
                       source={{ uri: item.imageDataB }}>
-
                       <ResponsiveText
                         fontFamily="Regular"
                         size={3}
@@ -108,7 +91,6 @@ const Recommendation = props => {
                         color={colors.white}>
                         {item.cusineName}
                       </ResponsiveText>
-
                     </ImageBackground>
                   </View>
                 </TouchableOpacity>
@@ -116,15 +98,6 @@ const Recommendation = props => {
             })
             : undefined}
         </ScrollView>
-
-        {
-          loading === true ?
-            <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, backgroundColor: 'rgba(65, 65, 65, 0)', flex: 1 }}>
-              <DotIndicator color={colors.yellow} size={5} />
-            </View>
-            :
-            undefined
-        }
       </View>
 
       {/* <View style={styles.recommendationHeaderSection}>
