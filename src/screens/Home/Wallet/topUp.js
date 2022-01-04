@@ -18,7 +18,8 @@ const TopUp = (props) => {
     // const [isModalVisible, setModalVisible] = useState(false);
     const [checked, setCheck] = useState(true);
 
-    const topUpAmount = route.params
+    const topUpAmountComing = route.params
+    const topUpAmount = parseFloat(topUpAmountComing).toFixed(2)
 
     navigation.setOptions({
         headerShown:true,

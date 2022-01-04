@@ -19,7 +19,8 @@ const Transfer = (props) => {
 
     // const [isModalVisible, setModalVisible] = useState(false);
 
-    const transferAmount = route.params
+    const transferAmountComing = route.params
+    const transferAmount = parseFloat(transferAmountComing).toFixed(2)
 
     navigation.setOptions({
         headerShown: true,
