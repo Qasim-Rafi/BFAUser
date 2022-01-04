@@ -52,7 +52,7 @@ export default function BottomTabs(props) {
         },
         style: {
           //   height: 60,
-          borderTopWidth: 0,
+          borderTopWidth: 10,
 
           //   shadowColor: colors.skyblue1,
           padding: 5,
@@ -67,7 +67,6 @@ export default function BottomTabs(props) {
           borderTopColor: 'red', //Change Like This
           backgroundColor: colors.black2,
           // borderTopWidth: 220,
-          borderTopWidth: 0,
           //   borderColor: colors.black2,
           //   elevation: 0,
           elevation: 0, // for Android

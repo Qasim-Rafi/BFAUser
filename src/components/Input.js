@@ -50,14 +50,16 @@ const Input = ({
     }
   };
   const updateSecureTextEntry = () => {
-    setData({
-      ...data,
-      secureTextEntry: !data.secureTextEntry,
-    });
+    // setData({
+    //   ...data,
+    //   secureTextEntry: !data.secureTextEntry,
+    // });
+    setVisible(!visible)
   };
   const [data, setData] = React.useState({
     // secureTextEntry: true,
   });
+  const [visible, setVisible] = React.useState(true);
   return (
     <KeyboardAvoidingView>
       <View
@@ -103,7 +105,7 @@ const Input = ({
             placeholderTextColor ? placeholderTextColor : colors.grey1
           }
           // secureTextEntry={showPassword ? true : false}
-          secureTextEntry={data.secureTextEntry ? true : false}
+          secureTextEntry={visible}
           onChangeText={onChnageText ? txt => onChnageText(txt) : null}
         />
 
@@ -111,7 +113,7 @@ const Input = ({
           <TouchableOpacity
             style={styles.showPasswordBtn}
             onPress={updateSecureTextEntry}>
-            {data.secureTextEntry ? (
+            {visible ? (
               <Feather name="eye-off" size={15} style={styles.Feather} />
             ) : (
               <Feather name="eye" size={15} style={styles.Feather} />
