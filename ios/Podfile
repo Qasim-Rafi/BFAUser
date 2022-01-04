@@ -12,9 +12,11 @@ target 'Bali' do
     :hermes_enabled => false
   )
 
-  pod 'react-native-camera', :path => '../node_modules/react-native-camera'
+  
 
-  pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  
+  pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
 
   target 'BaliTests' do
     inherit! :complete
@@ -31,14 +33,7 @@ target 'Bali' do
     react_native_post_install(installer)
   end
 
-  target 'ReactNativeBarcode' do
-    # Permissions
-    permissions_path = '../node_modules/react-native-permissions/ios'
-    pod 'Permission-Camera', :path => "#{permissions_path}/Camera.podspec"
-  
-    # Pods for ReactNativeBarcode
-    ...
-  end
+
 
 
 end
