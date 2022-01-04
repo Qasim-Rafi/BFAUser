@@ -113,7 +113,7 @@ export const appReducers = (state = initialState, action) => {
           data: action.payload,
           loading: false
         }
-      }; case types.GET_CUSINE_SUCCESS:
+      }; case types.GET_CUSINE_FAILURE:
       return {
         ...state,
         cusineDetail: {

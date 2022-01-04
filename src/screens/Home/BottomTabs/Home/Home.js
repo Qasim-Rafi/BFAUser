@@ -102,14 +102,12 @@ const Home = ({ navigation }) => {
     dispatch(getAddBannerData());
     dispatch(getPeopleChoice())
     // dispatch(getPromotions());
-    dispatch(getBfaPartners(6));
+    dispatch(getBfaPartners(7));
     // callAPI();
     // dispatch(getRestaurantAllDishes())
 
     dispatch(
-      getUserCusine({
-        navigation: navigation,
-      }),
+      getUserCusine(4),
     );
 
     // dispatch(awardsRestaurant());
@@ -168,7 +166,6 @@ const Home = ({ navigation }) => {
         </View>
 
         <View style={styles.cuisinesContainer}>
-          {/* <CuisinesSlider navigation={navigation} /> */}
           <AllCuisines navigation={navigation} />
         </View>
         <View style={styles.recommendationContainer}>

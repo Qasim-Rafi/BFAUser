@@ -31,7 +31,7 @@ export default function Categories({ navigation, route }) {
       <View style={styles.item}>
         <Text style={styles.header}>{item.firstLetter}</Text>
         <View style={{ borderRadius: 10, backgroundColor: colors.black2, paddingVertical: 10 }}>
-          {item.objCusineList.map((item, index) => {
+          {data.map((item, index) => {
             return (
               <View style={{ paddingLeft: 25, justifyContent: 'center', paddingVertical: 2 }}>
                 <Text style={styles.title}>{item.name}</Text>

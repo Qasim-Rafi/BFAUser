@@ -82,12 +82,13 @@ const AllCuisines = props => {
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           {cuisines.length > 0
             ? cuisines.map((data, index) => {
-              return data.objCusineList.map(item => {
+              console.log("Dataaaaaaaaaaaaa: ", data)
+              return cuisines.map(item => {
                 return (
                   <TouchableOpacity
                     onPress={() =>
                       props.navigation.navigate(routeName.DISH_DETAIL, {
-                        dish: data,
+                        dish: cuisines,
                       })
                     }>
                     <View

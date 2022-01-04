@@ -42,8 +42,6 @@ const BfaPartner = ({ props }) => {
   const [title, setTitle] = React.useState(
     bfaPartners.length <= 6 ? 'Less' : 'More' ,
   );
-  // console.log("array length", bfaPartners.length);
-  // console.log('BFA Partners: ', bfaPartners);
   const images = [];
   const lessImages = [];
   const siteAdd = []
@@ -72,6 +70,7 @@ const BfaPartner = ({ props }) => {
       var img = bfaPartners[i].imageDataB;
       var src = img.replace(/\\/g, '/');
       if (lessImages.includes(urls.BASE_URL + src)) {
+        console.log("pathhhhhhhhh: ", urls.BASE_URL + src)
       } else {
         lessImages.push(urls.BASE_URL + src);
       }
@@ -118,9 +117,11 @@ const BfaPartner = ({ props }) => {
           }}
           onPress={() => {
             if (title === 'Less') {
-              dispatch(getBfaPartners(6));
+
+              dispatch(getBfaPartners(4));
             } else {
-              dispatch(getBfaPartners(1000));
+
+              dispatch(getBfaPartners(24));
             }
             setTitle(title === 'More' ? 'Less' : 'More');
           }}>

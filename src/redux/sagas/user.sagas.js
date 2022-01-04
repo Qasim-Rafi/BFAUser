@@ -300,6 +300,7 @@ export function* getBfaParntersSaga() {
 }
 function* getBfaPartnersSagaApi(data) {
   const params = data.data;
+  console.log("paramsssssssssss: ", params)
 
   try {
     const url = urls.GET_BFA_PARTNERS + params;

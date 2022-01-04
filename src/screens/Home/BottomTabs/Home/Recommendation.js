@@ -19,6 +19,7 @@ import {
   UIActivityIndicator,
   WaveIndicator,
 } from 'react-native-indicators';
+import { getBfaRecommendations } from '../../../../redux/actions/user.actions';
 import {
   advertisementBannerFakeDATA,
   ourRecommendationFakeDATA,
@@ -27,7 +28,8 @@ import { colors } from '../../../../constants/colorsPallet';
 import SeeAllButton from '../../../../components/SeeAllButton';
 import { routeName } from '../../../../constants/routeName';
 import { hp, wp } from '../../../../helpers/Responsiveness';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 const Recommendation = props => {
   const bfaRecommendation = useSelector(
     state => state.appReducers.bfaRecommendationDetail.data,
@@ -35,6 +37,13 @@ const Recommendation = props => {
   const bfaRecommendation_Loading = useSelector(
     state => state.appReducers.bfaRecommendationDetail.loading,
   );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getBfaRecommendations(4));
+
+
+  }, [])
   console.log('Bfa Recommendations: ', bfaRecommendation);
   console.log('Bfa Recommendations: ', bfaRecommendation_Loading);
   return (
