@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   TouchableOpacity,
   Image,
@@ -7,18 +7,36 @@ import {
   View,
   ImageBackground,
 } from 'react-native';
+import {
+  BallIndicator,
+  BarIndicator,
+  DotIndicator,
+  MaterialIndicator,
+  PacmanIndicator,
+  PulseIndicator,
+  SkypeIndicator,
+  UIActivityIndicator,
+  WaveIndicator,
+} from 'react-native-indicators';
 import ResponsiveText from '../../../../components/RnText';
-import {Rating, AirbnbRating} from 'react-native-ratings';
-import {routeName} from '../../../../constants/routeName';
+import { Rating, AirbnbRating } from 'react-native-ratings';
+import { routeName } from '../../../../constants/routeName';
 import {
   advertisementBannerFakeDATA,
   everyoneFavoriteFakeDATA,
   ourRecommendationFakeDATA,
 } from '../../../../constants/mock';
-import {colors} from '../../../../constants/colorsPallet';
+import { colors } from '../../../../constants/colorsPallet';
 import SeeAllButton from '../../../../components/SeeAllButton';
-import {hp, wp} from '../../../../helpers/Responsiveness';
+import { hp, wp } from '../../../../helpers/Responsiveness';
+import { useSelector } from 'react-redux';
+import { State } from 'react-native-gesture-handler';
 const EveryOneFavourite = props => {
+  const People_choice = useSelector(State => State.appReducers.PeopleChoice.data)
+  const People_choice_Loading = useSelector(State => State.appReducers.PeopleChoice.loading)
+  console.log("People Choice: ", People_choice);
+  console.log("People Choice: ", People_choice.length);
+
   const [arrayData, setArrayData] = useState(ourRecommendationFakeDATA);
 
   return (
@@ -27,47 +45,50 @@ const EveryOneFavourite = props => {
         <ResponsiveText size={4} margin={[0, 0, 0, 0]} color={colors.white}>
           People's Choice
         </ResponsiveText>
-        <View style={{marginRight: -10}}>
+        <View style={{ marginRight: -10 }}>
           <SeeAllButton
             title={"People's Choice"}
-            data={everyoneFavoriteFakeDATA}
+            data={People_choice}
             navigation={props.navigation}
           />
         </View>
       </View>
       <View style={styles.everyOneFavoriteItemsSection}>
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-          {everyoneFavoriteFakeDATA.map((url, index) => {
-            return (
-              <TouchableOpacity
-                onPress={() =>
-                  props.navigation.navigate(routeName.RestaurantDetail)
-                }>
-                <View
-                  style={{
-                    width: wp(26),
-                    height: hp(18),
-                    marginHorizontal: 5,
-                    borderRadius: 3,
-                    overflow: 'hidden',
-                    flexDirection: 'row',
-                  }}>
-                  <ImageBackground
-                    imageStyle={{opacity: 0.5}}
-                    style={{
-                      flex: 1,
-                      padding: 5,
-                      overflow: 'hidden',
-                      justifyContent: 'flex-end',
-                    }}
-                    source={url.url}>
-                    <ResponsiveText
-                      fontFamily="Regular"
-                      size={3}
-                      color={colors.white}>
-                      {url.title}
-                    </ResponsiveText>
-                    {/* <ResponsiveText
+          {
+            People_choice.length > 0 ?
+              People_choice.map((url, index) => {
+                return (
+                  <TouchableOpacity
+                    onPress={() =>
+                      props.navigation.navigate(routeName.RestaurantDetail)
+                    }>
+                    <View
+                      style={{
+                        width: wp(26),
+                        height: hp(18),
+                        marginHorizontal: 5,
+                        borderRadius: 3,
+                        overflow: 'hidden',
+                        flexDirection: 'row',
+                      }}>
+                      <ImageBackground
+                        imageStyle={{ opacity: 0.5 }}
+                        style={{
+                          flex: 1,
+                          padding: 5,
+                          overflow: 'hidden',
+                          justifyContent: 'flex-end',
+                        }}
+                        source={{ uri: url.fullPath }}>
+
+                        <ResponsiveText
+                          fontFamily="Regular"
+                          size={3}
+                          color={colors.white}>
+                          {url.dishName}
+                        </ResponsiveText>
+                        {/* <ResponsiveText
                       fontFamily="Light"
                       size={2.5}
                       margin={[-5, 0, -5, 0]}
@@ -75,19 +96,27 @@ const EveryOneFavourite = props => {
                       Special sushi
                     </ResponsiveText> */}
 
-                    <Rating
-                      tintColor={'rgba(0, 0, 0, 0.8)'}
-                      size={2}
-                      imageSize={10}
-                      // tintColor={'transparent'}
-                      style={{paddingVertical: 10, alignSelf: 'flex-start'}}
-                    />
-                  </ImageBackground>
-                </View>
-              </TouchableOpacity>
-            );
-          })}
+                        <Rating
+                          tintColor={'rgba(0, 0, 0, 0.8)'}
+                          size={2}
+                          imageSize={10}
+                          // tintColor={'transparent'}
+                          style={{ paddingVertical: 10, alignSelf: 'flex-start' }}
+                        />
+                      </ImageBackground>
+                    </View>
+                  </TouchableOpacity>
+                );
+              }) : undefined}
         </ScrollView>
+        {
+          People_choice_Loading === true ?
+            <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, backgroundColor: 'rgba(65, 65, 65, 0)', flex: 1 }}>
+              < DotIndicator color={colors.yellow} size={5} />
+            </View>
+            :
+            undefined
+        }
       </View>
     </>
   );

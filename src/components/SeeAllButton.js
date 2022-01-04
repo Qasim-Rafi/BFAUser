@@ -1,11 +1,11 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {colors} from '../constants/colorsPallet';
-import {globalPath} from '../constants/globalPath';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { colors } from '../constants/colorsPallet';
+import { globalPath } from '../constants/globalPath';
 import Icon from './Icon';
 import ResponsiveText from './RnText';
-import {routeName} from '../constants/routeName';
-import {hp, wp} from '../helpers/Responsiveness';
+import { routeName } from '../constants/routeName';
+import { hp, wp } from '../helpers/Responsiveness';
 
 const SeeAllButton = props => {
   return (
@@ -13,9 +13,9 @@ const SeeAllButton = props => {
       onPress={() =>
         props.navigation
           ? props.navigation.navigate(routeName.ALL_DISHES_LIST, {
-              data: props.data,
-              title: props.title,
-            })
+            data: props.data,
+            title: props.title,
+          })
           : undefined
       }
       style={styles.button}>

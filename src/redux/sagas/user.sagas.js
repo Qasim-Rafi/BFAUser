@@ -54,7 +54,27 @@ function* loginUserApi(data, response) {
     yield put({ type: types.LOGIN_USER_FAILURE, error: error });
   }
 }
+//People Choice
+export function* getPeopleChoiceSaga() {
+  yield takeLatest(types.GET_PEOPLE_CHOICE_REQUEST, getPeopleChoiceSagaApi);
+}
+function* getPeopleChoiceSagaApi(data) {
+  try {
+    const response = yield Api.get(urls.PEOPLE_CHOICE);
+    if (response && response.data != null) {
+      yield put({
+        type: types.GET_PEOPLE_CHOICE_SUCCESS,
+        payload: response.data,
+      });
+    } else {
+      yield put({ type: types.GET_PEOPLE_CHOICE_FAILURE, error: error });
+    }
 
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({ type: types.GET_PEOPLE_CHOICE_FAILURE, error: error });
+  }
+}
 // //Register user saga
 // export function* registerGuestUserSaga() {
 //   yield takeLatest(types.REGISTER_GUEST_REQUEST, registerGuestUserSagaApi);
@@ -281,6 +301,7 @@ export function* getBfaParntersSaga() {
 }
 function* getBfaPartnersSagaApi(data) {
   const params = data.data;
+  console.log("paramsssssssssss: ", params)
 
   try {
     const url = urls.GET_BFA_PARTNERS + params;

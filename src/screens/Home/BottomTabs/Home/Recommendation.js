@@ -8,7 +8,18 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import ResponsiveText from '../../../../components/RnText';
-
+import {
+  BallIndicator,
+  BarIndicator,
+  DotIndicator,
+  MaterialIndicator,
+  PacmanIndicator,
+  PulseIndicator,
+  SkypeIndicator,
+  UIActivityIndicator,
+  WaveIndicator,
+} from 'react-native-indicators';
+import { getBfaRecommendations } from '../../../../redux/actions/user.actions';
 import {
   advertisementBannerFakeDATA,
   ourRecommendationFakeDATA,
@@ -17,12 +28,24 @@ import { colors } from '../../../../constants/colorsPallet';
 import SeeAllButton from '../../../../components/SeeAllButton';
 import { routeName } from '../../../../constants/routeName';
 import { hp, wp } from '../../../../helpers/Responsiveness';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 const Recommendation = props => {
   const bfaRecommendation = useSelector(
     state => state.appReducers.bfaRecommendationDetail.data,
   );
+  const bfaRecommendation_Loading = useSelector(
+    state => state.appReducers.bfaRecommendationDetail.loading,
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getBfaRecommendations(4));
+
+
+  }, [])
   console.log('Bfa Recommendations: ', bfaRecommendation);
+  console.log('Bfa Recommendations: ', bfaRecommendation_Loading);
   return (
     <>
       <View style={styles.recommendationHeaderSection}>
@@ -98,6 +121,14 @@ const Recommendation = props => {
             })
             : undefined}
         </ScrollView>
+        {
+          bfaRecommendation_Loading === true ?
+            <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, backgroundColor: 'rgba(65, 65, 65, 0)', flex: 1 }}>
+              < DotIndicator color={colors.yellow} size={5} />
+            </View>
+            :
+            undefined
+        }
       </View>
 
       {/* <View style={styles.recommendationHeaderSection}>

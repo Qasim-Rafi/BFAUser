@@ -44,6 +44,7 @@ import {
   getBfaRecommendations,
   getPromoNewsData,
   getPromoJobsData,
+  getPeopleChoice,
 } from '../../../../redux/actions/user.actions';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
@@ -99,20 +100,19 @@ const Home = ({ navigation }) => {
 
   React.useEffect(() => {
     dispatch(getAddBannerData());
+    dispatch(getPeopleChoice())
     // dispatch(getPromotions());
-    dispatch(getBfaPartners(6));
+    dispatch(getBfaPartners(7));
     // callAPI();
     // dispatch(getRestaurantAllDishes())
 
     dispatch(
-      getUserCusine({
-        navigation: navigation,
-      }),
+      getUserCusine(4),
     );
 
     // dispatch(awardsRestaurant());
     // dispatch(getPromoNewsData());
-    // dispatch(getPromoJobsData());
+    dispatch(getPromoJobsData());
     dispatch(getBfaRecommendations());
     // dispatch(getBruneiFoodRewards());
   }, []);
@@ -166,7 +166,6 @@ const Home = ({ navigation }) => {
         </View>
 
         <View style={styles.cuisinesContainer}>
-          {/* <CuisinesSlider navigation={navigation} /> */}
           <AllCuisines navigation={navigation} />
         </View>
         <View style={styles.recommendationContainer}>
