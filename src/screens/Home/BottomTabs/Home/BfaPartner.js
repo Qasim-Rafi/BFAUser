@@ -41,7 +41,7 @@ const BfaPartner = ({props}) => {
 
   let bfaPartners = useSelector(state => state.appReducers.bfaPartners.data);
   const [title, setTitle] = React.useState(
-    bfaPartners.length <= 6 ? 'Less' : 'More',
+    bfaPartners.length <= 6 ? 'Less' : 'More' ,
   );
   // console.log("array length", bfaPartners.length);
   // console.log('BFA Partners: ', bfaPartners);
@@ -98,10 +98,10 @@ const BfaPartner = ({props}) => {
     </View>
     )
   
-  useEffect(() => {
-    dispatch(getBfaPartners(6))
+  // useEffect(() => {
+  //   dispatch(getBfaPartners(6))
 
-  }, [])
+  // }, [])
 
   return (
     <View style={{ backgroundColor: colors.black3 }}>
@@ -119,7 +119,7 @@ const BfaPartner = ({props}) => {
           }}
           onPress={() => {
             if (title === 'Less') {
-              // dispatch(getBfaPartners(6));
+              dispatch(getBfaPartners(6));
             } else {
               dispatch(getBfaPartners(1000));
             }
@@ -141,7 +141,7 @@ const BfaPartner = ({props}) => {
           />
 
         </TouchableOpacity>
-      </View>P*
+      </View>
 
       <View style={styles.bfaPartnerItemsSection}>
         {images.length > 0

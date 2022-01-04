@@ -100,7 +100,7 @@ const Home = ({ navigation }) => {
   React.useEffect(() => {
     dispatch(getAddBannerData());
     // dispatch(getPromotions());
-    // dispatch(getBfaPartners(6));
+    dispatch(getBfaPartners(6));
     // callAPI();
     // dispatch(getRestaurantAllDishes())
 
