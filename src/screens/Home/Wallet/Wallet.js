@@ -27,7 +27,7 @@ import { globalPath } from '../../../constants/globalPath'
 import { routeName } from '../../../constants/routeName'
 import bCoin from '../../../assets/icons/bcoin_logo.png'
 import bCoinBlack from '../../../assets/icons/bcoin_black.png'
-import bCent from '../../../assets/icons/bcent_logo.png'
+import bCent from '../../../assets/icons/bcent_black.png'
 
 const Wallet = (props) => {
 
@@ -168,62 +168,62 @@ const Wallet = (props) => {
 
                             <View style={styles.tableModal} >
                                 <Text style={styles.modalText} >$0.01</Text>
-                                <Text style={styles.modalText} >0.01 BCents <Image source={bCent} style={{ marginHorizontal: 3, height: 15, width: 15 }} /> </Text>
+                                <Text style={styles.modalText} >0.01 <Image source={bCent} style={{ marginHorizontal: 3, height: 15, width: 15 }} /> </Text>
                             </View>
 
                             <View style={styles.tableModal} >
                                 <Text style={styles.modalText} >$0.05</Text>
-                                <Text style={styles.modalText} >0.05 BCents</Text>
+                                <Text style={styles.modalText} >0.05 <Image source={bCent} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
                                 <Text style={styles.modalText} >$0.10</Text>
-                                <Text style={styles.modalText} >0.10 BCents</Text>
+                                <Text style={styles.modalText} >0.10 <Image source={bCent} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
                                 <Text style={styles.modalText} >$0.20</Text>
-                                <Text style={styles.modalText} >0.20 BCents</Text>
+                                <Text style={styles.modalText} >0.20 <Image source={bCent} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
                                 <Text style={styles.modalText} >$0.50</Text>
-                                <Text style={styles.modalText} >0.50 BCents</Text>
+                                <Text style={styles.modalText} >0.50 <Image source={bCent} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
                                 <Text style={styles.modalText} >$1</Text>
-                                <Text style={styles.modalText} >1 BCoin</Text>
+                                <Text style={styles.modalText} >1 <Image source={bCoinBlack} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
                                 <Text style={styles.modalText} >$5</Text>
-                                <Text style={styles.modalText} >5 BCoin</Text>
+                                <Text style={styles.modalText} >5 <Image source={bCoinBlack} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
                                 <Text style={styles.modalText} >$10</Text>
-                                <Text style={styles.modalText} >10 BCoin</Text>
+                                <Text style={styles.modalText} >10 <Image source={bCoinBlack} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
                                 <Text style={styles.modalText} >$20</Text>
-                                <Text style={styles.modalText} >20 BCoin</Text>
+                                <Text style={styles.modalText} >20 <Image source={bCoinBlack} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
                                 <Text style={styles.modalText} >$50</Text>
-                                <Text style={styles.modalText} >50 BCoin</Text>
+                                <Text style={styles.modalText} >50 <Image source={bCoinBlack} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
                                 <Text style={styles.modalText} >$100</Text>
-                                <Text style={styles.modalText} >100 BCoin</Text>
+                                <Text style={styles.modalText} >100 <Image source={bCoinBlack} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
                             </View>
 
 
                             <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} >
-                                <View style={{ height: 30, width: 200, backgroundColor: colors.yellow1, alignItems: 'center', justifyContent: 'center', borderRadius: 15, marginTop: 5 }} >
+                                <View style={{ height: 30, width: 200, backgroundColor: colors.yellow1, alignItems: 'center', justifyContent: 'center', borderRadius: 15, marginTop: 5,borderWidth:0.5,borderColor:colors.black1 }} >
                                     <Text>Close</Text>
                                 </View>
                             </TouchableOpacity>
@@ -298,7 +298,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 22
+        marginTop: 22,
+
     },
     modalView: {
         // margin: 20,
@@ -307,10 +308,11 @@ const styles = StyleSheet.create({
         // padding: 35,
         alignItems: "center",
         shadowColor: "#000",
-        height: '40%',
+        // height: '40%',
         width: '60%',
         borderWidth: 1,
-        borderColor: colors.black1
+        borderColor: colors.black1,
+        alignSelf:'center'
     },
     tableModal: {
         flexDirection: 'row',
