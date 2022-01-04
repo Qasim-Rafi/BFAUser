@@ -27,7 +27,7 @@ import {useSelector} from 'react-redux';
 const NewsFeed = props => {
   const {navigation} = props;
   const NewsData = useSelector(state => state.appReducers.PromoNews.data);
-  console.log('News Data: ', NewsData);
+  console.log('hhh: ', NewsData);
   return (
     <View style={{backgroundColor: colors.black3, flex: 1}}>
       <View
@@ -57,8 +57,8 @@ const NewsFeed = props => {
             Inbox
           </ResponsiveText>
         </View>
-        {NewsData.length > 0
-          ? NewsData.map((item, index) => {
+        {yourFavoriteFakeDATA.length > 0
+          ? yourFavoriteFakeDATA.map((item, index) => {
               return (
                 <View
                   style={{
@@ -82,7 +82,7 @@ const NewsFeed = props => {
                         margin={[0, 7]}
                         color={colors.white}
                         size={2.7}>
-                        {item.restaurantName}
+                        {item.title}
                       </ResponsiveText>
                       <ResponsiveText
                         margin={[0, 7]}
@@ -95,7 +95,8 @@ const NewsFeed = props => {
                   <ImageBackground
                     style={styles.Advertisement2ndVarientImage}
                     // source={{ uri: url }}
-                    source={{uri: item.fullPath}}></ImageBackground>
+                    source={{uri: item.url}}
+                      ></ImageBackground>
                   <View style={{marginTop: 10, marginLeft: 15}}>
                     <View
                       style={{

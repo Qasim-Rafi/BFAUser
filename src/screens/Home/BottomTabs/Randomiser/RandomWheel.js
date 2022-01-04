@@ -78,6 +78,7 @@ export default class RandomWheel extends React.Component {
             duration: 6000,
 
             backgroundColor: 'transparent',
+            
             textAngle: 'horizontal',
             knobSource: require('../../../../assets/icons/knob.png'),
             onRef: ref => (this.child = ref),
