@@ -28,12 +28,12 @@ import Modal from "react-native-modal";
 
 const participants = [
     
-    'Kaizen sushi',
-    'Dynasty',
-    'PappaRich',
-    'A9 Cafe',
-    'Burger King',
-    'blueEden', 
+    'Imah`s',
+    'Bandar Bus',
+    'Hokkaido',
+    'Pit-shop',
+    'Jollibee',
+    'Anas Corner', 
 ];
 
 export default class RandomWheel extends React.Component {
