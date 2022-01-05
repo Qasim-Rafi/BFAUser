@@ -94,8 +94,8 @@ const NewsFeed = props => {
                   </View>
                   <ImageBackground
                     style={styles.Advertisement2ndVarientImage}
-                    // source={{ uri: url }}
-                    source={{uri: item.url}}
+                    source={item.url}
+                    // source={{uri: item.resLogo}}
                       ></ImageBackground>
                   <View style={{marginTop: 10, marginLeft: 15}}>
                     <View
