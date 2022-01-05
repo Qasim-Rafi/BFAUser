@@ -11,7 +11,7 @@ import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 export default function Categories({ navigation, route }) {
   const { data } = route.params;
-
+  console.log("dataaaaa: ", data)
   const [activeAlphabet, setActiveAlphabet] = useState(null);
   const scrollRef = useRef(null)
   const viewConfigRef = React.useRef({ viewAreaCoveragePercentThreshold: 50 })
@@ -27,9 +27,10 @@ export default function Categories({ navigation, route }) {
     console.log("Changed in this ", changed[0].item.title);
   }, []);
   const renderItem = ({ item }) => {
+
     return (
       <View style={styles.item}>
-        <Text style={styles.header}>{item.firstLetter}</Text>
+        <Text style={styles.header}>{item.name[0]}</Text>
         <View style={{ borderRadius: 10, backgroundColor: colors.black2, paddingVertical: 10 }}>
           {data.map((item, index) => {
             return (
@@ -60,7 +61,7 @@ export default function Categories({ navigation, route }) {
 
           return (
             <TouchableOpacity style={{ marginBottom: 2, backgroundColor: activeAlphabet === item.firstLetter ? colors.white : undefined, height: 25, width: 25, justifyContent: 'center', alignItems: 'center', borderRadius: 1000 }} onPress={() => ScrollHandler(item, index)}>
-              <ResponsiveText color={colors.yellow}>{item.firstLetter}</ResponsiveText>
+              <ResponsiveText color={colors.yellow}>{item.name[0]}</ResponsiveText>
             </TouchableOpacity>
           )
         })}

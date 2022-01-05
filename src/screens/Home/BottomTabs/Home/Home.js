@@ -100,20 +100,20 @@ const Home = ({ navigation }) => {
 
   React.useEffect(() => {
     dispatch(getAddBannerData());
-    dispatch(getPeopleChoice())
+    dispatch(getPeopleChoice(1, 4))
     // dispatch(getPromotions());
-    dispatch(getBfaPartners(7));
+    dispatch(getBfaPartners(6));
     // callAPI();
     // dispatch(getRestaurantAllDishes())
 
     dispatch(
-      getUserCusine(4),
+      getUserCusine(1, 4),
     );
 
     // dispatch(awardsRestaurant());
     // dispatch(getPromoNewsData());
-    dispatch(getPromoJobsData());
-    dispatch(getBfaRecommendations());
+    dispatch(getPromoJobsData(1, 4));
+    dispatch(getBfaRecommendations(1, 4));
     // dispatch(getBruneiFoodRewards());
   }, []);
 

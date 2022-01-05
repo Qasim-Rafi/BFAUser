@@ -39,11 +39,7 @@ const Recommendation = props => {
   );
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getBfaRecommendations(4));
 
-
-  }, [])
   console.log('Bfa Recommendations: ', bfaRecommendation);
   console.log('Bfa Recommendations: ', bfaRecommendation_Loading);
   return (
@@ -60,12 +56,15 @@ const Recommendation = props => {
               justifyContent: 'center',
               paddingLeft: 10,
             }}
-            onPress={() => props.navigation.navigate(routeName.DISH_DETAIL)}>
+            onPress={() => props.navigation.navigate(routeName.DISH_DETAIL)}
+
+          >
             <View style={{ marginRight: 0 }}>
               <SeeAllButton
                 title={'BFA Recommendation'}
-                data={bfaRecommendation}
                 navigation={props.navigation}
+                action={getBfaRecommendations}
+
               />
             </View>
           </TouchableOpacity>
@@ -75,49 +74,53 @@ const Recommendation = props => {
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           {bfaRecommendation.length > 0
             ? bfaRecommendation.map((item, index) => {
-              return (
-                <TouchableOpacity
-                  onPress={() =>
-                    props.navigation.navigate(routeName.DISH_DETAIL, {
-                      dish: item,
-                    })
-                  }>
-                  <View
-                    style={{
-                      width: wp(26),
-                      height: hp(18),
-                      borderRadius: 3,
-                      marginHorizontal: 5,
-                      overflow: 'hidden',
-                      flexDirection: 'row',
-                    }}>
-                    <ImageBackground
-                      imageStyle={{ opacity: 0.5 }}
+              if (index < 4) {
+
+
+                return (
+                  <TouchableOpacity
+                    onPress={() =>
+                      props.navigation.navigate(routeName.DISH_DETAIL, {
+                        dish: item,
+                      })
+                    }>
+                    <View
                       style={{
-                        flex: 1,
-                        padding: 5,
+                        width: wp(26),
+                        height: hp(18),
+                        borderRadius: 3,
+                        marginHorizontal: 5,
                         overflow: 'hidden',
-                        justifyContent: 'flex-end',
-                        backgroundColor: 'rgba(0,0,0,1)',
-                      }}
-                      source={{ uri: item.imageDataB }}>
-                      <ResponsiveText
-                        fontFamily="Regular"
-                        size={3}
-                        margin={[0, 0, 5, 0]}
-                        color={colors.white}>
-                        {item.dishName}
-                      </ResponsiveText>
-                      <ResponsiveText
-                        fontFamily="Light"
-                        size={2.5}
-                        color={colors.white}>
-                        {item.cusineName}
-                      </ResponsiveText>
-                    </ImageBackground>
-                  </View>
-                </TouchableOpacity>
-              );
+                        flexDirection: 'row',
+                      }}>
+                      <ImageBackground
+                        imageStyle={{ opacity: 1 }}
+                        style={{
+                          flex: 1,
+                          padding: 5,
+                          overflow: 'hidden',
+                          justifyContent: 'flex-end',
+                          backgroundColor: 'rgba(0,0,0,1)',
+                        }}
+                        source={{ uri: item.imageDataB }}>
+                        <ResponsiveText
+                          fontFamily="Regular"
+                          size={3}
+                          margin={[0, 0, 5, 0]}
+                          color={colors.white}>
+                          {item.dishName}
+                        </ResponsiveText>
+                        <ResponsiveText
+                          fontFamily="Light"
+                          size={2.5}
+                          color={colors.white}>
+                          {item.cusineName}
+                        </ResponsiveText>
+                      </ImageBackground>
+                    </View>
+                  </TouchableOpacity>
+                );
+              }
             })
             : undefined}
         </ScrollView>

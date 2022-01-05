@@ -7,6 +7,9 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
+import Icon from '../../../../components/Icon';
+import { globalPath } from '../../../../constants/globalPath';
+
 import ResponsiveText from '../../../../components/RnText';
 import {
   BallIndicator,
@@ -28,6 +31,7 @@ import SeeAllButton from '../../../../components/SeeAllButton';
 import { routeName } from '../../../../constants/routeName';
 import { hp, wp } from '../../../../helpers/Responsiveness';
 import { useSelector } from 'react-redux';
+import { getPromoJobsData } from '../../../../redux/actions/user.actions';
 const JobsList = props => {
   const List = useSelector(state => state.appReducers.promoJobs.data);
   const List_Loading = useSelector(state => state.appReducers.promoJobs.loading);
@@ -40,11 +44,30 @@ const JobsList = props => {
           Jobs
         </ResponsiveText>
         <View style={{ marginRight: -10 }}>
-          <SeeAllButton
-            title={'Jobs'}
-            data={List}
-            navigation={props.navigation}
-          />
+          <TouchableOpacity
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              paddingLeft: 10,
+            }}
+            onPress={() => {
+              props.navigation.navigate(routeName.JOB_LISTING, {
+                data: List,
+              });
+            }}>
+            <ResponsiveText
+              size={3.2}
+              margin={[0, 10, 0, 0]}
+              color={colors.yellow}>
+              Show All
+            </ResponsiveText>
+            <Icon
+              size={(wp(1.6), hp(1.6))}
+              margin={[0, 10, 0, 0]}
+              source={globalPath.RIGHT_ARROW}
+            />
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.recommendationItemsSection}>
@@ -55,7 +78,7 @@ const JobsList = props => {
                 <TouchableOpacity
                   onPress={() =>
                     props.navigation.navigate(routeName.APPLY_JOBS, {
-                      dish: url,
+                      data: url,
                     })
                   }>
                   <View
@@ -68,8 +91,7 @@ const JobsList = props => {
                       flexDirection: 'row',
                     }}>
                     <ImageBackground
-                      imageStyle={{ opacity: 0.5 }}
-                      imageStyle={{ opacity: 0.5 }}
+                      imageStyle={{ opacity: 1 }}
                       style={{
                         flex: 1,
                         padding: 5,
