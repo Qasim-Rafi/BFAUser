@@ -63,7 +63,7 @@ const AdvertisementBanner = ({ navigation }) => {
             return (
               <View style={{ flex: 1 }}>
                 <ImageBackground
-                  imageStyle={{ opacity: 0.8 }}
+                  imageStyle={{ opacity: 1 }}
                   style={styles.advertisementBannerImage}
                   //  source={{ uri: url }}
                   source={{ uri: item.fullPath }}>

@@ -59,8 +59,14 @@ export function* getPeopleChoiceSaga() {
   yield takeLatest(types.GET_PEOPLE_CHOICE_REQUEST, getPeopleChoiceSagaApi);
 }
 function* getPeopleChoiceSagaApi(data) {
+  const limit = data.data.limit;
+  const index = data.data.index;
+
+  console.log("paramsssssssssss: ", data)
+  const url = urls.PEOPLE_CHOICE + index + '/' + limit;
+  console.log("People Url: ", url)
   try {
-    const response = yield Api.get(urls.PEOPLE_CHOICE);
+    const response = yield Api.get(url);
     if (response && response.data != null) {
       yield put({
         type: types.GET_PEOPLE_CHOICE_SUCCESS,
@@ -148,11 +154,17 @@ export function* getCusineSaga() {
   yield takeLatest(types.GET_CUSINE_REQUEST, getCusineSagaApi);
 }
 function* getCusineSagaApi(data) {
+  const limit = data.data.limit;
+  const index = data.data.index;
+
+  console.log("paramsssssssssss: ", data)
+
   try {
-    const response = yield Api.get(urls.CUSINE_URL);
+    const url = urls.CUSINE_URL + index + '/' + limit;
+    console.log("Cuisines Url: ", url)
+    const response = yield Api.get(url);
     if (response && response.data != null) {
       yield put({ type: types.GET_CUSINE_SUCCESS, payload: response.data });
-      // navigation.navigate(routeName.Categories,{data:response.data});
     } else {
       yield put({ type: types.GET_CUSINE_FAILURE, error: error });
     }
@@ -162,6 +174,8 @@ function* getCusineSagaApi(data) {
     yield put({ type: types.GET_CUSINE_FAILURE, error: error });
   }
 }
+
+
 //PROMOTIONS
 export function* getpromotionsSaga() {
   yield takeLatest(types.GET_PROMOTIONS_REQUEST, getPromotionsSagaApi);
@@ -189,8 +203,14 @@ export function* getBfaRecommendationSaga() {
   );
 }
 function* getBfaRecommendationSagaApi(data) {
+  const limit = data.data.limit;
+  const index = data.data.index;
+
+  console.log("paramsssssssssss: ", data)
+  const url = urls.RESTAURANT_DISH_ALL + index + '/' + limit;
+  console.log("People Url: ", url)
   try {
-    const response = yield Api.get(urls.RESTAURANT_DISH_ALL);
+    const response = yield Api.get(url);
     if (response && response.data != null) {
       yield put({
         type: types.GET_BFA_RECOMMENDATION_SUCCESS,
@@ -235,8 +255,14 @@ export function* getPromoJobsSaga() {
   yield takeLatest(types.GET_PROMO_JOBS_REQUEST, getJobsNewsSagaApi);
 }
 function* getJobsNewsSagaApi(data) {
+  const limit = data.data.limit;
+  const index = data.data.index;
+
+  console.log("paramsssssssssss: ", data)
+  const url = urls.GET_PROMO_JOBS + index + '/' + limit;
+  console.log("People Url: ", url)
   try {
-    const response = yield Api.get(urls.GET_PROMO_JOBS);
+    const response = yield Api.get(url);
     if (response && response.data != null) {
       yield put({ type: types.GET_PROMO_JOBS_SUCCESS, payload: response.data });
       // navigation.navigate(routeName.Categories,{data:response.data});
@@ -269,31 +295,7 @@ function* getPromoNewsSagaApi(data) {
     yield put({ type: types.GET_PROMO_NEWS_FAILURE, error: error });
   }
 }
-//Get Bfa Recommendation
-export function* getRecommendationSaga() {
-  yield takeLatest(
-    types.GET_BFA_RECOMMENDATION_REQUEST,
-    getRecommendationSagaApi,
-  );
-}
-function* getRecommendationSagaApi(data) {
-  try {
-    const response = yield Api.get(urls.RESTAURANT_DISH_ALL);
-    if (response && response.data != null) {
-      yield put({
-        type: types.GET_BFA_RECOMMENDATION_SUCCESS,
-        payload: response.data,
-      });
-      // navigation.navigate(routeName.Categories,{data:response.data});
-    } else {
-      yield put({ type: types.GET_BFA_RECOMMENDATION_FAILURE, error: error });
-    }
 
-    // dispatch a success action to the store with the new data object
-  } catch (error) {
-    yield put({ type: types.GET_BFA_RECOMMENDATION_FAILURE, error: error });
-  }
-}
 
 // Get BFA PARTNERS Saga
 export function* getBfaParntersSaga() {
@@ -301,10 +303,10 @@ export function* getBfaParntersSaga() {
 }
 function* getBfaPartnersSagaApi(data) {
   const params = data.data;
-  console.log("paramsssssssssss: ", params)
 
   try {
     const url = urls.GET_BFA_PARTNERS + params;
+
     const response = yield Api.get(url);
     if (response && response.data != null) {
       yield put({ type: types.GET_BFA_PARTNERS_SUCCESS, payload: response.data });

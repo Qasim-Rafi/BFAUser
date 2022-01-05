@@ -151,8 +151,10 @@ const BfaPartner = ({ props }) => {
                   }}>
                   <TouchableOpacity onPress={() => modalView(index)} >
                     <Icon
+
                       source={{
                         uri: url,
+
                       }}
                       // source={url}
 

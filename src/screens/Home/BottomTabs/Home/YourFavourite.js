@@ -8,16 +8,18 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import ResponsiveText from '../../../../components/RnText';
-import {Rating, AirbnbRating} from 'react-native-ratings';
-import {routeName} from '../../../../constants/routeName';
-import {useSelector, useDispatch} from 'react-redux';
+import { Rating, AirbnbRating } from 'react-native-ratings';
+import { routeName } from '../../../../constants/routeName';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   advertisementBannerFakeDATA,
   yourFavoriteFakeDATA,
 } from '../../../../constants/mock';
-import {colors} from '../../../../constants/colorsPallet';
+import Icon from '../../../../components/Icon';
+import { globalPath } from '../../../../constants/globalPath';
+import { colors } from '../../../../constants/colorsPallet';
 import SeeAllButton from '../../../../components/SeeAllButton';
-import {hp, wp} from '../../../../helpers/Responsiveness';
+import { hp, wp } from '../../../../helpers/Responsiveness';
 const YourFavourite = props => {
   //   const firstName = 'PG';
   //   const title = firstName + "'s Favorites";
@@ -35,61 +37,83 @@ const YourFavourite = props => {
         <ResponsiveText margin={[0, 0, 0, -5]} size={4} color={colors.white}>
           PG's Favourites
         </ResponsiveText>
-        <View style={{marginRight: -15}}>
-          <SeeAllButton
+        <View style={{ marginRight: -15 }}>
+
+          <TouchableOpacity
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              paddingLeft: 10,
+            }}
+          >
+            <ResponsiveText
+              size={3.2}
+              margin={[0, 10, 0, 0]}
+              color={colors.yellow}>
+              Show All
+            </ResponsiveText>
+            <Icon
+              size={(wp(1.6), hp(1.6))}
+              margin={[0, 10, 0, 0]}
+              source={globalPath.RIGHT_ARROW}
+            />
+          </TouchableOpacity>
+          {/* <SeeAllButton
             title={"PG's Favourites"}
             data={yourFavoriteFakeDATA}
+            action={yourFavoriteFakeDATA}
             navigation={props.navigation}
-          />
+          /> */}
         </View>
       </View>
       <View style={styles.AwardWinningDishesItemsSection}>
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           {yourFavoriteFakeDATA.length > 0
             ? yourFavoriteFakeDATA.map((url, item) => {
-                return (
-                  <TouchableOpacity
-                    onPress={() =>
-                      props.navigation.navigate(routeName.DISH_DETAIL, {
-                        dish: url,
-                      })
-                    }>
-                    <View
+              return (
+                <TouchableOpacity
+                  onPress={() =>
+                    props.navigation.navigate(routeName.DISH_DETAIL, {
+                      dish: url,
+                    })
+                  }>
+                  <View
+                    style={{
+                      width: wp(26),
+                      height: hp(18),
+                      marginHorizontal: 5,
+                      borderRadius: 3,
+                      overflow: 'hidden',
+                      flexDirection: 'row',
+                    }}>
+                    <ImageBackground
+                      imageStyle={{ opacity: 1 }}
                       style={{
-                        width: wp(26),
-                        height: hp(18),
-                        marginHorizontal: 5,
-                        borderRadius: 3,
+                        flex: 1,
+                        padding: 5,
                         overflow: 'hidden',
-                        flexDirection: 'row',
-                      }}>
-                      <ImageBackground
-                        imageStyle={{opacity: 0.5}}
-                        style={{
-                          flex: 1,
-                          padding: 5,
-                          overflow: 'hidden',
-                          justifyContent: 'flex-end',
-                        }}
-                        source={url.url}>
-                        <ResponsiveText
-                          fontFamily="Regular"
-                          size={3}
-                          color={colors.white}>
-                          {url.title}
-                        </ResponsiveText>
-                        <ResponsiveText
-                          fontFamily="Light"
-                          size={2.5}
-                          margin={[-5, 0, 0, 0]}
-                          color={colors.white}>
-                          {url.awardName}
-                        </ResponsiveText>
-                      </ImageBackground>
-                    </View>
-                  </TouchableOpacity>
-                );
-              })
+                        justifyContent: 'flex-end',
+                      }}
+                      source={url.url}>
+                      <ResponsiveText
+                        fontFamily="Regular"
+                        size={3}
+                        color={colors.white}>
+                        {url.title}
+                      </ResponsiveText>
+                      <ResponsiveText
+                        fontFamily="Light"
+                        size={2.5}
+                        margin={[-5, 0, 0, 0]}
+                        color={colors.white}>
+                        {url.awardName}
+                      </ResponsiveText>
+                    </ImageBackground>
+                  </View>
+                </TouchableOpacity>
+              );
+            })
             : undefined}
         </ScrollView>
       </View>

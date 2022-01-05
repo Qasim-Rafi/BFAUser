@@ -28,15 +28,12 @@ import Modal from "react-native-modal";
 
 const participants = [
     
-    'I-Lotus',
+    'Kaizen sushi',
     'Dynasty',
     'PappaRich',
     'A9 Cafe',
     'Burger King',
-    'blueEden',
-    
-    
-   
+    'blueEden', 
 ];
 
 export default class RandomWheel extends React.Component {
@@ -76,7 +73,14 @@ export default class RandomWheel extends React.Component {
             borderColor: '#fff',
             innerRadius: 30,
             duration: 6000,
-
+            iconRewards: [
+                require('../../../../assets/fake_Images/wheel1.png'),
+                require('../../../../assets/fake_Images/wheel2.png'),
+                require('../../../../assets/fake_Images/wheel3.png'),
+                require('../../../../assets/fake_Images/wheel4.png'),
+                require('../../../../assets/fake_Images/wheel5.png'),
+                require('../../../../assets/fake_Images/wheel6.png'),
+            ],
             backgroundColor: 'transparent',
             
             textAngle: 'horizontal',

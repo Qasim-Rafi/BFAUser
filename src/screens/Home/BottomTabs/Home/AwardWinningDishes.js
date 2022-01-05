@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import ResponsiveText from '../../../../components/RnText';
-
+import Icon from '../../../../components/Icon';
+import { globalPath } from '../../../../constants/globalPath';
 import {
   advertisementBannerFakeDATA,
   ourRecommendationFakeDATA,
@@ -27,11 +28,31 @@ const WhatsNew = props => {
           Brunei Food Awards
         </ResponsiveText>
         <View style={{ marginRight: -10 }}>
-          <SeeAllButton
+          <TouchableOpacity
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              paddingLeft: 10,
+            }}
+          >
+            <ResponsiveText
+              size={3.2}
+              margin={[0, 10, 0, 0]}
+              color={colors.yellow}>
+              Show All
+            </ResponsiveText>
+            <Icon
+              size={(wp(1.6), hp(1.6))}
+              margin={[0, 10, 0, 0]}
+              source={globalPath.RIGHT_ARROW}
+            />
+          </TouchableOpacity>
+          {/* <SeeAllButton
             title={"What's New"}
             data={promotionsFakeDATA}
             navigation={props.navigation}
-          />
+          /> */}
         </View>
       </View>
       <View style={styles.recommendationItemsSection}>
@@ -52,8 +73,7 @@ const WhatsNew = props => {
                     flexDirection: 'row',
                   }}>
                   <ImageBackground
-                    imageStyle={{ opacity: 0.5 }}
-                    imageStyle={{ opacity: 0.5 }}
+                    imageStyle={{ opacity: 1 }}
                     style={{
                       flex: 1,
                       padding: 5,

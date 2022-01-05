@@ -81,9 +81,11 @@ const AllCuisines = props => {
       <View style={styles.recommendationItemsSection}>
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           {cuisines.length > 0
-            ? cuisines.map((data, index) => {
-              console.log("Dataaaaaaaaaaaaa: ", data)
-              return cuisines.map(item => {
+            ?
+            cuisines.map((item, index) => {
+              if (index < 4) {
+
+
                 return (
                   <TouchableOpacity
                     onPress={() =>
@@ -101,7 +103,7 @@ const AllCuisines = props => {
                         flexDirection: 'row',
                       }}>
                       <ImageBackground
-                        imageStyle={{ opacity: 0.5 }}
+                        imageStyle={{ opacity: 1 }}
                         style={{
                           flex: 1,
                           padding: 5,
@@ -122,8 +124,9 @@ const AllCuisines = props => {
                     </View>
                   </TouchableOpacity>
                 );
-              });
+              }
             })
+
             : undefined}
         </ScrollView>
         {
