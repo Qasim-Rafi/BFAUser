@@ -8,16 +8,17 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import ResponsiveText from '../../../../components/RnText';
-
+import Icon from '../../../../components/Icon';
+import { globalPath } from '../../../../constants/globalPath';
 import {
   advertisementBannerFakeDATA,
   ourRecommendationFakeDATA,
   whatsNew,
 } from '../../../../constants/mock';
-import {colors} from '../../../../constants/colorsPallet';
+import { colors } from '../../../../constants/colorsPallet';
 import SeeAllButton from '../../../../components/SeeAllButton';
-import {routeName} from '../../../../constants/routeName';
-import {hp, wp} from '../../../../helpers/Responsiveness';
+import { routeName } from '../../../../constants/routeName';
+import { hp, wp } from '../../../../helpers/Responsiveness';
 const WhatsNew = props => {
   return (
     <>
@@ -25,12 +26,32 @@ const WhatsNew = props => {
         <ResponsiveText margin={[0, 0, 0, 0]} size={4} color={colors.white}>
           What's New
         </ResponsiveText>
-        <View style={{marginRight: -10}}>
-          <SeeAllButton
+        <View style={{ marginRight: -10 }}>
+          <TouchableOpacity
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              paddingLeft: 10,
+            }}
+          >
+            <ResponsiveText
+              size={3.2}
+              margin={[0, 10, 0, 0]}
+              color={colors.yellow}>
+              Show All
+            </ResponsiveText>
+            <Icon
+              size={(wp(1.6), hp(1.6))}
+              margin={[0, 10, 0, 0]}
+              source={globalPath.RIGHT_ARROW}
+            />
+          </TouchableOpacity>
+          {/* <SeeAllButton
             title={"What's New"}
             data={whatsNew}
             navigation={props.navigation}
-          />
+          /> */}
         </View>
       </View>
       <View style={styles.recommendationItemsSection}>
@@ -39,7 +60,7 @@ const WhatsNew = props => {
             return (
               <TouchableOpacity
                 onPress={() =>
-                  props.navigation.navigate(routeName.DISH_DETAIL, {dish: url})
+                  props.navigation.navigate(routeName.DISH_DETAIL, { dish: url })
                 }>
                 <View
                   style={{
@@ -51,8 +72,7 @@ const WhatsNew = props => {
                     flexDirection: 'row',
                   }}>
                   <ImageBackground
-                    imageStyle={{opacity: 0.5}}
-                    imageStyle={{opacity: 0.5}}
+                    imageStyle={{ opacity: 1 }}
                     style={{
                       flex: 1,
                       padding: 5,

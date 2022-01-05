@@ -43,7 +43,6 @@ class Api {
 
   static async xhr(route, body, verb, sendAuthToken) {
     const url = `${urls.HOST}${route}`;
-    console.log("Urllllllllllllll:", url)
 
     let options = null;
     if (body) {
