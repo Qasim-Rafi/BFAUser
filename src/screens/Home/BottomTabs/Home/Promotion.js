@@ -8,18 +8,20 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import ResponsiveText from '../../../../components/RnText';
-import {Rating, AirbnbRating} from 'react-native-ratings';
+import { Rating, AirbnbRating } from 'react-native-ratings';
 
 import {
   promosBannerFakeDATA,
   advertisementBannerFakeDATA,
   promotionsFakeDATA,
 } from '../../../../constants/mock';
-import {colors} from '../../../../constants/colorsPallet';
-import {routeName} from '../../../../constants/routeName';
+import { colors } from '../../../../constants/colorsPallet';
+import { routeName } from '../../../../constants/routeName';
 import SeeAllButton from '../../../../components/SeeAllButton';
-import {hp, wp} from '../../../../helpers/Responsiveness';
-import {useSelector} from 'react-redux';
+import { hp, wp } from '../../../../helpers/Responsiveness';
+import { useSelector } from 'react-redux';
+import Icon from '../../../../components/Icon';
+import { globalPath } from '../../../../constants/globalPath';
 const Promotion = props => {
   // const Promotions = useSelector(state => state.appReducers.promotions.data);
   // console.log('promotions: ', Promotions);
@@ -30,65 +32,84 @@ const Promotion = props => {
         <ResponsiveText margin={[0, 0, 0, 0]} size={4} color={colors.white}>
           Promotions
         </ResponsiveText>
-        <View style={{marginRight: -10}}>
-          <SeeAllButton
+        <View style={{ marginRight: -10 }}>
+          <TouchableOpacity
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              paddingLeft: 10,
+            }}
+          >
+            <ResponsiveText
+              size={3.2}
+              margin={[0, 10, 0, 0]}
+              color={colors.yellow}>
+              Show All
+            </ResponsiveText>
+            <Icon
+              size={(wp(1.6), hp(1.6))}
+              margin={[0, 10, 0, 0]}
+              source={globalPath.RIGHT_ARROW}
+            />
+          </TouchableOpacity>
+          {/* <SeeAllButton
             title={'Promotions'}
             data={promosBannerFakeDATA}
             navigation={props.navigation}
-          />
+          /> */}
         </View>
       </View>
       <View style={styles.everyOneFavoriteItemsSection}>
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           {promosBannerFakeDATA.length > 0
             ? promosBannerFakeDATA.map((url, index) => {
-                return (
-                  <TouchableOpacity
-                    onPress={() =>
-                      props.navigation.navigate(routeName.DISH_DETAIL, {
-                        dish: url,
-                      })
-                    }>
-                    <View
+              return (
+                <TouchableOpacity
+                  onPress={() =>
+                    props.navigation.navigate(routeName.DISH_DETAIL, {
+                      dish: url,
+                    })
+                  }>
+                  <View
+                    style={{
+                      width: wp(26),
+                      height: hp(18),
+                      marginHorizontal: 5,
+                      borderRadius: 3,
+                      overflow: 'hidden',
+                      flexDirection: 'row',
+                    }}>
+                    <ImageBackground
+                      imageStyle={{ opacity: 1 }}
                       style={{
-                        width: wp(26),
-                        height: hp(18),
-                        marginHorizontal: 5,
-                        borderRadius: 3,
+                        flex: 1,
+                        padding: 5,
                         overflow: 'hidden',
-                        flexDirection: 'row',
-                      }}>
-                      <ImageBackground
-                        imageStyle={{opacity: 0.5}}
-                        imageStyle={{opacity: 0.5}}
-                        style={{
-                          flex: 1,
-                          padding: 5,
-                          overflow: 'hidden',
-                          justifyContent: 'flex-end',
-                          backgroundColor: 'rgba(0,0,0,1)',
-                        }}
-                        source={url.url}>
-                        <ResponsiveText
-                          fontFamily="Regular"
-                          size={3}
-                          margin={[0, 0, -5, 0]}
-                          color={colors.white}>
-                          {url.title}
-                        </ResponsiveText>
-                        <ResponsiveText
-                          fontFamily="Regular"
-                          size={3}
-                          margin={[0, 0, -5, 0]}
-                          color={colors.white}>
-                          {url.description}
-                        </ResponsiveText>
-                        {/* <ResponsiveText fontFamily="Light" size={2.5} color={colors.white}>{url.description}</ResponsiveText> */}
-                      </ImageBackground>
-                    </View>
-                  </TouchableOpacity>
-                );
-              })
+                        justifyContent: 'flex-end',
+                        backgroundColor: 'rgba(0,0,0,1)',
+                      }}
+                      source={url.url}>
+                      <ResponsiveText
+                        fontFamily="Regular"
+                        size={3}
+                        margin={[0, 0, -5, 0]}
+                        color={colors.white}>
+                        {url.title}
+                      </ResponsiveText>
+                      <ResponsiveText
+                        fontFamily="Regular"
+                        size={3}
+                        margin={[0, 0, -5, 0]}
+                        color={colors.white}>
+                        {url.description}
+                      </ResponsiveText>
+                      {/* <ResponsiveText fontFamily="Light" size={2.5} color={colors.white}>{url.description}</ResponsiveText> */}
+                    </ImageBackground>
+                  </View>
+                </TouchableOpacity>
+              );
+            })
             : undefined}
         </ScrollView>
       </View>

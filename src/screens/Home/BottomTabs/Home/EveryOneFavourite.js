@@ -31,8 +31,9 @@ import SeeAllButton from '../../../../components/SeeAllButton';
 import { hp, wp } from '../../../../helpers/Responsiveness';
 import { useSelector } from 'react-redux';
 import { State } from 'react-native-gesture-handler';
+import { getPeopleChoice } from '../../../../redux/actions/user.actions';
 const EveryOneFavourite = props => {
-  const People_choice = useSelector(State => State.appReducers.PeopleChoice.data)
+  const People_choice = useSelector(state => state.appReducers.PeopleChoice.data)
   const People_choice_Loading = useSelector(State => State.appReducers.PeopleChoice.loading)
   console.log("People Choice: ", People_choice);
   console.log("People Choice: ", People_choice.length);
@@ -49,6 +50,7 @@ const EveryOneFavourite = props => {
           <SeeAllButton
             title={"People's Choice"}
             data={People_choice}
+            action={getPeopleChoice}
             navigation={props.navigation}
           />
         </View>
@@ -58,37 +60,39 @@ const EveryOneFavourite = props => {
           {
             People_choice.length > 0 ?
               People_choice.map((url, index) => {
-                return (
-                  <TouchableOpacity
-                    onPress={() =>
-                      props.navigation.navigate(routeName.RestaurantDetail)
-                    }>
-                    <View
-                      style={{
-                        width: wp(26),
-                        height: hp(18),
-                        marginHorizontal: 5,
-                        borderRadius: 3,
-                        overflow: 'hidden',
-                        flexDirection: 'row',
-                      }}>
-                      <ImageBackground
-                        imageStyle={{ opacity: 0.5 }}
-                        style={{
-                          flex: 1,
-                          padding: 5,
-                          overflow: 'hidden',
-                          justifyContent: 'flex-end',
-                        }}
-                        source={{ uri: url.fullPath }}>
+                if (index < 4) {
 
-                        <ResponsiveText
-                          fontFamily="Regular"
-                          size={3}
-                          color={colors.white}>
-                          {url.dishName}
-                        </ResponsiveText>
-                        {/* <ResponsiveText
+                  return (
+                    <TouchableOpacity
+                      onPress={() =>
+                        props.navigation.navigate(routeName.RestaurantDetail)
+                      }>
+                      <View
+                        style={{
+                          width: wp(26),
+                          height: hp(18),
+                          marginHorizontal: 5,
+                          borderRadius: 3,
+                          overflow: 'hidden',
+                          flexDirection: 'row',
+                        }}>
+                        <ImageBackground
+                          imageStyle={{ opacity: 1 }}
+                          style={{
+                            flex: 1,
+                            padding: 5,
+                            overflow: 'hidden',
+                            justifyContent: 'flex-end',
+                          }}
+                          source={{ uri: url.fullPath }}>
+
+                          <ResponsiveText
+                            fontFamily="Regular"
+                            size={3}
+                            color={colors.white}>
+                            {url.dishName}
+                          </ResponsiveText>
+                          {/* <ResponsiveText
                       fontFamily="Light"
                       size={2.5}
                       margin={[-5, 0, -5, 0]}
@@ -96,17 +100,18 @@ const EveryOneFavourite = props => {
                       Special sushi
                     </ResponsiveText> */}
 
-                        <Rating
-                          tintColor={'rgba(0, 0, 0, 0.8)'}
-                          size={2}
-                          imageSize={10}
-                          // tintColor={'transparent'}
-                          style={{ paddingVertical: 10, alignSelf: 'flex-start' }}
-                        />
-                      </ImageBackground>
-                    </View>
-                  </TouchableOpacity>
-                );
+                          <Rating
+                            tintColor={'rgba(0, 0, 0, 0.8)'}
+                            size={2}
+                            imageSize={10}
+                            // tintColor={'transparent'}
+                            style={{ paddingVertical: 10, alignSelf: 'flex-start' }}
+                          />
+                        </ImageBackground>
+                      </View>
+                    </TouchableOpacity>
+                  );
+                }
               }) : undefined}
         </ScrollView>
         {

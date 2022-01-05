@@ -9,10 +9,13 @@ export const loginUser = (data) => {
   };
 };
 //people choice
-export const getPeopleChoice = (data) => {
+export const getPeopleChoice = (index, limit) => {
   return {
     type: types.GET_PEOPLE_CHOICE_REQUEST,
-    data: data,
+    data: {
+      index: index,
+      limit: limit
+    }
   };
 };
 
@@ -43,17 +46,23 @@ export const getBruneiFoodRewards = (data) => {
 
 //Get  Cusine
 
-export const getUserCusine = (data) => {
+export const getUserCusine = (index, limit) => {
   return {
     type: types.GET_CUSINE_REQUEST,
-    data: data
+    data: {
+      index: index,
+      limit: limit
+    }
   };
 };
 //Get Recommendations
-export const getBfaRecommendations = (data) => {
+export const getBfaRecommendations = (index, limit) => {
   return {
     type: types.GET_BFA_RECOMMENDATION_REQUEST,
-    data: data
+    data: {
+      index: index,
+      limit: limit
+    }
   };
 };
 //Get  User
@@ -79,9 +88,13 @@ export const getPromoNewsData = () => {
 };
 
 // GET PROMO JOBS
-export const getPromoJobsData = () => {
+export const getPromoJobsData = (index, limit) => {
   return {
     type: types.GET_PROMO_JOBS_REQUEST,
+    data: {
+      index: index,
+      limit: limit
+    }
   };
 };
 
