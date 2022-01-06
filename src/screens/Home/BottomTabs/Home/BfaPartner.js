@@ -191,18 +191,16 @@ const BfaPartner = ({ props }) => {
               );
             })
           : undefined}
-          <View>
-            <Modal visible={modalVisble} style={{ height: '80%', width: '80%' }} >
-              <View style={{ flex: 1, justifyContent: 'center' }} >
+          <Modal visible={modalVisble} animationType="slide" transparent={true} style={{borderRadius:50}} >
+            <View style={{ flex: 1, margin:30, borderWidth:1, backgroundColor:colors.black3, padding: 20, borderRadius:30 }} >
                 <WebView
                   source={{ uri: siteAdd[webIndex] }}
                   // style={{height:'80%',width:'80%'}}
                 />
                 {console.log(siteAdd[webIndex],'webIndex',webIndex)}
-                <Button title={'Close'} onPress={() => setModalVisible(false)} />
-              </View>
-            </Modal>
-          </View>
+                <Button title={'Close'} onPress={() => setModalVisible(false)}  />
+            </View>
+          </Modal>
 
       </View>
       
@@ -237,5 +235,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.black3,
 
     overflow: 'hidden',
+  },
+  modalWeb:{
+    marginTop:50
   },
 });
