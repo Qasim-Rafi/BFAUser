@@ -218,12 +218,12 @@ function* getBfaRecommendationSagaApi(data) {
       });
       // navigation.navigate(routeName.Categories,{data:response.data});
     } else {
-      yield put({ type: types.GET_BFA_RECOMMENDATION_FAILURE, payload:[]});
+      yield put({ type: types.GET_BFA_RECOMMENDATION_FAILURE, error: error });
     }
 
     // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({ type: types.GET_BFA_RECOMMENDATION_SUCCESS,  payload:[] });
+    yield put({ type: types.GET_BFA_RECOMMENDATION_SUCCESS, error: error });
   }
 }
 
@@ -390,6 +390,7 @@ function* addfavouritSagaApi(data) {
     yield put({ type: types.ADD_FAVORITE_FAILURE, error: 'error' });
   }
 }
+
 export function* onRemoveFavoriteSaga() {
   yield takeLatest(
     types.ON_REMOVE_FAVORITE_REQUEST,
@@ -416,8 +417,6 @@ function* onRemoveFavoriteSagaApi(data) {
     yield put({ type: types.ON_REMOVE_FAVORITE_FAILURE, error: 'error' });
   }
 }
-
-
 // //Add product category
 // export function* addRUpdateCategorySaga() {
 //   yield takeLatest(types.ADD_PRODUCT_CAT_REQUEST, addRUpdateCategorySagaApi);

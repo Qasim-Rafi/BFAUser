@@ -1,3 +1,4 @@
+
 import React from 'react';
 import {
   Image,
@@ -8,260 +9,149 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import ResponsiveText from '../../../../components/RnText';
-import Icon from '../../../../components/Icon';
-import { globalPath } from '../../../../constants/globalPath';
+import { Rating, AirbnbRating } from 'react-native-ratings';
+import { routeName } from '../../../../constants/routeName';
 import {
   advertisementBannerFakeDATA,
-  ourRecommendationFakeDATA,
+  awardWinningFakeDATA,
   promotionsFakeDATA,
-  whatsNew,
+  yourFavoriteFakeDATA,
 } from '../../../../constants/mock';
+import {
+  BallIndicator,
+  BarIndicator,
+  DotIndicator,
+  MaterialIndicator,
+  PacmanIndicator,
+  PulseIndicator,
+  SkypeIndicator,
+  UIActivityIndicator,
+  WaveIndicator,
+} from 'react-native-indicators';
 import { colors } from '../../../../constants/colorsPallet';
 import SeeAllButton from '../../../../components/SeeAllButton';
-import { routeName } from '../../../../constants/routeName';
 import { hp, wp } from '../../../../helpers/Responsiveness';
-const WhatsNew = props => {
+import { useSelector } from 'react-redux';
+import { getBruneiFoodRewards } from '../../../../redux/actions/user.actions';
+const AwardWinningDishes = props => {
+  const FoodsAwards = useSelector(
+    state => state.appReducers.bruneiFoodsAwards.data,
+  );
+  const loading = useSelector(
+    state => state.appReducers.bruneiFoodsAwards.loading,
+  );
+  console.log('Brunei Foods Awards: ', FoodsAwards);
+  console.log('Brunei Length: ', FoodsAwards.length);
+  console.log('Brunei Foods Awards  Loading: ', loading);
   return (
     <>
-      <View style={styles.recommendationHeaderSection}>
-        <ResponsiveText margin={[0, 0, 0, 0]} size={4} color={colors.white}>
+      <View style={styles.AwardWinningDishesHeaderSection}>
+        <ResponsiveText margin={[0, 0, 0, -5]} size={4} color={colors.white}>
           Brunei Food Awards
         </ResponsiveText>
-        <View style={{ marginRight: -10 }}>
-          <TouchableOpacity
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              paddingLeft: 10,
-            }}
-          >
-            <ResponsiveText
-              size={3.2}
-              margin={[0, 10, 0, 0]}
-              color={colors.yellow}>
-              Show All
-            </ResponsiveText>
-            <Icon
-              size={(wp(1.6), hp(1.6))}
-              margin={[0, 10, 0, 0]}
-              source={globalPath.RIGHT_ARROW}
-            />
-          </TouchableOpacity>
-          {/* <SeeAllButton
-            title={"What's New"}
-            data={promotionsFakeDATA}
+        <View style={{ marginRight: -15 }}>
+          <SeeAllButton
+            title={'Brunei Food Awards'}
+            data={FoodsAwards}
+            action={getBruneiFoodRewards}
             navigation={props.navigation}
-          /> */}
+          />
         </View>
       </View>
-      <View style={styles.recommendationItemsSection}>
+      <View style={styles.AwardWinningDishesItemsSection}>
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-          {promotionsFakeDATA.map((url, index) => {
-            return (
-              <TouchableOpacity
-                onPress={() =>
-                  props.navigation.navigate(routeName.DISH_DETAIL, { dish: url })
-                }>
-                <View
-                  style={{
-                    width: wp(26),
-                    height: hp(18),
-                    borderRadius: 3,
-                    marginHorizontal: 5,
-                    overflow: 'hidden',
-                    flexDirection: 'row',
-                  }}>
-                  <ImageBackground
-                    imageStyle={{ opacity: 1 }}
+          {FoodsAwards.length > 0
+            ? FoodsAwards.map((url, index) => {
+              return (
+                <TouchableOpacity
+                  onPress={() =>
+                    props.navigation.navigate(routeName.DISH_DETAIL, {
+                      dish: url,
+                    })
+                  }>
+                  <View
                     style={{
-                      flex: 1,
-                      padding: 5,
+                      width: wp(26),
+                      height: hp(18),
+                      marginHorizontal: 5,
+                      borderRadius: 3,
                       overflow: 'hidden',
-                      justifyContent: 'flex-end',
-                      backgroundColor: 'rgba(0,0,0,1)',
-                    }}
-                    source={url.url}>
-                    <ResponsiveText
-                      fontFamily="Regular"
-                      size={3}
-                      margin={[0, 0, -5, 0]}
-                      color={colors.white}>
-                      {url.title}
-                    </ResponsiveText>
-                    {/* <ResponsiveText fontFamily="Light" size={2.5} color={colors.white}>{url.description}</ResponsiveText> */}
-                  </ImageBackground>
-                </View>
-              </TouchableOpacity>
-            );
-          })}
-        </ScrollView>
-      </View>
+                      flexDirection: 'row',
+                    }}>
+                    <ImageBackground
+                      imageStyle={{ opacity: 0.5 }}
+                      style={{
+                        flex: 1,
+                        padding: 5,
+                        overflow: 'hidden',
+                        justifyContent: 'flex-end',
+                        backgroundColor: 'rgba(0,0,0,1)',
+                      }}
+                      source={{ uri: url.fullPath }}
+                    // source={{
+                    //   uri: url.imageDataB.replace(/ /g, ''),
+                    // }}>
+                    >
+                      {/* < ResponsiveText
+                        fontFamily="Regular"
+                        size={3}
+                        margin={[0, 0, 5, 0]}
+                        color={colors.white}>
+                        {url.restaurantName}
+                      </ResponsiveText> */}
+                      <ResponsiveText
+                        fontFamily="Light"
+                        size={2.5}
+                        color={colors.white}>
+                        {url.awardName}
+                      </ResponsiveText>
+                    </ImageBackground>
+                  </View>
+                </TouchableOpacity>
+              );
+            })
+            : undefined}
+        </ScrollView >
+        {
+          loading === true ?
+            <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, backgroundColor: 'rgba(65, 65, 65, 0)', flex: 1 }}>
+              < DotIndicator color={colors.yellow} size={5} />
+            </View>
+            :
+            undefined
+        }
+      </View >
     </>
   );
 };
 
-export default WhatsNew;
+export default AwardWinningDishes;
 
 const styles = StyleSheet.create({
-  recommendationHeaderSection: {
-    paddingVertical: 5,
+  AwardWinningDishesHeaderSection: {
+    paddingHorizontal: 5,
+    paddingTop: 10,
+    paddingBottom: 5,
+    marginRight: 15,
+    marginBottom: 5,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginLeft: 15,
-    marginRight: 15,
+    backgroundColor: colors.black3,
     borderTopLeftRadius: 7,
     borderTopRightRadius: 7,
+    marginLeft: 15,
     borderBottomWidth: 1,
     borderColor: colors.black1,
   },
-  recommendationItemsSection: {
+  AwardWinningDishesItemsSection: {
     flex: 1,
-    marginTop: 5,
-    paddingLeft: 15,
     flexDirection: 'row',
     display: 'flex',
     paddingVertical: 10,
     justifyContent: 'center',
+    paddingLeft: 10,
     overflow: 'hidden',
-    marginLeft: -5,
+    backgroundColor: colors.black3,
   },
 });
-
-
-
-// import React from 'react';
-// import {
-//   Image,
-//   ScrollView,
-//   StyleSheet,
-//   View,
-//   ImageBackground,
-//   TouchableOpacity,
-// } from 'react-native';
-// import ResponsiveText from '../../../../components/RnText';
-// import { Rating, AirbnbRating } from 'react-native-ratings';
-// import { routeName } from '../../../../constants/routeName';
-// import {
-//   advertisementBannerFakeDATA,
-//   awardWinningFakeDATA,
-//   promotionsFakeDATA,
-//   yourFavoriteFakeDATA,
-// } from '../../../../constants/mock';
-// import { colors } from '../../../../constants/colorsPallet';
-// import SeeAllButton from '../../../../components/SeeAllButton';
-// import { hp, wp } from '../../../../helpers/Responsiveness';
-// import { useSelector } from 'react-redux';
-// const AwardWinningDishes = props => {
-//   const FoodsAwards = useSelector(
-//     state => state.appReducers.bruneiFoodsAwards.data,
-//   );
-//   const loading = useSelector(
-//     state => state.appReducers.bruneiFoodsAwards.loading,
-//   );
-//   console.log('Brunei Foods Awards: ', FoodsAwards);
-//   console.log('Brunei Length: ', FoodsAwards.length);
-//   console.log('Brunei Foods Awards  Loading: ', loading);
-//   return (
-//     <>
-//       <View style={styles.AwardWinningDishesHeaderSection}>
-//         <ResponsiveText margin={[0, 0, 0, -5]} size={4} color={colors.white}>
-//           Brunei Food Awards
-//         </ResponsiveText>
-//         <View style={{ marginRight: -15 }}>
-//           <SeeAllButton
-//             title={'Brunei Food Awards'}
-//             data={FoodsAwards}
-//             navigation={props.navigation}
-//           />
-//         </View>
-//       </View>
-//       <View style={styles.AwardWinningDishesItemsSection}>
-//         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-//           {FoodsAwards.length > 0
-//             ? FoodsAwards.map((url, index) => {
-//               return (
-//                 <TouchableOpacity
-//                   onPress={() =>
-//                     props.navigation.navigate(routeName.DISH_DETAIL, {
-//                       dish: url,
-//                     })
-//                   }>
-//                   <View
-//                     style={{
-//                       width: wp(26),
-//                       height: hp(18),
-//                       marginHorizontal: 5,
-//                       borderRadius: 3,
-//                       overflow: 'hidden',
-//                       flexDirection: 'row',
-//                     }}>
-//                     <ImageBackground
-//                       imageStyle={{ opacity: 0.5 }}
-//                       style={{
-//                         flex: 1,
-//                         padding: 5,
-//                         overflow: 'hidden',
-//                         justifyContent: 'flex-end',
-//                         backgroundColor: 'rgba(0,0,0,1)',
-//                       }}
-//                     // source={{
-//                     //   uri: url.imageDataB.replace(/ /g, ''),
-//                     // }}>
-//                     >
-//                       < ResponsiveText
-//                         fontFamily="Regular"
-//                         size={3}
-//                         margin={[0, 0, 5, 0]}
-//                         color={colors.white}>
-//                         {url.restaurantName}
-//                       </ResponsiveText>
-//                       <ResponsiveText
-//                         fontFamily="Light"
-//                         size={2.5}
-//                         color={colors.white}>
-//                         {url.awardName}
-//                       </ResponsiveText>
-//                     </ImageBackground>
-//                   </View>
-//                 </TouchableOpacity>
-//               );
-//             })
-//             : undefined}
-//         </ScrollView >
-//       </View >
-//     </>
-//   );
-// };
-
-// export default AwardWinningDishes;
-
-// const styles = StyleSheet.create({
-//   AwardWinningDishesHeaderSection: {
-//     paddingHorizontal: 5,
-//     paddingTop: 10,
-//     paddingBottom: 5,
-//     marginRight: 15,
-//     marginBottom: 5,
-//     flexDirection: 'row',
-//     justifyContent: 'space-between',
-//     alignItems: 'center',
-//     backgroundColor: colors.black3,
-//     borderTopLeftRadius: 7,
-//     borderTopRightRadius: 7,
-//     marginLeft: 15,
-//     borderBottomWidth: 1,
-//     borderColor: colors.black1,
-//   },
-//   AwardWinningDishesItemsSection: {
-//     flex: 1,
-//     flexDirection: 'row',
-//     display: 'flex',
-//     paddingVertical: 10,
-//     justifyContent: 'center',
-//     paddingLeft: 10,
-//     overflow: 'hidden',
-//     backgroundColor: colors.black3,
-//   },
-// });

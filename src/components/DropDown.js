@@ -17,8 +17,8 @@ export default function DropDown(props) {
 
 	return (
 		<View style={{backgroundColor: colors.black1,
-            height: hp(6),
-            width: wp(85),
+            height: props.height ? props.height : hp(6),
+            width: props.width ? props.width : wp(85),
             alignSelf:'center',
             justifyContent:'center',
             
@@ -34,8 +34,8 @@ export default function DropDown(props) {
          rowStyle={{backgroundColor:colors.black1,borderBottomColor:colors.black1,borderBottomWidth:0}}
           buttonStyle={{
             backgroundColor: colors.black1,
-            height: hp(6),
-            width: wp(81),
+            height: props.height ? props.height : hp(6),
+            width: props.width ? props.width : wp(81),
             alignSelf:'center',
            
             borderRadius:7,
