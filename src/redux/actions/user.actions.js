@@ -130,7 +130,19 @@ export const registerUserReset = () => {
   };
 };
 
-
+//Cart actions
+export const addCart = (data) => {
+  return {
+    type: types.ADD_TO_CART_REQUEST,
+    data,
+  };
+};
+export const removeCart = (data) => {
+  return {
+    type: types.REMOVE_FROM_CART_REQUEST,
+    data,
+  };
+};
 
 // //Get User categories actions
 // export const getUserCategories = (params) => {

@@ -48,7 +48,7 @@ export default function AllDishesList({ route, navigation }) {
                 return (
                   <TouchableOpacity
                     style={{ marginHorizontal: 8, marginVertical: 10 }}
-                  // onPress={() => navigation.navigate(routeName.DISH_DETAIL)}
+                  onPress={() => navigation.navigate(routeName.DISH_DETAIL,{dish:item})}
                   >
                     <View
                       style={{
