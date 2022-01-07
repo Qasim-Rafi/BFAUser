@@ -9,6 +9,7 @@ import ResponsiveText from '../../../components/RnText';
 import {globalPath} from '../../../constants/globalPath';
 import {wp} from '../../../helpers/Responsiveness';
 import StaticMap from '../../../components/StaticMap';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 export default function Restaurant_Description({}) {
   return (
     <View>
@@ -50,13 +51,14 @@ export default function Restaurant_Description({}) {
           borderBottomColor: colors.grey,
           borderBottomWidth: 1,
         }}>
-          
+          <TouchableOpacity>
         <View style={{alignItems: 'center'}}>
           <Icon source={globalPath.HEART} />
           <ResponsiveText top={5} color={colors.yellow}>
             Favourite
           </ResponsiveText>
         </View>
+        </TouchableOpacity>
         <View style={{alignItems: 'center'}}>
           <Icon source={globalPath.LOCATION} />
           <ResponsiveText top={5} color={colors.yellow}>
