@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, ScrollView, StyleSheet, Image} from 'react-native';
+import {View, Text, ScrollView, StyleSheet, Image,TouchableOpacity} from 'react-native';
 import AdvertisementBanner from '../BottomTabs/Home/AdvertisementBanner';
 import ImageHeader from '../BottomTabs/Home/ImageHeader';
 import {colors} from '../../../constants/colorsPallet';
@@ -50,12 +50,12 @@ export default function DishDescription({}) {
           borderBottomColor: colors.grey,
           borderBottomWidth: 1,
         }}>
-        <View style={{alignItems: 'center'}}>
+        <TouchableOpacity style={{alignItems: 'center'}}>
           <Icon source={globalPath.HEART} />
           <ResponsiveText top={5} color={colors.yellow}>
             Favourite
           </ResponsiveText>
-        </View>
+        </TouchableOpacity>
         <View style={{alignItems: 'center'}}>
           <Icon source={globalPath.LOCATION} />
           <ResponsiveText top={5} color={colors.yellow}>

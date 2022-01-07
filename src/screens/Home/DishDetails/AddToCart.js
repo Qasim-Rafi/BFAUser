@@ -12,21 +12,22 @@ import {useDispatch, useSelector} from 'react-redux'
 import Icon from '../../../components/Icon';
 import {globalPath} from '../../../constants/globalPath';
 import { routeName } from '../../../constants/routeName';
-import { addDish, AddOrder } from '../../../redux/actions/user.actions';
+import { addCart, addDish, AddOrder } from '../../../redux/actions/user.actions';
 import { appReducers } from '../../../redux/reducers/app.reducers';
 import {Cart_Details} from '../../../constants/mock'
 import SharedData from '../BottomTabs/CartDetails/SharedData';
 export default function AddToCart({route ,navigation}) {
-  const addAdminBranch=useSelector(state=>state.appReducers.AddOrder.data);
-  const loading=useSelector(state=>state.appReducers.AddOrder.loading);
+  const addAdminBranch=useSelector(state=>state.appReducers.cartList.data);
+  const loading=useSelector(state=>state.appReducers.cartList.loading);
   console.log("Add Admin: ",addAdminBranch);
   
   const [count, changeCount] = useState(1);
   const [dishPrice, updateDishPrice] = useState(10)
   const [total, updateTotal] = useState(0);
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
   const [dish, addDish] = React.useState('');
-    React.useEffect(()=>{addDish(route.params.dish)
+    React.useEffect(()=>{
+      addDish(route.params.dish)
       updateTotal(dishPrice*count);
         })
  
@@ -48,8 +49,14 @@ export default function AddToCart({route ,navigation}) {
   }];
 
   const AddToCart =()=>{
-    dispatch(AddOrder({navigation:navigation}))
-  console.log("obj: ",Date);
+    const data={
+      ...dish,
+      quantity:count,
+      totalPrice:total
+    }
+    dispatch(addCart(data));
+    navigation.navigate(routeName.LANDING_SCREEN)
+  //console.log("obj: ",Date);
 
 
     // Cart_Details.includes(dish) ? undefined : Cart_Details.push(dish);  
@@ -141,12 +148,12 @@ export default function AddToCart({route ,navigation}) {
               justifyContent: 'center',
               borderRadius: 6,
             }} onPress={()=>{      
-              {AddToCart}
-  console.log("Data: ",data);
+              AddToCart()
+  // console.log("Data: ",data);
 
-              SharedData.setData(dish);
-              console.log(SharedData.data);
-              navigation.navigate(routeName.LANDING_SCREEN)
+  //             SharedData.setData(dish);
+  //             console.log(SharedData.data);
+  //             navigation.navigate(routeName.LANDING_SCREEN)
               
               
             }}>

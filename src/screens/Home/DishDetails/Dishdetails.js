@@ -15,10 +15,12 @@ import {Cart_Details} from '../../../constants/mock'
 
 
 export default function DishDetails({route, navigation}) {
-    const [dish, addDish] = React.useState('');
+    const [dish, addDish] = React.useState({});
     const [showCalories, setShowCalories] = React.useState(false)
-    // React.useEffect(()=>{addDish(route.params.dish)
-    //     })
+    React.useEffect(()=>{
+        addDish(route.params.dish);
+        console.log('detail dataaaaaaa',route.params)
+        })
 
        
 
@@ -26,7 +28,7 @@ export default function DishDetails({route, navigation}) {
        
         <ScrollView style={{backgroundColor:colors.black3}}>
             <View style={styles.headerImage}>
-            <ImageHeader navigation={navigation}/>
+            <ImageHeader navigation={navigation} img={dish.imageDataB}/>
             </View>
         <DishDescription/>
         <View style={{margin:20,paddingBottom:20}}>

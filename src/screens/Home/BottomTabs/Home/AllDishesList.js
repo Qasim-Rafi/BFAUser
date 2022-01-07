@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
+
 import Header from '../../../../components/Header';
 import { colors } from '../../../../constants/colorsPallet';
 import { globalPath } from '../../../../constants/globalPath';
@@ -21,7 +22,8 @@ export default function AllDishesList({ route, navigation }) {
 
   const data = useSelector(
     state => title == 'BFA Recommendation' ? state.appReducers.bfaRecommendationDetail.data
-      : title == "People's Choice" ? state.appReducers.PeopleChoice.data : state.appReducers.promoJobs.data);
+      : title == "People's Choice" ? state.appReducers.PeopleChoice.data : title == "Brunei Food Awards" ? state.appReducers.bruneiFoodsAwards.data
+        : state.appReducers.promoJobs.data);
 
   console.log('Data in Show All', data);
 
@@ -50,7 +52,7 @@ export default function AllDishesList({ route, navigation }) {
                 return (
                   <TouchableOpacity
                     style={{ marginHorizontal: 8, marginVertical: 10 }}
-                  onPress={() => navigation.navigate(routeName.DISH_DETAIL)}
+                  onPress={() => navigation.navigate(routeName.DISH_DETAIL,{dish:item})}
                   >
                     <View
                       style={{
