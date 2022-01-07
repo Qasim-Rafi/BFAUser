@@ -48,6 +48,9 @@ export default function TransactionHistory({navigation}) {
               <ResponsiveText color={colors.grey}  size={2.7}>
                 Order Id:  {item.orderId}
               </ResponsiveText>
+              <ResponsiveText color={colors.grey}  size={2.5}>
+                Date:  {item.orderId}
+              </ResponsiveText>
             </View>
             <View style={{width: '20%',justifyContent:'center', overflow: 'hidden',}}>
               <ResponsiveText

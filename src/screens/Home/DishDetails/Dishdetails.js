@@ -16,6 +16,7 @@ import {Cart_Details} from '../../../constants/mock'
 
 export default function DishDetails({route, navigation}) {
     const [dish, addDish] = React.useState('');
+    const [showCalories, setShowCalories] = React.useState(false)
     // React.useEffect(()=>{addDish(route.params.dish)
     //     })
 
@@ -41,7 +42,8 @@ export default function DishDetails({route, navigation}) {
             <ResponsiveText  padding={0} color={colors.black}>Add to Order</ResponsiveText>
         </RnButton>
         </View>
-        <CalorieCount/>
+        {showCalories ? <CalorieCount/> : null} 
+        {/* we have to get a parameter from the api for the restaurant to set <CalorieCount/> if that restaurant wants to show it  */}
         <View style={{marginLeft:20, marginVertical:10}} >
         <MoreFromResturant navigation={navigation}/>
         <PeopleSay/>

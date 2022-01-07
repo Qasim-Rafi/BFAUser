@@ -25,7 +25,9 @@ import _50BCent from '../../../assets/BCents/50_BCENTS.png'
 import infoLogo from '../../../assets/icons/info-g.png'
 import { globalPath } from '../../../constants/globalPath'
 import { routeName } from '../../../constants/routeName'
-
+import bCoin from '../../../assets/icons/bcoin_logo.png'
+import bCoinBlack from '../../../assets/icons/bcoin_black.png'
+import bCent from '../../../assets/icons/bcent_black.png'
 
 const Wallet = (props) => {
 
@@ -54,15 +56,18 @@ const Wallet = (props) => {
         <ScrollView style={{ backgroundColor: colors.black3 }} >
 
             <View style={styles.container}>
-                <TextInput
-                    // editable={ number===0 ? false : true }
-                    style={styles.input}
-                    onChangeText={setNumber}
-                    value={number}
-                    maxLength={10}
-                    defaultValue={'' + number + ''}
-                    keyboardType="numeric"
-                />
+                <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center'}} >
+                    <Image source={bCoin} style={{height:60,width:50}} />
+                    <TextInput
+                        // editable={ number===0 ? false : true }
+                        style={styles.input}
+                        onChangeText={setNumber}
+                        value={parseFloat(number).toFixed(2)}
+                        maxLength={10}
+                        defaultValue={'' + parseFloat(number).toFixed(2) + ''}
+                        keyboardType="numeric"
+                    />
+                </View>
                 <View style={{ flexDirection: 'row', paddingBottom: 20 }} >
                     <View style={{ alignItems: 'center' }}>
                         <TouchableOpacity onPress={() => navigation.navigate(routeName.TRANSACTION_HISTORY)} >
@@ -123,30 +128,30 @@ const Wallet = (props) => {
                     </TouchableOpacity>
                 </View>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'center', width: '100%' }} >
+                <View style={{ flexDirection: 'row', justifyContent: 'center', width: '100%',marginTop:20,marginBottom:20 }} >
                     <TouchableOpacity onPress={() => setNumber(parseFloat(number) + 0.01)} >
-                        <Image source={_1BCent} style={{ marginHorizontal: -20, height: 100, width: 100 }} />
+                        <Image source={_1BCent} style={{ marginHorizontal: 3, height: 75, width: 75 }} />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => setNumber(parseFloat(number) + 0.05)} >
-                        <Image source={_5BCent} style={{ marginHorizontal: -18, height: 105, width: 105 }} />
+                        <Image source={_5BCent} style={{ marginHorizontal: 3, height: 75, width: 75 }} />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => setNumber(parseFloat(number) + 0.1)} >
-                        <Image source={_10BCent} style={{ marginHorizontal: -15, height: 110, width: 110 }} />
+                        <Image source={_10BCent} style={{ marginHorizontal: 3, height: 75, width: 75 }} />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => setNumber(parseFloat(number) + 0.2)} >
-                        <Image source={_20BCent} style={{ marginHorizontal: -10, height: 115, width: 115 }} />
+                        <Image source={_20BCent} style={{ marginHorizontal: 3, height: 75, width: 75 }} />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => setNumber(parseFloat(number) + 0.5)} >
-                        <Image source={_50BCent} style={{ marginHorizontal: -8, height: 120, width: 120 }} />
+                        <Image source={_50BCent} style={{ marginHorizontal: 3, height: 75, width: 75 }} />
                     </TouchableOpacity>
                 </View>
 
-                <Text style={{ color: 'white', fontSize: 19 }}>Your BCoin Balance is:</Text>
-                <Text style={{ color: 'white', fontSize: 70 }} >${typeof (comingAmount) === 'undefined' ? 0 : walletAmount + comingAmount}</Text>
+                <Text style={{ color: 'white', fontSize: 19 }}>Your Bcoin Balance is:</Text>
+                <Text style={{ color: 'white', fontSize: 70 }} ><Image source={bCoin} style={{height:60,width:50}} />{typeof(comingAmount) === 'undefined' ? 0 : parseFloat(walletAmount + comingAmount)}</Text>
 
                 <Modal
                     animationType="slide"
-                    transparent={false}
+                    transparent={true}
                     visible={modalVisible}
                     onRequestClose={() => {
                         //   Alert.alert("Modal has been closed.");
@@ -162,63 +167,63 @@ const Wallet = (props) => {
                             </View>
 
                             <View style={styles.tableModal} >
-                                <Text style={styles.modalText} >0.001 BND</Text>
-                                <Text style={styles.modalText} >0.001 BCents</Text>
+                                <Text style={styles.modalText} >$0.01</Text>
+                                <Text style={styles.modalText} >0.01 <Image source={bCent} style={{ marginHorizontal: 3, height: 15, width: 15 }} /> </Text>
                             </View>
 
                             <View style={styles.tableModal} >
-                                <Text style={styles.modalText} >0.005 BND</Text>
-                                <Text style={styles.modalText} >0.005 BCents</Text>
+                                <Text style={styles.modalText} >$0.05</Text>
+                                <Text style={styles.modalText} >0.05 <Image source={bCent} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
-                                <Text style={styles.modalText} >0.10 BND</Text>
-                                <Text style={styles.modalText} >0.10 BCents</Text>
+                                <Text style={styles.modalText} >$0.10</Text>
+                                <Text style={styles.modalText} >0.10 <Image source={bCent} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
-                                <Text style={styles.modalText} >0.20 BND</Text>
-                                <Text style={styles.modalText} >0.20 BCents</Text>
+                                <Text style={styles.modalText} >$0.20</Text>
+                                <Text style={styles.modalText} >0.20 <Image source={bCent} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
-                                <Text style={styles.modalText} >0.50 BND</Text>
-                                <Text style={styles.modalText} >0.50 BCents</Text>
+                                <Text style={styles.modalText} >$0.50</Text>
+                                <Text style={styles.modalText} >0.50 <Image source={bCent} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
-                                <Text style={styles.modalText} >1 BND</Text>
-                                <Text style={styles.modalText} >1 BCoin</Text>
+                                <Text style={styles.modalText} >$1</Text>
+                                <Text style={styles.modalText} >1 <Image source={bCoinBlack} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
-                                <Text style={styles.modalText} >5 BND</Text>
-                                <Text style={styles.modalText} >5 BCoin</Text>
+                                <Text style={styles.modalText} >$5</Text>
+                                <Text style={styles.modalText} >5 <Image source={bCoinBlack} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
-                                <Text style={styles.modalText} >10 BND</Text>
-                                <Text style={styles.modalText} >10 BCoin</Text>
+                                <Text style={styles.modalText} >$10</Text>
+                                <Text style={styles.modalText} >10 <Image source={bCoinBlack} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
-                                <Text style={styles.modalText} >20 BND</Text>
-                                <Text style={styles.modalText} >20 BCoin</Text>
+                                <Text style={styles.modalText} >$20</Text>
+                                <Text style={styles.modalText} >20 <Image source={bCoinBlack} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
-                                <Text style={styles.modalText} >50 BND</Text>
-                                <Text style={styles.modalText} >50 BCoin</Text>
+                                <Text style={styles.modalText} >$50</Text>
+                                <Text style={styles.modalText} >50 <Image source={bCoinBlack} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
-                                <Text style={styles.modalText} >100 BND</Text>
-                                <Text style={styles.modalText} >100 BCoin</Text>
+                                <Text style={styles.modalText} >$100</Text>
+                                <Text style={styles.modalText} >100 <Image source={bCoinBlack} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
                             </View>
 
 
                             <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} >
-                                <View style={{ height: 30, width: 200, backgroundColor: colors.yellow1, alignItems: 'center', justifyContent: 'center', borderRadius: 15, marginTop: 5 }} >
+                                <View style={{ height: 30, width: 200, backgroundColor: colors.yellow1, alignItems: 'center', justifyContent: 'center', borderRadius: 15, marginTop: 5,borderWidth:0.5,borderColor:colors.black1 }} >
                                     <Text>Close</Text>
                                 </View>
                             </TouchableOpacity>
@@ -280,6 +285,7 @@ const styles = StyleSheet.create({
     },
     input: {
         // height: 40,
+        color: colors.white ,
         fontSize: 70,
         marginBottom: 18,
         // borderWidth: 1,
@@ -292,7 +298,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 22
+        marginTop: 22,
+
     },
     modalView: {
         // margin: 20,
@@ -301,10 +308,11 @@ const styles = StyleSheet.create({
         // padding: 35,
         alignItems: "center",
         shadowColor: "#000",
-        height: '40%',
+        // height: '40%',
         width: '60%',
         borderWidth: 1,
-        borderColor: colors.black1
+        borderColor: colors.black1,
+        alignSelf:'center'
     },
     tableModal: {
         flexDirection: 'row',

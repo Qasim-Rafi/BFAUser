@@ -24,6 +24,7 @@ function* loginUserApi(data, response) {
   try {
     const response = yield Api.post(urls.LOGIN_URL, params);
     console.log(response, 'response');
+    // alert("response: ", response);
 
     // dispatch a success action to the store with the new dog
     if (response && response.data != null) {
