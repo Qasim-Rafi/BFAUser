@@ -52,7 +52,7 @@ export default function AllDishesList({ route, navigation }) {
                 return (
                   <TouchableOpacity
                     style={{ marginHorizontal: 8, marginVertical: 10 }}
-                  onPress={() => navigation.navigate(routeName.DISH_DETAIL,{dish:item})}
+                    onPress={() => navigation.navigate(routeName.DISH_DETAIL, { dish: item })}
                   >
                     <View
                       style={{
@@ -72,7 +72,7 @@ export default function AllDishesList({ route, navigation }) {
 
                           backgroundColor: 'rgba(0,0,0,1)',
                         }}
-                        source={item.url ? item.url : { uri: item.fullPath }}>
+                        source={item.url ? item.url : { uri: item.imageDataB }}>
                         <View style={{ alignItems: 'flex-end' }}></View>
                         <View>
                           <ResponsiveText
