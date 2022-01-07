@@ -9,6 +9,7 @@ import {
   Button
 } from 'react-native';
 import ResponsiveText from '../../../../components/RnText';
+import { BarIndicator, DotIndicator } from 'react-native-indicators';
 
 import {
   advertisementBannerFakeDATA,
@@ -77,9 +78,7 @@ const BfaPartner = ({ props }) => {
     }
   }
 
-  console.log('----------------------');
-  console.log(siteAdd);
-  console.log('----------------------')
+
 
   const modalView = (index, visibilty) => (
     <View>
@@ -200,7 +199,14 @@ const BfaPartner = ({ props }) => {
               );
             })
           : undefined}
-
+        {
+          loading === true ?
+            <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, backgroundColor: 'rgba(65, 65, 65, 0)', flex: 1 }}>
+              <DotIndicator color={colors.yellow} size={5} />
+            </View>
+            :
+            undefined
+        }
       </View>
 
 

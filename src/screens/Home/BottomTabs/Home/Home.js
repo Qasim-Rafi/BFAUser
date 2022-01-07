@@ -107,7 +107,7 @@ const Home = ({ navigation }) => {
     // dispatch(getRestaurantAllDishes())
 
     dispatch(
-      getUserCusine(1, 4),
+      getUserCusine(1, 14),
     );
 
     // dispatch(awardsRestaurant());
