@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, ScrollView, StyleSheet, Image} from 'react-native';
+import {View, Text, ScrollView, StyleSheet, Image,TouchableOpacity} from 'react-native';
 import AdvertisementBanner from '../BottomTabs/Home/AdvertisementBanner';
 import ImageHeader from '../BottomTabs/Home/ImageHeader';
 import {colors} from '../../../constants/colorsPallet';
@@ -9,7 +9,15 @@ import ResponsiveText from '../../../components/RnText';
 import {globalPath} from '../../../constants/globalPath';
 import {wp} from '../../../helpers/Responsiveness';
 import StaticMap from '../../../components/StaticMap';
-export default function DishDescription({}) {
+import { useDispatch, useSelector } from 'react-redux';
+import { addFavorite,onRemoveFavorite } from '../../../redux/actions/user.actions';
+
+export default function DishDescription(props) {
+  const dispatch=useDispatch()
+  const favData = useSelector(state => state.appReducers.favorite.data,)
+
+  console.log(favData,'bjhsdasdjhkawbejksh')
+  // console.log(removefavorite,'hhh')
   return (
     <View>
       <View>
@@ -50,12 +58,16 @@ export default function DishDescription({}) {
           borderBottomColor: colors.grey,
           borderBottomWidth: 1,
         }}>
-        <View style={{alignItems: 'center'}}>
-          <Icon source={globalPath.HEART} />
+         <TouchableOpacity style={{alignItems: 'center'}}  onPress={() =>{!favData.some(o => o.id === props.item.id)?dispatch(addFavorite(props.item)):dispatch(onRemoveFavorite(props.item))}}
+        
+         >
+          <Icon source={favData.some(o => o.id === props.item.id)?globalPath.F_HEART:globalPath.HEART} 
+        
+          />
           <ResponsiveText top={5} color={colors.yellow}>
             Favourite
           </ResponsiveText>
-        </View>
+        </TouchableOpacity>
         <View style={{alignItems: 'center'}}>
           <Icon source={globalPath.LOCATION} />
           <ResponsiveText top={5} color={colors.yellow}>

@@ -218,12 +218,12 @@ function* getBfaRecommendationSagaApi(data) {
       });
       // navigation.navigate(routeName.Categories,{data:response.data});
     } else {
-      yield put({ type: types.GET_BFA_RECOMMENDATION_FAILURE, error: error });
+      yield put({ type: types.GET_BFA_RECOMMENDATION_FAILURE, payload:[]});
     }
 
     // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({ type: types.GET_BFA_RECOMMENDATION_SUCCESS, error: error });
+    yield put({ type: types.GET_BFA_RECOMMENDATION_SUCCESS,  payload:[] });
   }
 }
 
@@ -364,6 +364,59 @@ function* getRestaurantDishesSagaApi() {
     yield put({ type: types.GET_RESTAURANT_ALL_DISHES_FAILURE, error: error });
   }
 }
+export function* addfavouriteSaga() {
+  yield takeLatest(
+    types.ADD_FAVORITE_REQUEST,
+    addfavouritSagaApi,
+  );
+}
+function* addfavouritSagaApi(data) {
+  console.log('param',data)
+
+  try {
+   // const response = yield Api.get(urls.RESTAURANT_DISH_ALL);
+    if (data) {
+      yield put({
+        type: types.ADD_FAVORITE_SUCCESS,
+        payload: data.data,
+      });
+      // navigation.navigate(routeName.Categories,{data:response.data});
+    } else {
+      yield put({ type: types.ADD_FAVORITE_FAILURE, error: 'error' });
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({ type: types.ADD_FAVORITE_FAILURE, error: 'error' });
+  }
+}
+export function* onRemoveFavoriteSaga() {
+  yield takeLatest(
+    types.ON_REMOVE_FAVORITE_REQUEST,
+    onRemoveFavoriteSagaApi
+  );
+}
+function* onRemoveFavoriteSagaApi(data) {
+  console.log('param',data)
+
+  try {
+   // const response = yield Api.get(urls.RESTAURANT_DISH_ALL);
+    if (data) {
+      yield put({
+        type: types.ON_REMOVE_FAVORITE_SUCCESS,
+        payload: data.data,
+      });
+      // navigation.navigate(routeName.Categories,{data:response.data});
+    } else {
+      yield put({ type: types.ON_REMOVE_FAVORITE_FAILURE, error: 'error' });
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({ type: types.ON_REMOVE_FAVORITE_FAILURE, error: 'error' });
+  }
+}
+
 
 // //Add product category
 // export function* addRUpdateCategorySaga() {

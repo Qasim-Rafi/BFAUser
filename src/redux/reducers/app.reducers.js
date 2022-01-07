@@ -64,6 +64,11 @@ const initialState = {
     refreshing: true,
     data: {},
   },
+  favorite: {
+    refreshing: true,
+    data: [],
+  },
+ 
 
 };
 
@@ -374,6 +379,56 @@ export const appReducers = (state = initialState, action) => {
           refreshing: true
         }
       };
+      case types.ADD_FAVORITE_REQUEST:
+      return {
+        ...state,
+        favorite: {
+          ...state.favorite,
+          refreshing: true
+        }
+      };
+      case types.ADD_FAVORITE_SUCCESS:
+      return {
+        ...state,
+        favorite: {
+          ...state.favorite,
+          data:[...state.favorite.data, action.payload],
+          refreshing: true
+        }
+      };
+      case types.ADD_FAVORITE_FAILURE:
+      return {
+        ...state,
+        favorite: {
+          ...state.favorite,
+          refreshing: true
+        }
+      };
+      case types.ON_REMOVE_FAVORITE_REQUEST:
+        return {
+          ...state,
+          favorite: {
+            ...state.favorite,
+            refreshing: true
+          }
+        };
+        case types.ON_REMOVE_FAVORITE_SUCCESS:
+          return {
+            ...state,
+            favorite: {
+              ...state.favorite,
+              data: state.favorite.data.filter(item => item.id !== action.payload.id),
+              refreshing: true
+            }
+          };
+          case types.ON_REMOVE_FAVORITE_FAILURE:
+            return {
+              ...state,
+              favorite: {
+                ...state.favorite,
+                refreshing: true
+              }
+            };
 
 
     default:

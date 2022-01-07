@@ -129,7 +129,19 @@ export const registerUserReset = () => {
     type: types.REGISTER_USER_RESET,
   };
 };
-
+export const addFavorite = (data) => {
+ // console.log('okokokokoko',data)
+  return {
+    type: types.ADD_FAVORITE_REQUEST,
+    data
+  };
+};
+export const onRemoveFavorite = (data) => {
+  return {
+    type: types.ON_REMOVE_FAVORITE_REQUEST,
+    data
+  };
+};
 
 
 // //Get User categories actions

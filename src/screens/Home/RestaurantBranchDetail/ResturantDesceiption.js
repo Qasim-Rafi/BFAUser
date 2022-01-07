@@ -50,6 +50,7 @@ export default function Restaurant_Description({}) {
           borderBottomColor: colors.grey,
           borderBottomWidth: 1,
         }}>
+          
         <View style={{alignItems: 'center'}}>
           <Icon source={globalPath.HEART} />
           <ResponsiveText top={5} color={colors.yellow}>

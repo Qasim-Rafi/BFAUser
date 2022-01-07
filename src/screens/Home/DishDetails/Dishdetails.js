@@ -17,8 +17,8 @@ import {Cart_Details} from '../../../constants/mock'
 export default function DishDetails({route, navigation}) {
     const [dish, addDish] = React.useState('');
     const [showCalories, setShowCalories] = React.useState(false)
-    // React.useEffect(()=>{addDish(route.params.dish)
-    //     })
+    React.useEffect(()=>{addDish(route.params.dish)
+        })
 
        
 
@@ -28,7 +28,7 @@ export default function DishDetails({route, navigation}) {
             <View style={styles.headerImage}>
             <ImageHeader navigation={navigation}/>
             </View>
-        <DishDescription/>
+        <DishDescription item={route.params.dish}/>
         <View style={{margin:20,paddingBottom:20}}>
         
         

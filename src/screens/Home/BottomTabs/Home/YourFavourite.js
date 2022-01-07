@@ -21,6 +21,9 @@ import { colors } from '../../../../constants/colorsPallet';
 import SeeAllButton from '../../../../components/SeeAllButton';
 import { hp, wp } from '../../../../helpers/Responsiveness';
 const YourFavourite = props => {
+  const favData = useSelector(state => state.appReducers.favorite.data,)
+
+
   //   const firstName = 'PG';
   //   const title = firstName + "'s Favorites";
   //   const favButons = [
@@ -69,8 +72,8 @@ const YourFavourite = props => {
       </View>
       <View style={styles.AwardWinningDishesItemsSection}>
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-          {yourFavoriteFakeDATA.length > 0
-            ? yourFavoriteFakeDATA.map((url, item) => {
+          {favData.length > 0
+            ? favData.map((url, item) => {
               return (
                 <TouchableOpacity
                   onPress={() =>
