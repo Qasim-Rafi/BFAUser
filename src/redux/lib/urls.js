@@ -8,7 +8,7 @@ export default urls = {
   LOGIN_URL: 'api/Auth/login',
   PACKAGES_ALL_URL: 'api/Package/GetPackageAll',
   REGISTER_URL: 'api/Auth/Register',
-  RESTAURANT_AWARDS: 'api/RestaurantAwards/GetRestaurantAwardsAll',
+  RESTAURANT_AWARDS: 'api/RestaurantAwards/GetRestaurantAwardsAll/1/10',
   CUSINE_URL: 'api/Cusine/GetCusineAll/',
   // PROMOTIONS: 'api/HomeAdSlideShowAdmin/GetHomeAdSlideShowAdminAll',
   RESTAURANT_DISH_ALL: 'api/RestaurantDish/GetRestaurantDishAll/',

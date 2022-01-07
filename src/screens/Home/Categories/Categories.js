@@ -11,17 +11,7 @@ import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 export default function Categories({ navigation, route }) {
   const { data } = route.params;
-  // const [index, setindex] = useState(4);
-  // var index=4;
-
-  const newArray = [];
-  data.forEach(obj => {
-    if (!newArray.some(o => o.name[0] === obj.name[0])) {
-      newArray.push({ ...obj })
-    }
-
-  });
-
+  console.log("dataaaaa: ", data)
   const [activeAlphabet, setActiveAlphabet] = useState(null);
   const scrollRef = useRef(null)
   const viewConfigRef = React.useRef({ viewAreaCoveragePercentThreshold: 50 })
@@ -30,7 +20,7 @@ export default function Categories({ navigation, route }) {
     console.log("Items>>>>", item, index)
     scrollRef?.current.scrollToIndex({ index, viewOffset: hp(22) })
 
-  }; 606
+  };
   const onViewRef = useCallback(({ viewableItems, changed }) => {
     setActiveAlphabet(changed[0].item.title);
     console.log("Visible items are", viewableItems[0]);
@@ -42,15 +32,12 @@ export default function Categories({ navigation, route }) {
       <View style={styles.item}>
         <Text style={styles.header}>{item.name[0]}</Text>
         <View style={{ borderRadius: 10, backgroundColor: colors.black2, paddingVertical: 10 }}>
-          {data.map((i, index) => {
-            if (i.name[0] == item.name[0]) {
-              return (
-                <View style={{ paddingLeft: 25, justifyContent: 'center', paddingVertical: 2 }}>
-                  <Text style={styles.title}>{item.name}</Text>
-                </View>)
-            }
-          }
-          )}
+          {data.map((item, index) => {
+            return (
+              <View style={{ paddingLeft: 25, justifyContent: 'center', paddingVertical: 2 }}>
+                <Text style={styles.title}>{item.name}</Text>
+              </View>)
+          })}
         </View>
 
       </View>
@@ -59,6 +46,7 @@ export default function Categories({ navigation, route }) {
   return (
     <View style={styles.container}>
       <View style={[styles.header, { backgroundColor: colors.grey3 }]}>
+
         <View style={{ backgroundColor: colors.grey4, borderRadius: 2 }}>
           <TouchableOpacity style={{ borderRadius: 10 }} onPress={() => { navigation.goBack() }}>
             <View style={{ height: hp(5), width: wp(10), alignItems: 'center', justifyContent: 'center', borderRadius: 10 }}><Icon source={globalPath.BACK_ARROW} size={20} /></View></TouchableOpacity>
@@ -68,8 +56,8 @@ export default function Categories({ navigation, route }) {
 
 
       </View>
-      <View style={{ position: 'absolute', height: hp(46), marginRight: 10, width: wp(5), backgroundColor: '#383838', zIndex: 5000, right: 0, marginTop: hp(10), alignItems: 'center', borderRadius: 10, justifyContent: 'center' }}>
-        {newArray.sort((a, b) => a.name.localeCompare(b.name)).map((item, index) => {
+      <View style={{ position: 'absolute', height: hp(86), marginRight: 10, width: wp(5), backgroundColor: '#383838', zIndex: 1000, right: 0, marginTop: hp(10), alignItems: 'center', borderRadius: 10, justifyContent: 'center' }}>
+        {data.map((item, index) => {
 
           return (
             <TouchableOpacity style={{ marginBottom: 2, backgroundColor: activeAlphabet === item.firstLetter ? colors.white : undefined, height: 25, width: 25, justifyContent: 'center', alignItems: 'center', borderRadius: 1000 }} onPress={() => ScrollHandler(item, index)}>
@@ -83,11 +71,11 @@ export default function Categories({ navigation, route }) {
         <FlatList
           ref={scrollRef}
           contentContainerStyle={{ paddingVertical: 10 }}
-          data={newArray.sort((a, b) => a.name.localeCompare(b.name))}
+          data={data}
           keyExtractor={(item, index) => item + index}
           renderItem={renderItem}
-        // onViewableItemsChanged={onViewRef}
-        // viewabilityConfig={viewConfigRef.current}
+          onViewableItemsChanged={onViewRef}
+          viewabilityConfig={viewConfigRef.current}
         />
       </View>
     </View>)

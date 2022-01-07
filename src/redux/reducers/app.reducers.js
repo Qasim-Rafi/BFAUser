@@ -68,12 +68,10 @@ const initialState = {
     refreshing: true,
     data: [],
   },
-  cartList: {
-    refreshing: true,
-    data: [],
-  },
+ 
 
 };
+
 
 export const appReducers = (state = initialState, action) => {
   switch (action.type) {
@@ -83,7 +81,8 @@ export const appReducers = (state = initialState, action) => {
         bruneiFoodsAwards: {
           ...state.bruneiFoodsAwards,
           loading: true,
-        },
+
+        }
       };
     case types.GET_BRUNEI_FOOD_AWARDS_SUCCESS:
       return {
@@ -93,7 +92,7 @@ export const appReducers = (state = initialState, action) => {
 
           data: action.payload,
           loading: false,
-        },
+        }
       };
     case types.GET_BRUNEI_FOOD_AWARDS_FAILURE:
       return {
@@ -101,40 +100,40 @@ export const appReducers = (state = initialState, action) => {
         bruneiFoodsAwards: {
           ...state.bruneiFoodsAwards,
           loading: false,
-        },
+
+        }
       };
     case types.GET_CUSINE_REQUEST:
       return {
         ...state,
         cusineDetail: {
           ...state.cusineDetail,
-          loading: true,
-        },
-      };
-    case types.GET_CUSINE_SUCCESS:
+          loading: true
+        }
+      }; case types.GET_CUSINE_SUCCESS:
       return {
         ...state,
         cusineDetail: {
           ...state.cusineDetail,
           data: action.payload,
-          loading: false,
-        },
-      };
-    case types.GET_CUSINE_FAILURE:
+          loading: false
+        }
+      }; case types.GET_CUSINE_FAILURE:
       return {
         ...state,
         cusineDetail: {
           ...state.cusineDetail,
-          loading: false,
-        },
+          loading: false
+
+        }
       };
     case types.ADD_ORDER_REQUEST:
       return {
         ...state,
         AddOrder: {
           ...state.AddOrder,
-          loading: true,
-        },
+          loading: true
+        }
       };
 
     case types.ADD_ORDER_SUCCESS:
@@ -143,8 +142,8 @@ export const appReducers = (state = initialState, action) => {
         AddOrder: {
           ...state.AddOrder,
           data: action.payload,
-          loading: false,
-        },
+          loading: false
+        }
       };
 
     case types.ADD_ORDER_FAILURE:
@@ -152,16 +151,16 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         AddOrder: {
           ...state.AddOrder,
-          loading: false,
-        },
+          loading: false
+        }
       };
     case types.GET_PROMOTIONS_REQUEST:
       return {
         ...state,
         promotions: {
           ...state.promotions,
-          loading: true,
-        },
+          loading: true
+        }
       };
 
     case types.GET_PROMOTIONS_SUCCESS:
@@ -170,8 +169,8 @@ export const appReducers = (state = initialState, action) => {
         promotions: {
           ...state.promotions,
           data: action.payload,
-          loading: false,
-        },
+          loading: false
+        }
       };
 
     case types.GET_PROMOTIONS_FAILURE:
@@ -179,16 +178,16 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         promotions: {
           ...state.promotions,
-          loading: false,
-        },
+          loading: false
+        }
       };
     case types.GET_RESTAURANT_ALL_DISHES_SUCCESS:
       return {
         ...state,
         cusineDetail: {
           ...state.restaurantDishesDetail,
-          data: action.payload,
-        },
+          data: action.payload
+        }
       };
     case types.GET_USERS_BY_ID_SUCCESS:
       return {
@@ -196,35 +195,40 @@ export const appReducers = (state = initialState, action) => {
         userProfile: {
           ...state.userProfile,
           data: action.payload,
-          loading: false,
-        },
+          loading: false
+
+        }
       };
     case types.GET_BFA_RECOMMENDATION_REQUEST:
+
       return {
         ...state,
         bfaRecommendationDetail: {
           ...state.bfaRecommendationDetail,
-          loading: true,
-        },
+          loading: true
+
+        }
       };
     case types.GET_BFA_RECOMMENDATION_SUCCESS:
-      console.log('Dataaaaaa: ', action.payload);
+      console.log("Dataaaaaa: ", action.payload);
 
       return {
         ...state,
         bfaRecommendationDetail: {
           ...state.bfaRecommendationDetail,
           data: action.payload,
-          loading: false,
-        },
+          loading: false
+
+        }
       };
     case types.GET_BFA_RECOMMENDATION_FAILURE:
       return {
         ...state,
         bfaRecommendationDetail: {
           ...state.bfaRecommendationDetail,
-          loading: false,
-        },
+          loading: false
+
+        }
       };
     //people_Choice
     case types.GET_PEOPLE_CHOICE_REQUEST:
@@ -232,8 +236,8 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         PeopleChoice: {
           ...state.PeopleChoice,
-          loading: true,
-        },
+          loading: true
+        }
       };
     case types.GET_PEOPLE_CHOICE_SUCCESS:
       return {
@@ -241,24 +245,24 @@ export const appReducers = (state = initialState, action) => {
         PeopleChoice: {
           ...state.PeopleChoice,
           data: action.payload,
-          loading: false,
-        },
+          loading: false
+        }
       };
     case types.GET_PEOPLE_CHOICE_FAILURE:
       return {
         ...state,
         PeopleChoice: {
           ...state.PeopleChoice,
-          loading: false,
-        },
+          loading: false
+        }
       };
     case types.GET_USERS_BY_ID_FAILURE:
       return {
         ...state,
         userProfile: {
           ...state.userProfile,
-          loading: false,
-        },
+          loading: false
+        }
       };
 
     case types.GET_USERS_BY_ID_REQUEST:
@@ -267,7 +271,7 @@ export const appReducers = (state = initialState, action) => {
         userProfile: {
           ...state.userProfile,
           loading: true,
-        },
+        }
       };
     case types.GET_ADD_BANNER_DATA_REQUEST:
       return {
@@ -275,7 +279,7 @@ export const appReducers = (state = initialState, action) => {
         addBanner: {
           ...state.addBanner,
           loading: true,
-        },
+        }
       };
     case types.GET_ADD_BANNER_DATA_SUCCESS:
       return {
@@ -284,7 +288,7 @@ export const appReducers = (state = initialState, action) => {
           ...state.addBanner,
           data: action.payload,
           loading: false,
-        },
+        }
       };
     case types.GET_ADD_BANNER_DATA_FAILURE:
       return {
@@ -292,7 +296,7 @@ export const appReducers = (state = initialState, action) => {
         addBanner: {
           ...state.addBanner,
           loading: false,
-        },
+        }
       };
     case types.GET_PROMO_NEWS_REQUEST:
       return {
@@ -300,7 +304,7 @@ export const appReducers = (state = initialState, action) => {
         PromoNews: {
           ...state.PromoNews,
           loading: false,
-        },
+        }
       };
     case types.GET_PROMO_NEWS_SUCCESS:
       return {
@@ -309,7 +313,7 @@ export const appReducers = (state = initialState, action) => {
           ...state.PromoNews,
           data: action.payload,
           loading: false,
-        },
+        }
       };
     case types.GET_PROMO_NEWS_FAILURE:
       return {
@@ -317,7 +321,7 @@ export const appReducers = (state = initialState, action) => {
         PromoNews: {
           ...state.PromoNews,
           loading: false,
-        },
+        }
       };
 
     case types.GET_PROMO_JOBS_REQUEST:
@@ -326,7 +330,7 @@ export const appReducers = (state = initialState, action) => {
         promoJobs: {
           ...state.promoJobs,
           loading: true,
-        },
+        }
       };
 
     case types.GET_PROMO_JOBS_SUCCESS:
@@ -336,7 +340,7 @@ export const appReducers = (state = initialState, action) => {
           ...state.promoJobs,
           data: action.payload,
           loading: false,
-        },
+        }
       };
 
     case types.GET_PROMO_JOBS_FAILURE:
@@ -345,7 +349,7 @@ export const appReducers = (state = initialState, action) => {
         promoJobs: {
           ...state.promoJobs,
           loading: false,
-        },
+        }
       };
     case types.GET_BFA_PARTNERS_SUCCESS:
       return {
@@ -353,8 +357,9 @@ export const appReducers = (state = initialState, action) => {
         bfaPartners: {
           ...state.bfaPartners,
           data: action.payload,
-          refreshing: false,
-        },
+          refreshing: false
+
+        }
       };
 
     case types.GET_BFA_PARTNERS_FAILURE:
@@ -362,8 +367,8 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         bfaPartners: {
           ...state.bfaPartners,
-          refreshing: false,
-        },
+          refreshing: false
+        }
       };
 
     case types.GET_BFA_PARTNERS_REQUEST:
@@ -371,18 +376,8 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         bfaPartners: {
           ...state.bfaPartners,
-          refreshing: true,
-        },
-      };
-    //Add to Cart
-    case types.ADD_TO_CART_SUCCESS:
-      return {
-        ...state,
-        cartList: {
-          ...state.cartList,
-          data: [...state.cartList.data,action.payload],
-          refreshing: false,
-        },
+          refreshing: true
+        }
       };
       case types.ADD_FAVORITE_REQUEST:
       return {
@@ -435,53 +430,7 @@ export const appReducers = (state = initialState, action) => {
               }
             };
 
-    case types.ADD_TO_CART_FAILURE:
-      return {
-        ...state,
-        cartList: {
-          ...state.cartList,
-          refreshing: false,
-        },
-      };
 
-    case types.ADD_TO_CART_REQUEST:
-      return {
-        ...state,
-        cartList: {
-          ...state.cartList,
-          refreshing: true,
-        },
-      };
-      
-      //Remove from Cart
-      case types.REMOVE_FROM_CART_SUCCESS:
-        return {
-          ...state,
-          cartList: {
-            ...state.cartList,
-            data: state.cartList.data.filter(item => item.id !== action.payload.id),
-            refreshing: false,
-          },
-        };
-  
-      case types.REMOVE_FROM_CART_FAILURE:
-        return {
-          ...state,
-          cartList: {
-            ...state.cartList,
-            refreshing: false,
-          },
-        };
-  
-      case types.REMOVE_FROM_CART_REQUEST:
-        return {
-          ...state,
-          cartList: {
-            ...state.cartList,
-            refreshing: true,
-          },
-        };
-        
     default:
       return state;
   }

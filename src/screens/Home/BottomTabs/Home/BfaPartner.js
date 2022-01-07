@@ -9,7 +9,6 @@ import {
   Button
 } from 'react-native';
 import ResponsiveText from '../../../../components/RnText';
-import { BarIndicator, DotIndicator } from 'react-native-indicators';
 
 import {
   advertisementBannerFakeDATA,
@@ -80,7 +79,9 @@ const BfaPartner = ({ props }) => {
     }
   }
 
-
+  console.log('----------------------');
+  console.log(siteAdd);
+  console.log('----------------------')
 
 
   const modalView = (index) => {
@@ -190,28 +191,21 @@ const BfaPartner = ({ props }) => {
               );
             })
           : undefined}
-
-        {
-          loading === true ?
-            <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, backgroundColor: 'rgba(65, 65, 65, 0)', flex: 1 }}>
-              <DotIndicator color={colors.yellow} size={5} />
-            </View>
-            :
-            undefined
-        }
-
-        <Modal visible={modalVisble} animationType="slide" transparent={true} style={{ borderRadius: 50 }} >
-          <View style={{ flex: 1, margin: 30, borderWidth: 1, backgroundColor: colors.black3, padding: 20, borderRadius: 30 }} >
-            <WebView
-              source={{ uri: siteAdd[webIndex] }}
-            // style={{height:'80%',width:'80%'}}
-            />
-            {console.log(siteAdd[webIndex], 'webIndex', webIndex)}
-            <Button title={'Close'} onPress={() => setModalVisible(false)} />
+          <View>
+            <Modal visible={modalVisble} style={{ height: '80%', width: '80%' }} >
+              <View style={{ flex: 1, justifyContent: 'center' }} >
+                <WebView
+                  source={{ uri: siteAdd[webIndex] }}
+                  // style={{height:'80%',width:'80%'}}
+                />
+                {console.log(siteAdd[webIndex],'webIndex',webIndex)}
+                <Button title={'Close'} onPress={() => setModalVisible(false)} />
+              </View>
+            </Modal>
           </View>
-        </Modal>
-      </View>
 
+      </View>
+      
 
     </View>
   );
@@ -243,8 +237,5 @@ const styles = StyleSheet.create({
     backgroundColor: colors.black3,
 
     overflow: 'hidden',
-  },
-  modalWeb: {
-    marginTop: 50
   },
 });

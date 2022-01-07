@@ -37,13 +37,10 @@ export const getPromotions = (data) => {
 //Brunei Food Awards
 
 
-export const getBruneiFoodRewards = (index, limit) => {
+export const getBruneiFoodRewards = (data) => {
   return {
     type: types.GET_BRUNEI_FOOD_AWARDS_REQUEST,
-    data: {
-      index: index,
-      limit: limit
-    }
+    data: data,
   };
 };
 
@@ -132,7 +129,6 @@ export const registerUserReset = () => {
     type: types.REGISTER_USER_RESET,
   };
 };
-
 export const addFavorite = (data) => {
  // console.log('okokokokoko',data)
   return {
@@ -146,19 +142,7 @@ export const onRemoveFavorite = (data) => {
     data
   };
 };
-//Cart actions
-export const addCart = (data) => {
-  return {
-    type: types.ADD_TO_CART_REQUEST,
-    data,
-  };
-};
-export const removeCart = (data) => {
-  return {
-    type: types.REMOVE_FROM_CART_REQUEST,
-    data,
-  };
-};
+
 
 // //Get User categories actions
 // export const getUserCategories = (params) => {
