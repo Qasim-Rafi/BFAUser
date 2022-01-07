@@ -132,8 +132,14 @@ export function* getBruneiFoodsAwardsSaga() {
   yield takeLatest(types.GET_BRUNEI_FOOD_AWARDS_REQUEST, getFoodsAwardsSagaApi);
 }
 function* getFoodsAwardsSagaApi(data) {
+  const limit = data.data.limit;
+  const index = data.data.index;
+
+  console.log("paramsssssssssss: ", data)
+  const url = urls.RESTAURANT_AWARDS + index + '/' + limit;
+  console.log("People Url: ", url)
   try {
-    const response = yield Api.get(urls.RESTAURANT_AWARDS);
+    const response = yield Api.get(url);
     if (response && response.data != null) {
       yield put({
         type: types.GET_BRUNEI_FOOD_AWARDS_SUCCESS,

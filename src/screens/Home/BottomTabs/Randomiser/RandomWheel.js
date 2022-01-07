@@ -24,6 +24,7 @@ import { hp, wp } from '../../../../helpers/Responsiveness';
 import { routeName } from '../../../../constants/routeName';
 import WheelOfFortune from 'react-native-wheel-of-fortune';
 import Modal from "react-native-modal";
+import DropDown from '../../../../components/DropDown';
 
 
 const participants = [
@@ -35,6 +36,86 @@ const participants = [
     'Jollibee',
     'Anas Corner', 
 ];
+
+const area = [
+    'Berakas',
+'Burong Pingai Ayer',
+'Gadong', 
+'Kianggeh',
+'Kilanas',
+'Kota Batu',
+'Lumapas',
+'Mentiri',
+'Pangkalan Batu',
+'Peramu',
+'Saba',
+'Sengkurong',
+'Serasa',
+'Sungai Kebun',
+'Tamoi',
+'Bukit Sawat',
+'Kuala Balai',
+'Kuala Belait',
+'Labi',
+'Liang',
+'Melilas',
+'Seria',
+'Sukang',
+'Keriam',
+'Kiudang',
+'Lamunin',
+'Pekan Tutong',
+'Rambai',
+'Tanjong Maya',
+'Telisai',
+'Ukong',
+'Amo',
+'Bangar',
+'Batu Apoi',
+'Bokok',
+'Labu'
+]
+
+const distance = [
+    'Less than 3',
+    'More than 6',
+    'Above'
+]
+
+const premise = [
+    'Airport Mall',
+    'Aman Hills Shopping Complex',
+    'Annajat Complex',
+    'Citis Square',
+    'Freshco',
+    'Gadong Centrepoint',
+    'Gadong Properties',
+    'Halim Plaza, Tutong',
+    'Hua Ho Department Store, Manggis',
+    'Jerudong Park Food Court',
+    'KB Sentral',
+    'Little Soho',
+    'Mabohai Shopping Complex',
+    'Mid Valley',
+    'One Riverside',
+    'Onecity Shopping Centre',
+    'Pavo Point',
+    'Petani Mall',
+    'Plaza Athirah',
+    'Regent Square',
+    'Rimba Point',
+    'Seri Qlap Mall',
+    'Seria Plaza',
+    'Setia Kenangan 2 Complex',
+    'Teck Guan Plaza',
+    'The Mall Gadong',
+    'The Walk, Beribi Central',
+    'Times Square Shopping Complex',
+    'V-Plaza Hotel',
+    'Wisma Jaya',
+    'Yayasan Sultan Haji Hassanal Bolkiah'
+
+]
 
 export default class RandomWheel extends React.Component {
     constructor(props) {
@@ -201,36 +282,48 @@ export default class RandomWheel extends React.Component {
                                     Randomiser setting
                                 </ResponsiveText>
                             </View>
-                            <View style={{ marginStart: 10, }}>
-                                <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, }}>
-                                    <CheckBox />
-                                    <ResponsiveText margin={[0, 0, 0, 10]} color={colors.grey1}>
-                                        Dishes
-                                    </ResponsiveText>
-                                </View>
-                                <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, }}>
-                                    <CheckBox />
-                                    <ResponsiveText margin={[0, 0, 0, 10]} color={colors.grey1}>
-                                        Restaurants
-                                    </ResponsiveText>
-                                </View>
-                                <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, }}>
-                                    <CheckBox />
-                                    <ResponsiveText margin={[0, 0, 0, 10]} color={colors.grey1}>
-                                        Distance
-                                    </ResponsiveText>
-                                </View>
-                                <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, }}>
+                            <View style={{ display: 'flex', flexDirection: 'row', marginTop: 5 }}>
+                            <RadioGroup color={colors.yellow} style={{ flex: 1, flexDirection: 'row' }}
+                            // onSelect = {(index, value) => this.onSelect(index, value)}
+                            >
+                                <RadioButton value={'item1'} style={{ marginStart: 10 }}>
+                                    <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>Dishes</ResponsiveText>
+                                </RadioButton>
+
+                                <RadioButton value={'item2'} style={{ marginStart: 10 }}>
+                                    <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>Restaurants</ResponsiveText>
+                                </RadioButton>
+                            </RadioGroup>
+
+                            </View>
+                            <View style={{ marginStart: 10, marginTop:15 }}>
+                                
+                                <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, alignItems:'center' }}>
                                     <CheckBox />
                                     <ResponsiveText margin={[0, 0, 0, 10]} color={colors.grey1}>
                                         Area
                                     </ResponsiveText>
+                                    <View style={{marginStart:5}} >
+                                        <DropDown data={area} height={hp(4)} width={wp(57)} />
+                                    </View>
                                 </View>
-                                <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, }}>
+                                <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, alignItems:'center' }}>
+                                    <CheckBox />
+                                    <ResponsiveText margin={[0, 0, 0, 10]} color={colors.grey1}>
+                                        Distance
+                                    </ResponsiveText>
+                                    <View style={{marginStart:5}} >
+                                        <DropDown data={distance} height={hp(4)} width={wp(57)} />
+                                    </View>
+                                </View>
+                                <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, alignItems:'center' }}>
                                     <CheckBox />
                                     <ResponsiveText margin={[0, 0, 0, 10]} color={colors.grey1}>
                                         Premise
                                     </ResponsiveText>
+                                    <View style={{marginStart:5}} >
+                                        <DropDown data={premise} height={hp(4)} width={wp(57)} />
+                                    </View>
                                 </View>
                             </View>
                             <View style={{ backgroundColor: colors.black3 }}>
