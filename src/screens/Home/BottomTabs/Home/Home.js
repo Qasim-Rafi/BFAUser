@@ -104,8 +104,6 @@ const Home = ({ navigation }) => {
     // dispatch(getPromotions());
     dispatch(getBfaPartners(6));
     // callAPI();
-    // dispatch(getRestaurantAllDishes())
-
     dispatch(
       getUserCusine(1, 14),
     );
@@ -114,7 +112,7 @@ const Home = ({ navigation }) => {
     // dispatch(getPromoNewsData());
     dispatch(getPromoJobsData(1, 4));
     dispatch(getBfaRecommendations(1, 4));
-    // dispatch(getBruneiFoodRewards());
+    dispatch(getBruneiFoodRewards(1, 4));
   }, []);
 
   return (

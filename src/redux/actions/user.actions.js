@@ -37,10 +37,13 @@ export const getPromotions = (data) => {
 //Brunei Food Awards
 
 
-export const getBruneiFoodRewards = (data) => {
+export const getBruneiFoodRewards = (index, limit) => {
   return {
     type: types.GET_BRUNEI_FOOD_AWARDS_REQUEST,
-    data: data,
+    data: {
+      index: index,
+      limit: limit
+    }
   };
 };
 
