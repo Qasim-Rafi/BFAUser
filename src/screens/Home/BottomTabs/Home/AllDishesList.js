@@ -23,6 +23,8 @@ export default function AllDishesList({ route, navigation }) {
     state => title == 'BFA Recommendation' ? state.appReducers.bfaRecommendationDetail.data
       : title == "People's Choice" ? state.appReducers.PeopleChoice.data : state.appReducers.promoJobs.data);
 
+  console.log('Data in Show All', data);
+
   return (
     <View style={{ backgroundColor: colors.black3, flex: 1 }}>
       <View
@@ -48,7 +50,7 @@ export default function AllDishesList({ route, navigation }) {
                 return (
                   <TouchableOpacity
                     style={{ marginHorizontal: 8, marginVertical: 10 }}
-                  // onPress={() => navigation.navigate(routeName.DISH_DETAIL)}
+                  onPress={() => navigation.navigate(routeName.DISH_DETAIL)}
                   >
                     <View
                       style={{
@@ -68,7 +70,7 @@ export default function AllDishesList({ route, navigation }) {
 
                           backgroundColor: 'rgba(0,0,0,1)',
                         }}
-                        source={item.url ? item.url : { uri: item.imageDataB }}>
+                        source={item.url ? item.url : { uri: item.fullPath }}>
                         <View style={{ alignItems: 'flex-end' }}></View>
                         <View>
                           <ResponsiveText
