@@ -25,6 +25,8 @@ export default function AllDishesList({ route, navigation }) {
       : title == "People's Choice" ? state.appReducers.PeopleChoice.data : title == "Brunei Food Awards" ? state.appReducers.bruneiFoodsAwards.data
         : state.appReducers.promoJobs.data);
 
+  console.log('Data in Show All', data);
+
   return (
     <View style={{ backgroundColor: colors.black3, flex: 1 }}>
       <View
@@ -50,7 +52,7 @@ export default function AllDishesList({ route, navigation }) {
                 return (
                   <TouchableOpacity
                     style={{ marginHorizontal: 8, marginVertical: 10 }}
-                  onPress={() => navigation.navigate(routeName.DISH_DETAIL,{dish:item})}
+                    onPress={() => navigation.navigate(routeName.DISH_DETAIL, { dish: item })}
                   >
                     <View
                       style={{

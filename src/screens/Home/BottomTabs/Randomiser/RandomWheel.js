@@ -300,7 +300,7 @@ export default class RandomWheel extends React.Component {
                                 
                                 <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, alignItems:'center' }}>
                                     <CheckBox />
-                                    <ResponsiveText margin={[0, 0, 0, 10]} color={colors.grey1}>
+                                    <ResponsiveText margin={[0, 27, 0, 10]} color={colors.grey1}>
                                         Area
                                     </ResponsiveText>
                                     <View style={{marginStart:5}} >
@@ -318,7 +318,7 @@ export default class RandomWheel extends React.Component {
                                 </View>
                                 <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, alignItems:'center' }}>
                                     <CheckBox />
-                                    <ResponsiveText margin={[0, 0, 0, 10]} color={colors.grey1}>
+                                    <ResponsiveText margin={[0, 5, 0, 10]} color={colors.grey1}>
                                         Premise
                                     </ResponsiveText>
                                     <View style={{marginStart:5}} >
