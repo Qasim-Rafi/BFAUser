@@ -1,22 +1,21 @@
 import React from 'react';
-import {View, Text, ScrollView, StyleSheet, Image,TouchableOpacity} from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import AdvertisementBanner from '../BottomTabs/Home/AdvertisementBanner';
 import ImageHeader from '../BottomTabs/Home/ImageHeader';
-import {colors} from '../../../constants/colorsPallet';
+import { colors } from '../../../constants/colorsPallet';
 const text = 'Description';
 import Icon from '../../../components/Icon';
 import ResponsiveText from '../../../components/RnText';
-import {globalPath} from '../../../constants/globalPath';
-import {wp} from '../../../helpers/Responsiveness';
+import { globalPath } from '../../../constants/globalPath';
+import { wp } from '../../../helpers/Responsiveness';
 import StaticMap from '../../../components/StaticMap';
 import { useDispatch, useSelector } from 'react-redux';
-import { addFavorite,onRemoveFavorite } from '../../../redux/actions/user.actions';
+import { addFavorite, onRemoveFavorite } from '../../../redux/actions/user.actions';
 
 export default function DishDescription(props) {
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
   const favData = useSelector(state => state.appReducers.favorite.data,)
 
-  console.log(favData,'bjhsdasdjhkawbejksh')
   // console.log(removefavorite,'hhh')
   return (
     <View>
@@ -47,7 +46,7 @@ export default function DishDescription(props) {
         </View>
 
         <View>
-          <Image style={{width: 30, height: 25}} />
+          {/* <Image style={{ width: 30, height: 25 }} /> */}
         </View>
       </View>
       <View
@@ -58,36 +57,39 @@ export default function DishDescription(props) {
           borderBottomColor: colors.grey,
           borderBottomWidth: 1,
         }}>
-         <TouchableOpacity style={{alignItems: 'center'}}  onPress={() =>{!favData.some(o => o.id === props.item.id)?dispatch(addFavorite(props.item)):dispatch(onRemoveFavorite(props.item))}}
-        
-         >
-          <Icon source={favData.some(o => o.id === props.item.id)?globalPath.F_HEART:globalPath.HEART} 
-        
+        <TouchableOpacity style={{ alignItems: 'center' }} onPress={() => {
+          !favData.some(o => o.id === props.item.id)
+            ? dispatch(addFavorite(props.item)) : dispatch(onRemoveFavorite(props.item))
+        }}
+
+        >
+          <Icon source={favData.some(o => o.id === props.item.id) ? globalPath.F_HEART : globalPath.HEART}
+
           />
           <ResponsiveText top={5} color={colors.yellow}>
             Favourite
           </ResponsiveText>
         </TouchableOpacity>
-        <View style={{alignItems: 'center'}}>
+        <View style={{ alignItems: 'center' }}>
           <Icon source={globalPath.LOCATION} />
           <ResponsiveText top={5} color={colors.yellow}>
             Go To
           </ResponsiveText>
         </View>
-        <View style={{alignItems: 'center'}}>
+        <View style={{ alignItems: 'center' }}>
           <Icon source={globalPath.CONTACT} />
           <ResponsiveText top={5} color={colors.yellow}>
             Contact
           </ResponsiveText>
         </View>
-        <View style={{alignItems: 'center'}}>
+        <View style={{ alignItems: 'center' }}>
           <Icon source={globalPath.MORE_LOGO} />
           <ResponsiveText top={5} color={colors.yellow}>
             More
           </ResponsiveText>
         </View>
       </View>
-      <View style={{padding: 20, }}>
+      <View style={{ padding: 20, }}>
         <ResponsiveText fontFamily="Regular" size={4} color={colors.white}>
           Dish Description
         </ResponsiveText>
@@ -100,9 +102,9 @@ export default function DishDescription(props) {
           Lorem Ipsum is simply dummy text of the printing.
         </ResponsiveText>
       </View>
-      
-      
-      
+
+
+
     </View>
   );
 }
