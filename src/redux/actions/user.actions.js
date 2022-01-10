@@ -132,6 +132,7 @@ export const registerUserReset = () => {
     type: types.REGISTER_USER_RESET,
   };
 };
+//Favrite Actions
 
 export const addFavorite = (data) => {
  // console.log('okokokokoko',data)
@@ -146,6 +147,7 @@ export const onRemoveFavorite = (data) => {
     data
   };
 };
+
 //Cart actions
 export const addCart = (data) => {
   return {

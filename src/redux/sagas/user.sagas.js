@@ -371,7 +371,6 @@ export function* addfavouriteSaga() {
   );
 }
 function* addfavouritSagaApi(data) {
-  console.log('param',data)
 
   try {
    // const response = yield Api.get(urls.RESTAURANT_DISH_ALL);
@@ -415,6 +414,61 @@ function* onRemoveFavoriteSagaApi(data) {
     // dispatch a success action to the store with the new data object
   } catch (error) {
     yield put({ type: types.ON_REMOVE_FAVORITE_FAILURE, error: 'error' });
+  }
+}
+
+
+///Cart Actions
+export function* addToCartSaga() {
+  yield takeLatest(
+    types.ADD_TO_CART_REQUEST,
+    addcartSagaApi,
+  );
+}
+function* addcartSagaApi(data) {
+
+  try {
+   // const response = yield Api.get(urls.RESTAURANT_DISH_ALL);
+    if (data) {
+      yield put({
+        type: types.ADD_TO_CART_SUCCESS,
+        payload: data.data,
+      });
+      // navigation.navigate(routeName.Categories,{data:response.data});
+    } else {
+      yield put({ type: types.ADD_TO_CART_FAILURE, error: 'error' });
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({ type: types.ADD_TO_CART_FAILURE, error: 'error' });
+  }
+}
+
+export function* RemoveCARTSaga() {
+  yield takeLatest(
+    types.REMOVE_FROM_CART_REQUEST,
+    removecartSagaApi
+  );
+}
+function* removecartSagaApi(data) {
+  console.log('param',data)
+
+  try {
+   // const response = yield Api.get(urls.RESTAURANT_DISH_ALL);
+    if (data) {
+      yield put({
+        type: types.REMOVE_FROM_CART_SUCCESS,
+        payload: data.data,
+      });
+      // navigation.navigate(routeName.Categories,{data:response.data});
+    } else {
+      yield put({ type: types.REMOVE_FROM_CART_FAILURE, error: 'error' });
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({ type: types.REMOVE_FROM_CART_FAILURE, error: 'error' });
   }
 }
 // //Add product category
