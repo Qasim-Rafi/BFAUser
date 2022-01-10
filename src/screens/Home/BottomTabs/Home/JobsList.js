@@ -99,10 +99,10 @@ const JobsList = props => {
                         justifyContent: 'flex-end',
                         backgroundColor: 'rgba(0,0,0,1)',
                       }}
-                      // source={url.url.}>
-                      source={{
+                      source={{ uri: url.fullPath }}>
+                      {/* source={{
                         uri: url.resLogo.replace(/ /g, ''),
-                      }}>
+                      }}> */}
                       {/* source={{uri: url.fullPath}}> */}
                       <ResponsiveText
                         fontFamily="Regular"

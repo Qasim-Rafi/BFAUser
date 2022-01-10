@@ -132,8 +132,12 @@ export function* getBruneiFoodsAwardsSaga() {
   yield takeLatest(types.GET_BRUNEI_FOOD_AWARDS_REQUEST, getFoodsAwardsSagaApi);
 }
 function* getFoodsAwardsSagaApi(data) {
+  const limit = data.data.limit;
+  const index = data.data.index;
   try {
-    const response = yield Api.get(urls.RESTAURANT_AWARDS);
+    const url = urls.RESTAURANT_AWARDS + index + '/' + limit;
+    console.log("Cuisines Url: ", url)
+    const response = yield Api.get(url);
     if (response && response.data != null) {
       yield put({
         type: types.GET_BRUNEI_FOOD_AWARDS_SUCCESS,
@@ -373,7 +377,7 @@ export function* addfavouriteSaga() {
 function* addfavouritSagaApi(data) {
 
   try {
-   // const response = yield Api.get(urls.RESTAURANT_DISH_ALL);
+    // const response = yield Api.get(urls.RESTAURANT_DISH_ALL);
     if (data) {
       yield put({
         type: types.ADD_FAVORITE_SUCCESS,
@@ -397,10 +401,10 @@ export function* onRemoveFavoriteSaga() {
   );
 }
 function* onRemoveFavoriteSagaApi(data) {
-  console.log('param',data)
+  console.log('param', data)
 
   try {
-   // const response = yield Api.get(urls.RESTAURANT_DISH_ALL);
+    // const response = yield Api.get(urls.RESTAURANT_DISH_ALL);
     if (data) {
       yield put({
         type: types.ON_REMOVE_FAVORITE_SUCCESS,
@@ -428,7 +432,7 @@ export function* addToCartSaga() {
 function* addcartSagaApi(data) {
 
   try {
-   // const response = yield Api.get(urls.RESTAURANT_DISH_ALL);
+    // const response = yield Api.get(urls.RESTAURANT_DISH_ALL);
     if (data) {
       yield put({
         type: types.ADD_TO_CART_SUCCESS,
@@ -452,10 +456,10 @@ export function* RemoveCARTSaga() {
   );
 }
 function* removecartSagaApi(data) {
-  console.log('param',data)
+  console.log('param', data)
 
   try {
-   // const response = yield Api.get(urls.RESTAURANT_DISH_ALL);
+    // const response = yield Api.get(urls.RESTAURANT_DISH_ALL);
     if (data) {
       yield put({
         type: types.REMOVE_FROM_CART_SUCCESS,

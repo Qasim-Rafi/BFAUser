@@ -98,19 +98,19 @@ const YourFavourite = props => {
                         overflow: 'hidden',
                         justifyContent: 'flex-end',
                       }}
-                      source={url.url}>
+                      source={{ uri: url.imageDataB }}>
                       <ResponsiveText
                         fontFamily="Regular"
                         size={3}
                         color={colors.white}>
-                        {url.title}
+                        {url.titleA}
                       </ResponsiveText>
                       <ResponsiveText
                         fontFamily="Light"
                         size={2.5}
                         margin={[-5, 0, 0, 0]}
                         color={colors.white}>
-                        {url.awardName}
+                        {url.titleR}
                       </ResponsiveText>
                     </ImageBackground>
                   </View>

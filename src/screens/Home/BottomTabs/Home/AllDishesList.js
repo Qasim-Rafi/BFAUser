@@ -50,7 +50,7 @@ export default function AllDishesList({ route, navigation }) {
                 return (
                   <TouchableOpacity
                     style={{ marginHorizontal: 8, marginVertical: 10 }}
-                  onPress={() => navigation.navigate(routeName.DISH_DETAIL,{dish:item})}
+                    onPress={() => navigation.navigate(routeName.DISH_DETAIL, { dish: item })}
                   >
                     <View
                       style={{
@@ -77,13 +77,13 @@ export default function AllDishesList({ route, navigation }) {
                             fontFamily="Regular"
                             size={2.9}
                             color={colors.white}>
-                            {item.title}
+                            {item.titleR}
                           </ResponsiveText>
                           <ResponsiveText
                             fontFamily="Light"
                             size={2}
                             color={colors.white}>
-                            {item.description}
+                            {item.titleA}
                           </ResponsiveText>
                         </View>
                       </ImageBackground>
