@@ -380,6 +380,7 @@ export const appReducers = (state = initialState, action) => {
         cartList: {
           ...state.cartList,
           data: [...state.cartList.data, action.payload],
+          //state.cartList.data.push(action.payload)
           refreshing: false,
         },
       };
