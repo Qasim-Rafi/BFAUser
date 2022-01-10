@@ -79,7 +79,7 @@ const AwardWinningDishes = props => {
                       flexDirection: 'row',
                     }}>
                     <ImageBackground
-                      imageStyle={{ opacity: 0.5 }}
+                      imageStyle={{ opacity: 1 }}
                       style={{
                         flex: 1,
                         padding: 5,

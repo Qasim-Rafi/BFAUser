@@ -56,17 +56,18 @@ export default function AllDishesList({ route, navigation }) {
           source={item.url ? item.url : { uri: item.imageDataB }}>
           <View style={{ alignItems: 'flex-end' }}></View>
           <View>
+
             <ResponsiveText
               fontFamily="Regular"
               size={2.9}
               color={colors.white}>
-              {item.title}
+              {item.titleD == undefined ? item.titleA : item.titleD}
             </ResponsiveText>
             <ResponsiveText
               fontFamily="Light"
               size={2}
               color={colors.white}>
-              {item.description}
+              {item.titleR}
             </ResponsiveText>
           </View>
         </ImageBackground>
