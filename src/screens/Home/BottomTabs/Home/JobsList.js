@@ -101,7 +101,7 @@ const JobsList = props => {
                       }}
                       // source={url.url.}>
                       source={{
-                        uri: url.resLogo.replace(/ /g, ''),
+                        uri: url.fullpath,
                       }}>
                       {/* source={{uri: url.fullPath}}> */}
                       <ResponsiveText

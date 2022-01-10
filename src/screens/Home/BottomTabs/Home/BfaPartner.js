@@ -50,11 +50,10 @@ const BfaPartner = ({ props }) => {
   const siteAdd = []
   if (loading === false) {
     bfaPartners.map(item => {
-      var img = item.imageDataB;
-      var src = img.replace(/\\/g, '/');
-      if (images.includes(urls.BASE_URL + src)) {
+      
+      if (images.includes(item.fullpath)) {
       } else {
-        images.push(urls.BASE_URL + src);
+        images.push(item.fullpath);
       }
 
       //  console.log('All Images: ',images);
@@ -70,12 +69,12 @@ const BfaPartner = ({ props }) => {
 
   if (loading === false) {
     for (var i = 0; i < 6; i++) {
-      var img = bfaPartners[i].imageDataB;
-      var src = img.replace(/\\/g, '/');
-      if (lessImages.includes(urls.BASE_URL + src)) {
-        console.log("pathhhhhhhhh: ", urls.BASE_URL + src)
+      var img = bfaPartners[i].fullpath;
+      //var src = img.replace(/\\/g, '/');
+      if (lessImages.includes(img)) {
+        console.log("pathhhhhhhhh: ", img)
       } else {
-        lessImages.push(urls.BASE_URL + src);
+        lessImages.push(img);
       }
     }
   }
@@ -139,6 +138,7 @@ const BfaPartner = ({ props }) => {
         {images.length > 0
           ? title === 'More'
             ? lessImages.map((url, index) => {
+              console.log('urlllllllllll',url)
               return (
                 // <Icon source={url} size={35} borderRadius={5} />
                 <View
