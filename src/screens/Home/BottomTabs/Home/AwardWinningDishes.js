@@ -79,7 +79,7 @@ const AwardWinningDishes = props => {
                       flexDirection: 'row',
                     }}>
                     <ImageBackground
-                      imageStyle={{ opacity: 0.5 }}
+                      imageStyle={{ opacity: 1 }}
                       style={{
                         flex: 1,
                         padding: 5,
@@ -87,7 +87,7 @@ const AwardWinningDishes = props => {
                         justifyContent: 'flex-end',
                         backgroundColor: 'rgba(0,0,0,1)',
                       }}
-                      source={{ uri: url.fullPath }}
+                      source={{ uri: url.imageDataB }}
                     // source={{
                     //   uri: url.imageDataB.replace(/ /g, ''),
                     // }}>
@@ -103,7 +103,7 @@ const AwardWinningDishes = props => {
                         fontFamily="Light"
                         size={2.5}
                         color={colors.white}>
-                        {url.awardName}
+                        {url.titleA}
                       </ResponsiveText>
                     </ImageBackground>
                   </View>

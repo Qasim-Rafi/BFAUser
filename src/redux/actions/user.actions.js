@@ -28,10 +28,13 @@ export const AddOrder = (data) => {
 };
 //PROMOTIONS
 
-export const getPromotions = (data) => {
+export const getPromotions = (index, limit) => {
   return {
     type: types.GET_PROMOTIONS_REQUEST,
-    data: data
+    data: {
+      index: index,
+      limit: limit
+    }
   };
 };
 //Brunei Food Awards
@@ -135,7 +138,7 @@ export const registerUserReset = () => {
 //Favrite Actions
 
 export const addFavorite = (data) => {
- // console.log('okokokokoko',data)
+  // console.log('okokokokoko',data)
   return {
     type: types.ADD_FAVORITE_REQUEST,
     data

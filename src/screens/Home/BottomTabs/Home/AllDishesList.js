@@ -9,13 +9,13 @@ import {
 } from 'react-native';
 
 import Header from '../../../../components/Header';
-import {colors} from '../../../../constants/colorsPallet';
-import {globalPath} from '../../../../constants/globalPath';
-import {ourRecommendationFakeDATA} from '../../../../constants/mock';
-import {wp, hp} from '../../../../helpers/Responsiveness';
+import { colors } from '../../../../constants/colorsPallet';
+import { globalPath } from '../../../../constants/globalPath';
+import { ourRecommendationFakeDATA } from '../../../../constants/mock';
+import { wp, hp } from '../../../../helpers/Responsiveness';
 import ResponsiveText from '../../../../components/RnText';
-import {useSelector, useDispatch} from 'react-redux';
-import {routeName} from '../../../../constants/routeName';
+import { useSelector, useDispatch } from 'react-redux';
+import { routeName } from '../../../../constants/routeName';
 import Icon from '../../../../components/Icon';
 import {
   getRestaurantAllDishes,
@@ -50,10 +50,10 @@ export default function AllDishesList({route, navigation}) {
     title == 'BFA Recommendation'
       ? state.appReducers.bfaRecommendationDetail.data
       : title == "People's Choice"
-      ? state.appReducers.PeopleChoice.data
-      : title == 'Brunei Food Awards'
-      ? state.appReducers.bruneiFoodsAwards.data
-      : state.appReducers.promoJobs.data,
+        ? state.appReducers.PeopleChoice.data
+        : title == 'Brunei Food Awards'
+          ? state.appReducers.bruneiFoodsAwards.data
+          : state.appReducers.promoJobs.data,
   );
   const loading = useSelector(state => state.appReducers.bfaRecommendationDetail.loading,
     );
@@ -107,7 +107,7 @@ export default function AllDishesList({route, navigation}) {
         }}>
         <Header navigation={navigation} iconPath={globalPath.BACK_ARROW} />
       </View>
-      <View style={{flex: 0.9, margin: 20}}>
+      <View style={{ flex: 0.9, margin: 20 }}>
         <ResponsiveText size={4} margin={[0, 0, 5, 10]} color={colors.yellow}>
           {title}
         </ResponsiveText>
