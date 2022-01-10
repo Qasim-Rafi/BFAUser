@@ -88,87 +88,72 @@ export default function AllDishesList({ route, navigation }) {
         <ResponsiveText size={4} margin={[0, 0, 5, 10]} color={colors.yellow}>
           {title}
         </ResponsiveText>
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-        >
-
-          <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: wp(100) }}>
-
-            {data.length > 4 ?
-              data.map(item => {
-                return (
-                  <TouchableOpacity
-                    style={{ marginHorizontal: 8, marginVertical: 10 }}
-                    onPress={() => navigation.navigate(routeName.DISH_DETAIL, { dish: item })}
-                  >
-                    <View
-                      style={{
-                        width: wp(26),
-                        height: hp(18),
-                        borderRadius: 7,
-                        overflow: 'hidden',
-                        flexDirection: 'row',
-                      }}>
-                      <ImageBackground
-                        imageStyle={{ opacity: 1 }}
+        <View>
+          <FlatList
+            // style={{ flex: 1 }}
+            // extraData={this.state}
+            //  onEndReached={dispatch()}
+            // onEndReachedThreshold={0.7}
+            data={data}
+            keyExtractor={item => item.id.toString()}
+            renderItem={renderItem}
+            numColumns={3}
+          />
+        </View>
+        {/* <ScrollView showsVerticalScrollIndicator={false}>
+          <View
+            style={{flexDirection: 'row', flexWrap: 'wrap', width: wp(100)}}>
+            {data.length > 4
+              ? data.map(item => {
+                  return (
+                    <TouchableOpacity
+                      style={{marginHorizontal: 8, marginVertical: 10}}
+                      onPress={() =>
+                        navigation.navigate(routeName.DISH_DETAIL, {dish: item})
+                      }>
+                      <View
                         style={{
                           width: wp(26),
                           height: hp(18),
                           borderRadius: 7,
                           overflow: 'hidden',
-                          justifyContent: 'space-between',
+                          flexDirection: 'row',
+                        }}>
+                        <ImageBackground
+                          imageStyle={{opacity: 1}}
+                          style={{
+                            flex: 1,
+                            padding: 5,
+                            overflow: 'hidden',
+                            justifyContent: 'space-between',
 
-                          backgroundColor: 'rgba(0,0,0,1)',
-                        }}
-                        source={item.url ? item.url : { uri: item.imageDataB }}>
-                        <View style={{ alignItems: 'flex-end' }}></View>
-                        <View>
-                          <ResponsiveText
-                            fontFamily="Regular"
-                            size={2.9}
-                            color={colors.white}>
-                            {item.titleR}
-                          </ResponsiveText>
-                          <ResponsiveText
-                            fontFamily="Light"
-                            size={2}
-                            color={colors.white}>
-                            {item.titleA}
-                          </ResponsiveText>
-                        </View>
-                      </ImageBackground>
-                    </View>
-                  </TouchableOpacity>
-                );
-              }) : undefined}
-
-            backgroundColor: 'rgba(0,0,0,1)',
+                            backgroundColor: 'rgba(0,0,0,1)',
                           }}
-            source={item.url ? item.url : { uri: item.imageDataB }}>
-            <View style={{ alignItems: 'flex-end' }}></View>
-            <View>
-              <ResponsiveText
-                fontFamily="Regular"
-                size={2.9}
-                color={colors.white}>
-                {item.title}
-              </ResponsiveText>
-              <ResponsiveText
-                fontFamily="Light"
-                size={2}
-                color={colors.white}>
-                {item.description}
-              </ResponsiveText>
-            </View>
-          </ImageBackground>
-      </View>
-    </TouchableOpacity>
-  );
-})
+                          source={item.url ? item.url : {uri: item.imageDataB}}>
+                          <View style={{alignItems: 'flex-end'}}></View>
+                          <View>
+                            <ResponsiveText
+                              fontFamily="Regular"
+                              size={2.9}
+                              color={colors.white}>
+                              {item.title}
+                            </ResponsiveText>
+                            <ResponsiveText
+                              fontFamily="Light"
+                              size={2}
+                              color={colors.white}>
+                              {item.description}
+                            </ResponsiveText>
+                          </View>
+                        </ImageBackground>
+                      </View>
+                    </TouchableOpacity>
+                  );
+                })
               : undefined}
-          </View >
-        </ScrollView > * /}
-      </View >
-    </View >
+          </View>
+        </ScrollView> */}
+      </View>
+    </View>
   );
 }
