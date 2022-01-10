@@ -68,8 +68,10 @@ const initialState = {
     refreshing: true,
     data: [],
   },
- 
-
+  cartList: {
+    refreshing: true,
+    data: [],
+  },
 };
 
 
@@ -376,61 +378,121 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         bfaPartners: {
           ...state.bfaPartners,
-          refreshing: true
-        }
+          refreshing: true,
+        },
       };
-      case types.ADD_FAVORITE_REQUEST:
+    //Add to Cart
+    case types.ADD_TO_CART_SUCCESS:
       return {
         ...state,
-        favorite: {
-          ...state.favorite,
-          refreshing: true
-        }
+        cartList: {
+          ...state.cartList,
+          data: [...state.cartList.data, action.payload],
+          refreshing: false,
+        },
       };
-      case types.ADD_FAVORITE_SUCCESS:
+    case types.ADD_TO_CART_FAILURE:
       return {
         ...state,
-        favorite: {
-          ...state.favorite,
-          data:[...state.favorite.data, action.payload],
-          refreshing: true
-        }
+        cartList: {
+          ...state.cartList,
+          refreshing: false,
+        },
       };
-      case types.ADD_FAVORITE_FAILURE:
-      return {
-        ...state,
-        favorite: {
-          ...state.favorite,
-          refreshing: true
-        }
-      };
-      case types.ON_REMOVE_FAVORITE_REQUEST:
-        return {
-          ...state,
-          favorite: {
-            ...state.favorite,
-            refreshing: true
-          }
-        };
-        case types.ON_REMOVE_FAVORITE_SUCCESS:
-          return {
-            ...state,
-            favorite: {
-              ...state.favorite,
-              data: state.favorite.data.filter(item => item.id !== action.payload.id),
-              refreshing: true
-            }
-          };
-          case types.ON_REMOVE_FAVORITE_FAILURE:
-            return {
-              ...state,
-              favorite: {
-                ...state.favorite,
-                refreshing: true
-              }
-            };
 
+    case types.ADD_TO_CART_REQUEST:
+      return {
+        ...state,
+        cartList: {
+          ...state.cartList,
+          refreshing: true,
+        },
+      };
 
+    //Remove from Cart
+    case types.REMOVE_FROM_CART_SUCCESS:
+      return {
+        ...state,
+        cartList: {
+          ...state.cartList,
+          data: state.cartList.data.filter(
+            item => item.id !== action.payload.id,
+          ),
+          refreshing: false,
+        },
+      };
+
+    case types.REMOVE_FROM_CART_FAILURE:
+      return {
+        ...state,
+        cartList: {
+          ...state.cartList,
+          refreshing: false,
+        },
+      };
+
+    case types.REMOVE_FROM_CART_REQUEST:
+      return {
+        ...state,
+        cartList: {
+          ...state.cartList,
+          refreshing: true,
+        },
+      };
+    ///////Add Favrite
+    case types.ADD_FAVORITE_REQUEST:
+      return {
+        ...state,
+        favorite: {
+          ...state.favorite,
+          refreshing: true,
+        },
+      };
+    case types.ADD_FAVORITE_SUCCESS:
+      return {
+        ...state,
+        favorite: {
+          ...state.favorite,
+          data: [...state.favorite.data, action.payload],
+          refreshing: true,
+        },
+      };
+    case types.ADD_FAVORITE_FAILURE:
+      return {
+        ...state,
+        favorite: {
+          ...state.favorite,
+          refreshing: true,
+        },
+      };
+    //Remove Favrite
+    case types.ON_REMOVE_FAVORITE_REQUEST:
+      return {
+        ...state,
+        favorite: {
+          ...state.favorite,
+          refreshing: true,
+        },
+      };
+    case types.ON_REMOVE_FAVORITE_SUCCESS:
+      return {
+        ...state,
+        favorite: {
+          ...state.favorite,
+          data: state.favorite.data.filter(
+            item => item.id !== action.payload.id,
+          ),
+          refreshing: true,
+        },
+      };
+    case types.ON_REMOVE_FAVORITE_FAILURE:
+      return {
+        ...state,
+        favorite: {
+          ...state.favorite,
+          refreshing: true,
+        },
+      };
     default:
       return state;
   }
