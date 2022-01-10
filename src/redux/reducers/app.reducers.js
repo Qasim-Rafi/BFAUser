@@ -23,7 +23,7 @@ const initialState = {
   },
   bfaRecommendationDetail: {
     loading: false,
-    data: {},
+    data: [],
   },
   restaurantDishesDetail: {
     refreshing: false,
@@ -213,7 +213,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         bfaRecommendationDetail: {
           ...state.bfaRecommendationDetail,
-          data: action.payload,
+          data: [...state.bfaRecommendationDetail.data, ...action.payload],
           loading: false,
         },
       };
