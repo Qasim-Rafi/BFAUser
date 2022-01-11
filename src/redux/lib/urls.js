@@ -6,6 +6,7 @@ export default urls = {
 
   //Auth Urls
   LOGIN_URL: 'api/Auth/login',
+  REGISTER_URL: 'api/Users/AddUser',
   PACKAGES_ALL_URL: 'api/Package/GetPackageAll',
   REGISTER_URL: 'api/Auth/Register',
   RESTAURANT_AWARDS: 'api/RestaurantAwards/GetRestaurantAwardsAll',
