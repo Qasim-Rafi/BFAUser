@@ -13,13 +13,17 @@ import { globalPath } from '../../../../constants/globalPath';
 import {
   advertisementBannerFakeDATA,
   ourRecommendationFakeDATA,
-  whatsNew,
+  
 } from '../../../../constants/mock';
+import { useSelector, useDispatch } from 'react-redux';
 import { colors } from '../../../../constants/colorsPallet';
 import SeeAllButton from '../../../../components/SeeAllButton';
 import { routeName } from '../../../../constants/routeName';
 import { hp, wp } from '../../../../helpers/Responsiveness';
 const WhatsNew = props => {
+  const NewData = useSelector(state => state.appReducers.whatsnew.data,)
+  console.log(NewData,'llll')
+  const dispatch = useDispatch();
   return (
     <>
       <View style={styles.recommendationHeaderSection}>
@@ -56,7 +60,7 @@ const WhatsNew = props => {
       </View>
       <View style={styles.recommendationItemsSection}>
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-          {whatsNew.map((url, index) => {
+          {NewData.map((url, index) => {
             return (
               <TouchableOpacity
                 onPress={() =>
@@ -80,13 +84,13 @@ const WhatsNew = props => {
                       justifyContent: 'flex-end',
                       backgroundColor: 'rgba(0,0,0,1)',
                     }}
-                    source={url.url}>
+                    source={{uri:url.imageDataB}}>
                     <ResponsiveText
                       fontFamily="Regular"
                       size={3}
                       margin={[0, 0, -5, 0]}
                       color={colors.white}>
-                      {url.title}
+                      {url.titleD}
                     </ResponsiveText>
                     {/* <ResponsiveText fontFamily="Light" size={2.5} color={colors.white}>{url.description}</ResponsiveText> */}
                   </ImageBackground>

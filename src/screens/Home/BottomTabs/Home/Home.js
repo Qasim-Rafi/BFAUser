@@ -39,7 +39,7 @@ import {
   getPromotions,
   getBruneiFoodRewards,
   getBfaPartners,
-  AddOrder,
+  AddOrder,whatsNew,
   getAddBannerData,
   getBfaRecommendations,
   getPromoNewsData,
@@ -101,14 +101,14 @@ const Home = ({ navigation }) => {
   React.useEffect(() => {
     dispatch(getAddBannerData());
     dispatch(getPeopleChoice(1, 4))
-    // dispatch(getPromotions());
+     dispatch(getPromotions());
     dispatch(getBfaPartners(6));
     // callAPI();
     dispatch(
       getUserCusine(1, 14),
     );
 
-    // dispatch(awardsRestaurant());
+     dispatch(whatsNew());
     // dispatch(getPromoNewsData());
     dispatch(getPromoJobsData(1, 4));
     dispatch(getBfaRecommendations(1, 4));
@@ -133,9 +133,9 @@ const Home = ({ navigation }) => {
         <View style={styles.advertisementBanner}>
           <AdvertisementBanner navigation={navigation} />
         </View>
-        <View style={styles.bfaPartnerContainer}>
+        {/* <View style={styles.bfaPartnerContainer}>
           <BfaPartner navigation={navigation} />
-        </View>
+        </View> */}
 
         <View style={styles.yourFavorite}>
           <YourFavourite navigation={navigation} />

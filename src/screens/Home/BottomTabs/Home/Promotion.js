@@ -23,7 +23,7 @@ import { useSelector } from 'react-redux';
 import Icon from '../../../../components/Icon';
 import { globalPath } from '../../../../constants/globalPath';
 const Promotion = props => {
-  // const Promotions = useSelector(state => state.appReducers.promotions.data);
+   const Promotions = useSelector(state => state.appReducers.promotions.data);
   // console.log('promotions: ', Promotions);
 
   return (
@@ -62,8 +62,8 @@ const Promotion = props => {
       </View>
       <View style={styles.everyOneFavoriteItemsSection}>
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-          {promosBannerFakeDATA.length > 0
-            ? promosBannerFakeDATA.map((url, index) => {
+          {Promotions.length > 0
+            ? Promotions.map((url, index) => {
               return (
                 <TouchableOpacity
                   onPress={() =>
@@ -89,7 +89,7 @@ const Promotion = props => {
                         justifyContent: 'flex-end',
                         backgroundColor: 'rgba(0,0,0,1)',
                       }}
-                      source={url.url}>
+                      source={{uri:url.imageDataB}}>
                       <ResponsiveText
                         fontFamily="Regular"
                         size={3}

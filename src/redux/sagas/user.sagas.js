@@ -186,7 +186,7 @@ export function* getpromotionsSaga() {
 }
 function* getPromotionsSagaApi(data) {
   try {
-    const response = yield Api.get(urls.PROMOTIONS);
+    const response = yield Api.get(urls.GET_ALL_PROMOTION);
     if (response && response.data != null) {
       yield put({ type: types.GET_PROMOTIONS_SUCCESS, payload: response.data });
       // navigation.navigate(routeName.Categories,{data:response.data});
@@ -377,7 +377,8 @@ export function* addfavouriteSaga() {
 function* addfavouritSagaApi(data) {
 
   try {
-    // const response = yield Api.get(urls.RESTAURANT_DISH_ALL);
+    const response = yield Api.get(urls.GET_ALL_FAVORITE);
+    console.log(response,'favvvvv')
     if (data) {
       yield put({
         type: types.ADD_FAVORITE_SUCCESS,
@@ -481,7 +482,7 @@ export function* getWhatsNewSaga() {
 }
 function* getWhatsNewSagaApi(data) {
   try {
-    const response = yield Api.get(urls.GET_ADD_BANNER);
+    const response = yield Api.get(urls.GET_ALL_WHATSNEW);
     if (response && response.data != null) {
       yield put({
         type: types.GET_WHATSNEW_SUCCESS,
