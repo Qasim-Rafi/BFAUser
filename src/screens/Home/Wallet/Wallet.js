@@ -1,5 +1,5 @@
 import { useNavigation, useRoute } from '@react-navigation/native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, Modal, ScrollView } from 'react-native'
 import { colors } from '../../../constants/colorsPallet'
 
@@ -43,15 +43,18 @@ const Wallet = (props) => {
     const [number, setNumber] = useState(0)
     const [modalVisible, setModalVisible] = useState(false)
 
-    navigation.setOptions({
-        headerShown: true,
-        headerStyle: {
-            backgroundColor: colors.black3,
-            alignItems: 'center'
-        },
-        headerTitleAlign: 'center',
-        headerTintColor: '#fff'
-    })
+    useEffect(() => {
+        navigation.setOptions({
+            headerShown: true,
+            headerStyle: {
+                backgroundColor: colors.black3,
+                alignItems: 'center'
+            },
+            headerTitleAlign: 'center',
+            headerTintColor: '#fff'
+        })
+    }, [])
+
 
     return (
         <ScrollView style={{ backgroundColor: colors.black3 }} >
