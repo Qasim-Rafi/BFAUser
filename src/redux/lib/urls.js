@@ -19,5 +19,7 @@ export default urls = {
   GET_PROMO_JOBS: 'api/PromoJobsAdmin/GetPromoJobsAdminAll/',
   ADD_ORDERS: 'api/Order/AddOrder',
   PEOPLE_CHOICE: 'api/PeopleChoice/GetPeopleChoiceAll/',
+  GET_ALL_FAVORITE:'api/RestaurantDish/GetdishLikedAll/1/4',
+  ADD_FAVORITE:'api/RestaurantDish/UpdateRestaurantDishLiked/26'
 
 };

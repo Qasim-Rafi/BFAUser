@@ -13,11 +13,11 @@ import Icon from '../../../../components/Icon';
 import ResponsiveText from '../../../../components/RnText';
 import Input from '../../../../components/Input';
 import RnButton from '../../../../components/RnButton';
-import { globalPath } from '../../../../constants/globalPath';
-import { hp, wp } from '../../../../helpers/Responsiveness';
+import {globalPath} from '../../../../constants/globalPath';
+import {hp, wp} from '../../../../helpers/Responsiveness';
 import Swiper from 'react-native-swiper';
-import { routeName } from '../../../../constants/routeName';
-import { colors } from '../../../../constants/colorsPallet';
+import {routeName} from '../../../../constants/routeName';
+import {colors} from '../../../../constants/colorsPallet';
 import Fonts from '../../../../helpers/Fonts';
 import AdvertisementBanner from './AdvertisementBanner';
 import SeeAllButton from '../../../../components/SeeAllButton';
@@ -30,16 +30,16 @@ import AwardWinningDishes from './AwardWinningDishes';
 import Promotion from './Promotion';
 import JobsList from './JobsList';
 import Header from '../../../../components/Header';
-import { ourRecommendationFakeDATA } from '../../../../constants/mock';
+import {ourRecommendationFakeDATA} from '../../../../constants/mock';
 0;
-import { useDispatch, useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   getRestaurantAllDishes,
   getUserCusine,
   getPromotions,
   getBruneiFoodRewards,
   getBfaPartners,
-  AddOrder,
+  getFavorite,
   getAddBannerData,
   getBfaRecommendations,
   getPromoNewsData,
@@ -51,14 +51,15 @@ import axios from 'axios';
 import urls from '../../../../redux/lib/urls';
 import AllCuisines from './AllCuisines';
 import WhatsNew from './WhatNew';
-import { bfaPartnerSelecter } from '../../../../redux/lib/selectors';
-import { getBfaRecommendationSaga } from '../../../../redux/sagas/user.sagas';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
-const wait = (timeout) => {
+import {bfaPartnerSelecter} from '../../../../redux/lib/selectors';
+import {getBfaRecommendationSaga} from '../../../../redux/sagas/user.sagas';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+const wait = timeout => {
   return new Promise(resolve => setTimeout(resolve, timeout));
-}
-const Home = ({ navigation }) => {
-  const loading = useSelector(state => state.appReducers.bfaPartners.refreshing,
+};
+const Home = ({navigation}) => {
+  const loading = useSelector(
+    state => state.appReducers.bfaPartners.refreshing,
   );
 
   const [refreshing, setRefreshing] = React.useState(false);
@@ -81,11 +82,7 @@ const Home = ({ navigation }) => {
     // // dispatch(getPromoJobsData());
     // dispatch(getBfaRecommendations());
     // dispatch(getBruneiFoodRewards());
-
-
-
-  },
-    []);
+  }, []);
 
   // console.log('loading', loading);
 
@@ -100,42 +97,40 @@ const Home = ({ navigation }) => {
 
   React.useEffect(() => {
     dispatch(getAddBannerData());
-    dispatch(getPeopleChoice(1, 4))
+    dispatch(getPeopleChoice(1, 4));
     // dispatch(getPromotions());
     dispatch(getBfaPartners(6));
     // callAPI();
-    dispatch(
-      getUserCusine(1, 14),
-    );
+    dispatch(getUserCusine(1, 14));
 
     // dispatch(awardsRestaurant());
-    // dispatch(getPromoNewsData());
+    dispatch(getFavorite());
     dispatch(getPromoJobsData(1, 4));
     dispatch(getBfaRecommendations(1, 4));
     dispatch(getBruneiFoodRewards(1, 4));
   }, []);
 
   return (
-
     <View style={styles.container}>
-      <ScrollView style={{ flex: 1 }}
-      // showsVerticalScrollIndicator={false}
-      // contentContainerStyle={{ flex: 1 }}
-      // refreshControl={
-      //   <RefreshControl
-      //     colors={Colors.yellow}
-      //     size={30}
-      //     refreshing={refreshing}
-      //     onRefresh={onRefresh}
-      //   />
-      // }
+      <ScrollView
+        style={{flex: 1}}
+        // showsVerticalScrollIndicator={false}
+        // contentContainerStyle={{ flex: 1 }}
+        // refreshControl={
+        //   <RefreshControl
+        //     colors={Colors.yellow}
+        //     size={30}
+        //     refreshing={refreshing}
+        //     onRefresh={onRefresh}
+        //   />
+        // }
       >
         <View style={styles.advertisementBanner}>
           <AdvertisementBanner navigation={navigation} />
         </View>
-        <View style={styles.bfaPartnerContainer}>
+        {/* <View style={styles.bfaPartnerContainer}>
           <BfaPartner navigation={navigation} />
-        </View>
+        </View> */}
 
         <View style={styles.yourFavorite}>
           <YourFavourite navigation={navigation} />
@@ -192,7 +187,7 @@ const Home = ({ navigation }) => {
          
         </ImageBackground> */}
       </ScrollView>
-      <View style={{ flex: 0.1, position: 'absolute', top: 0 }}>
+      <View style={{flex: 0.1, position: 'absolute', top: 0}}>
         <Header screen={'home'} navigation={navigation} />
       </View>
     </View>

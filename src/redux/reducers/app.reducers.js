@@ -436,6 +436,32 @@ export const appReducers = (state = initialState, action) => {
           refreshing: true,
         },
       };
+      //GET FAVORITES
+      case types.GET_FAVORITE_REQUEST:
+      return {
+        ...state,
+        favorite: {
+          ...state.favorite,
+          refreshing: true,
+        },
+      };
+    case types.GET_FAVORITE_SUCCESS:
+      return {
+        ...state,
+        favorite: {
+          ...state.favorite,
+          data: action.payload,
+          refreshing: true,
+        },
+      };
+    case types.GET_FAVORITE_FAILURE:
+      return {
+        ...state,
+        favorite: {
+          ...state.favorite,
+          refreshing: true,
+        },
+      };
     ///////Add Favrite
     case types.ADD_FAVORITE_REQUEST:
       return {

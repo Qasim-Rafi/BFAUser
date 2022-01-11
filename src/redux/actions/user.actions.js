@@ -136,6 +136,13 @@ export const registerUserReset = () => {
   };
 };
 //Favrite Actions
+export const getFavorite = (data) => {
+  // console.log('okokokokoko',data)
+  return {
+    type: types.GET_FAVORITE_REQUEST,
+    data
+  };
+};
 
 export const addFavorite = (data) => {
   // console.log('okokokokoko',data)
