@@ -1,18 +1,15 @@
 import urls from './urls';
 import axios from 'axios';
-import { store } from '../store';
+import {store} from '../store';
 import AsyncStorage from '@react-native-community/async-storage';
 
-
 class Api {
-
-
   static headers() {
     // const userData = store.getState().login_User.data;
     // debugger;
     return {
-      // Authorization: `Bearer ${accessToken}`,   
-      // Authorization: btoa('luqman:password'), 
+      // Authorization: `Bearer ${accessToken}`,
+      // Authorization: btoa('luqman:password'),
       // 'Authorization': 'Bearer ' + accessToken,
       // 'Content-Type': 'multipart/form-data',
       // Accept: 'application/x-www-form-urlencoded',
@@ -21,14 +18,12 @@ class Api {
     };
   }
 
-
-
   static get(route, params, sendAuthToken = true) {
     return this.xhr(route, null, 'GET', sendAuthToken);
   }
 
-  static put(route, params, sendAuthToken = false) {
-    return this.xhr(route, params, 'PUT', sendAuthToken);
+  static put(route, body, sendAuthToken = true) {
+    return this.xhr(route, body, 'PUT', sendAuthToken);
   }
 
   static post(route, body, sendAuthToken = false) {
@@ -43,31 +38,29 @@ class Api {
 
   static async xhr(route, body, verb, sendAuthToken) {
     const url = `${urls.HOST}${route}`;
+    const myHeaders = new Headers();
+    myHeaders.append(
+      'Authorization',
+      `Bearer ${await AsyncStorage.getItem('@token')}`,
+    );
+    myHeaders.append('Content-Type', 'application/json');
 
     let options = null;
     if (body) {
       options = {
         method: verb,
         body: JSON.stringify(body),
-        headers: {
-          Authorization: `Bearer ${await AsyncStorage.getItem('@token')}`,
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
+        headers: myHeaders,
+       // redirect: 'follow',
       };
     } else {
       options = {
         method: verb,
-        headers: {
-          Authorization: `Bearer ${await AsyncStorage.getItem('@token')}`,
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-
-        },
-
+        headers: myHeaders,
       };
     }
     // options.headers = Api.headers();
+
     console.log(options, 'options');
     try {
       const resp = await fetch(url, options);
@@ -77,11 +70,11 @@ class Api {
       let error = err.response
         ? err.response.data.error
           ? err.response.data.error
-          : { error: err.response.data.message }
+          : {error: err.response.data.message}
         : {
-          error:
-            'Unable to connect to the internet. Please retry after checking your internet connection',
-        };
+            error:
+              'Unable to connect to the internet. Please retry after checking your internet connection',
+          };
 
       err.message =
         !err.response &&
@@ -90,9 +83,9 @@ class Api {
         error:
           'Unable to connect to the internet. Please retry after checking your internet connection',
       };
-      console.log(error, 'Error message from API.js')
-      console.log(err.response, 'Err message from API.js')
-      throw err.response ? { ...err.response.data, error } : err;
+      console.log(error, 'Error message from API.js');
+      console.log(err.response, 'Err message from API.js');
+      throw err.response ? {...err.response.data, error} : err;
     }
   }
 }

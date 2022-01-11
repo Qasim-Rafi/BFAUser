@@ -9,6 +9,7 @@ import { CARD_DATA } from '../../../constants/mock'
 import { routeName } from '../../../constants/routeName'
 import { hp, wp } from '../../../helpers/Responsiveness'
 import Modal from 'react-native-modal';
+import CheckBox from '../../../components/Static/CheckBox'
 
 
 const TopUp = (props) => {
@@ -16,7 +17,7 @@ const TopUp = (props) => {
     const route = useRoute()
 
     // const [isModalVisible, setModalVisible] = useState(false);
-    const [checked, setCheck] = useState(true);
+    // const [checked, setCheck] = useState(true);
 
     const topUpAmountComing = route.params
     const topUpAmount = parseFloat(topUpAmountComing).toFixed(2)
@@ -95,7 +96,7 @@ const TopUp = (props) => {
                                 justifyContent: 'center',
                                 paddingHorizontal: 5,
                                 }}>
-                                <TouchableOpacity
+                                {/* <TouchableOpacity
                                     style={{
                                         backgroundColor: checked ? colors.black3 : undefined,
                                         borderRadius: 50,
@@ -121,7 +122,8 @@ const TopUp = (props) => {
                                         tintColor={colors.yellow}
                                         />
                                     )}
-                                </TouchableOpacity>
+                                </TouchableOpacity> */}
+                                <CheckBox/>
                             </View>
                             </View>
                         );

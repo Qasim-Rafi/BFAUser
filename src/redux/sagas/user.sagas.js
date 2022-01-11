@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import { takeLatest, put, select } from 'redux-saga/effects';
-import { routeName } from '../../constants/routeName';
+import {takeLatest, put, select} from 'redux-saga/effects';
+import {routeName} from '../../constants/routeName';
 // import { parseCats } from "../../helpers/cat.helpers";
 import types from '../actions/types';
 import Api from '../lib/api';
@@ -10,7 +10,7 @@ import FlashMessage, {
   showMessage,
   hideMessage,
 } from 'react-native-flash-message';
-import { StackActions } from '@react-navigation/native';
+import {StackActions} from '@react-navigation/native';
 
 //Register user saga
 export function* loginUserSaga() {
@@ -20,7 +20,7 @@ export function* loginUserSaga() {
 function* loginUserApi(data, response) {
   console.log(data, 'action in saga');
   // alert("response: ", response.success);
-  let { params, navigation } = data.data;
+  let {params, navigation} = data.data;
   try {
     const response = yield Api.post(urls.LOGIN_URL, params);
     console.log(response, 'response');
@@ -30,10 +30,10 @@ function* loginUserApi(data, response) {
     if (response && response.data != null) {
       yield AsyncStorage.setItem('@token', response.data.token);
       yield AsyncStorage.setItem('@userId', response.data.loggedInUserId);
-      yield put({ type: types.LOGIN_USER_SUCCESS, payload: response });
+      yield put({type: types.LOGIN_USER_SUCCESS, payload: response});
       navigation.dispatch(StackActions.replace('Home'));
     } else {
-      yield put({ type: types.LOGIN_USER_FAILURE, payload: response });
+      yield put({type: types.LOGIN_USER_FAILURE, payload: response});
       // showMessage({
       //   message: "Error",
       //   description: "Invalid Username or Password",
@@ -42,7 +42,7 @@ function* loginUserApi(data, response) {
       // });
     }
   } catch (error) {
-    yield put({ type: types.LOGIN_USER_FAILURE, error: error });
+    yield put({type: types.LOGIN_USER_FAILURE, error: error});
     console.log(error, 'error saga catch');
 
     // showMessage({
@@ -51,7 +51,48 @@ function* loginUserApi(data, response) {
     //   type: "danger",
     //   icon: { icon: "auto", position: "left" },
     // });
-    yield put({ type: types.LOGIN_USER_FAILURE, error: error });
+    yield put({type: types.LOGIN_USER_FAILURE, error: error});
+  }
+}
+export function* registerUserSaga() {
+  console.log('saga function Works');
+  yield takeLatest(types.REGISTER_USER_REQUEST, registerUserApi);
+}
+function* registerUserApi(data, response) {
+  console.log(data, 'action in saga');
+  // alert("response: ", response.success);
+  let body = data.data;
+  try {
+    const response = yield Api.post(urls.REGISTER_URL, body);
+    console.log(response, 'responsefasfsdf');
+    // alert("response: ", response);
+
+    // dispatch a success action to the store with the new dog
+    if (response && response.data != null) {
+     // yield AsyncStorage.setItem('@token', response.data.token);
+     // yield AsyncStorage.setItem('@userId', response.data.loggedInUserId);
+      yield put({type: types.REGISTER_USER_SUCCESS, payload: response});
+     // navigation.dispatch(StackActions.replace('Home'));
+    } else {
+      yield put({type: types.REGISTER_USER_FAILURE, payload: response});
+      // showMessage({
+      //   message: "Error",
+      //   description: "Invalid Username or Password",
+      //   type: "danger",
+      //   icon: { icon: "auto", position: "left" },
+      // });
+    }
+  } catch (error) {
+    yield put({type: types.REGISTER_USER_FAILURE, error: error});
+    console.log(error, 'error saga catch');
+
+    // showMessage({
+    //   message: "Error",
+    //   description: "Check Your Internet Connection",
+    //   type: "danger",
+    //   icon: { icon: "auto", position: "left" },
+    // });
+    yield put({type: types.LOGIN_USER_FAILURE, error: error});
   }
 }
 //People Choice
@@ -62,9 +103,9 @@ function* getPeopleChoiceSagaApi(data) {
   const limit = data.data.limit;
   const index = data.data.index;
 
-  console.log("paramsssssssssss: ", data)
+  console.log('paramsssssssssss: ', data);
   const url = urls.PEOPLE_CHOICE + index + '/' + limit;
-  console.log("People Url: ", url)
+  console.log('People Url: ', url);
   try {
     const response = yield Api.get(url);
     if (response && response.data != null) {
@@ -73,12 +114,12 @@ function* getPeopleChoiceSagaApi(data) {
         payload: response.data,
       });
     } else {
-      yield put({ type: types.GET_PEOPLE_CHOICE_FAILURE, error: error });
+      yield put({type: types.GET_PEOPLE_CHOICE_FAILURE, error: error});
     }
 
     // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({ type: types.GET_PEOPLE_CHOICE_FAILURE, error: error });
+    yield put({type: types.GET_PEOPLE_CHOICE_FAILURE, error: error});
   }
 }
 // //Register user saga
@@ -107,7 +148,7 @@ export function* addOrderSaga() {
 }
 function* addOrderApi(data) {
   console.log(data, 'action in saga');
-  let { params, navigation } = data.data;
+  let {params, navigation} = data.data;
   try {
     const response = yield Api.post(urls.ADD_ORDERS, params);
     console.log(response, 'response');
@@ -115,15 +156,15 @@ function* addOrderApi(data) {
     if (response && response.data != null) {
       yield AsyncStorage.setItem('@token', response.data.token);
       yield AsyncStorage.setItem('@userId', response.data.loggedInUserId);
-      yield put({ type: types.ADD_ORDER_SUCCESS, payload: response.data });
+      yield put({type: types.ADD_ORDER_SUCCESS, payload: response.data});
       // navigation.dispatch(
       //   StackActions.replace('Home')
       // )
     } else {
-      yield put({ type: types.ADD_ORDER_FAILURE, error: error });
+      yield put({type: types.ADD_ORDER_FAILURE, error: error});
     }
   } catch (error) {
-    yield put({ type: types.ADD_ORDER_FAILURE, error: error });
+    yield put({type: types.ADD_ORDER_FAILURE, error: error});
   }
 }
 
@@ -136,7 +177,7 @@ function* getFoodsAwardsSagaApi(data) {
   const index = data.data.index;
   try {
     const url = urls.RESTAURANT_AWARDS + index + '/' + limit;
-    console.log("Cuisines Url: ", url)
+    console.log('Cuisines Url: ', url);
     const response = yield Api.get(url);
     if (response && response.data != null) {
       yield put({
@@ -145,12 +186,12 @@ function* getFoodsAwardsSagaApi(data) {
       });
       // navigation.navigate(routeName.Categories,{data:response.data});
     } else {
-      yield put({ type: types.GET_BRUNEI_FOOD_AWARDS_FAILURE, error: error });
+      yield put({type: types.GET_BRUNEI_FOOD_AWARDS_FAILURE, error: error});
     }
 
     // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({ type: types.GET_BRUNEI_FOOD_AWARDS_FAILURE, error: error });
+    yield put({type: types.GET_BRUNEI_FOOD_AWARDS_FAILURE, error: error});
   }
 }
 // Get Cusine Saga
@@ -161,24 +202,23 @@ function* getCusineSagaApi(data) {
   const limit = data.data.limit;
   const index = data.data.index;
 
-  console.log("paramsssssssssss: ", data)
+  console.log('paramsssssssssss: ', data);
 
   try {
     const url = urls.CUSINE_URL + index + '/' + limit;
-    console.log("Cuisines Url: ", url)
+    console.log('Cuisines Url: ', url);
     const response = yield Api.get(url);
     if (response && response.data != null) {
-      yield put({ type: types.GET_CUSINE_SUCCESS, payload: response.data });
+      yield put({type: types.GET_CUSINE_SUCCESS, payload: response.data});
     } else {
-      yield put({ type: types.GET_CUSINE_FAILURE, error: error });
+      yield put({type: types.GET_CUSINE_FAILURE, error: error});
     }
 
     // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({ type: types.GET_CUSINE_FAILURE, error: error });
+    yield put({type: types.GET_CUSINE_FAILURE, error: error});
   }
 }
-
 
 //PROMOTIONS
 export function* getpromotionsSaga() {
@@ -188,15 +228,15 @@ function* getPromotionsSagaApi(data) {
   try {
     const response = yield Api.get(urls.GET_ALL_PROMOTION);
     if (response && response.data != null) {
-      yield put({ type: types.GET_PROMOTIONS_SUCCESS, payload: response.data });
+      yield put({type: types.GET_PROMOTIONS_SUCCESS, payload: response.data});
       // navigation.navigate(routeName.Categories,{data:response.data});
     } else {
-      yield put({ type: types.GET_PROMOTIONS_FAILURE, error: error });
+      yield put({type: types.GET_PROMOTIONS_FAILURE, error: error});
     }
 
     // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({ type: types.GET_PROMOTIONS_FAILURE, error: error });
+    yield put({type: types.GET_PROMOTIONS_FAILURE, error: error});
   }
 }
 //Get Bfa Recommendations
@@ -210,9 +250,9 @@ function* getBfaRecommendationSagaApi(data) {
   const limit = data.data.limit;
   const index = data.data.index;
 
-  console.log("paramsssssssssss: ", data)
+  console.log('paramsssssssssss: ', data);
   const url = urls.RESTAURANT_DISH_ALL + index + '/' + limit;
-  console.log("People Url: ", url)
+  console.log('People Url: ', url);
   try {
     const response = yield Api.get(url);
     if (response && response.data != null) {
@@ -222,12 +262,12 @@ function* getBfaRecommendationSagaApi(data) {
       });
       // navigation.navigate(routeName.Categories,{data:response.data});
     } else {
-      yield put({ type: types.GET_BFA_RECOMMENDATION_FAILURE, payload: [] });
+      yield put({type: types.GET_BFA_RECOMMENDATION_FAILURE, payload: []});
     }
 
     // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({ type: types.GET_BFA_RECOMMENDATION_FAILURE, error: error });
+    yield put({type: types.GET_BFA_RECOMMENDATION_FAILURE, error: error});
   }
 }
 
@@ -245,12 +285,12 @@ function* getAddBannerSagaApi(data) {
       });
       // navigation.navigate(routeName.Categories,{data:response.data});
     } else {
-      yield put({ type: types.GET_ADD_BANNER_DATA_FAILURE, error: error });
+      yield put({type: types.GET_ADD_BANNER_DATA_FAILURE, error: error});
     }
 
     // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({ type: types.GET_ADD_BANNER_DATA_FAILURE, error: error });
+    yield put({type: types.GET_ADD_BANNER_DATA_FAILURE, error: error});
   }
 }
 
@@ -262,21 +302,21 @@ function* getJobsNewsSagaApi(data) {
   const limit = data.data.limit;
   const index = data.data.index;
 
-  console.log("paramsssssssssss: ", data)
+  console.log('paramsssssssssss: ', data);
   const url = urls.GET_PROMO_JOBS + index + '/' + limit;
-  console.log("People Url: ", url)
+  console.log('People Url: ', url);
   try {
     const response = yield Api.get(url);
     if (response && response.data != null) {
-      yield put({ type: types.GET_PROMO_JOBS_SUCCESS, payload: response.data });
+      yield put({type: types.GET_PROMO_JOBS_SUCCESS, payload: response.data});
       // navigation.navigate(routeName.Categories,{data:response.data});
     } else {
-      yield put({ type: types.GET_PROMO_JOBS_FAILURE, error: error });
+      yield put({type: types.GET_PROMO_JOBS_FAILURE, error: error});
     }
 
     // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({ type: types.GET_PROMO_JOBS_FAILURE, error: error });
+    yield put({type: types.GET_PROMO_JOBS_FAILURE, error: error});
   }
 }
 
@@ -288,18 +328,17 @@ function* getPromoNewsSagaApi(data) {
   try {
     const response = yield Api.get(urls.GET_PROMO_NEWS);
     if (response && response.data != null) {
-      yield put({ type: types.GET_PROMO_NEWS_SUCCESS, payload: response.data });
+      yield put({type: types.GET_PROMO_NEWS_SUCCESS, payload: response.data});
       // navigation.navigate(routeName.Categories,{data:response.data});
     } else {
-      yield put({ type: types.GET_PROMO_NEWS_FAILURE, error: error });
+      yield put({type: types.GET_PROMO_NEWS_FAILURE, error: error});
     }
 
     // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({ type: types.GET_PROMO_NEWS_FAILURE, error: error });
+    yield put({type: types.GET_PROMO_NEWS_FAILURE, error: error});
   }
 }
-
 
 // Get BFA PARTNERS Saga
 export function* getBfaParntersSaga() {
@@ -313,14 +352,14 @@ function* getBfaPartnersSagaApi(data) {
 
     const response = yield Api.get(url);
     if (response && response.data != null) {
-      yield put({ type: types.GET_BFA_PARTNERS_SUCCESS, payload: response.data });
+      yield put({type: types.GET_BFA_PARTNERS_SUCCESS, payload: response.data});
     } else {
-      yield put({ type: types.GET_BFA_PARTNERS_FAILURE, error: error });
+      yield put({type: types.GET_BFA_PARTNERS_FAILURE, error: error});
     }
 
     // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({ type: types.GET_BFA_PARTNERS_FAILURE, error: error });
+    yield put({type: types.GET_BFA_PARTNERS_FAILURE, error: error});
   }
 }
 
@@ -332,14 +371,14 @@ function* getUserSagaApi() {
   try {
     const response = yield Api.get(urls.GET_USER);
     if (response && response.data != null) {
-      yield put({ type: types.GET_USERS_BY_ID_SUCCESS, payload: response.data });
+      yield put({type: types.GET_USERS_BY_ID_SUCCESS, payload: response.data});
     } else {
-      yield put({ type: types.GET_USERS_BY_ID_FAILURE, error: error });
+      yield put({type: types.GET_USERS_BY_ID_FAILURE, error: error});
     }
 
     // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({ type: types.GET_USERS_BY_ID_FAILURE, error: error });
+    yield put({type: types.GET_USERS_BY_ID_FAILURE, error: error});
   }
 }
 
@@ -360,49 +399,75 @@ function* getRestaurantDishesSagaApi() {
       });
       // navigation.navigate(routeName.Categories,{data:response.data});
     } else {
-      yield put({ type: types.GET_RESTAURANT_ALL_DISHES_FAILURE, error: error });
+      yield put({type: types.GET_RESTAURANT_ALL_DISHES_FAILURE, error: error});
     }
 
     // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({ type: types.GET_RESTAURANT_ALL_DISHES_FAILURE, error: error });
+    yield put({type: types.GET_RESTAURANT_ALL_DISHES_FAILURE, error: error});
   }
 }
-export function* addfavouriteSaga() {
+///FAVORITES
+export function* getFavoritesSaga() {
   yield takeLatest(
-    types.ADD_FAVORITE_REQUEST,
-    addfavouritSagaApi,
+    types.GET_FAVORITE_REQUEST,
+    getFavoritesSagaApi,
   );
 }
-function* addfavouritSagaApi(data) {
-
+function* getFavoritesSagaApi() {
   try {
     const response = yield Api.get(urls.GET_ALL_FAVORITE);
-    console.log(response,'favvvvv')
-    if (data) {
+    if (response && response.data != null) {
+      yield put({
+        type: types.GET_FAVORITE_SUCCESS,
+        payload: response.data,
+      });
+      // navigation.navigate(routeName.Categories,{data:response.data});
+    } else {
+      yield put({type: types.GET_FAVORITE_FAILURE, payload: []});
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({type: types.GET_FAVORITE_FAILURE, payload: []});
+  }
+}
+
+export function* addfavouriteSaga() {
+  yield takeLatest(types.ADD_FAVORITE_REQUEST, addfavouritSagaApi);
+}
+function* addfavouritSagaApi(data) {
+  const id = data.data.id;
+  //console.log('parammmmmmmmmm',data)
+  var body = {
+    id: data.data.id,
+    userLiked: true,
+  };
+
+  try {
+    const response = yield Api.put(urls.ADD_FAVORITE, body);
+    console.log('resposssssssss', response);
+    if (response && response.success == true) {
       yield put({
         type: types.ADD_FAVORITE_SUCCESS,
         payload: data.data,
       });
       // navigation.navigate(routeName.Categories,{data:response.data});
     } else {
-      yield put({ type: types.ADD_FAVORITE_FAILURE, error: 'error' });
+      yield put({type: types.ADD_FAVORITE_FAILURE, payload: {}});
     }
 
     // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({ type: types.ADD_FAVORITE_FAILURE, error: 'error' });
+    yield put({type: types.ADD_FAVORITE_FAILURE, error:{}});
   }
 }
 
 export function* onRemoveFavoriteSaga() {
-  yield takeLatest(
-    types.ON_REMOVE_FAVORITE_REQUEST,
-    onRemoveFavoriteSagaApi
-  );
+  yield takeLatest(types.ON_REMOVE_FAVORITE_REQUEST, onRemoveFavoriteSagaApi);
 }
 function* onRemoveFavoriteSagaApi(data) {
-  console.log('param', data)
+  console.log('param', data);
 
   try {
     // const response = yield Api.get(urls.RESTAURANT_DISH_ALL);
@@ -413,25 +478,20 @@ function* onRemoveFavoriteSagaApi(data) {
       });
       // navigation.navigate(routeName.Categories,{data:response.data});
     } else {
-      yield put({ type: types.ON_REMOVE_FAVORITE_FAILURE, error: 'error' });
+      yield put({type: types.ON_REMOVE_FAVORITE_FAILURE, error: 'error'});
     }
 
     // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({ type: types.ON_REMOVE_FAVORITE_FAILURE, error: 'error' });
+    yield put({type: types.ON_REMOVE_FAVORITE_FAILURE, error: 'error'});
   }
 }
 
-
 ///Cart Actions
 export function* addToCartSaga() {
-  yield takeLatest(
-    types.ADD_TO_CART_REQUEST,
-    addcartSagaApi,
-  );
+  yield takeLatest(types.ADD_TO_CART_REQUEST, addcartSagaApi);
 }
 function* addcartSagaApi(data) {
-
   try {
     // const response = yield Api.get(urls.RESTAURANT_DISH_ALL);
     if (data) {
@@ -441,23 +501,20 @@ function* addcartSagaApi(data) {
       });
       // navigation.navigate(routeName.Categories,{data:response.data});
     } else {
-      yield put({ type: types.ADD_TO_CART_FAILURE, error: 'error' });
+      yield put({type: types.ADD_TO_CART_FAILURE, error: 'error'});
     }
 
     // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({ type: types.ADD_TO_CART_FAILURE, error: 'error' });
+    yield put({type: types.ADD_TO_CART_FAILURE, error: 'error'});
   }
 }
 
 export function* RemoveCARTSaga() {
-  yield takeLatest(
-    types.REMOVE_FROM_CART_REQUEST,
-    removecartSagaApi
-  );
+  yield takeLatest(types.REMOVE_FROM_CART_REQUEST, removecartSagaApi);
 }
 function* removecartSagaApi(data) {
-  console.log('param', data)
+  console.log('param', data);
 
   try {
     // const response = yield Api.get(urls.RESTAURANT_DISH_ALL);
@@ -468,12 +525,12 @@ function* removecartSagaApi(data) {
       });
       // navigation.navigate(routeName.Categories,{data:response.data});
     } else {
-      yield put({ type: types.REMOVE_FROM_CART_FAILURE, error: 'error' });
+      yield put({type: types.REMOVE_FROM_CART_FAILURE, error: 'error'});
     }
 
     // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({ type: types.REMOVE_FROM_CART_FAILURE, error: 'error' });
+    yield put({type: types.REMOVE_FROM_CART_FAILURE, error: 'error'});
   }
 }
 //Get what's New Data
@@ -490,12 +547,12 @@ function* getWhatsNewSagaApi(data) {
       });
       // navigation.navigate(routeName.Categories,{data:response.data});
     } else {
-      yield put({ type: types.GET_WHATSNEW_FAILURE, error: error });
+      yield put({type: types.GET_WHATSNEW_FAILURE, error: error});
     }
 
     // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({ type: types.GET_WHATSNEW_FAILURE, error: error });
+    yield put({type: types.GET_WHATSNEW_FAILURE, error: error});
   }
 }
 // //Add product category
