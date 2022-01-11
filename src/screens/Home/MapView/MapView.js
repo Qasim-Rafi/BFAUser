@@ -45,7 +45,7 @@ export default function MapView(props) {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <View
+        {/* <View
           style={{
             padding: 10,
             position: 'absolute',
@@ -77,7 +77,6 @@ export default function MapView(props) {
                 borderRadius: 15,
               }}
             />
-            {/* <Icon source={globalPath.LOCATION} /> */}
             <View
               style={{
                 height: '45%',
@@ -103,7 +102,7 @@ export default function MapView(props) {
             </ResponsiveText>
           </View>
           <View></View>
-        </View>
+        </View> */}
         <Map
           provider={PROVIDER_GOOGLE} // remove if not using Google Maps
           style={styles.map}
@@ -135,7 +134,7 @@ export default function MapView(props) {
         /> */}
         </Map>
       </View>
-      <TouchableOpacity>
+      {/* <TouchableOpacity>
         <View style={{
           position: 'absolute',
           width: 50,
@@ -147,7 +146,7 @@ export default function MapView(props) {
         }} >
 
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 }

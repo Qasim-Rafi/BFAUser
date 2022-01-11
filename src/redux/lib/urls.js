@@ -17,11 +17,11 @@ export default urls = {
   GET_BFA_PARTNERS: 'api/AdminBFAPartner/GetAdminBFAPartnerAll/18/1/40',
   GET_ADD_BANNER: 'api/HomeAdSlideShowAdmin/GetHomeAdSlideShowAdminAll',
   GET_PROMO_NEWS: 'api/PromoItemNews/GetPromoNewsAdminAll',
-  GET_PROMO_JOBS: 'api/PromoJobsAdmin/GetPromoJobsAdminAll/',
+  GET_PROMO_JOBS: 'api/PromoJobsAdmin/GetPromoJobsAdminAllAdminForapp/',
   ADD_ORDERS: 'api/Order/AddOrder',
   PEOPLE_CHOICE: 'api/PeopleChoice/GetPeopleChoiceAll/',
   GET_ALL_WHATSNEW:'api/RestaurantDish/GetdishWhatsNewAll/1/4',
-  GET_ALL_PROMOTION:'api​/HomeAdSlideShowAdmin​/GetdishpromoAdvertAllapp​/1/4',
+  GET_ALL_PROMOTION:'api/HomeAdSlideShowAdmin/GetdishpromoAdvertAllapp/1/2',
   GET_ALL_FAVORITE:'api/RestaurantDish/GetdishLikedAll/1/4',
   ADD_FAVORITE:'api/RestaurantDish/UpdateRestaurantDishLiked/26'
 

@@ -36,7 +36,7 @@ const JobsList = props => {
   const List = useSelector(state => state.appReducers.promoJobs.data);
   const List_Loading = useSelector(state => state.appReducers.promoJobs.loading);
   console.log('Job List: ', List);
-  console.log('Loading: ', List_Loading);
+  // console.log('Loading: ', List_Loading);
   return (
     <>
       <View style={styles.recommendationHeaderSection}>
@@ -101,7 +101,7 @@ const JobsList = props => {
                       }}
                       // source={url.url.}>
                       source={{
-                        uri: url.fullpath,
+                        uri: url.fullPath,
                       }}>
                       {/* source={{uri: url.fullPath}}> */}
                       <ResponsiveText
