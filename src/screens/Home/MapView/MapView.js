@@ -123,7 +123,7 @@ export default function MapView(props) {
             destination={coordinates[1]}
             apikey={GOOGLE_MAPS_APIKEY} // insert your API Key here
             strokeWidth={4}
-            strokeColor="red"
+            strokeColor="blue"
           />
           <Marker coordinate={coordinates[0]} />
           <Marker coordinate={coordinates[1]} />
@@ -135,6 +135,19 @@ export default function MapView(props) {
         /> */}
         </Map>
       </View>
+      <TouchableOpacity>
+        <View style={{
+          position: 'absolute',
+          width: 50,
+          height: 50,
+          alignItems: 'center',
+          justifyContent: 'center',
+          right: 30,
+          bottom: 30,
+        }} >
+
+        </View>
+      </TouchableOpacity>
     </View>
   );
 }

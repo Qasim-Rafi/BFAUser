@@ -128,9 +128,9 @@ const Home = ({navigation}) => {
         <View style={styles.advertisementBanner}>
           <AdvertisementBanner navigation={navigation} />
         </View>
-        {/* <View style={styles.bfaPartnerContainer}>
+        <View style={styles.bfaPartnerContainer}>
           <BfaPartner navigation={navigation} />
-        </View> */}
+        </View>
 
         <View style={styles.yourFavorite}>
           <YourFavourite navigation={navigation} />
