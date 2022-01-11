@@ -39,6 +39,7 @@ import {
   getPromotions,
   getBruneiFoodRewards,
   getBfaPartners,
+  AddOrder,whatsNew,
   getFavorite,
   getAddBannerData,
   getBfaRecommendations,
@@ -97,12 +98,16 @@ const Home = ({navigation}) => {
 
   React.useEffect(() => {
     dispatch(getAddBannerData());
+    dispatch(getPeopleChoice(1, 4))
+     dispatch(getPromotions());
     dispatch(getPeopleChoice(1, 4));
     // dispatch(getPromotions());
     dispatch(getBfaPartners(6));
     // callAPI();
     dispatch(getUserCusine(1, 14));
 
+     dispatch(whatsNew());
+    // dispatch(getPromoNewsData());
     // dispatch(awardsRestaurant());
     dispatch(getFavorite());
     dispatch(getPromoJobsData(1, 4));

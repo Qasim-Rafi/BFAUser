@@ -51,7 +51,7 @@ class Api {
         method: verb,
         body: JSON.stringify(body),
         headers: myHeaders,
-        redirect: 'follow',
+       // redirect: 'follow',
       };
     } else {
       options = {

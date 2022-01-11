@@ -19,16 +19,34 @@ import Line from '../../../components/Line';
 import { routeName } from '../../../constants/routeName';
 import { colors } from '../../../constants/colorsPallet';
 import FlashMessage ,{ showMessage, hideMessage } from "react-native-flash-message";
-
-
+import {
+  registerUser
+} from '../../../redux/actions/user.actions';
+import { useDispatch } from 'react-redux';
 export default function Signup({ navigation }) {
-  const dropdownRef = React.useRef(null)
- const [firstName,setFirstName] = useState('')
- const [lastName, setLastName] = useState('')
-const [email, setEmail] = useState('')
- const [phoneNum, setPhoneNum] = useState('')
- const [password, setPassword] = useState('')
+  const dropdownRef = React.useRef(null);
+  const dispatch = useDispatch();
+ const [firstName,setFirstName] = useState('Altaf')
+ const [lastName, setLastName] = useState('Hussain')
+ const [userName, setuserName] = useState('itxAltaf')
+const [email, setEmail] = useState('itxaltaf789@gmail.com')
+ const [phoneNum, setPhoneNum] = useState('123456')
+ const [password, setPassword] = useState('qwerty')
 const [confirmPassword, setConfirmPassword] = useState();
+var obj={
+  "username": "alii",
+  "email": "uaa@gmail.com",
+  "fullName": "ok",
+  "password": "password",
+  "userTypeId": 3,
+  "restaurantId": 11,
+  "updatebyId": 0,
+  "updatedDateTime": "string",
+  "areaId": 1,
+  "gender": "male",
+  "dateofBirth": "2021/6/6",
+  "contactNumber": "00008888"
+}
  const expressions = {
   email: /^\w+([+.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
 };
@@ -116,7 +134,7 @@ const [confirmPassword, setConfirmPassword] = useState();
 
   }
   else{
-    navigation.navigate(routeName.LOGIN);
+    dispatch(registerUser(obj))
   }
 
  }
@@ -189,7 +207,7 @@ const [confirmPassword, setConfirmPassword] = useState();
             leftIcon={globalPath.PASSWORD_LOGO}
           />
 
-          <RnButton onPress={()=>navigation.navigate(routeName.NUMBER_VERIFICATION)} fontFamily='light' margin={[20, 0]} title="SIGN UP " />
+          <RnButton onPress={()=>dispatch(registerUser(obj))} fontFamily='light' margin={[20, 0]} title="SIGN UP " />
           <View style={styles.footer}>
            
             {/* <Icon size={wp(8)}  margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}

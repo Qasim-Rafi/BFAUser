@@ -61,7 +61,38 @@ export const login_User = (state = initialState, action) => {
           errorMsg: action.error
         },
       };
-
+      //User Sign up
+      case types.REGISTER_USER_REQUEST:
+        console.log(action, 'action in reducer');
+        return {
+          ...state,
+          signupScreen: {
+            ...state.signupScreen,
+            refreshing: true,
+  
+          },
+        };
+  
+      case types.REGISTER_USER_SUCCESS:
+        console.log(action, 'action in reducer');
+        return {
+          ...state,
+          signupScreen: {
+            ...state.signupScreen,
+            data: action.payload,
+            refreshing: false,
+          },
+        };
+      case types.REGISTER_USER_FAILURE:
+        console.log(action, 'action in reducer');
+        return {
+          ...state,
+          signupScreen: {
+            ...state.signupScreen,
+            refreshing: false,
+            data: action.payload,
+          },
+        };
     default:
       return state;
   }

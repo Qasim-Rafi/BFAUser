@@ -8,6 +8,16 @@ export const loginUser = (data) => {
     data: data,
   };
 };
+//Register actions
+
+
+export const registerUser = (data) => {
+  return {
+    type: types.REGISTER_USER_REQUEST,
+    data:data,
+  };
+};
+
 //people choice
 export const getPeopleChoice = (index, limit) => {
   return {
@@ -120,15 +130,6 @@ export const getRestaurantAllDishes = () => {
   };
 };
 
-//Register actions
-
-
-export const registerUser = (params) => {
-  return {
-    type: types.REGISTER_USER_REQUEST,
-    params,
-  };
-};
 
 export const registerUserReset = () => {
   return {

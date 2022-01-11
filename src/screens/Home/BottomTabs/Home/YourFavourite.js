@@ -22,7 +22,10 @@ import SeeAllButton from '../../../../components/SeeAllButton';
 import { hp, wp } from '../../../../helpers/Responsiveness';
 const YourFavourite = props => {
   const favData = useSelector(state => state.appReducers.favorite.data,)
+  const dispatch = useDispatch();
 
+
+  console.log('favData', favData)
 
   //   const firstName = 'PG';
   //   const title = firstName + "'s Favorites";
