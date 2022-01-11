@@ -475,6 +475,28 @@ function* removecartSagaApi(data) {
     yield put({ type: types.REMOVE_FROM_CART_FAILURE, error: 'error' });
   }
 }
+//Get what's New Data
+export function* getWhatsNewSaga() {
+  yield takeLatest(types.GET_WHATSNEW_REQUEST, getWhatsNewSagaApi);
+}
+function* getWhatsNewSagaApi(data) {
+  try {
+    const response = yield Api.get(urls.GET_ADD_BANNER);
+    if (response && response.data != null) {
+      yield put({
+        type: types.GET_WHATSNEW_SUCCESS,
+        payload: response.data,
+      });
+      // navigation.navigate(routeName.Categories,{data:response.data});
+    } else {
+      yield put({ type: types.GET_WHATSNEW_FAILURE, error: error });
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({ type: types.GET_WHATSNEW_FAILURE, error: error });
+  }
+}
 // //Add product category
 // export function* addRUpdateCategorySaga() {
 //   yield takeLatest(types.ADD_PRODUCT_CAT_REQUEST, addRUpdateCategorySagaApi);

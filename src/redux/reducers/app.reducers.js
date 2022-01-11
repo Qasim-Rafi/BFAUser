@@ -72,6 +72,10 @@ const initialState = {
     refreshing: true,
     data: [],
   },
+  whatsnew: {
+    refreshing: true,
+    data: [],
+  },
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -483,6 +487,32 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         favorite: {
           ...state.favorite,
+          refreshing: true,
+        },
+      };
+      //////What's News/////
+      case types.GET_WHATSNEW_REQUEST:
+      return {
+        ...state,
+        whatsnew: {
+          ...state.whatsnew,
+          refreshing: true,
+        },
+      };
+    case types.GET_WHATSNEW_SUCCESS:
+      return {
+        ...state,
+        whatsnew: {
+          ...state.whatsnew,
+          data: action.payload,
+          refreshing: false,
+        },
+      };
+    case types.GET_WHATSNEW_FAILURE:
+      return {
+        ...state,
+        whatsnew: {
+          ...state.whatsnew,
           refreshing: true,
         },
       };

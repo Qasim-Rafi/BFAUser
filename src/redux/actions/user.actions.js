@@ -164,6 +164,13 @@ export const removeCart = (data) => {
     data,
   };
 };
+//What's new
+export const whatsNew = (data) => {
+  return {
+    type: types.GET_WHATSNEW_REQUEST,
+    data,
+  };
+};
 
 // //Get User categories actions
 // export const getUserCategories = (params) => {
