@@ -54,6 +54,47 @@ function* loginUserApi(data, response) {
     yield put({type: types.LOGIN_USER_FAILURE, error: error});
   }
 }
+export function* registerUserSaga() {
+  console.log('saga function Works');
+  yield takeLatest(types.REGISTER_USER_REQUEST, registerUserApi);
+}
+function* registerUserApi(data, response) {
+  console.log(data, 'action in saga');
+  // alert("response: ", response.success);
+  let body = data.data;
+  try {
+    const response = yield Api.post(urls.REGISTER_URL, body);
+    console.log(response, 'responsefasfsdf');
+    // alert("response: ", response);
+
+    // dispatch a success action to the store with the new dog
+    if (response && response.data != null) {
+     // yield AsyncStorage.setItem('@token', response.data.token);
+     // yield AsyncStorage.setItem('@userId', response.data.loggedInUserId);
+      yield put({type: types.REGISTER_USER_SUCCESS, payload: response});
+     // navigation.dispatch(StackActions.replace('Home'));
+    } else {
+      yield put({type: types.REGISTER_USER_FAILURE, payload: response});
+      // showMessage({
+      //   message: "Error",
+      //   description: "Invalid Username or Password",
+      //   type: "danger",
+      //   icon: { icon: "auto", position: "left" },
+      // });
+    }
+  } catch (error) {
+    yield put({type: types.REGISTER_USER_FAILURE, error: error});
+    console.log(error, 'error saga catch');
+
+    // showMessage({
+    //   message: "Error",
+    //   description: "Check Your Internet Connection",
+    //   type: "danger",
+    //   icon: { icon: "auto", position: "left" },
+    // });
+    yield put({type: types.LOGIN_USER_FAILURE, error: error});
+  }
+}
 //People Choice
 export function* getPeopleChoiceSaga() {
   yield takeLatest(types.GET_PEOPLE_CHOICE_REQUEST, getPeopleChoiceSagaApi);
@@ -185,7 +226,7 @@ export function* getpromotionsSaga() {
 }
 function* getPromotionsSagaApi(data) {
   try {
-    const response = yield Api.get(urls.PROMOTIONS);
+    const response = yield Api.get(urls.GET_ALL_PROMOTION);
     if (response && response.data != null) {
       yield put({type: types.GET_PROMOTIONS_SUCCESS, payload: response.data});
       // navigation.navigate(routeName.Categories,{data:response.data});
@@ -498,7 +539,7 @@ export function* getWhatsNewSaga() {
 }
 function* getWhatsNewSagaApi(data) {
   try {
-    const response = yield Api.get(urls.GET_ADD_BANNER);
+    const response = yield Api.get(urls.GET_ALL_WHATSNEW);
     if (response && response.data != null) {
       yield put({
         type: types.GET_WHATSNEW_SUCCESS,

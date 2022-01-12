@@ -1,5 +1,5 @@
 import { useNavigation, useRoute } from '@react-navigation/native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, Modal, ScrollView } from 'react-native'
 import { colors } from '../../../constants/colorsPallet'
 
@@ -28,6 +28,7 @@ import { routeName } from '../../../constants/routeName'
 import bCoin from '../../../assets/icons/bcoin_logo.png'
 import bCoinBlack from '../../../assets/icons/bcoin_black.png'
 import bCent from '../../../assets/icons/bcent_black.png'
+import { hp, wp } from '../../../helpers/Responsiveness'
 
 const Wallet = (props) => {
 
@@ -37,20 +38,23 @@ const Wallet = (props) => {
     const walletAmount = 0
     const comingAmount = route.params
 
-    console.log(comingAmount)
+    // console.log(comingAmount)
 
     const [number, setNumber] = useState(0)
     const [modalVisible, setModalVisible] = useState(false)
 
-    navigation.setOptions({
-        headerShown: true,
-        headerStyle: {
-            backgroundColor: colors.black3,
-            alignItems: 'center'
-        },
-        headerTitleAlign: 'center',
-        headerTintColor: '#fff'
-    })
+    useEffect(() => {
+        navigation.setOptions({
+            headerShown: true,
+            headerStyle: {
+                backgroundColor: colors.black3,
+                alignItems: 'center'
+            },
+            headerTitleAlign: 'center',
+            headerTintColor: '#fff'
+        })
+    }, [])
+
 
     return (
         <ScrollView style={{ backgroundColor: colors.black3 }} >
@@ -130,19 +134,19 @@ const Wallet = (props) => {
 
                 <View style={{ flexDirection: 'row', justifyContent: 'center', width: '100%',marginTop:20,marginBottom:20 }} >
                     <TouchableOpacity onPress={() => setNumber(parseFloat(number) + 0.01)} >
-                        <Image source={_1BCent} style={{ marginHorizontal: 3, height: 75, width: 75 }} />
+                        <Image source={_1BCent} style={styles.bCents} />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => setNumber(parseFloat(number) + 0.05)} >
-                        <Image source={_5BCent} style={{ marginHorizontal: 3, height: 75, width: 75 }} />
+                        <Image source={_5BCent} style={styles.bCents} />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => setNumber(parseFloat(number) + 0.1)} >
-                        <Image source={_10BCent} style={{ marginHorizontal: 3, height: 75, width: 75 }} />
+                        <Image source={_10BCent} style={styles.bCents} />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => setNumber(parseFloat(number) + 0.2)} >
-                        <Image source={_20BCent} style={{ marginHorizontal: 3, height: 75, width: 75 }} />
+                        <Image source={_20BCent} style={styles.bCents} />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => setNumber(parseFloat(number) + 0.5)} >
-                        <Image source={_50BCent} style={{ marginHorizontal: 3, height: 75, width: 75 }} />
+                        <Image source={_50BCent} style={styles.bCents} />
                     </TouchableOpacity>
                 </View>
 
@@ -168,62 +172,62 @@ const Wallet = (props) => {
 
                             <View style={styles.tableModal} >
                                 <Text style={styles.modalText} >$0.01</Text>
-                                <Text style={styles.modalText} >0.01 <Image source={bCent} style={{ marginHorizontal: 3, height: 15, width: 15 }} /> </Text>
+                                <Text style={styles.modalText} >0.01 <Image source={bCent} style={styles.bCLogo} /> </Text>
                             </View>
 
                             <View style={styles.tableModal} >
                                 <Text style={styles.modalText} >$0.05</Text>
-                                <Text style={styles.modalText} >0.05 <Image source={bCent} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
+                                <Text style={styles.modalText} >0.05 <Image source={bCent} style={styles.bCLogo} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
                                 <Text style={styles.modalText} >$0.10</Text>
-                                <Text style={styles.modalText} >0.10 <Image source={bCent} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
+                                <Text style={styles.modalText} >0.10 <Image source={bCent} style={styles.bCLogo} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
                                 <Text style={styles.modalText} >$0.20</Text>
-                                <Text style={styles.modalText} >0.20 <Image source={bCent} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
+                                <Text style={styles.modalText} >0.20 <Image source={bCent} style={styles.bCLogo} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
                                 <Text style={styles.modalText} >$0.50</Text>
-                                <Text style={styles.modalText} >0.50 <Image source={bCent} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
+                                <Text style={styles.modalText} >0.50 <Image source={bCent} style={styles.bCLogo} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
                                 <Text style={styles.modalText} >$1</Text>
-                                <Text style={styles.modalText} >1 <Image source={bCoinBlack} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
+                                <Text style={styles.modalText} >1 <Image source={bCoinBlack} style={styles.bCLogo} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
                                 <Text style={styles.modalText} >$5</Text>
-                                <Text style={styles.modalText} >5 <Image source={bCoinBlack} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
+                                <Text style={styles.modalText} >5 <Image source={bCoinBlack} style={styles.bCLogo} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
                                 <Text style={styles.modalText} >$10</Text>
-                                <Text style={styles.modalText} >10 <Image source={bCoinBlack} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
+                                <Text style={styles.modalText} >10 <Image source={bCoinBlack} style={styles.bCLogo} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
                                 <Text style={styles.modalText} >$20</Text>
-                                <Text style={styles.modalText} >20 <Image source={bCoinBlack} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
+                                <Text style={styles.modalText} >20 <Image source={bCoinBlack} style={styles.bCLogo} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
                                 <Text style={styles.modalText} >$50</Text>
-                                <Text style={styles.modalText} >50 <Image source={bCoinBlack} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
+                                <Text style={styles.modalText} >50 <Image source={bCoinBlack} style={styles.bCLogo} /></Text>
                             </View>
 
                             <View style={styles.tableModal} >
                                 <Text style={styles.modalText} >$100</Text>
-                                <Text style={styles.modalText} >100 <Image source={bCoinBlack} style={{ marginHorizontal: 3, height: 15, width: 15 }} /></Text>
+                                <Text style={styles.modalText} >100 <Image source={bCoinBlack} style={styles.bCLogo} /></Text>
                             </View>
 
 
                             <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} >
-                                <View style={{ height: 30, width: 200, backgroundColor: colors.yellow1, alignItems: 'center', justifyContent: 'center', borderRadius: 15, marginTop: 5,borderWidth:0.5,borderColor:colors.black1 }} >
+                                <View style={{ height: 30, width: 200, backgroundColor: colors.yellow1, alignItems: 'center', justifyContent: 'center', borderRadius: 7, margin: 5,borderWidth:0.5,borderColor:colors.black1 }} >
                                     <Text>Close</Text>
                                 </View>
                             </TouchableOpacity>
@@ -240,6 +244,16 @@ const Wallet = (props) => {
 export default Wallet
 
 const styles = StyleSheet.create({
+    bCents:{
+        marginHorizontal: 3, 
+        height: hp(8.4), 
+        width: wp(17),
+    },
+    bCLogo:{
+        marginHorizontal: 3, 
+        height: hp(1.7), 
+        width: wp(2.5)
+    },
     container: {
         flex: 1,
         backgroundColor: colors.black3,
@@ -247,15 +261,15 @@ const styles = StyleSheet.create({
         // paddingTop:20,
     },
     image: {
-        height: 50,
-        width: 50,
+        height: hp(6.5),
+        width: wp(13.38),
         // paddingHorizontal:5,
         // borderRadius:5,
         // marginHorizontal:5
     },
     image2: {
-        height: 130,
-        width: 130,
+        height: hp(15),
+        width: wp(30.7),
         marginTop: 5,
         borderRadius: 5,
         marginHorizontal: -5,
@@ -264,8 +278,8 @@ const styles = StyleSheet.create({
     imageContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        height: 85,
-        width: 85,
+        height: hp(10),
+        width: wp(20.5),
         marginHorizontal: 5,
         // paddingHorizontal:5,
         borderRadius: 8,

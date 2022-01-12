@@ -6,6 +6,7 @@ export default urls = {
 
   //Auth Urls
   LOGIN_URL: 'api/Auth/login',
+  REGISTER_URL: 'api/Users/AddUser',
   PACKAGES_ALL_URL: 'api/Package/GetPackageAll',
   REGISTER_URL: 'api/Auth/Register',
   RESTAURANT_AWARDS: 'api/RestaurantAwards/GetRestaurantAwardsAll',
@@ -19,6 +20,9 @@ export default urls = {
   GET_PROMO_JOBS: 'api/PromoJobsAdmin/GetPromoJobsAdminAll/',
   ADD_ORDERS: 'api/Order/AddOrder',
   PEOPLE_CHOICE: 'api/PeopleChoice/GetPeopleChoiceAll/',
+  GET_ALL_WHATSNEW: 'api/RestaurantDish/GetdishWhatsNewAll/1/4',
+  GET_ALL_PROMOTION: 'api​/HomeAdSlideShowAdmin​/GetdishpromoAdvertAllapp​/1/4',
   GET_ALL_FAVORITE: 'api/RestaurantDish/GetdishLikedAll/1/4',
   ADD_FAVORITE: 'api/RestaurantDish/UpdateRestaurantDishLiked/26'
+
 };
