@@ -3,6 +3,7 @@ import {
   Image,
   ScrollView,
   StyleSheet,
+  Text,
   View,
   ImageBackground,
   TouchableOpacity,
@@ -103,19 +104,27 @@ const Recommendation = props => {
                           backgroundColor: 'rgba(0,0,0,1)',
                         }}
                         source={{ uri: item.imageDataB }}>
-                        <ResponsiveText
-                          fontFamily="Regular"
-                          size={3}
-                          margin={[0, 0, 5, 0]}
-                          color={colors.yellow}>
+                        <Text
+                          style={{
+                            color: 'white', padding: 3,
+                            backgroundColor: 'black', borderRadius: 7,
+                            textAlign: 'center', fontWeight: '600', fontSize: 8.5
+                          }}
+
+                        >
                           {item.dishName}
-                        </ResponsiveText>
-                        <ResponsiveText
-                          fontFamily="Light"
-                          size={2.5}
-                          color={colors.yellow}>
+                        </Text>
+                        <Text
+                          style={{
+                            color: 'white', padding: 3,
+                            backgroundColor: 'black', borderRadius: 7,
+                            textAlign: 'center', fontWeight: '600', fontSize: 8.5
+                          }}
+
+                        >
                           {item.cusineName}
-                        </ResponsiveText>
+
+                        </Text>
                       </ImageBackground>
                     </View>
                   </TouchableOpacity>
