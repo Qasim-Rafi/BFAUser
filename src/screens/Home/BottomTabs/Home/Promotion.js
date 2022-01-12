@@ -22,6 +22,7 @@ import { hp, wp } from '../../../../helpers/Responsiveness';
 import { useSelector } from 'react-redux';
 import Icon from '../../../../components/Icon';
 import { globalPath } from '../../../../constants/globalPath';
+import { getPromotions } from '../../../../redux/actions/user.actions';
 const Promotion = props => {
    const Promotions = useSelector(state => state.appReducers.promotions.data);
   console.log('promotions: ', Promotions);
@@ -33,31 +34,13 @@ const Promotion = props => {
           Promotions
         </ResponsiveText>
         <View style={{ marginRight: -10 }}>
-          <TouchableOpacity
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              paddingLeft: 10,
-            }}
-          >
-            <ResponsiveText
-              size={3.2}
-              margin={[0, 10, 0, 0]}
-              color={colors.yellow}>
-              Show All
-            </ResponsiveText>
-            <Icon
-              size={(wp(1.6), hp(1.6))}
-              margin={[0, 10, 0, 0]}
-              source={globalPath.RIGHT_ARROW}
-            />
-          </TouchableOpacity>
-          {/* <SeeAllButton
-            title={'Promotions'}
-            data={promosBannerFakeDATA}
+          
+          <SeeAllButton
+            title={"Promotions"}
+            data={Promotions}
+            action={getPromotions}
             navigation={props.navigation}
-          /> */}
+          />
         </View>
       </View>
       <View style={styles.everyOneFavoriteItemsSection}>

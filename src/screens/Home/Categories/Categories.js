@@ -42,14 +42,14 @@ export default function Categories({ navigation, route }) {
       <View style={styles.item}>
         <Text style={styles.header}>{item.name[0]}</Text>
         <View style={{ borderRadius: 10, backgroundColor: colors.black2, paddingVertical: 10 }}>
-          {data.map((i, index) => {
-            if (i.name[0] == item.name[0]) {
+          {data.filter(i => i.name[0] == item.name[0]).map((v, index) => {
+           // if (i.name[0] == item.name[0]) {
               return (
                 <View style={{ paddingLeft: 25, justifyContent: 'center', paddingVertical: 2 }}>
-                  <Text style={styles.title}>{item.name}</Text>
+                  <Text style={styles.title}>{v.name}</Text>
                 </View>)
             }
-          }
+         // }
           )}
         </View>
 
@@ -72,7 +72,7 @@ export default function Categories({ navigation, route }) {
         {newArray.sort((a, b) => a.name.localeCompare(b.name)).map((item, index) => {
 
           return (
-            <TouchableOpacity style={{ marginBottom: 2, backgroundColor: activeAlphabet === item.firstLetter ? colors.white : undefined, height: 25, width: 25, justifyContent: 'center', alignItems: 'center', borderRadius: 1000 }} onPress={() => ScrollHandler(item, index)}>
+            <TouchableOpacity style={{ marginBottom: 2, backgroundColor:  colors.white , height: 25, width: 25, justifyContent: 'center', alignItems: 'center', borderRadius: 1000 }} onPress={() => ScrollHandler(item, index)}>
               <ResponsiveText color={colors.yellow}>{item.name[0]}</ResponsiveText>
             </TouchableOpacity>
           )

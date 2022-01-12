@@ -20,6 +20,8 @@ import { globalPath } from '../../../../constants/globalPath';
 import { colors } from '../../../../constants/colorsPallet';
 import SeeAllButton from '../../../../components/SeeAllButton';
 import { hp, wp } from '../../../../helpers/Responsiveness';
+import { getFavorite } from '../../../../redux/actions/user.actions';
+
 const YourFavourite = props => {
   const favData = useSelector(state => state.appReducers.favorite.data,)
   const dispatch = useDispatch();
@@ -45,26 +47,14 @@ const YourFavourite = props => {
         </ResponsiveText>
         <View style={{ marginRight: -15 }}>
 
-          <TouchableOpacity
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              paddingLeft: 10,
-            }}
-          >
-            <ResponsiveText
-              size={3.2}
-              margin={[0, 10, 0, 0]}
-              color={colors.yellow}>
-              Show All
-            </ResponsiveText>
-            <Icon
-              size={(wp(1.6), hp(1.6))}
-              margin={[0, 10, 0, 0]}
-              source={globalPath.RIGHT_ARROW}
-            />
-          </TouchableOpacity>
+        <View style={{ marginRight: -15 }}>
+          <SeeAllButton
+            title={"PG's Favourites"}
+            data={favData}
+            action={getFavorite}
+            navigation={props.navigation}
+          />
+        </View>
           {/* <SeeAllButton
             title={"PG's Favourites"}
             data={yourFavoriteFakeDATA}
