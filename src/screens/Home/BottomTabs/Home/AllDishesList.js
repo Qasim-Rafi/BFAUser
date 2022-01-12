@@ -20,11 +20,10 @@ import Icon from '../../../../components/Icon';
 import {
   getRestaurantAllDishes,
   getUserCusine,
-  getPromotions,
   getBruneiFoodRewards,
-  getBfaPartners,
-  AddOrder,
-  getAddBannerData,
+  getPromotions,
+  getFavorite,
+  whatsNew,
   getBfaRecommendations,
   getPromoNewsData,
   getPromoJobsData,
@@ -53,6 +52,12 @@ export default function AllDishesList({route, navigation}) {
       ? state.appReducers.PeopleChoice.data
       : title == 'Brunei Food Awards'
       ? state.appReducers.bruneiFoodsAwards.data
+      : title == "PG's Favourites"
+      ? state.appReducers.favorite.data
+      : title == "What's New"
+      ? state.appReducers.whatsnew.data
+      : title == 'Promotions'
+      ? state.appReducers.promotions.data
       : state.appReducers.promoJobs.data,
   );
   const loading = useSelector(
@@ -117,6 +122,14 @@ export default function AllDishesList({route, navigation}) {
     setIndex(index + 1);
     console.log('indexxxxxxx', index);
     switch (title) {
+      case "PG's Favourites":
+        dispatch(getFavorite(index, 13));
+        break;
+
+      case 'Brunei Food Awards':
+        dispatch(getBruneiFoodRewards(index, 13));
+        break;
+
       case 'BFA Recommendation':
         dispatch(getBfaRecommendations(index, 13));
         break;
@@ -125,9 +138,15 @@ export default function AllDishesList({route, navigation}) {
         dispatch(getBfaRecommendations(index, 13));
         break;
 
+      case "What's New":
+        dispatch(whatsNew(index, 13));
+        break;
 
+      case 'Promotions':
+        dispatch(getPromotions(index, 13));
+        break;
       default:
-        //Alert.alert('NUMBER NOT FOUND');
+      //Alert.alert('NUMBER NOT FOUND');dispatch(getBruneiFoodRewards())
     }
   };
 
