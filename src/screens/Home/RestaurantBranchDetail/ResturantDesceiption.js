@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, ScrollView, StyleSheet, Image} from 'react-native';
+import {View, Text, ScrollView, StyleSheet, Image,TouchableOpacity} from 'react-native';
 import AdvertisementBanner from '../BottomTabs/Home/AdvertisementBanner';
 import ImageHeader from '../BottomTabs/Home/ImageHeader';
 import {colors} from '../../../constants/colorsPallet';
@@ -9,8 +9,12 @@ import ResponsiveText from '../../../components/RnText';
 import {globalPath} from '../../../constants/globalPath';
 import {wp} from '../../../helpers/Responsiveness';
 import StaticMap from '../../../components/StaticMap';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { routeName } from '../../../constants/routeName';
+import { useNavigation } from '@react-navigation/native';
+
+
 export default function Restaurant_Description({}) {
+  const navigation = useNavigation()
   return (
     <View>
       <View>
@@ -59,12 +63,14 @@ export default function Restaurant_Description({}) {
           </ResponsiveText>
         </View>
         </TouchableOpacity>
-        <View style={{alignItems: 'center'}}>
-          <Icon source={globalPath.LOCATION} />
-          <ResponsiveText top={5} color={colors.yellow}>
-            Go To{' '}
-          </ResponsiveText>
-        </View>
+        <TouchableOpacity onPress={()=>navigation.navigate(routeName.MAP_VIEW)} >
+          <View style={{alignItems: 'center'}}>
+            <Icon source={globalPath.LOCATION} />
+            <ResponsiveText top={5} color={colors.yellow}>
+              Go To{' '}
+            </ResponsiveText>
+          </View>
+        </TouchableOpacity>
         <View style={{alignItems: 'center'}}>
           <Icon source={globalPath.CONTACT} />
           <ResponsiveText top={5} color={colors.yellow}>
