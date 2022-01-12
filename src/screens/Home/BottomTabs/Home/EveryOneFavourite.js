@@ -61,7 +61,6 @@ const EveryOneFavourite = props => {
             People_choice.length > 0 ?
               People_choice.map((url, index) => {
                 if (index < 4) {
-
                   return (
                     <TouchableOpacity
                       onPress={() =>

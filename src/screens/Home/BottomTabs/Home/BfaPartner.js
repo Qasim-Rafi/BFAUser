@@ -50,7 +50,7 @@ const BfaPartner = ({ props }) => {
   const siteAdd = []
   if (loading === false) {
     bfaPartners.map(item => {
-      
+
       if (images.includes(item.fullpath)) {
       } else {
         images.push(item.fullpath);
@@ -138,7 +138,7 @@ const BfaPartner = ({ props }) => {
         {images.length > 0
           ? title === 'More'
             ? lessImages.map((url, index) => {
-              console.log('urlllllllllll',url)
+              console.log('urlllllllllll', url)
               return (
                 // <Icon source={url} size={35} borderRadius={5} />
                 <View

@@ -16,7 +16,7 @@ import IMG from '../../../../assets/fake_Images/salmon_asparagus.jpg'
 const ImageHeader = (props) => {
   return (
     <View style={styles.container}>
-      <ImageBackground imageStyle={{ opacity: 0.8, }} source={props.img ? { uri: props.img } : IMG} resizeMode="contain" style={styles.image}>
+      <ImageBackground imageStyle={{ opacity: 0.8, }} source={props.img ? { uri: props.img } : IMG} resizeMode="cover" style={styles.image}>
         <TouchableOpacity onPress={() => { props.navigation.goBack() }} style={{ margin: 20 }}>
           <Icon source={globalPath.BACK_ARROW} />
         </TouchableOpacity>
