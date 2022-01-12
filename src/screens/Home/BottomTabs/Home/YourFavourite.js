@@ -22,6 +22,8 @@ import { colors } from '../../../../constants/colorsPallet';
 import SeeAllButton from '../../../../components/SeeAllButton';
 import { hp, wp } from '../../../../helpers/Responsiveness';
 import { color } from 'react-native-reanimated';
+import { getFavorite } from '../../../../redux/actions/user.actions';
+
 const YourFavourite = props => {
   const favData = useSelector(state => state.appReducers.favorite.data,)
   const dispatch = useDispatch();
@@ -67,6 +69,14 @@ const YourFavourite = props => {
               source={globalPath.RIGHT_ARROW}
             />
           </TouchableOpacity>
+          <View style={{ marginRight: -15 }}>
+            <SeeAllButton
+              title={"PG's Favourites"}
+              data={favData}
+              action={getFavorite}
+              navigation={props.navigation}
+            />
+          </View>
           {/* <SeeAllButton
             title={"PG's Favourites"}
             data={yourFavoriteFakeDATA}

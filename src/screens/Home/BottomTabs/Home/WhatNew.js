@@ -9,18 +9,25 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import ResponsiveText from '../../../../components/RnText';
-import Icon from '../../../../components/Icon';
-import { globalPath } from '../../../../constants/globalPath';
-import {
-  advertisementBannerFakeDATA,
-  ourRecommendationFakeDATA,
-
-} from '../../../../constants/mock';
 import { useSelector, useDispatch } from 'react-redux';
 import { colors } from '../../../../constants/colorsPallet';
 import SeeAllButton from '../../../../components/SeeAllButton';
 import { routeName } from '../../../../constants/routeName';
 import { hp, wp } from '../../../../helpers/Responsiveness';
+import {
+  getRestaurantAllDishes,
+  getUserCusine,
+  getPromotions,
+  getBruneiFoodRewards,
+  getBfaPartners,
+  AddOrder,whatsNew,
+  getFavorite,
+  getAddBannerData,
+  getBfaRecommendations,
+  getPromoNewsData,
+  getPromoJobsData,
+  getPeopleChoice,
+} from '../../../../redux/actions/user.actions';
 const WhatsNew = props => {
   const NewData = useSelector(state => state.appReducers.whatsnew.data,)
   console.log(NewData, 'llll')
@@ -32,31 +39,13 @@ const WhatsNew = props => {
           What's New
         </ResponsiveText>
         <View style={{ marginRight: -10 }}>
-          <TouchableOpacity
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              paddingLeft: 10,
-            }}
-          >
-            <ResponsiveText
-              size={3.2}
-              margin={[0, 10, 0, 0]}
-              color={colors.yellow}>
-              Show All
-            </ResponsiveText>
-            <Icon
-              size={(wp(1.6), hp(1.6))}
-              margin={[0, 10, 0, 0]}
-              source={globalPath.RIGHT_ARROW}
-            />
-          </TouchableOpacity>
-          {/* <SeeAllButton
+          
+          <SeeAllButton
             title={"What's New"}
-            data={whatsNew}
+            data={NewData}
+            action={whatsNew}
             navigation={props.navigation}
-          /> */}
+          />
         </View>
       </View>
       <View style={styles.recommendationItemsSection}>

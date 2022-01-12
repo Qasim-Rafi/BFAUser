@@ -39,7 +39,7 @@ const initialState = {
   },
   PromoNews: {
     loading: false,
-    data: {},
+    data: [],
   },
 
   bfaPartners: {

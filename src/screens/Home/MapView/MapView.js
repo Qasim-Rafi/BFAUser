@@ -45,7 +45,7 @@ export default function MapView(props) {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <View
+        {/* <View
           style={{
             padding: 10,
             position: 'absolute',
@@ -77,7 +77,6 @@ export default function MapView(props) {
                 borderRadius: 15,
               }}
             />
-            {/* <Icon source={globalPath.LOCATION} /> */}
             <View
               style={{
                 height: '45%',
@@ -103,7 +102,7 @@ export default function MapView(props) {
             </ResponsiveText>
           </View>
           <View></View>
-        </View>
+        </View> */}
         <Map
           provider={PROVIDER_GOOGLE} // remove if not using Google Maps
           style={styles.map}
@@ -123,7 +122,7 @@ export default function MapView(props) {
             destination={coordinates[1]}
             apikey={GOOGLE_MAPS_APIKEY} // insert your API Key here
             strokeWidth={4}
-            strokeColor="red"
+            strokeColor="blue"
           />
           <Marker coordinate={coordinates[0]} />
           <Marker coordinate={coordinates[1]} />
@@ -135,6 +134,19 @@ export default function MapView(props) {
         /> */}
         </Map>
       </View>
+      {/* <TouchableOpacity>
+        <View style={{
+          position: 'absolute',
+          width: 50,
+          height: 50,
+          alignItems: 'center',
+          justifyContent: 'center',
+          right: 30,
+          bottom: 30,
+        }} >
+
+        </View>
+      </TouchableOpacity> */}
     </View>
   );
 }

@@ -327,6 +327,7 @@ export function* getPromoNewsSaga() {
 function* getPromoNewsSagaApi(data) {
   try {
     const response = yield Api.get(urls.GET_PROMO_NEWS);
+    console.log(response,"yyyy")
     if (response && response.data != null) {
       yield put({type: types.GET_PROMO_NEWS_SUCCESS, payload: response.data});
       // navigation.navigate(routeName.Categories,{data:response.data});

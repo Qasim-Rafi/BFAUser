@@ -21,10 +21,15 @@ import {
   addFavorite,
   onRemoveFavorite,
 } from '../../../redux/actions/user.actions';
+import { routeName } from '../../../constants/routeName';
+import { useNavigation } from '@react-navigation/native';
+
 
 export default function DishDescription(props) {
   const dispatch = useDispatch();
   const favData = useSelector(state => state.appReducers.favorite.data);
+  
+  const navigation = useNavigation()
 
   // console.log(removefavorite,'hhh')
   return (
@@ -47,7 +52,7 @@ export default function DishDescription(props) {
               {props.item.titleR}
             </ResponsiveText>
             <ResponsiveText size={4} color={colors.yellow}>
-              $10.00
+              {props.item.price} $
             </ResponsiveText>
           </View>
           <Icon
@@ -85,13 +90,15 @@ export default function DishDescription(props) {
             Favourite
           </ResponsiveText>
         </TouchableOpacity>
-        <View style={{ alignItems: 'center' }}>
-          <Icon source={globalPath.LOCATION} />
-          <ResponsiveText top={5} color={colors.yellow}>
-            Go To
-          </ResponsiveText>
-        </View>
-        <View style={{ alignItems: 'center' }}>
+        <TouchableOpacity onPress={()=>navigation.navigate(routeName.MAP_VIEW)}>
+          <View style={{alignItems: 'center'}}>
+            <Icon source={globalPath.LOCATION} />
+            <ResponsiveText top={5} color={colors.yellow}>
+              Go To
+            </ResponsiveText>
+          </View>
+        </TouchableOpacity>
+        <View style={{alignItems: 'center'}}>
           <Icon source={globalPath.CONTACT} />
           <ResponsiveText top={5} color={colors.yellow}>
             Contact
@@ -115,9 +122,7 @@ export default function DishDescription(props) {
           fontFamily="Regular"
           size={3.5}
           color={colors.grey}>
-          Lorem Ipsum is simply dummy text of the printing.Lorem Ipsum is simply
-          dummy text of the printing. Lorem Ipsum is simply dummy text of the
-          printing.
+         {props.item.description}
         </ResponsiveText>
       </View>
     </View>
