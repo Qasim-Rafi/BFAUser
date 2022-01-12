@@ -34,8 +34,8 @@ const NewsFeed = props => {
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(getPromoNewsData());
-    console.log('hhh: ', NewsData);
-  });
+    console.log('News: ', NewsData);
+  },[]);
  
  
 
