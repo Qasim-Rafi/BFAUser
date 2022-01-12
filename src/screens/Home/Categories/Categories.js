@@ -60,7 +60,7 @@ export default function Categories({ navigation, route }) {
     <View style={styles.container}>
       <View style={[styles.header, { backgroundColor: colors.grey3 }]}>
         <View style={{ borderRadius: 2 }}>
-          <TouchableOpacity onPress={() => { props.navigation.goBack() }} style={{ margin: 5, backgroundColor: colors.yellow, paddingVertical: 10, alignSelf: 'flex-start', paddingHorizontal: 10, borderRadius: 25 }}>
+          <TouchableOpacity onPress={() => { navigation.goBack() }} style={{ margin: 5, backgroundColor: colors.yellow, paddingVertical: 10, alignSelf: 'flex-start', paddingHorizontal: 10, borderRadius: 25 }}>
             <Icon source={globalPath.BACK_ARROW} />
           </TouchableOpacity>
         </View>
