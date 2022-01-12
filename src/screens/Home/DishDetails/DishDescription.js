@@ -98,12 +98,14 @@ export default function DishDescription(props) {
             </ResponsiveText>
           </View>
         </TouchableOpacity>
-        <View style={{alignItems: 'center'}}>
-          <Icon source={globalPath.CONTACT} />
-          <ResponsiveText top={5} color={colors.yellow}>
-            Contact
-          </ResponsiveText>
-        </View>
+        <TouchableOpacity onPress={()=>navigation.navigate(routeName.CONTACT_US)} >
+          <View style={{alignItems: 'center'}}>
+            <Icon source={globalPath.CONTACT} />
+            <ResponsiveText top={5} color={colors.yellow}>
+              Contact
+            </ResponsiveText>
+          </View>
+        </TouchableOpacity>
         <View style={{ alignItems: 'center' }}>
           <Icon source={globalPath.MORE_LOGO} />
           <ResponsiveText top={5} color={colors.yellow}>
