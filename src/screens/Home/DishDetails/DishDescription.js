@@ -52,7 +52,7 @@ export default function DishDescription(props) {
               {props.item.titleR}
             </ResponsiveText>
             <ResponsiveText size={4} color={colors.yellow}>
-              $10.00
+              {props.item.price} $
             </ResponsiveText>
           </View>
           <Icon
@@ -122,9 +122,7 @@ export default function DishDescription(props) {
           fontFamily="Regular"
           size={3.5}
           color={colors.grey}>
-          Lorem Ipsum is simply dummy text of the printing.Lorem Ipsum is simply
-          dummy text of the printing. Lorem Ipsum is simply dummy text of the
-          printing.
+         {props.item.description}
         </ResponsiveText>
       </View>
     </View>

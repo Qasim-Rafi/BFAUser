@@ -7,6 +7,7 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
+import { Avatar } from 'react-native-paper';
 import Header from '../../../../components/Header';
 import Advertisement2ndVarient from '../Home/Advertisement2ndVarient';
 import PromosBanner from './PromoBanner';
@@ -22,12 +23,23 @@ import Icon from '../../../../components/Icon';
 import {globalPath} from '../../../../constants/globalPath';
 import {NewsFeeds} from '../../../../constants/mock';
 import {routeName} from '../../../../constants/routeName';
-import {useSelector} from 'react-redux';
+import {useSelector,useDispatch} from 'react-redux';
+import {
+ getPromoNewsData
+} from '../../../../redux/actions/user.actions';
 
 const NewsFeed = props => {
   const {navigation} = props;
   const NewsData = useSelector(state => state.appReducers.PromoNews.data);
-  console.log('hhh: ', NewsData);
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(getPromoNewsData());
+    console.log('hhh: ', NewsData);
+  });
+ 
+ 
+
+  
   return (
     <View style={{backgroundColor: colors.black3, flex: 1}}>
       <View
@@ -57,8 +69,8 @@ const NewsFeed = props => {
             Inbox
           </ResponsiveText>
         </View>
-        {yourFavoriteFakeDATA.length > 0
-          ? yourFavoriteFakeDATA.map((item, index) => {
+        {NewsData.length > 0
+          ? NewsData.map((item, index) => {
               return (
                 <View
                   style={{
@@ -74,8 +86,8 @@ const NewsFeed = props => {
                       marginVertical: 12,
                       marginHorizontal: 15,
                     }}>
-                    <View>
-                      <Icon size={40} source={{uri: item.resLogo}} />
+                    <View >
+                      <Avatar.Image size={40} source={{uri: item.fullPath}} />
                     </View>
                     <View>
                       <ResponsiveText
@@ -94,8 +106,8 @@ const NewsFeed = props => {
                   </View>
                   <ImageBackground
                     style={styles.Advertisement2ndVarientImage}
-                    source={item.url}
-                    // source={{uri: item.resLogo}}
+                    // source={item.url}
+                    source={{uri: item.fullPath}}
                       ></ImageBackground>
                   <View style={{marginTop: 10, marginLeft: 15}}>
                     <View
@@ -151,9 +163,9 @@ const NewsFeed = props => {
                       }}>
                       <ResponsiveText top={0} color={colors.white} size={3}>
                         {item.newsTitle}
-                        <ResponsiveText color={colors.grey} size={3}>
+                        {/* <ResponsiveText color={colors.grey} size={3}>
                           {item.description}
-                        </ResponsiveText>
+                        </ResponsiveText> */}
                       </ResponsiveText>
                     </View>
                   </View>
