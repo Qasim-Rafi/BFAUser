@@ -102,7 +102,7 @@ const AwardWinningDishes = props => {
                       <ResponsiveText
                         fontFamily="Light"
                         size={2.5}
-                        color={colors.white}>
+                        color={colors.yellow}>
                         {url.titleA}
                       </ResponsiveText>
                     </ImageBackground>

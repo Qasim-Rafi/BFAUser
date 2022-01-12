@@ -13,7 +13,7 @@ import { globalPath } from '../../../../constants/globalPath';
 import {
   advertisementBannerFakeDATA,
   ourRecommendationFakeDATA,
-  
+
 } from '../../../../constants/mock';
 import { useSelector, useDispatch } from 'react-redux';
 import { colors } from '../../../../constants/colorsPallet';
@@ -22,7 +22,7 @@ import { routeName } from '../../../../constants/routeName';
 import { hp, wp } from '../../../../helpers/Responsiveness';
 const WhatsNew = props => {
   const NewData = useSelector(state => state.appReducers.whatsnew.data,)
-  console.log(NewData,'llll')
+  console.log(NewData, 'llll')
   const dispatch = useDispatch();
   return (
     <>
@@ -84,12 +84,12 @@ const WhatsNew = props => {
                       justifyContent: 'flex-end',
                       backgroundColor: 'rgba(0,0,0,1)',
                     }}
-                    source={{uri:url.imageDataB}}>
+                    source={{ uri: url.imageDataB }}>
                     <ResponsiveText
                       fontFamily="Regular"
                       size={3}
                       margin={[0, 0, -5, 0]}
-                      color={colors.white}>
+                      color={colors.yellow}>
                       {url.titleD}
                     </ResponsiveText>
                     {/* <ResponsiveText fontFamily="Light" size={2.5} color={colors.white}>{url.description}</ResponsiveText> */}

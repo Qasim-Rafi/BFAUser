@@ -108,7 +108,7 @@ const JobsList = props => {
                         fontFamily="Regular"
                         size={3}
                         margin={[0, 0, -5, 0]}
-                        color={colors.white}>
+                        color={colors.yellow}>
                         {url.jobTitle}
                       </ResponsiveText>
                       <ResponsiveText

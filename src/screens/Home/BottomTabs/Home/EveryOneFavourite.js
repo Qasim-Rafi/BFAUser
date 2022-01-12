@@ -88,7 +88,7 @@ const EveryOneFavourite = props => {
                           <ResponsiveText
                             fontFamily="Regular"
                             size={3}
-                            color={colors.white}>
+                            color={colors.yellow}>
                             {url.dishName}
                           </ResponsiveText>
                           {/* <ResponsiveText

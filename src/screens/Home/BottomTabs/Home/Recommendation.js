@@ -107,13 +107,13 @@ const Recommendation = props => {
                           fontFamily="Regular"
                           size={3}
                           margin={[0, 0, 5, 0]}
-                          color={colors.white}>
+                          color={colors.yellow}>
                           {item.dishName}
                         </ResponsiveText>
                         <ResponsiveText
                           fontFamily="Light"
                           size={2.5}
-                          color={colors.white}>
+                          color={colors.yellow}>
                           {item.cusineName}
                         </ResponsiveText>
                       </ImageBackground>
@@ -134,29 +134,7 @@ const Recommendation = props => {
         }
       </View>
 
-      {/* <View style={styles.recommendationHeaderSection}>
-                <ResponsiveText margin={[0,0,0,0]} size={4} color={colors.white}>BFA Recommendations</ResponsiveText>
-                <View style={{marginRight:-10}} >
-                <SeeAllButton title={"BFA Recommendation"} data={ourRecommendationFakeDATA} navigation={props.navigation} />
-                </View>
-            </View>
-            <View style={styles.recommendationItemsSection}>
-                <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-                    {ourRecommendationFakeDATA.map((url, index) => {
-                        return (
-                            <TouchableOpacity onPress={()=> props.navigation.navigate(routeName.DISH_DETAIL,{dish:url})}>
-                            <View  style={{ width: wp(26), height: hp(18), borderRadius: 3, marginHorizontal: 5, overflow: 'hidden', flexDirection: 'row' }}>
-                                <ImageBackground imageStyle={{opacity:.5}} imageStyle={{opacity:.5}} style={{ flex: 1, padding: 5, overflow: 'hidden', justifyContent: 'flex-end',backgroundColor: 'rgba(0,0,0,1)' }} source={url.url} >
-                                    <ResponsiveText fontFamily="Regular" size={3} margin={[0,0,-5,0]} color={colors.white}>{url.title}</ResponsiveText>
-                                    <ResponsiveText fontFamily="Light" size={2.5} color={colors.white}>{url.description}</ResponsiveText>
-                                </ImageBackground>
-                            </View>
-                            </TouchableOpacity>
 
-                        )
-                    })}
-                </ScrollView>
-            </View> */}
     </>
   );
 };

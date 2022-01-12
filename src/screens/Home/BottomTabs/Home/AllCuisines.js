@@ -117,7 +117,7 @@ const AllCuisines = props => {
                           fontFamily="Regular"
                           size={3}
                           margin={[0, 0, 10, 0]}
-                          color={colors.white}>
+                          color={colors.yellow}>
                           {item.name}
                         </ResponsiveText>
                       </ImageBackground>

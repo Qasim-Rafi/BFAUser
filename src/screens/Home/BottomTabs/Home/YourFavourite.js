@@ -105,14 +105,14 @@ const YourFavourite = props => {
                       <ResponsiveText
                         fontFamily="Regular"
                         size={3}
-                        color={colors.white}>
+                        color={colors.yellow}>
                         {url.titleA}
                       </ResponsiveText>
                       <ResponsiveText
                         fontFamily="Light"
                         size={2.5}
                         margin={[-5, 0, 0, 0]}
-                        color={colors.white}>
+                        color={colors.yellow}>
                         {url.titleR}
                       </ResponsiveText>
                     </ImageBackground>
