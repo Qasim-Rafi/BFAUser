@@ -5,6 +5,7 @@ import {
   ScrollView,
   StyleSheet,
   View,
+  Text,
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
@@ -99,12 +100,16 @@ const AwardWinningDishes = props => {
                         color={colors.white}>
                         {url.restaurantName}
                       </ResponsiveText> */}
-                      <ResponsiveText
-                        fontFamily="Light"
-                        size={2.5}
-                        color={colors.yellow}>
+                      <Text
+                        style={{
+                          color: 'white', padding: 3,
+                          backgroundColor: 'black', borderRadius: 7,
+                          textAlign: 'center', fontWeight: '600', fontSize: 8.5
+                        }}
+
+                      >
                         {url.titleA}
-                      </ResponsiveText>
+                      </Text>
                     </ImageBackground>
                   </View>
                 </TouchableOpacity>

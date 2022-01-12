@@ -3,6 +3,7 @@ import {
   Image,
   ScrollView,
   StyleSheet,
+  Text,
   View,
   ImageBackground,
   TouchableOpacity,
@@ -24,7 +25,7 @@ import Icon from '../../../../components/Icon';
 import { globalPath } from '../../../../constants/globalPath';
 import { getPromotions } from '../../../../redux/actions/user.actions';
 const Promotion = props => {
-   const Promotions = useSelector(state => state.appReducers.promotions.data);
+  const Promotions = useSelector(state => state.appReducers.promotions.data);
   console.log('promotions: ', Promotions);
 
   return (
@@ -34,7 +35,7 @@ const Promotion = props => {
           Promotions
         </ResponsiveText>
         <View style={{ marginRight: -10 }}>
-          
+
           <SeeAllButton
             title={"Promotions"}
             data={Promotions}
@@ -72,21 +73,50 @@ const Promotion = props => {
                         justifyContent: 'flex-end',
                         backgroundColor: 'rgba(0,0,0,1)',
                       }}
+                      source={{ uri: url.imageDataB }}>
+                      <Text
+                        style={{
+                          color: 'white', padding: 3,
+                          backgroundColor: 'black', borderRadius: 7,
+                          textAlign: 'center', fontWeight: '600', fontSize: 8.5
+                        }}
+
+                      >
+                        {url.title}
+
+
+
+                      </Text>
+                      <Text
+                        style={{
+                          color: 'white', padding: 3,
+                          backgroundColor: 'black', borderRadius: 7,
+                          textAlign: 'center', fontWeight: '600', fontSize: 8.5
+                        }}
+
+                      >
+                        {url.description}
+
+
+
+
+                      </Text>
+                      {/* <ResponsiveText
                       source={{uri:url.fullPath}}>
                       <ResponsiveText
                         fontFamily="Regular"
                         size={3}
                         margin={[0, 0, -5, 0]}
-                        color={colors.yellow}>
+                        color={colors.white}>
                         {url.title}
                       </ResponsiveText>
                       <ResponsiveText
                         fontFamily="Regular"
                         size={3}
                         margin={[0, 0, -5, 0]}
-                        color={colors.yellow}>
+                        color={colors.white}>
                         {url.description}
-                      </ResponsiveText>
+                      </ResponsiveText> */}
                       {/* <ResponsiveText fontFamily="Light" size={2.5} color={colors.white}>{url.description}</ResponsiveText> */}
                     </ImageBackground>
                   </View>
