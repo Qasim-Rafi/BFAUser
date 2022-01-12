@@ -9,14 +9,14 @@ import {
 } from 'react-native';
 import AdvertisementBanner from '../BottomTabs/Home/AdvertisementBanner';
 import ImageHeader from '../BottomTabs/Home/ImageHeader';
-import {colors} from '../../../constants/colorsPallet';
+import { colors } from '../../../constants/colorsPallet';
 const text = 'Description';
 import Icon from '../../../components/Icon';
 import ResponsiveText from '../../../components/RnText';
-import {globalPath} from '../../../constants/globalPath';
-import {wp} from '../../../helpers/Responsiveness';
+import { globalPath } from '../../../constants/globalPath';
+import { wp } from '../../../helpers/Responsiveness';
 import StaticMap from '../../../components/StaticMap';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   addFavorite,
   onRemoveFavorite,
@@ -38,12 +38,12 @@ export default function DishDescription(props) {
             justifyContent: 'space-between',
           }}>
           <View style={styles.priceDesc}>
-            <ResponsiveText size={4} color={colors.white}>
+            <ResponsiveText size={4} color={colors.yellow}>
               {props.item.titleD == undefined
                 ? props.item.titleA
                 : props.item.titleD}
             </ResponsiveText>
-            <ResponsiveText size={3.7} color={colors.grey}>
+            <ResponsiveText size={3.7} color={colors.yellow}>
               {props.item.titleR}
             </ResponsiveText>
             <ResponsiveText size={4} color={colors.yellow}>
@@ -68,7 +68,7 @@ export default function DishDescription(props) {
           borderBottomWidth: 1,
         }}>
         <TouchableOpacity
-          style={{alignItems: 'center'}}
+          style={{ alignItems: 'center' }}
           onPress={() => {
             !favData.some(o => o.id === props.item.id)
               ? dispatch(addFavorite(props.item))
@@ -85,27 +85,27 @@ export default function DishDescription(props) {
             Favourite
           </ResponsiveText>
         </TouchableOpacity>
-        <View style={{alignItems: 'center'}}>
+        <View style={{ alignItems: 'center' }}>
           <Icon source={globalPath.LOCATION} />
           <ResponsiveText top={5} color={colors.yellow}>
             Go To
           </ResponsiveText>
         </View>
-        <View style={{alignItems: 'center'}}>
+        <View style={{ alignItems: 'center' }}>
           <Icon source={globalPath.CONTACT} />
           <ResponsiveText top={5} color={colors.yellow}>
             Contact
           </ResponsiveText>
         </View>
-        <View style={{alignItems: 'center'}}>
+        <View style={{ alignItems: 'center' }}>
           <Icon source={globalPath.MORE_LOGO} />
           <ResponsiveText top={5} color={colors.yellow}>
             More
           </ResponsiveText>
         </View>
       </View>
-      <View style={{padding: 20}}>
-        <ResponsiveText fontFamily="Regular" size={4} color={colors.white}>
+      <View style={{ padding: 20 }}>
+        <ResponsiveText fontFamily="Regular" size={4} color={colors.yellow}>
           {props.item.titleA == undefined
             ? props.item.titleD
             : props.item.titleA}
@@ -114,7 +114,7 @@ export default function DishDescription(props) {
           top={5}
           fontFamily="Regular"
           size={3.5}
-          color={colors.grey}>
+          color={colors.yellow}>
           Lorem Ipsum is simply dummy text of the printing.Lorem Ipsum is simply
           dummy text of the printing. Lorem Ipsum is simply dummy text of the
           printing.
