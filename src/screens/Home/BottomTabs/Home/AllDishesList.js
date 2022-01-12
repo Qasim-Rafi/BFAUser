@@ -121,7 +121,10 @@ export default function AllDishesList({ route, navigation }) {
           justifyContent: 'center',
           backgroundColor: colors.black2,
         }}>
-        <Header navigation={navigation} iconPath={globalPath.BACK_ARROW} />
+        <TouchableOpacity onPress={() => { props.navigation.goBack() }} style={{ margin: 10, backgroundColor: colors.black, paddingVertical: 10, alignSelf: 'flex-start', paddingHorizontal: 10, borderRadius: 25 }}>
+          <Icon source={globalPath.BACK_ARROW} />
+        </TouchableOpacity>
+        {/* <Header navigation={navigation} iconPath={globalPath.BACK_ARROW} /> */}
       </View>
       <View style={{ flex: 0.9, margin: 20 }}>
         <ResponsiveText size={4} margin={[0, 0, 5, 10]} color={colors.yellow}>

@@ -43,13 +43,13 @@ export default function Categories({ navigation, route }) {
         <Text style={styles.header}>{item.name[0]}</Text>
         <View style={{ borderRadius: 10, backgroundColor: colors.black2, paddingVertical: 10 }}>
           {data.filter(i => i.name[0] == item.name[0]).map((v, index) => {
-           // if (i.name[0] == item.name[0]) {
-              return (
-                <View style={{ paddingLeft: 25, justifyContent: 'center', paddingVertical: 2 }}>
-                  <Text style={styles.title}>{v.name}</Text>
-                </View>)
-            }
-         // }
+            // if (i.name[0] == item.name[0]) {
+            return (
+              <View style={{ paddingLeft: 25, justifyContent: 'center', paddingVertical: 2 }}>
+                <Text style={styles.title}>{v.name}</Text>
+              </View>)
+          }
+            // }
           )}
         </View>
 
@@ -59,9 +59,10 @@ export default function Categories({ navigation, route }) {
   return (
     <View style={styles.container}>
       <View style={[styles.header, { backgroundColor: colors.grey3 }]}>
-        <View style={{ backgroundColor: colors.grey4, borderRadius: 2 }}>
-          <TouchableOpacity style={{ borderRadius: 10 }} onPress={() => { navigation.goBack() }}>
-            <View style={{ height: hp(5), width: wp(10), alignItems: 'center', justifyContent: 'center', borderRadius: 10 }}><Icon source={globalPath.BACK_ARROW} size={20} /></View></TouchableOpacity>
+        <View style={{ borderRadius: 2 }}>
+          <TouchableOpacity onPress={() => { props.navigation.goBack() }} style={{ margin: 5, backgroundColor: colors.yellow, paddingVertical: 10, alignSelf: 'flex-start', paddingHorizontal: 10, borderRadius: 25 }}>
+            <Icon source={globalPath.BACK_ARROW} />
+          </TouchableOpacity>
         </View>
         <Text style={{ color: colors.white, width: wp(75), textAlign: 'center' }} >View Cuisines and Categories</Text>
         <Icon source={globalPath.SEARCH_LOGO} size={20} />
@@ -72,10 +73,10 @@ export default function Categories({ navigation, route }) {
         {newArray.sort((a, b) => a.name.localeCompare(b.name)).map((item, index) => {
 
           return (
-            <View style={{flex:1,justifyContent:'center'}}>
-            <TouchableOpacity style={{ marginBottom: 2, backgroundColor:  colors.white , height: 25, width: 25, justifyContent: 'center', alignItems: 'center', borderRadius: 1000 }} onPress={() => ScrollHandler(item, index)}>
-              <ResponsiveText color={colors.yellow}>{item.name[0]}</ResponsiveText>
-            </TouchableOpacity>
+            <View style={{ flex: 1, justifyContent: 'center' }}>
+              <TouchableOpacity style={{ marginBottom: 2, backgroundColor: colors.white, height: 25, width: 25, justifyContent: 'center', alignItems: 'center', borderRadius: 1000 }} onPress={() => ScrollHandler(item, index)}>
+                <ResponsiveText color={colors.yellow}>{item.name[0]}</ResponsiveText>
+              </TouchableOpacity>
             </View>
           )
         })}
