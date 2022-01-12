@@ -12,7 +12,6 @@ import RnButton from '../../../components/RnButton'
 import ResponsiveText from '../../../components/RnText'
 import { routeName } from '../../../constants/routeName'
 import { Cart_Details } from '../../../constants/mock'
-import { color } from 'react-native-reanimated'
 
 
 export default function DishDetails({ route, navigation }) {
@@ -31,7 +30,7 @@ export default function DishDetails({ route, navigation }) {
             <View style={styles.headerImage}>
                 <ImageHeader navigation={navigation} img={dish.imageDataB} />
             </View>
-            <DishDescription colors={color.yellow} item={route.params.dish} />
+            <DishDescription item={route.params.dish} />
             <View style={{ margin: 20, paddingBottom: 20 }}>
 
 

@@ -38,12 +38,12 @@ export default function DishDescription(props) {
             justifyContent: 'space-between',
           }}>
           <View style={styles.priceDesc}>
-            <ResponsiveText size={4} color={colors.yellow}>
+            <ResponsiveText size={4} color={colors.white}>
               {props.item.titleD == undefined
                 ? props.item.titleA
                 : props.item.titleD}
             </ResponsiveText>
-            <ResponsiveText size={3.7} color={colors.yellow}>
+            <ResponsiveText size={3.7} color={colors.grey}>
               {props.item.titleR}
             </ResponsiveText>
             <ResponsiveText size={4} color={colors.yellow}>
@@ -105,7 +105,7 @@ export default function DishDescription(props) {
         </View>
       </View>
       <View style={{ padding: 20 }}>
-        <ResponsiveText fontFamily="Regular" size={4} color={colors.yellow}>
+        <ResponsiveText fontFamily="Regular" size={4} color={colors.white}>
           {props.item.titleA == undefined
             ? props.item.titleD
             : props.item.titleA}
@@ -114,7 +114,7 @@ export default function DishDescription(props) {
           top={5}
           fontFamily="Regular"
           size={3.5}
-          color={colors.yellow}>
+          color={colors.grey}>
           Lorem Ipsum is simply dummy text of the printing.Lorem Ipsum is simply
           dummy text of the printing. Lorem Ipsum is simply dummy text of the
           printing.
