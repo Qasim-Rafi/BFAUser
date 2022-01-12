@@ -54,9 +54,9 @@ const More = ({ route, navigation }) => {
 
       <View style={{ backgroundColor: colors.black3, flex: 1, flexDirection: 'column', justifyContent: 'space-between' }}>
 
-        <View style={{ flex: 0.05, backgroundColor: colors.yellow, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', paddingTop: 10 }} >
+        <View style={{ flex: 0.05, backgroundColor: colors.yellow, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', paddingVertical: 10 }} >
           <View style={{ flexDirection: 'row', justifyContent: "space-between", flex: .97 }}>
-            <TouchableOpacity style={{ height: hp(4), padding: 9, borderRadius: 5, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
+            <TouchableOpacity style={{ backgroundColor:colors.black,paddingVertical:10,paddingHorizontal:10,borderRadius:20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
           </View>
           <TouchableOpacity onPress={logout}>
 
@@ -70,7 +70,7 @@ const More = ({ route, navigation }) => {
           style={{
             backgroundColor: colors.yellow,
             flexDirection: 'row',
-            paddingBottom: 20,
+            paddingBottom: 20
           }}>
           <TouchableOpacity onPress={() => navigation.navigate(routeName.PROFILE_SCREEN)} >
             <Image

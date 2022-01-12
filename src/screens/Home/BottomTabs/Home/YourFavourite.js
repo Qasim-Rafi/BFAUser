@@ -49,16 +49,12 @@ const YourFavourite = props => {
         </ResponsiveText>
         <View style={{ marginRight: -15 }}>
 
-
-
-          <View style={{ marginRight: -15 }}>
             <SeeAllButton
               title={"PG's Favourites"}
               data={favData}
               action={getFavorite}
               navigation={props.navigation}
             />
-          </View>
           {/* <SeeAllButton
             title={"PG's Favourites"}
             data={yourFavoriteFakeDATA}
