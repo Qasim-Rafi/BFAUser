@@ -67,7 +67,7 @@ export default function RestaurantBranchDetailScreen({navigation}) {
         {activeTab === 2 && <PromosBanner/>}
         {activeTab === 3 && <Menu navigation={navigation} />}
         {activeTab === 4 && <BranchesDetail  navigation={navigation}/>}
-        {activeTab === 5 && <AwardsDetail  navigation={navigation}/>}
+        {/* {activeTab === 5 && <AwardsDetail  navigation={navigation}/>} */}
     </View>
       </View>
   );
