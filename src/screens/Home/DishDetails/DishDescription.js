@@ -9,14 +9,14 @@ import {
 } from 'react-native';
 import AdvertisementBanner from '../BottomTabs/Home/AdvertisementBanner';
 import ImageHeader from '../BottomTabs/Home/ImageHeader';
-import {colors} from '../../../constants/colorsPallet';
+import { colors } from '../../../constants/colorsPallet';
 const text = 'Description';
 import Icon from '../../../components/Icon';
 import ResponsiveText from '../../../components/RnText';
-import {globalPath} from '../../../constants/globalPath';
-import {wp} from '../../../helpers/Responsiveness';
+import { globalPath } from '../../../constants/globalPath';
+import { wp } from '../../../helpers/Responsiveness';
 import StaticMap from '../../../components/StaticMap';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   addFavorite,
   onRemoveFavorite,
@@ -68,7 +68,7 @@ export default function DishDescription(props) {
           borderBottomWidth: 1,
         }}>
         <TouchableOpacity
-          style={{alignItems: 'center'}}
+          style={{ alignItems: 'center' }}
           onPress={() => {
             !favData.some(o => o.id === props.item.id)
               ? dispatch(addFavorite(props.item))
@@ -85,26 +85,26 @@ export default function DishDescription(props) {
             Favourite
           </ResponsiveText>
         </TouchableOpacity>
-        <View style={{alignItems: 'center'}}>
+        <View style={{ alignItems: 'center' }}>
           <Icon source={globalPath.LOCATION} />
           <ResponsiveText top={5} color={colors.yellow}>
             Go To
           </ResponsiveText>
         </View>
-        <View style={{alignItems: 'center'}}>
+        <View style={{ alignItems: 'center' }}>
           <Icon source={globalPath.CONTACT} />
           <ResponsiveText top={5} color={colors.yellow}>
             Contact
           </ResponsiveText>
         </View>
-        <View style={{alignItems: 'center'}}>
+        <View style={{ alignItems: 'center' }}>
           <Icon source={globalPath.MORE_LOGO} />
           <ResponsiveText top={5} color={colors.yellow}>
             More
           </ResponsiveText>
         </View>
       </View>
-      <View style={{padding: 20}}>
+      <View style={{ padding: 20 }}>
         <ResponsiveText fontFamily="Regular" size={4} color={colors.white}>
           {props.item.titleA == undefined
             ? props.item.titleD
