@@ -68,13 +68,15 @@ export default function Categories({ navigation, route }) {
 
 
       </View>
-      <View style={{ position: 'absolute', height: hp(46), marginRight: 10, width: wp(5), backgroundColor: '#383838', zIndex: 5000, right: 0, marginTop: hp(10), alignItems: 'center', borderRadius: 10, justifyContent: 'center' }}>
+      <View style={{ position: 'absolute', height: '85%', marginRight: 10, width: wp(5), backgroundColor: '#383838', zIndex: 5000, right: 0, marginTop: hp(10), alignItems: 'center', borderRadius: 10, justifyContent: 'center' }}>
         {newArray.sort((a, b) => a.name.localeCompare(b.name)).map((item, index) => {
 
           return (
+            <View style={{flex:1,justifyContent:'center'}}>
             <TouchableOpacity style={{ marginBottom: 2, backgroundColor:  colors.white , height: 25, width: 25, justifyContent: 'center', alignItems: 'center', borderRadius: 1000 }} onPress={() => ScrollHandler(item, index)}>
               <ResponsiveText color={colors.yellow}>{item.name[0]}</ResponsiveText>
             </TouchableOpacity>
+            </View>
           )
         })}
       </View>
