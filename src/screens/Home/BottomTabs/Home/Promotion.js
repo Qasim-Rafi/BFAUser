@@ -74,19 +74,22 @@ const Promotion = props => {
                         backgroundColor: 'rgba(0,0,0,1)',
                       }}
                       source={{ uri: url.fullPath }}>
-                      <Text
-                        style={{
-                          color: 'white', padding: 3,
-                          backgroundColor: 'black', borderRadius: 7,
-                          textAlign: 'center', fontWeight: '600', fontSize: 8.5
-                        }}
+                      {url.title === String ?
+                        <Text
+                          style={{
+                            color: 'white', padding: 3,
+                            backgroundColor: 'black', borderRadius: 7,
+                            textAlign: 'center', fontWeight: '600', fontSize: 8.5
+                          }}
 
-                      >
-                        {url.title}
+                        >
+                          {url.title}
 
 
 
-                      </Text>
+                        </Text>
+                        : undefined
+                      }
                       <Text
                         style={{
                           color: 'white', padding: 3,
