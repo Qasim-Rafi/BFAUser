@@ -9,7 +9,7 @@ import {awardsRestaurant} from '../../../redux/actions/user.actions';
 import Icon from '../../../components/Icon'
 
 export default function AwardsDetail() {
-  const counter = useSelector((state) => state.appReducers.restaurantDetail)
+  const counter = useSelector((state) => state.appReducers.restaurantDetail.data)
   console.log('Awards_statee',counter)
 
   const dispatch = useDispatch();
