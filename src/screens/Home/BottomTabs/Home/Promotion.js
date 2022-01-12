@@ -3,6 +3,7 @@ import {
   Image,
   ScrollView,
   StyleSheet,
+  Text,
   View,
   ImageBackground,
   TouchableOpacity,
@@ -90,20 +91,47 @@ const Promotion = props => {
                         backgroundColor: 'rgba(0,0,0,1)',
                       }}
                       source={{ uri: url.imageDataB }}>
-                      <ResponsiveText
+                      <Text
+                        style={{
+                          color: 'white', padding: 3,
+                          backgroundColor: 'black', borderRadius: 7,
+                          textAlign: 'center', fontWeight: '600', fontSize: 8.5
+                        }}
+
+                      >
+                        {url.title}
+
+
+
+                      </Text>
+                      <Text
+                        style={{
+                          color: 'white', padding: 3,
+                          backgroundColor: 'black', borderRadius: 7,
+                          textAlign: 'center', fontWeight: '600', fontSize: 8.5
+                        }}
+
+                      >
+                        {url.description}
+
+
+
+
+                      </Text>
+                      {/* <ResponsiveText
                         fontFamily="Regular"
                         size={3}
                         margin={[0, 0, -5, 0]}
-                        color={colors.yellow}>
+                        color={colors.white}>
                         {url.title}
                       </ResponsiveText>
                       <ResponsiveText
                         fontFamily="Regular"
                         size={3}
                         margin={[0, 0, -5, 0]}
-                        color={colors.yellow}>
+                        color={colors.white}>
                         {url.description}
-                      </ResponsiveText>
+                      </ResponsiveText> */}
                       {/* <ResponsiveText fontFamily="Light" size={2.5} color={colors.white}>{url.description}</ResponsiveText> */}
                     </ImageBackground>
                   </View>

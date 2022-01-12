@@ -1,8 +1,8 @@
 import React from 'react';
-import {Text} from 'react-native';
-import {handleMargin, handlePadding} from '../constants/theme';
+import { Text } from 'react-native';
+import { handleMargin, handlePadding } from '../constants/theme';
 import Fonts from '../helpers/Fonts';
-import {wp} from '../helpers/Responsiveness';
+import { wp } from '../helpers/Responsiveness';
 
 const ResponsiveText = ({
   children,
@@ -18,7 +18,7 @@ const ResponsiveText = ({
   textAlign,
   cutText,
   maxWidth,
-
+  backgroundColor,
   //sizes
   ...props
 }) => {
@@ -27,18 +27,19 @@ const ResponsiveText = ({
       {...props}
       numberOfLines={numberOfLines}
       style={[
-        {...styles.text},
+        { ...styles.text },
         props.style,
-        maxWidth && {maxWidth: maxWidth},
-        size && {fontSize: isNaN(size) ? wp(3) : wp(size)},
-        (margin && handleMargin(margin): {margin: 0}),
-        (padding && handlePadding(padding): {padding: 0}),
-        position && {alignSelf: position},
-        textAlign && {textAlign: 'center'},
-        cutText && {textDecorationLine: 'line-through'},
-        {top: top},
-        {color: color},
-        {fontFamily: fontFamily ? Fonts[fontFamily] : Fonts.Medium},
+        maxWidth && { maxWidth: maxWidth },
+        size && { fontSize: isNaN(size) ? wp(3) : wp(size) },
+        (margin && handleMargin(margin): { margin: 10 }),
+        (padding && handlePadding(padding): { padding: 10 }),
+        position && { alignSelf: position },
+        textAlign && { textAlign: 'center' },
+        cutText && { textDecorationLine: 'line-through' },
+        { top: top },
+        { color: color },
+        { backgroundColor: backgroundColor },
+        { fontFamily: fontFamily ? Fonts[fontFamily] : Fonts.Medium },
       ]}>
       {children}
     </Text>

@@ -4,6 +4,7 @@ import {
   ScrollView,
   StyleSheet,
   View,
+  Text,
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
@@ -104,19 +105,33 @@ const JobsList = props => {
                         uri: url.fullpath,
                       }}>
                       {/* source={{uri: url.fullPath}}> */}
-                      <ResponsiveText
+                      <Text
+                        style={{
+                          color: 'white', padding: 3,
+                          backgroundColor: 'black', borderRadius: 7,
+                          textAlign: 'center', fontWeight: '600', fontSize: 8.5
+                        }}
+
+                      >
+                        {url.jobTitle}
+
+
+
+
+                      </Text>
+                      {/* <ResponsiveText
                         fontFamily="Regular"
                         size={3}
                         margin={[0, 0, -5, 0]}
-                        color={colors.yellow}>
+                        color={colors.white}>
                         {url.jobTitle}
-                      </ResponsiveText>
-                      <ResponsiveText
+                      </ResponsiveText> */}
+                      {/* <ResponsiveText
                         fontFamily="Light"
                         size={2.5}
                         color={colors.white}>
                         {url.adSlideTitle}
-                      </ResponsiveText>
+                      </ResponsiveText> */}
                     </ImageBackground>
                   </View>
                 </TouchableOpacity>

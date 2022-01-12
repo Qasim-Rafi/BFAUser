@@ -4,6 +4,7 @@ import {
   Image,
   ScrollView,
   StyleSheet,
+  Text,
   View,
   ImageBackground,
 } from 'react-native';
@@ -84,13 +85,26 @@ const EveryOneFavourite = props => {
                             justifyContent: 'flex-end',
                           }}
                           source={{ uri: url.fullPath }}>
+                          <Rating
+                            tintColor={'rgba(0, 0, 0, 0.8)'}
+                            size={2}
+                            imageSize={10}
+                            // tintColor={'transparent'}
+                            style={{ paddingVertical: 10, alignSelf: 'flex-start' }}
+                          />
+                          <Text
+                            style={{
+                              color: 'white', padding: 3,
+                              backgroundColor: 'black', borderRadius: 7,
+                              textAlign: 'center', fontWeight: '600', fontSize: 8.5
+                            }}
 
-                          <ResponsiveText
-                            fontFamily="Regular"
-                            size={3}
-                            color={colors.yellow}>
+                          >
                             {url.dishName}
-                          </ResponsiveText>
+
+
+                          </Text>
+
                           {/* <ResponsiveText
                       fontFamily="Light"
                       size={2.5}
@@ -99,13 +113,7 @@ const EveryOneFavourite = props => {
                       Special sushi
                     </ResponsiveText> */}
 
-                          <Rating
-                            tintColor={'rgba(0, 0, 0, 0.8)'}
-                            size={2}
-                            imageSize={10}
-                            // tintColor={'transparent'}
-                            style={{ paddingVertical: 10, alignSelf: 'flex-start' }}
-                          />
+
                         </ImageBackground>
                       </View>
                     </TouchableOpacity>

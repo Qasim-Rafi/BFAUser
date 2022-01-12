@@ -4,6 +4,7 @@ import {
   ScrollView,
   StyleSheet,
   View,
+  Text,
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
@@ -85,13 +86,24 @@ const WhatsNew = props => {
                       backgroundColor: 'rgba(0,0,0,1)',
                     }}
                     source={{ uri: url.imageDataB }}>
-                    <ResponsiveText
+                    <Text
+                      style={{
+                        color: 'white', padding: 3,
+                        backgroundColor: 'black', borderRadius: 7,
+                        textAlign: 'center', fontWeight: '600', fontSize: 8.5
+                      }}
+
+                    >
+                      {url.titleD}
+
+
+                    </Text>
+                    {/* <ResponsiveText
                       fontFamily="Regular"
                       size={3}
                       margin={[0, 0, -5, 0]}
-                      color={colors.yellow}>
-                      {url.titleD}
-                    </ResponsiveText>
+                      color={colors.white}>
+                    </ResponsiveText> */}
                     {/* <ResponsiveText fontFamily="Light" size={2.5} color={colors.white}>{url.description}</ResponsiveText> */}
                   </ImageBackground>
                 </View>

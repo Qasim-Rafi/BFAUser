@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Image,
   ScrollView,
+  Text,
   StyleSheet,
   View,
   ImageBackground,
@@ -20,6 +21,7 @@ import { globalPath } from '../../../../constants/globalPath';
 import { colors } from '../../../../constants/colorsPallet';
 import SeeAllButton from '../../../../components/SeeAllButton';
 import { hp, wp } from '../../../../helpers/Responsiveness';
+import { color } from 'react-native-reanimated';
 const YourFavourite = props => {
   const favData = useSelector(state => state.appReducers.favorite.data,)
   const dispatch = useDispatch();
@@ -56,7 +58,7 @@ const YourFavourite = props => {
             <ResponsiveText
               size={3.2}
               margin={[0, 10, 0, 0]}
-              color={colors.yellow}>
+              color={colors.white}>
               Show All
             </ResponsiveText>
             <Icon
@@ -102,19 +104,28 @@ const YourFavourite = props => {
                         justifyContent: 'flex-end',
                       }}
                       source={{ uri: url.imageDataB }}>
-                      <ResponsiveText
-                        fontFamily="Regular"
-                        size={3}
-                        color={colors.yellow}>
-                        {url.titleA}
-                      </ResponsiveText>
-                      <ResponsiveText
-                        fontFamily="Light"
-                        size={2.5}
-                        margin={[-5, 0, 0, 0]}
-                        color={colors.yellow}>
-                        {url.titleR}
-                      </ResponsiveText>
+                      <View style={{ backgroundColor: color.black1 }}>
+
+                        {/* <ResponsiveText
+                          fontFamily="Regular"
+                          size={3}
+                          color={colors.white}>
+                          {url.titleD}
+                        </ResponsiveText>
+                      </View> */}
+                      </View>
+                      <Text
+                        style={{
+                          color: 'white', padding: 3,
+                          backgroundColor: 'black', borderRadius: 7,
+                          textAlign: 'center', fontWeight: '600', fontSize: 8.5
+                        }}
+
+                      >
+                        {url.titleD}
+                      </Text>
+
+
                     </ImageBackground>
                   </View>
                 </TouchableOpacity>
