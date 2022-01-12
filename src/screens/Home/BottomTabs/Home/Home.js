@@ -118,7 +118,7 @@ const Home = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ScrollView
-        style={{ flex: 1 }}
+        style={{ flex: 1 ,width:'100%'}}
       // showsVerticalScrollIndicator={false}
       // contentContainerStyle={{ flex: 1 }}
       // refreshControl={

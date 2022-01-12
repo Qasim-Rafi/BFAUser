@@ -32,7 +32,7 @@ const Header = ({
           justifyContent: props.iconPath ? undefined : 'center',
         },
       ]}>
-      <TouchableOpacity
+      <TouchableOpacity 
         onPress={() => {
           props.iconPath ? navigation.goBack() : navigation.navigate(routeName.WALLET);
         }}

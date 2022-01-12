@@ -4,6 +4,7 @@ import {
   ScrollView,
   StyleSheet,
   View,
+  Text,
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
@@ -112,14 +113,27 @@ const AllCuisines = props => {
                           backgroundColor: 'rgba(0,0,0,1)',
                         }}
                         source={{ uri: item.fullPath }}>
+
                         {/* source={require('../../../../assets/fake_Images/japanese.png')}> */}
-                        <ResponsiveText
+                        <Text
+                          style={{
+                            color: 'white', padding: 3,
+                            backgroundColor: 'black', borderRadius: 7,
+                            textAlign: 'center', fontWeight: '600', fontSize: 8.5
+                          }}
+
+                        >
+                          {item.name}
+
+                        </Text>
+
+                        {/* <ResponsiveText
                           fontFamily="Regular"
                           size={3}
                           margin={[0, 0, 10, 0]}
                           color={colors.white}>
                           {item.name}
-                        </ResponsiveText>
+                        </ResponsiveText> */}
                       </ImageBackground>
                     </View>
                   </TouchableOpacity>
