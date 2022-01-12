@@ -50,6 +50,7 @@ const YourFavourite = props => {
         <View style={{ marginRight: -15 }}>
 
 
+
           <View style={{ marginRight: -15 }}>
             <SeeAllButton
               title={"PG's Favourites"}

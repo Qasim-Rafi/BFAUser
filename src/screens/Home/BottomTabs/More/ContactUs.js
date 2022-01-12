@@ -16,9 +16,9 @@ export default function ContactUs({navigation}) {
 
             <View style={{flex:0.9,}}>
                 <ResponsiveText size={4} color={colors.yellow} margin={[20,20,5,20]} >Contact Us</ResponsiveText>
-                <ResponsiveText size={3} color={colors.grey} margin={[0,20,10,20]} >We would love to respond to your queries and help succeed feel free to get in touch with us.</ResponsiveText>
+                <ResponsiveText size={3} color={colors.grey} margin={[0,20,10,20]} >We would love to respond to your queries and help succeed. Feel free to get in touch with us.</ResponsiveText>
                 
-                <View style={{marginTop:10,}}>
+                {/* <View style={{marginTop:10,}}>
 			        <ResponsiveText color={colors.grey1} size={3} margin={[0,20,0,20]}>Topic / Issue</ResponsiveText>
                     <View style={{backgroundColor:colors.black1, 
                         height:hp(6), width:wp(90),alignSelf:'center',
@@ -33,7 +33,40 @@ export default function ContactUs({navigation}) {
 		                borderRadius:7, flexDirection:'row'}}>
 		                <TextInput placeholderTextColor={colors.white} style={{marginStart:20,color:colors.white, width:wp(40)}}/>			
 		            </View>
+		        </View> */}
+                <View style={{marginTop:10,}}>
+			        <ResponsiveText color={colors.grey1} size={3} margin={[0,20,0,20]}>Phone: </ResponsiveText>
+                    <View style={{backgroundColor:colors.black1, 
+                        height:hp(6), width:wp(90),alignSelf:'center',
+		                borderRadius:7, flexDirection:'row'}}>	
+                        <ResponsiveText color={colors.white} size={5.5} margin={[10,20,10,20]}>+673 223 4011</ResponsiveText>
+		            </View>
 		        </View>
+                <View style={{marginTop:10,}}>
+			        <ResponsiveText color={colors.grey1} size={3} margin={[0,20,0,20]}>Email: </ResponsiveText>
+                    <View style={{backgroundColor:colors.black1, 
+                        height:hp(6), width:wp(90),alignSelf:'center',
+		                borderRadius:7, flexDirection:'row'}}>	
+                        <ResponsiveText color={colors.white} size={5.5} margin={[10,20,10,20]}>excapadebrunei@gmail.com</ResponsiveText>
+		            </View>
+		        </View>
+                <View style={{marginTop:10,}}>
+			        <ResponsiveText color={colors.grey1} size={3} margin={[0,20,0,20]}>Website: </ResponsiveText>
+                    <View style={{backgroundColor:colors.black1, 
+                        height:hp(6), width:wp(90),alignSelf:'center',
+		                borderRadius:7, flexDirection:'row'}}>	
+                        <ResponsiveText color={colors.white} size={5.5} margin={[10,20,10,20]}>excapade.com</ResponsiveText>
+		            </View>
+		        </View>
+                <View style={{marginTop:10,}}>
+			        <ResponsiveText color={colors.grey1} size={3} margin={[0,20,0,20]}>Address: </ResponsiveText>
+                    <View style={{backgroundColor:colors.black1, 
+                        height:hp(7.5), width:wp(90),alignSelf:'center',
+		                borderRadius:7, flexDirection:'row'}}>	
+                        <ResponsiveText color={colors.white} size={4} margin={[10,20,10,20]}>Regent Square, Kiulap 2, Bandar Seri Begawan, Brunei</ResponsiveText>
+		            </View>
+		        </View>
+                
                 <View style={{justifyContent:'flex-end', flex:1}}></View>
                 <TouchableOpacity
           onPress={() => {
@@ -50,7 +83,7 @@ export default function ContactUs({navigation}) {
             backgroundColor: colors.yellow,
           }}>
           <ResponsiveText color={colors.black} size={3.5}>
-            Send Message
+            Done
           </ResponsiveText>
         </TouchableOpacity>
             </View>
