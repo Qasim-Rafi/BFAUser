@@ -49,26 +49,7 @@ const YourFavourite = props => {
         </ResponsiveText>
         <View style={{ marginRight: -15 }}>
 
-          <TouchableOpacity
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              paddingLeft: 10,
-            }}
-          >
-            <ResponsiveText
-              size={3.2}
-              margin={[0, 10, 0, 0]}
-              color={colors.white}>
-              Show All
-            </ResponsiveText>
-            <Icon
-              size={(wp(1.6), hp(1.6))}
-              margin={[0, 10, 0, 0]}
-              source={globalPath.RIGHT_ARROW}
-            />
-          </TouchableOpacity>
+
           <View style={{ marginRight: -15 }}>
             <SeeAllButton
               title={"PG's Favourites"}
