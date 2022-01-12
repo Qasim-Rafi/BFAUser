@@ -56,7 +56,7 @@ const More = ({ route, navigation }) => {
 
         <View style={{ flex: 0.05, backgroundColor: colors.yellow, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', paddingTop: 10 }} >
           <View style={{ flexDirection: 'row', justifyContent: "space-between", flex: .97 }}>
-            <TouchableOpacity style={{ height: hp(4), padding: 9, borderRadius: 5 }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
+            <TouchableOpacity style={{ height: hp(4), padding: 9, borderRadius: 5, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
           </View>
           <TouchableOpacity onPress={logout}>
 
