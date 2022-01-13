@@ -12,6 +12,7 @@ import RnButton from '../../../components/RnButton'
 import ResponsiveText from '../../../components/RnText'
 import { routeName } from '../../../constants/routeName'
 import { Cart_Details } from '../../../constants/mock'
+import { advertisementBannerFakeDATA, ourRecommendationFakeDATA } from '../../../constants/mock'
 
 
 export default function DishDetails({ route, navigation }) {
@@ -20,17 +21,20 @@ export default function DishDetails({ route, navigation }) {
     React.useEffect(() => {
         addDish(route.params.dish);
         console.log('detail dataaaaaaa', route.params)
-    })
+    }, [])
 
-
+    const MoreFrom = (data) => {
+        console.log("More Fromm", data)
+        addDish(data)
+    }
 
     return (
 
         <ScrollView style={{ backgroundColor: colors.black3 }}>
             <View style={styles.headerImage}>
-                <ImageHeader navigation={navigation} img={dish.imageDataB} />
+                <ImageHeader navigation={navigation} img={dish.imageDataB} img2={dish.images} />
             </View>
-            <DishDescription item={route.params.dish} />
+            <DishDescription item={dish} />
             <View style={{ margin: 20, paddingBottom: 20 }}>
 
 
@@ -47,7 +51,7 @@ export default function DishDetails({ route, navigation }) {
             {showCalories ? <CalorieCount /> : null}
             {/* we have to get a parameter from the api for the restaurant to set <CalorieCount/> if that restaurant wants to show it  */}
             <View style={{ marginLeft: 20, marginVertical: 10 }} >
-                <MoreFromResturant navigation={navigation} />
+                <MoreFromResturant navigation={navigation} item={MoreFrom} />
                 <PeopleSay />
             </View>
 

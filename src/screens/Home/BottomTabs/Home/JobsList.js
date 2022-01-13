@@ -107,7 +107,7 @@ const JobsList = props => {
                       {/* source={{uri: url.fullPath}}> */}
                       <Text
                         style={{
-                          color: 'white', padding: 3,
+                          color: 'white', padding: 3, opacity: 0.7,
                           backgroundColor: 'black', borderRadius: 7,
                           textAlign: 'center', fontWeight: '600', fontSize: 8.5
                         }}

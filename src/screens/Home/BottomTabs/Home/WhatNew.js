@@ -20,7 +20,7 @@ import {
   getPromotions,
   getBruneiFoodRewards,
   getBfaPartners,
-  AddOrder,whatsNew,
+  AddOrder, whatsNew,
   getFavorite,
   getAddBannerData,
   getBfaRecommendations,
@@ -39,7 +39,7 @@ const WhatsNew = props => {
           What's New
         </ResponsiveText>
         <View style={{ marginRight: -10 }}>
-          
+
           <SeeAllButton
             title={"What's New"}
             data={NewData}
@@ -77,7 +77,19 @@ const WhatsNew = props => {
                     source={{ uri: url.imageDataB }}>
                     <Text
                       style={{
-                        color: 'white', padding: 3,
+                        color: 'white', padding: 3, opacity: 0.7,
+                        backgroundColor: 'black', borderRadius: 7,
+                        textAlign: 'center', fontWeight: '600', fontSize: 8.5
+                      }}
+
+                    >
+                      {url.titleR}
+
+
+                    </Text>
+                    <Text
+                      style={{
+                        color: 'white', padding: 3, marginTop: 1, opacity: 0.7,
                         backgroundColor: 'black', borderRadius: 7,
                         textAlign: 'center', fontWeight: '600', fontSize: 8.5
                       }}
