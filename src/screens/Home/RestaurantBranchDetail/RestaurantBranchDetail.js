@@ -21,22 +21,34 @@ import Info from './Info';
 import Menu from '../Menu/Menu';
 import BranchesDetail from './Branches';
 import PromosBanner from '../BottomTabs/Promos/PromoBanner';
-import { colors } from '../../../constants/colorsPallet';
+import {colors} from '../../../constants/colorsPallet';
 import AwardsDetail from './AwardsDetail';
 import MenuTabs from '../Menu/MenuTabs';
+import {getRestaurentDeatil} from '../../../redux/actions/user.actions';
+import {useDispatch, useSelector} from 'react-redux';
 
-
-export default function RestaurantBranchDetailScreen({navigation,route}) {
+export default function RestaurantBranchDetailScreen({navigation, route}) {
   const [activeTab, setActiveTab] = React.useState(MenuSectionButtons[0].id);
   // const [activeTab, setActiveTab] = React.useState(myListingTabs[3].id);
-console.log('routeetetteetet',route.params)
+  const dispatch = useDispatch();
+  const data = useSelector(state => state.appReducers.restaurantDetail.data);
+  React.useEffect(() => {
+    dispatch(getRestaurentDeatil(route.params.restaurantId));
+  }, []);
+  console.log('routeetetteetet vhvhh', data);
   return (
     <View style={{backgroundColor: colors.black3}}>
       <View style={styles.headerImage}>
         <ImageHeader navigation={navigation} />
       </View>
       <View>
-        <View style={{flexDirection:'row',padding:10, justifyContent: 'space-between', backgroundColor:colors.black2}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            padding: 10,
+            justifyContent: 'space-between',
+            backgroundColor: colors.black2,
+          }}>
           {BranchDetailButtons.map((items, index) => {
             return (
               <React.Fragment key={items.id}>
@@ -45,7 +57,6 @@ console.log('routeetetteetet',route.params)
                   style={[
                     styles.buttonView,
                     {
-                      
                       backgroundColor:
                         items.id === activeTab ? colors.yellow : colors.grey,
                     },
@@ -61,15 +72,17 @@ console.log('routeetetteetet',route.params)
           })}
         </View>
       </View>
-          
-      <View style={{height:hp(70), paddingHorizontal:20, paddingVertical:10,}}>
-        {activeTab === 1 && <Info />}
-        {activeTab === 2 && <PromosBanner/>}
-        {activeTab === 3 && <Menu navigation={navigation} />}
-        {activeTab === 4 && <BranchesDetail  navigation={navigation}/>}
-        {/* {activeTab === 5 && <AwardsDetail  navigation={navigation}/>} */}
+      {data.length > 0 ? (
+        <View
+          style={{height: hp(70), paddingHorizontal: 20, paddingVertical: 10}}>
+          {activeTab === 1 && <Info data={data[0]} />}
+          {activeTab === 2 && <PromosBanner />}
+          {activeTab === 3 && <Menu navigation={navigation} />}
+          {activeTab === 4 && <BranchesDetail navigation={navigation} />}
+          {/* {activeTab === 5 && <AwardsDetail  navigation={navigation}/>} */}
+        </View>
+      ) : null}
     </View>
-      </View>
   );
 }
 const styles = StyleSheet.create({

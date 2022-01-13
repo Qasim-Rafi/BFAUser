@@ -179,7 +179,12 @@ export const whatsNew = (data) => {
     data,
   };
 };
-
+export const getRestaurentDeatil = (data) => {
+  return {
+    type: types.GET_RESTAURENT_DETAIL_REQUEST,
+    data,
+  };
+};
 // //Get User categories actions
 // export const getUserCategories = (params) => {
 //   return {
