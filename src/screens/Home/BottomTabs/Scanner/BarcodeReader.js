@@ -36,6 +36,11 @@ const BarcodeReader = ({navigation})=> {
         setScan(false)
         
       }
+      
+      const onReset = () => {
+        setResult()
+        setScan(true)
+  }
     
      
 
@@ -52,6 +57,25 @@ const BarcodeReader = ({navigation})=> {
                 { result &&
                   <View style={{alignItems:'flex-start', margin:30}}>
                     <ResponsiveText color={colors.white} size={3.5} >{result}</ResponsiveText>
+                    <TouchableOpacity
+                      onPress={() => {
+                          onReset()
+                      }}
+                      style={{
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        width: wp(60),
+                        marginBottom:40,
+                        marginTop:20,
+                        height: hp(4),
+                        alignSelf: 'center',
+                        borderRadius: 7,
+                        backgroundColor: colors.yellow,
+                      }}>
+                      <ResponsiveText color={colors.black} size={3.5}>
+                        Reset
+                      </ResponsiveText>
+                    </TouchableOpacity>
                   </View>
                 }
             
