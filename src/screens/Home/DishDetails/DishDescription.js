@@ -28,10 +28,10 @@ import { useNavigation } from '@react-navigation/native';
 export default function DishDescription(props) {
   const dispatch = useDispatch();
   const favData = useSelector(state => state.appReducers.favorite.data);
-  
+
   const navigation = useNavigation()
 
-  // console.log(removefavorite,'hhh')
+  console.log(props.item, 'itemmmpropsss')
   return (
     <View>
       <View>
@@ -90,16 +90,16 @@ export default function DishDescription(props) {
             Favourite
           </ResponsiveText>
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>navigation.navigate(routeName.MAP_VIEW)}>
-          <View style={{alignItems: 'center'}}>
+        <TouchableOpacity onPress={() => navigation.navigate(routeName.MAP_VIEW)}>
+          <View style={{ alignItems: 'center' }}>
             <Icon source={globalPath.LOCATION} />
             <ResponsiveText top={5} color={colors.yellow}>
               Go To
             </ResponsiveText>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>navigation.navigate(routeName.CONTACT_US)} >
-          <View style={{alignItems: 'center'}}>
+        <TouchableOpacity onPress={() => navigation.navigate(routeName.CONTACT_US)} >
+          <View style={{ alignItems: 'center' }}>
             <Icon source={globalPath.CONTACT} />
             <ResponsiveText top={5} color={colors.yellow}>
               Contact
@@ -124,7 +124,7 @@ export default function DishDescription(props) {
           fontFamily="Regular"
           size={3.5}
           color={colors.grey}>
-         {props.item.description}
+          {props.item.description}
         </ResponsiveText>
       </View>
     </View>

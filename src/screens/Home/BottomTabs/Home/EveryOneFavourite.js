@@ -87,23 +87,23 @@ const EveryOneFavourite = props => {
                           source={{ uri: url.fullPath }}>
                           <Rating
                             tintColor={'rgba(0, 0, 0, 0.8)'}
-                            size={2}
-                            imageSize={10}
+                            imageSize={13}
                             // tintColor={'transparent'}
                             style={{ paddingVertical: 10, alignSelf: 'flex-start' }}
                           />
                           <Text
                             style={{
-                              color: 'white', padding: 3,
+                              color: 'white', padding: 3, opacity: 0.7,
                               backgroundColor: 'black', borderRadius: 7,
                               textAlign: 'center', fontWeight: '600', fontSize: 8.5
                             }}
 
                           >
-                            {url.dishName}
+                            {url.titleD}
 
 
                           </Text>
+
 
                           {/* <ResponsiveText
                       fontFamily="Light"
