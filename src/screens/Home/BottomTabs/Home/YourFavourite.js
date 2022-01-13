@@ -97,21 +97,26 @@ const YourFavourite = props => {
                       </View>
                       <View style={{ backgroundColor: color.black1 }}>
 
-                        {/* <ResponsiveText
-                          fontFamily="Regular"
-                          size={3}
-                          color={colors.white}>
-                          {url.titleD}
-                        </ResponsiveText>
-                      </View> */}
+                        <Text
+                          style={{
+                            opacity: 0.7,
+                            color: 'white', padding: 3,
+                            backgroundColor: 'black', borderRadius: 7,
+                            textAlign: 'center', fontWeight: '800', fontSize: 9
+                          }}
+
+                        >
+                          {url.titleR}
+                        </Text>
                       </View>
                       <Text
                         style={{
+                          marginTop: 1,
+                          opacity: 0.7,
                           color: 'white', padding: 3,
                           backgroundColor: 'black', borderRadius: 7,
-                          textAlign: 'center', fontWeight: '600', fontSize: 8.5
+                          textAlign: 'center', fontWeight: '900', fontSize: 9
                         }}
-
                       >
                         {url.titleD}
                       </Text>

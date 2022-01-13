@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {FacilityList} from '../../../components/Facility';
 import Icon from '../../../components/Icon';
@@ -12,10 +12,12 @@ import TimeTable from './TimeTable';
 import Restaurant_Description from './ResturantDesceiption';
 import { colors } from '../../../constants/colorsPallet';
 
-const Info = () => {
+const Info = (props) => {
+  const [data,setData]=useState(props.data)
+  console.log('okokoko',props.data)
   return (
     <ScrollView>
-    <Restaurant_Description/>
+    <Restaurant_Description data={data}/>
     <View>
       <View style={{marginHorizontal:20, marginVertical:10}}>
         <ResponsiveText size={4} color={colors.white} >Facilities</ResponsiveText>

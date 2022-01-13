@@ -3,6 +3,8 @@ import {View, Text, StyleSheet} from 'react-native';
 import Map, {PROVIDER_GOOGLE, Marker, Polyline} from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 
 const StaticMap = (props) => {
+  const [data,setData]=React.useState(props.data)
+
   return (
     <View
       style={{borderRadius: 10, overflow: 'hidden'}}>
@@ -13,12 +15,12 @@ const StaticMap = (props) => {
         //   zoomEnabled={false}
         rotateEnabled={false}
         region={{
-          latitude: 4.5353,
-          longitude: 114.7277,
+          latitude:parseFloat(data.latitude) ,
+          longitude: parseFloat(data.longitude),
           latitudeDelta: 0.9,
           longitudeDelta: 0.0121,
         }}>
-        <Marker coordinate={{latitude: 4.5353, longitude: 114.7277}} />
+        <Marker coordinate={{latitude: parseFloat(data.latitude), longitude:parseFloat(data.longitude)}} />
       </Map>
     </View>
   );
