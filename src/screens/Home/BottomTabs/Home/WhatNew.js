@@ -77,15 +77,15 @@ const WhatsNew = props => {
                     source={{ uri: url.imageDataB }}>
                     <Text
                       style={{
-                        color: 'white', padding: 3, opacity: 0.7,
-                        backgroundColor: 'black', borderRadius: 7,
+                        opacity: 0.7,
+                        marginTop: 1,
+                        color: 'white', padding: 3,
+                        backgroundColor: '#383131', borderRadius: 7,
                         textAlign: 'center', fontWeight: '600', fontSize: 8.5
                       }}
 
                     >
                       {url.titleR}
-
-
                     </Text>
                     <Text
                       style={{
