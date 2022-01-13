@@ -36,12 +36,12 @@ const Promotion = props => {
         </ResponsiveText>
         <View style={{ marginRight: -10 }}>
 
-          <SeeAllButton
+          {/* <SeeAllButton
             title={"Promotions"}
             data={Promotions}
-            action={getPromotions}
-            navigation={props.navigation}
-          />
+           // action={getPromotions}
+           // navigation={props.navigation}
+          /> */}
         </View>
       </View>
       <View style={styles.everyOneFavoriteItemsSection}>
