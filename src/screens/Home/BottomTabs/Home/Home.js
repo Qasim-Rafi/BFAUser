@@ -69,20 +69,20 @@ const Home = ({ navigation }) => {
     setRefreshing(true);
     wait(6000).then(() => setRefreshing(false));
 
-    // dispatch(getBfaPartners(6));
-    dispatch(getPromotions());
+    // // dispatch(getBfaPartners(6));
+    // dispatch(getPromotions());
 
-    dispatch(
-      getUserCusine({
-        navigation: navigation,
-      }),
-    );
-    dispatch(getAddBannerData());
-    // dispatch(awardsRestaurant());
-    dispatch(getPromoNewsData());
-    // dispatch(getPromoJobsData());
-    dispatch(getBfaRecommendations());
-    dispatch(getBruneiFoodRewards());
+    // dispatch(
+    //   getUserCusine({
+    //     navigation: navigation,
+    //   }),
+    // );
+    // dispatch(getAddBannerData());
+    // // dispatch(awardsRestaurant());
+    // dispatch(getPromoNewsData());
+    // // dispatch(getPromoJobsData());
+    // dispatch(getBfaRecommendations());
+    // dispatch(getBruneiFoodRewards());
   }, []);
 
   // console.log('loading', loading);
@@ -119,16 +119,16 @@ const Home = ({ navigation }) => {
     <View style={styles.container}>
       <ScrollView
         style={{ flex: 1 ,width:'100%'}}
-      showsVerticalScrollIndicator={false}
-      //  contentContainerStyle={{ flex: 1 }}
-      refreshControl={
-        <RefreshControl
-          colors={Colors.yellow}
-          size={30}
-          refreshing={refreshing}
-          onRefresh={onRefresh}
-        />
-      }
+      // showsVerticalScrollIndicator={false}
+      // contentContainerStyle={{ flex: 1 }}
+      // refreshControl={
+      //   <RefreshControl
+      //     colors={Colors.yellow}
+      //     size={30}
+      //     refreshing={refreshing}
+      //     onRefresh={onRefresh}
+      //   />
+      // }
       >
         <View style={styles.advertisementBanner}>
           <AdvertisementBanner navigation={navigation} />

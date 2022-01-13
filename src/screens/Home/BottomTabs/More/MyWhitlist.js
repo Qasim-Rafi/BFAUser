@@ -7,6 +7,7 @@ import {
   Platform,
   TouchableOpacity
 } from 'react-native';
+import Icon from '../../../../components/Icon';
 import { hp,wp } from '../../../../helpers/Responsiveness';
 import ResponsiveText from '../../../../components/RnText';
 import { colors } from '../../../../constants/colorsPallet';
@@ -26,9 +27,12 @@ export default function MyWhitelist({navigation}) {
       
       style={styles.container}>
       <View style={styles.container}>
-        <View style={{flex:0.1, justifyContent:'center', backgroundColor:colors.black2}}>
+      <View style={{ flexDirection: 'row', justifyContent: "space-between",padding:7 }}>
+            <TouchableOpacity style={{ backgroundColor:colors.yellow1,paddingVertical:10,paddingHorizontal:10,borderRadius:20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
+          </View>
+        {/* <View style={{flex:0.1, justifyContent:'center', backgroundColor:colors.black2}}>
             <Header iconPath={globalPath.BACK_ARROW} navigation={navigation} />
-        </View>
+        </View> */}
         <View style={{flex:0.09, flexDirection:'row', marginTop:-10}}>
 
              {favouriteTabs.map((items, index) => {
@@ -89,7 +93,7 @@ export default function MyWhitelist({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.yellow,
+    backgroundColor: colors.black3,
     // height: hp(120),
     // justifyContent: 'center',
     // alignItems: 'center',

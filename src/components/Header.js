@@ -42,7 +42,6 @@ const Header = ({
           // backgroundColor:props.iconPath ? colors.black1: undefined,
           justifyContent: 'center',
           alignItems: 'center',
-
           borderRadius: 10,
           marginEnd: 5,
         }}>

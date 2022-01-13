@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView,TouchableOpacity } from 'react-native'
 import Header from '../../../../components/Header'
 import Icon from '../../../../components/Icon'
 import ResponsiveText from '../../../../components/RnText'
@@ -12,9 +12,9 @@ import { MY_REVIEWS_DATA } from '../../../../constants/mock'
 export default function MyReviews({navigation}) {
     return (
         <View style={{ flex:1, backgroundColor:colors.black3}}>
-        <View style={{ flex:0.1, backgroundColor:colors.black2, justifyContent:'center'}}>
-            <Header iconPath={globalPath.BACK_ARROW} navigation={navigation} />
-        </View>
+        <View style={{ flexDirection: 'row', justifyContent: "space-between",padding:7 }}>
+            <TouchableOpacity style={{ backgroundColor:colors.yellow1,paddingVertical:10,paddingHorizontal:10,borderRadius:20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
+          </View>
         <View style={{flex:0.9}}>
             <ScrollView>
             <ResponsiveText margin={[30,20,20,20]} size={4} color={colors.yellow} >My Reviews</ResponsiveText>

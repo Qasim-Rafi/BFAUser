@@ -18,9 +18,9 @@ const JobListing = ({ navigation }) => {
 
     return (
         <View style={{ flex: 1, backgroundColor: colors.black3 }}>
-            <View style={{ flex: 0.1, justifyContent: 'center', backgroundColor: colors.black2 }}>
-                <Header iconPath={globalPath.BACK_ARROW} navigation={navigation} />
-            </View>
+           <View style={{ flexDirection: 'row', justifyContent: "space-between",padding:7 }}>
+            <TouchableOpacity style={{ backgroundColor:colors.yellow1,paddingVertical:10,paddingHorizontal:10,borderRadius:20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
+          </View>
             <View style={{ flex: 0.9, paddingHorizontal: 20 }}>
                 <ResponsiveText size={4} margin={[20, 20, 10, 0]} color={colors.yellow}>Jobs Listing</ResponsiveText>
                 {JobsList.map((item, index) => {

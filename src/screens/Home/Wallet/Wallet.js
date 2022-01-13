@@ -28,7 +28,9 @@ import { routeName } from '../../../constants/routeName'
 import bCoin from '../../../assets/icons/bcoin_logo.png'
 import bCoinBlack from '../../../assets/icons/bcoin_black.png'
 import bCent from '../../../assets/icons/bcent_black.png'
+import bArrow from '../../../assets/icons/back-arrow.png'
 import { hp, wp } from '../../../helpers/Responsiveness'
+
 
 const Wallet = (props) => {
 
@@ -43,25 +45,29 @@ const Wallet = (props) => {
     const [number, setNumber] = useState(0)
     const [modalVisible, setModalVisible] = useState(false)
 
-    useEffect(() => {
-        navigation.setOptions({
-            headerShown: true,
-            headerStyle: {
-                backgroundColor: colors.black3,
-                alignItems: 'center'
-            },
-            headerTitleAlign: 'center',
-            headerTintColor: '#fff'
-        })
-    }, [])
+    // useEffect(() => {
+    //     navigation.setOptions({
+    //         headerShown: true,
+    //         headerStyle: {
+    //             backgroundColor: colors.yellow,
+    //             colors:'red',
+    //             alignItems: 'center',  
+    //         },
+    //         headerTitleAlign: 'center',
+    //         headerTintColor: '#fff'
+    //     })
+    // }, [])
 
 
     return (
         <ScrollView style={{ backgroundColor: colors.black3 }} >
-
+            <View style={{  flexDirection: 'row',padding:15,backgroundColor:colors.black3,paddingVertical:15}}>
+            <TouchableOpacity style={{ backgroundColor:colors.yellow1,paddingVertical:13,paddingHorizontal:10,borderRadius:25 }} onPress={() => { navigation.goBack() }}><Image source={bArrow} style={styles.bCLogo} /></TouchableOpacity>
+                <Text style={{fontWeight:'bold',fontSize:20,color:'white',marginLeft:'33%'}}>Wallet</Text> 
+            </View>
             <View style={styles.container}>
-                <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center'}} >
-                    <Image source={bCoin} style={{height:60,width:50}} />
+                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} >
+                    <Image source={bCoin} style={{ height: 60, width: 50 }} />
                     <TextInput
                         // editable={ number===0 ? false : true }
                         style={styles.input}
@@ -132,7 +138,7 @@ const Wallet = (props) => {
                     </TouchableOpacity>
                 </View>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'center', width: '100%',marginTop:20,marginBottom:20 }} >
+                <View style={{ flexDirection: 'row', justifyContent: 'center', width: '100%', marginTop: 20, marginBottom: 20 }} >
                     <TouchableOpacity onPress={() => setNumber(parseFloat(number) + 0.01)} >
                         <Image source={_1BCent} style={styles.bCents} />
                     </TouchableOpacity>
@@ -151,7 +157,7 @@ const Wallet = (props) => {
                 </View>
 
                 <Text style={{ color: 'white', fontSize: 19 }}>Your Bcoin Balance is:</Text>
-                <Text style={{ color: 'white', fontSize: 70 }} ><Image source={bCoin} style={{height:60,width:50}} />{typeof(comingAmount) === 'undefined' ? 0 : parseFloat(walletAmount + comingAmount)}</Text>
+                <Text style={{ color: 'white', fontSize: 70 }} ><Image source={bCoin} style={{ height: 60, width: 50 }} />{typeof (comingAmount) === 'undefined' ? 0 : parseFloat(walletAmount + comingAmount)}</Text>
 
                 <Modal
                     animationType="slide"
@@ -227,7 +233,7 @@ const Wallet = (props) => {
 
 
                             <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} >
-                                <View style={{ height: 30, width: 200, backgroundColor: colors.yellow1, alignItems: 'center', justifyContent: 'center', borderRadius: 7, margin: 5,borderWidth:0.5,borderColor:colors.black1 }} >
+                                <View style={{ height: 30, width: 200, backgroundColor: colors.yellow1, alignItems: 'center', justifyContent: 'center', borderRadius: 7, margin: 5, borderWidth: 0.5, borderColor: colors.black1 }} >
                                     <Text>Close</Text>
                                 </View>
                             </TouchableOpacity>
@@ -244,15 +250,15 @@ const Wallet = (props) => {
 export default Wallet
 
 const styles = StyleSheet.create({
-    bCents:{
-        marginHorizontal: 3, 
-        height: hp(8.4), 
+    bCents: {
+        marginHorizontal: 3,
+        height: hp(8.4),
         width: wp(17),
     },
-    bCLogo:{
-        marginHorizontal: 3, 
-        height: hp(1.7), 
-        width: wp(2.5)
+    bCLogo: {
+        // marginHorizontal: 3,
+        height: hp(2.2),
+        width: wp(6)
     },
     container: {
         flex: 1,
@@ -299,7 +305,7 @@ const styles = StyleSheet.create({
     },
     input: {
         // height: 40,
-        color: colors.white ,
+        color: colors.white,
         fontSize: 70,
         marginBottom: 18,
         // borderWidth: 1,
@@ -326,7 +332,7 @@ const styles = StyleSheet.create({
         width: '60%',
         borderWidth: 1,
         borderColor: colors.black1,
-        alignSelf:'center'
+        alignSelf: 'center'
     },
     tableModal: {
         flexDirection: 'row',
