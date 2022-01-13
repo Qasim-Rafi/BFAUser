@@ -224,7 +224,7 @@ export default function Signup({ navigation }) {
             iconMargin={[0, 10, 0, 0]}
             placeholder="User Name"
             onChnageText={text => setEmail(text)}
-            leftIcon={globalPath.EMAIL_LOGO}
+            leftIcon={globalPath.MALE_LOGO}
           />
           <Input
             padding={[0, 0, 0, 25]}
@@ -269,7 +269,7 @@ export default function Signup({ navigation }) {
 
               <Text style={{ fontSize: 7, position: 'absolute', zIndex: 1, top: -5, marginStart: 9 }}>
                 Date of birth
-              </Text>
+              </Text>b
               <View style={{ borderWidth: 2, zIndex: 0, borderRadius: 10 }}>
 
 
@@ -279,7 +279,7 @@ export default function Signup({ navigation }) {
                       textAlign: 'center', textAlignVertical: 'center', backgroundColor: "#3f3f3f", padding: 13,
                       borderStartWidth: 10, borderRadius: 10, paddingHorizontal: 37, paddingVertical: 16, fontSize: 10
                     }}>
-                    DD/MM/YYYY
+                    Month/Day/Year
                   </Text>
 
                 </TouchableOpacity>
