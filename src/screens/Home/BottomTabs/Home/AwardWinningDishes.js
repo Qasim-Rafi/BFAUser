@@ -96,6 +96,18 @@ const AwardWinningDishes = props => {
                       <Text
                         style={{
                           opacity: 0.7,
+                          marginTop: 1,
+                          color: 'white', padding: 3,
+                          backgroundColor: '#383131', borderRadius: 7,
+                          textAlign: 'center', fontWeight: '600', fontSize: 8.5
+                        }}
+
+                      >
+                        {url.titleA}
+                      </Text>
+                      <Text
+                        style={{
+                          opacity: 0.7,
                           color: 'white', padding: 3,
                           backgroundColor: 'black', borderRadius: 7,
                           textAlign: 'center', fontWeight: '800', fontSize: 9
@@ -104,18 +116,7 @@ const AwardWinningDishes = props => {
                       >
                         {url.titleR}
                       </Text>
-                      <Text
-                        style={{
-                          opacity: 0.7,
-                          marginTop: 1,
-                          color: 'white', padding: 3,
-                          backgroundColor: 'black', borderRadius: 7,
-                          textAlign: 'center', fontWeight: '600', fontSize: 8.5
-                        }}
 
-                      >
-                        {url.titleA}
-                      </Text>
                     </ImageBackground>
                   </View>
                 </TouchableOpacity>

@@ -40,7 +40,7 @@ import {
   UIActivityIndicator,
   WaveIndicator,
 } from 'react-native-indicators';
-export default function AllDishesList({ route, navigation}) {
+export default function AllDishesList({ route, navigation }) {
   // const data = route.params.data;
   const title = route.params.title;
   const dispatch = useDispatch();
@@ -63,7 +63,7 @@ export default function AllDishesList({ route, navigation}) {
   const loading = useSelector(
     state => state.appReducers.bfaRecommendationDetail.loading,
   );
-  const renderItem = ({ item}) => (
+  const renderItem = ({ item }) => (
     <TouchableOpacity
       style={{ marginHorizontal: 8, marginVertical: 10, flex: 1 }}
       onPress={() => navigation.navigate(routeName.DISH_DETAIL, { dish: item })}>
@@ -87,9 +87,18 @@ export default function AllDishesList({ route, navigation}) {
             backgroundColor: 'rgba(0,0,0,1)',
           }}
           source={item.url ? item.url : { uri: item.imageDataB }}>
-            { title == "PG's Favourites"? <Icon size={15} source={globalPath.F_HEART} />:null}
+          {title == "PG's Favourites" ? <Icon size={15} source={globalPath.F_HEART} /> : null}
           <View style={{ alignItems: 'flex-end' }}></View>
           <View>
+            <Text
+              style={{
+                marginTop: 1,
+                color: 'white', padding: 3, opacity: 0.7,
+                backgroundColor: '#383131', borderRadius: 7,
+                textAlign: 'center', fontWeight: '600', fontSize: 8.5
+              }}>
+              {item.titleD == undefined ? item.titleA : item.titleD}
+            </Text>
             <Text
               style={{
                 color: 'white', padding: 3, marginTop: 1, opacity: 0.7,
@@ -98,15 +107,7 @@ export default function AllDishesList({ route, navigation}) {
               }}>
               {item.titleR}
             </Text>
-            <Text
-              style={{
-                marginTop: 1,
-                color: 'white', padding: 3, opacity: 0.7,
-                backgroundColor: 'black', borderRadius: 7,
-                textAlign: 'center', fontWeight: '600', fontSize: 8.5
-              }}>
-              {item.titleD == undefined ? item.titleA : item.titleD}
-            </Text>
+
 
             {/* <ResponsiveText fontFamily="Regular" size={2} color={colors.white}>
               {item.titleR}
@@ -124,7 +125,7 @@ export default function AllDishesList({ route, navigation}) {
           justifyContent: 'center',
           backgroundColor: colors.black2,
         }}>
-        <TouchableOpacity onPress={() => { props.navigation.goBack() }} style={{ margin: 10, backgroundColor: colors.yellow1, paddingVertical: 10, alignSelf: 'flex-start', paddingHorizontal: 10, borderRadius: 25 }}>
+        <TouchableOpacity onPress={() => { navigation.goBack() }} style={{ margin: 10, backgroundColor: colors.yellow1, paddingVertical: 10, alignSelf: 'flex-start', paddingHorizontal: 10, borderRadius: 25 }}>
           <Icon source={globalPath.BACK_ARROW} />
         </TouchableOpacity>
         {/* <Header navigation={navigation} iconPath={globalPath.BACK_ARROW} /> */}

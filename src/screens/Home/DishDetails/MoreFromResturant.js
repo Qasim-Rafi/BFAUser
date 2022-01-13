@@ -27,12 +27,12 @@ const MoreFromResturant = (props) => {
                                         <Text
                                             style={{
                                                 color: 'white', padding: 3, opacity: 0.7,
-                                                backgroundColor: 'black', borderRadius: 7,
+                                                backgroundColor: '#383131', borderRadius: 7,
                                                 textAlign: 'center', fontWeight: '600', fontSize: 8.5
                                             }}
 
                                         >
-                                            {url.titleA}
+                                            {url.titleD}
 
                                         </Text>
                                         <Text
@@ -44,7 +44,7 @@ const MoreFromResturant = (props) => {
                                             }}
 
                                         >
-                                            {url.titleD}
+                                            {url.titleA}
 
                                         </Text>
 
