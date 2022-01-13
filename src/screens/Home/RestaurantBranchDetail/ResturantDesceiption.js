@@ -13,8 +13,10 @@ import { routeName } from '../../../constants/routeName';
 import { useNavigation } from '@react-navigation/native';
 
 
-export default function Restaurant_Description({}) {
+export default function Restaurant_Description(props) {
   const navigation = useNavigation()
+  const [data,setData]=React.useState(props.data)
+
   return (
     <View>
       <View>
@@ -27,13 +29,13 @@ export default function Restaurant_Description({}) {
           }}>
           <View style={styles.priceDesc}>
             <ResponsiveText size={4} color={colors.white}>
-              Excapade Sushi
+              {data.areaName}
             </ResponsiveText>
             <ResponsiveText size={3.7} color={colors.grey}>
-              Salmon Asparagus
+              {data.branchAlias}
             </ResponsiveText>
             <ResponsiveText size={4} color={colors.yellow}>
-              $10.00
+              
             </ResponsiveText>
           </View>
           <Icon
@@ -95,7 +97,7 @@ export default function Restaurant_Description({}) {
           fontFamily="Regular"
           size={3.5}
           color={colors.grey}>
-          No. G1, Ground Floor, Times Square Shopping Centre Simpang 13-29, Jalan Berakas Kg, Bandar Seri Begawan
+          {data.branchAddress}
         </ResponsiveText>
       </View>
       <View style={{paddingTop: 10,paddingLeft:20 }}>
@@ -107,7 +109,7 @@ export default function Restaurant_Description({}) {
           fontFamily="Regular"
           size={3.5}
           color={colors.grey}>
-          Brunei Muara
+          {data.districtName}
         </ResponsiveText>
       </View>
       <View style={{paddingTop: 10,paddingLeft:20 }}>
@@ -119,14 +121,14 @@ export default function Restaurant_Description({}) {
           fontFamily="Regular"
           size={3.5}
           color={colors.grey}>
-          Mall
+          {data.premiseName}
         </ResponsiveText>
       </View>
       <View style={{paddingTop: 10,paddingLeft:20 }}>
         <ResponsiveText fontFamily="Regular" size={4} color={colors.white}>
           Location On Map
         </ResponsiveText>
-      <StaticMap/>
+      <StaticMap data={data}/>
       </View>
       
       

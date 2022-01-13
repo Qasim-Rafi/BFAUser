@@ -76,6 +76,10 @@ const initialState = {
     refreshing: true,
     data: [],
   },
+  restaurantDetail: {
+    refreshing: true,
+    data: {},
+  },
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -542,6 +546,33 @@ export const appReducers = (state = initialState, action) => {
           refreshing: true,
         },
       };
+       //////GET_RESTAURENT_DETAIL_REQUEST
+
+       case types.GET_RESTAURENT_DETAIL_REQUEST:
+        return {
+          ...state,
+          restaurantDetail: {
+            ...state.restaurantDetail,
+            refreshing: true,
+          },
+        };
+      case types.GET_RESTAURENT_DETAIL_SUCCESS:
+        return {
+          ...state,
+          restaurantDetail: {
+            ...state.restaurantDetail,
+            data: action.payload,
+            refreshing: false,
+          },
+        };
+      case types.GET_RESTAURENT_DETAIL_FAILURE:
+        return {
+          ...state,
+          restaurantDetail: {
+            ...state.restaurantDetail,
+            refreshing: true,
+          },
+        };
     default:
       return state;
   }

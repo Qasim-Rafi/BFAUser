@@ -6,8 +6,30 @@ import ResponsiveText from '../../../../components/RnText';
 import {colors} from '../../../../constants/colorsPallet';
 import { globalPath } from '../../../../constants/globalPath';
 import {hp, wp} from '../../../../helpers/Responsiveness';
+import DocumentPicker from 'react-native-document-picker';
+
+// Pick a single file
+
 
 export default function Apply_Jobs({navigation}) {
+  const [file, setFile] = React.useState(null)
+  const Pickfile= async()=>{
+    try {
+      const res = await DocumentPicker.pick({
+        type: [DocumentPicker.types.allFiles],
+      });
+      console.log(
+        res
+      );
+      setFile(res[0])
+    } catch (err) {
+      if (DocumentPicker.isCancel(err)) {
+        // User cancelled the picker, exit any dialogs or menus and move on
+      } else {
+        throw err;
+      }
+    }
+  }
   return (
     <View style={styles.main_container}>
       <View style={{flex:0.1,backgroundColor:colors.black2, justifyContent:'center'}} >
@@ -68,11 +90,13 @@ export default function Apply_Jobs({navigation}) {
               style={{
                 backgroundColor: colors.black2,
                 width: wp(65),
-                height: hp(7),
-                borderRadius: 6,
+                height: hp(7),padding:5,
+                borderRadius: 6,justifyContent:'center',alignItems:'center'
               }}>
+                <ResponsiveText color={colors.white} >{file !=null?file.name:''}</ResponsiveText>
               </View>
-              <TouchableOpacity style={{backgroundColor:colors.grey,width:wp(25),alignItems:'center',justifyContent:'center', borderTopRightRadius:7, borderBottomRightRadius:7}}><ResponsiveText>Browse</ResponsiveText></TouchableOpacity>
+              <TouchableOpacity  onPress={()=>Pickfile()}
+              style={{backgroundColor:colors.grey,width:wp(25),alignItems:'center',justifyContent:'center', borderTopRightRadius:7, borderBottomRightRadius:7}}><ResponsiveText>Browse</ResponsiveText></TouchableOpacity>
           </View>
         </View>
         <View
