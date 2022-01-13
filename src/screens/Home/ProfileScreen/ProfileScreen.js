@@ -35,9 +35,9 @@ export default function ProfileScreen({navigation}) {
       <View style={styles.container}>
         <View style={styles.screeninfo}>
             <View style={{flexDirection:'row',justifyContent:"space-between",flex:.40}}> 
-                <TouchableOpacity style={{backgroundColor:colors.white,height:hp(5),padding:9,borderRadius:5}}onPress={()=>{navigation.goBack()}}><Icon source={globalPath.BACK_BLACK_ARROW}/></TouchableOpacity>
+                <TouchableOpacity style={{backgroundColor:colors.black3,height:hp(5),padding:9,borderRadius:20}}onPress={()=>{navigation.goBack()}}><Icon source={globalPath.BACK_BLACK_ARROW}/></TouchableOpacity>
                 <ResponsiveText size={4}>Profile</ResponsiveText>
-                <TouchableOpacity style={{backgroundColor:colors.white,height:hp(5),padding:9,borderRadius:5}}><Icon source={globalPath.EDIT_PROFILE}/></TouchableOpacity>
+                <TouchableOpacity style={{backgroundColor:colors.white,height:hp(5),padding:9,borderRadius:20}}><Icon source={globalPath.EDIT_PROFILE}/></TouchableOpacity>
             </View>
             <View style={{justifyContent:'center',alignItems:'center',flex:.45}}>
                 <Image style={{width:100,height:100,borderRadius:50,marginBottom:10}} source={globalPath.PROFILE_LOGO}/>

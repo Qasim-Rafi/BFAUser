@@ -1,20 +1,21 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import Icon from '../../../components/Icon';
 import CustomRadioButton from '../../../components/RadioButton';
 import ResponsiveText from '../../../components/RnText';
-import {colors} from '../../../constants/colorsPallet';
-import {globalPath} from '../../../constants/globalPath';
-import {hp, wp} from '../../../helpers/Responsiveness';
+import { colors } from '../../../constants/colorsPallet';
+import { globalPath } from '../../../constants/globalPath';
+import { hp, wp } from '../../../helpers/Responsiveness';
 import Header from '../../../components/Header';
 
-export default function Settings({navigation}) {
+export default function Settings({ navigation }) {
   const [checked, setCheck] = React.useState(true);
 
   return (
-    <View style={{flex: 1, backgroundColor: colors.black3}}>
-      {/* <Header iconPath={globalPath.BACK_ARROW} /> */}
-      <Header iconPath={globalPath.BACK_ARROW} navigation={navigation} />
+    <View style={{ flex: 1, backgroundColor: colors.black3 }}>
+      <View style={{ flexDirection: 'row', justifyContent: "space-between", padding: 7 }}>
+        <TouchableOpacity style={{ backgroundColor: colors.yellow1, paddingVertical: 10, paddingHorizontal: 10, borderRadius: 20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
+      </View>
       <View
         style={{
           flex: 0.9,
@@ -28,7 +29,7 @@ export default function Settings({navigation}) {
         <ResponsiveText color={colors.white} size={4}>
           Choose your Theme
         </ResponsiveText>
-        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <TouchableOpacity
             style={{
               backgroundColor: colors.black1,
@@ -120,7 +121,7 @@ export default function Settings({navigation}) {
             </TouchableOpacity>
           </TouchableOpacity>
         </View>
-        
+
       </View>
     </View>
   );

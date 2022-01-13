@@ -16,15 +16,9 @@ import Restaurant_Description from '../../RestaurantBranchDetail/ResturantDescei
 export default function OrderDetails({navigation}) {
   return (
     <View style={{flex: 1, backgroundColor: colors.black3}}>
-      <View
-        style={{
-          flex: 0.1,
-          backgroundColor: colors.black2,
-          justifyContent: 'center',
-          // alignItems: 'center',
-        }}>
-        <Header navigation={navigation} iconPath={globalPath.BACK_ARROW} />
-      </View>
+      <View style={{ flexDirection: 'row', justifyContent: "space-between",padding:7 }}>
+            <TouchableOpacity style={{ backgroundColor:colors.yellow1,paddingVertical:10,paddingHorizontal:10,borderRadius:20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
+          </View>
       <View
         style={{
           flex: 0.07,

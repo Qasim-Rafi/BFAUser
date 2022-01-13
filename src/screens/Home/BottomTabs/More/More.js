@@ -72,7 +72,8 @@ const More = ({ route, navigation }) => {
             flexDirection: 'row',
             paddingBottom: 20
           }}>
-          <TouchableOpacity onPress={() => navigation.navigate(routeName.PROFILE_SCREEN)} >
+          <TouchableOpacity 
+           onPress={() => navigation.navigate(routeName.PROFILE_SCREEN)} >
             <Image
               style={{
                 width: 80,
@@ -98,7 +99,7 @@ const More = ({ route, navigation }) => {
         <ScrollView style={{ flex: 0.5 }}>
           <View style={{ margin: 20, }}>
             <ResponsiveText color={colors.white} size={4} >Profile</ResponsiveText>
-            <TouchableOpacity
+            <TouchableOpacity 
               onPress={() => navigation.navigate(routeName.PROFILE_SCREEN)}
               style={{ backgroundColor: colors.black2, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, borderRadius: 7 }} >
 
@@ -107,7 +108,7 @@ const More = ({ route, navigation }) => {
                 Profile
               </ResponsiveText>
             </TouchableOpacity>
-            <TouchableOpacity
+            <TouchableOpacity 
               onPress={() => navigation.navigate(routeName.MYWHITLIST)}
               style={{ backgroundColor: colors.black2, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
               <Icon size={20} source={globalPath.HEART} />

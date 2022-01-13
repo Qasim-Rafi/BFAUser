@@ -14,9 +14,15 @@ import {wp, hp} from '../../../../helpers/Responsiveness';
 import ResponsiveText from '../../../../components/RnText';
 import { routeName } from '../../../../constants/routeName';
 import Icon from '../../../../components/Icon';
+import { getFavorite } from '../../../../redux/actions/user.actions';
+import { useSelector, useDispatch } from 'react-redux';
 
 
 export default function FavouriteDishes({navigation}) {
+
+    const favData = useSelector(state => state.appReducers.favorite.data,)
+    const dispatch = useDispatch();
+  
 
   return (
     <View style={{backgroundColor: colors.black3, flex: 1}}>
@@ -24,7 +30,7 @@ export default function FavouriteDishes({navigation}) {
           <ResponsiveText size={4} margin={[0,0,5,10]} color={colors.yellow} >Favorite Dishes</ResponsiveText>
           <View style={{ flexDirection:'row', flexWrap:'wrap', width:wp(100)}} >
           {
-            ourRecommendationFakeDATA.map((item)=>{
+            favData.map((item)=>{
               return(
 <TouchableOpacity
     style={{marginHorizontal: 8, marginVertical: 10}}
@@ -49,16 +55,16 @@ export default function FavouriteDishes({navigation}) {
           backgroundColor: 'rgba(0,0,0,1)',
 
         }}
-        source={item.url}>
+        source={{ uri: item.imageDataB }}>
         <View style={{alignItems:'flex-end'}}>
             <Icon size={15} source={globalPath.F_HEART}/>
         </View>
         <View >
           <ResponsiveText fontFamily="Regular" size={2.9} color={colors.white}>
-            Kaizen sushi
+            {item.titleR}
           </ResponsiveText>
           <ResponsiveText fontFamily="Light" size={2} color={colors.white}>
-            Special sushi
+            {item.titleD}
           </ResponsiveText>
         </View>
       </ImageBackground>

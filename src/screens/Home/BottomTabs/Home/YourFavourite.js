@@ -49,12 +49,12 @@ const YourFavourite = props => {
         </ResponsiveText>
         <View style={{ marginRight: -15 }}>
 
-            <SeeAllButton
-              title={"PG's Favourites"}
-              data={favData}
-              action={getFavorite}
-              navigation={props.navigation}
-            />
+          <SeeAllButton
+            title={"PG's Favourites"}
+            data={favData}
+            action={getFavorite}
+            navigation={props.navigation}
+          />
           {/* <SeeAllButton
             title={"PG's Favourites"}
             data={yourFavoriteFakeDATA}
@@ -92,6 +92,9 @@ const YourFavourite = props => {
                         justifyContent: 'flex-end',
                       }}
                       source={{ uri: url.imageDataB }}>
+                      <View style={{ alignItems: 'flex-end',paddingBottom:'90%',flex:1 }}>
+                        <Icon size={15} source={globalPath.F_HEART} />
+                      </View>
                       <View style={{ backgroundColor: color.black1 }}>
 
                         {/* <ResponsiveText

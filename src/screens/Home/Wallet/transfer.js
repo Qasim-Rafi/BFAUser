@@ -8,6 +8,7 @@ import { globalPath } from '../../../constants/globalPath'
 import { CARD_DATA } from '../../../constants/mock'
 import { routeName } from '../../../constants/routeName'
 import { hp, wp } from '../../../helpers/Responsiveness'
+import bArrow from '../../../assets/icons/back-arrow.png'
 import Modal from 'react-native-modal';
 
 import phoneIcon from '../../../assets/icons/phone-black.png'
@@ -22,17 +23,21 @@ const Transfer = (props) => {
     const transferAmountComing = route.params
     const transferAmount = parseFloat(transferAmountComing).toFixed(2)
 
-    navigation.setOptions({
-        headerShown: true,
-        headerStyle: {
-            backgroundColor: colors.black3,
-            alignItems: 'center',
-        },
-        headerTitleAlign: 'center',
-        headerTintColor: '#fff'
-    })
+    // navigation.setOptions({
+    //     headerShown: true,
+    //     headerStyle: {
+    //         backgroundColor: colors.black3,
+    //         alignItems: 'center',
+    //     },
+    //     headerTitleAlign: 'center',
+    //     headerTintColor: '#fff'
+    // })
     return (
         <View style={styles.container} >
+             <View style={{  flexDirection: 'row',marginLeft:10,backgroundColor:colors.black3,paddingVertical:5,alignSelf:'flex-start'}}>
+            <TouchableOpacity style={{ backgroundColor:colors.yellow1,paddingVertical:13,paddingHorizontal:10,borderRadius:25,}} onPress={() => { navigation.goBack() }}><Image source={bArrow} style={styles.bCLogo} /></TouchableOpacity>
+                <Text style={{fontWeight:'bold',fontSize:20,color:'white',marginLeft:'25%',padding:5}}>Transfer</Text> 
+            </View>
             <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                 <Text style={{ color: 'white', fontSize: 20 }} >Top-up Bcoin Balance</Text>
                 <Text style={{ color: 'white', fontSize: 70, marginTop: 50 }} >{transferAmount}</Text>
@@ -132,5 +137,10 @@ const styles = StyleSheet.create({
         backgroundColor: colors.black3,
         alignItems: 'center',
         paddingTop: 20,
+    },
+    bCLogo: {
+        // marginHorizontal: 3,
+        height: hp(2.2),
+        width: wp(6)
     },
 })
