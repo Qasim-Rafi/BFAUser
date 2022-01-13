@@ -94,28 +94,27 @@ const YourFavourite = props => {
                       source={{ uri: url.imageDataB }}>
                       <View style={{ backgroundColor: color.black1 }}>
 
-                        <Text
-                          style={{
-                            opacity: 0.7,
-                            color: 'white', padding: 3,
-                            backgroundColor: 'black', borderRadius: 7,
-                            textAlign: 'center', fontWeight: '800', fontSize: 9
-                          }}
 
-                        >
-                          {url.titleR}
-                        </Text>
                       </View>
                       <Text
                         style={{
                           marginTop: 1,
-                          opacity: 0.7,
+                          opacity: 0.9,
+                          color: 'white', padding: 3,
+                          backgroundColor: '#383131', borderRadius: 7,
+                          textAlign: 'center', fontWeight: '800', fontSize: 9
+                        }}>
+                        {url.titleD}
+                      </Text>
+                      <Text
+                        style={{
+                          opacity: 0.8,
                           color: 'white', padding: 3,
                           backgroundColor: 'black', borderRadius: 7,
                           textAlign: 'center', fontWeight: '900', fontSize: 9
                         }}
                       >
-                        {url.titleD}
+                        {url.titleR}
                       </Text>
 
 

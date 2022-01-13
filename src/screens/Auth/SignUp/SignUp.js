@@ -5,9 +5,12 @@ import {
   ScrollView,
   ImageBackground,
   Platform,
+  Button,
+  TextInput,
+  TouchableOpacity,
+  Text
 } from 'react-native';
 import DropDown from '../../../components/DropDown';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useState } from 'react';
 import { hp, wp } from '../../../helpers/Responsiveness';
 import Icon from '../../../components/Icon';
@@ -19,12 +22,36 @@ import { Spacing } from '../../../constants/spacingScale';
 import Line from '../../../components/Line';
 import { routeName } from '../../../constants/routeName';
 import { colors } from '../../../constants/colorsPallet';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
 import {
   registerUser
 } from '../../../redux/actions/user.actions';
 import { useDispatch } from 'react-redux';
+import { color } from 'react-native-reanimated';
 export default function Signup({ navigation }) {
+  const [date, setDate] = useState(new Date(1598051730000));
+  const [mode, setMode] = useState('date');
+  const [show, setShow] = useState(false);
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === 'ios');
+    setDate(currentDate);
+  };
+
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const showDatepicker = () => {
+    showMode('date');
+  };
+
+  const showTimepicker = () => {
+    showMode('time');
+  };
   const dropdownRef = React.useRef(null);
   const dispatch = useDispatch();
   const [firstName, setFirstName] = useState('Altaf')
@@ -52,6 +79,21 @@ export default function Signup({ navigation }) {
     "dateofBirth": "2021/6/6",
     "contactNumber": "00008888"
   }
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = (date) => {
+    console.warn("A date has been picked: ", date);
+    hideDatePicker();
+  }
+
   const expressions = {
     email: /^\w+([+.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
   };
@@ -223,15 +265,38 @@ export default function Signup({ navigation }) {
 
 
               height={hp(6)} width={wp(39)} />
-            {/* <View>
-              <DropDown
-                data={Gender}
+            <View>
 
-                height={hp(6)} width={wp(39)} />
+              <Text style={{ fontSize: 7, position: 'absolute', zIndex: 1, top: -5, marginStart: 9 }}>
+                Date of birth
+              </Text>
+              <View style={{ borderWidth: 2, zIndex: 0, borderRadius: 10 }}>
 
-            </View> */}
+
+                <TouchableOpacity onPress={showDatepicker} >
+                  <Text
+                    style={{
+                      textAlign: 'center', textAlignVertical: 'center', backgroundColor: "#3f3f3f", padding: 13,
+                      borderStartWidth: 10, borderRadius: 10, paddingHorizontal: 37, paddingVertical: 16, fontSize: 10
+                    }}>
+                    DD/MM/YYYY
+                  </Text>
+
+                </TouchableOpacity>
+              </View>
+            </View>
+
           </ View>
-
+          {show && (
+            <DateTimePicker
+              testID="dateTimePicker"
+              value={date}
+              mode={mode}
+              is24Hour={true}
+              display="default"
+              onChange={onChange}
+            />
+          )}
           <RnButton onPress={() => navigation.navigate(routeName.NUMBER_VERIFICATION)} fontFamily='light' margin={[20, 0]} title="SIGN UP " />
 
           <View style={styles.footer}>
@@ -246,7 +311,7 @@ export default function Signup({ navigation }) {
         </View>
       </View>
       <FlashMessage ref={dropdownRef} />
-    </ScrollView>
+    </ScrollView >
   );
 }
 const styles = StyleSheet.create({
