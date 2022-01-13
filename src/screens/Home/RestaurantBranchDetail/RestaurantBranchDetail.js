@@ -37,7 +37,7 @@ export default function RestaurantBranchDetailScreen({navigation, route}) {
   }, []);
   console.log('routeetetteetet vhvhh', data);
   return (
-    <View style={{backgroundColor: colors.black3}}>
+    <View style={{backgroundColor: colors.black3,flex:1}}>
       <View style={styles.headerImage}>
         <ImageHeader navigation={navigation} />
       </View>
