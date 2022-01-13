@@ -65,7 +65,7 @@ const EveryOneFavourite = props => {
                   return (
                     <TouchableOpacity
                       onPress={() =>
-                        props.navigation.navigate(routeName.RestaurantDetail)
+                        props.navigation.navigate(routeName.RestaurantDetail,url)
                       }>
                       <View
                         style={{

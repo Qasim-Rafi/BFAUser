@@ -26,10 +26,10 @@ import AwardsDetail from './AwardsDetail';
 import MenuTabs from '../Menu/MenuTabs';
 
 
-export default function RestaurantBranchDetailScreen({navigation}) {
+export default function RestaurantBranchDetailScreen({navigation,route}) {
   const [activeTab, setActiveTab] = React.useState(MenuSectionButtons[0].id);
   // const [activeTab, setActiveTab] = React.useState(myListingTabs[3].id);
-
+console.log('routeetetteetet',route.params)
   return (
     <View style={{backgroundColor: colors.black3}}>
       <View style={styles.headerImage}>
