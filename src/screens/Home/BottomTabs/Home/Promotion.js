@@ -24,6 +24,8 @@ import { useSelector } from 'react-redux';
 import Icon from '../../../../components/Icon';
 import { globalPath } from '../../../../constants/globalPath';
 import { getPromotions } from '../../../../redux/actions/user.actions';
+import FastImage from 'react-native-fast-image'
+
 const Promotion = props => {
   const Promotions = useSelector(state => state.appReducers.promotions.data);
   console.log('promotions: ', Promotions);
@@ -64,7 +66,7 @@ const Promotion = props => {
                       overflow: 'hidden',
                       flexDirection: 'row',
                     }}>
-                    <ImageBackground
+                    <FastImage
                       imageStyle={{ opacity: 1 }}
                       style={{
                         flex: 1,
@@ -121,7 +123,7 @@ const Promotion = props => {
                         {url.description}
                       </ResponsiveText> */}
                       {/* <ResponsiveText fontFamily="Light" size={2.5} color={colors.white}>{url.description}</ResponsiveText> */}
-                    </ImageBackground>
+                    </FastImage>
                   </View>
                 </TouchableOpacity>
               );

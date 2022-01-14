@@ -8,6 +8,8 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
+import FastImage from 'react-native-fast-image'
+
 import ResponsiveText from '../../../../components/RnText';
 import { useSelector, useDispatch } from 'react-redux';
 import { colors } from '../../../../constants/colorsPallet';
@@ -65,7 +67,7 @@ const WhatsNew = props => {
                     overflow: 'hidden',
                     flexDirection: 'row',
                   }}>
-                  <ImageBackground
+                  <FastImage
                     imageStyle={{ opacity: 1 }}
                     style={{
                       flex: 1,
@@ -106,7 +108,7 @@ const WhatsNew = props => {
                       color={colors.white}>
                     </ResponsiveText> */}
                     {/* <ResponsiveText fontFamily="Light" size={2.5} color={colors.white}>{url.description}</ResponsiveText> */}
-                  </ImageBackground>
+                  </FastImage>
                 </View>
               </TouchableOpacity>
             );

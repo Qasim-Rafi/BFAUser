@@ -12,6 +12,7 @@ import ResponsiveText from '../../../../components/RnText';
 import { Rating, AirbnbRating } from 'react-native-ratings';
 import { routeName } from '../../../../constants/routeName';
 import { useSelector, useDispatch } from 'react-redux';
+import FastImage from 'react-native-fast-image'
 import {
   advertisementBannerFakeDATA,
   yourFavoriteFakeDATA,
@@ -83,16 +84,24 @@ const YourFavourite = props => {
                       overflow: 'hidden',
                       flexDirection: 'row',
                     }}>
-                    <ImageBackground
-                      imageStyle={{ opacity: 1 }}
+                    <FastImage
+                      // imageStyle={{ opacity: 1 }}
                       style={{
                         flex: 1,
                         padding: 5,
                         overflow: 'hidden',
                         justifyContent: 'flex-end',
                       }}
-                      source={{ uri: url.imageDataB }}>
-                      <View style={{ alignItems: 'flex-end',paddingBottom:'90%',flex:1 }}>
+                      source={{
+                        uri: url.imageDataB,
+                        priority: FastImage.priority.high,
+
+
+
+                      }}
+                    >
+
+                      <View style={{ alignItems: 'flex-end', paddingBottom: '90%', flex: 1 }}>
                         <Icon size={15} source={globalPath.F_HEART} />
                       </View>
                       <View style={{ backgroundColor: color.black1 }}>
@@ -121,7 +130,7 @@ const YourFavourite = props => {
                       </Text>
 
 
-                    </ImageBackground>
+                    </FastImage>
                   </View>
                 </TouchableOpacity>
               );

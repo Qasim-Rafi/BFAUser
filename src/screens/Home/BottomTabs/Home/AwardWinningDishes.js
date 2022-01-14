@@ -18,6 +18,8 @@ import {
   promotionsFakeDATA,
   yourFavoriteFakeDATA,
 } from '../../../../constants/mock';
+import FastImage from 'react-native-fast-image'
+
 import {
   BallIndicator,
   BarIndicator,
@@ -79,7 +81,7 @@ const AwardWinningDishes = props => {
                       overflow: 'hidden',
                       flexDirection: 'row',
                     }}>
-                    <ImageBackground
+                    <FastImage
                       imageStyle={{ opacity: 1 }}
                       style={{
                         flex: 1,
@@ -88,7 +90,10 @@ const AwardWinningDishes = props => {
                         justifyContent: 'flex-end',
                         backgroundColor: 'rgba(0,0,0,1)',
                       }}
-                      source={{ uri: url.imageDataB }}
+                      source={{
+                        uri: url.imageDataB,
+                        priority: FastImage.priority.high,
+                      }}
                     // source={{
                     //   uri: url.imageDataB.replace(/ /g, ''),
                     // }}>
@@ -117,7 +122,7 @@ const AwardWinningDishes = props => {
                         {url.titleR}
                       </Text>
 
-                    </ImageBackground>
+                    </FastImage>
                   </View>
                 </TouchableOpacity>
               );

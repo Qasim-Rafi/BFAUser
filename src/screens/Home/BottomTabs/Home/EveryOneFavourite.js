@@ -22,6 +22,8 @@ import {
 import ResponsiveText from '../../../../components/RnText';
 import { Rating, AirbnbRating } from 'react-native-ratings';
 import { routeName } from '../../../../constants/routeName';
+import FastImage from 'react-native-fast-image'
+
 import {
   advertisementBannerFakeDATA,
   everyoneFavoriteFakeDATA,
@@ -65,7 +67,7 @@ const EveryOneFavourite = props => {
                   return (
                     <TouchableOpacity
                       onPress={() =>
-                        props.navigation.navigate(routeName.RestaurantDetail,url)
+                        props.navigation.navigate(routeName.RestaurantDetail, url)
                       }>
                       <View
                         style={{
@@ -76,7 +78,7 @@ const EveryOneFavourite = props => {
                           overflow: 'hidden',
                           flexDirection: 'row',
                         }}>
-                        <ImageBackground
+                        <FastImage
                           imageStyle={{ opacity: 1 }}
                           style={{
                             flex: 1,
@@ -114,7 +116,7 @@ const EveryOneFavourite = props => {
                     </ResponsiveText> */}
 
 
-                        </ImageBackground>
+                        </FastImage>
                       </View>
                     </TouchableOpacity>
                   );
