@@ -24,7 +24,7 @@ export default urls = {
   GET_ALL_PROMOTION:'api/HomeAdSlideShowAdmin/GetdishpromoAdvertAllapp/1/2',
   GET_ALL_FAVORITE:'api/RestaurantDish/GetdishLikedAll/1/4',
   ADD_FAVORITE:'api/RestaurantDish/UpdateRestaurantDishLiked/26',
-  GET_RESTAURANT_DETAIL:'api/RestaurantBranchesAdmin/GetRestaurantdetailforAppAll/'
+  GET_RESTAURANT_DETAIL:'api/RestaurantBranchesAdmin/GetRestaurantdetailforAppAlldata/'
 
 
 };
