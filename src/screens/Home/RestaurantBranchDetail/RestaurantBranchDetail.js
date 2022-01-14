@@ -33,7 +33,8 @@ export default function RestaurantBranchDetailScreen({navigation, route}) {
   const dispatch = useDispatch();
   const data = useSelector(state => state.appReducers.restaurantDetail.data);
   React.useEffect(() => {
-    dispatch(getRestaurentDeatil(route.params.restaurantId));
+    dispatch(getRestaurentDeatil(31));
+    //route.params.restaurantId
   }, []);
   console.log('routeetetteetet vhvhh', data);
   return (
@@ -77,8 +78,8 @@ export default function RestaurantBranchDetailScreen({navigation, route}) {
           style={{height: hp(70), paddingHorizontal: 20, paddingVertical: 10}}>
           {activeTab === 1 && <Info data={data[0]} />}
           {activeTab === 2 && <PromosBanner />}
-          {activeTab === 3 && <Menu navigation={navigation} />}
-          {activeTab === 4 && <BranchesDetail navigation={navigation} />}
+          {activeTab === 3 && <Menu navigation={navigation} data={data[0].restaurantMenulist} />}
+          {activeTab === 4 && <BranchesDetail navigation={navigation} data={data}/>}
           {/* {activeTab === 5 && <AwardsDetail  navigation={navigation}/>} */}
         </View>
       ) : null}
