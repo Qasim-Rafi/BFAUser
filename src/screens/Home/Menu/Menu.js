@@ -20,7 +20,6 @@ import { routeName } from '../../../constants/routeName';
 const Menu = (props) => {
   const scrollRef = useRef(null);
   const [activeTab, setActiveTab] = React.useState(BranchMenuSectionsData[0].id);
-  const [data,setData]=React.useState(props.data)
   
   const viewConfigRef = React.useRef({viewAreaCoveragePercentThreshold: 90});
   const ScrollHandler = (item, index) => {

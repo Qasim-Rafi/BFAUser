@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Image} from 'react-native';
-import FastImage from 'react-native-fast-image'
+
 import {handleMargin, handlePadding} from '../constants/theme';
 import {wp} from '../helpers/Responsiveness';
 
@@ -23,7 +23,7 @@ const Icon = ({
   ...props
 }) => {
   return (
-    <FastImage 
+    <Image
       tintColor={tintColor ? tintColor : undefined} //works on android only
       source={source ? source : {uri: url}}
       resizeMode={resizeMode ? resizeMode : 'contain'}
@@ -43,7 +43,7 @@ const Icon = ({
         size && {width: size, height: size},
       ]}>
       {children}
-    </FastImage>
+    </Image>
   );
 };
 
