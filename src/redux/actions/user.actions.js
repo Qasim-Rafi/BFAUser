@@ -11,10 +11,11 @@ export const loginUser = (data) => {
 //Register actions
 
 
-export const registerUser = (data) => {
+export const registerUser = (data,navigation) => {
   return {
     type: types.REGISTER_USER_REQUEST,
     data:data,
+    navigation:navigation
   };
 };
 
