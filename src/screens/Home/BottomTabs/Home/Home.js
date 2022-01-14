@@ -39,13 +39,14 @@ import {
   getPromotions,
   getBruneiFoodRewards,
   getBfaPartners,
-  AddOrder,whatsNew,
+  AddOrder, whatsNew,
   getFavorite,
   getAddBannerData,
   getBfaRecommendations,
   getPromoNewsData,
   getPromoJobsData,
   getPeopleChoice,
+  getwhatsNew,
 } from '../../../../redux/actions/user.actions';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
@@ -99,14 +100,14 @@ const Home = ({ navigation }) => {
   React.useEffect(() => {
     dispatch(getAddBannerData());
     dispatch(getPeopleChoice(1, 4))
-     dispatch(getPromotions());
+    dispatch(getPromotions(1, 4));
     dispatch(getPeopleChoice(1, 4));
     // dispatch(getPromotions());
     dispatch(getBfaPartners(6));
     // callAPI();
     dispatch(getUserCusine(1, 14));
 
-     dispatch(whatsNew());
+    dispatch(getwhatsNew(1, 4));
     // dispatch(getPromoNewsData());
     // dispatch(awardsRestaurant());
     dispatch(getFavorite());
@@ -118,7 +119,7 @@ const Home = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ScrollView
-        style={{ flex: 1 ,width:'100%'}}
+        style={{ flex: 1, width: '100%' }}
       // showsVerticalScrollIndicator={false}
       // contentContainerStyle={{ flex: 1 }}
       // refreshControl={

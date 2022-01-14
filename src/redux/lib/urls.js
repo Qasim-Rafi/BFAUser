@@ -20,11 +20,12 @@ export default urls = {
   GET_PROMO_JOBS: 'api/PromoJobsAdmin/GetPromoJobsAdminAllAdminForapp/',
   ADD_ORDERS: 'api/Order/AddOrder',
   PEOPLE_CHOICE: 'api/PeopleChoice/GetPeopleChoiceAll/',
-  GET_ALL_WHATSNEW:'api/RestaurantDish/GetdishWhatsNewAll/1/4',
-  GET_ALL_PROMOTION:'api/HomeAdSlideShowAdmin/GetdishpromoAdvertAllapp/1/2',
-  GET_ALL_FAVORITE:'api/RestaurantDish/GetdishLikedAll/1/4',
-  ADD_FAVORITE:'api/RestaurantDish/UpdateRestaurantDishLiked/26',
-  GET_RESTAURANT_DETAIL:'api/RestaurantBranchesAdmin/GetRestaurantdetailforAppAll/'
+  REMOVE_fAVOURITE: 'api/RestaurantDish/UpdateDishUnliked',
+  GET_ALL_WHATSNEW: 'api/RestaurantDish/GetdishWhatsNewAll/',
+  GET_ALL_PROMOTION: 'api/HomeAdSlideShowAdmin/GetdishpromoAdvertAllapp/',
+  GET_ALL_FAVORITE: 'api/RestaurantDish/GetdishLikedAll/1/4',
+  ADD_FAVORITE: 'api/RestaurantDish/UpdateRestaurantDishLiked/',
+  GET_RESTAURANT_DETAIL: 'api/RestaurantBranchesAdmin/GetRestaurantdetailforAppAll/'
 
 
 };

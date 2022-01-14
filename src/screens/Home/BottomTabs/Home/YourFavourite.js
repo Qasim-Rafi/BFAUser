@@ -95,9 +95,6 @@ const YourFavourite = props => {
                       source={{
                         uri: url.imageDataB,
                         priority: FastImage.priority.high,
-
-
-
                       }}
                     >
 

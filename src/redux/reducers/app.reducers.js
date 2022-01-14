@@ -440,8 +440,8 @@ export const appReducers = (state = initialState, action) => {
           refreshing: true,
         },
       };
-      //GET FAVORITES
-      case types.GET_FAVORITE_REQUEST:
+    //GET FAVORITES
+    case types.GET_FAVORITE_REQUEST:
       return {
         ...state,
         favorite: {
@@ -520,8 +520,8 @@ export const appReducers = (state = initialState, action) => {
           refreshing: true,
         },
       };
-      //////What's News/////
-      case types.GET_WHATSNEW_REQUEST:
+    //////What's News/////
+    case types.GET_WHATSNEW_REQUEST:
       return {
         ...state,
         whatsnew: {
@@ -534,7 +534,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         whatsnew: {
           ...state.whatsnew,
-          data: action.payload,
+          data: [...state.whatsnew.data, ...action.payload],
           refreshing: false,
         },
       };
@@ -546,33 +546,33 @@ export const appReducers = (state = initialState, action) => {
           refreshing: true,
         },
       };
-       //////GET_RESTAURENT_DETAIL_REQUEST
+    //////GET_RESTAURENT_DETAIL_REQUEST
 
-       case types.GET_RESTAURENT_DETAIL_REQUEST:
-        return {
-          ...state,
-          restaurantDetail: {
-            ...state.restaurantDetail,
-            refreshing: true,
-          },
-        };
-      case types.GET_RESTAURENT_DETAIL_SUCCESS:
-        return {
-          ...state,
-          restaurantDetail: {
-            ...state.restaurantDetail,
-            data: action.payload,
-            refreshing: false,
-          },
-        };
-      case types.GET_RESTAURENT_DETAIL_FAILURE:
-        return {
-          ...state,
-          restaurantDetail: {
-            ...state.restaurantDetail,
-            refreshing: true,
-          },
-        };
+    case types.GET_RESTAURENT_DETAIL_REQUEST:
+      return {
+        ...state,
+        restaurantDetail: {
+          ...state.restaurantDetail,
+          refreshing: true,
+        },
+      };
+    case types.GET_RESTAURENT_DETAIL_SUCCESS:
+      return {
+        ...state,
+        restaurantDetail: {
+          ...state.restaurantDetail,
+          data: action.payload,
+          refreshing: false,
+        },
+      };
+    case types.GET_RESTAURENT_DETAIL_FAILURE:
+      return {
+        ...state,
+        restaurantDetail: {
+          ...state.restaurantDetail,
+          refreshing: true,
+        },
+      };
     default:
       return state;
   }
