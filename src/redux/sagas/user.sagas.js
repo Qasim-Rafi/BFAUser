@@ -62,17 +62,18 @@ function* registerUserApi(data, response) {
   console.log(data, 'action in saga');
   // alert("response: ", response.success);
   let body = data.data;
+  let navigation = data.navigation
   try {
     const response = yield Api.post(urls.REGISTER_URL, body);
     console.log(response, 'responsefasfsdf');
     // alert("response: ", response);
 
     // dispatch a success action to the store with the new dog
-    if (response && response.data != null) {
+    if (response && response.success == true) {
       // yield AsyncStorage.setItem('@token', response.data.token);
       // yield AsyncStorage.setItem('@userId', response.data.loggedInUserId);
       yield put({ type: types.REGISTER_USER_SUCCESS, payload: response });
-      // navigation.dispatch(StackActions.replace('Home'));
+      navigation.navigate(routeName.LOGIN);
     } else {
       yield put({ type: types.REGISTER_USER_FAILURE, payload: response });
       // showMessage({
