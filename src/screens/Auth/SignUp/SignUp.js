@@ -267,9 +267,9 @@ export default function Signup({ navigation }) {
               height={hp(6)} width={wp(39)} />
             <View>
 
-              <Text style={{ fontSize: 7, position: 'absolute', zIndex: 1, top: -5, marginStart: 9, }}>
+              <Text style={{ fontSize: 7, position: 'absolute', zIndex: 1, top: -5, marginStart: 9 }}>
                 Date of birth
-              </Text>
+              </Text>b
               <View style={{ borderWidth: 2, zIndex: 0, borderRadius: 10 }}>
 
 
@@ -277,7 +277,7 @@ export default function Signup({ navigation }) {
                   <Text
                     style={{
                       textAlign: 'center', textAlignVertical: 'center', backgroundColor: "#3f3f3f", padding: 13,
-                      borderStartWidth: 10, borderRadius: 10, paddingHorizontal: 30, paddingVertical: 16, fontSize: 10
+                      borderStartWidth: 10, borderRadius: 10, paddingHorizontal: 37, paddingVertical: 16, fontSize: 10
                     }}>
                     Month/Day/Year
                   </Text>
