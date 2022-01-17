@@ -72,14 +72,14 @@ const Home = ({ navigation }) => {
 
     dispatch(getAddBannerData());
     dispatch(getPeopleChoice(1, 4))
-    dispatch(getPromotions());
+    dispatch(getPromotions(1, 4));
     dispatch(getPeopleChoice(1, 4));
     // dispatch(getPromotions());
     dispatch(getBfaPartners(6));
     // callAPI();
     dispatch(getUserCusine(1, 14));
 
-    dispatch(whatsNew());
+    dispatch(getwhatsNew(1, 4));
     // dispatch(getPromoNewsData());
     // dispatch(awardsRestaurant());
     dispatch(getFavorite());
