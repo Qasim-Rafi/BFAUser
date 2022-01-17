@@ -7,7 +7,7 @@ import {
   Platform,
   Button,
   TextInput,
-  TouchableOpacity,KeyboardAvoidingView,
+  TouchableOpacity,KeyboardAvoidingView,TouchableWithoutFeedback,Keyboard,
   Text,
   SafeAreaView,
 } from 'react-native';
@@ -198,7 +198,9 @@ export default function Signup({ navigation }) {
   };
 
   return (
-    <View style={{flex: 1, backgroundColor: colors.black}}>
+    <KeyboardAvoidingView style={{flex: 1, backgroundColor: colors.black}}  behavior={Platform.OS === "ios" ? "padding" : "height"}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <ScrollView style={{flex: 1}}>
         <View style={styles.screeninfo}>
           <Icon source={globalPath.BALI_ICON} size={60} />
           <ResponsiveText
@@ -212,8 +214,7 @@ export default function Signup({ navigation }) {
             Please SignUp to Continue
           </ResponsiveText>
         </View>
-        <ScrollView contentContainerStyle={{flex:1}}> 
-        <KeyboardAvoidingView style={styles.formArea} behavior={Platform.OS === "ios" ? "padding" : null}>
+        <View style={styles.formArea} >
 
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <Input
@@ -257,6 +258,24 @@ export default function Signup({ navigation }) {
             iconMargin={[0, 10, 0, 0]}
             placeholder="Phone"
             leftIcon={globalPath.PHONE_LOGO}
+          />
+          <Input
+            margin={[0, 0, 15, 0]}
+            padding={[0, 0, 0, 25]}
+            iconMargin={[0, 10, 0, 0]}
+            placeholder="Password"
+            onChnageText={text => setPassword(text)}
+            secureTextEntry
+            leftIcon={globalPath.PASSWORD_LOGO}
+          />
+          <Input
+            margin={[0, 0, 15, 0]}
+            padding={[0, 0, 0, 25]}
+            iconMargin={[0, 10, 0, 0]}
+            placeholder="Password"
+            onChnageText={text => setPassword(text)}
+            secureTextEntry
+            leftIcon={globalPath.PASSWORD_LOGO}
           />
           <Input
             margin={[0, 0, 15, 0]}
@@ -342,10 +361,11 @@ export default function Signup({ navigation }) {
             </ResponsiveText>
             {/* <View style={styles.socialIcon}></View> */}
           </View>
-        </KeyboardAvoidingView>
+        </View>
         </ScrollView>
+        </TouchableWithoutFeedback>
       <FlashMessage ref={dropdownRef} />
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 const styles = StyleSheet.create({

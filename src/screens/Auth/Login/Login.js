@@ -145,9 +145,9 @@ export default function Login({ navigation }) {
   return (
     <>
       <ScrollView
-        keyboardShouldPersistTaps="always" 
+        keyboardShouldPersistTaps="handled" 
         contentContainerStyle={{ flexGrow: 1, backgroundColor: colors.black }}>
-        <View style={{ flex: 1, backgroundColor: colors.black }}>
+        <View style={{ flex: 0.9, backgroundColor: colors.black }}>
           <View style={styles.screeninfo}>
             <Icon source={globalPath.BALI_ICON} size={60} />
             <ResponsiveText margin={[1, 0, 0, 0]} color={colors.yellow} fontFamily="Regular" size={8}>
