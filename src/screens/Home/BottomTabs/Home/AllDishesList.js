@@ -16,8 +16,6 @@ import { wp, hp } from '../../../../helpers/Responsiveness';
 import ResponsiveText from '../../../../components/RnText';
 import { useSelector, useDispatch } from 'react-redux';
 import { routeName } from '../../../../constants/routeName';
-import FastImage from 'react-native-fast-image'
-
 import Icon from '../../../../components/Icon';
 import {
   getRestaurantAllDishes,
@@ -30,6 +28,7 @@ import {
   getPromoNewsData,
   getPromoJobsData,
   getPeopleChoice,
+  getwhatsNew,
 } from '../../../../redux/actions/user.actions';
 import {
   BallIndicator,
@@ -78,7 +77,7 @@ export default function AllDishesList({ route, navigation }) {
           overflow: 'hidden',
           flexDirection: 'row',
         }}>
-        <FastImage
+        <ImageBackground
           imageStyle={{ opacity: 1 }}
           style={{
             flex: 1,
@@ -88,11 +87,7 @@ export default function AllDishesList({ route, navigation }) {
 
             backgroundColor: 'rgba(0,0,0,1)',
           }}
-          source={item.url ? item.url : {
-            uri: item.imageDataB,
-            priority: FastImage.priority.normal,
-
-          }}>
+          source={item.url ? item.url : { uri: item.imageDataB }}>
           {title == "PG's Favourites" ? <Icon size={15} source={globalPath.F_HEART} /> : null}
           <View style={{ alignItems: 'flex-end' }}></View>
           <View>
@@ -119,7 +114,7 @@ export default function AllDishesList({ route, navigation }) {
               {item.titleR}
             </ResponsiveText> */}
           </View>
-        </FastImage>
+        </ImageBackground>
       </View>
     </TouchableOpacity>
   );
@@ -165,7 +160,7 @@ export default function AllDishesList({ route, navigation }) {
         break;
 
       case "What's New":
-        dispatch(whatsNew(index, 13));
+        dispatch(getwhatsNew(index, 13));
         break;
 
       case 'Promotions':

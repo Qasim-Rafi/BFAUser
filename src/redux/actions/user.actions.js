@@ -1,3 +1,4 @@
+
 import types from "./types";
 
 
@@ -11,11 +12,11 @@ export const loginUser = (data) => {
 //Register actions
 
 
-export const registerUser = (data,navigation) => {
+export const registerUser = (data, navigation) => {
   return {
     type: types.REGISTER_USER_REQUEST,
-    data:data,
-    navigation:navigation
+    data: data,
+    navigation: navigation
   };
 };
 
@@ -174,10 +175,13 @@ export const removeCart = (data) => {
   };
 };
 //What's new
-export const whatsNew = (data) => {
+export const getwhatsNew = (index, limit) => {
   return {
     type: types.GET_WHATSNEW_REQUEST,
-    data,
+    data: {
+      index: index,
+      limit: limit
+    }
   };
 };
 export const getRestaurentDeatil = (data) => {
