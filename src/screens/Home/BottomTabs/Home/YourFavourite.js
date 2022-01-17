@@ -88,6 +88,7 @@ const YourFavourite = props => {
                       // imageStyle={{ opacity: 1 }}
                       style={{
                         flex: 1,
+                        opacity: 0.7,
                         padding: 5,
                         overflow: 'hidden',
                         justifyContent: 'flex-end',

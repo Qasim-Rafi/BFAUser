@@ -145,7 +145,7 @@ export default function Login({ navigation }) {
   return (
     <>
       <ScrollView
-        keyboardShouldPersistTaps="handled" 
+        keyboardShouldPersistTaps="handled"
         contentContainerStyle={{ flexGrow: 1, backgroundColor: colors.black }}>
         <View style={{ flex: 0.9, backgroundColor: colors.black }}>
           <View style={styles.screeninfo}>
@@ -172,8 +172,8 @@ export default function Login({ navigation }) {
               padding={[0, 0, 0, 25]}
               onChnageText={text => setUserName(text)}
               iconMargin={[0, 10, 0, 0]}
-              placeholder="Email"
-              leftIcon={globalPath.EMAIL_LOGO}
+              placeholder="Username"
+              leftIcon={globalPath.MALE_LOGO}
             />
             <Input
               margin={[20, 0, wp(10), 0]}

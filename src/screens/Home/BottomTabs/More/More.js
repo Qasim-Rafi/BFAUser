@@ -82,7 +82,7 @@ const More = ({ route, navigation }) => {
                 marginTop: 10,
                 marginLeft: 20,
               }}
-              source={globalPath.PROFILE_LOGO}
+              source={profileData.fullpath ? { uri: profileData.fullpath } : globalPath.USER_PROFILE}
             />
           </TouchableOpacity>
           <View style={{ justifyContent: 'center', marginLeft: 10 }}>

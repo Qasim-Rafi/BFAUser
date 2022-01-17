@@ -4,6 +4,7 @@
 const BG_IMAGE = require('../assets/icons/background.png');
 const BALI_LOGO = require('../assets/icons/bali-logo.png');
 const USER_LOGO = require('../assets/icons/user.png');
+const USER_PROFILE = require('../assets/fake_Images/user_pic.png');
 const MALE_LOGO = require('../assets/icons/male.png');
 const PHONE_LOGO = require('../assets/icons/phone.png');
 const EMAIL_LOGO = require('../assets/icons/email.png');
@@ -186,6 +187,7 @@ export const globalPath = {
   BG_IMAGE,
   BALI_LOGO,
   USER_LOGO,
+  USER_PROFILE,
   PHONE_LOGO,
   MALE_LOGO,
   EMAIL_LOGO,
