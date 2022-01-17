@@ -106,18 +106,6 @@ const Recommendation = props => {
                         source={{ uri: item.imageDataB }}>
                         <Text
                           style={{
-                            opacity: 0.7,
-                            marginTop: 1,
-                            color: 'white', padding: 3,
-                            backgroundColor: '#383131', borderRadius: 7,
-                            textAlign: 'center', fontWeight: '600', fontSize: 8.5
-                          }}
-
-                        >
-                          {item.titleD}
-                        </Text>
-                        <Text
-                          style={{
                             margin: 1,
                             opacity: 0.7,
 
@@ -129,6 +117,17 @@ const Recommendation = props => {
                         >
                           {item.titleR}
 
+                        </Text>
+                        <Text
+                          style={{
+                            opacity: 0.7,
+                            color: 'white', padding: 3,
+                            backgroundColor: 'black', borderRadius: 7,
+                            textAlign: 'center', fontWeight: '600', fontSize: 8.5
+                          }}
+
+                        >
+                          {item.titleD}
                         </Text>
 
                       </ImageBackground>

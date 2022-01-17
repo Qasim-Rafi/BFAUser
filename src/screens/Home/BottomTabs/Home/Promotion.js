@@ -38,75 +38,76 @@ const Promotion = props => {
         </ResponsiveText>
         <View style={{ marginRight: -10 }}>
 
-          {/* <SeeAllButton
+          <SeeAllButton
             title={"Promotions"}
             data={Promotions}
-           // action={getPromotions}
-           // navigation={props.navigation}
-          /> */}
+            action={getPromotions}
+            navigation={props.navigation}
+          />
         </View>
       </View>
       <View style={styles.everyOneFavoriteItemsSection}>
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           {Promotions.length > 0
             ? Promotions.map((url, index) => {
-              return (
-                <TouchableOpacity
-                  onPress={() =>
-                    props.navigation.navigate(routeName.DISH_DETAIL, {
-                      dish: url,
-                    })
-                  }>
-                  <View
-                    style={{
-                      width: wp(26),
-                      height: hp(18),
-                      marginHorizontal: 5,
-                      borderRadius: 3,
-                      overflow: 'hidden',
-                      flexDirection: 'row',
-                    }}>
-                    <FastImage
-                      imageStyle={{ opacity: 1 }}
+              if (index < 4) {
+                return (
+                  <TouchableOpacity
+                    onPress={() =>
+                      props.navigation.navigate(routeName.DISH_DETAIL, {
+                        dish: url,
+                      })
+                    }>
+                    <View
                       style={{
-                        flex: 1,
-                        padding: 5,
+                        width: wp(26),
+                        height: hp(18),
+                        marginHorizontal: 5,
+                        borderRadius: 3,
                         overflow: 'hidden',
-                        justifyContent: 'flex-end',
-                        backgroundColor: 'rgba(0,0,0,1)',
-                      }}
-                      source={{ uri: url.fullPath }}>
-                      {url.title === String ?
+                        flexDirection: 'row',
+                      }}>
+                      <FastImage
+                        imageStyle={{ opacity: 1 }}
+                        style={{
+                          flex: 1,
+                          padding: 5,
+                          overflow: 'hidden',
+                          justifyContent: 'flex-end',
+                          backgroundColor: 'rgba(0,0,0,1)',
+                        }}
+                        source={{ uri: url.fullPath }}>
+                        {url.title === String ?
+                          <Text
+                            style={{
+                              color: 'white', padding: 3, opacity: 0.7,
+                              backgroundColor: '#383131', borderRadius: 7,
+                              textAlign: 'center', fontWeight: '600', fontSize: 8.5
+                            }}
+
+                          >
+                            {url.title}
+
+
+
+                          </Text>
+                          : undefined
+                        }
                         <Text
                           style={{
                             color: 'white', padding: 3, opacity: 0.7,
-                            backgroundColor: '#383131', borderRadius: 7,
+                            backgroundColor: 'black', borderRadius: 7,
                             textAlign: 'center', fontWeight: '600', fontSize: 8.5
                           }}
 
                         >
-                          {url.title}
+                          {url.description}
+
 
 
 
                         </Text>
-                        : undefined
-                      }
-                      <Text
-                        style={{
-                          color: 'white', padding: 3, opacity: 0.7,
-                          backgroundColor: 'black', borderRadius: 7,
-                          textAlign: 'center', fontWeight: '600', fontSize: 8.5
-                        }}
-
-                      >
-                        {url.description}
-
-
-
-
-                      </Text>
-                      {/* <ResponsiveText
+                        {/* <ResponsiveText
                       source={{uri:url.fullPath}}>
                       <ResponsiveText
                         fontFamily="Regular"
@@ -122,11 +123,12 @@ const Promotion = props => {
                         color={colors.white}>
                         {url.description}
                       </ResponsiveText> */}
-                      {/* <ResponsiveText fontFamily="Light" size={2.5} color={colors.white}>{url.description}</ResponsiveText> */}
-                    </FastImage>
-                  </View>
-                </TouchableOpacity>
-              );
+                        {/* <ResponsiveText fontFamily="Light" size={2.5} color={colors.white}>{url.description}</ResponsiveText> */}
+                      </FastImage>
+                    </View>
+                  </TouchableOpacity>
+                );
+              }
             })
             : undefined}
         </ScrollView>

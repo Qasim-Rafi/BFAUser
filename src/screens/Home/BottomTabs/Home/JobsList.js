@@ -101,7 +101,7 @@ const JobsList = props => {
                         overflow: 'hidden',
                         justifyContent: 'flex-end',
                         backgroundColor: 'rgba(0,0,0,1)',
-                        priority: FastImage.priority.normal,
+                        priority: FastImage.priority.high,
 
                       }}
                       // source={url.url.}>
