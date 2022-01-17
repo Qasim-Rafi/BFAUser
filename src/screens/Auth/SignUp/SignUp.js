@@ -11,33 +11,33 @@ import {
   Text,
 } from 'react-native';
 import DropDown from '../../../components/DropDown';
-import {useState} from 'react';
-import {hp, wp} from '../../../helpers/Responsiveness';
+import { useState } from 'react';
+import { hp, wp } from '../../../helpers/Responsiveness';
 import Icon from '../../../components/Icon';
 import Input from '../../../components/Input';
 import RnButton from '../../../components/RnButton';
 import ResponsiveText from '../../../components/RnText';
-import {globalPath} from '../../../constants/globalPath';
-import {Spacing} from '../../../constants/spacingScale';
+import { globalPath } from '../../../constants/globalPath';
+import { Spacing } from '../../../constants/spacingScale';
 import Line from '../../../components/Line';
-import {routeName} from '../../../constants/routeName';
-import {colors} from '../../../constants/colorsPallet';
+import { routeName } from '../../../constants/routeName';
+import { colors } from '../../../constants/colorsPallet';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import FlashMessage, {
   showMessage,
   hideMessage,
 } from 'react-native-flash-message';
-import {registerUser} from '../../../redux/actions/user.actions';
-import {useDispatch} from 'react-redux';
-import {color} from 'react-native-reanimated';
-export default function Signup({navigation}) {
- 
+import { registerUser } from '../../../redux/actions/user.actions';
+import { useDispatch } from 'react-redux';
+import { color } from 'react-native-reanimated';
+export default function Signup({ navigation }) {
+
   const dropdownRef = React.useRef(null);
   const dispatch = useDispatch();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [userName, setuserName] = useState('');
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('saniya@gmail.com');
   const [phoneNum, setPhoneNum] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState();
@@ -72,9 +72,8 @@ export default function Signup({navigation}) {
   };
 
   const dateFormat = (date) => {
-    if(date!=null)
-    {
-      return `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`;
+    if (date != null) {
+      return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
     }
   };
 
@@ -83,7 +82,7 @@ export default function Signup({navigation}) {
   };
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
- 
+
 
 
   const expressions = {
@@ -95,21 +94,21 @@ export default function Signup({navigation}) {
         message: 'Error',
         description: 'First name is Required',
         type: 'danger',
-        icon: {icon: 'auto', position: 'left'},
+        icon: { icon: 'auto', position: 'left' },
       });
     } else if (lastName === '') {
       dropdownRef.current.showMessage({
         message: 'Error',
         description: 'Last name is Required',
         type: 'danger',
-        icon: {icon: 'auto', position: 'left'},
+        icon: { icon: 'auto', position: 'left' },
       });
     } else if (userName === '') {
       dropdownRef.current.showMessage({
         message: 'Error',
         description: 'User name is Required',
         type: 'danger',
-        icon: {icon: 'auto', position: 'left'},
+        icon: { icon: 'auto', position: 'left' },
       });
     }
     else if (email === '') {
@@ -117,30 +116,30 @@ export default function Signup({navigation}) {
         message: 'Error',
         description: 'Email is Required',
         type: 'danger',
-        icon: {icon: 'auto', position: 'left'},
+        icon: { icon: 'auto', position: 'left' },
       });
     } else if (phoneNum === '') {
       dropdownRef.current.showMessage({
         message: 'Error',
         description: 'PhoneNumber is Required',
         type: 'danger',
-        icon: {icon: 'auto', position: 'left'},
+        icon: { icon: 'auto', position: 'left' },
       });
     } else if (password === '') {
       dropdownRef.current.showMessage({
         message: 'Error',
         description: 'Password is Required',
         type: 'danger',
-        icon: {icon: 'auto', position: 'left'},
+        icon: { icon: 'auto', position: 'left' },
       });
     } else if (password.length < 8) {
       dropdownRef.current.showMessage({
         message: 'Error',
         description: 'Password Length should be greater then 8',
         type: 'danger',
-        icon: {icon: 'auto', position: 'left'},
+        icon: { icon: 'auto', position: 'left' },
       });
-    } 
+    }
     // else if (confirmPassword === '') {
     //   dropdownRef.current.showMessage({
     //     message: 'Error',
@@ -162,13 +161,13 @@ export default function Signup({navigation}) {
         message: 'Error',
         description: 'Invalid Email',
         type: 'danger',
-        icon: {icon: 'auto', position: 'left'},
+        icon: { icon: 'auto', position: 'left' },
       });
     } else {
-      var obj= {
+      var obj = {
         "username": userName,
         "email": email,
-        "fullName": firstName+' '+lastName,
+        "fullName": firstName + ' ' + lastName,
         "password": password,
         "userTypeId": 3,
         "restaurantId": 11,
@@ -179,7 +178,7 @@ export default function Signup({navigation}) {
         "dateofBirth": dateFormat(date),
         "contactNumber": phoneNum
       }
-      dispatch(registerUser(obj,navigation))
+      dispatch(registerUser(obj, navigation))
       // dispatch(registerUser({
       //   "username": "alii",
       //   "email": "uaa@gmail.com",
@@ -198,8 +197,8 @@ export default function Signup({navigation}) {
   };
 
   return (
-    <ScrollView contentContainerStyle={{flexGrow: 1}}>
-      <View style={{flex: 1, backgroundColor: colors.black}}>
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <View style={{ flex: 1, backgroundColor: colors.black }}>
         <View style={styles.screeninfo}>
           <Icon source={globalPath.BALI_ICON} size={60} />
           <ResponsiveText
@@ -214,7 +213,7 @@ export default function Signup({navigation}) {
           </ResponsiveText>
         </View>
         <View style={styles.formArea}>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <Input
               width={wp(39)}
               margin={[0, 0, 15, 0]}
@@ -275,10 +274,10 @@ export default function Signup({navigation}) {
             secureTextEntry
             leftIcon={globalPath.PASSWORD_LOGO}
           /> */}
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <DropDown data={Gender} height={hp(6)} width={wp(39)} />
             <View>
-              <View style={{borderWidth: 2, zIndex: 0, borderRadius: 10}}>
+              <View style={{ borderWidth: 2, zIndex: 0, borderRadius: 10 }}>
                 <Text
                   style={{
                     fontSize: 7,
@@ -305,7 +304,7 @@ export default function Signup({navigation}) {
                       paddingVertical: 16,
                       fontSize: 14,
                     }}>
-                    {date==null?'Month/Day/Year':dateFormat(date)}
+                    {date == null ? 'Month/Day/Year' : dateFormat(date)}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -313,10 +312,10 @@ export default function Signup({navigation}) {
           </View>
           {show && (
             <DateTimePicker
-             // testID="dateTimePicker"
+              // testID="dateTimePicker"
               value={new Date}
               mode={'date'}
-             // is24Hour={true}
+              // is24Hour={true}
               display="default"
               onChange={onChange}
             />

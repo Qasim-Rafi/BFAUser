@@ -48,7 +48,7 @@ const initialState = {
   },
   PeopleChoice: {
     loading: false,
-    data: {},
+    data: [],
   },
 
   promoJobs: {
@@ -247,7 +247,8 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         PeopleChoice: {
           ...state.PeopleChoice,
-          data: action.payload,
+          data: [...state.PeopleChoice.data, ...action.payload],
+
           loading: false,
         },
       };

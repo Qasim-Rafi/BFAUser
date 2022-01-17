@@ -9,6 +9,13 @@ export const loginUser = (data) => {
     data: data,
   };
 };
+//Profile Data
+export const getProfileData = (data) => {
+  return {
+    type: types.GET_USER_PROFILE_DATA_REQUEST,
+    data: data,
+  };
+};
 //Register actions
 
 

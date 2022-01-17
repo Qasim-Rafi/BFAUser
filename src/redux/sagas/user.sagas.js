@@ -54,6 +54,7 @@ function* loginUserApi(data, response) {
     yield put({ type: types.LOGIN_USER_FAILURE, error: error });
   }
 }
+//REGISTERATION
 export function* registerUserSaga() {
   console.log('saga function Works');
   yield takeLatest(types.REGISTER_USER_REQUEST, registerUserApi);
@@ -96,6 +97,27 @@ function* registerUserApi(data, response) {
     yield put({ type: types.LOGIN_USER_FAILURE, error: error });
   }
 }
+//GET_USER PROFILE DATA
+export function* getProfileDataSaga() {
+  yield takeLatest(types.GET_USER_PROFILE_DATA_REQUEST, getProfileDataSagaApi);
+}
+function* getProfileDataSagaApi(data) {
+  try {
+    const response = yield Api.get(urls.GET_ALL_FAVORITE);
+    if (response && response.data != null) {
+      yield put({
+        type: types.GET_USER_PROFILE_DATA_SUCCESS,
+        payload: response.data,
+      });
+    } else {
+      yield put({ type: types.GET_USER_PROFILE_DATA_FAILURE, error: error });
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({ type: types.GET_USER_PROFILE_DATA_FAILURE, error: error });
+  }
+}
 //People Choice
 export function* getPeopleChoiceSaga() {
   yield takeLatest(types.GET_PEOPLE_CHOICE_REQUEST, getPeopleChoiceSagaApi);
@@ -103,11 +125,9 @@ export function* getPeopleChoiceSaga() {
 function* getPeopleChoiceSagaApi(data) {
   const limit = data.data.limit;
   const index = data.data.index;
-
-  console.log('paramsssssssssss: ', data);
-  const url = urls.PEOPLE_CHOICE + index + '/' + limit;
-  console.log('People Url: ', url);
   try {
+    const url = urls.PEOPLE_CHOICE + index + '/' + limit;
+    console.log('People Choiceeeeeeeeeeeeeeee: ', url);
     const response = yield Api.get(url);
     if (response && response.data != null) {
       yield put({
@@ -123,25 +143,6 @@ function* getPeopleChoiceSagaApi(data) {
     yield put({ type: types.GET_PEOPLE_CHOICE_FAILURE, error: error });
   }
 }
-// //Register user saga
-// export function* registerGuestUserSaga() {
-//   yield takeLatest(types.REGISTER_GUEST_REQUEST, registerGuestUserSagaApi);
-// }
-// function* registerGuestUserSagaApi(params) {
-//   let param = params.params;
-
-//   try {
-//     const response = yield Api.post(urls.REGISTER_GUEST_URL, param);
-
-//     // dispatch a success action to the store with the new dog
-//     yield put({ type: types.REGISTER_GUEST_SUCCESS, payload: response });
-//     yield put({ type: types.GET_NOTIFICATIONS_REQUEST });
-//     yield put({ type: types.GET_SAVED_SITES_REQUEST });
-//     yield put({ type: types.GET_USER_CATS_REQUEST });
-//   } catch (error) {
-//     yield put({ type: types.REGISTER_GUEST_FAILURE, error: error });
-//   }
-// }
 //Add Order
 export function* addOrderSaga() {
   console.log('saga function Works');
@@ -601,41 +602,3 @@ function* getRestaurantDetailSagaApi(data) {
     yield put({ type: types.GET_RESTAURENT_DETAIL_FAILURE, payload: {} });
   }
 }
-// //Add product category
-// export function* addRUpdateCategorySaga() {
-//   yield takeLatest(types.ADD_PRODUCT_CAT_REQUEST, addRUpdateCategorySagaApi);
-// }
-// function* addRUpdateCategorySagaApi(params) {
-//   let param = params.params;
-
-//   try {
-//     const response = yield Api.post(urls.ADD_PRODUCT_CAT_URL, param);
-
-//     // dispatch a success action to the store with the new dog
-//     yield put({ type: types.ADD_PRODUCT_CAT_SUCCESS, payload: response });
-//     yield put({ type: types.GET_USER_CATS_REQUEST });
-//   } catch (error) {
-//     yield put({ type: types.ADD_PRODUCT_CAT_FAILURE, error: error });
-//   }
-// }
-
-// //Delete user category
-// export function* deleteCategorySaga() {
-//   yield takeLatest(types.DELETE_PRODUCT_CAT_REQUEST, deleteCategorySagaApi);
-// }
-// function* deleteCategorySagaApi(params) {
-//   let param = params.params;
-//   // console.log("Param and params", params, param);
-
-//   try {
-//     const response = yield Api.delete(
-//       `${urls.DELETE_PRODUCT_CAT_URL}?id=${param.id}`
-//     );
-
-//     // dispatch a success action to the store with the new dog
-//     yield put({ type: types.DELETE_PRODUCT_CAT_SUCCESS, payload: response });
-//     yield put({ type: types.GET_USER_CATS_REQUEST });
-//   } catch (error) {
-//     yield put({ type: types.DELETE_PRODUCT_CAT_FAILURE, error: error });
-//   }
-// }
