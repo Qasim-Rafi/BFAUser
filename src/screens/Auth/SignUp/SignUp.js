@@ -269,7 +269,7 @@ export default function Signup({ navigation }) {
 
               <Text style={{ fontSize: 7, position: 'absolute', zIndex: 1, top: -5, marginStart: 9 }}>
                 Date of birth
-              </Text>b
+              </Text>
               <View style={{ borderWidth: 2, zIndex: 0, borderRadius: 10 }}>
 
 

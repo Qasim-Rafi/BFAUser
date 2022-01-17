@@ -37,9 +37,9 @@ const Menu = (props) => {
     return (
       <View style={{}}>
         <ResponsiveText color={colors.yellow} margin={[15, 0]}>
-          {item.title}
+          {item.menuCategoryName}
         </ResponsiveText>
-        {item.data.map(data => {
+        {item.dishlist.map(data => {
           return (
             <View
               style={{
@@ -51,7 +51,7 @@ const Menu = (props) => {
                 flexDirection: 'row',
                 overflow: 'hidden',
               }}>
-              <Image style={{width: '20%', height: '100%'}} source={data.url} />
+              <Image style={{width: '20%', height: '100%'}} source={{uri:data.fullPath}} />
               
               <View style={{flex: 1, marginLeft: 10}}>
                 <View
@@ -61,7 +61,7 @@ const Menu = (props) => {
                     overflow: 'hidden',
                   }}>
                   <ResponsiveText size={2.9} color={colors.white}>
-                    {data.title}
+                    {data.dishName}
                   </ResponsiveText>
                   <ResponsiveText
                     color={'grey'}
@@ -81,7 +81,7 @@ const Menu = (props) => {
                   margin={[4, 0, 0, 0]}
                   color={colors.yellow}
                   position="flex-end">
-                  {data.price}
+                  ${data.price}.00
                 </ResponsiveText>
               </View>
             </View>
@@ -101,7 +101,7 @@ const Menu = (props) => {
           marginVertical:10,
           borderBottomWidth: 1,
         }}>
-        {BranchMenuSectionsData.map((items, index) => {
+        {data.map((items, index) => {
           return (
             <React.Fragment key={items.id}>
               <TouchableOpacity
@@ -115,7 +115,7 @@ const Menu = (props) => {
                   zIndex: 100,
                 }}>
                 <ResponsiveText size={2.5} color={colors.white}>
-                  {items.title}
+                  {items.menuCategoryName}
                 </ResponsiveText>
               </TouchableOpacity>
             </React.Fragment>
@@ -126,7 +126,7 @@ const Menu = (props) => {
         <FlatList
           ref={scrollRef}
           contentContainerStyle={{paddingVertical: 10}}
-          data={BranchMenuSectionsData}
+          data={data}
           keyExtractor={(item, index) => item + index}
           renderItem={renderItem}
            onViewableItemsChanged={onViewableItemsChanged}
