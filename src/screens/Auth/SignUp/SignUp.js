@@ -7,8 +7,9 @@ import {
   Platform,
   Button,
   TextInput,
-  TouchableOpacity,
+  TouchableOpacity,KeyboardAvoidingView,
   Text,
+  SafeAreaView,
 } from 'react-native';
 import DropDown from '../../../components/DropDown';
 import { useState } from 'react';
@@ -197,8 +198,7 @@ export default function Signup({ navigation }) {
   };
 
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-      <View style={{ flex: 1, backgroundColor: colors.black }}>
+    <View style={{flex: 1, backgroundColor: colors.black}}>
         <View style={styles.screeninfo}>
           <Icon source={globalPath.BALI_ICON} size={60} />
           <ResponsiveText
@@ -212,8 +212,10 @@ export default function Signup({ navigation }) {
             Please Login to Continue
           </ResponsiveText>
         </View>
-        <View style={styles.formArea}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+        <ScrollView contentContainerStyle={{flex:1}}> 
+        <KeyboardAvoidingView style={styles.formArea} behavior={Platform.OS === "ios" ? "padding" : null}>
+
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <Input
               width={wp(39)}
               margin={[0, 0, 15, 0]}
@@ -302,7 +304,7 @@ export default function Signup({ navigation }) {
                       borderRadius: 10,
                       paddingHorizontal: 30,
                       paddingVertical: 16,
-                      fontSize: 14,
+                      fontSize: 12,
                     }}>
                     {date == null ? 'Month/Day/Year' : dateFormat(date)}
                   </Text>
@@ -340,10 +342,10 @@ export default function Signup({ navigation }) {
             </ResponsiveText>
             {/* <View style={styles.socialIcon}></View> */}
           </View>
-        </View>
-      </View>
+        </KeyboardAvoidingView>
+        </ScrollView>
       <FlashMessage ref={dropdownRef} />
-    </ScrollView>
+    </View>
   );
 }
 const styles = StyleSheet.create({
@@ -355,12 +357,13 @@ const styles = StyleSheet.create({
     // backgroundColor: colors.black,
   },
   screeninfo: {
-    flex: 0.9,
-    justifyContent: 'center',
+  //  flex: 0.9,
+    //justifyContent: 'center',
+    marginVertical:'10%',
     alignItems: 'center',
   },
   formArea: {
-    flex: 0.4,
+    flex: 1,
     borderTopRightRadius: wp(8),
     borderTopLeftRadius: wp(8),
     backgroundColor: colors.black3,
