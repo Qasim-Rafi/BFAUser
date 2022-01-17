@@ -206,10 +206,10 @@ export default function Signup({ navigation }) {
             color={colors.yellow}
             fontFamily="Regular"
             size={8}>
-            Sign In
+            Sign Up
           </ResponsiveText>
           <ResponsiveText margin={[1, 0, 0, 0]} color={colors.white}>
-            Please Login to Continue
+            Please SignUp to Continue
           </ResponsiveText>
         </View>
         <View style={styles.formArea}>
