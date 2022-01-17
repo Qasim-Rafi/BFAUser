@@ -17,6 +17,10 @@ const initialState = {
     refreshing: false,
     data: {},
   },
+  profileData: {
+    refreshing: false,
+    data: {},
+  },
   cusineDetail: {
     loading: false,
     data: {},
@@ -29,10 +33,7 @@ const initialState = {
     refreshing: false,
     data: {},
   },
-  userProfile: {
-    loading: false,
-    data: {},
-  },
+
   addBanner: {
     loading: false,
     data: {},
@@ -84,6 +85,31 @@ const initialState = {
 
 export const appReducers = (state = initialState, action) => {
   switch (action.type) {
+    case types.GET_USER_PROFILE_DATA_REQUEST:
+      return {
+        ...state,
+        profileData: {
+          ...state.profileData,
+          loading: true,
+        },
+      };
+    case types.GET_USER_PROFILE_DATA_SUCCESS:
+      return {
+        ...state,
+        profileData: {
+          ...state.profileData,
+          data: action.payload,
+          loading: false,
+        },
+      };
+    case types.GET_USER_PROFILE_DATA_FAILURE:
+      return {
+        ...state,
+        profileData: {
+          ...state.profileData,
+          loading: false,
+        },
+      };
     case types.GET_BRUNEI_FOOD_AWARDS_REQUEST:
       return {
         ...state,
@@ -197,15 +223,7 @@ export const appReducers = (state = initialState, action) => {
           data: action.payload,
         },
       };
-    case types.GET_USERS_BY_ID_SUCCESS:
-      return {
-        ...state,
-        userProfile: {
-          ...state.userProfile,
-          data: action.payload,
-          loading: false,
-        },
-      };
+
     case types.GET_BFA_RECOMMENDATION_REQUEST:
       return {
         ...state,
@@ -260,23 +278,7 @@ export const appReducers = (state = initialState, action) => {
           loading: false,
         },
       };
-    case types.GET_USERS_BY_ID_FAILURE:
-      return {
-        ...state,
-        userProfile: {
-          ...state.userProfile,
-          loading: false,
-        },
-      };
 
-    case types.GET_USERS_BY_ID_REQUEST:
-      return {
-        ...state,
-        userProfile: {
-          ...state.userProfile,
-          loading: true,
-        },
-      };
     case types.GET_ADD_BANNER_DATA_REQUEST:
       return {
         ...state,

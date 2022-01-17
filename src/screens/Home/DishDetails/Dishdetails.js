@@ -52,7 +52,7 @@ export default function DishDetails({ route, navigation }) {
             {/* we have to get a parameter from the api for the restaurant to set <CalorieCount/> if that restaurant wants to show it  */}
             <View style={{ marginLeft: 20, marginVertical: 10 }} >
                 <MoreFromResturant navigation={navigation} item={MoreFrom} />
-                <PeopleSay />
+                {/* <PeopleSay /> */}
             </View>
 
             {/* <Comments/> */}

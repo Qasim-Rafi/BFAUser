@@ -103,7 +103,9 @@ export function* getProfileDataSaga() {
 }
 function* getProfileDataSagaApi(data) {
   try {
-    const response = yield Api.get(urls.GET_ALL_FAVORITE);
+    const profileId = yield AsyncStorage.getItem('@userId');
+    console.log("profile iddddddddd:", profileId);
+    const response = yield Api.get(urls.GET_PROFILE_DATA + profileId);
     if (response && response.data != null) {
       yield put({
         type: types.GET_USER_PROFILE_DATA_SUCCESS,
