@@ -46,7 +46,11 @@ export default function Categories({ navigation, route }) {
             // if (i.name[0] == item.name[0]) {
             return (
               <View style={{ paddingLeft: 25, justifyContent: 'center', paddingVertical: 2 }}>
+                <TouchableOpacity  onPress={() =>
+                      props.navigation.navigate(routeName.DISH_DETAIL, { dish: url })
+                    }>
                 <Text style={styles.title}>{v.name}</Text>
+                </TouchableOpacity>
               </View>)
           }
             // }
