@@ -528,7 +528,27 @@ function* addcartSagaApi(data) {
     yield put({ type: types.ADD_TO_CART_FAILURE, error: 'error' });
   }
 }
+export function* retriveCartSaga() {
+  yield takeLatest(types.RETRIVE_CART_REQUEST, retrivecartSagaApi);
+}
+function* retrivecartSagaApi(data) {
+  try {
+    // const response = yield Api.get(urls.RESTAURANT_DISH_ALL);
+    if (data) {
+      yield put({
+        type: types.RETRIVE_CART_SUCCESS,
+        payload: data.data,
+      });
+      // navigation.navigate(routeName.Categories,{data:response.data});
+    } else {
+      yield put({ type: types.ADD_TO_CART_FAILURE, error: 'error' });
+    }
 
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({ type: types.ADD_TO_CART_FAILURE, error: 'error' });
+  }
+}
 export function* RemoveCARTSaga() {
   yield takeLatest(types.REMOVE_FROM_CART_REQUEST, removecartSagaApi);
 }

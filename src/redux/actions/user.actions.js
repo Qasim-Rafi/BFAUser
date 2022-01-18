@@ -175,6 +175,12 @@ export const addCart = (data) => {
     data,
   };
 };
+export const retriveCart = (data) => {
+  return {
+    type: types.RETRIVE_CART_REQUEST,
+    data,
+  };
+};
 export const removeCart = (data) => {
   return {
     type: types.REMOVE_FROM_CART_REQUEST,

@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-community/async-storage';
 import types from '../actions/types';
 
 //Get site data from url reducer
@@ -386,12 +387,23 @@ export const appReducers = (state = initialState, action) => {
       };
     //Add to Cart
     case types.ADD_TO_CART_SUCCESS:
+      AsyncStorage.setItem('cartData',JSON.stringify([...state.cartList.data, action.payload]));
       return {
         ...state,
         cartList: {
           ...state.cartList,
           data: [...state.cartList.data, action.payload],
           //state.cartList.data.push(action.payload)
+          refreshing: false,
+        },
+      };
+    case types.RETRIVE_CART_SUCCESS:
+      AsyncStorage.setItem('cartData',JSON.stringify(action.payload));
+      return {
+        ...state,
+        cartList: {
+          ...state.cartList,
+          data: action.payload,
           refreshing: false,
         },
       };
@@ -415,6 +427,10 @@ export const appReducers = (state = initialState, action) => {
 
     //Remove from Cart
     case types.REMOVE_FROM_CART_SUCCESS:
+      AsyncStorage.setItem('cartData',JSON.stringify(state.cartList.data.filter(
+        item => item.id !== action.payload.id,
+      )));
+
       return {
         ...state,
         cartList: {

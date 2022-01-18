@@ -18,61 +18,61 @@ import TransactionConfirmation from '../../DishDetails/TransactionConfirmation';
 import {routeName} from '../../../../constants/routeName';
 import {set} from 'react-native-reanimated';
 import SharedData from './SharedData';
-import {useSelector,useDispatch} from 'react-redux';
-import { removeCart } from '../../../../redux/actions/user.actions';
+import {useSelector, useDispatch} from 'react-redux';
+import {
+  removeCart,
+  addCart,
+  retriveCart,
+} from '../../../../redux/actions/user.actions';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const CartDetails = ({navigation}) => {
   const cartList = useSelector(state => state.appReducers.cartList.data);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const [random, setRandom] = React.useState([]);
+  const [totalPrice, setTotalPrice] = React.useState();
 
-  React.useEffect(() => {
+  React.useEffect(async () => {
+    const item = await AsyncStorage.getItem('cartData');
+    console.log(JSON.parse(item), 'cart dataataaaaaaa');
+    if (item != null) {
+      dispatch(retriveCart(JSON.parse(item)));
+    }
+  }, []);
+
+  React.useEffect(async () => {
     setRandom(SharedData.state.data);
     let sum = cartList.reduce((a, c) => {
       return a + c.price * c.quantity;
     }, 0);
+    setTotalPrice(sum);
     console.log('sum: ', sum);
     console.log('cart data........', cartList);
   }, [random]);
 
-  // const changeValue = (item, id)=> {
-  //     const newArray = random.filter((item)=>{
-  //         item.id===id ? item.quantity=item.quantity+1 : undefined;
-  //         return random
-  //       });
-  //       console.log('quantity', item.quantity);
-  //     setRandom(newArray);
-  // }
-
   const onItemRemove = (data, position) => {
-    // const newArray = SharedData.data.filter((item,i)=>{
-    //    return data===item? position !== i : SharedData.data;
-    // });
-    dispatch(removeCart(data))
-    // const arr = SharedData.state.data;
-    // arr.splice(position, 1);
-    // setRandom(arr);
-    // SharedData.UpdateData(arr);
-    // console.log('Cart_Details', random);
+    dispatch(removeCart(data));
   };
 
-  const onItemIncrease = item => {
-    const newArray = random.filter(item1 => {
-      item1 === item ? (item1 = item) : undefined;
-      return random;
-    });
-    // console.log('quantity', item.data.quantity);
-    setRandom(newArray);
+  const onItemIncrease = (index, quantity) => {
+    cartList[index].quantity = cartList[index].quantity + 1;
+    console.log('quantity', cartList);
+    setRandom(cartList);
+    dispatch(retriveCart(cartList));
+
   };
 
-  const onItemDecrease = item => {
-    const newArray = random.filter(item1 => {
-      item1 === item ? (item1 = item) : undefined;
-      return random;
-    });
-    // console.log('quantity', item.data.quantity);
-    setRandom(newArray);
+  const onItemDecrease = (index, item) => {
+    cartList[index].quantity =
+      cartList[index].quantity > 1
+        ? cartList[index].quantity - 1
+        : cartList[index].quantity;
+
+    console.log('quantity', cartList);
+    setRandom(cartList);
+    dispatch(retriveCart(cartList));
+
   };
 
   return (
@@ -149,11 +149,7 @@ const CartDetails = ({navigation}) => {
                       <View style={{marginLeft: -15}}>
                         <TouchableOpacity
                           onPress={() => {
-                            item.quantity =
-                              item.quantity > 1
-                                ? item.quantity - 1
-                                : item.quantity;
-                            onItemDecrease(item);
+                            onItemDecrease(index, item);
                           }}
                           style={{
                             backgroundColor: colors.yellow,
@@ -183,9 +179,9 @@ const CartDetails = ({navigation}) => {
                         </View>
                         <TouchableOpacity
                           onPress={() => {
-                            item.quantity = item.quantity + 1;
-                            onItemIncrease(item);
-                            // onItemIncrease(index, item.quantity)
+                            // item.quantity = item.quantity + 1;
+                            //onItemIncrease(item);
+                            onItemIncrease(index, item.quantity);
                           }}
                           style={{
                             backgroundColor: colors.yellow,
@@ -271,9 +267,10 @@ const CartDetails = ({navigation}) => {
                   Final Total
                 </ResponsiveText>
                 <ResponsiveText color={colors.yellow} size={4}>
-                  $ {cartList.reduce((a, c) => {
+                  ${' '}
+                  {cartList.reduce((a, c) => {
                     return a + c.price * c.quantity;
-                  }, 0)+6}
+                  }, 0) + 6}
                 </ResponsiveText>
               </View>
             </View>
