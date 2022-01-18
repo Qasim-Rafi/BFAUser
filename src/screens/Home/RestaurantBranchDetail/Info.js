@@ -40,7 +40,7 @@ const Info = (props) => {
             />
           </View>
         </View>
-        <TimeTable />
+        <TimeTable data={data.restaurantOperationalHoursList} />
         <View style={{ marginBottom: 30 }}>
           {/* <Comments /> */}
         </View>

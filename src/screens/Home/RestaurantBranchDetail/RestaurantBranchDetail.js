@@ -33,7 +33,7 @@ export default function RestaurantBranchDetailScreen({navigation, route}) {
   const dispatch = useDispatch();
   const data = useSelector(state => state.appReducers.restaurantDetail.data);
   React.useEffect(() => {
-    dispatch(getRestaurentDeatil(31));
+    dispatch(getRestaurentDeatil(11));
     //route.params.restaurantId
   }, []);
   console.log('routeetetteetet vhvhh', data);
