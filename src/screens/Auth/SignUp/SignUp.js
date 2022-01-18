@@ -11,7 +11,7 @@ import {
   Text,
   SafeAreaView,
 } from 'react-native';
-import DropDown from '../../../components/DropDown';
+import DropDown from '../../../components/CustomizeDropdown';
 import { useState } from 'react';
 import { hp, wp } from '../../../helpers/Responsiveness';
 import Icon from '../../../components/Icon';
@@ -42,7 +42,7 @@ export default function Signup({ navigation }) {
   const [phoneNum, setPhoneNum] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState();
-  const Gender = ['Male', 'Female'];
+  const Gender = [{ lable: "Male", icon: require('../../../assets/fake_Images/user.png') }, { lable: "Female", icon: require('../../../assets/fake_Images/user.png') }];
   // var obj = {
   //   "username": userName,
   //   "email": email,
@@ -266,7 +266,7 @@ export default function Signup({ navigation }) {
               placeholder="Password"
               onChnageText={text => setPassword(text)}
               secureTextEntry
-              leftIcon={globalPath.PASSWORD_LOGO}
+              leftIcon={globalPath.LOCK_LOGO}
             />
             {/* <Input
             margin={[0, 0, 15, 0]}

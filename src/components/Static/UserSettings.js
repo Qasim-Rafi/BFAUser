@@ -1,6 +1,6 @@
 
 
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   TouchableOpacity,
@@ -12,11 +12,11 @@ import {
 import Container from '../Basics/Container';
 import ResponsiveText from '../RnText';
 import Header from '../Header';
-import {iconPath} from '../../constants/icon';
-import {hp, wp} from '../../helpers/Responsiveness';
-import {colors} from '../../constants/colorsPallet';
+import { iconPath } from '../../constants/icon';
+import { hp, wp } from '../../helpers/Responsiveness';
+import { colors } from '../../constants/colorsPallet';
 import SettingSwitchComponent from '../SettingSwitchComponent';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import Icon from '../Icon';
 import RnButton from '../RnButton';
 
@@ -32,7 +32,7 @@ const UserSettings = (props) => {
         leftIcon={iconPath.Back_BUTTON}
         onFirstPress={() => navigation.goBack()}
       />
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <ScrollView contentContainerStyle={styles.scrollView}>
           <ResponsiveText margin={[15, 0]} size="h5" color={colors.red}>
             Profile
