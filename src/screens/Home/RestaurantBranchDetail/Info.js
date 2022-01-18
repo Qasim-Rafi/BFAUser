@@ -21,8 +21,8 @@ const Info = (props) => {
       <View>
         <View style={{ marginHorizontal: 20, marginVertical: 10 }}>
           <ResponsiveText size={4} color={colors.white} >Facilities</ResponsiveText>
-          {/* <FacilityList data={FacilityData} /> */}
-          <View style={{ display: 'flex', flexDirection: 'row' }}>
+          <FacilityList data={data.facilitiesTaglist} />
+          {/* <View style={{ display: 'flex', flexDirection: 'row' }}>
             <Icon
               source={globalPath.WIFI_ICON}
               size={(hp(8), wp(8))}
@@ -38,7 +38,7 @@ const Info = (props) => {
               size={(hp(8), wp(8))}
               margin={[0, 0, 0, 30]}
             />
-          </View>
+          </View> */}
         </View>
         <TimeTable data={data.restaurantOperationalHoursList} />
         <View style={{ marginBottom: 30 }}>
