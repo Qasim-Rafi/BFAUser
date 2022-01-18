@@ -1,3 +1,4 @@
+
 import types from "./types";
 
 
@@ -8,13 +9,21 @@ export const loginUser = (data) => {
     data: data,
   };
 };
+//Profile Data
+export const getProfileData = (data) => {
+  return {
+    type: types.GET_USER_PROFILE_DATA_REQUEST,
+    data: data,
+  };
+};
 //Register actions
 
 
-export const registerUser = (data) => {
+export const registerUser = (data, navigation) => {
   return {
     type: types.REGISTER_USER_REQUEST,
-    data:data,
+    data: data,
+    navigation: navigation
   };
 };
 
@@ -166,6 +175,12 @@ export const addCart = (data) => {
     data,
   };
 };
+export const retriveCart = (data) => {
+  return {
+    type: types.RETRIVE_CART_REQUEST,
+    data,
+  };
+};
 export const removeCart = (data) => {
   return {
     type: types.REMOVE_FROM_CART_REQUEST,
@@ -173,13 +188,21 @@ export const removeCart = (data) => {
   };
 };
 //What's new
-export const whatsNew = (data) => {
+export const getwhatsNew = (index, limit) => {
   return {
     type: types.GET_WHATSNEW_REQUEST,
+    data: {
+      index: index,
+      limit: limit
+    }
+  };
+};
+export const getRestaurentDeatil = (data) => {
+  return {
+    type: types.GET_RESTAURENT_DETAIL_REQUEST,
     data,
   };
 };
-
 // //Get User categories actions
 // export const getUserCategories = (params) => {
 //   return {

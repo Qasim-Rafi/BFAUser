@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-community/async-storage';
 import types from '../actions/types';
 
 //Get site data from url reducer
@@ -17,6 +18,10 @@ const initialState = {
     refreshing: false,
     data: {},
   },
+  profileData: {
+    refreshing: false,
+    data: {},
+  },
   cusineDetail: {
     loading: false,
     data: {},
@@ -29,10 +34,7 @@ const initialState = {
     refreshing: false,
     data: {},
   },
-  userProfile: {
-    loading: false,
-    data: {},
-  },
+
   addBanner: {
     loading: false,
     data: {},
@@ -48,7 +50,7 @@ const initialState = {
   },
   PeopleChoice: {
     loading: false,
-    data: {},
+    data: [],
   },
 
   promoJobs: {
@@ -76,10 +78,39 @@ const initialState = {
     refreshing: true,
     data: [],
   },
+  restaurantDetail: {
+    refreshing: true,
+    data: {},
+  },
 };
 
 export const appReducers = (state = initialState, action) => {
   switch (action.type) {
+    case types.GET_USER_PROFILE_DATA_REQUEST:
+      return {
+        ...state,
+        profileData: {
+          ...state.profileData,
+          loading: true,
+        },
+      };
+    case types.GET_USER_PROFILE_DATA_SUCCESS:
+      return {
+        ...state,
+        profileData: {
+          ...state.profileData,
+          data: action.payload,
+          loading: false,
+        },
+      };
+    case types.GET_USER_PROFILE_DATA_FAILURE:
+      return {
+        ...state,
+        profileData: {
+          ...state.profileData,
+          loading: false,
+        },
+      };
     case types.GET_BRUNEI_FOOD_AWARDS_REQUEST:
       return {
         ...state,
@@ -193,15 +224,7 @@ export const appReducers = (state = initialState, action) => {
           data: action.payload,
         },
       };
-    case types.GET_USERS_BY_ID_SUCCESS:
-      return {
-        ...state,
-        userProfile: {
-          ...state.userProfile,
-          data: action.payload,
-          loading: false,
-        },
-      };
+
     case types.GET_BFA_RECOMMENDATION_REQUEST:
       return {
         ...state,
@@ -243,7 +266,8 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         PeopleChoice: {
           ...state.PeopleChoice,
-          data: action.payload,
+          data: [...state.PeopleChoice.data, ...action.payload],
+
           loading: false,
         },
       };
@@ -255,23 +279,7 @@ export const appReducers = (state = initialState, action) => {
           loading: false,
         },
       };
-    case types.GET_USERS_BY_ID_FAILURE:
-      return {
-        ...state,
-        userProfile: {
-          ...state.userProfile,
-          loading: false,
-        },
-      };
 
-    case types.GET_USERS_BY_ID_REQUEST:
-      return {
-        ...state,
-        userProfile: {
-          ...state.userProfile,
-          loading: true,
-        },
-      };
     case types.GET_ADD_BANNER_DATA_REQUEST:
       return {
         ...state,
@@ -379,12 +387,23 @@ export const appReducers = (state = initialState, action) => {
       };
     //Add to Cart
     case types.ADD_TO_CART_SUCCESS:
+      AsyncStorage.setItem('cartData',JSON.stringify([...state.cartList.data, action.payload]));
       return {
         ...state,
         cartList: {
           ...state.cartList,
           data: [...state.cartList.data, action.payload],
           //state.cartList.data.push(action.payload)
+          refreshing: false,
+        },
+      };
+    case types.RETRIVE_CART_SUCCESS:
+      AsyncStorage.setItem('cartData',JSON.stringify(action.payload));
+      return {
+        ...state,
+        cartList: {
+          ...state.cartList,
+          data: action.payload,
           refreshing: false,
         },
       };
@@ -408,6 +427,10 @@ export const appReducers = (state = initialState, action) => {
 
     //Remove from Cart
     case types.REMOVE_FROM_CART_SUCCESS:
+      AsyncStorage.setItem('cartData',JSON.stringify(state.cartList.data.filter(
+        item => item.id !== action.payload.id,
+      )));
+
       return {
         ...state,
         cartList: {
@@ -436,8 +459,8 @@ export const appReducers = (state = initialState, action) => {
           refreshing: true,
         },
       };
-      //GET FAVORITES
-      case types.GET_FAVORITE_REQUEST:
+    //GET FAVORITES
+    case types.GET_FAVORITE_REQUEST:
       return {
         ...state,
         favorite: {
@@ -516,8 +539,8 @@ export const appReducers = (state = initialState, action) => {
           refreshing: true,
         },
       };
-      //////What's News/////
-      case types.GET_WHATSNEW_REQUEST:
+    //////What's News/////
+    case types.GET_WHATSNEW_REQUEST:
       return {
         ...state,
         whatsnew: {
@@ -530,7 +553,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         whatsnew: {
           ...state.whatsnew,
-          data: action.payload,
+          data: [...state.whatsnew.data, ...action.payload],
           refreshing: false,
         },
       };
@@ -539,6 +562,33 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         whatsnew: {
           ...state.whatsnew,
+          refreshing: true,
+        },
+      };
+    //////GET_RESTAURENT_DETAIL_REQUEST
+
+    case types.GET_RESTAURENT_DETAIL_REQUEST:
+      return {
+        ...state,
+        restaurantDetail: {
+          ...state.restaurantDetail,
+          refreshing: true,
+        },
+      };
+    case types.GET_RESTAURENT_DETAIL_SUCCESS:
+      return {
+        ...state,
+        restaurantDetail: {
+          ...state.restaurantDetail,
+          data: action.payload,
+          refreshing: false,
+        },
+      };
+    case types.GET_RESTAURENT_DETAIL_FAILURE:
+      return {
+        ...state,
+        restaurantDetail: {
+          ...state.restaurantDetail,
           refreshing: true,
         },
       };

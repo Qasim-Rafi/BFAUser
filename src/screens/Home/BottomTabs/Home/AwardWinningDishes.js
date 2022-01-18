@@ -18,6 +18,8 @@ import {
   promotionsFakeDATA,
   yourFavoriteFakeDATA,
 } from '../../../../constants/mock';
+import FastImage from 'react-native-fast-image'
+
 import {
   BallIndicator,
   BarIndicator,
@@ -79,7 +81,7 @@ const AwardWinningDishes = props => {
                       overflow: 'hidden',
                       flexDirection: 'row',
                     }}>
-                    <ImageBackground
+                    <FastImage
                       imageStyle={{ opacity: 1 }}
                       style={{
                         flex: 1,
@@ -88,29 +90,39 @@ const AwardWinningDishes = props => {
                         justifyContent: 'flex-end',
                         backgroundColor: 'rgba(0,0,0,1)',
                       }}
-                      source={{ uri: url.imageDataB }}
+                      source={{
+                        uri: url.imageDataB,
+                        priority: FastImage.priority.high,
+                      }}
                     // source={{
                     //   uri: url.imageDataB.replace(/ /g, ''),
                     // }}>
                     >
-                      {/* < ResponsiveText
-                        fontFamily="Regular"
-                        size={3}
-                        margin={[0, 0, 5, 0]}
-                        color={colors.white}>
-                        {url.restaurantName}
-                      </ResponsiveText> */}
                       <Text
                         style={{
+                          opacity: 0.7,
+                          marginTop: 1,
                           color: 'white', padding: 3,
-                          backgroundColor: 'black', borderRadius: 7,
+                          backgroundColor: '#383131', borderRadius: 7,
                           textAlign: 'center', fontWeight: '600', fontSize: 8.5
                         }}
 
                       >
                         {url.titleA}
                       </Text>
-                    </ImageBackground>
+                      <Text
+                        style={{
+                          opacity: 0.7,
+                          color: 'white', padding: 3,
+                          backgroundColor: 'black', borderRadius: 7,
+                          textAlign: 'center', fontWeight: '800', fontSize: 9
+                        }}
+
+                      >
+                        {url.titleR}
+                      </Text>
+
+                    </FastImage>
                   </View>
                 </TouchableOpacity>
               );

@@ -28,6 +28,7 @@ import {
   getPromoNewsData,
   getPromoJobsData,
   getPeopleChoice,
+  getwhatsNew,
 } from '../../../../redux/actions/user.actions';
 import {
   BallIndicator,
@@ -87,24 +88,28 @@ export default function AllDishesList({ route, navigation }) {
             backgroundColor: 'rgba(0,0,0,1)',
           }}
           source={item.url ? item.url : { uri: item.imageDataB }}>
+          {title == "PG's Favourites" ? <Icon size={15} source={globalPath.F_HEART} /> : null}
           <View style={{ alignItems: 'flex-end' }}></View>
           <View>
             <Text
               style={{
-                color: 'white', padding: 3,
-                backgroundColor: 'black', borderRadius: 7,
+                marginTop: 1,
+                color: 'white', padding: 3, opacity: 0.7,
+                backgroundColor: '#383131', borderRadius: 7,
                 textAlign: 'center', fontWeight: '600', fontSize: 8.5
               }}>
               {item.titleD == undefined ? item.titleA : item.titleD}
             </Text>
             <Text
               style={{
-                color: 'white', padding: 3, marginTop: 1,
+                color: 'white', padding: 3, marginTop: 1, opacity: 0.7,
                 backgroundColor: 'black', borderRadius: 7,
                 textAlign: 'center', fontWeight: '600', fontSize: 8.5
               }}>
               {item.titleR}
             </Text>
+
+
             {/* <ResponsiveText fontFamily="Regular" size={2} color={colors.white}>
               {item.titleR}
             </ResponsiveText> */}
@@ -121,7 +126,7 @@ export default function AllDishesList({ route, navigation }) {
           justifyContent: 'center',
           backgroundColor: colors.black2,
         }}>
-        <TouchableOpacity onPress={() => { props.navigation.goBack() }} style={{ margin: 10, backgroundColor: colors.black, paddingVertical: 10, alignSelf: 'flex-start', paddingHorizontal: 10, borderRadius: 25 }}>
+        <TouchableOpacity onPress={() => { navigation.goBack() }} style={{ margin: 10, backgroundColor: colors.yellow1, paddingVertical: 10, alignSelf: 'flex-start', paddingHorizontal: 10, borderRadius: 25 }}>
           <Icon source={globalPath.BACK_ARROW} />
         </TouchableOpacity>
         {/* <Header navigation={navigation} iconPath={globalPath.BACK_ARROW} /> */}
@@ -155,7 +160,7 @@ export default function AllDishesList({ route, navigation }) {
         break;
 
       case "What's New":
-        dispatch(whatsNew(index, 13));
+        dispatch(getwhatsNew(index, 13));
         break;
 
       case 'Promotions':

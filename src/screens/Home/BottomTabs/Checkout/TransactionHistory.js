@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image,TouchableOpacity} from 'react-native';
 import Header from '../../../../components/Header';
 import {TRANSACTION_HISTORY_FAKE_DATA} from '../../../../constants/mock';
 import {hp, wp} from '../../../../helpers/Responsiveness';
@@ -10,15 +10,9 @@ import { globalPath } from '../../../../constants/globalPath';
 export default function TransactionHistory({navigation}) {
   return (
     <View style={{flex: 1, backgroundColor: colors.black3}}>
-      <View
-        style={{
-          flex: 0.1,
-          backgroundColor: colors.black2,
-          justifyContent: 'center',
-          
-        }}>
-        <Header navigation={navigation} iconPath={globalPath.BACK_ARROW}/>
-      </View>
+       <View style={{ flexDirection: 'row', justifyContent: "space-between",padding:7 }}>
+            <TouchableOpacity style={{ backgroundColor:colors.yellow1,paddingVertical:10,paddingHorizontal:10,borderRadius:20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
+          </View>
       <View style={{flex:0.9, margin:20}}>
           <ResponsiveText margin={[0,0,20,0]} color={colors.yellow}size={4.5}>Transactions History</ResponsiveText>
       {TRANSACTION_HISTORY_FAKE_DATA.map((item, index) => {

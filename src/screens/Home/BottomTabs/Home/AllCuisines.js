@@ -27,6 +27,8 @@ import {
   ourRecommendationFakeDATA,
 } from '../../../../constants/mock';
 import { colors } from '../../../../constants/colorsPallet';
+import FastImage from 'react-native-fast-image'
+
 import SeeAllButton from '../../../../components/SeeAllButton';
 import { routeName } from '../../../../constants/routeName';
 import { hp, wp } from '../../../../helpers/Responsiveness';
@@ -103,7 +105,7 @@ const AllCuisines = props => {
                         overflow: 'hidden',
                         flexDirection: 'row',
                       }}>
-                      <ImageBackground
+                      <FastImage
                         imageStyle={{ opacity: 1 }}
                         style={{
                           flex: 1,
@@ -112,12 +114,16 @@ const AllCuisines = props => {
                           justifyContent: 'flex-end',
                           backgroundColor: 'rgba(0,0,0,1)',
                         }}
-                        source={{ uri: item.fullPath }}>
+                        source={{
+                          uri: item.fullPath,
+                          priority: FastImage.priority.normal,
+
+                        }}>
 
                         {/* source={require('../../../../assets/fake_Images/japanese.png')}> */}
                         <Text
                           style={{
-                            color: 'white', padding: 3,
+                            color: 'white', padding: 3, opacity: 0.7,
                             backgroundColor: 'black', borderRadius: 7,
                             textAlign: 'center', fontWeight: '600', fontSize: 8.5
                           }}
@@ -134,7 +140,7 @@ const AllCuisines = props => {
                           color={colors.white}>
                           {item.name}
                         </ResponsiveText> */}
-                      </ImageBackground>
+                      </FastImage>
                     </View>
                   </TouchableOpacity>
                 );

@@ -4,6 +4,8 @@
 const BG_IMAGE = require('../assets/icons/background.png');
 const BALI_LOGO = require('../assets/icons/bali-logo.png');
 const USER_LOGO = require('../assets/icons/user.png');
+const USER_PROFILE = require('../assets/fake_Images/user_pic.png');
+const MALE_LOGO = require('../assets/icons/male.png');
 const PHONE_LOGO = require('../assets/icons/phone.png');
 const EMAIL_LOGO = require('../assets/icons/email.png');
 const PASSWORD_LOGO = require('../assets/icons/password.png');
@@ -17,42 +19,42 @@ const LOCATION1 = require('../assets/icons/location1.png');
 const PLUS_ICON = require('../assets/icons/plus.png');
 const MINUS_ICON = require('../assets/icons/minus.png');
 
-const HOME_GREY =require('../assets/icons/home-gray.png');
-const MORE_GREY =require('../assets/icons/More-gray.png');
-const RANDOM_GREY =require('../assets/icons/Randomiser-gray.png');
-const FEED_GREY =require('../assets/icons/feed-gray.png');
-const CHECKOUT_GREY =require('../assets/icons/Checkout-gray.png');
-const MORE_SHOP_ICON =require('../assets/icons/braches.png');
-const ALIGATO =require('../assets/icons/aligato.png');
+const HOME_GREY = require('../assets/icons/home-gray.png');
+const MORE_GREY = require('../assets/icons/More-gray.png');
+const RANDOM_GREY = require('../assets/icons/Randomiser-gray.png');
+const FEED_GREY = require('../assets/icons/feed-gray.png');
+const CHECKOUT_GREY = require('../assets/icons/Checkout-gray.png');
+const MORE_SHOP_ICON = require('../assets/icons/braches.png');
+const ALIGATO = require('../assets/icons/aligato.png');
 
-const CARD_MANAGEMENT =require('../assets/icons/card-management.png');
-const CARD =require('../assets/icons/card.png');
-const CARDS_IMG =require('../assets/icons/Cards.png');
-const CASH =require('../assets/icons/cash.png');
-const CONTACT_US =require('../assets/icons/contact us.png');
-const COWRIES =require('../assets/icons/cowries.png');
-const DELETE_ICON =require('../assets/icons/deleteicon.png');
-const FAQ =require('../assets/icons/faq.png');
-const FAVOURITES =require('../assets/icons/favourites.png');
-const ICON_VIEW =require('../assets/icons/icon-view.png');
-const INTERACTIVE =require('../assets/icons/Interactive.png');
-const JOBS =require('../assets/icons/jobs.png');
-const MASTER_CARD =require('../assets/icons/mastercard-1.png');
-const VISA_CARD =require('../assets/icons/visacard-1.png');
+const CARD_MANAGEMENT = require('../assets/icons/card-management.png');
+const CARD = require('../assets/icons/card.png');
+const CARDS_IMG = require('../assets/icons/Cards.png');
+const CASH = require('../assets/icons/cash.png');
+const CONTACT_US = require('../assets/icons/contact us.png');
+const COWRIES = require('../assets/icons/cowries.png');
+const DELETE_ICON = require('../assets/icons/deleteicon.png');
+const FAQ = require('../assets/icons/faq.png');
+const FAVOURITES = require('../assets/icons/favourites.png');
+const ICON_VIEW = require('../assets/icons/icon-view.png');
+const INTERACTIVE = require('../assets/icons/Interactive.png');
+const JOBS = require('../assets/icons/jobs.png');
+const MASTER_CARD = require('../assets/icons/mastercard-1.png');
+const VISA_CARD = require('../assets/icons/visacard-1.png');
 // const PAYMENT_ICON =require('../assets/icons/payment.png');
-const PREFERANCES =require('../assets/icons/Preferences.png');
-const PROFILE_ICON =require('../assets/icons/profile.png');
-const REVIEWS =require('../assets/icons/reviews.png');
-const SETTINGS =require('../assets/icons/settings.png');
-const SLIDER_VIEW =require('../assets/icons/sliders-view.png');
-const SWITCH =require('../assets/icons/switch.png');
-const CART_ICON =require('../assets/icons/cart.png');
-const CART_ICON_GREY =require('../assets/icons/crat-gray.png');
-const INBOX =require('../assets/icons/inbox.png');
-const INBOX_GREY =require('../assets/icons/inbox-gray.png');
-const ORDERS =require('../assets/icons/orders.png');
-const ORDERS_GREY =require('../assets/icons/orders-gray.png');
-const QR_SCAN =require('../assets/icons/QR-Scanner.png');
+const PREFERANCES = require('../assets/icons/Preferences.png');
+const PROFILE_ICON = require('../assets/icons/profile.png');
+const REVIEWS = require('../assets/icons/reviews.png');
+const SETTINGS = require('../assets/icons/settings.png');
+const SLIDER_VIEW = require('../assets/icons/sliders-view.png');
+const SWITCH = require('../assets/icons/switch.png');
+const CART_ICON = require('../assets/icons/cart.png');
+const CART_ICON_GREY = require('../assets/icons/crat-gray.png');
+const INBOX = require('../assets/icons/inbox.png');
+const INBOX_GREY = require('../assets/icons/inbox-gray.png');
+const ORDERS = require('../assets/icons/orders.png');
+const ORDERS_GREY = require('../assets/icons/orders-gray.png');
+const QR_SCAN = require('../assets/icons/QR-Scanner.png');
 
 
 
@@ -120,7 +122,7 @@ const HOME_WHATSNEW_1 = require('../assets/fake_Images/Home-Whatsnew- (1).png');
 const HOME_WHATSNEW_2 = require('../assets/fake_Images/Home-Whatsnew- (2).png');
 const HOME_WHATSNEW_3 = require('../assets/fake_Images/Home-Whatsnew- (3).png');
 const HOME_WHATSNEW_4 = require('../assets/fake_Images/Home-Whatsnew- (4).png');
-const HOME_YOUR_FAVORITE_1 ='../assets/fake_Images/Home-Your-Favorites- (4).png';
+const HOME_YOUR_FAVORITE_1 = '../assets/fake_Images/Home-Your-Favorites- (4).png';
 const HOME_YOUR_FAVORITE_2 = require('../assets/fake_Images/Home-Your-Favorites- (5).png');
 const HOME_YOUR_FAVORITE_3 = require('../assets/fake_Images/Home-Your-Favorites- (6).png');
 const HOME_YOUR_FAVORITE_4 = require('../assets/fake_Images/Home-Your-Favorites- (7).png');
@@ -137,7 +139,7 @@ const MORE_LOGO = require('../assets/icons/more.png');
 const HOME_LOGO = require('../assets/icons/home.png');
 const RANDOMISER_LOGO = require('../assets/icons/randomiser.png');
 const PROMOS_LOGO = require('../assets/icons/promos.png');
-const OPERATIONAL_HOURS= require('../assets/icons/operational-hours.png');
+const OPERATIONAL_HOURS = require('../assets/icons/operational-hours.png');
 
 //More Icons
 const MORE_PROFILE = require('../assets/icons/moreIcons/profile.png');
@@ -185,7 +187,9 @@ export const globalPath = {
   BG_IMAGE,
   BALI_LOGO,
   USER_LOGO,
+  USER_PROFILE,
   PHONE_LOGO,
+  MALE_LOGO,
   EMAIL_LOGO,
   PASSWORD_LOGO,
   GOOGLE_LOGO,
@@ -208,7 +212,7 @@ export const globalPath = {
   MENU_ICON,
   PROMO_ICON,
   PARKING_ICON,
-  MOSQUE_ICON, 
+  MOSQUE_ICON,
   WIFI_ICON,
   CHECK_TICK,
   RADIO_DOT,
@@ -246,45 +250,45 @@ export const globalPath = {
 
 
   // FAKE IMAGES HERE
-HOME_BFA_PARTNER,
-HOME_ADD_BANNER_1,
-HOME_ADD_BANNER_2,
-HOME_AWARD_WINNING_DISH_1,
-HOME_AWARD_WINNING_DISH_2,
-HOME_AWARD_WINNING_DISH_3,
-HOME_AWARD_WINNING_DISH_4,
-// HOME_COISINE_1,
-// HOME_COISINE_2,
-// HOME_COISINE_3,
-// HOME_COISINE_4,
-// HOME_EVERYONES_FAVORITE_1,
-// HOME_EVERYONES_FAVORITE_2,
-// HOME_EVERYONES_FAVORITE_3,
-// HOME_EVERYONES_FAVORITE_4,
-HOME_HOME_VIEW_COISINES_AND_CATEGORIES,
-HOME_NEARBY_RESTAURANT_1,
-HOME_NEARBY_RESTAURANT_2,
-HOME_NEARBY_RESTAURANT_3,
-HOME_NEARBY_RESTAURANT_4,
-HOME_PROMOTION_1,
-HOME_PROMOTION_2,
-HOME_PROMOTION_3,
-HOME_PROMOTION_4,
+  HOME_BFA_PARTNER,
+  HOME_ADD_BANNER_1,
+  HOME_ADD_BANNER_2,
+  HOME_AWARD_WINNING_DISH_1,
+  HOME_AWARD_WINNING_DISH_2,
+  HOME_AWARD_WINNING_DISH_3,
+  HOME_AWARD_WINNING_DISH_4,
+  // HOME_COISINE_1,
+  // HOME_COISINE_2,
+  // HOME_COISINE_3,
+  // HOME_COISINE_4,
+  // HOME_EVERYONES_FAVORITE_1,
+  // HOME_EVERYONES_FAVORITE_2,
+  // HOME_EVERYONES_FAVORITE_3,
+  // HOME_EVERYONES_FAVORITE_4,
+  HOME_HOME_VIEW_COISINES_AND_CATEGORIES,
+  HOME_NEARBY_RESTAURANT_1,
+  HOME_NEARBY_RESTAURANT_2,
+  HOME_NEARBY_RESTAURANT_3,
+  HOME_NEARBY_RESTAURANT_4,
+  HOME_PROMOTION_1,
+  HOME_PROMOTION_2,
+  HOME_PROMOTION_3,
+  HOME_PROMOTION_4,
 
-HOME_WHATSNEW_1,
-HOME_WHATSNEW_2,
-HOME_WHATSNEW_3,
-HOME_WHATSNEW_4,
-HOME_YOUR_FAVORITE_1,
-HOME_YOUR_FAVORITE_2,
-HOME_YOUR_FAVORITE_3,
-HOME_YOUR_FAVORITE_4,
-HOME_BFA_PARTNER_1,
-HOME_BFA_PARTNER_2,
-HOME_BFA_PARTNER_3,
-HOME_BFA_PARTNER_4,
-HOME_BFA_PARTNER_5,
-HOME_BFA_PARTNER_6,
-NEWS_FEED_IAMGE1,
+  HOME_WHATSNEW_1,
+  HOME_WHATSNEW_2,
+  HOME_WHATSNEW_3,
+  HOME_WHATSNEW_4,
+  HOME_YOUR_FAVORITE_1,
+  HOME_YOUR_FAVORITE_2,
+  HOME_YOUR_FAVORITE_3,
+  HOME_YOUR_FAVORITE_4,
+  HOME_BFA_PARTNER_1,
+  HOME_BFA_PARTNER_2,
+  HOME_BFA_PARTNER_3,
+  HOME_BFA_PARTNER_4,
+  HOME_BFA_PARTNER_5,
+  HOME_BFA_PARTNER_6,
+  NEWS_FEED_IAMGE1,
 
 };

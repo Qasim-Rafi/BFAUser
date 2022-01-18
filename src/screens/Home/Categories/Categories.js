@@ -46,7 +46,11 @@ export default function Categories({ navigation, route }) {
             // if (i.name[0] == item.name[0]) {
             return (
               <View style={{ paddingLeft: 25, justifyContent: 'center', paddingVertical: 2 }}>
+                <TouchableOpacity  onPress={() =>
+                      props.navigation.navigate(routeName.DISH_DETAIL, { dish: url })
+                    }>
                 <Text style={styles.title}>{v.name}</Text>
+                </TouchableOpacity>
               </View>)
           }
             // }
@@ -75,7 +79,7 @@ export default function Categories({ navigation, route }) {
           return (
             <View style={{ flex: 1, justifyContent: 'center' }}>
               <TouchableOpacity style={{ marginBottom: 2, backgroundColor: colors.white, height: 25, width: 25, justifyContent: 'center', alignItems: 'center', borderRadius: 1000 }} onPress={() => ScrollHandler(item, index)}>
-                <ResponsiveText color={colors.yellow}>{item.name[0]}</ResponsiveText>
+                <ResponsiveText color={colors.black1}>{item.name[0]}</ResponsiveText>
               </TouchableOpacity>
             </View>
           )

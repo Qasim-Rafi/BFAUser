@@ -22,6 +22,8 @@ import {
 import ResponsiveText from '../../../../components/RnText';
 import { Rating, AirbnbRating } from 'react-native-ratings';
 import { routeName } from '../../../../constants/routeName';
+import FastImage from 'react-native-fast-image'
+
 import {
   advertisementBannerFakeDATA,
   everyoneFavoriteFakeDATA,
@@ -65,7 +67,7 @@ const EveryOneFavourite = props => {
                   return (
                     <TouchableOpacity
                       onPress={() =>
-                        props.navigation.navigate(routeName.RestaurantDetail)
+                        props.navigation.navigate(routeName.RestaurantDetail, url)
                       }>
                       <View
                         style={{
@@ -76,7 +78,7 @@ const EveryOneFavourite = props => {
                           overflow: 'hidden',
                           flexDirection: 'row',
                         }}>
-                        <ImageBackground
+                        <FastImage
                           imageStyle={{ opacity: 1 }}
                           style={{
                             flex: 1,
@@ -87,23 +89,23 @@ const EveryOneFavourite = props => {
                           source={{ uri: url.fullPath }}>
                           <Rating
                             tintColor={'rgba(0, 0, 0, 0.8)'}
-                            size={2}
-                            imageSize={10}
+                            imageSize={13}
                             // tintColor={'transparent'}
                             style={{ paddingVertical: 10, alignSelf: 'flex-start' }}
                           />
                           <Text
                             style={{
-                              color: 'white', padding: 3,
+                              color: 'white', padding: 3, opacity: 0.7,
                               backgroundColor: 'black', borderRadius: 7,
                               textAlign: 'center', fontWeight: '600', fontSize: 8.5
                             }}
 
                           >
-                            {url.dishName}
+                            {url.titleD}
 
 
                           </Text>
+
 
                           {/* <ResponsiveText
                       fontFamily="Light"
@@ -114,7 +116,7 @@ const EveryOneFavourite = props => {
                     </ResponsiveText> */}
 
 
-                        </ImageBackground>
+                        </FastImage>
                       </View>
                     </TouchableOpacity>
                   );

@@ -144,14 +144,10 @@ export default function Login({ navigation }) {
 
   return (
     <>
-
-
-
-
       <ScrollView
-        keyboardShouldPersistTaps="always"
+        keyboardShouldPersistTaps="handled"
         contentContainerStyle={{ flexGrow: 1, backgroundColor: colors.black }}>
-        <View style={{ flex: 1, backgroundColor: colors.black }}>
+        <View style={{ flex: 0.9, backgroundColor: colors.black }}>
           <View style={styles.screeninfo}>
             <Icon source={globalPath.BALI_ICON} size={60} />
             <ResponsiveText margin={[1, 0, 0, 0]} color={colors.yellow} fontFamily="Regular" size={8}>
@@ -160,8 +156,6 @@ export default function Login({ navigation }) {
             <ResponsiveText margin={[1, 0, 0, 0]} color={colors.white}>
               Please Login to Continue
             </ResponsiveText>
-
-
             {/* {
                   textError==true?
                 <ResponsiveText margin={[10, 0, 0, 0]} color={colors.red3} fontFamily="Regular" size={5}>
@@ -173,13 +167,13 @@ export default function Login({ navigation }) {
                   </ResponsiveText>
                 } */}
           </View>
-          <View style={styles.formArea}>
+          <KeyboardAvoidingView style={styles.formArea} behavior={Platform.OS === "ios" ? "padding" : null}>
             <Input
               padding={[0, 0, 0, 25]}
               onChnageText={text => setUserName(text)}
               iconMargin={[0, 10, 0, 0]}
-              placeholder="Email"
-              leftIcon={globalPath.EMAIL_LOGO}
+              placeholder="Username"
+              leftIcon={globalPath.MALE_LOGO}
             />
             <Input
               margin={[20, 0, wp(10), 0]}
@@ -205,7 +199,6 @@ export default function Login({ navigation }) {
               {loading == true ?
                 <  SkypeIndicator count={5} color={colors.black} size={30} />
                 :
-
                 <ResponsiveText color={colors.black} size={4}>
                   Sign In
                 </ResponsiveText>
@@ -233,7 +226,7 @@ export default function Login({ navigation }) {
               </ResponsiveText>
               {/* <View style={styles.socialIcon}></View> */}
             </View>
-          </View>
+          </KeyboardAvoidingView>
         </View>
         <FlashMessage ref={dropdownRef} />
       </ScrollView>
@@ -268,7 +261,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   formArea: {
-    flex: 0.99,
+    flex: 1,
     borderTopRightRadius: wp(8),
     borderTopLeftRadius: wp(8),
     backgroundColor: colors.black3,

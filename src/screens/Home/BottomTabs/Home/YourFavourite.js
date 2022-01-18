@@ -12,6 +12,7 @@ import ResponsiveText from '../../../../components/RnText';
 import { Rating, AirbnbRating } from 'react-native-ratings';
 import { routeName } from '../../../../constants/routeName';
 import { useSelector, useDispatch } from 'react-redux';
+import FastImage from 'react-native-fast-image'
 import {
   advertisementBannerFakeDATA,
   yourFavoriteFakeDATA,
@@ -49,12 +50,12 @@ const YourFavourite = props => {
         </ResponsiveText>
         <View style={{ marginRight: -15 }}>
 
-            <SeeAllButton
-              title={"PG's Favourites"}
-              data={favData}
-              action={getFavorite}
-              navigation={props.navigation}
-            />
+          <SeeAllButton
+            title={"PG's Favourites"}
+            data={favData}
+            action={getFavorite}
+            navigation={props.navigation}
+          />
           {/* <SeeAllButton
             title={"PG's Favourites"}
             data={yourFavoriteFakeDATA}
@@ -83,38 +84,51 @@ const YourFavourite = props => {
                       overflow: 'hidden',
                       flexDirection: 'row',
                     }}>
-                    <ImageBackground
-                      imageStyle={{ opacity: 1 }}
+                    <FastImage
+                      // imageStyle={{ opacity: 1 }}
                       style={{
                         flex: 1,
+                        opacity: 0.7,
                         padding: 5,
                         overflow: 'hidden',
                         justifyContent: 'flex-end',
                       }}
-                      source={{ uri: url.imageDataB }}>
+                      source={{
+                        uri: url.imageDataB,
+                        priority: FastImage.priority.high,
+                      }}
+                    >
+
+                      <View style={{ alignItems: 'flex-end', paddingBottom: '90%', flex: 1 }}>
+                        <Icon size={15} source={globalPath.F_HEART} />
+                      </View>
                       <View style={{ backgroundColor: color.black1 }}>
 
-                        {/* <ResponsiveText
-                          fontFamily="Regular"
-                          size={3}
-                          color={colors.white}>
-                          {url.titleD}
-                        </ResponsiveText>
-                      </View> */}
+
                       </View>
                       <Text
                         style={{
+                          marginTop: 1,
+                          opacity: 0.9,
+                          color: 'white', padding: 3,
+                          backgroundColor: '#383131', borderRadius: 7,
+                          textAlign: 'center', fontWeight: '800', fontSize: 9
+                        }}>
+                        {url.titleD}
+                      </Text>
+                      <Text
+                        style={{
+                          opacity: 0.8,
                           color: 'white', padding: 3,
                           backgroundColor: 'black', borderRadius: 7,
-                          textAlign: 'center', fontWeight: '600', fontSize: 8.5
+                          textAlign: 'center', fontWeight: '900', fontSize: 9
                         }}
-
                       >
-                        {url.titleD}
+                        {url.titleR}
                       </Text>
 
 
-                    </ImageBackground>
+                    </FastImage>
                   </View>
                 </TouchableOpacity>
               );

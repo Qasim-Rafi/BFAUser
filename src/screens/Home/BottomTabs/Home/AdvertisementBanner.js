@@ -9,6 +9,7 @@ import {
 import ResponsiveText from '../../../../components/RnText';
 import RnButton from '../../../../components/RnButton';
 import Swiper from 'react-native-swiper';
+import FastImage from 'react-native-fast-image'
 
 import Svg, { Defs, LinearGradient, Stop } from 'react-native-svg';
 import { advertisementBannerFakeDATA } from '../../../../constants/mock';
@@ -62,11 +63,16 @@ const AdvertisementBanner = ({ navigation }) => {
           {addBanner.map((item, index) => {
             return (
               <View style={{ flex: 1 }}>
-                <ImageBackground
+                <FastImage
                   imageStyle={{ opacity: 1 }}
                   style={styles.advertisementBannerImage}
                   //  source={{ uri: url }}
-                  source={{ uri: item.fullPath }}>
+                  source={{
+                    uri: item.fullPath,
+
+                    priority: FastImage.priority.high,
+
+                  }}>
                   <View style={styles.advertisementBannerTitleOverlay}>
                     <ResponsiveText
                       fontFamily={'SemiBold'}
@@ -91,7 +97,7 @@ const AdvertisementBanner = ({ navigation }) => {
 
                             </TouchableOpacity> */}
                   </View>
-                </ImageBackground>
+                </FastImage>
               </View>
             );
           })}

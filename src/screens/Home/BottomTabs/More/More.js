@@ -10,19 +10,19 @@ import { StackActions } from '@react-navigation/native';
 import { hp, wp } from '../../../../helpers/Responsiveness'
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { getUserProfile } from '../../../../redux/actions/user.actions';
+import { getProfileData, getUserProfile } from '../../../../redux/actions/user.actions';
 import { BarIndicator } from 'react-native-indicators';
 import { color } from 'react-native-reanimated';
 
 const More = ({ route, navigation }) => {
-  const profileData = useSelector(state => state.appReducers.userProfile.data);
+  const profileData = useSelector(state => state.appReducers.profileData.data);
   console.log('Profile: ', profileData);
-  const loading = useSelector(state => state.appReducers.userProfile.loading);
+  const loading = useSelector(state => state.appReducers.profileData.loading);
   console.log('loading', loading);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(getUserProfile());
+    dispatch(getProfileData());
     console.log('loading', loading);
 
   }, []);
@@ -56,7 +56,7 @@ const More = ({ route, navigation }) => {
 
         <View style={{ flex: 0.05, backgroundColor: colors.yellow, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', paddingVertical: 10 }} >
           <View style={{ flexDirection: 'row', justifyContent: "space-between", flex: .97 }}>
-            <TouchableOpacity style={{ backgroundColor:colors.black,paddingVertical:10,paddingHorizontal:10,borderRadius:20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
+            <TouchableOpacity style={{ backgroundColor: colors.black, paddingVertical: 10, paddingHorizontal: 10, borderRadius: 20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
           </View>
           <TouchableOpacity onPress={logout}>
 
@@ -72,7 +72,8 @@ const More = ({ route, navigation }) => {
             flexDirection: 'row',
             paddingBottom: 20
           }}>
-          <TouchableOpacity onPress={() => navigation.navigate(routeName.PROFILE_SCREEN)} >
+          <TouchableOpacity
+            onPress={() => navigation.navigate(routeName.PROFILE_SCREEN)} >
             <Image
               style={{
                 width: 80,
@@ -81,7 +82,7 @@ const More = ({ route, navigation }) => {
                 marginTop: 10,
                 marginLeft: 20,
               }}
-              source={globalPath.PROFILE_LOGO}
+              source={profileData.fullpath ? { uri: profileData.fullpath } : globalPath.USER_PROFILE}
             />
           </TouchableOpacity>
           <View style={{ justifyContent: 'center', marginLeft: 10 }}>

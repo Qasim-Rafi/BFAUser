@@ -1,19 +1,19 @@
 import React from 'react';
-import {View, TouchableOpacity, Image, TextInput} from 'react-native';
+import { View, TouchableOpacity, Image, TextInput } from 'react-native';
 
 import RText from './Basics/RText';
-import {hp, wp} from '../helpers/Responsiveness';
+import { hp, wp } from '../helpers/Responsiveness';
 import Fonts from '../helpers/Fonts';
-import {iconPath} from '../constants/icon';
+import { iconPath } from '../constants/icon';
 import Icon from './Icon';
 import Input from './Input';
-import {globalPath} from '../constants/globalPath';
+import { globalPath } from '../constants/globalPath';
 import ResponsiveText from './RnText';
-import {routeName} from '../constants/routeName';
-import {colors} from '../constants/colorsPallet';
-import {color} from 'react-native-reanimated';
-import {useDispatch} from 'react-redux';
-import {getUserProfile} from '../redux/actions/user.actions';
+import { routeName } from '../constants/routeName';
+import { colors } from '../constants/colorsPallet';
+import { color } from 'react-native-reanimated';
+import { useDispatch } from 'react-redux';
+import { getUserProfile } from '../redux/actions/user.actions';
 
 const Header = ({
   navigation,
@@ -32,7 +32,7 @@ const Header = ({
           justifyContent: props.iconPath ? undefined : 'center',
         },
       ]}>
-      <TouchableOpacity 
+      <TouchableOpacity
         onPress={() => {
           props.iconPath ? navigation.goBack() : navigation.navigate(routeName.WALLET);
         }}
@@ -42,11 +42,10 @@ const Header = ({
           // backgroundColor:props.iconPath ? colors.black1: undefined,
           justifyContent: 'center',
           alignItems: 'center',
-
           borderRadius: 10,
           marginEnd: 5,
         }}>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Icon
             margin={[0, 0, 0, 0]}
             size={props.iconPath ? 25 : 44}
@@ -88,7 +87,7 @@ const Header = ({
           width={inputWidth}
         /> */}
             <TextInput
-              style={{height: hp(6), width: wp(50), color: colors.white}}
+              style={{ height: hp(6), width: wp(50), color: colors.white }}
               editable={searchBar === 'true' ? true : false}
               fontSize={11}
               placeholderTextColor={colors.white}
@@ -105,7 +104,7 @@ const Header = ({
                 ? navigation.navigate(routeName.SearchAll)
                 : toggleSearchBar('true');
             }}
-            style={{marginStart: 5, borderRadius: 10}}>
+            style={{ marginStart: 5, borderRadius: 10 }}>
             <Icon source={globalPath.SEARCH_LOGO} size={25} />
           </TouchableOpacity>
         </View>
@@ -115,7 +114,7 @@ const Header = ({
           <View />
         ) : (
           <TouchableOpacity
-            style={{marginRight: -10}}
+            style={{ marginRight: -10 }}
             onPress={() => {
               navigation.navigate(routeName.MORE_BOTTOM);
             }}>
@@ -123,7 +122,8 @@ const Header = ({
               borderRadius={30}
               size={props.iconPath ? (wp(10), hp(6)) : 42}
               resizeMode={'cover'}
-              source={globalPath.PROFILE_LOGO}
+              source={globalPath.USER_PROFILE}
+
             />
           </TouchableOpacity>
         ))}
@@ -153,7 +153,7 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  titleText: {color: colors.black, fontFamily: Fonts.Bold, fontSize: wp(1.2)},
+  titleText: { color: colors.black, fontFamily: Fonts.Bold, fontSize: wp(1.2) },
 };
 
 export default Header;

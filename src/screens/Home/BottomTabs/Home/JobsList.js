@@ -12,6 +12,8 @@ import Icon from '../../../../components/Icon';
 import { globalPath } from '../../../../constants/globalPath';
 
 import ResponsiveText from '../../../../components/RnText';
+import FastImage from 'react-native-fast-image'
+
 import {
   BallIndicator,
   BarIndicator,
@@ -91,7 +93,7 @@ const JobsList = props => {
                       overflow: 'hidden',
                       flexDirection: 'row',
                     }}>
-                    <ImageBackground
+                    <FastImage
                       imageStyle={{ opacity: 1 }}
                       style={{
                         flex: 1,
@@ -99,6 +101,8 @@ const JobsList = props => {
                         overflow: 'hidden',
                         justifyContent: 'flex-end',
                         backgroundColor: 'rgba(0,0,0,1)',
+                        priority: FastImage.priority.high,
+
                       }}
                       // source={url.url.}>
                       source={{
@@ -107,7 +111,7 @@ const JobsList = props => {
                       {/* source={{uri: url.fullPath}}> */}
                       <Text
                         style={{
-                          color: 'white', padding: 3,
+                          color: 'white', padding: 3, opacity: 0.7,
                           backgroundColor: 'black', borderRadius: 7,
                           textAlign: 'center', fontWeight: '600', fontSize: 8.5
                         }}
@@ -132,7 +136,7 @@ const JobsList = props => {
                         color={colors.white}>
                         {url.adSlideTitle}
                       </ResponsiveText> */}
-                    </ImageBackground>
+                    </FastImage>
                   </View>
                 </TouchableOpacity>
               );

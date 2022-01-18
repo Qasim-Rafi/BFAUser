@@ -7,38 +7,33 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import ResponsiveText from '../../../components/RnText';
-import {colors} from '../../../constants/colorsPallet';
+import { colors } from '../../../constants/colorsPallet';
 import Header from '../../../components/Header';
-import {hp, wp} from '../../../helpers/Responsiveness';
-import {globalPath} from '../../../constants/globalPath';
-import {CARD_DATA} from '../../../constants/mock';
+import { hp, wp } from '../../../helpers/Responsiveness';
+import { globalPath } from '../../../constants/globalPath';
+import { CARD_DATA } from '../../../constants/mock';
 import Icon from '../../../components/Icon';
-import {routeName} from '../../../constants/routeName';
+import { routeName } from '../../../constants/routeName';
 import Modal from 'react-native-modal';
 
-export default function ManageCards({navigation}) {
+export default function ManageCards({ navigation }) {
   const [isModalVisible, setModalVisible] = React.useState(false);
 
   return (
-    <View style={{flex: 1, backgroundColor: colors.black3}}>
-      <View
-        style={{
-          flex: 0.1,
-          backgroundColor: colors.black2,
-          justifyContent: 'center',
-        }}>
-        <Header iconPath={globalPath.BACK_ARROW} navigation={navigation} />
+    <View style={{ flex: 1, backgroundColor: colors.black3 }}>
+      <View style={{ flexDirection: 'row', justifyContent: "space-between", padding: 7 }}>
+        <TouchableOpacity style={{ backgroundColor: colors.yellow1, paddingVertical: 10, paddingHorizontal: 10, borderRadius: 20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
       </View>
 
       <ResponsiveText margin={[20, 20, 10, 20]} color={colors.yellow} size={4}>
         Card Management
       </ResponsiveText>
-      <View style={{flex:0.3}}>
-      <ImageBackground
-        style={{height:hp(25), width:wp(100) }}
-        resizeMode={'stretch'}
-        source={globalPath.CARDS_IMG}></ImageBackground>
-        </View>
+      <View style={{ flex: 0.3 }}>
+        <ImageBackground
+          style={{ height: hp(25), width: wp(100) }}
+          resizeMode={'stretch'}
+          source={globalPath.CARDS_IMG}></ImageBackground>
+      </View>
       <View
         style={{
           flex: 0.6,
@@ -123,7 +118,7 @@ export default function ManageCards({navigation}) {
         isVisible={isModalVisible ? true : false}
         coverScreen={true}
         backdropOpacity={0.9}
-        style={{justifyContent: 'flex-end'}}>
+        style={{ justifyContent: 'flex-end' }}>
         {/* ------------ ModalView -------------- */}
         <View
           style={{

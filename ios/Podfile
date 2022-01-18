@@ -18,6 +18,8 @@ target 'Bali' do
   
   pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
 
+  pod 'RNFastImage', :path => '../node_modules/react-native-fast-image'
+
   target 'BaliTests' do
     inherit! :complete
     # Pods for testing
