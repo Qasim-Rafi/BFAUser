@@ -42,7 +42,7 @@ export default function Signup({ navigation }) {
   const [phoneNum, setPhoneNum] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState();
-  const Gender = [{ lable: "Male", icon: require('../../../assets/fake_Images/user.png') }, { lable: "Female", icon: require('../../../assets/fake_Images/user.png') }];
+  const Gender = [{ lable: "Male  ", icon: require('../../../assets/icons/male.png') }, { lable: "Female  ", icon: require('../../../assets/icons/female.png') }];
   // var obj = {
   //   "username": userName,
   //   "email": email,
