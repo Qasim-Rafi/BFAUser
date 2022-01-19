@@ -387,7 +387,7 @@ export const appReducers = (state = initialState, action) => {
       };
     //Add to Cart
     case types.ADD_TO_CART_SUCCESS:
-      AsyncStorage.setItem('cartData',JSON.stringify([...state.cartList.data, action.payload]));
+      AsyncStorage.setItem('cartData', JSON.stringify([...state.cartList.data, action.payload]));
       return {
         ...state,
         cartList: {
@@ -398,7 +398,7 @@ export const appReducers = (state = initialState, action) => {
         },
       };
     case types.RETRIVE_CART_SUCCESS:
-      AsyncStorage.setItem('cartData',JSON.stringify(action.payload));
+      AsyncStorage.setItem('cartData', JSON.stringify(action.payload));
       return {
         ...state,
         cartList: {
@@ -427,7 +427,7 @@ export const appReducers = (state = initialState, action) => {
 
     //Remove from Cart
     case types.REMOVE_FROM_CART_SUCCESS:
-      AsyncStorage.setItem('cartData',JSON.stringify(state.cartList.data.filter(
+      AsyncStorage.setItem('cartData', JSON.stringify(state.cartList.data.filter(
         item => item.id !== action.payload.id,
       )));
 
@@ -589,7 +589,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         restaurantDetail: {
           ...state.restaurantDetail,
-          refreshing: true,
+          refreshing: false,
         },
       };
     default:
