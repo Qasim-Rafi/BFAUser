@@ -38,10 +38,10 @@ export default function TimeTable(props) {
 }
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, paddingTop: 30, },
-  head: { height: 40, },
+  head: { height: 40,},
   wrapper: { flexDirection: 'row' },
   title: { flex: 1, },
   row: { height: 28 },
   text: { textAlign: 'center', color: colors.yellow },
-  Headertext: { textAlign: 'center', color: colors.white }
+  Headertext: { textAlign: 'center', color: colors.white,fontSize:12 }
 });
