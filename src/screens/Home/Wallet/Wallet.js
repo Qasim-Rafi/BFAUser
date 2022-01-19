@@ -30,6 +30,7 @@ import bCoinBlack from '../../../assets/icons/bcoin_black.png'
 import bCent from '../../../assets/icons/bcent_black.png'
 import bArrow from '../../../assets/icons/back-arrow.png'
 import { hp, wp } from '../../../helpers/Responsiveness'
+import leftArrow from '../../../assets/icons/arrow-left.png'
 
 
 const Wallet = (props) => {
@@ -62,11 +63,17 @@ const Wallet = (props) => {
     return (
         <ScrollView style={{ backgroundColor: colors.black3 }} >
             <View style={{  flexDirection: 'row',padding:15,backgroundColor:colors.black3,paddingVertical:15}}>
-            <TouchableOpacity style={{ backgroundColor:colors.yellow1,paddingVertical:13,paddingHorizontal:10,borderRadius:25 }} onPress={() => { navigation.goBack() }}><Image source={bArrow} style={styles.bCLogo} /></TouchableOpacity>
+            <TouchableOpacity style={{ backgroundColor:colors.yellow1,paddingVertical:13,paddingHorizontal:10,borderRadius:25 }} onPress={() => { navigation.goBack() }}><Image source={bArrow} style={{height: hp(2.2),width: wp(6)}} /></TouchableOpacity>
                 <Text style={{fontWeight:'bold',fontSize:20,color:'white',marginLeft:'33%'}}>Wallet</Text> 
             </View>
             <View style={styles.container}>
-                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} >
+            <Text style={{ color: 'white', fontSize: 19, marginTop:20 }}>Your Bcoin Balance is:</Text>
+            <Text style={{ color: 'white', fontSize: 70,marginBottom:20 }} >
+                <Image source={bCoin} style={{ height: 60, width: 50 }} />{typeof (comingAmount) === 'undefined' ? parseFloat(0).toFixed(2) : parseFloat(walletAmount + comingAmount)}<TouchableOpacity>
+                        <Image source={leftArrow} style={{ height: 20, width: 20, margin:5 }} />
+                    </TouchableOpacity>
+            </Text>
+                {/* <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} >
                     <Image source={bCoin} style={{ height: 60, width: 50 }} />
                     <TextInput
                         // editable={ number===0 ? false : true }
@@ -77,7 +84,10 @@ const Wallet = (props) => {
                         defaultValue={'' + parseFloat(number).toFixed(2) + ''}
                         keyboardType="numeric"
                     />
-                </View>
+                    <TouchableOpacity>
+                        <Image source={leftArrow} style={{ height: 20, width: 20, margin:5 }} />
+                    </TouchableOpacity>
+                </View> */}
                 <View style={{ flexDirection: 'row', paddingBottom: 20 }} >
                     <View style={{ alignItems: 'center' }}>
                         <TouchableOpacity onPress={() => navigation.navigate(routeName.TRANSACTION_HISTORY)} >
@@ -88,7 +98,7 @@ const Wallet = (props) => {
                         <Text style={{ color: 'white' }}>History</Text>
                     </View>
                     <View style={{ alignItems: 'center' }}>
-                        <TouchableOpacity onPress={() => navigation.navigate(routeName.TRANSFER, number)} >
+                        <TouchableOpacity onPress={() => navigation.navigate(routeName.TRANSFER)} >
                             <View style={styles.imageContainer} >
                                 <Image source={transferLogo} style={styles.image} />
                             </View>
@@ -96,7 +106,7 @@ const Wallet = (props) => {
                         <Text style={{ color: 'white' }}>Transfer</Text>
                     </View>
                     <View style={{ alignItems: 'center' }}>
-                        <TouchableOpacity onPress={() => navigation.navigate(routeName.TOP_UP, number)} >
+                        <TouchableOpacity onPress={() => navigation.navigate(routeName.TOP_UP)} >
                             <View style={styles.imageContainer} >
                                 <Image source={topUpLogo} style={styles.image} />
                             </View>
@@ -106,15 +116,15 @@ const Wallet = (props) => {
 
                 </View>
 
-                <View style={styles.infoS} >
+                {/* <View style={styles.infoS} >
 
                     <Text style={{ color: 'white', fontSize: 20 }}>BND $1 = 1 Bcoin </Text>
                     <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
                         <Image source={infoLogo} style={{ height: 20, width: 20, marginLeft: 5 }} />
                     </TouchableOpacity>
-                </View>
+                </View> */}
 
-                <View style={{ flexDirection: 'row' }} >
+                {/* <View style={{ flexDirection: 'row' }} >
                     <TouchableOpacity style={{ alignItems: 'center' }} onPress={() => setNumber(parseFloat(number) + 1)} >
                         <Image source={_1BCoin} style={styles.image2} />
                     </TouchableOpacity>
@@ -154,12 +164,10 @@ const Wallet = (props) => {
                     <TouchableOpacity onPress={() => setNumber(parseFloat(number) + 0.5)} >
                         <Image source={_50BCent} style={styles.bCents} />
                     </TouchableOpacity>
-                </View>
+                </View> */}
 
-                <Text style={{ color: 'white', fontSize: 19 }}>Your Bcoin Balance is:</Text>
-                <Text style={{ color: 'white', fontSize: 70 }} ><Image source={bCoin} style={{ height: 60, width: 50 }} />{typeof (comingAmount) === 'undefined' ? 0 : parseFloat(walletAmount + comingAmount)}</Text>
-
-                <Modal
+                
+                {/* <Modal
                     animationType="slide"
                     transparent={true}
                     visible={modalVisible}
@@ -240,7 +248,7 @@ const Wallet = (props) => {
 
                         </View>
                     </View>
-                </Modal>
+                </Modal> */}
 
             </View>
         </ScrollView>
@@ -257,8 +265,8 @@ const styles = StyleSheet.create({
     },
     bCLogo: {
         // marginHorizontal: 3,
-        height: hp(2.2),
-        width: wp(6)
+        height: hp(1.5),
+        width: wp(3)
     },
     container: {
         flex: 1,
@@ -302,17 +310,6 @@ const styles = StyleSheet.create({
         width: '85%',
         flexDirection: 'row',
         // marginHorizontal:20
-    },
-    input: {
-        // height: 40,
-        color: colors.white,
-        fontSize: 70,
-        marginBottom: 18,
-        // borderWidth: 1,
-        // padding: 10,
-        borderBottomWidth: 2,
-        borderBottomColor: colors.grey1,
-        paddingBottom: 5,
     },
     centeredModalView: {
         flex: 1,

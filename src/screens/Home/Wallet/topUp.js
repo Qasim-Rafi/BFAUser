@@ -1,6 +1,6 @@
 import { useNavigation, useRoute } from '@react-navigation/native'
 import React, { useState } from 'react'
-import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import Icon from '../../../components/Icon'
 import ResponsiveText from '../../../components/RnText'
 import { colors } from '../../../constants/colorsPallet'
@@ -12,6 +12,9 @@ import Modal from 'react-native-modal';
 import CheckBox from '../../../components/Static/CheckBox'
 import bArrow from '../../../assets/icons/back-arrow.png'
 
+import bCoin from '../../../assets/icons/bcoin_logo.png'
+import leftArrow from '../../../assets/icons/arrow-left.png'
+
 
 const TopUp = (props) => {
     const navigation = useNavigation()
@@ -22,6 +25,9 @@ const TopUp = (props) => {
 
     const topUpAmountComing = route.params
     const topUpAmount = parseFloat(topUpAmountComing).toFixed(2)
+
+    const [number, setNumber] = useState(0)
+
 
     // navigation.setOptions({
     //     headerShown:true,
@@ -40,7 +46,22 @@ const TopUp = (props) => {
             </View>
             <View style={{alignItems:'center',justifyContent:'center'}}>
                 <Text style={{color:'white',fontSize:20}} >Top-up Bcoin Balance</Text>
-                <Text style={{color:'white',fontSize:70,marginTop:50}} >{topUpAmount}</Text>
+                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} >
+                    <Image source={bCoin} style={{ height: 60, width: 50 }} />
+                    <TextInput
+                        // editable={ number===0 ? false : true }
+                        style={styles.input}
+                        onChangeText={setNumber}
+                        value={parseFloat(number).toFixed(2)}
+                        maxLength={10}
+                        defaultValue={'' + parseFloat(number).toFixed(2) + ''}
+                        keyboardType="numeric"
+                    />
+                    <TouchableOpacity>
+                        <Image source={leftArrow} style={{ height: 20, width: 20, margin:5 }} />
+                    </TouchableOpacity>
+                </View> 
+                {/* <Text style={{color:'white',fontSize:70,marginTop:50}} >{topUpAmount}</Text> */}
                 <Text style={{color:'white',fontSize:15}} >5% Fee</Text>
             </View>
             <View
@@ -174,5 +195,16 @@ const styles = StyleSheet.create({
         // marginHorizontal: 3,
         height: hp(2.2),
         width: wp(6)
+    },
+    input: {
+        // height: 40,
+        color: colors.white,
+        fontSize: 70,
+        marginBottom: 18,
+        // borderWidth: 1,
+        // padding: 10,
+        borderBottomWidth: 2,
+        borderBottomColor: colors.grey1,
+        paddingBottom: 5,
     },
 })
