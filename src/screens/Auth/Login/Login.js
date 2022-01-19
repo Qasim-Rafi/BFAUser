@@ -173,7 +173,7 @@ export default function Login({ navigation }) {
               onChnageText={text => setUserName(text)}
               iconMargin={[0, 10, 0, 0]}
               placeholder="Username"
-              leftIcon={globalPath.MALE_LOGO}
+              leftIcon={globalPath.USER_LOGO}
             />
             <Input
               margin={[20, 0, wp(10), 0]}
@@ -182,7 +182,7 @@ export default function Login({ navigation }) {
               placeholder="Password"
               onChnageText={text => setPassword(text)}
               secureTextEntry={true}
-              leftIcon={globalPath.PASSWORD_LOGO}
+              leftIcon={globalPath.LOCK_LOGO}
             />
             <View style={styles.forgotPasswordContainer}>
               {/* <Line color={colors.grey5} width={wp(20)} />

@@ -3,11 +3,12 @@
 
 const BG_IMAGE = require('../assets/icons/background.png');
 const BALI_LOGO = require('../assets/icons/bali-logo.png');
-const USER_LOGO = require('../assets/icons/user.png');
+const LOCK_LOGO = require('../assets/fake_Images/lock.png');
+const USER_LOGO = require('../assets/fake_Images/user.png');
 const USER_PROFILE = require('../assets/fake_Images/user_pic.png');
 const MALE_LOGO = require('../assets/icons/male.png');
 const PHONE_LOGO = require('../assets/icons/phone.png');
-const EMAIL_LOGO = require('../assets/icons/email.png');
+const EMAIL_LOGO = require('../assets/fake_Images/email.png');
 const PASSWORD_LOGO = require('../assets/icons/password.png');
 const GOOGLE_LOGO = require('../assets/icons/google.png');
 const SEARCH_LOGO = require('../assets/icons/search.png');
@@ -186,6 +187,7 @@ export const globalPath = {
   F_HEART,
   BG_IMAGE,
   BALI_LOGO,
+  LOCK_LOGO,
   USER_LOGO,
   USER_PROFILE,
   PHONE_LOGO,
