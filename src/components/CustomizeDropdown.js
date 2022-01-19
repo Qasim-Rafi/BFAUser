@@ -43,7 +43,7 @@ export default function DropDown(props) {
                     borderRadius: 7,
 
                 }}
-                buttonTextStyle={{ color: colors.white, fontSize: 14, textAlign: 'left', }}
+                buttonTextStyle={{ color: colors.white, fontSize: 14, textAlign: 'left',marginTop:7 }}
                 renderDropdownIcon={() => {
                     return (
                         <Icon source={globalPath.DOWN_ARROW} tintColor={colors.white} size={10} />
@@ -51,12 +51,17 @@ export default function DropDown(props) {
                 }}
                 dropdownIconPosition={"right"}
                 data={props.data ? props.data : undefined}
-                onSelect={(selectedItem, index) => {
-                    console.log(selectedItem, index);
-                }}
+                onSelect={props.onSelect}
                 buttonTextAfterSelection={(selectedItem, index) => {
                     console.log("selectedddd:", selectedItem.lable)
-                    return selectedItem.lable;
+                    return (
+
+                        <View style={{ flexDirection: "row" }}>
+
+                            <Icon source={selectedItem.icon} margin={[0, 0, 0, 10]} size={20} />
+                            <Text style={{color:colors.white,marginLeft:10,marginTop:2}}>{selectedItem.lable}</Text>
+                        </View>
+                    );
                 }}
                 rowTextForSelection={(item, index) => {
                     return item;
@@ -67,7 +72,7 @@ export default function DropDown(props) {
                         <View style={{ flexDirection: "row" }}>
 
                             <Icon source={item.icon} margin={[0, 0, 0, 15]} size={20} />
-                            <Text>{item.lable}</Text>
+                            <Text style={{color:colors.white,marginLeft:10}}>{item.lable}</Text>
                         </View>
                     );
                 }}
