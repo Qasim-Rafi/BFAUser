@@ -5,6 +5,8 @@ import ResponsiveText from '../../../components/RnText';
 import {RadioGroup, RadioButton} from 'react-native-flexi-radio-button'
 import { wp } from '../../../helpers/Responsiveness'
 import { colors } from '../../../constants/colorsPallet'
+import CheckBox from '../../../components/Static/CheckBox';
+
 
 export default function AddToCartDetails() {
   return (
@@ -18,7 +20,17 @@ export default function AddToCartDetails() {
             </ResponsiveText>
             <ResponsiveText color={colors.white}>{item.option}</ResponsiveText>
           </View>
-          <RadioGroup
+         {item.data.map((item1,index)=>{
+           return(
+            <View style={{padding: 10}}>
+            <View>
+          <CheckBox text={item1.name} />
+            </View>
+        </View>
+           )
+         })}
+        
+          {/* <RadioGroup
           size={16}
           style={{padding:0}}
                 color={colors.yellow}
@@ -29,14 +41,14 @@ export default function AddToCartDetails() {
             
         <RadioButton style={{padding:3}} value={'item1'} color={colors.yellow} >
          <View style={{flexDirection:'row',width:wp(80),justifyContent:'space-between'}}>
-         <ResponsiveText margin={[0,0,0,10]} size={3} color={colors.white}>{item1.name}</ResponsiveText>
+         <ResponsiveText margin={[0,0,0,10]} size={3} color={colors.white}>{item1.name}h</ResponsiveText>
           <ResponsiveText color={colors.white} >{item1.price}</ResponsiveText>
              </View>
         </RadioButton>
               )
           })}
 
-        </RadioGroup>
+        </RadioGroup> */}
           </View>
         );
       })}
