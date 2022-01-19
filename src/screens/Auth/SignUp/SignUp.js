@@ -41,22 +41,13 @@ export default function Signup({ navigation }) {
   const [email, setEmail] = useState('saniya@gmail.com');
   const [phoneNum, setPhoneNum] = useState('');
   const [password, setPassword] = useState('');
+  const [gender, setgender] = useState('');
   const [confirmPassword, setConfirmPassword] = useState();
-  const Gender = [{ lable: "Male  ", icon: require('../../../assets/icons/male.png') }, { lable: "Female  ", icon: require('../../../assets/icons/female.png') }];
-  // var obj = {
-  //   "username": userName,
-  //   "email": email,
-  //   "fullName": firstName+''+lastName,
-  //   "password": password,
-  //   "userTypeId": 3,
-  //   "restaurantId": 11,
-  //   "updatebyId": 0,
-  //   "updatedDateTime": new Date(),
-  //   "areaId": 1,
-  //   "gender": "male",
-  //   //"dateofBirth": dateFormat(date),
-  //   "contactNumber": phoneNum
-  // }
+  const Gender = [
+    { lable: "Male  ", icon: require('../../../assets/icons/male.png') }, 
+  { lable: "Female  ", icon: require('../../../assets/icons/female.png') }
+];
+
   const [date, setDate] = useState(null);
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
@@ -81,9 +72,6 @@ export default function Signup({ navigation }) {
   const showDAtepicker = () => {
     setShow(true);
   };
-  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-
-
 
 
   const expressions = {
@@ -175,7 +163,7 @@ export default function Signup({ navigation }) {
         "updatebyId": 0,
         "updatedDateTime": `${new Date()}`,
         "areaId": 1,
-        "gender": "male",
+        "gender": gender,
         "dateofBirth": dateFormat(date),
         "contactNumber": phoneNum
       }
@@ -296,7 +284,12 @@ export default function Signup({ navigation }) {
             leftIcon={globalPath.PASSWORD_LOGO}
           /> */}
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-              <DropDown data={Gender} height={hp(6)} width={wp(39)} />
+              <DropDown data={Gender} 
+                onSelect={(selectedItem, index) => {
+                    console.log(selectedItem, index);
+                    setgender(selectedItem.lable)
+                }} 
+                height={hp(6)} width={wp(39)} />
               <View>
                 <View style={{ borderWidth: 2, zIndex: 0, borderRadius: 10 }}>
                   <Text
