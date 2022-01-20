@@ -24,7 +24,7 @@ export default function AddToCart({ route, navigation }) {
   console.log("Add Admin: ", addAdminBranch);
   const [visible, setVisible] = React.useState(false);
   const [count, changeCount] = useState(1);
-  const [dishPrice, updateDishPrice] = useState(10)
+  const [dishPrice, updateDishPrice] = useState(route.params.dish.price)
   const [total, updateTotal] = useState(0);
   const dispatch = useDispatch();
   const [text, setText] = useState('');
@@ -74,14 +74,14 @@ export default function AddToCart({ route, navigation }) {
       <ScrollView style={styles.container}>
         <View>
           <View style={styles.headerImage}>
-            <ImageHeader navigation={navigation} />
+            <ImageHeader navigation={navigation} img={dish.imageDataB}/>
           </View>
           <View style={{ padding: 20 }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-              <ResponsiveText color={colors.white}>Nasi Ayam Bakar Madura</ResponsiveText>
-              <ResponsiveText color={colors.yellow}> $10</ResponsiveText>
+              <ResponsiveText color={colors.white}>{dish.dishName}</ResponsiveText>
+              <ResponsiveText color={colors.yellow}> ${dish.price}</ResponsiveText>
             </View>
-            <ResponsiveText color={colors.grey1}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</ResponsiveText>
+            <ResponsiveText color={colors.grey1}>{dish.description}</ResponsiveText>
           </View>
           <AddToCartDetails />
 
