@@ -1,5 +1,18 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+
+import _1BCoin from '../../../assets/BCoins/1_BCOIN.png'
+import _5BCoin from '../../../assets/BCoins/5_BCOINS.png'
+import _10BCoin from '../../../assets/BCoins/10_BCOINS.png'
+import _20BCoin from '../../../assets/BCoins/20_BCOINS.png'
+import _50BCoin from '../../../assets/BCoins/50_BCOINS.png'
+import _100BCoin from '../../../assets/BCoins/100_HUNDRED_BCOINS.png'
+
+import _1BCent from '../../../assets/BCents/1_BCENT.png'
+import _5BCent from '../../../assets/BCents/5_BCENTS.png'
+import _10BCent from '../../../assets/BCents/10_BCENTS.png'
+import _20BCent from '../../../assets/BCents/20_BCENTS.png'
+import _50BCent from '../../../assets/BCents/50_BCENTS.png'
 
 const BcoinKeypad = () => {
     return (

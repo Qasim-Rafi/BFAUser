@@ -4,6 +4,7 @@ import AuthStack from './AuthStack';
 import {NavigationContainer } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import BottomTabs from './BottomTabs';
 
 const Router = () => {
   const [Token , setToken]= React.useState('');
@@ -24,7 +25,7 @@ const Router = () => {
         headerShown: false,
       }}>
         <Stack.Screen name="Auth" component={AuthStack} />
-        <Stack.Screen name="Home" component={HomeStack} />
+        <Stack.Screen name="Home" component={BottomTabs} />
       </Stack.Navigator>
       {/* {Token === '' || Token === null?<AuthStack/> :<HomeStack /> } */}
       

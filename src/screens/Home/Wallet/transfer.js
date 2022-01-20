@@ -13,6 +13,8 @@ import Modal from 'react-native-modal';
 
 import phoneIcon from '../../../assets/icons/phone-black.png'
 
+import BcoinKeypad from './BcoinKeypad'
+
 
 const Transfer = (props) => {
     const navigation = useNavigation()
@@ -34,7 +36,7 @@ const Transfer = (props) => {
     // })
     return (
         <View style={styles.container} >
-             <View style={{  flexDirection: 'row',marginLeft:10,backgroundColor:colors.black3,paddingVertical:5,alignSelf:'flex-start'}}>
+            <View style={{  flexDirection: 'row',marginLeft:10,backgroundColor:colors.black3,paddingVertical:5,alignSelf:'flex-start'}}>
             <TouchableOpacity style={{ backgroundColor:colors.yellow1,paddingVertical:13,paddingHorizontal:10,borderRadius:25,}} onPress={() => { navigation.goBack() }}><Image source={bArrow} style={styles.bCLogo} /></TouchableOpacity>
                 <Text style={{fontWeight:'bold',fontSize:20,color:'white',marginLeft:'25%',padding:5}}>Transfer</Text> 
             </View>
