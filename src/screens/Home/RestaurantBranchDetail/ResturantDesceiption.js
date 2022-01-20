@@ -11,11 +11,18 @@ import {wp} from '../../../helpers/Responsiveness';
 import StaticMap from '../../../components/StaticMap';
 import { routeName } from '../../../constants/routeName';
 import { useNavigation } from '@react-navigation/native';
-
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addFavoriteRestaurant,
+  RemoveFavoriteRestaurant,
+} from '../../../redux/actions/user.actions';
 
 export default function Restaurant_Description(props) {
   const navigation = useNavigation()
   const [data,setData]=React.useState(props.data)
+  const dispatch = useDispatch();
+  const favData = useSelector(state => state.appReducers.AddfavoriteRestaurant.data);
+  console.log(favData,'hh')
 
   return (
     <View>
@@ -57,9 +64,17 @@ export default function Restaurant_Description(props) {
           borderBottomColor: colors.grey,
           borderBottomWidth: 1,
         }}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => {
+            !favData.some(o => o.id === data.id)
+              ? dispatch(addFavoriteRestaurant(26))
+              : dispatch(RemoveFavoriteRestaurant(26));
+          }}>
         <View style={{alignItems: 'center'}}>
-          <Icon source={globalPath.HEART} />
+          <Icon source={
+              favData.some(o => o.id === 26)
+                ? globalPath.F_HEART
+                : globalPath.HEART
+            } />
           <ResponsiveText top={5} color={colors.yellow}>
             Favourite
           </ResponsiveText>

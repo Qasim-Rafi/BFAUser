@@ -476,7 +476,7 @@ function* addfavouritSagaApi(data) {
     yield put({ type: types.ADD_FAVORITE_FAILURE, error: {} });
   }
 }
-
+//REMOVE FAVOURATE
 export function* onRemoveFavoriteSaga() {
   yield takeLatest(types.ON_REMOVE_FAVORITE_REQUEST, onRemoveFavoriteSagaApi);
 }
@@ -622,5 +622,90 @@ function* getRestaurantDetailSagaApi(data) {
     // dispatch a success action to the store with the new data object
   } catch (error) {
     yield put({ type: types.GET_RESTAURENT_DETAIL_FAILURE, payload: {} });
+  }
+}
+//GET_ALL_FAVORITE_RESTAURANT
+export function* getfavoriteRestaurantSaga() {
+  yield takeLatest(
+    types.GET_ALL_FAVORITE_RESTAURANT_REQUEST,getfavoriteRestaurantSagaApi,
+    
+  );
+}
+function* getfavoriteRestaurantSagaApi() {
+  try {
+    const response = yield Api.get(urls.GET_ALL_FAVORITE_RESTAURANT);
+    console.log(response,'heeeeeeeeee')
+    if (response && response.success == true) {
+      yield put({
+        type: types.GET_ALL_FAVORITE_RESTAURANT_SUCCESS,
+        payload: response.data,
+      });
+      // navigation.navigate(routeName.Categories,{data:response.data});
+    } else {
+      yield put({ type: types.GET_ALL_FAVORITE_RESTAURANT_FAILURE, payload: [] });
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({ type: types.GET_ALL_FAVORITE_RESTAURANT_FAILURE, payload: [] });
+  }
+}
+//Add favourate_Restaurant
+export function* addReataurantfavouriteSaga() {
+  yield takeLatest(types.ADD_FAVORITE_RESTAURANT_REQUEST, addReataurantfavouriteSagaApi);
+}
+function* addReataurantfavouriteSagaApi(data) {
+  const id = data.data;
+  console.log('parammmmmmmmmm',data)
+  var body = {
+    id: 0,
+    userLiked: true,
+  };
+
+  try {
+    const response = yield Api.put(urls.ADD_RESTAURANT_FAVORITE + 26, body);
+    console.log('resposssssssss', response);
+    if (response && response.success == true) {
+      yield put({
+        type: types.ADD_FAVORITE_RESTAURANT_SUCCESS,
+        payload: data.data,
+      });
+      // navigation.navigate(routeName.Categories,{data:response.data});
+    } else {
+      yield put({ type: types.ADD_FAVORITE_RESTAURANT_FAILURE, payload: {} });
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({ type: types.ADD_FAVORITE_RESTAURANT_FAILURE, error: {} });
+  }
+}
+//REMOVE FAVOURATE_RESTAURANT
+export function* RemoveFavoriteRestaurantSaga() {
+  yield takeLatest(types.REMOVE_FAVORITE_RESTAURANT_REQUEST, RemoveFavoriteRestaurantSagaApi);
+}
+function* RemoveFavoriteRestaurantSagaApi(data) {
+  const id = data.id;
+  console.log("removeeeeeeeee:", data)
+  var body = {
+    id: data.id,
+    userLiked: false,
+  };
+
+  try {
+    const response = yield Api.put(urls.REMOVE_FAVORITE_RESTAURANT, body);
+    if (data) {
+      yield put({
+        type: types.REMOVE_FAVORITE_RESTAURANT_SUCCESS,
+        payload: data.data,
+      });
+      // navigation.navigate(routeName.Categories,{data:response.data});
+    } else {
+      yield put({ type: types.REMOVE_FAVORITE_RESTAURANT_FAILURE, error: 'error' });
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({ type: types.REMOVE_FAVORITE_RESTAURANT_FAILURE, error: 'error' });
   }
 }

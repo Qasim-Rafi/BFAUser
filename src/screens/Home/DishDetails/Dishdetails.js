@@ -43,9 +43,9 @@ export default function DishDetails({ route, navigation }) {
             dropdownRef.current.showMessage({
                 message: 'Alert',
                 description: 'Already in cart',
-                type: 'info',
+                type: 'danger',
                 icon: { icon: 'auto', position: 'left' },
-                backgroundColor:colors.black1
+                //backgroundColor:colors.black1
               });
         }
 

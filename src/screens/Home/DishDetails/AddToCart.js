@@ -51,7 +51,10 @@ export default function AddToCart({ route, navigation }) {
     // price: '8.00',
     // url: require('../../../assets/fake_Images/cart-1.png'),
   }];
-
+  const ExtraChees=(active,index)=>{
+    dish.restaurantDishExtraItemList[index].active=!active
+    console.log('okokoko',dish.restaurantDishExtraItemList[index].active)
+  }
   const AddToCart = () => {
     const data = {
       ...dish,
@@ -74,16 +77,16 @@ export default function AddToCart({ route, navigation }) {
       <ScrollView style={styles.container}>
         <View>
           <View style={styles.headerImage}>
-            <ImageHeader navigation={navigation} img={dish.imageDataB}/>
+            <ImageHeader navigation={navigation} img={route.params.dish.imageDataB}/>
           </View>
           <View style={{ padding: 20 }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-              <ResponsiveText color={colors.white}>{dish.dishName}</ResponsiveText>
-              <ResponsiveText color={colors.yellow}> ${dish.price}</ResponsiveText>
+              <ResponsiveText color={colors.white}>{route.params.dish.dishName}</ResponsiveText>
+              <ResponsiveText color={colors.yellow}> ${route.params.dish.price}</ResponsiveText>
             </View>
-            <ResponsiveText color={colors.grey1}>{dish.description}</ResponsiveText>
+            <ResponsiveText color={colors.grey1}>{route.params.dish.description}</ResponsiveText>
           </View>
-          <AddToCartDetails />
+          <AddToCartDetails data={route.params.dish} ExtraChees={ExtraChees}/>
 
           <View
             style={{

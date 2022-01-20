@@ -82,6 +82,14 @@ const initialState = {
     refreshing: true,
     data: {},
   },
+  favoriteRestaurant: {
+    refreshing: true,
+    data: [],
+  },
+  AddfavoriteRestaurant: {
+    refreshing: true,
+    data: [],
+  },
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -592,7 +600,88 @@ export const appReducers = (state = initialState, action) => {
           refreshing: false,
         },
       };
+       //GET_ALL_FAVORITE_RESTAURANT
+      case types.GET_ALL_FAVORITE_RESTAURANT_REQUEST:
+      return {
+        ...state,
+        favoriteRestaurant: {
+          ...state.favoriteRestaurant,
+          refreshing: true,
+        },
+      };
+    case types.GET_ALL_FAVORITE_RESTAURANT_SUCCESS:
+      return {
+        ...state,
+        favoriteRestaurant: {
+          ...state.favoriteRestaurant,
+          data: action.payload,
+          refreshing: true,
+        },
+      };
+    case types.GET_ALL_FAVORITE_RESTAURANT_FAILURE:
+      return {
+        ...state,
+        favoriteRestaurant: {
+          ...state.favoriteRestaurant,
+          refreshing: true,
+        },
+      };
+         ///////Add Favrite Restaurant
+    case types.ADD_FAVORITE_RESTAURANT_REQUEST:
+      return {
+        ...state,
+        AddfavoriteRestaurant: {
+          ...state.AddfavoriteRestaurant,
+          refreshing: true,
+        },
+      };
+    case types.ADD_FAVORITE_RESTAURANT_SUCCESS:
+      return {
+        ...state,
+        AddfavoriteRestaurant: {
+          ...state.AddfavoriteRestaurant,
+          data: [...state.favorite.data, action.payload],
+          refreshing: true,
+        },
+      };
+    case types.ADD_FAVORITE_RESTAURANT_FAILURE:
+      return {
+        ...state,
+        AddfavoriteRestaurant: {
+          ...state.AddfavoriteRestaurant,
+          refreshing: true,
+        },
+      };
+       // REMOVE_FAVORITE_RESTAURANT
+    case types.REMOVE_FAVORITE_RESTAURANT_REQUEST:
+      return {
+        ...state,
+        AddfavoriteRestaurant: {
+          ...state.AddfavoriteRestaurant,
+          refreshing: true,
+        },
+      };
+    case types.REMOVE_FAVORITE_RESTAURANT_SUCCESS:
+      return {
+        ...state,
+        AddfavoriteRestaurant: {
+          ...state.AddfavoriteRestaurant,
+          data: state.AddfavoriteRestaurant.data.filter(
+            item => item.id !== action.payload,
+          ),
+          refreshing: true,
+        },
+      };
+    case types.REMOVE_FAVORITE_RESTAURANT_FAILURE:
+      return {
+        ...state,
+        AddfavoriteRestaurant: {
+          ...state.AddfavoriteRestaurant,
+          refreshing: true,
+        },
+      };
     default:
       return state;
   }
+  
 };
