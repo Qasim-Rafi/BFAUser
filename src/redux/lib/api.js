@@ -38,6 +38,7 @@ class Api {
 
   static async xhr(route, body, verb, sendAuthToken) {
     const url = `${urls.HOST}${route}`;
+    console.log(url)
     const myHeaders = new Headers();
     myHeaders.append(
       'Authorization',

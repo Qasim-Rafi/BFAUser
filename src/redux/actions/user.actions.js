@@ -203,6 +203,29 @@ export const getRestaurentDeatil = (data) => {
     data,
   };
 };
+//GET_ALL_FAVORITE_RESTAURANT 
+export const getFavorateRestaurent = (data) => {
+   console.log('resssssssss',data)
+  return {
+    type: types.GET_ALL_FAVORITE_RESTAURANT_REQUEST,
+    data
+  };
+};
+//Add_FAVORITE_RESTAURANT 
+export const addFavoriteRestaurant = (data) => {
+  // console.log('okokokokoko',data)
+  return {
+    type: types.ADD_FAVORITE_RESTAURANT_REQUEST,
+    data
+  };
+};
+//REMOVE_FAVORITE_RESTAURANT
+export const RemoveFavoriteRestaurant = (data) => {
+  return {
+    type: types.REMOVE_FAVORITE_RESTAURANT_REQUEST,
+    data
+  };
+};
 // //Get User categories actions
 // export const getUserCategories = (params) => {
 //   return {

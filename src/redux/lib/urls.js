@@ -27,7 +27,12 @@ export default urls = {
   GET_ALL_FAVORITE: 'api/RestaurantDish/GetdishLikedAll/1/4',
   ADD_FAVORITE: 'api/RestaurantDish/UpdateRestaurantDishLiked/',
   // GET_RESTAURANT_DETAIL: 'api/RestaurantBranchesAdmin/GetRestaurantdetailforAppAll/',
-  GET_RESTAURANT_DETAIL: 'api/RestaurantBranchesAdmin/GetRestaurantdetailforAppAlldata/'
+  GET_RESTAURANT_DETAIL: 'api/RestaurantBranchesAdmin/GetRestaurantdetailforAppAlldata/',
+  GET_ALL_FAVORITE_RESTAURANT: 'api/PeopleChoice/GetPeopleChoiceLikedAll/1/10',
+  ADD_RESTAURANT_FAVORITE: 'api/PeopleChoice/UpdatePeopleChoiceLiked/',
+  REMOVE_FAVORITE_RESTAURANT: 'api/PeopleChoice/UpdatePeopleChoiceUnliked',
+
+
 
 
 };
