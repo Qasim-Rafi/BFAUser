@@ -86,12 +86,9 @@ const BfaPartner = ({ props }) => {
     setModalVisible(true)
     setWebIndex(index)
   }
-
   // useEffect(() => {
   //   dispatch(getBfaPartners(6))
-
   // }, [])
-
   return (
     <View style={{ backgroundColor: colors.black3 }}>
       <View style={styles.bfaPartnerHeaderSection}>

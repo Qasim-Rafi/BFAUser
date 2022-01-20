@@ -7,13 +7,14 @@ import { colors } from '../../../constants/colorsPallet'
 import CalorieCount from './CalorieCount'
 import MoreFromResturant from './MoreFromResturant'
 import PeopleSay from './PeopleSay'
+import { BarIndicator } from 'react-native-indicators';
 import Comments from './Comments'
 import RnButton from '../../../components/RnButton'
 import ResponsiveText from '../../../components/RnText'
 import { routeName } from '../../../constants/routeName'
+import { useSelector } from 'react-redux'
 import { Cart_Details } from '../../../constants/mock'
 import { advertisementBannerFakeDATA, ourRecommendationFakeDATA } from '../../../constants/mock'
-import { useSelector } from 'react-redux'
 import FlashMessage, {
     showMessage,
     hideMessage,
@@ -65,14 +66,14 @@ export default function DishDetails({ route, navigation }) {
                 </RnButton>
             </View>
             {showCalories ? <CalorieCount /> : null}
-            {/* we have to get a parameter from the api for the restaurant to set <CalorieCount/> if that restaurant wants to show it  */}
+            {/* we have to get a parameter from the api for the restaurant to set <CalorieCount /> if that restaurant wants to show it */}
             <View style={{ marginLeft: 20, marginVertical: 10 }} >
                 <MoreFromResturant navigation={navigation} item={MoreFrom} />
                 {/* <PeopleSay /> */}
             </View>
 
             {/* <Comments/> */}
-            <View style={{ margin: 20, paddingBottom: 20 }}>
+            {/* <View style={{ margin: 20, paddingBottom: 20 }}>
 
 
                 <RnButton onPress={() => {
@@ -84,6 +85,15 @@ export default function DishDetails({ route, navigation }) {
                     <ResponsiveText padding={0} color={colors.black}>Add to Order</ResponsiveText>
                 </RnButton>
             </View>
+        </View> */}
+            {/* {
+                favDataLoading === true ?
+                <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, backgroundColor: 'rgba(65, 65, 65, 0.5)', flex: 1 }}>
+                <BarIndicator color={colors.yellow} size={50} />
+                </View>
+                :
+                undefined
+            } */}
             <FlashMessage ref={dropdownRef} />
         </ScrollView>
     )
