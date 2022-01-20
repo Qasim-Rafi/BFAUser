@@ -310,7 +310,7 @@ const CartDetails = ({ navigation }) => {
 
                           Alert.alert(
                             "",
-                            "You want to remove this item from cart ?",
+                            "Do you want to remove this item from cart ?",
                             [
                               {
                                 text: "Cancel",
