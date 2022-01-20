@@ -19,9 +19,9 @@ import SharedData from '../BottomTabs/CartDetails/SharedData';
 import { TextInput } from 'react-native-gesture-handler';
 import { color } from 'react-native-reanimated';
 export default function AddToCart({ route, navigation }) {
-  const addAdminBranch = useSelector(state => state.appReducers.cartList.data);
+  const cartList = useSelector(state => state.appReducers.cartList.data);
   const loading = useSelector(state => state.appReducers.cartList.loading);
-  console.log("Add Admin: ", addAdminBranch);
+  console.log("Add Admin: ", cartList);
   const [visible, setVisible] = React.useState(false);
   const [count, changeCount] = useState(1);
   const [dishPrice, updateDishPrice] = useState(route.params.dish.price)

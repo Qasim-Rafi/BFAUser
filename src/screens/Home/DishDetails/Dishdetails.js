@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, ScrollView, StyleSheet } from 'react-native'
+import { View, Text, ScrollView, StyleSheet, Alert } from 'react-native'
 import AdvertisementBanner from '../BottomTabs/Home/AdvertisementBanner'
 import ImageHeader from '../BottomTabs/Home/ImageHeader'
 import DishDescription from './DishDescription'
@@ -13,10 +13,18 @@ import ResponsiveText from '../../../components/RnText'
 import { routeName } from '../../../constants/routeName'
 import { Cart_Details } from '../../../constants/mock'
 import { advertisementBannerFakeDATA, ourRecommendationFakeDATA } from '../../../constants/mock'
-
+import { useSelector } from 'react-redux'
+import FlashMessage, {
+    showMessage,
+    hideMessage,
+  } from 'react-native-flash-message';
 
 export default function DishDetails({ route, navigation }) {
     const [dish, addDish] = React.useState({});
+  const dropdownRef = React.useRef(null);
+
+  const cartList = useSelector(state => state.appReducers.cartList.data);
+
     const [showCalories, setShowCalories] = React.useState(false)
     React.useEffect(() => {
         addDish(route.params.dish);
@@ -27,7 +35,20 @@ export default function DishDetails({ route, navigation }) {
         console.log("More Fromm", data)
         addDish(data)
     }
+    const AddCart = (data) => {
+        if(!cartList.some(o => o.id === dish.id)){
+            navigation.navigate(routeName.ADD_TO_CART, { dish: dish })
+        }else{
+            dropdownRef.current.showMessage({
+                message: 'Alert',
+                description: 'Already in cart',
+                type: 'info',
+                icon: { icon: 'auto', position: 'left' },
+                backgroundColor:colors.black1
+              });
+        }
 
+    }
     return (
 
         <ScrollView style={{ backgroundColor: colors.black3 }}>
@@ -38,12 +59,7 @@ export default function DishDetails({ route, navigation }) {
             <View style={{ margin: 20, paddingBottom: 20 }}>
 
 
-                <RnButton onPress={() => {
-
-                    navigation.navigate(routeName.ADD_TO_CART, { dish: dish })
-
-
-                }}>
+                <RnButton onPress={() => {AddCart()}}>
 
                     <ResponsiveText padding={0} color={colors.black}>Add to Order</ResponsiveText>
                 </RnButton>
@@ -68,6 +84,7 @@ export default function DishDetails({ route, navigation }) {
                     <ResponsiveText padding={0} color={colors.black}>Add to Order</ResponsiveText>
                 </RnButton>
             </View>
+            <FlashMessage ref={dropdownRef} />
         </ScrollView>
     )
 }
