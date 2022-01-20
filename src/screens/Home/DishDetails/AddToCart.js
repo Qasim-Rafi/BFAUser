@@ -19,12 +19,12 @@ import SharedData from '../BottomTabs/CartDetails/SharedData';
 import { TextInput } from 'react-native-gesture-handler';
 import { color } from 'react-native-reanimated';
 export default function AddToCart({ route, navigation }) {
-  const addAdminBranch = useSelector(state => state.appReducers.cartList.data);
+  const cartList = useSelector(state => state.appReducers.cartList.data);
   const loading = useSelector(state => state.appReducers.cartList.loading);
-  console.log("Add Admin: ", addAdminBranch);
+  console.log("Add Admin: ", cartList);
   const [visible, setVisible] = React.useState(false);
   const [count, changeCount] = useState(1);
-  const [dishPrice, updateDishPrice] = useState(10)
+  const [dishPrice, updateDishPrice] = useState(route.params.dish.price)
   const [total, updateTotal] = useState(0);
   const dispatch = useDispatch();
   const [text, setText] = useState('');
@@ -51,7 +51,10 @@ export default function AddToCart({ route, navigation }) {
     // price: '8.00',
     // url: require('../../../assets/fake_Images/cart-1.png'),
   }];
-
+  const ExtraChees=(active,index)=>{
+    dish.restaurantDishExtraItemList[index].active=!active
+    console.log('okokoko',dish.restaurantDishExtraItemList[index].active)
+  }
   const AddToCart = () => {
     const data = {
       ...dish,
@@ -74,16 +77,16 @@ export default function AddToCart({ route, navigation }) {
       <ScrollView style={styles.container}>
         <View>
           <View style={styles.headerImage}>
-            <ImageHeader navigation={navigation} />
+            <ImageHeader navigation={navigation} img={route.params.dish.imageDataB}/>
           </View>
           <View style={{ padding: 20 }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-              <ResponsiveText color={colors.white}>Nasi Ayam Bakar Madura</ResponsiveText>
-              <ResponsiveText color={colors.yellow}> $10</ResponsiveText>
+              <ResponsiveText color={colors.white}>{route.params.dish.dishName}</ResponsiveText>
+              <ResponsiveText color={colors.yellow}> ${route.params.dish.price}</ResponsiveText>
             </View>
-            <ResponsiveText color={colors.grey1}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</ResponsiveText>
+            <ResponsiveText color={colors.grey1}>{route.params.dish.description}</ResponsiveText>
           </View>
-          <AddToCartDetails />
+          <AddToCartDetails data={route.params.dish} ExtraChees={ExtraChees}/>
 
           <View
             style={{
