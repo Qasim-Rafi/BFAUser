@@ -2,89 +2,98 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import {ADD_TO_CART_FAKE_DATA} from '../../../constants/mock';
 import ResponsiveText from '../../../components/RnText';
-import {RadioGroup, RadioButton} from 'react-native-flexi-radio-button'
-import { wp } from '../../../helpers/Responsiveness'
-import { colors } from '../../../constants/colorsPallet'
+import {RadioGroup, RadioButton} from 'react-native-flexi-radio-button';
+import {wp} from '../../../helpers/Responsiveness';
+import {colors} from '../../../constants/colorsPallet';
 import CheckBox from '../../../components/Static/CheckBox';
 
+export default function AddToCartDetails(props) {
 
-export default function AddToCartDetails() {
+  // const ExtraChees=(active,index)=>{
+  //   props.data.restaurantDishExtraItemList[index].active=!active
+  //   console.log('okokoko',props.data.restaurantDishExtraItemList[index].active)
+  // }
   return (
     <View style={{margin: 20}}>
-      {ADD_TO_CART_FAKE_DATA.map((item, index) => {
-        return (
-            <View>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between',borderTopWidth:1,borderBottomWidth:1,borderColor:colors.black2,padding:5,marginTop:20}}>
-            <ResponsiveText color={colors.white}>
-              {item.title}
-            </ResponsiveText>
-            <ResponsiveText color={colors.white}>{item.option}</ResponsiveText>
-          </View>
-         {item.data.map((item1,index)=>{
-           return(
-            <View style={{padding: 10}}>
-            <View>
-          <CheckBox text={item1.name} />
-            </View>
-        </View>
-           )
-         })}
-        
-          {/* <RadioGroup
-          size={16}
-          style={{padding:0}}
-                color={colors.yellow}
-        onSelect = {null} 
-        >
-          {item.data.map((item1,index)=>{
-              return(
-            
-        <RadioButton style={{padding:3}} value={'item1'} color={colors.yellow} >
-         <View style={{flexDirection:'row',width:wp(80),justifyContent:'space-between'}}>
-         <ResponsiveText margin={[0,0,0,10]} size={3} color={colors.white}>{item1.name}h</ResponsiveText>
-          <ResponsiveText color={colors.white} >{item1.price}</ResponsiveText>
-             </View>
-        </RadioButton>
-              )
-          })}
-
-        </RadioGroup> */}
-          </View>
-        );
-      })}
-
-      
-      {/* <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-        <ResponsiveText color={colors.white}>Choose Your Soft Drink</ResponsiveText>
-        <ResponsiveText color={colors.white}>1 Required</ResponsiveText>
-        </View>
-        <View>
-        <RadioGroup
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          borderTopWidth: 1,
+          borderBottomWidth: 1,
+          borderColor: colors.black2,
+          padding: 5,
+          marginTop: 20,
+        }}>
+        <ResponsiveText color={colors.white}>
+          {'Choose Soft Drink'}
+        </ResponsiveText>
+        <ResponsiveText color={colors.white}>{'Required'}</ResponsiveText>
+      </View>
+      <RadioGroup
+        size={16}
+        style={{marginTop: 10}}
         color={colors.yellow}
-onSelect = {null}
->
-<RadioButton value={'item1'} color={colors.yellow} >
- <View style={{flexDirection:'row',width:wp(80),justifyContent:'space-between'}}>
- <ResponsiveText color={colors.white}>Coke</ResponsiveText>
-  <ResponsiveText color={colors.white} >+$0.00</ResponsiveText>
-     </View>
-</RadioButton>
+        onSelect={null}>
+        {Object.keys(props.data).length != 0
+          ? props.data.restaurantSoftDrinksList.map((item1, index) => {
+              return (
+                <RadioButton
+                  style={{padding: 10}}
+                  value={'item1'}
+                  color={colors.yellow}>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      width: wp(80),
+                      justifyContent: 'space-between',
+                    }}>
+                    <ResponsiveText
+                      margin={[0, 0, 0, 10]}
+                      size={3}
+                      color={colors.white}>
+                      {item1.softDrinkName}
+                    </ResponsiveText>
+                    {/* <ResponsiveText color={colors.white}>
+                      ${item1.price}
+                    </ResponsiveText> */}
+                  </View>
+                </RadioButton>
+              );
+            })
+          : null}
+      </RadioGroup>
 
-<RadioButton value={'item2'} color={colors.yellow}>
-<View style={{flexDirection:'row',width:wp(80),justifyContent:'space-between'}}>
- <ResponsiveText color={colors.white}>Sprite</ResponsiveText>
-  <ResponsiveText color={colors.white} >+$0.00</ResponsiveText>
-     </View>
-</RadioButton>
-
-<RadioButton value={'item3'} color={colors.yellow}>
-<View style={{flexDirection:'row',width:wp(80),justifyContent:'space-between'}}>
- <ResponsiveText color={colors.white}>Mountain Dew</ResponsiveText>
-  <ResponsiveText color={colors.white} >+$0.00</ResponsiveText>
-     </View>
-</RadioButton>
-</RadioGroup>
-        </View> */}
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          borderTopWidth: 1,
+          borderBottomWidth: 1,
+          borderColor: colors.black2,
+          padding: 5,
+          marginTop: 20,
+        }}>
+        <ResponsiveText color={colors.white}>{'Extra cheese'}</ResponsiveText>
+        <ResponsiveText color={colors.white}>{'Optional'}</ResponsiveText>
+      </View>
+      {Object.keys(props.data).length != 0
+        ? props.data.restaurantDishExtraItemList.map((item, index) => {
+            return (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  padding: 10,
+                }}>
+                <CheckBox text={item.dishExtraItemName} checked={item.active} onPress={()=>props.ExtraChees(item.active,index)}/>
+                <ResponsiveText color={colors.white}>
+                  ${item.price}
+                </ResponsiveText>
+              </View>
+            );
+          })
+        : null}
     </View>
   );
 }
