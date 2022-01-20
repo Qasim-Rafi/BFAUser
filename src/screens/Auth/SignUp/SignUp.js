@@ -256,33 +256,7 @@ export default function Signup({ navigation }) {
               secureTextEntry
               leftIcon={globalPath.LOCK_LOGO}
             />
-            {/* <Input
-            margin={[0, 0, 15, 0]}
-            padding={[0, 0, 0, 25]}
-            iconMargin={[0, 10, 0, 0]}
-            placeholder="Password"
-            onChnageText={text => setPassword(text)}
-            secureTextEntry
-            leftIcon={globalPath.PASSWORD_LOGO}
-          />
-          <Input
-            margin={[0, 0, 15, 0]}
-            padding={[0, 0, 0, 25]}
-            iconMargin={[0, 10, 0, 0]}
-            placeholder="Password"
-            onChnageText={text => setPassword(text)}
-            secureTextEntry
-            leftIcon={globalPath.PASSWORD_LOGO}
-          /> */}
-            {/* <Input
-            margin={[0, 0, 15, 0]}
-            padding={[0, 0, 0, 25]}
-            iconMargin={[0, 10, 0, 0]}
-            placeholder="Confirm Password"
-            onChnageText={text => setConfirmPassword(text)}
-            secureTextEntry
-            leftIcon={globalPath.PASSWORD_LOGO}
-          /> */}
+
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
               <DropDown data={Gender} 
                 onSelect={(selectedItem, index) => {
