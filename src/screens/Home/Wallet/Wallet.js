@@ -69,7 +69,7 @@ const Wallet = (props) => {
             <View style={styles.container}>
             <Text style={{ color: 'white', fontSize: 19, marginTop:20 }}>Your Bcoin Balance is:</Text>
             <Text style={{ color: 'white', fontSize: 70,marginBottom:20 }} >
-                <Image source={bCoin} style={{ height: 60, width: 50 }} />{typeof (comingAmount) === 'undefined' ? parseFloat(0).toFixed(2) : parseFloat(walletAmount + comingAmount)}<TouchableOpacity>
+                <Image source={bCoin} style={{ height: 60, width: 50 }} />{typeof (comingAmount) === 'undefined' ? parseFloat(0).toFixed(2) : parseFloat(walletAmount + comingAmount).toFixed(2)}<TouchableOpacity>
                         <Image source={leftArrow} style={{ height: 20, width: 20, margin:5 }} />
                     </TouchableOpacity>
             </Text>

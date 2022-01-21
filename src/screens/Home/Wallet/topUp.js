@@ -69,7 +69,7 @@ const TopUp = (props) => {
                                 style={styles.input}
                                 onChangeText={setNumber}
                                 value={parseFloat(number).toFixed(2)}
-                                maxLength={10}
+                                maxLength={8}
                                 defaultValue={'' + parseFloat(number) + ''}
                                 // keyboardType="numeric"
                                 showSoftInputOnFocus={false}
@@ -153,7 +153,7 @@ const TopUp = (props) => {
 
                     <TouchableOpacity
                         onPress={() => {
-                            navigation.navigate(routeName.WALLET, number);
+                            navigation.navigate(routeName.WALLET, number.toString().substring(0,9));
                         }}
                         style={{
                             justifyContent: 'center',
@@ -174,15 +174,15 @@ const TopUp = (props) => {
                     <Modal isVisible={isModalVisible} animationIn={'slideInUp'} animationOut={'slideOutDown'} backdropOpacity={0} onBackdropPress={()=>setModalVisible(false)} >
                         <View style={styles.centeredModalView} >
                             <View style={{flexDirection:'row'}} >
-                                <TouchableOpacity style={[styles.keyBoardSelector,{borderTopLeftRadius:5,borderRightWidth:1}]} onPress={()=>setNumeric(true)} >
+                                <TouchableOpacity style={[styles.keyBoardSelector,{borderTopLeftRadius:10,borderRightWidth:1}]} onPress={()=>{setNumeric(true);setNumber(0)}} >
                                     <Text style={{fontSize:30,color:colors.white}} >Numeric</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={[styles.keyBoardSelector,{borderTopRightRadius:5}]} onPress={()=>setNumeric(true)} >
+                                <TouchableOpacity style={[styles.keyBoardSelector,{borderTopRightRadius:10}]} onPress={()=>{setNumeric(false);setNumber(0);}} >
                                     <Text style={{fontSize:30,color:colors.white}} >Bcoin</Text>
                                 </TouchableOpacity>
                             </View>
 
-                            {numeric ? 
+                            {!numeric ? 
                             <View style={styles.modalView} >
                                 <View style={{ flexDirection: 'row' }} >
                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(parseFloat(number) + 1)} >
@@ -233,7 +233,56 @@ const TopUp = (props) => {
                                     </TouchableOpacity>
                                 </View>
                             </View>
-                                 : null   }
+                                 : <View style={styles.modalView} >
+                                 <View style={{ flexDirection: 'row' }} >
+                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '1')} >
+                                         <Text style={styles.keypadText} >1</Text>
+                                     </TouchableOpacity>
+                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '2')} >
+                                        <Text style={styles.keypadText} >2</Text>
+                                     </TouchableOpacity>
+                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '3')} >
+                                        <Text style={styles.keypadText} >3</Text>
+                                     </TouchableOpacity>
+                                 </View>
+ 
+                                 <View style={{ flexDirection: 'row' }} >
+                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '4')} >
+                                        <Text style={styles.keypadText} >4</Text>
+                                     </TouchableOpacity>
+                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '5')} >
+                                        <Text style={styles.keypadText} >5</Text>
+                                     </TouchableOpacity>
+                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '6')} >
+                                        <Text style={styles.keypadText} >6</Text>
+                                     </TouchableOpacity>
+                                 </View>
+ 
+                                 <View style={{ flexDirection: 'row',alignItems:'center', justifyContent: 'center', width: '100%', marginTop: 20, marginBottom: 10,alignContent:'center' }} >
+                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '7')} >
+                                        <Text style={styles.keypadText} >7</Text>
+                                     </TouchableOpacity>
+                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '8')} >
+                                        <Text style={styles.keypadText} >8</Text>
+                                     </TouchableOpacity>
+                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '9')} >
+                                        <Text style={styles.keypadText} >9</Text>
+                                     </TouchableOpacity>
+                                 </View>
+                                 <View style={{ flexDirection: 'row',alignItems:'center', justifyContent: 'center', width: '100%', marginTop: 10, marginBottom: 20 }} >
+                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '.')} >
+                                        <Text style={styles.keypadText} >.</Text>
+                                     </TouchableOpacity>
+                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '0')} >
+                                     <Text style={styles.keypadText} >0</Text>
+                                     </TouchableOpacity>
+                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setModalVisible(false)} >
+                                         <View style={[styles.bCents,{backgroundColor:colors.yellow1, borderRadius:hp(2.2), alignItems:'center', justifyContent:'center'}]} >
+                                             <Text>Done</Text>
+                                         </View>
+                                     </TouchableOpacity>
+                                 </View>
+                             </View>  }
                         </View>
                     </Modal>
 
@@ -273,6 +322,10 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         marginTop: 22,
+        position:'absolute',
+        bottom:hp(5),
+        left:wp(12),
+        right:wp(12)
 
     },
     modalView: {
@@ -283,7 +336,7 @@ const styles = StyleSheet.create({
         // alignItems: "center",
         shadowColor: "#000",
         // height: '40%',
-        // width: '60%',
+        width: '120%',
         borderWidth: 1,
         borderColor: colors.black1,
         
@@ -305,13 +358,21 @@ const styles = StyleSheet.create({
         alignSelf:'center'
     },
     imageContainer:{
+        height: hp(12),
+        width: wp(25),
         flex:1,
+        alignItems:'center',
+        justifyContent:'center'
     },
     keyBoardSelector:{
         backgroundColor:colors.lightBlack,
         // height:,
-        width:'40%',
+        width:'50%',
         alignItems:'center',
-        
+        marginBottom:-2
+    },
+    keypadText:{
+        color: colors.white,
+        fontSize:wp(12),
     }
 })
