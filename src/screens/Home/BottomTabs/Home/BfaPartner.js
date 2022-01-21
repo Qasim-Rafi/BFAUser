@@ -4,7 +4,7 @@ import {
   StyleSheet,
   View,
   ScrollView,
-  TouchableOpacity,
+  TouchableOpacity,Dimensions,
   Modal,
   Button
 } from 'react-native';
@@ -32,6 +32,8 @@ import { WebView } from 'react-native-webview'
 
 const BfaPartner = ({ props }) => {
   const dispatch = useDispatch();
+  const windowWidth = Dimensions.get('window').width;
+  const windowHeight = Dimensions.get('window').height
   const loading = useSelector(
     state => state.appReducers.bfaPartners.refreshing,
   );
@@ -143,14 +145,13 @@ const BfaPartner = ({ props }) => {
                     backgroundColor: colors.white,
                     borderRadius: 5,
                     marginRight: 5,
-                    marginVertical: 3,
+                    marginVertical: 3,width:windowWidth/7.02
                   }}>
                   <TouchableOpacity onPress={() => modalView(index)} >
                     <Icon
 
                       source={{
                         uri: url,
-
                       }}
                       // source={url}
 
@@ -169,7 +170,7 @@ const BfaPartner = ({ props }) => {
                     backgroundColor: colors.white,
                     borderRadius: 5,
                     marginRight: 5,
-                    marginVertical: 3,
+                    marginVertical: 3,width:windowWidth/7.02
                   }}>
                   <TouchableOpacity onPress={() => modalView(index)} >
                     <Icon
