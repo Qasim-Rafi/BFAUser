@@ -18,6 +18,7 @@ import BarcodeReader from '../screens/Home/BottomTabs/Scanner/BarcodeReader';
 import RandomiserWheel from '../screens/Home/BottomTabs/Randomiser/RandomWheel';
 import RandomWheel from '../screens/Home/BottomTabs/Randomiser/RandomWheel';
 import NewsFeed from '../screens/Home/BottomTabs/Promos/NewsFeed';
+import HomeStack from './HomeStack';
 
 
 const Tab = createBottomTabNavigator();

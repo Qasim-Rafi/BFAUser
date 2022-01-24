@@ -44,6 +44,7 @@ import RandomiserWheel from '../screens/Home/BottomTabs/Randomiser/RandomWheel';
 import Wallet from '../screens/Home/Wallet/Wallet'
 import TopUp from '../screens/Home/Wallet/topUp'
 import Transfer from '../screens/Home/Wallet/transfer';
+import Home from '../screens/Home/BottomTabs/Home/Home';
 
 const Stack = createNativeStackNavigator();
 
