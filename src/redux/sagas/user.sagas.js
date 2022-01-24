@@ -74,7 +74,7 @@ function* registerUserApi(data, response) {
       // yield AsyncStorage.setItem('@token', response.data.token);
       // yield AsyncStorage.setItem('@userId', response.data.loggedInUserId);
       yield put({ type: types.REGISTER_USER_SUCCESS, payload: response });
-      navigation.navigate(routeName.LOGIN);
+      navigation.navigate(routeName.VERIFICATION_CODE);
     } else {
       yield put({ type: types.REGISTER_USER_FAILURE, payload: response });
       // showMessage({
