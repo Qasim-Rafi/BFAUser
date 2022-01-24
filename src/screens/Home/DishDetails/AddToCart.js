@@ -24,6 +24,7 @@ export default function AddToCart({ route, navigation }) {
   console.log("Add Admin: ", cartList);
   const [visible, setVisible] = React.useState(false);
   const [count, changeCount] = useState(1);
+  const [Selecteddrinks, setSelecteddrinks] = useState(null);
   const [dishPrice, updateDishPrice] = useState(route.params.dish.price)
   const [total, updateTotal] = useState(0);
   const dispatch = useDispatch();
@@ -34,32 +35,37 @@ export default function AddToCart({ route, navigation }) {
     addDish(route.params.dish)
     updateTotal(dishPrice * count);
   })
+  const Drinks = (id) => {
+    setSelecteddrinks(id)
+    console.log("Idddddddddd:", id)
+  }
 
-
-  const data = () => [{
-    "id": 0,
-    customerId: 10,
-    status: 1,
-    orderStatus: 1,
-    couponNo: "superior",
-    orderPlacedfrom: "karachi",
-    dishId: 26,
-    remarks: "Good"
-    // title : "Fish Crackers",
-    // description: "lorem ipsum dolor sit amet, consectetur adipis",
-    // quantity: 8,
-    // price: '8.00',
-    // url: require('../../../assets/fake_Images/cart-1.png'),
-  }];
-  const ExtraChees=(active,index)=>{
-    dish.restaurantDishExtraItemList[index].active=!active
-    console.log('okokoko',dish.restaurantDishExtraItemList[index].active)
+  // const data = () => [{
+  //   "id": 0,
+  //   customerId: 10,
+  //   status: 1,
+  //   orderStatus: 1,
+  //   couponNo: "superior",
+  //   orderPlacedfrom: "karachi",
+  //   dishId: 26,
+  //   remarks: "Good"
+  //   // title : "Fish Crackers",
+  //   // description: "lorem ipsum dolor sit amet, consectetur adipis",
+  //   // quantity: 8,
+  //   // price: '8.00',
+  //   // url: require('../../../assets/fake_Images/cart-1.png'),
+  // }];
+  const ExtraChees = (active, index) => {
+    dish.restaurantDishExtraItemList[index].active = !active
+    console.log('okokoko', dish.restaurantDishExtraItemList[index].active)
   }
   const AddToCart = () => {
     const data = {
       ...dish,
       quantity: count,
-      totalPrice: total
+      totalPrice: total,
+      setDrink: Selecteddrinks
+
     }
     dispatch(addCart(data));
     navigation.navigate(routeName.LANDING_SCREEN)
@@ -77,7 +83,7 @@ export default function AddToCart({ route, navigation }) {
       <ScrollView style={styles.container}>
         <View>
           <View style={styles.headerImage}>
-            <ImageHeader navigation={navigation} img={route.params.dish.imageDataB}/>
+            <ImageHeader navigation={navigation} img={route.params.dish.imageDataB} />
           </View>
           <View style={{ padding: 20 }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -86,7 +92,7 @@ export default function AddToCart({ route, navigation }) {
             </View>
             <ResponsiveText color={colors.grey1}>{route.params.dish.description}</ResponsiveText>
           </View>
-          <AddToCartDetails data={route.params.dish} ExtraChees={ExtraChees}/>
+          <AddToCartDetails data={route.params.dish} ExtraChees={ExtraChees} SelectedDrinks={Drinks} />
 
           <View
             style={{

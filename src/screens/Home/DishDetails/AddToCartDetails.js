@@ -1,20 +1,25 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import {ADD_TO_CART_FAKE_DATA} from '../../../constants/mock';
+import { View, Text } from 'react-native';
+import { ADD_TO_CART_FAKE_DATA } from '../../../constants/mock';
 import ResponsiveText from '../../../components/RnText';
-import {RadioGroup, RadioButton} from 'react-native-flexi-radio-button';
-import {wp} from '../../../helpers/Responsiveness';
-import {colors} from '../../../constants/colorsPallet';
+import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
+import { wp } from '../../../helpers/Responsiveness';
+import { colors } from '../../../constants/colorsPallet';
 import CheckBox from '../../../components/Static/CheckBox';
 
 export default function AddToCartDetails(props) {
-
+  const onselect = (index, value) => {
+    let drink = value.id
+    props.SelectedDrinks(value.id)
+    console.log("drink:", drink)
+    console.log("d:", props.drink)
+  }
   // const ExtraChees=(active,index)=>{
   //   props.data.restaurantDishExtraItemList[index].active=!active
   //   console.log('okokoko',props.data.restaurantDishExtraItemList[index].active)
   // }
   return (
-    <View style={{margin: 20}}>
+    <View style={{ margin: 20 }}>
       <View
         style={{
           flexDirection: 'row',
@@ -32,35 +37,39 @@ export default function AddToCartDetails(props) {
       </View>
       <RadioGroup
         size={16}
-        style={{marginTop: 10}}
+        style={{ marginTop: 10 }}
         color={colors.yellow}
-        onSelect={null}>
+        onSelect={(index, value) => onselect(index, value)}
+      >
         {Object.keys(props.data).length != 0
           ? props.data.restaurantSoftDrinksList.map((item1, index) => {
-              return (
-                <RadioButton
-                  style={{padding: 10}}
-                  value={item1}
-                  color={colors.yellow}>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      width: wp(80),
-                      justifyContent: 'space-between',
-                    }}>
-                    <ResponsiveText
-                      margin={[0, 0, 0, 10]}
-                      size={3}
-                      color={colors.white}>
-                      {item1.softDrinkName}
-                    </ResponsiveText>
-                    {/* <ResponsiveText color={colors.white}>
+            return (
+              <RadioButton
+                style={{ padding: 10 }}
+                value={item1}
+                color={colors.yellow}
+
+              >
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    width: wp(80),
+                    justifyContent: 'space-between',
+                  }}>
+                  <ResponsiveText
+                    margin={[0, 0, 0, 10]}
+                    size={3}
+                    color={colors.white}>
+                    {item1.softDrinkName}
+
+                  </ResponsiveText>
+                  {/* <ResponsiveText color={colors.white}>
                       ${item1.price}
                     </ResponsiveText> */}
-                  </View>
-                </RadioButton>
-              );
-            })
+                </View>
+              </RadioButton>
+            );
+          })
           : null}
       </RadioGroup>
 
@@ -79,20 +88,20 @@ export default function AddToCartDetails(props) {
       </View>
       {Object.keys(props.data).length != 0
         ? props.data.restaurantDishExtraItemList.map((item, index) => {
-            return (
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  padding: 10,
-                }}>
-                <CheckBox text={item.dishExtraItemName} checked={item.active} onPress={()=>props.ExtraChees(item.active,index)}/>
-                <ResponsiveText color={colors.white}>
-                  ${item.price}
-                </ResponsiveText>
-              </View>
-            );
-          })
+          return (
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                padding: 10,
+              }}>
+              <CheckBox text={item.dishExtraItemName} checked={item.active} onPress={() => props.ExtraChees(item.active, index)} />
+              <ResponsiveText color={colors.white}>
+                ${item.price}
+              </ResponsiveText>
+            </View>
+          );
+        })
         : null}
     </View>
   );
