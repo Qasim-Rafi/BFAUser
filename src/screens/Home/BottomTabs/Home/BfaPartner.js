@@ -48,7 +48,7 @@ const BfaPartner = ({ props }) => {
   const images = [];
   const lessImages = [];
   const siteAdd = []
-  if (loading === false||bfaPartners.length>0) {
+  if (bfaPartners.length>0) {
     bfaPartners.map(item => {
 
       if (images.includes(item.fullpath)) {
@@ -60,14 +60,14 @@ const BfaPartner = ({ props }) => {
     });
   }
 
-  if (loading === false||bfaPartners.length>0) {
+  if (bfaPartners.length>0) {
     bfaPartners.map((item, index) => {
       siteAdd.push(bfaPartners[index].siteUrl)
     })
   }
   // console.log(siteAdd);
 
-  if (loading === false||bfaPartners.length>0) {
+  if (bfaPartners.length>0) {
     for (var i = 0; i < 6; i++) {
       var img = bfaPartners[i].fullpath;
       //var src = img.replace(/\\/g, '/');
