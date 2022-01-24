@@ -40,7 +40,7 @@ export default function AddToCartDetails(props) {
               return (
                 <RadioButton
                   style={{padding: 10}}
-                  value={item1}
+                  value={'item1'}
                   color={colors.yellow}>
                   <View
                     style={{
