@@ -180,10 +180,10 @@ const TopUp = (props) => {
                         <View style={styles.centeredModalView} >
                             <View style={{flexDirection:'row'}} >
                                 <TouchableOpacity style={[styles.keyBoardSelector,{borderTopLeftRadius:10,borderRightWidth:1}]} onPress={()=>{setNumeric(true);setNumber(0)}} >
-                                    <Text style={{fontSize:30,color:colors.white}} >Numeric</Text>
+                                    <Text style={{fontSize:wp(7.2),color:colors.white}} >Numeric</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={[styles.keyBoardSelector,{borderTopRightRadius:10}]} onPress={()=>{setNumeric(false);setNumber(0);}} >
-                                    <Text style={{fontSize:30,color:colors.white}} >Bcoin</Text>
+                                    <Text style={{fontSize:wp(7.2),color:colors.white}} >Bcoin</Text>
                                 </TouchableOpacity>
                             </View>
 
@@ -482,7 +482,7 @@ const styles = StyleSheet.create({
     input: {
         // height: 40,
         color: colors.white,
-        fontSize: 70,
+        fontSize: wp(16),
         marginBottom: 18,
         // borderWidth: 1,
         // padding: 10,
