@@ -56,7 +56,7 @@ function HomeStack() {
       }}
     // initialRouteName="SPLASH"
     >
-      <Stack.Screen name={routeName.LANDING_SCREEN} component={Home} />
+      <Stack.Screen name={routeName.LANDING_SCREEN} component={BottomTabs} />
       <Stack.Screen
         name={routeName.RANDOMISER_RESULT}
         component={RandomiserResult}

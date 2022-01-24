@@ -113,7 +113,7 @@ export default function BottomTabs(props) {
       })}>
       <Tab.Screen
         name={routeName.HOME_BOTTOM}
-        component={HomeStack}
+        component={Home}
         options={{ headerShown: false }}
       />
       <Tab.Screen
