@@ -4,7 +4,7 @@ import {
   StyleSheet,
   View,
   ScrollView,
-  TouchableOpacity,
+  TouchableOpacity,Dimensions,
   Modal,
   Button
 } from 'react-native';
@@ -32,6 +32,8 @@ import { WebView } from 'react-native-webview'
 
 const BfaPartner = ({ props }) => {
   const dispatch = useDispatch();
+  const windowWidth = Dimensions.get('window').width;
+  const windowHeight = Dimensions.get('window').height
   const loading = useSelector(
     state => state.appReducers.bfaPartners.refreshing,
   );
@@ -48,7 +50,7 @@ const BfaPartner = ({ props }) => {
   const images = [];
   const lessImages = [];
   const siteAdd = []
-  if (loading === false||bfaPartners.length>0) {
+  if (loading === false) {
     bfaPartners.map(item => {
 
       if (images.includes(item.fullpath)) {
@@ -60,14 +62,14 @@ const BfaPartner = ({ props }) => {
     });
   }
 
-  if (loading === false||bfaPartners.length>0) {
+  if (loading === false) {
     bfaPartners.map((item, index) => {
       siteAdd.push(bfaPartners[index].siteUrl)
     })
   }
   // console.log(siteAdd);
 
-  if (loading === false||bfaPartners.length>0) {
+  if (loading === false) {
     for (var i = 0; i < 6; i++) {
       var img = bfaPartners[i].fullpath;
       //var src = img.replace(/\\/g, '/');
@@ -143,14 +145,13 @@ const BfaPartner = ({ props }) => {
                     backgroundColor: colors.white,
                     borderRadius: 5,
                     marginRight: 5,
-                    marginVertical: 3,
+                    marginVertical: 3,width:windowWidth/7.02
                   }}>
                   <TouchableOpacity onPress={() => modalView(index)} >
                     <Icon
 
                       source={{
                         uri: url,
-
                       }}
                       // source={url}
 
@@ -169,7 +170,7 @@ const BfaPartner = ({ props }) => {
                     backgroundColor: colors.white,
                     borderRadius: 5,
                     marginRight: 5,
-                    marginVertical: 3,
+                    marginVertical: 3,width:windowWidth/7.02
                   }}>
                   <TouchableOpacity onPress={() => modalView(index)} >
                     <Icon
