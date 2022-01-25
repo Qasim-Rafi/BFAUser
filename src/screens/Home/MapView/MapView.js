@@ -16,7 +16,7 @@ const GOOGLE_MAPS_APIKEY ='AIzaSyCVqqBceVIdw8mFtICTxUYQ4kWqvk2Wi_c';
 export default function MapView(props) {
   // latitude: 4.5353,
   // longitude: 114.7277,
-  const [coordinates] = useState([
+  const [coordinates,setCoordinates] = useState([
     {
       latitude: 4.7353,
       longitude: 114.7277,
