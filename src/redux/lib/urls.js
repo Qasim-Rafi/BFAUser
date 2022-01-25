@@ -7,6 +7,7 @@ export default urls = {
   //Auth Urls
   LOGIN_URL: 'api/Auth/login',
   REGISTER_URL: 'api/Users/AddUser',
+  VERIFICATION_CODE: 'api/Users/UpdateUserMobileVerification',
   PACKAGES_ALL_URL: 'api/Package/GetPackageAll',
   GET_PROFILE_DATA: 'api/Users/GetUser/',
   REGISTER_URL: 'api/Auth/Register',
