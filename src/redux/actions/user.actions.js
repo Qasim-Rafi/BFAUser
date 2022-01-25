@@ -26,7 +26,13 @@ export const registerUser = (data, navigation) => {
     navigation: navigation
   };
 };
-
+export const verifyUser = (code, navigation) => {
+  return {
+    type: types.VERIFY_USER_REQUEST,
+    data: code,
+    navigation: navigation
+  };
+};
 //people choice
 export const getPeopleChoice = (index, limit) => {
   return {

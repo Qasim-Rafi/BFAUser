@@ -24,42 +24,69 @@ export default function AddToCart({ route, navigation }) {
   console.log("Add Admin: ", cartList);
   const [visible, setVisible] = React.useState(false);
   const [count, changeCount] = useState(1);
+  const [Selecteddrinks, setSelecteddrinks] = useState(null);
   const [dishPrice, updateDishPrice] = useState(route.params.dish.price)
   const [total, updateTotal] = useState(0);
   const dispatch = useDispatch();
   const [text, setText] = useState('');
+  const [extraCheese, setExtrachess] = useState([]);
+  const [linkedItem, setlinkedItem] = useState([]);
+
 
   const [dish, addDish] = React.useState('');
   React.useEffect(() => {
     addDish(route.params.dish)
     updateTotal(dishPrice * count);
   })
+  const Drinks = (id) => {
+    setSelecteddrinks(id)
+    console.log("Idddddddddd:", id)
+  }
 
+  // const data = () => [{
+  //   "id": 0,
+  //   customerId: 10,
+  //   status: 1,
+  //   orderStatus: 1,
+  //   couponNo: "superior",
+  //   orderPlacedfrom: "karachi",
+  //   dishId: 26,
+  //   remarks: "Good"
+  //   // title : "Fish Crackers",
+  //   // description: "lorem ipsum dolor sit amet, consectetur adipis",
+  //   // quantity: 8,
+  //   // price: '8.00',
+  //   // url: require('../../../assets/fake_Images/cart-1.png'),
+  // }];
+  const ExtraChees = (item, index) => {
+    //extraCheese.push(item)
+    if(extraCheese.some(o => o.dishExtraItemId === item.dishExtraItemId))
+    {
+      setExtrachess(extraCheese.filter(i => i.dishExtraItemId !== item.dishExtraItemId))
+    }else{
+      extraCheese.push(item)
 
-  const data = () => [{
-    "id": 0,
-    customerId: 10,
-    status: 1,
-    orderStatus: 1,
-    couponNo: "superior",
-    orderPlacedfrom: "karachi",
-    dishId: 26,
-    remarks: "Good"
-    // title : "Fish Crackers",
-    // description: "lorem ipsum dolor sit amet, consectetur adipis",
-    // quantity: 8,
-    // price: '8.00',
-    // url: require('../../../assets/fake_Images/cart-1.png'),
-  }];
-  const ExtraChees=(active,index)=>{
-    dish.restaurantDishExtraItemList[index].active=!active
-    console.log('okokoko',dish.restaurantDishExtraItemList[index].active)
+    }
+  }
+
+  const LinkedItem = (item, index) => {
+    //extraCheese.push(item)
+    if(linkedItem.some(o => o.dishLinkedItemId === item.dishLinkedItemId))
+    {
+      setlinkedItem(linkedItem.filter(i => i.dishLinkedItemId !== item.dishLinkedItemId))
+    }else{
+      linkedItem.push(item)
+    }
+    console.log('after',linkedItem);
   }
   const AddToCart = () => {
     const data = {
       ...dish,
       quantity: count,
-      totalPrice: total
+      totalPrice: total,
+      selectedDrink: Selecteddrinks,
+      extraCheeses:extraCheese,
+      linkItems:linkedItem
     }
     dispatch(addCart(data));
     navigation.navigate(routeName.LANDING_SCREEN)
@@ -77,7 +104,7 @@ export default function AddToCart({ route, navigation }) {
       <ScrollView style={styles.container}>
         <View>
           <View style={styles.headerImage}>
-            <ImageHeader navigation={navigation} img={route.params.dish.imageDataB}/>
+            <ImageHeader navigation={navigation} img={route.params.dish.imageDataB} />
           </View>
           <View style={{ padding: 20 }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -86,7 +113,7 @@ export default function AddToCart({ route, navigation }) {
             </View>
             <ResponsiveText color={colors.grey1}>{route.params.dish.description}</ResponsiveText>
           </View>
-          <AddToCartDetails data={route.params.dish} ExtraChees={ExtraChees}/>
+          <AddToCartDetails data={route.params.dish} ExtraChees={ExtraChees} SelectedDrinks={Drinks} />
 
           <View
             style={{
@@ -113,15 +140,22 @@ export default function AddToCart({ route, navigation }) {
             </TouchableOpacity>
           </View>
           <View style={{ padding: 20 }}>
-            <View>
-              <CheckBox text={'French Fries'} />
+          {Object.keys(route.params.dish).length != 0
+        ? route.params.dish.restaurantDishLinkedItemList.map((item, index) => {
+          return (
+            <View 
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 10,
+              }}>
+              <CheckBox text={item.dishLinkedItemName} additem={LinkedItem} value={item}/>
+             
             </View>
-            <View style={{ marginTop: 10 }}>
-              <CheckBox text={'Hot Wings'} />
-            </View>
-            <View style={{ marginTop: 10 }}>
-              <CheckBox text={'Nuggets'} />
-            </View>
+          );
+        })
+        : null}
+
 
           </View>
 
