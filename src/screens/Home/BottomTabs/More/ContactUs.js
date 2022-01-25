@@ -72,11 +72,11 @@ export default function ContactUs({ navigation }) {
                         height: hp(7.5), width: wp(90), alignSelf: 'center',
                         borderRadius: 7, flexDirection: 'row'
                     }}>
-                        <ResponsiveText color={colors.white} size={4} margin={[10, 20, 10, 20]}>Regent Square, Kiulap 2, Bandar Seri Begawan, Brunei</ResponsiveText>
+                        <ResponsiveText color={colors.white} size={4} margin={[10, 20, 10, 20]}>Regent Square, Kiulap 2, Bandar </ResponsiveText>
                     </View>
                 </View>
 
-                <View style={{ justifyContent: 'flex-end', flex: 1 }}></View>
+                {/* <View style={{ justifyContent: 'flex-end', flex: 1 }}></View>
                 <TouchableOpacity
                     onPress={() => {
                         navigation.goBack()
@@ -94,7 +94,7 @@ export default function ContactUs({ navigation }) {
                     <ResponsiveText color={colors.black} size={3.5}>
                         Done
                     </ResponsiveText>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
         </View>
     )

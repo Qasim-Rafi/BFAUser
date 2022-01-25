@@ -23,7 +23,7 @@ export default urls = {
   PEOPLE_CHOICE: 'api/PeopleChoice/GetPeopleChoiceAll/',
   REMOVE_fAVOURITE: 'api/RestaurantDish/UpdateDishUnliked',
   GET_ALL_WHATSNEW: 'api/RestaurantDish/GetdishWhatsNewAll/',
-  GET_ALL_PROMOTION: 'api/HomeAdSlideShowAdmin/GetdishpromoAdvertAllapp/',
+  GET_ALL_PROMOTION: 'api/PromotionlDish/GetPromotionlDishIdAllapp/',
   GET_ALL_FAVORITE: 'api/RestaurantDish/GetdishLikedAll/1/4',
   ADD_FAVORITE: 'api/RestaurantDish/UpdateRestaurantDishLiked/',
   // GET_RESTAURANT_DETAIL: 'api/RestaurantBranchesAdmin/GetRestaurantdetailforAppAll/',
