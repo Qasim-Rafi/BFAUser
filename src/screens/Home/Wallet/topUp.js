@@ -28,6 +28,7 @@ import _5BCent from '../../../assets/BCents/5_BCENTS.png'
 import _10BCent from '../../../assets/BCents/10_BCENTS.png'
 import _20BCent from '../../../assets/BCents/20_BCENTS.png'
 import _50BCent from '../../../assets/BCents/50_BCENTS.png'
+import { showMessage } from 'react-native-flash-message'
 
 const TopUp = (props) => {
     const navigation = useNavigation()
@@ -35,7 +36,7 @@ const TopUp = (props) => {
 
     const [isModalVisible, setModalVisible] = useState(false);
     const [isModal2Visible, setModal2Visible] = useState(false);
-    const [checked, setCheck] = useState(true);
+    const [checked, setCheck] = useState(false);
 
     const topUpAmountComing = route.params
     const topUpAmount = parseFloat(topUpAmountComing).toFixed(2)
@@ -106,47 +107,52 @@ const TopUp = (props) => {
                             width:'100%'
                         }}
                     >
-                        <RadioGroup color={colors.yellow}  >
+                        <RadioGroup color={colors.yellow} onSelect={()=>setCheck(true)} >
                             {CARD_DATA.map(item => {
                                 return (
-                                    <View
-                                    style={{
-                                        flexDirection: 'row',
-                                        marginHorizontal: 40,
-                                        marginTop: 10,
-                                        paddingBottom: 10,
-                                        borderBottomColor: colors.black1,
-                                        borderBottomWidth: 1,
-                                        alignItems: 'center',
-                                    }}>
-                                    {/* <TouchableOpacity
-                                        onPress={() => navigation.navigate(routeName.VIEW_CARD)}> */}
+                                    <RadioButton
+                                        style={{alignItems: 'center',marginLeft:wp(2)}}
+                                    >
+
                                         <View
                                         style={{
-                                            width: wp(50),
-                                            alignItems: 'center',
                                             flexDirection: 'row',
+                                            marginHorizontal: wp(2),
+                                            marginTop: 10,
+                                            paddingBottom: 10,
+                                            borderBottomColor: colors.black1,
+                                            borderBottomWidth: 1,
+                                            alignItems: 'center',
+                                        }}>
+                                        {/* <TouchableOpacity
+                                            onPress={() => navigation.navigate(routeName.VIEW_CARD)}> */}
+                                            <View
+                                            style={{
+                                                width: wp(50),
+                                                alignItems: 'center',
+                                                flexDirection: 'row',
+                                                paddingHorizontal: 5,
+                                            }}>
+                                            <Icon source={item.url} size={40} />
+                                            <ResponsiveText margin={[0, 10, 0, 15]} color={colors.white}>
+                                                {item.cardType}
+                                            </ResponsiveText>
+                                            <ResponsiveText color={colors.white}>
+                                                {item.cardNo}
+                                            </ResponsiveText>
+                                            </View>
+                                        {/* </TouchableOpacity> */}
+                                        <View
+                                            style={{
+                                            width: wp(30),
+                                            alignItems: 'flex-end',
+                                            justifyContent: 'center',
                                             paddingHorizontal: 5,
-                                        }}>
-                                        <Icon source={item.url} size={40} />
-                                        <ResponsiveText margin={[0, 10, 0, 15]} color={colors.white}>
-                                            {item.cardType}
-                                        </ResponsiveText>
-                                        <ResponsiveText color={colors.white}>
-                                            {item.cardNo}
-                                        </ResponsiveText>
-                                        </View>
-                                    {/* </TouchableOpacity> */}
-                                    <View
-                                        style={{
-                                        width: wp(30),
-                                        alignItems: 'flex-end',
-                                        justifyContent: 'center',
-                                        paddingHorizontal: 5,
-                                        }}>
+                                            }}>
 
-                                    </View>
-                                    </View>
+                                        </View>
+                                        </View>
+                                    </RadioButton>
                                 );
                             })}
 
@@ -155,7 +161,7 @@ const TopUp = (props) => {
                     <TouchableOpacity
                         onPress={() => {
                             // navigation.navigate(routeName.WALLET, number.toString().substring(0,9));
-                            setModal2Visible(true)
+                            checked ? setModal2Visible(true) : showMessage({ message: 'Please Select a payment method', type: 'warning' })
                         }}
                         style={{
                             justifyContent: 'center',
