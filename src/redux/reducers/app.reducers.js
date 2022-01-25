@@ -12,7 +12,7 @@ const initialState = {
   },
   bruneiFoodsAwards: {
     refreshing: true,
-    data: {},
+    data: [],
   },
   recommendationDetail: {
     refreshing: false,
