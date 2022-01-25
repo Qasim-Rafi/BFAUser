@@ -264,12 +264,12 @@ function* getPromotionsSagaApi(data) {
       yield put({ type: types.GET_PROMOTIONS_SUCCESS, payload: response.data });
       // navigation.navigate(routeName.Categories,{data:response.data});
     } else {
-      yield put({ type: types.GET_PROMOTIONS_FAILURE, error: error });
+      yield put({ type: types.GET_PROMOTIONS_FAILURE, payload: [] });
     }
 
     // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({ type: types.GET_PROMOTIONS_FAILURE, error: error });
+    yield put({ type: types.GET_PROMOTIONS_FAILURE, payload: [] });
   }
 }
 //Get Bfa Recommendations

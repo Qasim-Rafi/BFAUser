@@ -46,7 +46,7 @@ const initialState = {
 
   bfaPartners: {
     refreshing: true,
-    data: {},
+    data: [],
   },
   PeopleChoice: {
     loading: false,
@@ -55,7 +55,7 @@ const initialState = {
 
   promoJobs: {
     refreshing: true,
-    data: {},
+    data: [],
   },
 
   AddOrder: {
@@ -64,7 +64,7 @@ const initialState = {
   },
   promotions: {
     refreshing: true,
-    data: {},
+    data: [],
   },
   favorite: {
     refreshing: true,
