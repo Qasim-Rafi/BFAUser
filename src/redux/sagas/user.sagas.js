@@ -74,7 +74,7 @@ function* registerUserApi(data, response) {
       // yield AsyncStorage.setItem('@token', response.data.token);
       // yield AsyncStorage.setItem('@userId', response.data.loggedInUserId);
       yield put({ type: types.REGISTER_USER_SUCCESS, payload: response });
-      navigation.navigate(routeName.LOGIN);
+      navigation.navigate(routeName.VERIFICATION_CODE);
     } else {
       yield put({ type: types.REGISTER_USER_FAILURE, payload: response });
       // showMessage({
@@ -94,7 +94,27 @@ function* registerUserApi(data, response) {
     //   type: "danger",
     //   icon: { icon: "auto", position: "left" },
     // });
-    yield put({ type: types.LOGIN_USER_FAILURE, error: error });
+  }
+}
+export function* verifyUserSaga() {
+  console.log('saga function Works');
+  yield takeLatest(types.VERIFY_USER_REQUEST, verifyUserApi);
+}
+function* verifyUserApi(data, response) {
+  console.log(data, 'action in saga');
+  // alert("response: ", response.success);
+  let body = {code:0};
+  let navigation = data.navigation
+  try {
+    const response = yield Api.put(urls.VERIFICATION_CODE, body);
+    console.log('resssssssss',response);
+    if (response && response.success == true) {
+      navigation.navigate(routeName.LOGIN);
+    } else {
+
+    }
+  } catch (error) {
+
   }
 }
 //GET_USER PROFILE DATA
@@ -244,12 +264,12 @@ function* getPromotionsSagaApi(data) {
       yield put({ type: types.GET_PROMOTIONS_SUCCESS, payload: response.data });
       // navigation.navigate(routeName.Categories,{data:response.data});
     } else {
-      yield put({ type: types.GET_PROMOTIONS_FAILURE, error: error });
+      yield put({ type: types.GET_PROMOTIONS_FAILURE, payload: [] });
     }
 
     // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({ type: types.GET_PROMOTIONS_FAILURE, error: error });
+    yield put({ type: types.GET_PROMOTIONS_FAILURE, payload: [] });
   }
 }
 //Get Bfa Recommendations

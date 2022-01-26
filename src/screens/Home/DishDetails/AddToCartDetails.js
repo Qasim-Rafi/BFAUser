@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { ADD_TO_CART_FAKE_DATA } from '../../../constants/mock';
 import ResponsiveText from '../../../components/RnText';
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
@@ -89,13 +89,13 @@ export default function AddToCartDetails(props) {
       {Object.keys(props.data).length != 0
         ? props.data.restaurantDishExtraItemList.map((item, index) => {
           return (
-            <View
+            <View 
               style={{
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 padding: 10,
               }}>
-              <CheckBox text={item.dishExtraItemName} checked={item.active} onPress={() => props.ExtraChees(item.active, index)} />
+              <CheckBox text={item.dishExtraItemName} additem={props.ExtraChees} value={item}/>
               <ResponsiveText color={colors.white}>
                 ${item.price}
               </ResponsiveText>

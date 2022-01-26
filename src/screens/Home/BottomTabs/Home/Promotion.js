@@ -28,7 +28,7 @@ import FastImage from 'react-native-fast-image'
 
 const Promotion = props => {
   const Promotions = useSelector(state => state.appReducers.promotions.data);
-  console.log('promotions: ', Promotions);
+  console.log('promotionssssssssssss: ', Promotions);
 
   return (
     <ScrollView>
@@ -76,7 +76,7 @@ const Promotion = props => {
                           justifyContent: 'flex-end',
                           backgroundColor: 'rgba(0,0,0,1)',
                         }}
-                        source={{ uri: url.fullPath }}>
+                        source={{ uri: url.fullPath}}>
                         {url.title === String ?
                           <Text
                             style={{

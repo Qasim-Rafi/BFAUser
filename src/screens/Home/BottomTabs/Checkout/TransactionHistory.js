@@ -35,7 +35,7 @@ export default function TransactionHistory({navigation}) {
                   alignItems: 'center',
                   overflow: 'hidden',
                 }}>
-                <ResponsiveText size={3.5} color={colors.white}>
+                <ResponsiveText size={3.5} color={item.type === 'out' ? colors.red3 : colors.white }>
                   {item.restaurant}
                 </ResponsiveText>
               </View>

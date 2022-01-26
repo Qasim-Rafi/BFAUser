@@ -7,7 +7,9 @@ import { globalPath } from '../../../../constants/globalPath'
 import { promosBannerFakeDATA } from '../../../../constants/mock'
 import { colors } from '../../../../constants/colorsPallet'
 import { hp } from '../../../../helpers/Responsiveness'
-const PromosBanner = () => {
+const PromosBanner = (props) => {
+    const [data,setData]=React.useState(props.data)
+          console.log(data,'sabbbbb')
     return (
         <ScrollView style={{flexGrow: 1}}>
 		<View style={{flex:1, marginTop:15,}} >

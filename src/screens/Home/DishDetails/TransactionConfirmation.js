@@ -89,7 +89,7 @@ export default function TransactionConfirmation({route, navigation}) {
               }
               >
               <ResponsiveText color={colors.black} size={3}>
-                {route.params}
+                {route.params? route.params : 'Cash'}
               </ResponsiveText>
             </TouchableOpacity>
           </View>

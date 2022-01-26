@@ -1618,6 +1618,7 @@ export const TRANSACTION_HISTORY_FAKE_DATA = [
     date: '19/11/2021',
     price: '$30.00',
     url: require('../assets/fake_Images/menu-appetizers-1.png'),
+    type: 'out',
   },
   {
     restaurant: 'Yam Cha Restaurant',
@@ -1626,6 +1627,7 @@ export const TRANSACTION_HISTORY_FAKE_DATA = [
     date: '20/11/2021',
     price: '$30.00',
     url: require('../assets/fake_Images/menu-drinks-1.png'),
+    type: 'out',
   },
   {
     restaurant: 'Yam Cha Restaurant',
@@ -1634,6 +1636,7 @@ export const TRANSACTION_HISTORY_FAKE_DATA = [
     date: '22/11/2021',
     price: '$30.00',
     url: require('../assets/fake_Images/menu-drinks-2.png'),
+    type: 'out',
   },
   {
     restaurant: 'Yam Cha Restaurant',
@@ -1642,6 +1645,7 @@ export const TRANSACTION_HISTORY_FAKE_DATA = [
     date: '24/11/2021',
     price: '$30.00',
     url: require('../assets/fake_Images/menu-drinks-3.png'),
+    type: 'out',
   },
   {
     restaurant: 'Bcoin Top-up',
@@ -1650,6 +1654,7 @@ export const TRANSACTION_HISTORY_FAKE_DATA = [
     date: '29/11/2021',
     price: '$35.00',
     url: require('../assets/icons/top-up.png'),
+    type: 'in',
   },
   {
     restaurant: 'Bcoin Transfer',
@@ -1658,6 +1663,7 @@ export const TRANSACTION_HISTORY_FAKE_DATA = [
     date: '02/12/2021',
     price: '$38.00',
     url: require('../assets/icons/transfer.png'),
+    type: 'out',
   },
 ];
 export const RESTURANT_BANNER = [

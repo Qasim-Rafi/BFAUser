@@ -103,7 +103,7 @@ const Home = ({ navigation }) => {
   React.useEffect(() => {
     dispatch(getAddBannerData());
     dispatch(getPeopleChoice(1, 4))
-    dispatch(getPromotions(1, 4));
+    dispatch(getPromotions(1,10));
     dispatch(getPeopleChoice(1, 4));
     // dispatch(getPromotions());
     dispatch(getBfaPartners(6));

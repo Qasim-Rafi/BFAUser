@@ -28,19 +28,21 @@ import _5BCent from '../../../assets/BCents/5_BCENTS.png'
 import _10BCent from '../../../assets/BCents/10_BCENTS.png'
 import _20BCent from '../../../assets/BCents/20_BCENTS.png'
 import _50BCent from '../../../assets/BCents/50_BCENTS.png'
+import { showMessage } from 'react-native-flash-message'
 
 const TopUp = (props) => {
     const navigation = useNavigation()
     const route = useRoute()
 
     const [isModalVisible, setModalVisible] = useState(false);
-    const [checked, setCheck] = useState(true);
+    const [isModal2Visible, setModal2Visible] = useState(false);
+    const [checked, setCheck] = useState(false);
 
     const topUpAmountComing = route.params
     const topUpAmount = parseFloat(topUpAmountComing).toFixed(2)
 
     const [number, setNumber] = useState(0)
-    const [numeric, setNumeric] = useState(false)
+    const [numeric, setNumeric] = useState(true)
 
     // navigation.setOptions({
     //     headerShown:true,
@@ -105,47 +107,52 @@ const TopUp = (props) => {
                             width:'100%'
                         }}
                     >
-                        <RadioGroup color={colors.yellow}  >
+                        <RadioGroup color={colors.yellow} onSelect={()=>setCheck(true)} >
                             {CARD_DATA.map(item => {
                                 return (
-                                    <View
-                                    style={{
-                                        flexDirection: 'row',
-                                        marginHorizontal: 40,
-                                        marginTop: 10,
-                                        paddingBottom: 10,
-                                        borderBottomColor: colors.black1,
-                                        borderBottomWidth: 1,
-                                        alignItems: 'center',
-                                    }}>
-                                    {/* <TouchableOpacity
-                                        onPress={() => navigation.navigate(routeName.VIEW_CARD)}> */}
+                                    <RadioButton
+                                        style={{alignItems: 'center',marginLeft:wp(2)}}
+                                    >
+
                                         <View
                                         style={{
-                                            width: wp(50),
-                                            alignItems: 'center',
                                             flexDirection: 'row',
+                                            marginHorizontal: wp(2),
+                                            marginTop: 10,
+                                            paddingBottom: 10,
+                                            borderBottomColor: colors.black1,
+                                            borderBottomWidth: 1,
+                                            alignItems: 'center',
+                                        }}>
+                                        {/* <TouchableOpacity
+                                            onPress={() => navigation.navigate(routeName.VIEW_CARD)}> */}
+                                            <View
+                                            style={{
+                                                width: wp(50),
+                                                alignItems: 'center',
+                                                flexDirection: 'row',
+                                                paddingHorizontal: 5,
+                                            }}>
+                                            <Icon source={item.url} size={40} />
+                                            <ResponsiveText margin={[0, 10, 0, 15]} color={colors.white}>
+                                                {item.cardType}
+                                            </ResponsiveText>
+                                            <ResponsiveText color={colors.white}>
+                                                {item.cardNo}
+                                            </ResponsiveText>
+                                            </View>
+                                        {/* </TouchableOpacity> */}
+                                        <View
+                                            style={{
+                                            width: wp(30),
+                                            alignItems: 'flex-end',
+                                            justifyContent: 'center',
                                             paddingHorizontal: 5,
-                                        }}>
-                                        <Icon source={item.url} size={40} />
-                                        <ResponsiveText margin={[0, 10, 0, 15]} color={colors.white}>
-                                            {item.cardType}
-                                        </ResponsiveText>
-                                        <ResponsiveText color={colors.white}>
-                                            {item.cardNo}
-                                        </ResponsiveText>
-                                        </View>
-                                    {/* </TouchableOpacity> */}
-                                    <View
-                                        style={{
-                                        width: wp(30),
-                                        alignItems: 'flex-end',
-                                        justifyContent: 'center',
-                                        paddingHorizontal: 5,
-                                        }}>
+                                            }}>
 
-                                    </View>
-                                    </View>
+                                        </View>
+                                        </View>
+                                    </RadioButton>
                                 );
                             })}
 
@@ -153,7 +160,8 @@ const TopUp = (props) => {
 
                     <TouchableOpacity
                         onPress={() => {
-                            navigation.navigate(routeName.WALLET, number.toString().substring(0,9));
+                            // navigation.navigate(routeName.WALLET, number.toString().substring(0,9));
+                            checked ? setModal2Visible(true) : showMessage({ message: 'Please Select a payment method', type: 'warning' })
                         }}
                         style={{
                             justifyContent: 'center',
@@ -171,14 +179,17 @@ const TopUp = (props) => {
                     </TouchableOpacity>
                     </View>
 
+
+
                     <Modal isVisible={isModalVisible} animationIn={'slideInUp'} animationOut={'slideOutDown'} backdropOpacity={0} onBackdropPress={()=>setModalVisible(false)} >
+                        {/* ------------ ModalView_1 -------------- */}
                         <View style={styles.centeredModalView} >
                             <View style={{flexDirection:'row'}} >
                                 <TouchableOpacity style={[styles.keyBoardSelector,{borderTopLeftRadius:10,borderRightWidth:1}]} onPress={()=>{setNumeric(true);setNumber(0)}} >
-                                    <Text style={{fontSize:30,color:colors.white}} >Numeric</Text>
+                                    <Text style={{fontSize:wp(7.2),color:colors.white}} >Numeric</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={[styles.keyBoardSelector,{borderTopRightRadius:10}]} onPress={()=>{setNumeric(false);setNumber(0);}} >
-                                    <Text style={{fontSize:30,color:colors.white}} >Bcoin</Text>
+                                    <Text style={{fontSize:wp(7.2),color:colors.white}} >Bcoin</Text>
                                 </TouchableOpacity>
                             </View>
 
@@ -284,7 +295,175 @@ const TopUp = (props) => {
                                  </View>
                              </View>  }
                         </View>
+                        {/* ------------ ModalView_1 End -------------- */}
                     </Modal>
+
+                    <Modal
+                        isVisible={isModal2Visible}
+                        statusBarTranslucent={true}
+                        backdropOpacity={0.9}
+                        style={{justifyContent: 'flex-end'}}
+                        // onModalHide={() => navigation.push('Home')}
+                        >
+                        {/* ------------ ModalView_2 -------------- */}
+                        <View
+                            style={{
+                            flex: 0.3,
+                            backgroundColor: colors.black2,
+                            borderRadius: 7,
+                            marginBottom: 20,
+                            }}>
+                            <View
+                            style={{
+                                flex: 0.2,
+                                backgroundColor: colors.black1,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                borderTopRightRadius: 7,
+                                borderTopLeftRadius: 7,
+                            }}>
+                            <ResponsiveText color={colors.white} size={3.5}>
+                                Confirmation
+                            </ResponsiveText>
+                            </View>
+                            {/* <View
+                            style={{
+                                flex: 0.18,
+                                backgroundColor: colors.black2,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                marginHorizontal: 15,
+                            }}>
+                            <ResponsiveText color={colors.grey1} size={2.6}>
+                                You have successfully paid:
+                            </ResponsiveText>
+                            </View> */}
+                            <View
+                            style={{
+                                flex: 0.13,
+                                backgroundColor: colors.black2,
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                borderBottomWidth: 2,
+                                borderBottomColor: colors.black1,
+                                marginHorizontal: 15,
+                            }}>
+                            <View style={{flex: 0.55, alignItems: 'center'}}>
+                                <ResponsiveText
+                                color={colors.yellow}
+                                size={3}
+                                margin={[0, 10, 0, 0]}>
+                                Amount
+                                </ResponsiveText>
+                            </View>
+                            <View style={{flex: 0.45,alignItems:'center'}}>
+                                <ResponsiveText color={colors.yellow} size={3}>
+                                ${parseFloat(number)}
+                                </ResponsiveText>
+                            </View>
+                            </View>
+                            <View
+                            style={{
+                                flex: 0.13,
+                                backgroundColor: colors.black2,
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                borderBottomWidth: 2,
+                                borderBottomColor: colors.black1,
+                                marginHorizontal: 15,
+                            }}>
+                            <View style={{flex: 0.55, alignItems: 'center'}}>
+                                <ResponsiveText
+                                color={colors.yellow}
+                                size={3}
+                                margin={[0, 10, 0, 0]}>
+                                Fee
+                                </ResponsiveText>
+                            </View>
+                            <View style={{flex: 0.45,alignItems:'center'}}>
+                                <ResponsiveText color={colors.yellow} size={3}>
+                                5%
+                                </ResponsiveText>
+                            </View>
+                            </View>
+                            <View
+                            style={{
+                                flex: 0.13,
+                                backgroundColor: colors.black2,
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                borderBottomWidth: 2,
+                                borderBottomColor: colors.black1,
+                                marginHorizontal: 15,
+                            }}>
+                            <View style={{flex: 0.55, alignItems: 'center'}}>
+                                <ResponsiveText
+                                color={colors.yellow}
+                                size={3}
+                                margin={[0, 10, 0, 0]}>
+                                Total Amount
+                                </ResponsiveText>
+                            </View>
+                            <View style={{flex: 0.45,alignItems:'center'}}>
+                                <ResponsiveText color={colors.yellow} size={3}>
+                                ${parseFloat(number)  + number* 0.05}
+                                </ResponsiveText>
+                            </View>
+                            </View>
+                            
+                            <View
+                            style={{
+                                flex: 0.29,
+                                backgroundColor: colors.black2,
+                                alignItems: 'center',
+                                borderBottomLeftRadius: 7,
+                                borderBottomRightRadius: 7,
+                            }}>
+                            <TouchableOpacity
+                                style={{
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                borderRadius: 5,
+                                borderWidth: 1,
+                                borderColor: colors.yellow,
+                                width: wp(83),
+                                height: hp(5),
+                                marginTop: 10
+                                }}
+                                onPress={()=>navigation.navigate(routeName.WALLET, number.toString().substring(0,9))}>
+                                <ResponsiveText size={3} color={colors.yellow}>
+                                Confirm Top-up
+                                </ResponsiveText>
+                            </TouchableOpacity>
+                            </View>
+                            <View
+                            style={{
+                                flex: 0.29,
+                                backgroundColor: colors.black2,
+                                alignItems: 'center',
+                                borderBottomLeftRadius: 7,
+                                borderBottomRightRadius: 7,
+                            }}>
+                            <TouchableOpacity
+                                style={{
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                borderRadius: 5,
+                                borderWidth: 1,
+                                borderColor: colors.yellow,
+                                width: wp(83),
+                                height: hp(5),
+                                marginTop:5
+                                }}
+                                onPress={()=>setModal2Visible(false)}>
+                                <ResponsiveText size={3} color={colors.yellow}>
+                                Cancel
+                                </ResponsiveText>
+                            </TouchableOpacity>
+                            </View>
+                        </View>
+                        {/* ------------ ModalView_2 End -------------- */}
+                        </Modal>
 
                 
 
@@ -309,7 +488,7 @@ const styles = StyleSheet.create({
     input: {
         // height: 40,
         color: colors.white,
-        fontSize: 70,
+        fontSize: wp(16),
         marginBottom: 18,
         // borderWidth: 1,
         // padding: 10,

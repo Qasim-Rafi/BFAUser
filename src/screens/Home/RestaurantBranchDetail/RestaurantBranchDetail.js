@@ -28,6 +28,7 @@ import AwardsDetail from './AwardsDetail';
 import MenuTabs from '../Menu/MenuTabs';
 import { getRestaurentDeatil } from '../../../redux/actions/user.actions';
 import { useDispatch, useSelector } from 'react-redux';
+import { Item } from 'react-native-paper/lib/typescript/components/List/List';
 
 export default function RestaurantBranchDetailScreen({ navigation, route }) {
   const [activeTab, setActiveTab] = React.useState(MenuSectionButtons[0].id);
@@ -36,7 +37,7 @@ export default function RestaurantBranchDetailScreen({ navigation, route }) {
   const data = useSelector(state => state.appReducers.restaurantDetail.data);
   const loading = useSelector(state => state.appReducers.restaurantDetail.refreshing);
   React.useEffect(() => {
-    dispatch(getRestaurentDeatil(11));
+    dispatch(getRestaurentDeatil(31));
     //route.params.restaurantId
   }, []);
   console.log('routeetetteetet vhvhh', data);

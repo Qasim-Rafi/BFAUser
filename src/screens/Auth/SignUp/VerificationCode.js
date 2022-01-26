@@ -24,12 +24,15 @@ import { StackActions } from '@react-navigation/routers';
 import { colors } from '../../../constants/colorsPallet';
 import { TextInput } from 'react-native-gesture-handler';
 import Preferences from '../../Home/BottomTabs/More/Preferences';
+import { useDispatch } from 'react-redux';
+import { verifyUser } from '../../../redux/actions/user.actions';
 
 const CELL_COUNT = 6;
 
 export default function VerificationCode({navigation}) {
   const [userName ,setUserName]=React.useState('');
   const [password ,setPassword]=React.useState('');
+  const dispatch=useDispatch()
   const [value, setValue] = React.useState('');
   const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
@@ -79,7 +82,7 @@ export default function VerificationCode({navigation}) {
 
           </View>
         
-          <RnButton onPress={()=>navigation.navigate(routeName.PREFERENCES)} fontFamily='SemiBold'  margin={[20, 0]} title="Continue" />
+          <RnButton onPress={()=>dispatch(verifyUser(0,navigation))} fontFamily='SemiBold'  margin={[20, 0]} title="Continue" />
          
 
 
