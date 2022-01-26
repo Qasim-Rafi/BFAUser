@@ -141,10 +141,13 @@ const CartDetails = ({ navigation }) => {
 
               <View style={{ flexDirection: 'column', marginLeft: 5, }}>
                 <Text style={styles.ModalDish}>
-                  {selectedItem.cusineName}
+                  {selectedItem.titleD}
                 </Text>
                 <Text style={styles.ModalPrice}>
-                  $ 235
+                  {selectedItem.price}
+                </Text>
+                <Text style={styles.ModalPrice}>
+                  {selectedItem.titleR}
                 </Text>
               </View>
             </View>
@@ -160,7 +163,7 @@ const CartDetails = ({ navigation }) => {
               </Text>
 
               <Text style={{ color: colors.white, fontSize: 10, marginTop: 4 }}>
-                Extra Cheese : yes
+                {selectedItem.cusineName}
               </Text>
               <Text style={styles.ModalAddons}>
                 Add ons : Corn on the cob
