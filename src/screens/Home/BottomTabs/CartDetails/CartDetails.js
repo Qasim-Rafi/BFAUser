@@ -131,44 +131,47 @@ const CartDetails = ({ navigation }) => {
         </View>
 
         {selectedItem !== null ?
-          <View style={{ flexDirection: 'row' }}>
+          <View>
+            <View style={{ flexDirection: 'row' }}>
 
-            <Image
-              source={{ uri: selectedItem.imageDataB }}
-              style={styles.popupImage}
-            />
+              <Image
+                source={{ uri: selectedItem.imageDataB }}
+                style={styles.popupImage}
+              />
 
-            <View style={{ flexDirection: 'column', marginLeft: 5, }}>
-              <Text style={styles.ModalDish}>
-                {selectedItem.cusineName}
+              <View style={{ flexDirection: 'column', marginLeft: 5, }}>
+                <Text style={styles.ModalDish}>
+                  {selectedItem.cusineName}
+                </Text>
+                <Text style={styles.ModalPrice}>
+                  $ 235
+                </Text>
+              </View>
+            </View>
+
+            <View style={styles.ModalInnerDisign}>
+
+              <Text style={styles.ModalDiscription}>
+                Description : The ingredients. Place the main ingredients of
+                the dish first, starting with the most expensive and important ingredients
               </Text>
-              <Text style={styles.ModalPrice}>
-                $ 235
+              <Text style={styles.ModalDrink}>
+                Soft Drink : Sprite & coke
+              </Text>
+
+              <Text style={{ color: colors.white, fontSize: 10, marginTop: 4 }}>
+                Extra Cheese : yes
+              </Text>
+              <Text style={styles.ModalAddons}>
+                Add ons : Corn on the cob
+              </Text>
+
+              <Text style={styles.ModalInstructions}>
+                Instructions : dried chilli flakes, to taste and  desiccated coconut
               </Text>
             </View>
           </View>
           : undefined}
-        <View style={styles.ModalInnerDisign}>
-
-          <Text style={styles.ModalDiscription}>
-            Description : The ingredients. Place the main ingredients of
-            the dish first, starting with the most expensive and important ingredients
-          </Text>
-          <Text style={styles.ModalDrink}>
-            Soft Drink : Sprite & coke
-          </Text>
-
-          <Text style={{ color: colors.white, fontSize: 10, marginTop: 4 }}>
-            Extra Cheese : yes
-          </Text>
-          <Text style={styles.ModalAddons}>
-            Add ons : Corn on the cob
-          </Text>
-
-          <Text style={styles.ModalInstructions}>
-            Instructions : dried chilli flakes, to taste and  desiccated coconut
-          </Text>
-        </View>
         {/* <View>
           <TouchableOpacity style={styles.signin}>
 
