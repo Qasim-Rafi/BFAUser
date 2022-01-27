@@ -1,3 +1,5 @@
+//Native map implementation is yet to be done after getting the google map API
+
 import React,{useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Map, {PROVIDER_GOOGLE,Marker,Polyline} from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps

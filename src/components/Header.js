@@ -46,7 +46,7 @@ const Header = ({
           borderRadius: 10,
           marginEnd: 5,
         }}>
-        <View style={ props.iconPath ? { flexDirection: 'row', alignItems: 'center',justifyContent:'center', backgroundColor:colors.yellow1,height: hp(6), width: hp(6),borderRadius:hp(3) } :{ flexDirection: 'row', alignItems: 'center'} }>
+        <View style={ props.iconPath ? { flexDirection: 'row', alignItems: 'center',justifyContent:'center', backgroundColor:colors.yellow1,height: wp(13), width: wp(13),borderRadius:wp(6.5) } :{ flexDirection: 'row', alignItems: 'center'} }>
           <Icon
             margin={[0, 0, 0, 0]}
             size={props.iconPath ? 25 : 44}
