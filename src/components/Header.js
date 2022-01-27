@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity, Image, TextInput } from 'react-native';
+import { View, TouchableOpacity, Image, TextInput, Text } from 'react-native';
 
 import RText from './Basics/RText';
 import { hp, wp } from '../helpers/Responsiveness';
@@ -19,6 +19,7 @@ const Header = ({
   navigation,
   showRightMenu = true,
   inputWidth = wp(58),
+  title,
 
   ...props
 }) => {
@@ -45,7 +46,7 @@ const Header = ({
           borderRadius: 10,
           marginEnd: 5,
         }}>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <View style={ props.iconPath ? { flexDirection: 'row', alignItems: 'center',justifyContent:'center', backgroundColor:colors.yellow1,height: hp(6), width: hp(6),borderRadius:hp(3) } :{ flexDirection: 'row', alignItems: 'center'} }>
           <Icon
             margin={[0, 0, 0, 0]}
             size={props.iconPath ? 25 : 44}
@@ -60,7 +61,11 @@ const Header = ({
         </View>
       </TouchableOpacity>
       {props.iconPath ? (
-        <View />
+        <View style={{alignItems:'center', justifyContent:'center',height: hp(6), width: wp(50),paddingLeft:wp(17)}}>
+          <Text style={{color:colors.white,fontSize:wp(6), fontWeight:'bold'}}>
+            {title}
+          </Text>
+        </View>
       ) : (
         <View
           style={{
