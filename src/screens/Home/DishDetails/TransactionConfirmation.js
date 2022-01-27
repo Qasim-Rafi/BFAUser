@@ -37,7 +37,7 @@ export default function TransactionConfirmation({route, navigation}) {
           backgroundColor: colors.black2,
           justifyContent: 'center',
         }}>
-        <Header iconPath={globalPath.BACK_ARROW} navigation={navigation} />
+        <Header iconPath={globalPath.BACK_ARROW} title={'Check out'} navigation={navigation} />
       </View>
       <View style={{flex: 0.9, backgroundColor: colors.black3}}>
         <ResponsiveText margin={[25, 0, 0, 20]} color={colors.yellow}>
