@@ -1,4 +1,5 @@
 //Native map implementation is yet to be done after getting the google map API
+// get API's for both android and ios
 
 import React,{useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
