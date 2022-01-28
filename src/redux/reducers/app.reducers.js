@@ -90,6 +90,10 @@ const initialState = {
     refreshing: true,
     data: [],
   },
+  moreaboutDishDetail: {
+    loading: false,
+    data: [],
+  },
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -680,6 +684,33 @@ export const appReducers = (state = initialState, action) => {
           refreshing: true,
         },
       };
+      case types.GET_MORE_ABOUT_DISHES_REQUEST:
+        return {
+          ...state,
+          moreaboutDishDetail: {
+            ...state.moreaboutDishDetail,
+            loading: true,
+          },
+        };
+  
+      case types.GET_MORE_ABOUT_DISHES_SUCCESS:
+        return {
+          ...state,
+          moreaboutDishDetail: {
+            ...state.moreaboutDishDetail,
+            data: action.payload,
+            loading: false,
+          },
+        };
+  
+      case types.GET_MORE_ABOUT_DISHES_FAILURE:
+        return {
+          ...state,
+          moreaboutDishDetail: {
+            ...state.moreaboutDishDetail,
+            loading: false,
+          },
+        };
     default:
       return state;
   }

@@ -741,3 +741,29 @@ function* RemoveFavoriteRestaurantSagaApi(data) {
     yield put({type: types.REMOVE_FAVORITE_RESTAURANT_FAILURE, error: 'error'});
   }
 }
+export function* moreaboutDishSaga() {
+  yield takeLatest(
+    types.GET_MORE_ABOUT_DISHES_REQUEST,
+    moreaboutDishSagaApi,
+  );
+}
+function* moreaboutDishSagaApi(data) {
+  const id = data.id;
+  console.log('moreabouttttt:', data);
+  try {
+    const response = yield Api.get(urls.DISH_CALORIE);
+    if (response && response.data != null) {
+      yield put({
+        type: types.GET_MORE_ABOUT_DISHES_SUCCESS,
+        payload: response.data,
+      });
+    } else {
+      yield put({
+        type: types.GET_MORE_ABOUT_DISHES_FAILURE,
+        payload:[],
+      });
+    }
+  } catch (error) {
+    yield put({type: types.REMOVE_FAVORITE_RESTAURANT_FAILURE, error: 'error'});
+  }
+}
