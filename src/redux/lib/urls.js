@@ -5,14 +5,14 @@ export default urls = {
   BASE_URL: 'https://egreatlearning.com/web/',
 
   //Auth Urls
-  LOGIN_URL: 'api/Auth/login',
-  REGISTER_URL: 'api/Users/AddUser',
-  VERIFICATION_CODE: 'api/Users/UpdateUserMobileVerification',
+  LOGIN_URL: 'api/Auth/login',  //Sign in
+  REGISTER_URL: 'api/Users/AddUser',     //Sign up
+  VERIFICATION_CODE: 'api/Users/UpdateUserMobileVerification', // Code verification
   PACKAGES_ALL_URL: 'api/Package/GetPackageAll',
-  GET_PROFILE_DATA: 'api/Users/GetUser/',
+  GET_PROFILE_DATA: 'api/Users/GetUser/',   //User data by id
   REGISTER_URL: 'api/Auth/Register',
   RESTAURANT_AWARDS: 'api/RestaurantAwards/GetRestaurantAwardsAll',
-  CUSINE_URL: 'api/Cusine/GetCusineAll/',
+  CUSINE_URL: 'api/Cusine/GetCusineAll/',        //Cusine list
   // PROMOTIONS: 'api/HomeAdSlideShowAdmin/GetHomeAdSlideShowAdminAll',
   RESTAURANT_DISH_ALL: 'api/RestaurantDish/GetRestaurantDishAll/',          /// bfa Recomendation
   DISH_CALORIE:'api/RestaurantBranchesAdmin/GetRestaurantDishCalorie/26',    //MORE about dish detail
@@ -20,15 +20,15 @@ export default urls = {
   GET_BFA_PARTNERS: 'api/AdminBFAPartner/GetAdminBFAPartnerAll/18/1/40',
   GET_ADD_BANNER: 'api/HomeAdSlideShowAdmin/GetHomeAdSlideShowAdminAll',
   GET_PROMO_NEWS: 'api/PromoItemNews/GetPromoNewsAdminAllAdmin',
-  GET_PROMO_JOBS: 'api/PromoJobsAdmin/GetPromoJobsAdminAllAdminForapp/',
+  GET_PROMO_JOBS: 'api/PromoJobsAdmin/GetPromoJobsAdminAllAdminForapp/', 
   ADD_ORDERS: 'api/Order/AddOrder',
-  PEOPLE_CHOICE: 'api/PeopleChoice/GetPeopleChoiceAll/',
-  GET_ALL_WHATSNEW: 'api/RestaurantDish/GetdishWhatsNewAll/',
-  GET_ALL_PROMOTION: 'api/PromotionlDish/GetPromotionlDishIdAllapp/',
-  GET_ALL_FAVORITE: 'api/RestaurantDish/GetdishLikedAll/1/4',
+  PEOPLE_CHOICE: 'api/PeopleChoice/GetPeopleChoiceAll/',     ///people choice
+  GET_ALL_WHATSNEW: 'api/RestaurantDish/GetdishWhatsNewAll/',   //Whats new 
+  GET_ALL_PROMOTION: 'api/PromotionlDish/GetPromotionlDishIdAllapp/',  //Promostions
+  GET_ALL_FAVORITE: 'api/RestaurantDish/GetdishLikedAll/1/4', ///Get favorite list
   // ADD_FAVORITE: 'api/RestaurantDish/UpdateRestaurantDishLiked/',
   REMOVE_fAVOURITE_DISH: 'api/RestaurantDish/UpdateDishUnliked/',  //unlike dish
-  ADD_FAVORITE_DISH: 'api​/RestaurantDish​/UpdateRestaurantDishLiked​/', //LIKE DISH
+  ADD_FAVORITE_DISH: 'api/RestaurantDish/UpdateRestaurantDishLiked/', //LIKE DISH
   GET_RESTAURANT_DETAIL: 'api/RestaurantBranchesAdmin/GetRestaurantdetailforAppAlldata/',
   GET_ALL_FAVORITE_RESTAURANT: 'api/PeopleChoice/GetPeopleChoiceLikedAll/1/10',
   ADD_RESTAURANT_FAVORITE: 'api/PeopleChoice/UpdatePeopleChoiceLiked/',
