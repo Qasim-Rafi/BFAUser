@@ -750,6 +750,7 @@ export function* moreaboutDishSaga() {
 function* moreaboutDishSagaApi(data) {
   const id = data.id;
   console.log('moreabouttttt:', data);
+
   try {
     const response = yield Api.get(urls.DISH_CALORIE);
     if (response && response.data != null) {
@@ -763,6 +764,8 @@ function* moreaboutDishSagaApi(data) {
         payload:[],
       });
     }
+
+    // dispatch a success action to the store with the new data object
   } catch (error) {
     yield put({type: types.REMOVE_FAVORITE_RESTAURANT_FAILURE, error: 'error'});
   }
