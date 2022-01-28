@@ -6,15 +6,29 @@ import Header from '../../../../components/Header'
 import { globalPath } from '../../../../constants/globalPath'
 import ResponsiveText from '../../../../components/RnText'
 import { hp, wp } from '../../../../helpers/Responsiveness'
+import { getmoreaboutDish } from '../../../../redux/actions/user.actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { ScrollView } from 'react-native-gesture-handler'
+import ImageHeader from '../Home/ImageHeader'
+export default function MoreAboutDishes({ navigation,route }) {
+    const dispatch = useDispatch();
+    const Data = useSelector(state => state.appReducers.moreaboutDishDetail);
 
+    React.useEffect(() => {
 
-export default function MoreAboutDishes({ navigation }) {
+        dispatch(getmoreaboutDish(route.params));
+    }, []);
+    console.log(route.params, 'moreaboutttttttttt')
+    
+
     return (
         <View style={{ flex: 1, backgroundColor: colors.black3 }}>
-            <View style={{ flexDirection: 'row', justifyContent: "space-between", padding: 7 }}>
-                <TouchableOpacity style={{ backgroundColor: colors.yellow1, paddingVertical: 10, paddingHorizontal: 10, borderRadius: 20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
-            </View>
-                <View
+            <ImageHeader/>
+            <ScrollView>
+            {Data.data.map((item) => {
+                return(
+                    <View>
+                    <View
                     style={{
                         flexDirection: 'row',
                         justifyContent: 'space-between',
@@ -22,34 +36,48 @@ export default function MoreAboutDishes({ navigation }) {
                         borderBottomWidth: 1,
                         borderColor: colors.black2,
                         padding: 5,
-                        marginTop: 60,
-                        marginLeft:10
+                        marginTop: 10,
+                        marginLeft: 10
                     }}>
                     <ResponsiveText color={colors.white}>
-                        {'TOTAL FATS (g)'}
+                        {item.calorieTitle}
                     </ResponsiveText>
+                    </View>
+                    {item.restaurantDishCalorie.map((v) =>{
+                    return(
+                        <View
+                        style={{
+                            flexDirection: 'row',
+                            width: wp(90),
+                             justifyContent: 'space-between',
+                            marginTop: 10,
+                            marginHorizontal: wp(4)
+        
+                        }}>
+                        <ResponsiveText
+                            margin={[0, 0, 0, 0]}
+                            size={3}
+                            color={colors.grey}>
+                            {v.name}
+                        </ResponsiveText>
+                        <ResponsiveText 
+                        color={colors.grey}
+                        margin={[0, 0, 0, 0]}>
+                            {v.weightage}
+                        </ResponsiveText>
+                    </View>
+                    );
+                })}
                     {/* <ResponsiveText color={colors.white}>{'Required'}</ResponsiveText> */}
                 </View>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    width: wp(80),
-                    justifyContent: 'space-between',
-                    marginTop:20,
-                    marginLeft:10
+                
+                );
+               
+            })
+            }
+           </ScrollView>
+         
 
-                  }}>
-                  <ResponsiveText
-                    margin={[0, 0, 0, 10]}
-                    size={3}
-                    color={colors.grey}>
-                    softDrinkName
-                  </ResponsiveText>
-                  <ResponsiveText color={colors.grey}>
-                      $ 25
-                    </ResponsiveText>
-                </View>
-          
         </View>
-    )
+    );
 }
