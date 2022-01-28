@@ -14,7 +14,8 @@ export default urls = {
   RESTAURANT_AWARDS: 'api/RestaurantAwards/GetRestaurantAwardsAll',
   CUSINE_URL: 'api/Cusine/GetCusineAll/',
   // PROMOTIONS: 'api/HomeAdSlideShowAdmin/GetHomeAdSlideShowAdminAll',
-  RESTAURANT_DISH_ALL: 'api/RestaurantDish/GetRestaurantDishAll/',
+  RESTAURANT_DISH_ALL: 'api/RestaurantDish/GetRestaurantDishAll/',          /// bfa Recomendation
+  DISH_CALORIE:'api/RestaurantBranchesAdmin/GetRestaurantDishCalorie/26',    //MORE about dish detail
   GET_USER: 'api/Users/GetUser/2',
   GET_BFA_PARTNERS: 'api/AdminBFAPartner/GetAdminBFAPartnerAll/18/1/40',
   GET_ADD_BANNER: 'api/HomeAdSlideShowAdmin/GetHomeAdSlideShowAdminAll',
@@ -26,7 +27,7 @@ export default urls = {
   GET_ALL_PROMOTION: 'api/PromotionlDish/GetPromotionlDishIdAllapp/',
   GET_ALL_FAVORITE: 'api/RestaurantDish/GetdishLikedAll/1/4',
   // ADD_FAVORITE: 'api/RestaurantDish/UpdateRestaurantDishLiked/',
-  REMOVE_fAVOURITE_DISH: 'api/RestaurantDish/UpdateDishUnliked/',
+  REMOVE_fAVOURITE_DISH: 'api/RestaurantDish/UpdateDishUnliked/',  //unlike dish
   ADD_FAVORITE_DISH: 'api​/RestaurantDish​/UpdateRestaurantDishLiked​/', //LIKE DISH
   GET_RESTAURANT_DETAIL: 'api/RestaurantBranchesAdmin/GetRestaurantdetailforAppAlldata/',
   GET_ALL_FAVORITE_RESTAURANT: 'api/PeopleChoice/GetPeopleChoiceLikedAll/1/10',

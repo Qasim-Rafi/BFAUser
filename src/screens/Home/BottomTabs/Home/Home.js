@@ -43,7 +43,7 @@ import {
   getFavorite,
   getAddBannerData,
   getBfaRecommendations,
-  getPromoNewsData,
+  getmoreaboutDish,
   getPromoJobsData,
   getPeopleChoice,
   getwhatsNew,
@@ -105,7 +105,7 @@ const Home = ({ navigation }) => {
     dispatch(getPeopleChoice(1, 4))
     dispatch(getPromotions(1,10));
     dispatch(getPeopleChoice(1, 4));
-    // dispatch(getPromotions());
+     dispatch(getmoreaboutDish());
     dispatch(getBfaPartners(6));
     // callAPI();
     dispatch(getUserCusine(1, 14));

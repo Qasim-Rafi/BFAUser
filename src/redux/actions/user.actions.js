@@ -144,7 +144,12 @@ export const getRestaurantAllDishes = () => {
 
   };
 };
-
+export const getmoreaboutDish = (id) => {
+  return {
+    type: types.GET_MORE_ABOUT_DISHES_REQUEST,
+    id:id
+  };
+};
 
 export const registerUserReset = () => {
   return {
