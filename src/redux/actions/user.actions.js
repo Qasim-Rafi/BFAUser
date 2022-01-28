@@ -157,11 +157,14 @@ export const registerUserReset = () => {
   };
 };
 //Favrite Actions
-export const getFavorite = (data) => {
+export const getFavorite = (index,limit) => {
   // console.log('okokokokoko',data)
   return {
     type: types.GET_FAVORITE_REQUEST,
-    data
+    data:{
+      index: index,
+      limit: limit
+    }
   };
 };
 

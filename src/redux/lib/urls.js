@@ -25,7 +25,7 @@ export default urls = {
   PEOPLE_CHOICE: 'api/PeopleChoice/GetPeopleChoiceAll/',     ///people choice
   GET_ALL_WHATSNEW: 'api/RestaurantDish/GetdishWhatsNewAll/',   //Whats new 
   GET_ALL_PROMOTION: 'api/PromotionlDish/GetPromotionlDishIdAllapp/',  //Promostions
-  GET_ALL_FAVORITE: 'api/RestaurantDish/GetdishLikedAll/1/4', ///Get favorite list
+  GET_ALL_FAVORITE: 'api/RestaurantDish/GetdishLikedAll/', ///Get favorite list
   // ADD_FAVORITE: 'api/RestaurantDish/UpdateRestaurantDishLiked/',
   REMOVE_fAVOURITE_DISH: 'api/RestaurantDish/UpdateDishUnliked/',  //unlike dish
   ADD_FAVORITE_DISH: 'api/RestaurantDish/UpdateRestaurantDishLiked/', //LIKE DISH

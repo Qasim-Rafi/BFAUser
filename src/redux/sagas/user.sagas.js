@@ -441,9 +441,12 @@ function* getRestaurantDishesSagaApi() {
 export function* getFavoritesSaga() {
   yield takeLatest(types.GET_FAVORITE_REQUEST, getFavoritesSagaApi);
 }
-function* getFavoritesSagaApi() {
+function* getFavoritesSagaApi(data) {
+  console.log(data);
+  const limit = data.data.limit;
+  const index = data.data.index;
   try {
-    const response = yield Api.get(urls.GET_ALL_FAVORITE);
+    const response = yield Api.get(urls.GET_ALL_FAVORITE + index + '/' + limit);
     if (response && response.data != null) {
       yield put({
         type: types.GET_FAVORITE_SUCCESS,
@@ -507,9 +510,9 @@ function* onRemoveFavoriteSagaApi(data) {
   };
 
   try {
-    const url=urls.REMOVE_fAVOURITE_DISH + dishId + '/' + resId
+    const url = urls.REMOVE_fAVOURITE_DISH + dishId + '/' + resId;
     const response = yield Api.put(url);
-    console.log('resssssssss',response)
+    console.log('resssssssss', response);
     if (response && response.success == true) {
       yield put({
         type: types.ON_REMOVE_FAVORITE_SUCCESS,
@@ -742,10 +745,7 @@ function* RemoveFavoriteRestaurantSagaApi(data) {
   }
 }
 export function* moreaboutDishSaga() {
-  yield takeLatest(
-    types.GET_MORE_ABOUT_DISHES_REQUEST,
-    moreaboutDishSagaApi,
-  );
+  yield takeLatest(types.GET_MORE_ABOUT_DISHES_REQUEST, moreaboutDishSagaApi);
 }
 function* moreaboutDishSagaApi(data) {
   const id = data.id;
@@ -761,7 +761,7 @@ function* moreaboutDishSagaApi(data) {
     } else {
       yield put({
         type: types.GET_MORE_ABOUT_DISHES_FAILURE,
-        payload:[],
+        payload: [],
       });
     }
 

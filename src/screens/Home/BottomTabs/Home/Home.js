@@ -83,7 +83,7 @@ const Home = ({ navigation }) => {
     dispatch(getwhatsNew(1, 4));
     // dispatch(getPromoNewsData());
     // dispatch(awardsRestaurant());
-    dispatch(getFavorite());
+    dispatch(getFavorite(1, 4));
     dispatch(getPromoJobsData(1, 10));
     dispatch(getBfaRecommendations(1, 4));
     dispatch(getBruneiFoodRewards(1, 4));
@@ -112,7 +112,7 @@ const Home = ({ navigation }) => {
     dispatch(getwhatsNew(1, 4));
     // dispatch(getPromoNewsData());
     // dispatch(awardsRestaurant());
-    dispatch(getFavorite());
+    dispatch(getFavorite(1, 4));
     dispatch(getPromoJobsData(1, 10));
     dispatch(getBfaRecommendations(1, 4));
     dispatch(getBruneiFoodRewards(1, 4));
