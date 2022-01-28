@@ -9,29 +9,28 @@ import {
 } from 'react-native';
 import AdvertisementBanner from '../BottomTabs/Home/AdvertisementBanner';
 import ImageHeader from '../BottomTabs/Home/ImageHeader';
-import { colors } from '../../../constants/colorsPallet';
+import {colors} from '../../../constants/colorsPallet';
 const text = 'Description';
 import Icon from '../../../components/Icon';
 import ResponsiveText from '../../../components/RnText';
-import { globalPath } from '../../../constants/globalPath';
-import { wp } from '../../../helpers/Responsiveness';
+import {globalPath} from '../../../constants/globalPath';
+import {wp} from '../../../helpers/Responsiveness';
 import StaticMap from '../../../components/StaticMap';
-import { useDispatch, useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   addFavorite,
   onRemoveFavorite,
 } from '../../../redux/actions/user.actions';
-import { routeName } from '../../../constants/routeName';
-import { useNavigation } from '@react-navigation/native';
-
+import {routeName} from '../../../constants/routeName';
+import {useNavigation} from '@react-navigation/native';
 
 export default function DishDescription(props) {
   const dispatch = useDispatch();
   const favData = useSelector(state => state.appReducers.favorite.data);
 
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
-  console.log(props.item, 'itemmmpropsss')
+  console.log(props.item, 'itemmmpropsss');
   return (
     <View>
       <View>
@@ -58,7 +57,11 @@ export default function DishDescription(props) {
           <Icon
             size={wp(18)}
             margin={[0, 20, 0, 0]}
-            source={globalPath.RESTAURANT_LOGO}
+            source={
+              props.item.RestaurantLogo
+                ? {uri: props.item.RestaurantLogo}
+                : globalPath.RESTAURANT_LOGO
+            }
           />
         </View>
 
@@ -73,7 +76,7 @@ export default function DishDescription(props) {
           borderBottomWidth: 1,
         }}>
         <TouchableOpacity
-          style={{ alignItems: 'center' }}
+          style={{alignItems: 'center'}}
           onPress={() => {
             !favData.some(o => o.id === props.item.id)
               ? dispatch(addFavorite(props.item))
@@ -90,30 +93,37 @@ export default function DishDescription(props) {
             Favourite
           </ResponsiveText>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate(routeName.MAP_VIEW)}>
-          <View style={{ alignItems: 'center' }}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate(routeName.MAP_VIEW)}>
+          <View style={{alignItems: 'center'}}>
             <Icon source={globalPath.LOCATION} />
             <ResponsiveText top={5} color={colors.yellow}>
               Go To
             </ResponsiveText>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate(routeName.CONTACT_US)} >
-          <View style={{ alignItems: 'center' }}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate(routeName.CONTACT_US)}>
+          <View style={{alignItems: 'center'}}>
             <Icon source={globalPath.CONTACT} />
             <ResponsiveText top={5} color={colors.yellow}>
               Contact
             </ResponsiveText>
           </View>
         </TouchableOpacity>
-        <View style={{ alignItems: 'center' }}>
-          <Icon source={globalPath.MORE_LOGO} />
-          <ResponsiveText top={5} color={colors.yellow}>
-            More
-          </ResponsiveText>
-        </View>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate(routeName.MORE_ABOUT_DISHES, props.item)
+          }>
+          <View style={{alignItems: 'center'}}>
+            <Icon source={globalPath.MORE_LOGO} />
+            <ResponsiveText top={5} color={colors.yellow}>
+              More
+            </ResponsiveText>
+          </View>
+        </TouchableOpacity>
       </View>
-      <View style={{ padding: 20 }}>
+      <View style={{padding: 20}}>
         <ResponsiveText fontFamily="Regular" size={4} color={colors.white}>
           {props.item.titleA == undefined
             ? props.item.titleD
