@@ -30,6 +30,7 @@ import _5BCent from '../../../assets/BCents/5_BCENTS.png'
 import _10BCent from '../../../assets/BCents/10_BCENTS.png'
 import _20BCent from '../../../assets/BCents/20_BCENTS.png'
 import _50BCent from '../../../assets/BCents/50_BCENTS.png'
+import Input from '../../../components/Input'
 
 const Transfer = (props) => {
     const navigation = useNavigation()
@@ -42,6 +43,7 @@ const Transfer = (props) => {
 
     const [number, setNumber] = useState(0)
     const [numeric, setNumeric] = useState(true)
+    const [editable, setEditable] = useState(false)
 
     const transferAmountComing = route.params
     const transferAmount = parseFloat(transferAmountComing).toFixed(2)
@@ -90,7 +92,7 @@ const Transfer = (props) => {
             <View
                 style={{
                     flex: 1,
-                    marginTop: 60,
+                    marginTop: 10,
                     backgroundColor: colors.black2,
                     borderTopRightRadius: 30,
                     paddingVertical: 5,
@@ -132,44 +134,60 @@ const Transfer = (props) => {
                                 <Icon source={phoneIcon} size={20} />
                             </View>
 
-                            <View style={{ flexDirection: 'column' }} >
-                                <ResponsiveText margin={[0, 10, 0, 15]} color={colors.white}>
-                                    Phone Number
-                                </ResponsiveText>
-                                <ResponsiveText margin={[0, 10, 0, 15]} color={colors.white}>
-                                    *0000 **********
-                                </ResponsiveText>
-                            </View>
+                            {/* <TouchableOpacity onPress={()=>setEditable(true)}>
+                            </TouchableOpacity> */}
+                                <View style={{ flexDirection: 'column' }} >
+                                    <ResponsiveText margin={[0, 10, 0, 15]} color={colors.white}>
+                                        Phone Number
+                                    </ResponsiveText>
+                                    <TextInput 
+                                    style={{
+                                        marginLeft:wp(3),
+                                        width:wp(65),
+                                        backgroundColor: colors.grey4,
+                                        borderRadius:10,
+                                        height:hp(4.5),
+                                        marginTop:hp(1), 
+                                        paddingHorizontal:wp(4),
+                                        color:colors.white
+                                    }} 
+                                    placeholder={'Enter the Phone No.'} 
+                                    placeholderTextColor={colors.grey}
+                                    keyboardType='numeric'
+                                     />
+                                    {/* <Input margin={0,0,0,wp(3)} width={wp(65)} editable={true} placeholder={'Enter the Phone No.'}  /> */}
+                                    {/* <ResponsiveText margin={[0, 10, 0, 15]} color={colors.white}>
+                                        *0000 **********
+                                    </ResponsiveText> */}
+                                </View>
 
 
                         </View>
                     </TouchableOpacity>
                 </View>
-
-
+                {!isModalVisible ? 
                 <TouchableOpacity
-                    onPress={() => {
-                        // navigation.navigate(routeName.WALLET, transferAmount);
-                        setModal2Visible(true)
-                    }}
-                    style={{
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        width: wp(75),
-                        marginTop: 40,
-                        height: hp(5),
-                        alignSelf: 'center',
-                        borderRadius: 7,
-                        backgroundColor: colors.yellow,
-                        // marginTop: 350
-                    }}>
-                    <ResponsiveText color={colors.black} size={3.5}>
-                        Click to Pay
-                    </ResponsiveText>
-                </TouchableOpacity>
-            </View>
-            <Modal isVisible={isModalVisible} animationIn={'slideInUp'} animationOut={'slideOutDown'} backdropOpacity={0} onBackdropPress={()=>setModalVisible(false)} >
-                        <View style={styles.centeredModalView} >
+                onPress={() => {
+                    // navigation.navigate(routeName.WALLET, transferAmount);
+                    setModal2Visible(true)
+                }}
+                style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: wp(75),
+                    marginTop: 40,
+                    height: hp(5),
+                    alignSelf: 'center',
+                    borderRadius: 7,
+                    backgroundColor: colors.yellow,
+                    // marginTop: 350
+                }}>
+                <ResponsiveText color={colors.black} size={3.5}>
+                    Click to Pay
+                </ResponsiveText>
+            </TouchableOpacity>
+                :
+                <View style={styles.centeredModalView} >
                             <View style={{flexDirection:'row'}} >
                                 <TouchableOpacity style={[styles.keyBoardSelector,{borderTopLeftRadius:10,borderRightWidth:1}]} onPress={()=>{setNumeric(true);setNumber(0)}} >
                                     <Text style={{fontSize:30,color:colors.white}} >Numeric</Text>
@@ -280,7 +298,143 @@ const Transfer = (props) => {
                                      </TouchableOpacity>
                                  </View>
                              </View>  }
-                        </View>
+                        </View>}
+
+
+                {/* <TouchableOpacity
+                    onPress={() => {
+                        // navigation.navigate(routeName.WALLET, transferAmount);
+                        setModal2Visible(true)
+                    }}
+                    style={{
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        width: wp(75),
+                        marginTop: 40,
+                        height: hp(5),
+                        alignSelf: 'center',
+                        borderRadius: 7,
+                        backgroundColor: colors.yellow,
+                        // marginTop: 350
+                    }}>
+                    <ResponsiveText color={colors.black} size={3.5}>
+                        Click to Pay
+                    </ResponsiveText>
+                </TouchableOpacity> */}
+            </View>
+            <Modal isVisible={false} animationIn={'slideInUp'} animationOut={'slideOutDown'} backdropOpacity={0}  >
+                        {/* <View style={styles.centeredModalView} >
+                            <View style={{flexDirection:'row'}} >
+                                <TouchableOpacity style={[styles.keyBoardSelector,{borderTopLeftRadius:10,borderRightWidth:1}]} onPress={()=>{setNumeric(true);setNumber(0)}} >
+                                    <Text style={{fontSize:30,color:colors.white}} >Numeric</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={[styles.keyBoardSelector,{borderTopRightRadius:10}]} onPress={()=>{setNumeric(false);setNumber(0);}} >
+                                    <Text style={{fontSize:30,color:colors.white}} >Bcoin</Text>
+                                </TouchableOpacity>
+                            </View>
+
+                            {!numeric ? 
+                            <View style={styles.modalView} >
+                                <View style={{ flexDirection: 'row' }} >
+                                    <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(parseFloat(number) + 1)} >
+                                        <Image source={_1BCoin} style={styles.image2} />
+                                    </TouchableOpacity>
+                                    <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(parseFloat(number) + 5)} >
+                                        <Image source={_5BCoin} style={styles.image2} />
+                                    </TouchableOpacity>
+                                    <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(parseFloat(number) + 10)} >
+                                        <Image source={_10BCoin} style={styles.image2} />
+                                    </TouchableOpacity>
+                                </View>
+
+                                <View style={{ flexDirection: 'row' }} >
+                                    <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(parseFloat(number) + 20)} >
+                                        <Image source={_20BCoin} style={styles.image2} />
+                                    </TouchableOpacity>
+                                    <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(parseFloat(number) + 50)} >
+                                        <Image source={_50BCoin} style={styles.image2} />
+                                    </TouchableOpacity>
+                                    <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(parseFloat(number) + 100)} >
+                                        <Image source={_100BCoin} style={styles.image2} />
+                                    </TouchableOpacity>
+                                </View>
+
+                                <View style={{ flexDirection: 'row',alignItems:'center', justifyContent: 'center', width: '100%', marginTop: 20, marginBottom: 10,alignContent:'center' }} >
+                                    <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(parseFloat(number) + 0.01)} >
+                                        <Image source={_1BCent} style={styles.bCents} />
+                                    </TouchableOpacity>
+                                    <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(parseFloat(number) + 0.05)} >
+                                        <Image source={_5BCent} style={styles.bCents} />
+                                    </TouchableOpacity>
+                                    <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(parseFloat(number) + 0.1)} >
+                                        <Image source={_10BCent} style={styles.bCents} />
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={{ flexDirection: 'row',alignItems:'center', justifyContent: 'center', width: '100%', marginTop: 10, marginBottom: 20 }} >
+                                    <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(parseFloat(number) + 0.2)} >
+                                        <Image source={_20BCent} style={styles.bCents} />
+                                    </TouchableOpacity>
+                                    <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(parseFloat(number) + 0.5)} >
+                                        <Image source={_50BCent} style={styles.bCents} />
+                                    </TouchableOpacity>
+                                    <TouchableOpacity style={styles.imageContainer} onPress={() => setModalVisible(false)} >
+                                        <View style={[styles.bCents,{backgroundColor:colors.yellow1, borderRadius:hp(2.2), alignItems:'center', justifyContent:'center'}]} >
+                                            <Text>Done</Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                                 : <View style={styles.modalView} >
+                                 <View style={{ flexDirection: 'row' }} >
+                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '1')} >
+                                         <Text style={styles.keypadText} >1</Text>
+                                     </TouchableOpacity>
+                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '2')} >
+                                        <Text style={styles.keypadText} >2</Text>
+                                     </TouchableOpacity>
+                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '3')} >
+                                        <Text style={styles.keypadText} >3</Text>
+                                     </TouchableOpacity>
+                                 </View>
+ 
+                                 <View style={{ flexDirection: 'row' }} >
+                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '4')} >
+                                        <Text style={styles.keypadText} >4</Text>
+                                     </TouchableOpacity>
+                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '5')} >
+                                        <Text style={styles.keypadText} >5</Text>
+                                     </TouchableOpacity>
+                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '6')} >
+                                        <Text style={styles.keypadText} >6</Text>
+                                     </TouchableOpacity>
+                                 </View>
+ 
+                                 <View style={{ flexDirection: 'row',alignItems:'center', justifyContent: 'center', width: '100%', marginTop: 20, marginBottom: 10,alignContent:'center' }} >
+                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '7')} >
+                                        <Text style={styles.keypadText} >7</Text>
+                                     </TouchableOpacity>
+                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '8')} >
+                                        <Text style={styles.keypadText} >8</Text>
+                                     </TouchableOpacity>
+                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '9')} >
+                                        <Text style={styles.keypadText} >9</Text>
+                                     </TouchableOpacity>
+                                 </View>
+                                 <View style={{ flexDirection: 'row',alignItems:'center', justifyContent: 'center', width: '100%', marginTop: 10, marginBottom: 20 }} >
+                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '.')} >
+                                        <Text style={styles.keypadText} >.</Text>
+                                     </TouchableOpacity>
+                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '0')} >
+                                     <Text style={styles.keypadText} >0</Text>
+                                     </TouchableOpacity>
+                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setModalVisible(false)} >
+                                         <View style={[styles.bCents,{backgroundColor:colors.yellow1, borderRadius:hp(2.2), alignItems:'center', justifyContent:'center'}]} >
+                                             <Text>Done</Text>
+                                         </View>
+                                     </TouchableOpacity>
+                                 </View>
+                             </View>  }
+                        </View> */}
                     </Modal>
 
                     <Modal
@@ -343,7 +497,7 @@ const Transfer = (props) => {
                             </View>
                             <View style={{flex: 0.45,alignItems:'center'}}>
                                 <ResponsiveText color={colors.yellow} size={3}>
-                                ${parseFloat(number)}
+                                ${parseFloat(number).toFixed(2)}
                                 </ResponsiveText>
                             </View>
                             </View>
@@ -391,7 +545,7 @@ const Transfer = (props) => {
                             </View>
                             <View style={{flex: 0.45,alignItems:'center'}}>
                                 <ResponsiveText color={colors.yellow} size={3}>
-                                ${parseFloat(number)  + number* 0.05}
+                                ${parseFloat(parseFloat(number)+ number* 0.05).toFixed(2)   }
                                 </ResponsiveText>
                             </View>
                             </View>
@@ -460,7 +614,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors.black3,
         alignItems: 'center',
-        paddingTop: 20,
+        paddingTop: hp(1),
     },
     bCLogo: {
         // marginHorizontal: 3,
@@ -471,12 +625,12 @@ const styles = StyleSheet.create({
         // height: 40,
         color: colors.white,
         fontSize: 70,
-        marginBottom: 18,
+        marginBottom: hp(0.5),
         // borderWidth: 1,
         // padding: 10,
         borderBottomWidth: 2,
         borderBottomColor: colors.grey1,
-        paddingBottom: 5,
+        // paddingBottom: 5,
     },
     centeredModalView: {
         flex: 1,
@@ -484,9 +638,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginTop: 22,
         position:'absolute',
-        bottom:hp(5),
-        left:wp(12),
-        right:wp(12)
+        bottom:hp(1),
+        left:wp(7),
+        right:wp(7)
 
     },
     modalView: {
