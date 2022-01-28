@@ -106,12 +106,14 @@ export default function DishDescription(props) {
             </ResponsiveText>
           </View>
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate(routeName.MORE_ABOUT_DISHES)} >
         <View style={{ alignItems: 'center' }}>
           <Icon source={globalPath.MORE_LOGO} />
           <ResponsiveText top={5} color={colors.yellow}>
             More
           </ResponsiveText>
         </View>
+        </TouchableOpacity>
       </View>
       <View style={{ padding: 20 }}>
         <ResponsiveText fontFamily="Regular" size={4} color={colors.white}>
