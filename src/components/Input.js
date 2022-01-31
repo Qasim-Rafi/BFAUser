@@ -61,7 +61,7 @@ const Input = ({
   });
   const [visible, setVisible] = React.useState(true);
   return (
-    <KeyboardAvoidingView>
+    <KeyboardAvoidingView behavior={'position'} >
       <View
         style={[
           styles.container,

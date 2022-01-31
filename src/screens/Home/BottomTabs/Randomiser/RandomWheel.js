@@ -204,7 +204,7 @@ export default class RandomWheel extends React.Component {
 
                             getWinner={(value, index) => {
                                 this.setState({ winnerValue: value, winnerIndex: index });
-                                this.props.navigation.navigate(routeName.RestaurantDetail)
+                                this.props.navigation.navigate(routeName.RestaurantDetail,value)
                                 // alert('Dish ID: ',participants[this.state.winnerIndex])
                             //    alert('Dish ID: '+participants[this.state.winnerIndex])
                             }}

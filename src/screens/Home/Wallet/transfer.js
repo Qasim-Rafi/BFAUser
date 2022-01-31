@@ -1,6 +1,6 @@
 import { useNavigation, useRoute } from '@react-navigation/native'
 import React, { useState } from 'react'
-import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View, TextInput} from 'react-native'
+import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View, TextInput, Keyboard} from 'react-native'
 import Icon from '../../../components/Icon'
 import ResponsiveText from '../../../components/RnText'
 import { colors } from '../../../constants/colorsPallet'
@@ -67,7 +67,7 @@ const Transfer = (props) => {
                     <Text style={{color:'white',fontSize:20}} >Top-up Bcoin Balance</Text>
                     <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} >
                         <Image source={bCoin} style={{ height: 60, width: 50 }} />
-                        <TouchableOpacity onPress={()=>setModalVisible(true)} >
+                        <TouchableOpacity onPress={()=>{setModalVisible(true); Keyboard.dismiss()}} >
                             <TextInput
                                 editable={false}
                                 onPressIn={ ()=> setModalVisible(true)}
@@ -197,10 +197,10 @@ const Transfer = (props) => {
                 <View style={styles.centeredModalView} >
                             <View style={{flexDirection:'row'}} >
                                 <TouchableOpacity style={[styles.keyBoardSelector,{borderTopLeftRadius:10,borderRightWidth:1}]} onPress={()=>{setNumeric(true);setNumber(0)}} >
-                                    <Text style={{fontSize:30,color:colors.white}} >Numeric</Text>
+                                    <Text style={{fontSize:hp(2.5),color:colors.white}} >Numeric</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={[styles.keyBoardSelector,{borderTopRightRadius:10}]} onPress={()=>{setNumeric(false);setNumber(0);}} >
-                                    <Text style={{fontSize:30,color:colors.white}} >Bcoin</Text>
+                                    <Text style={{fontSize:hp(2.5),color:colors.white}} >Bcoin</Text>
                                 </TouchableOpacity>
                             </View>
 
@@ -691,7 +691,9 @@ const styles = StyleSheet.create({
         // height:,
         width:'50%',
         alignItems:'center',
-        marginBottom:-2
+        justifyContent:'center',
+        marginBottom:-2,
+        padding:8
     },
     keypadText:{
         color: colors.white,

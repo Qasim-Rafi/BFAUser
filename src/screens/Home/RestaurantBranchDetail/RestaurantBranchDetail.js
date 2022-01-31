@@ -39,6 +39,7 @@ export default function RestaurantBranchDetailScreen({ navigation, route }) {
   React.useEffect(() => {
     dispatch(getRestaurentDeatil(31));
     //route.params.restaurantId
+    console.log(route.params, 'params colsole');
   }, []);
   console.log('routeetetteetet vhvhh', data);
   return (
