@@ -49,9 +49,9 @@ export default function TransactionHistory({navigation}) {
             <View style={{width: '20%',justifyContent:'center', overflow: 'hidden',}}>
               <ResponsiveText
                 margin={[0, 0, 0, 0]}
-                color={colors.yellow}
+                color={item.type === 'out' ? colors.red3 : colors.yellow }
                 >
-                {item.price}
+                {item.type === 'out' ? '-' : null}{item.price}
               </ResponsiveText>
               <ResponsiveText
                 margin={[0, 0, 0, 0]}
