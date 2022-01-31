@@ -35,6 +35,7 @@ import Checkout from '../screens/Home/BottomTabs/Checkout/Checkout';
 import JobListing from '../screens/Home/JobListing/JobListing';
 import Preferences from '../screens/Home/BottomTabs/More/Preferences';
 import ContactUs from '../screens/Home/BottomTabs/More/ContactUs';
+import MoreAboutDishes from '../screens/Home/BottomTabs/More/MoreAboutDishes';
 import MyReviews from '../screens/Home/BottomTabs/More/MyReviews';
 import QRScan from '../screens/Home/BottomTabs/More/QRScan';
 import AllDishesList from '../screens/Home/BottomTabs/Home/AllDishesList';
@@ -101,6 +102,7 @@ function HomeStack() {
       <Stack.Screen name={routeName.JOB_LISTING} component={JobListing} />
       <Stack.Screen name={routeName.PREFERENCES} component={Preferences} />
       <Stack.Screen name={routeName.CONTACT_US} component={ContactUs} />
+      <Stack.Screen name={routeName.MORE_ABOUT_DISHES} component={MoreAboutDishes} />
       <Stack.Screen name={routeName.MY_REVIEWS} component={MyReviews} />
       <Stack.Screen name={routeName.SCAN_QR} component={QRScan} />
       <Stack.Screen name={routeName.BARCODE_READER} component={BarcodeReader} />

@@ -43,7 +43,7 @@ import {
   getFavorite,
   getAddBannerData,
   getBfaRecommendations,
-  getPromoNewsData,
+  getmoreaboutDish,
   getPromoJobsData,
   getPeopleChoice,
   getwhatsNew,
@@ -83,7 +83,7 @@ const Home = ({ navigation }) => {
     dispatch(getwhatsNew(1, 4));
     // dispatch(getPromoNewsData());
     // dispatch(awardsRestaurant());
-    dispatch(getFavorite());
+    dispatch(getFavorite(1, 4));
     dispatch(getPromoJobsData(1, 10));
     dispatch(getBfaRecommendations(1, 4));
     dispatch(getBruneiFoodRewards(1, 4));
@@ -105,7 +105,6 @@ const Home = ({ navigation }) => {
     dispatch(getPeopleChoice(1, 4))
     dispatch(getPromotions(1,10));
     dispatch(getPeopleChoice(1, 4));
-    // dispatch(getPromotions());
     dispatch(getBfaPartners(6));
     // callAPI();
     dispatch(getUserCusine(1, 14));
@@ -113,7 +112,7 @@ const Home = ({ navigation }) => {
     dispatch(getwhatsNew(1, 4));
     // dispatch(getPromoNewsData());
     // dispatch(awardsRestaurant());
-    dispatch(getFavorite());
+    dispatch(getFavorite(1, 4));
     dispatch(getPromoJobsData(1, 10));
     dispatch(getBfaRecommendations(1, 4));
     dispatch(getBruneiFoodRewards(1, 4));

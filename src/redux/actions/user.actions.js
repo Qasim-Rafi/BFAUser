@@ -144,7 +144,12 @@ export const getRestaurantAllDishes = () => {
 
   };
 };
-
+export const getmoreaboutDish = (id) => {
+  return {
+    type: types.GET_MORE_ABOUT_DISHES_REQUEST,
+    id:id
+  };
+};
 
 export const registerUserReset = () => {
   return {
@@ -152,11 +157,14 @@ export const registerUserReset = () => {
   };
 };
 //Favrite Actions
-export const getFavorite = (data) => {
+export const getFavorite = (index,limit) => {
   // console.log('okokokokoko',data)
   return {
     type: types.GET_FAVORITE_REQUEST,
-    data
+    data:{
+      index: index,
+      limit: limit
+    }
   };
 };
 

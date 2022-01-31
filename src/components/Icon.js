@@ -25,7 +25,7 @@ const Icon = ({
   return (
     <FastImage 
       tintColor={tintColor ? tintColor : undefined} //works on android only
-      source={source ? source : {uri: url}}
+      source={source ? source : {uri: url, priority: FastImage.priority.high}}
       resizeMode={resizeMode ? resizeMode : 'contain'}
       style={[
         margin ? handleMargin(margin) : undefined,
