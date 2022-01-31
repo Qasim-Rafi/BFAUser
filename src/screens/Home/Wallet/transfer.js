@@ -121,7 +121,7 @@ const Transfer = (props) => {
                                 flexDirection: 'row',
                                 paddingHorizontal: 5,
                             }}>
-                            <View
+                            {/* <View
                                 style={{
                                     backgroundColor: colors.white,
                                     borderRadius: 5,
@@ -132,7 +132,7 @@ const Transfer = (props) => {
                                 }}
                             >
                                 <Icon source={phoneIcon} size={20} />
-                            </View>
+                            </View> */}
 
                             {/* <TouchableOpacity onPress={()=>setEditable(true)}>
                             </TouchableOpacity> */}
@@ -140,7 +140,7 @@ const Transfer = (props) => {
                                     <ResponsiveText margin={[0, 10, 0, 15]} color={colors.white}>
                                         Phone Number
                                     </ResponsiveText>
-                                    <TextInput 
+                                    {/* <TextInput 
                                     style={{
                                         marginLeft:wp(3),
                                         width:wp(65),
@@ -154,8 +154,15 @@ const Transfer = (props) => {
                                     placeholder={'Enter the Phone No.'} 
                                     placeholderTextColor={colors.grey}
                                     keyboardType='numeric'
-                                     />
-                                    {/* <Input margin={0,0,0,wp(3)} width={wp(65)} editable={true} placeholder={'Enter the Phone No.'}  /> */}
+                                     /> */}
+                                    <Input 
+                                        margin={0,0,0,wp(2)} 
+                                        width={wp(75)} 
+                                        editable={true} 
+                                        placeholder={'Enter the Phone No.'} 
+                                        leftIcon={phoneIcon} 
+                                        iconMargin={[0,wp(2),0,wp(1.5)]}
+                                    />
                                     {/* <ResponsiveText margin={[0, 10, 0, 15]} color={colors.white}>
                                         *0000 **********
                                     </ResponsiveText> */}

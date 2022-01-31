@@ -113,7 +113,7 @@ const TopUp = (props) => {
                             }}
                         >
                             <View style={{ flex: 0.3 }}>
-                                <RadioGroup color={colors.yellow} onSelect={() => setCheck(true)} >
+                                <RadioGroup color={colors.yellow} onSelect={() => setCheck(true)} selectedIndex={0} >
                                     {CARD_DATA.map(item => {
                                         return (
                                             <RadioButton
