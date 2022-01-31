@@ -197,10 +197,10 @@ const Transfer = (props) => {
                 <View style={styles.centeredModalView} >
                             <View style={{flexDirection:'row'}} >
                                 <TouchableOpacity style={[styles.keyBoardSelector,{borderTopLeftRadius:10,borderRightWidth:1}]} onPress={()=>{setNumeric(true);setNumber(0)}} >
-                                    <Text style={{fontSize:hp(2.5),color:colors.white}} >Numeric</Text>
+                                    <Text style={{fontSize:wp(6),color:colors.white}} >Numeric</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={[styles.keyBoardSelector,{borderTopRightRadius:10}]} onPress={()=>{setNumeric(false);setNumber(0);}} >
-                                    <Text style={{fontSize:hp(2.5),color:colors.white}} >Bcoin</Text>
+                                    <Text style={{fontSize:wp(7),color:colors.white}} >Bcoin</Text>
                                 </TouchableOpacity>
                             </View>
 
@@ -300,7 +300,7 @@ const Transfer = (props) => {
                                      </TouchableOpacity>
                                      <TouchableOpacity style={styles.imageContainer} onPress={() => setModalVisible(false)} >
                                          <View style={[styles.bCents,{backgroundColor:colors.yellow1, borderRadius:hp(2.2), alignItems:'center', justifyContent:'center'}]} >
-                                             <Text>Done</Text>
+                                             <Text style={{fontSize:wp(4.5)}} >Done</Text>
                                          </View>
                                      </TouchableOpacity>
                                  </View>
@@ -693,10 +693,10 @@ const styles = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
         marginBottom:-2,
-        padding:8
+        padding:6
     },
     keypadText:{
         color: colors.white,
-        fontSize:wp(12),
+        fontSize:wp(9),
     }
 })

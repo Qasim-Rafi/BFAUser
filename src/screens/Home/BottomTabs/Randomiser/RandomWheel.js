@@ -77,9 +77,9 @@ const area = [
 ]
 
 const distance = [
-    'Less than 3',
-    'More than 6',
-    'Above'
+    'Less than 3 Km',
+    'Between 3 Km to 6 Km',
+    'More than 6 Km'
 ]
 
 const premise = [
