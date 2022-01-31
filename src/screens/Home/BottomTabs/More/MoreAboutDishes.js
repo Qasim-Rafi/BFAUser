@@ -10,9 +10,13 @@ import {getmoreaboutDish} from '../../../../redux/actions/user.actions';
 import {useDispatch, useSelector} from 'react-redux';
 import {ScrollView} from 'react-native-gesture-handler';
 import ImageHeader from '../Home/ImageHeader';
+import { BarIndicator } from 'react-native-indicators';
 export default function MoreAboutDishes({navigation, route}) {
   const dispatch = useDispatch();
   const Data = useSelector(state => state.appReducers.moreaboutDishDetail.data);
+  const loading = useSelector(
+    state => state.appReducers.moreaboutDishDetail.loading,
+  );
 
   React.useEffect(() => {
     dispatch(getmoreaboutDish(route.params.id));
@@ -21,9 +25,8 @@ export default function MoreAboutDishes({navigation, route}) {
 
   return (
     <View style={{flex: 1, backgroundColor: colors.black3}}>
-
       <ScrollView>
-      <ImageHeader navigation={navigation} img={route.params.imageDataB} />
+        <ImageHeader navigation={navigation} img={route.params.imageDataB} />
         {Data.length > 0 ? (
           Data.map(item => {
             return (
@@ -69,8 +72,28 @@ export default function MoreAboutDishes({navigation, route}) {
               </View>
             );
           })
+        ) : loading ? (
+          <View
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              bottom: 0,
+              right: 0,
+              backgroundColor: 'rgba(65, 65, 65, 0.5)',
+              flex: 1,
+            }}>
+            <BarIndicator color={colors.yellow} size={50} />
+          </View>
         ) : (
-          <Text style={{color: colors.white,textAlign:'center'}}>Record not found</Text>
+          <Text
+            style={{
+              color: colors.white,
+              textAlign: 'center',
+              marginVertical: hp(3),
+            }}>
+            Record not found
+          </Text>
         )}
       </ScrollView>
     </View>
