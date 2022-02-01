@@ -105,9 +105,10 @@ function* applyJobApi(data, response) {
   console.log(data, 'action in saga');
   // alert("response: ", response.success);
   let body = data.data;
+ let formData=true;
   console.log("bodyyyyyyy:", body)
   try {
-    const response = yield Api.post(urls.APPLY_FOR_JOBS, body);
+    const response = yield Api.post(urls.APPLY_FOR_JOBS, body,formData);
     console.log(response, 'responsefasfsdf');
     if (response && response.success == true) {
       yield put({ type: types.GET_APPLY_FOR_JOB_SUCCESS, payload: response });
