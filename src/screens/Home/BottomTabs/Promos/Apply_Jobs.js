@@ -1,20 +1,53 @@
 import React from 'react';
-import {View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import Header from '../../../../components/Header';
 import RnButton from '../../../../components/RnButton';
 import ResponsiveText from '../../../../components/RnText';
-import {colors} from '../../../../constants/colorsPallet';
+import { colors } from '../../../../constants/colorsPallet';
 import { globalPath } from '../../../../constants/globalPath';
-import {hp, wp} from '../../../../helpers/Responsiveness';
+import { hp, wp } from '../../../../helpers/Responsiveness';
 import Icon from '../../../../components/Icon'
+
+import FlashMessage from 'react-native-flash-message';
 import DocumentPicker from 'react-native-document-picker';
+import { set } from 'react-native-reanimated';
+
+import { applyForJob } from '../../../../redux/actions/user.actions';
+import { useDispatch } from 'react-redux';
 
 // Pick a single file
-
-
-export default function Apply_Jobs({navigation}) {
+export default function Apply_Jobs({ navigation, route }) {
+  const [data, setdata] = React.useState(route.params.data);
+  const [coverletter, setcoverletter] = React.useState('');
+  const dropdownRef = React.useRef(null);
   const [file, setFile] = React.useState(null)
-  const Pickfile= async()=>{
+  const dispatch = useDispatch();
+
+  const validation = () => {
+    if (coverletter === '') {
+      dropdownRef.current.showMessage({
+        message: 'Error',
+        description: 'cover letter Required',
+        type: 'danger',
+        icon: { icon: 'auto', position: 'left' },
+      });
+    }
+    else if (file === null) {
+      dropdownRef.current.showMessage({
+        message: 'Error',
+        description: 'CV Required',
+        type: 'danger',
+        icon: { icon: 'auto', position: 'left' },
+      });
+    } else {
+      var data = new FormData()
+      data.append('File', file)
+      data.append('Id', route.params.data.id)
+      data.append('CoverLetter', coverletter)
+    }
+    dispatch(applyForJob(data, navigation))
+  };
+  const Pickfile = async () => {
     try {
       const res = await DocumentPicker.pick({
         type: [DocumentPicker.types.allFiles],
@@ -33,10 +66,10 @@ export default function Apply_Jobs({navigation}) {
   }
   return (
     <View style={styles.main_container}>
-     <View style={{ flexDirection: 'row', justifyContent: "space-between",padding:7 }}>
-            <TouchableOpacity style={{ backgroundColor:colors.yellow1,paddingVertical:10,paddingHorizontal:10,borderRadius:20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
-          </View>
-      <View style={{margin: 20, flex: 0.9}}>
+      <View style={{ flexDirection: 'row', justifyContent: "space-between", padding: 7 }}>
+        <TouchableOpacity style={{ backgroundColor: colors.yellow1, paddingVertical: 10, paddingHorizontal: 10, borderRadius: 20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
+      </View>
+      <View style={{ margin: 20, flex: 0.9 }}>
         <ResponsiveText size={4} color={colors.yellow}>
           {' '}
           Job Details
@@ -53,14 +86,14 @@ export default function Apply_Jobs({navigation}) {
               height: hp(7),
               borderRadius: 6,
             }}>
-              <TextInput
+            <TextInput
 
               placeholderTextColor={colors.grey}
               editable={false}
-              style={{padding:10,}}
-              placeholder="Chef Required For BBQ"
+              style={{ padding: 10, }}
+              value={data.jobTitle}
             />
-            </View>
+          </View>
         </View>
         <View style={styles.marginTop}>
           <ResponsiveText size={4} color={colors.white}>
@@ -75,29 +108,53 @@ export default function Apply_Jobs({navigation}) {
             <TextInput
               multiline={true}
               placeholderTextColor={colors.grey}
-              
-              style={{margin: 10, color:colors.grey}}
-              value={"1. An excellent cook must be able to follow instructions in cooking and delivering well-prepared meals. 2. They must be deft in moving around the kitchen and apt in multi-tasking. Experience in using various ingredients and cooking techniques is also important."}
+              editable={false}
+              style={{ margin: 10, color: colors.grey }}
+              value={data.jobDescription}
             />
+
           </View>
+
+        </View>
+        <Text style={{ marginTop: 10, color: colors.white, fontSize: 18, fontWeight: '450' }} >
+          Cover letter
+        </Text>
+        <View
+          style={{
+            backgroundColor: colors.black2,
+            width: wp(90),
+            height: hp(7),
+            marginTop: 10,
+            borderRadius: 6,
+          }}>
+
+          <TextInput
+            multiline={true}
+            placeholderTextColor={colors.grey}
+            editable={true}
+            value={coverletter}
+            onChangeText={setcoverletter}
+            style={{ margin: 10, color: colors.grey }}
+            placeholder='Introduce yourself'
+          />
         </View>
         <View style={styles.marginTop}>
           <ResponsiveText size={4} color={colors.white}>
             {' '}
             Upload CV
           </ResponsiveText>
-          <View style={{flexDirection:'row'}}>
+          <View style={{ flexDirection: 'row' }}>
             <View
               style={{
                 backgroundColor: colors.black2,
                 width: wp(65),
-                height: hp(7),padding:5,
-                borderRadius: 6,justifyContent:'center',alignItems:'center'
+                height: hp(7), padding: 5,
+                borderRadius: 6, justifyContent: 'center', alignItems: 'center'
               }}>
-                <ResponsiveText color={colors.white} >{file !=null?file.name:''}</ResponsiveText>
-              </View>
-              <TouchableOpacity  onPress={()=>Pickfile()}
-              style={{backgroundColor:colors.grey,width:wp(25),alignItems:'center',justifyContent:'center', borderTopRightRadius:7, borderBottomRightRadius:7}}><ResponsiveText>Browse</ResponsiveText></TouchableOpacity>
+              <ResponsiveText color={colors.white} >{file != null ? file.name : ''}</ResponsiveText>
+            </View>
+            <TouchableOpacity onPress={() => Pickfile()}
+              style={{ backgroundColor: colors.grey, width: wp(25), alignItems: 'center', justifyContent: 'center', borderTopRightRadius: 7, borderBottomRightRadius: 7 }}><ResponsiveText>Browse</ResponsiveText></TouchableOpacity>
           </View>
         </View>
         <View
@@ -106,12 +163,13 @@ export default function Apply_Jobs({navigation}) {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <RnButton style={styles.btn_style}>
+          <RnButton onPress={() => validation()} style={styles.btn_style}>
             <ResponsiveText size={4}>Submit</ResponsiveText>
           </RnButton>
         </View>
       </View>
-    </View>
+      <FlashMessage ref={dropdownRef} />
+    </View >
   );
 }
 const styles = StyleSheet.create({

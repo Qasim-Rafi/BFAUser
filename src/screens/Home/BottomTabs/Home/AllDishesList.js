@@ -9,13 +9,13 @@ import {
 } from 'react-native';
 
 import Header from '../../../../components/Header';
-import {colors} from '../../../../constants/colorsPallet';
-import {globalPath} from '../../../../constants/globalPath';
-import {ourRecommendationFakeDATA} from '../../../../constants/mock';
-import {wp, hp} from '../../../../helpers/Responsiveness';
+import { colors } from '../../../../constants/colorsPallet';
+import { globalPath } from '../../../../constants/globalPath';
+import { ourRecommendationFakeDATA } from '../../../../constants/mock';
+import { wp, hp } from '../../../../helpers/Responsiveness';
 import ResponsiveText from '../../../../components/RnText';
-import {useSelector, useDispatch} from 'react-redux';
-import {routeName} from '../../../../constants/routeName';
+import { useSelector, useDispatch } from 'react-redux';
+import { routeName } from '../../../../constants/routeName';
 import Icon from '../../../../components/Icon';
 import {
   getRestaurantAllDishes,
@@ -41,7 +41,7 @@ import {
   UIActivityIndicator,
   WaveIndicator,
 } from 'react-native-indicators';
-export default function AllDishesList({route, navigation}) {
+export default function AllDishesList({ route, navigation }) {
   // const data = route.params.data;
   const title = route.params.title;
   const dispatch = useDispatch();
@@ -50,24 +50,30 @@ export default function AllDishesList({route, navigation}) {
     title == 'BFA Recommendation'
       ? state.appReducers.bfaRecommendationDetail.data
       : title == "People's Choice"
-      ? state.appReducers.PeopleChoice.data
-      : title == 'Brunei Food Awards'
-      ? state.appReducers.bruneiFoodsAwards.data
-      : title == "PG's Favourites"
-      ? state.appReducers.favorite.data
-      : title == "What's New"
-      ? state.appReducers.whatsnew.data
-      : title == 'Promotions'
-      ? state.appReducers.promotions.data
-      : state.appReducers.promoJobs.data,
+        ? state.appReducers.PeopleChoice.data
+        : title == 'Brunei Food Awards'
+          ? state.appReducers.bruneiFoodsAwards.data
+          : title == "PG's Favourites"
+            ? state.appReducers.favorite.data
+            : title == "What's New"
+              ? state.appReducers.whatsnew.data
+              : title == 'Promotions'
+                ? state.appReducers.promotions.data
+                : state.appReducers.promoJobs.data,
   );
   const loading = useSelector(
-    state => state.appReducers.bfaRecommendationDetail.loading,
+    title == 'BFA Recommendation' ?
+      state => state.appReducers.bfaRecommendationDetail.loading : title == "People's Choice" ?
+        state.appReducers.PeopleChoice.loading : title == 'Brunei Food Awards' ?
+          state.appReducers.bruneiFoodsAwards.refreshing : title == "PG's Favourites" ?
+            state.appReducers.favorite.refreshing : title == "What's New" ? state.appReducers.whatsnew.refreshing :
+              title == 'Promotions' ? state.appReducers.promotions.refreshing : state.appReducers.promoJobs.refreshing,
+
   );
-  const renderItem = ({item}) => (
+  const renderItem = ({ item }) => (
     <TouchableOpacity
-      style={{marginHorizontal: 8, marginVertical: 10, flex: 1}}
-      onPress={() => navigation.navigate(routeName.DISH_DETAIL, {dish: item})}>
+      style={{ marginHorizontal: 8, marginVertical: 10, flex: 1 }}
+      onPress={() => navigation.navigate(routeName.DISH_DETAIL, { dish: item })}>
       <View
         style={{
           //width: wp(26),
@@ -78,7 +84,7 @@ export default function AllDishesList({route, navigation}) {
           flexDirection: 'row',
         }}>
         <ImageBackground
-          imageStyle={{opacity: 1}}
+          imageStyle={{ opacity: 1 }}
           style={{
             flex: 1,
             padding: 5,
@@ -87,11 +93,11 @@ export default function AllDishesList({route, navigation}) {
 
             backgroundColor: 'rgba(0,0,0,1)',
           }}
-          source={item.url ? item.url : {uri: item.imageDataB}}>
+          source={item.url ? item.url : { uri: item.imageDataB }}>
           {title == "PG's Favourites" ? (
             <Icon size={15} source={globalPath.F_HEART} />
           ) : null}
-          <View style={{alignItems: 'flex-end'}}></View>
+          <View style={{ alignItems: 'flex-end' }}></View>
           <View>
             <Text
               style={{
@@ -154,7 +160,7 @@ export default function AllDishesList({route, navigation}) {
         </TouchableOpacity>
         {/* <Header navigation={navigation} iconPath={globalPath.BACK_ARROW} /> */}
       </View>
-      <View style={{flex: 0.9, margin: 20}}>
+      <View style={{ flex: 0.9, margin: 20 }}>
         <ResponsiveText size={4} margin={[0, 0, 5, 10]} color={colors.yellow}>
           {title}
         </ResponsiveText>
@@ -195,7 +201,7 @@ export default function AllDishesList({route, navigation}) {
   };
 
   return (
-    <View style={{backgroundColor: colors.black3, flex: 1}}>
+    <View style={{ backgroundColor: colors.black3, flex: 1 }}>
       <FlatList
         ListHeaderComponent={listHead}
         stickyHeaderIndices={[0]}
@@ -208,7 +214,7 @@ export default function AllDishesList({route, navigation}) {
         ListFooterComponent={
           <View>
             {data.length == 0 ? (
-              <View style={{alignItems:'center'}}> 
+              <View style={{ alignItems: 'center' }}>
                 <ResponsiveText color={colors.white}>No {title} found</ResponsiveText>
               </View>
             ) : null}

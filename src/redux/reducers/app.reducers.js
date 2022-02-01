@@ -94,6 +94,10 @@ const initialState = {
     loading: false,
     data: [],
   },
+  applyForJob: {
+    loading: false,
+    data: [],
+  },
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -198,6 +202,33 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         AddOrder: {
           ...state.AddOrder,
+          loading: false,
+        },
+      };
+    case types.GET_APPLY_FOR_JOB_REQUEST:
+      return {
+        ...state,
+        applyForJob: {
+          ...state.applyForJob,
+          loading: true,
+        },
+      };
+
+    case types.GET_APPLY_FOR_JOB_SUCCESS:
+      return {
+        ...state,
+        applyForJob: {
+          ...state.applyForJob,
+          data: action.payload,
+          loading: false,
+        },
+      };
+
+    case types.GET_APPLY_FOR_JOB_FAILURE:
+      return {
+        ...state,
+        applyForJob: {
+          ...state.applyForJob,
           loading: false,
         },
       };
@@ -604,8 +635,8 @@ export const appReducers = (state = initialState, action) => {
           refreshing: false,
         },
       };
-       //GET_ALL_FAVORITE_RESTAURANT
-      case types.GET_ALL_FAVORITE_RESTAURANT_REQUEST:
+    //GET_ALL_FAVORITE_RESTAURANT
+    case types.GET_ALL_FAVORITE_RESTAURANT_REQUEST:
       return {
         ...state,
         favoriteRestaurant: {
@@ -630,7 +661,7 @@ export const appReducers = (state = initialState, action) => {
           refreshing: true,
         },
       };
-         ///////Add Favrite Restaurant
+    ///////Add Favrite Restaurant
     case types.ADD_FAVORITE_RESTAURANT_REQUEST:
       return {
         ...state,
@@ -656,7 +687,7 @@ export const appReducers = (state = initialState, action) => {
           refreshing: true,
         },
       };
-       // REMOVE_FAVORITE_RESTAURANT
+    // REMOVE_FAVORITE_RESTAURANT
     case types.REMOVE_FAVORITE_RESTAURANT_REQUEST:
       return {
         ...state,
@@ -684,35 +715,35 @@ export const appReducers = (state = initialState, action) => {
           refreshing: true,
         },
       };
-      case types.GET_MORE_ABOUT_DISHES_REQUEST:
-        return {
-          ...state,
-          moreaboutDishDetail: {
-            ...state.moreaboutDishDetail,
-            loading: true,
-          },
-        };
-  
-      case types.GET_MORE_ABOUT_DISHES_SUCCESS:
-        return {
-          ...state,
-          moreaboutDishDetail: {
-            ...state.moreaboutDishDetail,
-            data: action.payload,
-            loading: false,
-          },
-        };
-  
-      case types.GET_MORE_ABOUT_DISHES_FAILURE:
-        return {
-          ...state,
-          moreaboutDishDetail: {
-            ...state.moreaboutDishDetail,
-            loading: false,
-          },
-        };
+    case types.GET_MORE_ABOUT_DISHES_REQUEST:
+      return {
+        ...state,
+        moreaboutDishDetail: {
+          ...state.moreaboutDishDetail,
+          loading: true,
+        },
+      };
+
+    case types.GET_MORE_ABOUT_DISHES_SUCCESS:
+      return {
+        ...state,
+        moreaboutDishDetail: {
+          ...state.moreaboutDishDetail,
+          data: action.payload,
+          loading: false,
+        },
+      };
+
+    case types.GET_MORE_ABOUT_DISHES_FAILURE:
+      return {
+        ...state,
+        moreaboutDishDetail: {
+          ...state.moreaboutDishDetail,
+          loading: false,
+        },
+      };
     default:
       return state;
   }
-  
+
 };
