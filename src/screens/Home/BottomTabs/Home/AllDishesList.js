@@ -163,7 +163,6 @@ export default function AllDishesList({route, navigation}) {
   );
 
   const onLoad = param => {
-    setIndex(index + 1);
     console.log('indexxxxxxx', index);
     switch (title) {
       case "PG's Favourites":
@@ -192,6 +191,8 @@ export default function AllDishesList({route, navigation}) {
       default:
       //Alert.alert('NUMBER NOT FOUND');dispatch(getBruneiFoodRewards())
     }
+    setIndex(index + 1);
+
   };
 
   return (
