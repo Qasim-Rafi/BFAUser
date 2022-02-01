@@ -1,33 +1,40 @@
 import React from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
-import {colors} from '../../../../constants/colorsPallet';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { colors } from '../../../../constants/colorsPallet';
 import Icon from '../../../../components/Icon';
 import Header from '../../../../components/Header';
-import {globalPath} from '../../../../constants/globalPath';
+import { globalPath } from '../../../../constants/globalPath';
 import ResponsiveText from '../../../../components/RnText';
-import {hp, wp} from '../../../../helpers/Responsiveness';
-import {getmoreaboutDish} from '../../../../redux/actions/user.actions';
-import {useDispatch, useSelector} from 'react-redux';
-import {ScrollView} from 'react-native-gesture-handler';
+import { hp, wp } from '../../../../helpers/Responsiveness';
+import { getmoreaboutDish } from '../../../../redux/actions/user.actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { ScrollView } from 'react-native-gesture-handler';
 import ImageHeader from '../Home/ImageHeader';
-export default function MoreAboutDishes({navigation, route}) {
+export default function MoreAboutDishes({ navigation, route }) {
+  const colorScheme = [
+    '#FF3B3C',
+    "#edc54e",
+    '#3CAE3C',
+    '#AEC8C9',
+  ]
   const dispatch = useDispatch();
   const Data = useSelector(state => state.appReducers.moreaboutDishDetail.data);
-
+  const data = route.params
   React.useEffect(() => {
     dispatch(getmoreaboutDish(route.params.id));
   }, []);
-  console.log(Data, 'moreaboutttttttttt');
+  console.log(data, 'moreaboutttttttttt');
 
   return (
-    <View style={{flex: 1, backgroundColor: colors.black3}}>
+    <View style={{ flex: 1, backgroundColor: colors.black3 }}>
 
       <ScrollView>
-      <ImageHeader navigation={navigation} img={route.params.imageDataB} />
+        <ImageHeader navigation={navigation} img={data.imageDataB} />
         {Data.length > 0 ? (
-          Data.map(item => {
+          Data.map((item, index) => {
             return (
               <View>
+
                 <View
                   style={{
                     flexDirection: 'row',
@@ -42,6 +49,10 @@ export default function MoreAboutDishes({navigation, route}) {
                   <ResponsiveText color={colors.white}>
                     {item.calorieTitle}
                   </ResponsiveText>
+                </View>
+                <View style={{ height: hp(0.5), backgroundColor: colorScheme[index], width: wp(35), marginLeft: '3%' }}>
+
+
                 </View>
                 {item.restaurantDishCalorie.map(v => {
                   return (
@@ -70,9 +81,10 @@ export default function MoreAboutDishes({navigation, route}) {
             );
           })
         ) : (
-          <Text style={{color: colors.white,textAlign:'center'}}>Record not found</Text>
+          <Text style={{ color: colors.white, textAlign: 'center' }}>Record not found</Text>
         )}
       </ScrollView>
+
     </View>
   );
 }
