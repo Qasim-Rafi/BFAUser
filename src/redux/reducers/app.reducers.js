@@ -485,7 +485,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         favorite: {
           ...state.favorite,
-          data: action.payload,
+          data: [...state.favorite.data, ...action.payload],
           refreshing: true,
         },
       };
