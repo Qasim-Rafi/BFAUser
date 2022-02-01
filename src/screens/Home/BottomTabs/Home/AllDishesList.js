@@ -61,9 +61,9 @@ export default function AllDishesList({ route, navigation }) {
                 ? state.appReducers.promotions.data
                 : state.appReducers.promoJobs.data,
   );
-  const loading = useSelector(
+  const loading = useSelector(state =>
     title == 'BFA Recommendation' ?
-      state => state.appReducers.bfaRecommendationDetail.loading : title == "People's Choice" ?
+      state.appReducers.bfaRecommendationDetail.loading : title == "People's Choice" ?
         state.appReducers.PeopleChoice.loading : title == 'Brunei Food Awards' ?
           state.appReducers.bruneiFoodsAwards.refreshing : title == "PG's Favourites" ?
             state.appReducers.favorite.refreshing : title == "What's New" ? state.appReducers.whatsnew.refreshing :
