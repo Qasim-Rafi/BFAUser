@@ -43,7 +43,7 @@ const BfaPartner = ({ props }) => {
 
   let bfaPartners = useSelector(state => state.appReducers.bfaPartners.data);
   const [title, setTitle] = React.useState(
-    bfaPartners.length <= 6 ? 'Less' : 'More' ,
+    bfaPartners.length <= 6 ? 'More' : 'Less' ,
   );
   const images = [];
   const lessImages = [];

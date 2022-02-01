@@ -775,11 +775,12 @@ export function* moreaboutDishSaga() {
 }
 function* moreaboutDishSagaApi(data) {
   const id = data.id;
-  console.log('moreabouttttt:', data);
+  // console.log('moreabouttttt:', data);
 
   try {
-    const response = yield Api.get(urls.DISH_CALORIE);
-    if (response && response.data != null) {
+    const response = yield Api.get(urls.DISH_CALORIE+id);
+    console.log('resss',response);
+    if (response && response.success == true) {
       yield put({
         type: types.GET_MORE_ABOUT_DISHES_SUCCESS,
         payload: response.data,
