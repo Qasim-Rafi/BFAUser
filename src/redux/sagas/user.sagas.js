@@ -105,15 +105,16 @@ function* applyJobApi(data, response) {
   console.log(data, 'action in saga');
   // alert("response: ", response.success);
   let body = data.data;
- let formData=true;
+  let navigation = data.navigation;
+  let formData = true;
   console.log("bodyyyyyyy:", body)
   try {
-    const response = yield Api.post(urls.APPLY_FOR_JOBS, body,formData);
+    const response = yield Api.post(urls.APPLY_FOR_JOBS, body, formData);
     console.log(response, 'responsefasfsdf');
     if (response && response.success == true) {
       yield put({ type: types.GET_APPLY_FOR_JOB_SUCCESS, payload: response });
       console.log("reponsessssss:", response)
-      // navigation.navigate(routeName.VERIFICATION_CODE);
+      navigation.navigate(routeName.HOME_BOTTOM);   
     } else {
       yield put({ type: types.GET_APPLY_FOR_JOB_FAILURE, payload: response });
     }
@@ -779,8 +780,8 @@ function* moreaboutDishSagaApi(data) {
   // console.log('moreabouttttt:', data);
 
   try {
-    const response = yield Api.get(urls.DISH_CALORIE+id);
-    console.log('resss',response);
+    const response = yield Api.get(urls.DISH_CALORIE + id);
+    console.log('resss', response);
     if (response && response.success == true) {
       yield put({
         type: types.GET_MORE_ABOUT_DISHES_SUCCESS,

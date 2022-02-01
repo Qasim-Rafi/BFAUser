@@ -18,10 +18,11 @@ export const getProfileData = (data) => {
 };
 //APPLY FOR JOB
 
-export const applyForJob = (data) => {
+export const applyForJob = (data, navigation) => {
   return {
     type: types.GET_APPLY_FOR_JOB_REQUEST,
     data: data,
+    navigation: navigation
   };
 };
 //Register actions
