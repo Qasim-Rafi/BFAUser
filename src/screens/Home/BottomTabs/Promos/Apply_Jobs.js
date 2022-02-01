@@ -17,6 +17,7 @@ import { useDispatch } from 'react-redux';
 
 // Pick a single file
 export default function Apply_Jobs({ navigation, route }) {
+  console.log(":ressssss::", route.params.data.restaurantId)
   const [data, setdata] = React.useState(route.params.data);
   const [coverletter, setcoverletter] = React.useState('');
   const dropdownRef = React.useRef(null);
@@ -40,12 +41,54 @@ export default function Apply_Jobs({ navigation, route }) {
         icon: { icon: 'auto', position: 'left' },
       });
     } else {
+      console.log("fileeee:", file)
       var data = new FormData()
-      data.append('File', file)
-      data.append('Id', route.params.data.id)
-      data.append('CoverLetter', coverletter)
+      data.append('Flie', file)
+      data.append('restaurantId', route.params.data.restaurantId)
+      data.append('jobId', route.params.data.id)
+      data.append('id', 0)
+      data.append('createdById', 0)
+      data.append('coverLetter', coverletter)
     }
-    dispatch(applyForJob(data, navigation))
+    var formdata = new FormData();
+    formdata.append("CoverLetter", "san");
+    formdata.append("jobId", "29");
+    formdata.append("File", file);
+    formdata.append("restaurantId", "11");
+    formdata.append("id", "0");
+    formdata.append("createdById", "0");
+    var body = {
+      'Flie': null,
+      'restaurantId': 11,
+      'jobId': 29,
+      'id': 0,
+      'createdById': 0,
+      'coverLetter': 'saniya'
+    }
+    dispatch(applyForJob(formdata, navigation))
+    // var myHeaders = new Headers();
+    // myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2MCIsIk5hbWUiOiJzYW5peWEiLCJVc2VyVHlwZUlkIjoiMyIsIlJlc3RhdXJhbnRJZCI6IjAiLCJuYmYiOjE2NDM2MjI4NzksImV4cCI6MTY0NDA1NDg3OSwiaWF0IjoxNjQzNjIyODc5fQ.qdcRiP_X2aLV52FyCkKcgZvV4P8Ni-HOsXG1JqLWGFJiZWprLqJi2o8kERK3C52dGm9lbYnaLTELcc4OVkgDtQ");
+
+    // var formdata = new FormData();
+    // formdata.append("CoverLetter", "san");
+    // formdata.append("jobId", "29");
+    // formdata.append("File", file);
+    // formdata.append("restaurantId", "11");
+    // formdata.append("id", "0");
+    // formdata.append("createdById", "0");
+
+    // var requestOptions = {
+    //   method: 'POST',
+    //   headers: myHeaders,
+    //   body: formdata,
+    //   redirect: 'follow'
+    // };
+
+    // fetch("https://egreatlearning.com/web/api/JobApplications/AddJobApplication", requestOptions)
+    //   .then(response => response.text())
+    //   .then(result => console.log(result))
+    //   .catch(error => console.log('error', error));
+
   };
   const Pickfile = async () => {
     try {

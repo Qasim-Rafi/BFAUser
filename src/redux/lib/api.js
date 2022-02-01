@@ -1,6 +1,6 @@
 import urls from './urls';
 import axios from 'axios';
-import {store} from '../store';
+import { store } from '../store';
 import AsyncStorage from '@react-native-community/async-storage';
 
 class Api {
@@ -44,15 +44,18 @@ class Api {
       'Authorization',
       `Bearer ${await AsyncStorage.getItem('@token')}`,
     );
-    myHeaders.append('Content-Type', 'application/json');
+    // myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI2MCIsIk5hbWUiOiJzYW5peWEiLCJVc2VyVHlwZUlkIjoiMyIsIlJlc3RhdXJhbnRJZCI6IjAiLCJuYmYiOjE2NDM2MjI4NzksImV4cCI6MTY0NDA1NDg3OSwiaWF0IjoxNjQzNjIyODc5fQ.qdcRiP_X2aLV52FyCkKcgZvV4P8Ni-HOsXG1JqLWGFJiZWprLqJi2o8kERK3C52dGm9lbYnaLTELcc4OVkgDtQ");
+
+    myHeaders.append("Content-Type", "multipart/form-data"),
+      myHeaders.append(Accept, "application/json",);
 
     let options = null;
     if (body) {
       options = {
         method: verb,
-        body: JSON.stringify(body),
+        body: body,
         headers: myHeaders,
-       // redirect: 'follow',
+        redirect: 'follow',
       };
     } else {
       options = {
@@ -71,11 +74,11 @@ class Api {
       let error = err.response
         ? err.response.data.error
           ? err.response.data.error
-          : {error: err.response.data.message}
+          : { error: err.response.data.message }
         : {
-            error:
-              'Unable to connect to the internet. Please retry after checking your internet connection',
-          };
+          error:
+            'Unable to connect to the internet. Please retry after checking your internet connection',
+        };
 
       err.message =
         !err.response &&
@@ -86,7 +89,7 @@ class Api {
       };
       console.log(error, 'Error message from API.js');
       console.log(err.response, 'Err message from API.js');
-      throw err.response ? {...err.response.data, error} : err;
+      throw err.response ? { ...err.response.data, error } : err;
     }
   }
 }

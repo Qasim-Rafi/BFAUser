@@ -262,7 +262,7 @@ export const appReducers = (state = initialState, action) => {
     case types.GET_RESTAURANT_ALL_DISHES_SUCCESS:
       return {
         ...state,
-        cusineDetail: {
+        restaurantDishesDetai: {
           ...state.restaurantDishesDetail,
           data: action.payload,
         },

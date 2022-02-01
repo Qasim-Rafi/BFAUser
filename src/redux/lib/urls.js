@@ -34,7 +34,7 @@ export default urls = {
   GET_ALL_FAVORITE_RESTAURANT: 'api/PeopleChoice/GetPeopleChoiceLikedAll/1/10',
   ADD_RESTAURANT_FAVORITE: 'api/PeopleChoice/UpdatePeopleChoiceLiked/',
   REMOVE_FAVORITE_RESTAURANT: 'api/PeopleChoice/UpdatePeopleChoiceUnliked',
-  APPLY_FOR_JOBS: 'api/JobApplication/AddJobApplication'//for apply jobs
+  APPLY_FOR_JOBS: 'api/JobApplications/AddJobApplication'//for apply jobs
 
 
 
