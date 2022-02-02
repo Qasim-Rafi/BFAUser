@@ -795,6 +795,8 @@ function* moreaboutDishSagaApi(data) {
 
     // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({ type: types.REMOVE_FAVORITE_RESTAURANT_FAILURE, error: 'error' });
+    yield put({ type: types.GET_MORE_ABOUT_DISHES_FAILURE, error: error });
+    console.log('error saga' ,error);
+
   }
 }

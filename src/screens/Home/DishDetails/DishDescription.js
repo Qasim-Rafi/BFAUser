@@ -58,8 +58,8 @@ export default function DishDescription(props) {
             size={wp(18)}
             margin={[0, 20, 0, 0]}
             source={
-              props.item.RestaurantLogo
-                ? {uri: props.item.RestaurantLogo}
+              props.item.restaurantLogo
+                ? {uri: props.item.restaurantLogo}
                 : globalPath.RESTAURANT_LOGO
             }
           />
