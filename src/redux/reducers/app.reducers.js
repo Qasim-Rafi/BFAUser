@@ -553,7 +553,7 @@ export const appReducers = (state = initialState, action) => {
         favorite: {
           ...state.favorite,
           data: action.payload,
-          refreshing: true,
+          refreshing: false,
         },
       };
     case types.GET_FAVORITE_FAILURE:
@@ -561,7 +561,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         favorite: {
           ...state.favorite,
-          refreshing: true,
+          refreshing: false,
         },
       };
     ///////Add Favrite

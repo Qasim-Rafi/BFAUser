@@ -501,11 +501,12 @@ export function* getFavoritesSaga() {
   yield takeLatest(types.GET_FAVORITE_REQUEST, getFavoritesSagaApi);
 }
 function* getFavoritesSagaApi(data) {
-  console.log(data);
   const limit = data.data.limit;
   const index = data.data.index;
   try {
     const response = yield Api.get(urls.GET_ALL_FAVORITE + index + '/' + limit);
+  console.log('fav resssss',response);
+
     if (response && response.data != null) {
       yield put({
         type: types.GET_FAVORITE_SUCCESS,
