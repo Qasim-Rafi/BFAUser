@@ -799,3 +799,31 @@ function* moreaboutDishSagaApi(data) {
     yield put({ type: types.REMOVE_FAVORITE_RESTAURANT_FAILURE, error: 'error' });
   }
 }
+ //GetDishByCusineId
+ export function* getdishbycusineidDataSaga() {
+  yield takeLatest(
+    types.GET_ALL_FAVORITE_RESTAURANT_REQUEST,
+    getdishbycusineidSagaApi,
+  );
+}
+function* getdishbycusineidSagaApi() {
+  try {
+    const response = yield Api.get(urls.GET_DISH_BY_CUSINE_ID);
+    console.log(response, 'heeeeeeeeee');
+    if (response && response.success == true) {
+      yield put({
+        type: types.GET_DISH_BY_CUSINE_ID_SUCCESS,
+        payload: response.data,
+      });
+      // navigation.navigate(routeName.Categories,{data:response.data});
+    } else {
+      yield put({ type: types.GET_DISH_BY_CUSINE_ID_FAILURE, payload: [] });
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({ type: types.GET_DISH_BY_CUSINE_ID_FAILURE, payload: [] });
+  }
+}
+
+
