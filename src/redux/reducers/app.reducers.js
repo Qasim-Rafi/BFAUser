@@ -101,7 +101,11 @@ const initialState = {
   moreFromRest: {
     loading: false,
     data: [],
-  }
+  },
+  getdishbycusineid: {
+    loading: false,
+    data: [],
+  },
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -772,6 +776,32 @@ export const appReducers = (state = initialState, action) => {
         moreaboutDishDetail: {
           ...state.moreaboutDishDetail,
           loading: false,
+        },
+      };
+    //GetDishByCusineId
+    case types.GET_DISH_BY_CUSINE_ID_REQUEST:
+      return {
+        ...state,
+        getdishbycusineid: {
+          ...state.getdishbycusineid,
+          refreshing: true,
+        },
+      };
+    case types.GET_DISH_BY_CUSINE_ID_SUCCESS:
+      return {
+        ...state,
+        getdishbycusineid: {
+          ...state.getdishbycusineid,
+          data: action.payload,
+          refreshing: true,
+        },
+      };
+    case types.GET_DISH_BY_CUSINE_ID_FAILURE:
+      return {
+        ...state,
+        getdishbycusineid: {
+          ...state.getdishbycusineid,
+          refreshing: true,
         },
       };
     default:

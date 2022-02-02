@@ -258,6 +258,13 @@ export const RemoveFavoriteRestaurant = (data) => {
     data
   };
 };
+//GetDishByCusineId
+export const GetDishByCusineId = (data) => {
+  return {
+    type: types.GET_DISH_BY_CUSINE_ID_REQUEST,
+    data
+  };
+};
 // //Get User categories actions
 // export const getUserCategories = (params) => {
 //   return {
