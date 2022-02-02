@@ -761,7 +761,7 @@ export const appReducers = (state = initialState, action) => {
           getdishbycusineid: {
             ...state.getdishbycusineid,
             data: action.payload,
-            refreshing: true,
+            refreshing: false,
           },
         };
       case types.GET_DISH_BY_CUSINE_ID_FAILURE:
@@ -769,7 +769,7 @@ export const appReducers = (state = initialState, action) => {
           ...state,
           getdishbycusineid: {
             ...state.getdishbycusineid,
-            refreshing: true,
+            refreshing: false,
           },
         };
     default:

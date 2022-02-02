@@ -59,7 +59,7 @@ export default function DishDescription(props) {
             margin={[0, 20, 0, 0]}
             source={
               props.item.restaurantLogo
-                ? {uri: props.item.restaurantLogo}
+                ? {uri: props.item.restaurantLogo.replace(/\s/g, '')}
                 : globalPath.RESTAURANT_LOGO
             }
           />

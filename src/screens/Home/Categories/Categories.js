@@ -9,6 +9,7 @@ import { hp, wp } from '../../../helpers/Responsiveness';
 import { colors } from '../../../constants/colorsPallet';
 import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
+import { routeName } from '../../../constants/routeName';
 export default function Categories({ navigation, route }) {
   const { data } = route.params;
   // const [index, setindex] = useState(4);
@@ -47,8 +48,12 @@ export default function Categories({ navigation, route }) {
             return (
               <View style={{ paddingLeft: 25, justifyContent: 'center', paddingVertical: 2 }}>
                 <TouchableOpacity  onPress={() =>
-                      props.navigation.navigate(routeName.DISH_DETAIL, { dish: url })
+                       navigation.navigate(routeName.ALL_DISHES_LIST, {
+                        data: v.id,
+                        title: v.name,
+                      })
                     }>
+
                 <Text style={styles.title}>{v.name}</Text>
                 </TouchableOpacity>
               </View>)

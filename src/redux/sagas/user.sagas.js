@@ -804,7 +804,7 @@ function* moreaboutDishSagaApi(data) {
  //GetDishByCusineId
  export function* getdishbycusineidDataSaga() {
   yield takeLatest(
-    types.GET_ALL_FAVORITE_RESTAURANT_REQUEST,
+    types.GET_DISH_BY_CUSINE_ID_REQUEST,
     getdishbycusineidSagaApi,
   );
 }

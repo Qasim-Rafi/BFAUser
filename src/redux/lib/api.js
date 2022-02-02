@@ -68,6 +68,8 @@ class Api {
     console.log(options, 'options');
     try {
       const resp = await fetch(url, options);
+      console.log(resp, 'okokokoko');
+
       return resp.json();
     } catch (err) {
       console.log(err, 'error');

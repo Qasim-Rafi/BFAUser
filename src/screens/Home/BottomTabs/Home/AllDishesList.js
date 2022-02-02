@@ -28,6 +28,7 @@ import {
   getPromoNewsData,
   getPromoJobsData,
   getPeopleChoice,
+  GetDishByCusineId,
   getwhatsNew,
 } from '../../../../redux/actions/user.actions';
 import {
@@ -45,7 +46,7 @@ export default function AllDishesList({ route, navigation }) {
   // const data = route.params.data;
   const title = route.params.title;
   const dispatch = useDispatch();
-  const [index, setIndex] = React.useState(2);
+  const [index, setIndex] = React.useState(1);
   const data = useSelector(state =>
     title == 'BFA Recommendation'
       ? state.appReducers.bfaRecommendationDetail.data
@@ -59,7 +60,7 @@ export default function AllDishesList({ route, navigation }) {
               ? state.appReducers.whatsnew.data
               : title == 'Promotions'
                 ? state.appReducers.promotions.data
-                : state.appReducers.promoJobs.data,
+                : state.appReducers.getdishbycusineid.data,
   );
   const loading = useSelector(state =>
     title == 'BFA Recommendation' ?
@@ -67,9 +68,13 @@ export default function AllDishesList({ route, navigation }) {
         state.appReducers.PeopleChoice.loading : title == 'Brunei Food Awards' ?
           state.appReducers.bruneiFoodsAwards.refreshing : title == "PG's Favourites" ?
             state.appReducers.favorite.refreshing : title == "What's New" ? state.appReducers.whatsnew.refreshing :
-              title == 'Promotions' ? state.appReducers.promotions.refreshing : state.appReducers.promoJobs.refreshing,
+              title == 'Promotions' ? state.appReducers.promotions.refreshing : state.appReducers.getdishbycusineid.refreshing,
 
   );
+  React.useEffect(()=>{
+    onLoad()
+    console.log('aja data',route.params);
+  },[])
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={{ marginHorizontal: 8, marginVertical: 10, flex: 1 }}
@@ -194,7 +199,9 @@ export default function AllDishesList({ route, navigation }) {
       case 'Promotions':
         dispatch(getPromotions(index, 13));
         break;
+        
       default:
+        dispatch( GetDishByCusineId())
       //Alert.alert('NUMBER NOT FOUND');dispatch(getBruneiFoodRewards())
     }
     setIndex(index + 1);
@@ -216,7 +223,7 @@ export default function AllDishesList({ route, navigation }) {
           <View>
             {data.length == 0 ? (
               <View style={{ alignItems: 'center' }}>
-                <ResponsiveText color={colors.white}>No {title} found</ResponsiveText>
+                <ResponsiveText color={colors.white}>No record found against {title}</ResponsiveText>
               </View>
             ) : null}
             <View
