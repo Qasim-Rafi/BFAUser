@@ -18,10 +18,11 @@ export const getProfileData = (data) => {
 };
 //APPLY FOR JOB
 
-export const applyForJob = (data) => {
+export const applyForJob = (data, navigation) => {
   return {
     type: types.GET_APPLY_FOR_JOB_REQUEST,
     data: data,
+    navigation: navigation
   };
 };
 //Register actions
@@ -245,6 +246,13 @@ export const addFavoriteRestaurant = (data) => {
 export const RemoveFavoriteRestaurant = (data) => {
   return {
     type: types.REMOVE_FAVORITE_RESTAURANT_REQUEST,
+    data
+  };
+};
+//GetDishByCusineId
+export const GetDishByCusineId = (data) => {
+  return {
+    type: types.GET_DISH_BY_CUSINE_ID_REQUEST,
     data
   };
 };

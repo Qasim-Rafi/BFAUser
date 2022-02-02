@@ -112,7 +112,7 @@ export default function Apply_Jobs({navigation, route}) {
             <TextInput
               placeholderTextColor={colors.grey}
               editable={false}
-              style={{margin: 10, color: colors.grey}}
+              style={{margin: 5, color: colors.grey}}
               value={data.jobTitle}
             />
           </View>
@@ -131,7 +131,7 @@ export default function Apply_Jobs({navigation, route}) {
               multiline={true}
               placeholderTextColor={colors.grey}
               editable={false}
-              style={{margin: 10, color: colors.grey}}
+              style={{margin: 5, color: colors.grey}}
               value={data.jobDescription}
             />
           </View>
@@ -159,7 +159,7 @@ export default function Apply_Jobs({navigation, route}) {
             editable={true}
             value={coverletter}
             onChangeText={setcoverletter}
-            style={{margin: 10, color: colors.grey}}
+            style={{margin: 5, color: colors.grey}}
             placeholder="Introduce yourself"
           />
         </View>

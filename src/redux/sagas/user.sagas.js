@@ -105,15 +105,16 @@ function* applyJobApi(data, response) {
   console.log(data, 'action in saga');
   // alert("response: ", response.success);
   let body = data.data;
- let formData=true;
+  let navigation = data.navigation;
+  let formData = true;
   console.log("bodyyyyyyy:", body)
   try {
-    const response = yield Api.post(urls.APPLY_FOR_JOBS, body,formData);
+    const response = yield Api.post(urls.APPLY_FOR_JOBS, body, formData);
     console.log(response, 'responsefasfsdf');
     if (response && response.success == true) {
       yield put({ type: types.GET_APPLY_FOR_JOB_SUCCESS, payload: response });
       console.log("reponsessssss:", response)
-      // navigation.navigate(routeName.VERIFICATION_CODE);
+      navigation.goBack();   
     } else {
       yield put({ type: types.GET_APPLY_FOR_JOB_FAILURE, payload: response });
     }
@@ -779,8 +780,8 @@ function* moreaboutDishSagaApi(data) {
   // console.log('moreabouttttt:', data);
 
   try {
-    const response = yield Api.get(urls.DISH_CALORIE+id);
-    console.log('resss',response);
+    const response = yield Api.get(urls.DISH_CALORIE + id);
+    console.log('resss', response);
     if (response && response.success == true) {
       yield put({
         type: types.GET_MORE_ABOUT_DISHES_SUCCESS,
@@ -800,3 +801,31 @@ function* moreaboutDishSagaApi(data) {
 
   }
 }
+ //GetDishByCusineId
+ export function* getdishbycusineidDataSaga() {
+  yield takeLatest(
+    types.GET_ALL_FAVORITE_RESTAURANT_REQUEST,
+    getdishbycusineidSagaApi,
+  );
+}
+function* getdishbycusineidSagaApi() {
+  try {
+    const response = yield Api.get(urls.GET_DISH_BY_CUSINE_ID);
+    console.log(response, 'heeeeeeeeee');
+    if (response && response.success == true) {
+      yield put({
+        type: types.GET_DISH_BY_CUSINE_ID_SUCCESS,
+        payload: response.data,
+      });
+      // navigation.navigate(routeName.Categories,{data:response.data});
+    } else {
+      yield put({ type: types.GET_DISH_BY_CUSINE_ID_FAILURE, payload: [] });
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({ type: types.GET_DISH_BY_CUSINE_ID_FAILURE, payload: [] });
+  }
+}
+
+
