@@ -12,10 +12,10 @@ import ResponsiveText from '../../../../components/RnText';
 import { Rating, AirbnbRating } from 'react-native-ratings';
 
 import {
-  promosBannerFakeDATA,
-  advertisementBannerFakeDATA,
-  promotionsFakeDATA,
-} from '../../../../constants/mock';
+
+  DotIndicator,
+
+} from 'react-native-indicators';
 import { colors } from '../../../../constants/colorsPallet';
 import { routeName } from '../../../../constants/routeName';
 import SeeAllButton from '../../../../components/SeeAllButton';
@@ -28,6 +28,7 @@ import FastImage from 'react-native-fast-image'
 
 const Promotion = props => {
   const Promotions = useSelector(state => state.appReducers.promotions.data);
+  const loading = useSelector(state => state.appReducers.promotions.loading);
   console.log('promotionssssssssssss: ', Promotions);
 
   return (
@@ -76,7 +77,7 @@ const Promotion = props => {
                           justifyContent: 'flex-end',
                           backgroundColor: 'rgba(0,0,0,1)',
                         }}
-                        source={{ uri: url.fullPath}}>
+                        source={{ uri: url.fullPath }}>
                         {url.title === String ?
                           <Text
                             style={{
@@ -132,6 +133,14 @@ const Promotion = props => {
             })
             : undefined}
         </ScrollView>
+        {
+          loading === true ?
+            <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, backgroundColor: 'rgba(65, 65, 65, 0)', flex: 1 }}>
+              < DotIndicator color={colors.yellow} size={5} />
+            </View>
+            :
+            undefined
+        }
       </View>
     </ScrollView>
   );

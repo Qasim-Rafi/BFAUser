@@ -114,7 +114,7 @@ function* applyJobApi(data, response) {
     if (response && response.success == true) {
       yield put({ type: types.GET_APPLY_FOR_JOB_SUCCESS, payload: response });
       console.log("reponsessssss:", response)
-      navigation.navigate(routeName.HOME_BOTTOM);   
+      navigation.navigate(routeName.HOME_BOTTOM);
     } else {
       yield put({ type: types.GET_APPLY_FOR_JOB_FAILURE, payload: response });
     }
@@ -463,6 +463,37 @@ function* getRestaurantDishesSagaApi() {
     // dispatch a success action to the store with the new data object
   } catch (error) {
     yield put({ type: types.GET_RESTAURANT_ALL_DISHES_FAILURE, error: error });
+  }
+}
+//More from Restaurant
+export function* moreFromRestSaga() {
+  yield takeLatest(
+    types.MORE_FROM_RESTAURANT_REQUEST,
+    moreFromRestSagaApi,
+  );
+}
+function* moreFromRestSagaApi(data) {
+  const limit = data.data.limit;
+  const index = data.data.index;
+
+  console.log('paramsssssssssss: ', data);
+  const url = urls.RESTAURANT_DISH_ALL + index + '/' + limit;
+  console.log('People Url: ', url);
+  try {
+    const response = yield Api.get(url);
+    if (response && response.data != null) {
+      yield put({
+        type: types.MORE_FROM_RESTAURANT_SUCCESS,
+        payload: response.data,
+      });
+      // navigation.navigate(routeName.Categories,{data:response.data});
+    } else {
+      yield put({ type: types.MORE_FROM_RESTAURANT_FAILURE, payload: [] });
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({ type: types.MORE_FROM_RESTAURANT_FAILURE, error: error });
   }
 }
 ///FAVORITES

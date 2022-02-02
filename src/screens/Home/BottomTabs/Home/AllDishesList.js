@@ -28,6 +28,7 @@ import {
   getPromoNewsData,
   getPromoJobsData,
   getPeopleChoice,
+  moreFromRestaurant,
   getwhatsNew,
 } from '../../../../redux/actions/user.actions';
 import {
@@ -58,8 +59,10 @@ export default function AllDishesList({ route, navigation }) {
             : title == "What's New"
               ? state.appReducers.whatsnew.data
               : title == 'Promotions'
-                ? state.appReducers.promotions.data
-                : state.appReducers.promoJobs.data,
+                ? state.appReducers.promotions.data :
+                title == "More From Restaurant"
+                  ? state.appReducers.moreFromRest.data
+                  : state.appReducers.promoJobs.data,
   );
   const loading = useSelector(state =>
     title == 'BFA Recommendation' ?
@@ -67,7 +70,7 @@ export default function AllDishesList({ route, navigation }) {
         state.appReducers.PeopleChoice.loading : title == 'Brunei Food Awards' ?
           state.appReducers.bruneiFoodsAwards.refreshing : title == "PG's Favourites" ?
             state.appReducers.favorite.refreshing : title == "What's New" ? state.appReducers.whatsnew.refreshing :
-              title == 'Promotions' ? state.appReducers.promotions.refreshing : state.appReducers.promoJobs.refreshing,
+              title == 'Promotions' ? state.appReducers.promotions.refreshing : title == "More From Restaurant" ? state.appReducers.moreFromRest.data : state.appReducers.promoJobs.refreshing,
 
   );
   const renderItem = ({ item }) => (
@@ -193,6 +196,10 @@ export default function AllDishesList({ route, navigation }) {
 
       case 'Promotions':
         dispatch(getPromotions(index, 13));
+        break;
+
+      case 'More From Restaurant':
+        dispatch(moreFromRestaurant(index, 13));
         break;
       default:
       //Alert.alert('NUMBER NOT FOUND');dispatch(getBruneiFoodRewards())
