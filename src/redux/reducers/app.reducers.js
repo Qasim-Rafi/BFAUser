@@ -98,6 +98,10 @@ const initialState = {
     loading: false,
     data: [],
   },
+  moreFromRest: {
+    loading: false,
+    data: [],
+  },
   getdishbycusineid: {
     loading: false,
     data: [],
@@ -266,12 +270,12 @@ export const appReducers = (state = initialState, action) => {
     case types.GET_RESTAURANT_ALL_DISHES_SUCCESS:
       return {
         ...state,
-        restaurantDishesDetai: {
+        cusineDetail: {
           ...state.restaurantDishesDetail,
           data: action.payload,
         },
       };
-
+    //Bfa Rrecommendations
     case types.GET_BFA_RECOMMENDATION_REQUEST:
       return {
         ...state,
@@ -296,6 +300,34 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         bfaRecommendationDetail: {
           ...state.bfaRecommendationDetail,
+          loading: false,
+        },
+      };
+    //Moore From Restraurant
+    case types.MORE_FROM_RESTAURANT_REQUEST:
+      return {
+        ...state,
+        moreFromRest: {
+          ...state.moreFromRest,
+          loading: true,
+        },
+      };
+    case types.MORE_FROM_RESTAURANT_SUCCESS:
+      console.log('Dataaaaaa: ', action.payload);
+
+      return {
+        ...state,
+        moreFromRest: {
+          ...state.moreFromRest,
+          data: [...state.moreFromRest.data, ...action.payload],
+          loading: false,
+        },
+      };
+    case types.MORE_FROM_RESTAURANT_FAILURE:
+      return {
+        ...state,
+        moreFromRest: {
+          ...state.moreFromRest,
           loading: false,
         },
       };
@@ -520,7 +552,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         favorite: {
           ...state.favorite,
-          data: [...state.favorite.data, ...action.payload],
+          data: action.payload,
           refreshing: true,
         },
       };

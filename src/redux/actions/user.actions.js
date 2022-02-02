@@ -16,6 +16,15 @@ export const getProfileData = (data) => {
     data: data,
   };
 };
+export const moreFromRestaurant = (index, limit) => {
+  return {
+    type: types.MORE_FROM_RESTAURANT_REQUEST,
+    data: {
+      index: index,
+      limit: limit
+    }
+  };
+};
 //APPLY FOR JOB
 
 export const applyForJob = (data, navigation) => {
