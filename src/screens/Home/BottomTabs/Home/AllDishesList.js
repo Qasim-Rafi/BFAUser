@@ -149,7 +149,7 @@ export default function AllDishesList({ route, navigation }) {
               {item.titleR}
             </ResponsiveText> */}
           </View>
-        </ImageBackground>
+        </FastImage>
       </View>
     </TouchableOpacity>
   );
