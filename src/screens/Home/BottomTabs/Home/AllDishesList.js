@@ -77,7 +77,7 @@ export default function AllDishesList({route, navigation}) {
       : title == "What's New"
       ? state.appReducers.whatsnew.refreshing
       : title == 'Promotions'
-      ? state.appReducers.promotions.refreshing
+      ? state.appReducers.promotions.loading
       : title == 'More From Restaurant'
       ? state.appReducers.moreFromRest.data
       : state.appReducers.getdishbycusineid.refreshing,

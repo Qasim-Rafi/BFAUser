@@ -254,7 +254,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         promotions: {
           ...state.promotions,
-          data: action.payload,
+          data: [...state.promotions.data, ...action.payload],
           loading: false,
         },
       };
