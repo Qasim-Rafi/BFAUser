@@ -259,10 +259,14 @@ export const RemoveFavoriteRestaurant = (data) => {
   };
 };
 //GetDishByCusineId
-export const GetDishByCusineId = (data) => {
+export const GetDishByCusineId = (index,limit,id) => {
   return {
     type: types.GET_DISH_BY_CUSINE_ID_REQUEST,
-    data
+    data:{
+      index:index,
+      limit:limit,
+      id:id
+    }
   };
 };
 // //Get User categories actions

@@ -792,7 +792,7 @@ export const appReducers = (state = initialState, action) => {
           ...state,
           getdishbycusineid: {
             ...state.getdishbycusineid,
-            data: action.payload,
+            data: [...state.getdishbycusineid.data, ...action.payload],
             refreshing: false,
           },
         };
