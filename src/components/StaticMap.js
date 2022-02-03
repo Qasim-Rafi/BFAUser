@@ -4,7 +4,7 @@ import Map, {PROVIDER_GOOGLE, Marker, Polyline} from 'react-native-maps'; // rem
 
 const StaticMap = (props) => {
   const [data,setData]=React.useState(props.data)
-
+console.log(data,'hh')
   return (
     <View
       style={{borderRadius: 10, overflow: 'hidden'}}>
@@ -15,12 +15,12 @@ const StaticMap = (props) => {
         //   zoomEnabled={false}
         rotateEnabled={false}
         region={{
-          latitude:parseFloat(data.latitude) ,
-          longitude: parseFloat(data.longitude),
+          latitude:data.latitude!==null?parseFloat(data.latitude):37.78825 ,
+          longitude:data.longitude!==null?parseFloat(data.longitude):-122.4324,
           latitudeDelta: 0.9,
           longitudeDelta: 0.0121,
         }}>
-        <Marker coordinate={{latitude: parseFloat(data.latitude), longitude:parseFloat(data.longitude)}} />
+        <Marker coordinate={{latitude:data.latitude!==null?parseFloat(data.latitude):37.78825, longitude:data.longitude!==null?parseFloat(data.longitude):-122.4324}} />
       </Map>
     </View>
   );
