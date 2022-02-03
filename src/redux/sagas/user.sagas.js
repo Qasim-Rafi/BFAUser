@@ -114,6 +114,12 @@ function* applyJobApi(data, response) {
     if (response && response.success == true) {
       yield put({type: types.GET_APPLY_FOR_JOB_SUCCESS, payload: response});
       console.log('reponsessssss:', response);
+       showMessage({
+      message: "Succes",
+      description: "Submit successfully",
+      type: "info",
+      icon: { icon: "auto", position: "left" },
+    });
       navigation.goBack();
     } else {
       yield put({type: types.GET_APPLY_FOR_JOB_FAILURE, payload: response});
