@@ -579,7 +579,7 @@ export const appReducers = (state = initialState, action) => {
         favorite: {
           ...state.favorite,
           data: [...state.favorite.data, action.payload],
-          refreshing: true,
+          refreshing: false,
         },
       };
     case types.ADD_FAVORITE_FAILURE:
@@ -587,7 +587,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         favorite: {
           ...state.favorite,
-          refreshing: true,
+          refreshing: false,
         },
       };
     //Remove Favrite
@@ -607,7 +607,7 @@ export const appReducers = (state = initialState, action) => {
           data: state.favorite.data.filter(
             item => item.id !== action.payload.id,
           ),
-          refreshing: true,
+          refreshing: false,
         },
       };
     case types.ON_REMOVE_FAVORITE_FAILURE:
@@ -615,7 +615,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         favorite: {
           ...state.favorite,
-          refreshing: true,
+          refreshing: false,
         },
       };
     //////What's News/////
@@ -641,7 +641,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         whatsnew: {
           ...state.whatsnew,
-          refreshing: true,
+          refreshing: false,
         },
       };
     //////GET_RESTAURENT_DETAIL_REQUEST
@@ -686,7 +686,7 @@ export const appReducers = (state = initialState, action) => {
         favoriteRestaurant: {
           ...state.favoriteRestaurant,
           data: action.payload,
-          refreshing: true,
+          refreshing: false,
         },
       };
     case types.GET_ALL_FAVORITE_RESTAURANT_FAILURE:
@@ -694,7 +694,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         favoriteRestaurant: {
           ...state.favoriteRestaurant,
-          refreshing: true,
+          refreshing: false,
         },
       };
     ///////Add Favrite Restaurant
@@ -712,7 +712,7 @@ export const appReducers = (state = initialState, action) => {
         AddfavoriteRestaurant: {
           ...state.AddfavoriteRestaurant,
           data: [...state.favorite.data, action.payload],
-          refreshing: true,
+          refreshing: false,
         },
       };
     case types.ADD_FAVORITE_RESTAURANT_FAILURE:
@@ -720,7 +720,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         AddfavoriteRestaurant: {
           ...state.AddfavoriteRestaurant,
-          refreshing: true,
+          refreshing: false,
         },
       };
     // REMOVE_FAVORITE_RESTAURANT
@@ -740,7 +740,7 @@ export const appReducers = (state = initialState, action) => {
           data: state.AddfavoriteRestaurant.data.filter(
             item => item.id !== action.payload,
           ),
-          refreshing: true,
+          refreshing: false,
         },
       };
     case types.REMOVE_FAVORITE_RESTAURANT_FAILURE:
@@ -748,7 +748,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         AddfavoriteRestaurant: {
           ...state.AddfavoriteRestaurant,
-          refreshing: true,
+          refreshing: false,
         },
       };
     case types.GET_MORE_ABOUT_DISHES_REQUEST:
