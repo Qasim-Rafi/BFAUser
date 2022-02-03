@@ -87,7 +87,7 @@ const Promotion = props => {
                             }}
 
                           >
-                            {url.titleR}
+                            {url.titleD}
 
 
 
