@@ -54,6 +54,8 @@ export default function DishDescription(props) {
               {props.item.price} $
             </ResponsiveText>
           </View>
+          <TouchableOpacity 
+           onPress={() => navigation.navigate(routeName.RestaurantDetail,props.item.restaurantId)}>
           <Icon
             size={wp(18)}
             margin={[0, 20, 0, 0]}
@@ -63,6 +65,7 @@ export default function DishDescription(props) {
                 : globalPath.RESTAURANT_LOGO
             }
           />
+          </TouchableOpacity>
         </View>
 
         <View>{/* <Image style={{ width: 30, height: 25 }} /> */}</View>
