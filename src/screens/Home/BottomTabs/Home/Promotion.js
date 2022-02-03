@@ -77,8 +77,8 @@ const Promotion = props => {
                           justifyContent: 'flex-end',
                           backgroundColor: 'rgba(0,0,0,1)',
                         }}
-                        source={{ uri: url.fullPath }}>
-                        {url.title === String ?
+                        source={{ uri: url.imageDataB }}>
+                        {url.titleR === String ?
                           <Text
                             style={{
                               color: 'white', padding: 3, opacity: 0.7,
@@ -87,7 +87,7 @@ const Promotion = props => {
                             }}
 
                           >
-                            {url.title}
+                            {url.titleR}
 
 
 
@@ -102,7 +102,7 @@ const Promotion = props => {
                           }}
 
                         >
-                          {url.description}
+                          {url.titleR}
 
 
 
