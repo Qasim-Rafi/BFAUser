@@ -77,8 +77,8 @@ const Promotion = props => {
                           justifyContent: 'flex-end',
                           backgroundColor: 'rgba(0,0,0,1)',
                         }}
-                        source={{ uri: url.fullPath }}>
-                        {url.title === String ?
+                        source={{ uri: url.imageDataB }}>
+                        {/* {url.titleD === String ?
                           <Text
                             style={{
                               color: 'white', padding: 3, opacity: 0.7,
@@ -87,13 +87,10 @@ const Promotion = props => {
                             }}
 
                           >
-                            {url.title}
-
-
-
+                            {url.titleD}
                           </Text>
                           : undefined
-                        }
+                        } */}
                         <Text
                           style={{
                             color: 'white', padding: 3, opacity: 0.7,
@@ -102,11 +99,17 @@ const Promotion = props => {
                           }}
 
                         >
-                          {url.description}
+                          {url.titleD}
+                        </Text>
+                        <Text
+                          style={{
+                            color: 'white', padding: 3, opacity: 0.7, marginTop: 2,
+                            backgroundColor: 'black', borderRadius: 7,
+                            textAlign: 'center', fontWeight: '600', fontSize: 8.5
+                          }}
 
-
-
-
+                        >
+                          {url.titleR}
                         </Text>
                         {/* <ResponsiveText
                       source={{uri:url.fullPath}}>
