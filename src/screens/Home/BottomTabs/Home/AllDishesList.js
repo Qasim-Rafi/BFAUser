@@ -84,7 +84,7 @@ export default function AllDishesList({route, navigation}) {
   );
   React.useEffect(() => {
     onLoad();
-    console.log('aja data', route.params);
+    console.log('aja data', data.filter(v => v.cusineName == title));
   }, []);
   const renderItem = ({item}) => (
     <TouchableOpacity
