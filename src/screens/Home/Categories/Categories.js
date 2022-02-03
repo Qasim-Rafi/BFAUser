@@ -49,7 +49,7 @@ export default function Categories({ navigation, route }) {
               <View style={{ paddingLeft: 25, justifyContent: 'center', paddingVertical: 2 }}>
                 <TouchableOpacity  onPress={() =>
                        navigation.navigate(routeName.ALL_DISHES_LIST, {
-                        data: v.id,
+                        id: v.id,
                         title: v.name,
                       })
                     }>
