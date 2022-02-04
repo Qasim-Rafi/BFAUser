@@ -43,10 +43,9 @@ const Transfer = (props) => {
 
     const [number, setNumber] = useState(0)
     const [numeric, setNumeric] = useState(true)
-    const [editable, setEditable] = useState(false)
+    const [numPad, setNumPad] = useState(numeric);
 
     const transferAmountComing = route.params
-    const transferAmount = parseFloat(transferAmountComing).toFixed(2)
 
     // navigation.setOptions({
     //     headerShown: true,
@@ -196,10 +195,16 @@ const Transfer = (props) => {
                 :
                 <View style={styles.centeredModalView} >
                             <View style={{flexDirection:'row'}} >
-                                <TouchableOpacity style={[styles.keyBoardSelector,{borderTopLeftRadius:10,borderRightWidth:1}]} onPress={()=>{setNumeric(true);setNumber(0)}} >
-                                    <Text style={{fontSize:wp(6),color:colors.white}} >Numeric</Text>
+                                <TouchableOpacity 
+                                    style={[styles.keyBoardSelector,{backgroundColor:numPad? colors.yellow1: colors.lightBlack,borderTopLeftRadius:10,borderRightWidth:1}]} 
+                                    onPress={()=>{setNumeric(true);setNumber(0);setNumPad(true)}} 
+                                >
+                                    <Text style={{fontSize:wp(7),color:colors.white}} >Numeric</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={[styles.keyBoardSelector,{borderTopRightRadius:10}]} onPress={()=>{setNumeric(false);setNumber(0);}} >
+                                <TouchableOpacity 
+                                    style={[styles.keyBoardSelector,{backgroundColor:numPad? colors.lightBlack: colors.yellow1,borderTopRightRadius:10}]} 
+                                    onPress={()=>{setNumeric(false);setNumber(0);setNumPad(false)}} 
+                                >
                                     <Text style={{fontSize:wp(7),color:colors.white}} >Bcoin</Text>
                                 </TouchableOpacity>
                             </View>
@@ -250,7 +255,7 @@ const Transfer = (props) => {
                                     </TouchableOpacity>
                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setModalVisible(false)} >
                                         <View style={[styles.bCents,{backgroundColor:colors.yellow1, borderRadius:hp(2.2), alignItems:'center', justifyContent:'center'}]} >
-                                            <Text>Done</Text>
+                                            <Text style={{fontSize:wp(4.5)}} >Done</Text>
                                         </View>
                                     </TouchableOpacity>
                                 </View>
