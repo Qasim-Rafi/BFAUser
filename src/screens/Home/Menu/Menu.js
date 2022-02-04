@@ -81,7 +81,7 @@ const Menu = (props) => {
                   margin={[4, 0, 0, 0]}
                   color={colors.yellow}
                   position="flex-end">
-                  ${data.price}.00
+                  ${data.price}
                 </ResponsiveText>
               </View>
             </View>

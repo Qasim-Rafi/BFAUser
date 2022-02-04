@@ -44,9 +44,9 @@ export default function Signup({ navigation }) {
   const [gender, setgender] = useState('');
   const [confirmPassword, setConfirmPassword] = useState();
   const Gender = [
-    { lable: "Male  ", icon: require('../../../assets/icons/male.png') }, 
-  { lable: "Female  ", icon: require('../../../assets/icons/female.png') }
-];
+    { lable: "Male  ", icon: require('../../../assets/icons/male.png') },
+    { lable: "Female  ", icon: require('../../../assets/icons/female.png') }
+  ];
 
   const [date, setDate] = useState(null);
   const [mode, setMode] = useState('date');
@@ -258,11 +258,11 @@ export default function Signup({ navigation }) {
             />
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-              <DropDown data={Gender} 
+              <DropDown data={Gender}
                 onSelect={(selectedItem, index) => {
-                    console.log(selectedItem, index);
-                    setgender(selectedItem.lable)
-                }} 
+                  console.log(selectedItem, index);
+                  setgender(selectedItem.lable)
+                }}
                 height={hp(6)} width={wp(39)} />
               <View>
                 <View style={{ borderWidth: 2, zIndex: 0, borderRadius: 10 }}>

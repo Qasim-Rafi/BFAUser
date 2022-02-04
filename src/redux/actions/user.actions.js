@@ -16,6 +16,24 @@ export const getProfileData = (data) => {
     data: data,
   };
 };
+export const moreFromRestaurant = (index, limit) => {
+  return {
+    type: types.MORE_FROM_RESTAURANT_REQUEST,
+    data: {
+      index: index,
+      limit: limit
+    }
+  };
+};
+//APPLY FOR JOB
+
+export const applyForJob = (data, navigation) => {
+  return {
+    type: types.GET_APPLY_FOR_JOB_REQUEST,
+    data: data,
+    navigation: navigation
+  };
+};
 //Register actions
 
 
@@ -147,7 +165,7 @@ export const getRestaurantAllDishes = () => {
 export const getmoreaboutDish = (id) => {
   return {
     type: types.GET_MORE_ABOUT_DISHES_REQUEST,
-    id:id
+    id: id
   };
 };
 
@@ -157,11 +175,11 @@ export const registerUserReset = () => {
   };
 };
 //Favrite Actions
-export const getFavorite = (index,limit) => {
+export const getFavorite = (index, limit) => {
   // console.log('okokokokoko',data)
   return {
     type: types.GET_FAVORITE_REQUEST,
-    data:{
+    data: {
       index: index,
       limit: limit
     }
@@ -219,7 +237,7 @@ export const getRestaurentDeatil = (data) => {
 };
 //GET_ALL_FAVORITE_RESTAURANT 
 export const getFavorateRestaurent = (data) => {
-   console.log('resssssssss',data)
+  console.log('resssssssss', data)
   return {
     type: types.GET_ALL_FAVORITE_RESTAURANT_REQUEST,
     data
@@ -238,6 +256,17 @@ export const RemoveFavoriteRestaurant = (data) => {
   return {
     type: types.REMOVE_FAVORITE_RESTAURANT_REQUEST,
     data
+  };
+};
+//GetDishByCusineId
+export const GetDishByCusineId = (index,limit,id) => {
+  return {
+    type: types.GET_DISH_BY_CUSINE_ID_REQUEST,
+    data:{
+      index:index,
+      limit:limit,
+      id:id
+    }
   };
 };
 // //Get User categories actions

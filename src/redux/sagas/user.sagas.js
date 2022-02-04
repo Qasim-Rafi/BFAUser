@@ -96,6 +96,40 @@ function* registerUserApi(data, response) {
     // });
   }
 }
+//Applyfor Job
+export function* applyJobSaga() {
+  console.log('saga function Works');
+  yield takeLatest(types.GET_APPLY_FOR_JOB_REQUEST, applyJobApi);
+}
+function* applyJobApi(data, response) {
+  console.log(data, 'action in saga');
+  // alert("response: ", response.success);
+  let body = data.data;
+  let navigation = data.navigation;
+  let formData = true;
+  console.log('bodyyyyyyy:', body);
+  try {
+    const response = yield Api.post(urls.APPLY_FOR_JOBS, body, formData);
+    console.log(response, 'responsefasfsdf');
+    if (response && response.success == true) {
+      yield put({type: types.GET_APPLY_FOR_JOB_SUCCESS, payload: response});
+      console.log('reponsessssss:', response);
+       showMessage({
+      message: "Succes",
+      description: "Submit successfully",
+      type: "info",
+      icon: { icon: "auto", position: "left" },
+    });
+      navigation.goBack();
+    } else {
+      yield put({type: types.GET_APPLY_FOR_JOB_FAILURE, payload: response});
+    }
+  } catch (error) {
+    yield put({type: types.REGISTER_USER_FAILURE, error: error});
+    console.log(error, 'error saga catch');
+  }
+}
+//Verification
 export function* verifyUserSaga() {
   console.log('saga function Works');
   yield takeLatest(types.VERIFY_USER_REQUEST, verifyUserApi);
@@ -437,16 +471,45 @@ function* getRestaurantDishesSagaApi() {
     yield put({type: types.GET_RESTAURANT_ALL_DISHES_FAILURE, error: error});
   }
 }
+//More from Restaurant
+export function* moreFromRestSaga() {
+  yield takeLatest(types.MORE_FROM_RESTAURANT_REQUEST, moreFromRestSagaApi);
+}
+function* moreFromRestSagaApi(data) {
+  const limit = data.data.limit;
+  const index = data.data.index;
+
+  console.log('paramsssssssssss: ', data);
+  const url = urls.RESTAURANT_DISH_ALL + index + '/' + limit;
+  console.log('People Url: ', url);
+  try {
+    const response = yield Api.get(url);
+    if (response && response.data != null) {
+      yield put({
+        type: types.MORE_FROM_RESTAURANT_SUCCESS,
+        payload: response.data,
+      });
+      // navigation.navigate(routeName.Categories,{data:response.data});
+    } else {
+      yield put({type: types.MORE_FROM_RESTAURANT_FAILURE, payload: []});
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({type: types.MORE_FROM_RESTAURANT_FAILURE, error: error});
+  }
+}
 ///FAVORITES
 export function* getFavoritesSaga() {
   yield takeLatest(types.GET_FAVORITE_REQUEST, getFavoritesSagaApi);
 }
 function* getFavoritesSagaApi(data) {
-  console.log(data);
   const limit = data.data.limit;
   const index = data.data.index;
   try {
     const response = yield Api.get(urls.GET_ALL_FAVORITE + index + '/' + limit);
+    console.log('fav resssss', response);
+
     if (response && response.data != null) {
       yield put({
         type: types.GET_FAVORITE_SUCCESS,
@@ -749,11 +812,12 @@ export function* moreaboutDishSaga() {
 }
 function* moreaboutDishSagaApi(data) {
   const id = data.id;
-  console.log('moreabouttttt:', data);
+  // console.log('moreabouttttt:', data);
 
   try {
-    const response = yield Api.get(urls.DISH_CALORIE);
-    if (response && response.data != null) {
+    const response = yield Api.get(urls.DISH_CALORIE + id);
+    console.log('resss', response);
+    if (response && response.success == true) {
       yield put({
         type: types.GET_MORE_ABOUT_DISHES_SUCCESS,
         payload: response.data,
@@ -767,6 +831,40 @@ function* moreaboutDishSagaApi(data) {
 
     // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({type: types.REMOVE_FAVORITE_RESTAURANT_FAILURE, error: 'error'});
+    yield put({type: types.GET_MORE_ABOUT_DISHES_FAILURE, error: error});
+    console.log('error saga', error);
+  }
+}
+//GetDishByCusineId
+export function* getdishbycusineidDataSaga() {
+  yield takeLatest(
+    types.GET_DISH_BY_CUSINE_ID_REQUEST,
+    getdishbycusineidSagaApi,
+  );
+}
+function* getdishbycusineidSagaApi(data) {
+  console.log('cousin by id', data);
+  const id = data.data.id;
+  const index = data.data.index;
+  const limit = data.data.limit;
+
+  try {
+    const response = yield Api.get(
+      urls.GET_DISH_BY_CUSINE_ID + id + '/' + index + '/' + limit,
+    );
+    console.log(response, 'heeeeeeeeee');
+    if (response && response.success == true) {
+      yield put({
+        type: types.GET_DISH_BY_CUSINE_ID_SUCCESS,
+        payload: response.data,
+      });
+      // navigation.navigate(routeName.Categories,{data:response.data});
+    } else {
+      yield put({type: types.GET_DISH_BY_CUSINE_ID_FAILURE, payload: []});
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({type: types.GET_DISH_BY_CUSINE_ID_FAILURE, payload: []});
   }
 }

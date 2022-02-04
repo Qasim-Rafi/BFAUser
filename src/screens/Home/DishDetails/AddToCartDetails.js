@@ -41,7 +41,7 @@ export default function AddToCartDetails(props) {
         color={colors.yellow}
         onSelect={(index, value) => onselect(index, value)}
       >
-        {Object.keys(props.data).length != 0
+        {Object.keys(props.data).length != 0 && props.data.restaurantSoftDrinksList
           ? props.data.restaurantSoftDrinksList.map((item1, index) => {
             return (
               <RadioButton
@@ -86,7 +86,7 @@ export default function AddToCartDetails(props) {
         <ResponsiveText color={colors.white}>{'Extra cheese'}</ResponsiveText>
         <ResponsiveText color={colors.white}>{'Optional'}</ResponsiveText>
       </View>
-      {Object.keys(props.data).length != 0
+      {Object.keys(props.data).length != 0 && props.data.restaurantDishExtraItemList
         ? props.data.restaurantDishExtraItemList.map((item, index) => {
           return (
             <View 

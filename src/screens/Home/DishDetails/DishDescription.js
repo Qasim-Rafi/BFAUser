@@ -54,15 +54,18 @@ export default function DishDescription(props) {
               {props.item.price} $
             </ResponsiveText>
           </View>
+          <TouchableOpacity 
+           onPress={() => navigation.navigate(routeName.RestaurantDetail,props.item.restaurantId)}>
           <Icon
             size={wp(18)}
             margin={[0, 20, 0, 0]}
             source={
-              props.item.RestaurantLogo
-                ? {uri: props.item.RestaurantLogo}
+              props.item.restaurantLogo
+                ? {uri: props.item.restaurantLogo.replace(/\s/g, '')}
                 : globalPath.RESTAURANT_LOGO
             }
           />
+          </TouchableOpacity>
         </View>
 
         <View>{/* <Image style={{ width: 30, height: 25 }} /> */}</View>
@@ -84,7 +87,7 @@ export default function DishDescription(props) {
           }}>
           <Icon
             source={
-              favData.some(o => o.id === props.item.id)
+              props.item.userLiked
                 ? globalPath.F_HEART
                 : globalPath.HEART
             }
