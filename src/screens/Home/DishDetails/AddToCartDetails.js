@@ -39,7 +39,7 @@ export default function AddToCartDetails(props) {
         size={16}
         style={{ marginTop: 10 }}
         color={colors.yellow}
-        onSelect={(index, value) => onselect(index, value)}
+        onSelect={(index, value) => onselect(index, value)} selectedIndex={0}
       >
         {Object.keys(props.data).length != 0 && props.data.restaurantSoftDrinksList
           ? props.data.restaurantSoftDrinksList.map((item1, index) => {

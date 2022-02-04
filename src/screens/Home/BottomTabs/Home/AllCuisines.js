@@ -92,8 +92,9 @@ const AllCuisines = props => {
                 return (
                   <TouchableOpacity
                     onPress={() =>
-                      props.navigation.navigate(routeName.DISH_DETAIL, {
-                        dish: item,
+                      props. navigation.navigate(routeName.ALL_DISHES_LIST, {
+                        id: item.id,
+                        title: item.name,
                       })
                     }>
                     <View
