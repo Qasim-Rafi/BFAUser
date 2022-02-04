@@ -140,7 +140,7 @@ export default function AddToCart({ route, navigation }) {
             </TouchableOpacity>
           </View>
           <View style={{ padding: 20 }}>
-          {Object.keys(route.params.dish).length != 0
+          {Object.keys(route.params.dish).length != 0 && route.params.dish.restaurantDishLinkedItemList
         ? route.params.dish.restaurantDishLinkedItemList.map((item, index) => {
           return (
             <View 

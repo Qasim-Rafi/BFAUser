@@ -87,7 +87,7 @@ export default function DishDescription(props) {
           }}>
           <Icon
             source={
-              favData.some(o => o.id === props.item.id)
+              props.item.userLiked
                 ? globalPath.F_HEART
                 : globalPath.HEART
             }

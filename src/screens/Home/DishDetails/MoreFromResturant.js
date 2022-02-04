@@ -28,7 +28,6 @@ const MoreFromResturant = (props, navigation) => {
     const loading = useSelector(
         state => state.appReducers.moreFromRest.loading,
     );
-    console.log(moreFromRest, "moreeeeeeeee")
     const dispatch = useDispatch();
 
     React.useEffect(() => {

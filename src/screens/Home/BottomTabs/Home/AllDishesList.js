@@ -72,7 +72,7 @@ export default function AllDishesList({ route, navigation }) {
       : title == "People's Choice"
         ? state.appReducers.PeopleChoice.loading
         : title == 'Brunei Food Awards'
-          ? state.appReducers.bruneiFoodsAwards.refreshing
+          ? state.appReducers.bruneiFoodsAwards.loading
           : title == "PG's Favourites"
             ? state.appReducers.favorite.refreshing
             : title == "What's New"
@@ -201,7 +201,7 @@ export default function AllDishesList({ route, navigation }) {
         break;
 
       case "People's Choice":
-        dispatch(getBfaRecommendations(index, 13));
+        dispatch(getPeopleChoice(index, 13));
         break;
 
       case "What's New":
