@@ -868,3 +868,29 @@ function* getdishbycusineidSagaApi(data) {
     yield put({type: types.GET_DISH_BY_CUSINE_ID_FAILURE, payload: []});
   }
 }
+// checkout order
+export function* checkoutOrderSaga() {
+  yield takeLatest(
+    types.CHECKOUT_ORDER_REQUEST,
+    checkoutOrderSagaApi,
+  );
+}
+function* checkoutOrderSagaApi(data) {
+
+  try {
+    const response = yield Api.post(urls.ADD_ORDER,data.data,false);
+    console.log(response, 'check out resssssss');
+    if (response && response.success == true) {
+      // yield put({
+      //   type: types.CHECKOUT_ORDER_FAILURE,
+      //   payload: response.data,
+      // });
+    } else {
+      // yield put({type: types.CHECKOUT_ORDER_FAILURE, payload: []});
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    // yield put({type: types.CHECKOUT_ORDER_FAILURE, payload: []});
+  }
+}

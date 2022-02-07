@@ -30,7 +30,7 @@ export default function AddToCart({route, navigation}) {
   console.log('Add Admin: ', cartList);
   const [visible, setVisible] = React.useState(false);
   const [count, changeCount] = useState(1);
-  const [Selecteddrinks, setSelecteddrinks] = useState(null);
+  const [Selecteddrinks, setSelecteddrinks] = useState(route.params.dish.restaurantSoftDrinksList?route.params.dish.restaurantSoftDrinksList[0]:null);
   const [dishPrice, updateDishPrice] = useState(route.params.dish.price);
   const [total, updateTotal] = useState(0);
   const dispatch = useDispatch();
@@ -38,15 +38,14 @@ export default function AddToCart({route, navigation}) {
   const [extraCheese, setExtrachess] = useState([]);
   const [linkedItem, setlinkedItem] = useState([]);
 
-  const [dish, addDish] = React.useState('');
+  const [dish, addDish] = React.useState(route.params.dish);
   React.useEffect(() => {
-    addDish(route.params.dish);
+    // addDish(route.params.dish);
     updateTotal(dishPrice * count);
-    setSelecteddrinks(route.params.dish.restaurantSoftDrinksList?route.params.dish.restaurantSoftDrinksList[0]:null)
-  });
-  const Drinks = id => {
-    setSelecteddrinks(id);
-    console.log('Idddddddddd:', id);
+  },[count]);
+  const Drinks = value => {
+    setSelecteddrinks(value);
+    console.log('Idddddddddd:', value);
   };
 
   // const data = () => [{

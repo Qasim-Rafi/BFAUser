@@ -15,7 +15,6 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2D1FC2C5BF35412D924F0975 /* Poppins-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C30257234A7C4EF0960E9B96 /* Poppins-BoldItalic.ttf */; };
 		3639D184BAC847E4A3550533 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E817A5BE44BF4BD9842F4877 /* Poppins-Light.ttf */; };
-		3A3128A38E75F6F9CC6EFFDA /* libPods-Bali.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D75358A1C69C493D7353B5F /* libPods-Bali.a */; };
 		3EA07AB1A9C64A48865EEB7B /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C40A37FF0634F59A24D0201 /* Poppins-ThinItalic.ttf */; };
 		4787A699181041D7998427BE /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 983BD3E17CE444099FE31581 /* Poppins-Regular.ttf */; };
 		4E7A539E4B8842EF97607724 /* Poppins-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6A6B998E62A54E62B52C7A45 /* Poppins-LightItalic.ttf */; };
@@ -28,6 +27,7 @@
 		AD47F703B1514C108C37252F /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 188173670ACC4FF88C8FDFC6 /* Poppins-Italic.ttf */; };
 		BCBDD80AEDD94CCEA60B8A06 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 25880E0D8BE442E784832A49 /* Poppins-Medium.ttf */; };
 		C86BBA12219E4E4B8A58A697 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B1ED740150534B02AC02B434 /* Poppins-MediumItalic.ttf */; };
+		D211AC676427CCFC263278A0 /* libPods-Bali.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D75358A1C69C493D7353B5F /* libPods-Bali.a */; };
 		D7FDA02AF9544848AF5B8EC3 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3331A6A717BB41C88D4435BE /* Poppins-Bold.ttf */; };
 		F466843A55D647F580AC4774 /* Poppins-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80E641D7F1BF47F48606AE6A /* Poppins-Black.ttf */; };
 		F832267A273D4DD7ADF27E62 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A580B1608E0B477B8878FB2E /* Poppins-ExtraLight.ttf */; };
@@ -95,7 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A3128A38E75F6F9CC6EFFDA /* libPods-Bali.a in Frameworks */,
+				D211AC676427CCFC263278A0 /* libPods-Bali.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

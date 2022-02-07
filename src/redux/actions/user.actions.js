@@ -219,6 +219,12 @@ export const removeCart = (data) => {
     data,
   };
 };
+export const checkoutOrder = (data) => {
+  return {
+    type: types.CHECKOUT_ORDER_REQUEST,
+    data,
+  };
+};
 //What's new
 export const getwhatsNew = (index, limit) => {
   return {

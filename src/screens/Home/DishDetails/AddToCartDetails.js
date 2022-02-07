@@ -10,14 +10,10 @@ import CheckBox from '../../../components/Static/CheckBox';
 export default function AddToCartDetails(props) {
   const onselect = (index, value) => {
     let drink = value.id
-    props.SelectedDrinks(value.id)
+    props.SelectedDrinks(value)
     console.log("drink:", drink)
-    console.log("d:", props.drink)
   }
-  // const ExtraChees=(active,index)=>{
-  //   props.data.restaurantDishExtraItemList[index].active=!active
-  //   console.log('okokoko',props.data.restaurantDishExtraItemList[index].active)
-  // }
+  
   return (
     <View style={{ margin: 20 }}>
       <View
