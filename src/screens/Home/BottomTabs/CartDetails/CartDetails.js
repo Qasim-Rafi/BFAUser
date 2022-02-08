@@ -236,7 +236,7 @@ const CartDetails = ({navigation}) => {
                               size={3.5}
                               color={colors.white}
                               margin={[0, 0, 0, 10]}>
-                              {item.cusineName}
+                              {item.dishName}
                             </ResponsiveText>
                             <ResponsiveText
                               size={2.5}
