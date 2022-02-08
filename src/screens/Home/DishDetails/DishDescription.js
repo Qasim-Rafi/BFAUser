@@ -81,13 +81,13 @@ export default function DishDescription(props) {
         <TouchableOpacity
           style={{alignItems: 'center'}}
           onPress={() => {
-            !favData.some(o => o.id === props.item.id)
-              ? dispatch(addFavorite(props.item))
-              : dispatch(onRemoveFavorite(props.item));
+            favData.some(o => o.id === props.item.id) || props.item.userLiked 
+              ? dispatch(onRemoveFavorite(props.item))
+              : dispatch(addFavorite(props.item));
           }}>
           <Icon
             source={
-              favData.some(o => o.id === props.item.id)
+              props.item.userLiked || favData.some(o => o.id === props.item.id)
                 ? globalPath.F_HEART
                 : globalPath.HEART
             }

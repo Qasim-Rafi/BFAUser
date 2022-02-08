@@ -72,7 +72,7 @@ export default function AllDishesList({ route, navigation }) {
       : title == "People's Choice"
         ? state.appReducers.PeopleChoice.loading
         : title == 'Brunei Food Awards'
-          ? state.appReducers.bruneiFoodsAwards.refreshing
+          ? state.appReducers.bruneiFoodsAwards.loading
           : title == "PG's Favourites"
             ? state.appReducers.favorite.refreshing
             : title == "What's New"
@@ -85,7 +85,10 @@ export default function AllDishesList({ route, navigation }) {
   );
   React.useEffect(() => {
     onLoad();
-    console.log('aja data', data.filter(v => v.cusineName == title));
+    console.log(
+      'aja data',
+      data.filter(v => v.cusineName == title),
+    );
   }, []);
   const renderItem = ({ item }) => (
     <TouchableOpacity
@@ -109,13 +112,7 @@ export default function AllDishesList({ route, navigation }) {
             justifyContent: 'space-between',
             backgroundColor: 'rgba(0,0,0,1)',
           }}
-
-          source={
-            item.url ? item.url : {
-              uri: item.imageDataB, priority: FastImage.priority.high
-            }}
-
-        >
+          source={item.url ? item.url : { uri: item.imageDataB }}>
           {title == "PG's Favourites" ? (
             <Icon size={15} source={globalPath.F_HEART} />
           ) : null}
@@ -206,7 +203,7 @@ export default function AllDishesList({ route, navigation }) {
         break;
 
       case "People's Choice":
-        dispatch(getBfaRecommendations(index, 13));
+        dispatch(getPeopleChoice(index, 13));
         break;
 
       case "What's New":
@@ -246,14 +243,16 @@ export default function AllDishesList({ route, navigation }) {
                   {loading ? '' : 'No record found against' + ' ' + title}
                 </ResponsiveText>
               </View>
+            ) : route.params.id ? (
+              data.filter(v => v.cusineName == title).length == 0 ? (
+                <View style={{ alignItems: 'center' }}>
+                  <ResponsiveText color={colors.white}>
+                    {loading ? '' : 'No record found against' + ' ' + title}
+                  </ResponsiveText>
+                </View>
+              ) : null
             ) : null}
-            {route.params.id ? data.filter(v => v.cusineName == title).length == 0 ?
-              <View style={{ alignItems: 'center' }}>
-                <ResponsiveText color={colors.white}>
-                  {loading ? '' : 'No record found against' + ' ' + title}
-                </ResponsiveText>
-              </View>
-              : null : null}
+
             <View
               style={{
                 position: 'absolute',

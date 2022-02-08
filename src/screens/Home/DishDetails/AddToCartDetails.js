@@ -10,14 +10,10 @@ import CheckBox from '../../../components/Static/CheckBox';
 export default function AddToCartDetails(props) {
   const onselect = (index, value) => {
     let drink = value.id
-    props.SelectedDrinks(value.id)
+    props.SelectedDrinks(value)
     console.log("drink:", drink)
-    console.log("d:", props.drink)
   }
-  // const ExtraChees=(active,index)=>{
-  //   props.data.restaurantDishExtraItemList[index].active=!active
-  //   console.log('okokoko',props.data.restaurantDishExtraItemList[index].active)
-  // }
+  
   return (
     <View style={{ margin: 20 }}>
       <View
@@ -39,9 +35,9 @@ export default function AddToCartDetails(props) {
         size={16}
         style={{ marginTop: 10 }}
         color={colors.yellow}
-        onSelect={(index, value) => onselect(index, value)}
+        onSelect={(index, value) => onselect(index, value)} selectedIndex={0}
       >
-        {Object.keys(props.data).length != 0
+        {Object.keys(props.data).length != 0 && props.data.restaurantSoftDrinksList
           ? props.data.restaurantSoftDrinksList.map((item1, index) => {
             return (
               <RadioButton
@@ -86,7 +82,7 @@ export default function AddToCartDetails(props) {
         <ResponsiveText color={colors.white}>{'Extra cheese'}</ResponsiveText>
         <ResponsiveText color={colors.white}>{'Optional'}</ResponsiveText>
       </View>
-      {Object.keys(props.data).length != 0
+      {Object.keys(props.data).length != 0 && props.data.restaurantDishExtraItemList
         ? props.data.restaurantDishExtraItemList.map((item, index) => {
           return (
             <View 

@@ -37,12 +37,14 @@ const TopUp = (props) => {
     const [isModalVisible, setModalVisible] = useState(false);
     const [isModal2Visible, setModal2Visible] = useState(false);
     const [checked, setCheck] = useState(false);
+    
 
     const topUpAmountComing = route.params
     const topUpAmount = parseFloat(topUpAmountComing).toFixed(2)
 
     const [number, setNumber] = useState(0)
     const [numeric, setNumeric] = useState(true)
+    const [numPad, setNumPad] = useState(numeric);
 
     // navigation.setOptions({
     //     headerShown:true,
@@ -213,14 +215,20 @@ const TopUp = (props) => {
                     </View>
 
                     : <View style={styles.centeredModalView} >
-                        <View style={{ flexDirection: 'row' }} >
-                            <TouchableOpacity style={[styles.keyBoardSelector, { borderTopLeftRadius: 10, borderRightWidth: 1 }]} onPress={() => { setNumeric(true); setNumber(0) }} >
-                                <Text style={{ fontSize: wp(6), color: colors.white }} >Numeric</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={[styles.keyBoardSelector, { borderTopRightRadius: 10 }]} onPress={() => { setNumeric(false); setNumber(0); }} >
-                                <Text style={{ fontSize: wp(6), color: colors.white }} >Bcoin</Text>
-                            </TouchableOpacity>
-                        </View>
+                        <View style={{flexDirection:'row'}} >
+                                <TouchableOpacity 
+                                    style={[styles.keyBoardSelector,{backgroundColor:numPad? colors.yellow1: colors.lightBlack,borderTopLeftRadius:10,borderRightWidth:1}]} 
+                                    onPress={()=>{setNumeric(true);setNumber(0);setNumPad(true)}} 
+                                >
+                                    <Text style={{fontSize:wp(7),color:colors.white}} >Numeric</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity 
+                                    style={[styles.keyBoardSelector,{backgroundColor:numPad? colors.lightBlack: colors.yellow1,borderTopRightRadius:10}]} 
+                                    onPress={()=>{setNumeric(false);setNumber(0);setNumPad(false)}} 
+                                >
+                                    <Text style={{fontSize:wp(7),color:colors.white}} >Bcoin</Text>
+                                </TouchableOpacity>
+                            </View>
 
                         {!numeric ?
                             <View style={styles.modalView} >

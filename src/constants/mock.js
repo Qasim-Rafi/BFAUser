@@ -90,7 +90,13 @@ export const promosBannerFakeDATA = [
     description: 'KFC',
     quantity: 1,
     price: '8.00',
-    url: require('../assets/fake_Images/KFC.jpg'),
+    url: require('../assets/fake_Images/cuisine-Pakistani.png'),
+  },
+  {
+    id: 2,
+    title: 'Bruneian',
+    description: 'Special sushi',
+    url: require('../assets/fake_Images/dishes-1.png'),
   },
   {
     id: 6,
