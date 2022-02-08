@@ -95,8 +95,8 @@ const CartDetails = ({navigation}) => {
     setRandom(cartList);
     dispatch(retriveCart(cartList));
   };
-  const submitOrder = async(BrachId) => {
-     var userId=await AsyncStorage.getItem('@userId')
+  const submitOrder = async BrachId => {
+    var userId = await AsyncStorage.getItem('@userId');
     const addOrderDetail = [];
     const orderDetailExtraItemList = [];
     const orderDetailLinkedItemList = [];
@@ -105,28 +105,32 @@ const CartDetails = ({navigation}) => {
         addOrderDetail.push({
           id: 0,
           restaurantDishId: obj.id,
-          addOnId: obj.selectedDrink.id,
+          addOnId: obj.selectedDrink ? obj.selectedDrink.id : 0,
           orderId: 0,
           quantity: obj.quantity,
           updatedDateTime: '2022-02-07T08:43:59.247Z',
           updatebyId: 0,
         });
-        obj.extraCheeses.forEach(e => {
-          orderDetailExtraItemList.push({
-            restaurantDishExtraItemId: e.dishExtraItemId,
-            orderDetailId: 0,
-            createdById: 0,
-            createdDateTime: '2022-02-07T08:43:59.247Z',
+        if (obj.extraCheeses.length > 0) {
+          obj.extraCheeses.forEach(e => {
+            orderDetailExtraItemList.push({
+              restaurantDishExtraItemId: e.dishExtraItemId,
+              orderDetailId: 0,
+              createdById: 0,
+              createdDateTime: '2022-02-07T08:43:59.247Z',
+            });
           });
-        });
-        obj.linkItems.forEach(e => {
-          orderDetailLinkedItemList.push({
-            restaurantDishLinkedItemId: e.dishLinkedItemId,
-            orderDetailId: 0,
-            createdById: 0,
-            createdDateTime: '2022-02-07T08:43:59.247Z',
+        }
+        if (obj.linkItems.length > 0) {
+          obj.linkItems.forEach(e => {
+            orderDetailLinkedItemList.push({
+              restaurantDishLinkedItemId: e.dishLinkedItemId,
+              orderDetailId: 0,
+              createdById: 0,
+              createdDateTime: '2022-02-07T08:43:59.247Z',
+            });
           });
-        });
+        }
       }
     });
     const obj = {
@@ -137,7 +141,7 @@ const CartDetails = ({navigation}) => {
       orderStatus: 2,
       couponNo: 'string',
       orderPlacedfrom: 'lahore',
-     // restaurantDishId: 0,
+      // restaurantDishId: 0,
       remarks: 'ok',
       createdById: 0,
       createdDateTime: '2022-02-07T08:43:59.247Z',
