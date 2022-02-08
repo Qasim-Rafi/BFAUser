@@ -107,10 +107,15 @@ export default function AllDishesList({ route, navigation }) {
             padding: 5,
             overflow: 'hidden',
             justifyContent: 'space-between',
-
             backgroundColor: 'rgba(0,0,0,1)',
           }}
-          source={item.url ? item.url : { uri: item.imageDataB }}>
+
+          source={
+            item.url ? item.url : {
+              uri: item.imageDataB, priority: FastImage.priority.high
+            }}
+
+        >
           {title == "PG's Favourites" ? (
             <Icon size={15} source={globalPath.F_HEART} />
           ) : null}
@@ -149,9 +154,9 @@ export default function AllDishesList({ route, navigation }) {
               {item.titleR}
             </ResponsiveText> */}
           </View>
-        </ImageBackground>
+        </FastImage>
       </View>
-    </TouchableOpacity>
+    </TouchableOpacity >
   );
   const listHead = () => (
     <View>

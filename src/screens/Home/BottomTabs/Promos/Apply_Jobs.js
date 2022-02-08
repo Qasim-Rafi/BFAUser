@@ -9,48 +9,61 @@ import {
 import Header from '../../../../components/Header';
 import RnButton from '../../../../components/RnButton';
 import ResponsiveText from '../../../../components/RnText';
-import {colors} from '../../../../constants/colorsPallet';
-import {globalPath} from '../../../../constants/globalPath';
-import {hp, wp} from '../../../../helpers/Responsiveness';
+import { colors } from '../../../../constants/colorsPallet';
+import { globalPath } from '../../../../constants/globalPath';
+import { hp, wp } from '../../../../helpers/Responsiveness';
 import Icon from '../../../../components/Icon';
+import { useSelector } from 'react-redux';
 
 import FlashMessage from 'react-native-flash-message';
 import DocumentPicker from 'react-native-document-picker';
-import {set} from 'react-native-reanimated';
-
-import {applyForJob} from '../../../../redux/actions/user.actions';
-import {useDispatch} from 'react-redux';
+import { set } from 'react-native-reanimated';
+import {
+  BallIndicator,
+  BarIndicator,
+  DotIndicator,
+  MaterialIndicator,
+  PacmanIndicator,
+  PulseIndicator,
+  SkypeIndicator,
+  UIActivityIndicator,
+  WaveIndicator,
+} from 'react-native-indicators';
+import { applyForJob } from '../../../../redux/actions/user.actions';
+import { useDispatch } from 'react-redux';
 
 // Pick a single file
-export default function Apply_Jobs({navigation, route}) {
-  console.log(':ressssss::', route.params.data.restaurantId);
+export default function Apply_Jobs({ navigation, route }) {
+  console.log(':ressssss::', route.params.data);
   const [data, setdata] = React.useState(route.params.data);
   const [coverletter, setcoverletter] = React.useState('');
   const dropdownRef = React.useRef(null);
   const [file, setFile] = React.useState(null);
   const dispatch = useDispatch();
-
+  const loading = useSelector(
+    state => state.appReducers.applyForJob.loading,
+  );
   const validation = () => {
     if (coverletter === '') {
       dropdownRef.current.showMessage({
         message: 'Error',
         description: 'cover letter Required',
         type: 'danger',
-        icon: {icon: 'auto', position: 'left'},
+        icon: { icon: 'auto', position: 'left' },
       });
     } else if (file === null) {
       dropdownRef.current.showMessage({
         message: 'Error',
         description: 'CV Required',
         type: 'danger',
-        icon: {icon: 'auto', position: 'left'},
+        icon: { icon: 'auto', position: 'left' },
       });
     } else {
       var formdata = new FormData();
       formdata.append('CoverLetter', coverletter);
       formdata.append('jobId', route.params.data.id);
       formdata.append('File', file);
-      formdata.append('restaurantId', route.params.data.restaurantId);
+      formdata.append('restaurantBranchId', route.params.data.restaurantBranchId);
       formdata.append('id', '0');
       formdata.append('createdById', '0');
       dispatch(applyForJob(formdata, navigation));
@@ -92,7 +105,7 @@ export default function Apply_Jobs({navigation, route}) {
           <Icon source={globalPath.BACK_BLACK_ARROW} />
         </TouchableOpacity>
       </View>
-      <View style={{margin: 20, flex: 0.9}}>
+      <View style={{ margin: 20, flex: 0.9 }}>
         <ResponsiveText size={4} color={colors.yellow}>
           {' '}
           Job Details
@@ -112,7 +125,7 @@ export default function Apply_Jobs({navigation, route}) {
             <TextInput
               placeholderTextColor={colors.grey}
               editable={false}
-              style={{margin: 5, color: colors.grey}}
+              style={{ margin: 5, color: colors.grey }}
               value={data.jobTitle}
             />
           </View>
@@ -131,7 +144,7 @@ export default function Apply_Jobs({navigation, route}) {
               multiline={true}
               placeholderTextColor={colors.grey}
               editable={false}
-              style={{margin: 5, color: colors.grey}}
+              style={{ margin: 5, color: colors.grey }}
               value={data.jobDescription}
             />
           </View>
@@ -159,7 +172,7 @@ export default function Apply_Jobs({navigation, route}) {
             editable={true}
             value={coverletter}
             onChangeText={setcoverletter}
-            style={{margin: 5, color: colors.grey}}
+            style={{ margin: 5, color: colors.grey }}
             placeholder="Introduce yourself"
           />
         </View>
@@ -168,7 +181,7 @@ export default function Apply_Jobs({navigation, route}) {
             {' '}
             Upload CV
           </ResponsiveText>
-          <View style={{flexDirection: 'row'}}>
+          <View style={{ flexDirection: 'row' }}>
             <View
               style={{
                 backgroundColor: colors.black2,
@@ -197,16 +210,19 @@ export default function Apply_Jobs({navigation, route}) {
             </TouchableOpacity>
           </View>
         </View>
-        <View
-          style={{
-            marginTop: 30,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <RnButton onPress={() => validation()} style={styles.btn_style}>
-            <ResponsiveText size={4}>Submit</ResponsiveText>
-          </RnButton>
-        </View>
+
+
+        <TouchableOpacity style={styles.signin} onPress={() => validation()}>
+          {loading == true ?
+            <  SkypeIndicator count={5} color={colors.black} size={30} />
+            :
+            <ResponsiveText color={colors.black} size={4}>
+              Submit
+            </ResponsiveText>
+          }
+        </TouchableOpacity>
+
+
       </View>
       <FlashMessage ref={dropdownRef} />
     </View>
@@ -227,5 +243,16 @@ const styles = StyleSheet.create({
     backgroundColor: colors.yellow,
     paddingVertical: 10,
     width: wp(80),
+  },
+  signin: {
+    backgroundColor: colors.yellow,
+    width: wp(80),
+    height: hp(6),
+    borderRadius: 7, alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+    marginTop: 30,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
 });
