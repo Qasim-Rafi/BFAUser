@@ -52,7 +52,7 @@ const Menu = (props) => {
                 flexDirection: 'row',
                 overflow: 'hidden',
               }} onPress={() =>
-                props.navigation.navigate(routeName.DISH_DETAIL, {dish: data})
+                props.navigation.push(routeName.DISH_DETAIL, {dish: data})
               }>
               <FastImage style={{width: '20%', height: '100%'}} source={{uri:data.fullPath}} />
               

@@ -22,7 +22,7 @@ import FlashMessage, {
   showMessage,
   hideMessage,
 } from 'react-native-flash-message';
-import { useFocusEffect } from '@react-navigation/native';
+
 export default function DishDetails({route, navigation}) {
   const [dish, addDish] = React.useState({});
   const dropdownRef = React.useRef(null);
@@ -31,22 +31,10 @@ export default function DishDetails({route, navigation}) {
 
   const [showCalories, setShowCalories] = React.useState(false);
   React.useEffect(() => {
-   
-  }, [navigation]);
-  useFocusEffect(
-    React.useCallback(() => {
+    addDish(route.params.dish);
+    console.log('detail dataaaaaaa', route.params);
+  }, []);
 
-      addDish(route.params.dish);
-      console.log('detail dataaaaaaa', route.params);
-
-      return () => {
-        addDish([])
-       // alert('Screen was unfocused');
-        // Useful for cleanup functions
-
-      };
-    }, [dish])
-  );
   const MoreFrom = data => {
     // console.log('More Fromm', data);
     addDish(data);
