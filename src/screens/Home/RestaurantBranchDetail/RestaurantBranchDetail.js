@@ -45,7 +45,7 @@ export default function RestaurantBranchDetailScreen({ navigation, route }) {
   return (
     <View style={{ backgroundColor: colors.black3, flex: 1 }}>
       <View style={styles.headerImage}>
-        <ImageHeader navigation={navigation} img={data.imageData} />
+        <ImageHeader navigation={navigation} img={data.restaurantLogo} />
       </View>
       <View>
         <View
