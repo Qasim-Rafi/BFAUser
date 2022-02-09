@@ -103,31 +103,21 @@ const CartDetails = ({navigation}) => {
     cartList.forEach(obj => {
       if (obj.restaurantBranchId === BrachId) {
         addOrderDetail.push({
-          id: 0,
           restaurantDishId: obj.id,
-          addOnId: obj.selectedDrink ? obj.selectedDrink.id : 0,
-          orderId: 0,
+          addOnId: obj.selectedDrink ? obj.selectedDrink.softDrinkId : 1,
           quantity: obj.quantity,
-          updatedDateTime: '2022-02-07T08:43:59.247Z',
-          updatebyId: 0,
         });
         if (obj.extraCheeses.length > 0) {
           obj.extraCheeses.forEach(e => {
             orderDetailExtraItemList.push({
-              restaurantDishExtraItemId: e.dishExtraItemId,
-              orderDetailId: 0,
-              createdById: 0,
-              createdDateTime: '2022-02-07T08:43:59.247Z',
+              restaurantDishExtraItemId: e.id,
             });
           });
         }
         if (obj.linkItems.length > 0) {
           obj.linkItems.forEach(e => {
             orderDetailLinkedItemList.push({
-              restaurantDishLinkedItemId: e.dishLinkedItemId,
-              orderDetailId: 0,
-              createdById: 0,
-              createdDateTime: '2022-02-07T08:43:59.247Z',
+              restaurantDishLinkedItemId: e.id,
             });
           });
         }
@@ -135,23 +125,17 @@ const CartDetails = ({navigation}) => {
     });
     const obj = {
       id: 0,
-      customerId: 83,
-      orderDateTime: '2022-02-07T08:43:59.247Z',
+      customerId: userId,
       status: 1,
       orderStatus: 2,
-      couponNo: 'string',
-      orderPlacedfrom: 'lahore',
-      // restaurantDishId: 0,
+      couponNo: 'NO',
+      orderPlacedfrom: 'Application',
       remarks: 'ok',
-      createdById: 0,
-      createdDateTime: '2022-02-07T08:43:59.247Z',
       restaurantBranchId: BrachId,
-      amount: 0,
+      amount: 10,
       addOrderDetail: addOrderDetail,
       orderDetailExtraItemList: orderDetailExtraItemList,
       orderDetailLinkedItemList: orderDetailLinkedItemList,
-      updatedDateTime: '2022-02-07T08:43:59.247Z',
-      updatebyId: 0,
     };
     console.log('objjjjjjjjjjjj,obj', obj);
     dispatch(checkoutOrder(obj));
@@ -252,7 +236,7 @@ const CartDetails = ({navigation}) => {
                               size={3.5}
                               color={colors.white}
                               margin={[0, 0, 0, 10]}>
-                              {item.cusineName}
+                              {item.dishName}
                             </ResponsiveText>
                             <ResponsiveText
                               size={2.5}
