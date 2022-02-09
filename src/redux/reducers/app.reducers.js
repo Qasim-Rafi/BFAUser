@@ -106,6 +106,10 @@ const initialState = {
     loading: false,
     data: [],
   },
+  getOrders: {
+    loading: false,
+    data: [],
+  }
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -183,6 +187,32 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         cusineDetail: {
           ...state.cusineDetail,
+          loading: false,
+        },
+      };
+    //Get Order
+    case types.GET_ORDER_REQUEST:
+      return {
+        ...state,
+        getOrders: {
+          ...state.getOrders,
+          loading: true,
+        },
+      };
+    case types.GET_ORDER_SUCCESS:
+      return {
+        ...state,
+        getOrders: {
+          ...state.getOrders,
+          data: action.payload,
+          loading: false,
+        },
+      };
+    case types.GET_ORDER_FAILURE:
+      return {
+        ...state,
+        getOrders: {
+          ...state.getOrders,
           loading: false,
         },
       };
@@ -778,32 +808,32 @@ export const appReducers = (state = initialState, action) => {
           loading: false,
         },
       };
-      //GetDishByCusineId
-      case types.GET_DISH_BY_CUSINE_ID_REQUEST:
-        return {
-          ...state,
-          getdishbycusineid: {
-            ...state.getdishbycusineid,
-            refreshing: true,
-          },
-        };
-      case types.GET_DISH_BY_CUSINE_ID_SUCCESS:
-        return {
-          ...state,
-          getdishbycusineid: {
-            ...state.getdishbycusineid,
-            data: [...state.getdishbycusineid.data, ...action.payload],
-            refreshing: false,
-          },
-        };
-      case types.GET_DISH_BY_CUSINE_ID_FAILURE:
-        return {
-          ...state,
-          getdishbycusineid: {
-            ...state.getdishbycusineid,
-            refreshing: false,
-          },
-        };
+    //GetDishByCusineId
+    case types.GET_DISH_BY_CUSINE_ID_REQUEST:
+      return {
+        ...state,
+        getdishbycusineid: {
+          ...state.getdishbycusineid,
+          refreshing: true,
+        },
+      };
+    case types.GET_DISH_BY_CUSINE_ID_SUCCESS:
+      return {
+        ...state,
+        getdishbycusineid: {
+          ...state.getdishbycusineid,
+          data: [...state.getdishbycusineid.data, ...action.payload],
+          refreshing: false,
+        },
+      };
+    case types.GET_DISH_BY_CUSINE_ID_FAILURE:
+      return {
+        ...state,
+        getdishbycusineid: {
+          ...state.getdishbycusineid,
+          refreshing: false,
+        },
+      };
     default:
       return state;
   }

@@ -32,12 +32,12 @@ import { Item } from 'react-native-paper/lib/typescript/components/List/List';
 
 export default function RestaurantBranchDetailScreen({ navigation, route }) {
   const [activeTab, setActiveTab] = React.useState(MenuSectionButtons[0].id);
-  // const [activeTab, setActiveTab] = React.useState(myListingTabs[3].id);
+  // const [activeTab, setActiveTab] = React.useState(myListingTabs[3].id); 
   const dispatch = useDispatch();
   const data = useSelector(state => state.appReducers.restaurantDetail.data);
   const loading = useSelector(state => state.appReducers.restaurantDetail.refreshing);
   React.useEffect(() => {
-    dispatch(getRestaurentDeatil(31));
+    dispatch(getRestaurentDeatil(route.params));
     //route.params.restaurantId
     console.log(route.params, 'params colsole');
   }, []);
@@ -81,7 +81,7 @@ export default function RestaurantBranchDetailScreen({ navigation, route }) {
       {Object.keys(data).length != 0 ? (
         <View
           style={{ height: hp(70), paddingHorizontal: 20, paddingVertical: 10 }}>
-          {activeTab === 1 && <Info data={data.restaurantBranchesAlldataforappList[0]} />}
+          {activeTab === 1 && <Info data={data.restaurantBranchesAlldataforappList[0]} logo={data.restaurantLogo} />}
           {activeTab === 2 && <PromosBanner />}
           {activeTab === 3 && <Menu navigation={navigation} data={data.restaurantBranchesAlldataforappList[0].restaurantMenulist} />}
           {activeTab === 4 && <BranchesDetail navigation={navigation} data={data.restaurantBranchesAlldataforappList} />}

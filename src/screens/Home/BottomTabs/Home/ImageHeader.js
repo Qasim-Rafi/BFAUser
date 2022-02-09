@@ -16,7 +16,7 @@ import IMG from '../../../../assets/fake_Images/salmon_asparagus.jpg'
 const ImageHeader = (props) => {
   return (
     <View style={styles.container}>
-      <ImageBackground imageStyle={{ opacity: 0.8, }} source={props.img ? { uri: props.img } : require('../../../../assets/fake_Images/Home-Recommendations-1.png')} resizeMode="cover" style={styles.image}>
+      <ImageBackground imageStyle={{ opacity: 0.8, }} source={props.img ? { uri: props.img.replace(/\s/g, '') } : require('../../../../assets/fake_Images/Home-Recommendations-1.png')} resizeMode="cover" style={styles.image}>
         <TouchableOpacity onPress={() => { props.navigation.goBack() }} style={{ margin: 20, backgroundColor: colors.yellow, paddingVertical: 10, alignSelf: 'flex-start', paddingHorizontal: 10, borderRadius: 25 }}>
           <Icon source={globalPath.BACK_ARROW} />
         </TouchableOpacity>
