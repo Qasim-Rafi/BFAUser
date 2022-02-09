@@ -17,6 +17,7 @@ import {
 import {hp, wp} from '../../../helpers/Responsiveness';
 import { useCallback } from 'react';
 import { routeName } from '../../../constants/routeName';
+import FastImage from 'react-native-fast-image';
 const Menu = (props) => {
   const scrollRef = useRef(null);
   const [activeTab, setActiveTab] = React.useState(BranchMenuSectionsData[0].id);
@@ -51,7 +52,7 @@ const Menu = (props) => {
                 flexDirection: 'row',
                 overflow: 'hidden',
               }}>
-              <Image style={{width: '20%', height: '100%'}} source={{uri:data.fullPath}} />
+              <FastImage style={{width: '20%', height: '100%'}} source={{uri:data.fullPath}} />
               
               <View style={{flex: 1, marginLeft: 10}}>
                 <View

@@ -55,7 +55,7 @@ export default function DishDescription(props) {
             </ResponsiveText>
           </View>
           <TouchableOpacity 
-           onPress={() => navigation.navigate(routeName.RestaurantDetail,props.item.restaurantId)}>
+           onPress={() => navigation.navigate(routeName.RestaurantDetail,props.item.restaurantBranchId)}>
           <Icon
             size={wp(18)}
             margin={[0, 20, 0, 0]}
