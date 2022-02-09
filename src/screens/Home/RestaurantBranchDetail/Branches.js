@@ -48,9 +48,7 @@ const BranchesDetail = props => {
                   marginTop: 10,
                   padding: 5,
                 }}
-                onPress={() =>
-                  props.navigation.navigate(routeName.DISH_DETAIL, {dish: item})
-                }>
+                >
                 <Icon source={item.url} borderRadius={5} size={70} />
 
                 <View
