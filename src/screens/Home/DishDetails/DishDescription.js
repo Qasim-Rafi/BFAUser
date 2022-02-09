@@ -54,17 +54,22 @@ export default function DishDescription(props) {
               {props.item.price} $
             </ResponsiveText>
           </View>
-          <TouchableOpacity 
-           onPress={() => navigation.navigate(routeName.RestaurantDetail,props.item.restaurantBranchId)}>
-          <Icon
-            size={wp(18)}
-            margin={[0, 20, 0, 0]}
-            source={
-              props.item.restaurantLogo
-                ? {uri: props.item.restaurantLogo.replace(/\s/g, '')}
-                : globalPath.RESTAURANT_LOGO
-            }
-          />
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate(
+                routeName.RestaurantDetail,
+                props.item.restaurantBranchId,
+              )
+            }>
+            <Icon
+              size={wp(18)}
+              margin={[0, 20, 0, 0]}
+              source={
+                props.item.restaurantLogo
+                  ? {uri: props.item.restaurantLogo.replace(/\s/g, '')}
+                  : globalPath.RESTAURANT_LOGO
+              }
+            />
           </TouchableOpacity>
         </View>
 
@@ -81,7 +86,7 @@ export default function DishDescription(props) {
         <TouchableOpacity
           style={{alignItems: 'center'}}
           onPress={() => {
-            favData.some(o => o.id === props.item.id) || props.item.userLiked 
+            favData.some(o => o.id === props.item.id) || props.item.userLiked
               ? dispatch(onRemoveFavorite(props.item))
               : dispatch(addFavorite(props.item));
           }}>
@@ -149,5 +154,6 @@ const styles = StyleSheet.create({
   },
   priceDesc: {
     padding: 20,
+    flex:4
   },
 });

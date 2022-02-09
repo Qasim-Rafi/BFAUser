@@ -42,7 +42,7 @@ const Menu = (props) => {
         </ResponsiveText>
         {item.dishlist.map(data => {
           return (
-            <View
+            <TouchableOpacity
               style={{
                 height: wp(20),
                 backgroundColor: colors.lightBlack,
@@ -51,7 +51,9 @@ const Menu = (props) => {
                 padding: 5,
                 flexDirection: 'row',
                 overflow: 'hidden',
-              }}>
+              }} onPress={() =>
+                props.navigation.navigate(routeName.DISH_DETAIL, {dish: data})
+              }>
               <FastImage style={{width: '20%', height: '100%'}} source={{uri:data.fullPath}} />
               
               <View style={{flex: 1, marginLeft: 10}}>
@@ -70,7 +72,6 @@ const Menu = (props) => {
                     margin={[0, 0, 6, 0]}
                     // maxWidth={'60%'}
                   >
-                    ...................................................................................................
                   </ResponsiveText>
                 </View>
                 <ResponsiveText color={'grey'} numberOfLines={2} size={2.7}>
@@ -85,7 +86,7 @@ const Menu = (props) => {
                   ${data.price}
                 </ResponsiveText>
               </View>
-            </View>
+            </TouchableOpacity>
           );
         })}
       </View>
