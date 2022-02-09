@@ -224,33 +224,6 @@ function* addOrderApi(data) {
 }
 
 //Get user Awards saga
-export function* getOrderSaga() {
-  yield takeLatest(types.GET_ORDER_REQUEST, getOrderSagaApi);
-}
-function* getOrderSagaApi(data) {
-  const limit = data.data.limit;
-  const index = data.data.index;
-  console.log("limitttttttt:", limit)
-  try {
-    const url = urls.RESTAURANT_DISH_ALL + index + '/' + limit;
-    console.log('Cuisines Url: ', url);
-    const response = yield Api.get(url);
-    if (response && response.data != null) {
-      yield put({
-        type: types.GET_ORDER_SUCCESS,
-        payload: response.data,
-      });
-      // navigation.navigate(routeName.Categories,{data:response.data});
-    } else {
-      yield put({ type: types.GET_ORDER_FAILURE, error: error });
-    }
-
-    // dispatch a success action to the store with the new data object
-  } catch (error) {
-    yield put({ type: types.GET_ORDER_FAILURE, error: error });
-  }
-}
-//Get Order
 export function* getBruneiFoodsAwardsSaga() {
   yield takeLatest(types.GET_BRUNEI_FOOD_AWARDS_REQUEST, getFoodsAwardsSagaApi);
 }
@@ -905,7 +878,7 @@ export function* checkoutOrderSaga() {
 function* checkoutOrderSagaApi(data) {
 
   try {
-    const response = yield Api.post(urls.ADD_ORDER, data.data, false);
+    const response = yield Api.post(urls.ADD_ORDER,data.data,false);
     console.log(response, 'check out resssssss');
     if (response && response.success == true) {
       // yield put({

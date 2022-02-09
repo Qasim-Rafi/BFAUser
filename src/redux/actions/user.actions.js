@@ -25,16 +25,6 @@ export const moreFromRestaurant = (index, limit) => {
     }
   };
 };
-//GET ORDER
-export const getOrders = (index, limit) => {
-  return {
-    type: types.GET_ORDER_REQUEST,
-    data: {
-      index: index,
-      limit: limit
-    }
-  };
-};
 //APPLY FOR JOB
 
 export const applyForJob = (data, navigation) => {
@@ -275,13 +265,13 @@ export const RemoveFavoriteRestaurant = (data) => {
   };
 };
 //GetDishByCusineId
-export const GetDishByCusineId = (index, limit, id) => {
+export const GetDishByCusineId = (index,limit,id) => {
   return {
     type: types.GET_DISH_BY_CUSINE_ID_REQUEST,
-    data: {
-      index: index,
-      limit: limit,
-      id: id
+    data:{
+      index:index,
+      limit:limit,
+      id:id
     }
   };
 };

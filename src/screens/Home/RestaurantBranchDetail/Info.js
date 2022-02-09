@@ -17,7 +17,7 @@ const Info = (props) => {
   console.log('okokoko', props.data)
   return (
     <ScrollView>
-      <Restaurant_Description data={data} logo={props.logo} />
+      <Restaurant_Description data={data} />
       <View>
         <View style={{ marginHorizontal: 20, marginVertical: 10 }}>
           <ResponsiveText size={4} color={colors.white} >Facilities</ResponsiveText>
@@ -40,15 +40,18 @@ const Info = (props) => {
             />
           </View> */}
         </View>
-        <View>
-          <TimeTable data={data.restaurantOperationalHoursList} />
-
-        </View>
-        <View style={{ marginBottom: 80 }}>
+        <TimeTable data={data.restaurantOperationalHoursList} />
+        <View style={{ marginBottom: 30 }}>
           {/* <Comments /> */}
         </View>
+        <View style={{ margin: 20, paddingBottom: 50 }}>
+          <RnButton>
+            <ResponsiveText padding={0} color={colors.black}>
+              SUBMIT
+            </ResponsiveText>
+          </RnButton>
+        </View>
       </View>
-
     </ScrollView>
   );
 };

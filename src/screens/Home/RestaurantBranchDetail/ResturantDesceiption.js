@@ -1,13 +1,13 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import {View, Text, ScrollView, StyleSheet, Image,TouchableOpacity} from 'react-native';
 import AdvertisementBanner from '../BottomTabs/Home/AdvertisementBanner';
 import ImageHeader from '../BottomTabs/Home/ImageHeader';
-import { colors } from '../../../constants/colorsPallet';
+import {colors} from '../../../constants/colorsPallet';
 const text = 'Description';
 import Icon from '../../../components/Icon';
 import ResponsiveText from '../../../components/RnText';
-import { globalPath } from '../../../constants/globalPath';
-import { wp } from '../../../helpers/Responsiveness';
+import {globalPath} from '../../../constants/globalPath';
+import {wp} from '../../../helpers/Responsiveness';
 import StaticMap from '../../../components/StaticMap';
 import { routeName } from '../../../constants/routeName';
 import { useNavigation } from '@react-navigation/native';
@@ -19,10 +19,10 @@ import {
 
 export default function Restaurant_Description(props) {
   const navigation = useNavigation()
-  const [data, setData] = React.useState(props.data)
+  const [data,setData]=React.useState(props.data)
   const dispatch = useDispatch();
   const favData = useSelector(state => state.appReducers.AddfavoriteRestaurant.data);
-  console.log(props.logo, 'logoooooooo')
+  console.log(favData,'hh')
 
   return (
     <View>
@@ -42,22 +42,18 @@ export default function Restaurant_Description(props) {
               {data.branchAlias}
             </ResponsiveText>
             <ResponsiveText size={4} color={colors.yellow}>
-
+              
             </ResponsiveText>
           </View>
           <Icon
             size={wp(18)}
             margin={[0, 20, 0, 0]}
-            source={
-              props.logo
-                ? { uri: props.logo }
-                : globalPath.RESTAURANT_LOGO
-            }
+            source={globalPath.RESTAURANT_LOGO}
           />
         </View>
 
         <View>
-          <Image style={{ width: 30, height: 25 }} />
+          <Image style={{width: 30, height: 25}} />
         </View>
       </View>
       <View
@@ -68,48 +64,48 @@ export default function Restaurant_Description(props) {
           borderBottomColor: colors.grey,
           borderBottomWidth: 1,
         }}>
-        <TouchableOpacity onPress={() => {
-          !favData.some(o => o.id === data.id)
-            ? dispatch(addFavoriteRestaurant(26))
-            : dispatch(RemoveFavoriteRestaurant(26));
-        }}>
-          <View style={{ alignItems: 'center' }}>
-            <Icon source={
+          <TouchableOpacity onPress={() => {
+            !favData.some(o => o.id === data.id)
+              ? dispatch(addFavoriteRestaurant(26))
+              : dispatch(RemoveFavoriteRestaurant(26));
+          }}>
+        <View style={{alignItems: 'center'}}>
+          <Icon source={
               favData.some(o => o.id === 26)
                 ? globalPath.F_HEART
                 : globalPath.HEART
             } />
-            <ResponsiveText top={5} color={colors.yellow}>
-              Favourite
-            </ResponsiveText>
-          </View>
+          <ResponsiveText top={5} color={colors.yellow}>
+            Favourite
+          </ResponsiveText>
+        </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate(routeName.MAP_VIEW)} >
-          <View style={{ alignItems: 'center' }}>
+        <TouchableOpacity onPress={()=>navigation.navigate(routeName.MAP_VIEW)} >
+          <View style={{alignItems: 'center'}}>
             <Icon source={globalPath.LOCATION} />
             <ResponsiveText top={5} color={colors.yellow}>
               Go To{' '}
             </ResponsiveText>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate(routeName.CONTACT_US)} >
-          <View style={{ alignItems: 'center' }}>
+        <TouchableOpacity onPress={()=>navigation.navigate(routeName.CONTACT_US)} >
+          <View style={{alignItems: 'center'}}>
             <Icon source={globalPath.CONTACT} />
             <ResponsiveText top={5} color={colors.yellow}>
               Contact
             </ResponsiveText>
           </View>
         </TouchableOpacity>
-        <View style={{ alignItems: 'center' }}>
+        <View style={{alignItems: 'center'}}>
           <Icon source={globalPath.OPERATIONAL_HOURS} />
           <ResponsiveText top={5} color={colors.yellow}>
-            Hours
+             Hours
           </ResponsiveText>
         </View>
       </View>
-      <View style={{ paddingTop: 10, paddingLeft: 20 }}>
+      <View style={{paddingTop: 10,paddingLeft:20 }}>
         <ResponsiveText fontFamily="Regular" size={4} color={colors.white}>
-          Business Address
+         Business Address
         </ResponsiveText>
         <ResponsiveText
           top={5}
@@ -119,7 +115,7 @@ export default function Restaurant_Description(props) {
           {data.branchAddress}
         </ResponsiveText>
       </View>
-      <View style={{ paddingTop: 10, paddingLeft: 20 }}>
+      <View style={{paddingTop: 10,paddingLeft:20 }}>
         <ResponsiveText fontFamily="Regular" size={4} color={colors.white}>
           District
         </ResponsiveText>
@@ -131,7 +127,7 @@ export default function Restaurant_Description(props) {
           {data.districtName}
         </ResponsiveText>
       </View>
-      <View style={{ paddingTop: 10, paddingLeft: 20 }}>
+      <View style={{paddingTop: 10,paddingLeft:20 }}>
         <ResponsiveText fontFamily="Regular" size={4} color={colors.white}>
           Premise
         </ResponsiveText>
@@ -143,14 +139,14 @@ export default function Restaurant_Description(props) {
           {data.premiseName}
         </ResponsiveText>
       </View>
-      <View style={{ paddingTop: 10, paddingLeft: 20 }}>
+      <View style={{paddingTop: 10,paddingLeft:20 }}>
         <ResponsiveText fontFamily="Regular" size={4} color={colors.white}>
           Location On Map
         </ResponsiveText>
-        <StaticMap data={data} />
+      <StaticMap data={data}/>
       </View>
-
-
+      
+      
     </View>
   );
 }
