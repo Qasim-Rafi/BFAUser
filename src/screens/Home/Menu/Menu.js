@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Image,
   FlatList,
+  ScrollView,
 } from 'react-native';
 import Icon from '../../../components/Icon';
 import ResponsiveText from '../../../components/RnText';
@@ -22,16 +23,16 @@ const Menu = (props) => {
   const scrollRef = useRef(null);
   const [activeTab, setActiveTab] = React.useState(BranchMenuSectionsData[0].id);
   const [data,setData]=React.useState(props.data)
-  console.log(data,'jjjj')
+  // console.log(data,'jjjj')
   const viewConfigRef = React.useRef({viewAreaCoveragePercentThreshold: 90});
   const ScrollHandler = (item, index) => {
-    setActiveTab(item.id);
+    setActiveTab(index);
     console.log('Items>>>>', item, index);
-    scrollRef?.current.scrollToIndex({index, viewOffset: hp(22)});
+    scrollRef?.current.scrollToIndex({index, viewOffset: 0});
   };
   const onViewableItemsChanged = useCallback(({viewableItems , changed})=>{
-    setActiveTab(changed[0].item.id);
-    console.log('Changess' , changed);
+    // setActiveTab(changed[0].index);
+    console.log('Changess' , changed[0]);
   },[]);
 
   const renderItem = ({item}) => {
@@ -95,34 +96,38 @@ const Menu = (props) => {
 
   return (
     <View style={styles.container}>
-      <View
+      
+      <View horizontal={true}
         style={{
-          flexDirection: 'row',
+         flexDirection: 'row',
           borderBottomColor: 'grey',
           marginHorizontal:10,
-          marginVertical:10,
+          // marginVertical:10,
           borderBottomWidth: 1,
         }}>
-        {data.map((items, index) => {
-          return (
-            <React.Fragment key={items.id}>
-              <TouchableOpacity
-              onPress={()=>ScrollHandler(items,index)}
-                style={{
-                  //   width: wp(15),
-                  borderBottomColor: colors.yellow,
-                  borderBottomWidth: items.id === activeTab ? 2 : 0,
-                  marginRight: 20,
-                  paddingBottom: 7,
-                  zIndex: 100,
-                }}>
-                <ResponsiveText size={2.5} color={colors.white}>
-                  {items.menuCategoryName}
-                </ResponsiveText>
-              </TouchableOpacity>
-            </React.Fragment>
-          );
-        })}
+          <ScrollView horizontal={true}>
+            {data.map((items, index) => {
+              return (
+                <React.Fragment key={items.id}>
+                  <TouchableOpacity
+                  onPress={()=>ScrollHandler(items,index)}
+                    style={{
+                      //   width: wp(15),
+                      //height:hp(5),
+                      borderBottomColor: colors.yellow,
+                      borderBottomWidth: index === activeTab ? 2 : 0,
+                      marginRight: 20,
+                      paddingBottom: 7,
+                      zIndex: 100,
+                    }}>
+                    <ResponsiveText size={2.5} color={colors.white}>
+                      {items.menuCategoryName}
+                    </ResponsiveText>
+                  </TouchableOpacity>
+                 </React.Fragment>
+              );
+            })}
+          </ScrollView>
       </View>
       <View style={{flex: 0.9, paddingTop: 10, padding: 10}}>
         <FlatList
@@ -133,6 +138,7 @@ const Menu = (props) => {
           renderItem={renderItem}
            onViewableItemsChanged={onViewableItemsChanged}
           viewabilityConfig={viewConfigRef.current}
+          ListFooterComponent={<View style={{height:hp(5)}}></View>}
         />
       </View>
     </View>

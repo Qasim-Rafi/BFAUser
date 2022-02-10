@@ -37,7 +37,7 @@ export default function RestaurantBranchDetailScreen({ navigation, route }) {
   const data = useSelector(state => state.appReducers.restaurantDetail.data);
   const loading = useSelector(state => state.appReducers.restaurantDetail.refreshing);
   React.useEffect(() => {
-    dispatch(getRestaurentDeatil(route.params));
+    dispatch(getRestaurentDeatil(333));
     //route.params.restaurantId
     console.log(route.params, 'params colsole');
   }, []);
