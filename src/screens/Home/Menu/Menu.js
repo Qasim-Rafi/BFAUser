@@ -7,32 +7,26 @@ import {
   FlatList,
   ScrollView,
 } from 'react-native';
-import Icon from '../../../components/Icon';
 import ResponsiveText from '../../../components/RnText';
 import {colors} from '../../../constants/colorsPallet';
-import {globalPath} from '../../../constants/globalPath';
-import {
-  BranchMenuSectionsData,
-  MenuSectionButtons,
-} from '../../../constants/mock';
 import {hp, wp} from '../../../helpers/Responsiveness';
 import { useCallback } from 'react';
 import { routeName } from '../../../constants/routeName';
 import FastImage from 'react-native-fast-image';
 const Menu = (props) => {
   const scrollRef = useRef(null);
-  const [activeTab, setActiveTab] = React.useState(BranchMenuSectionsData[0].id);
+  const [activeTab, setActiveTab] = React.useState(0);
   const [data,setData]=React.useState(props.data)
   // console.log(data,'jjjj')
   const viewConfigRef = React.useRef({viewAreaCoveragePercentThreshold: 90});
   const ScrollHandler = (item, index) => {
     setActiveTab(index);
-    console.log('Items>>>>', item, index);
+    // console.log('Items>>>>', item, index);
     scrollRef?.current.scrollToIndex({index, viewOffset: 0});
   };
   const onViewableItemsChanged = useCallback(({viewableItems , changed})=>{
     // setActiveTab(changed[0].index);
-    console.log('Changess' , changed[0]);
+    // console.log('Changess' , changed[0]);
   },[]);
 
   const renderItem = ({item}) => {
@@ -55,7 +49,7 @@ const Menu = (props) => {
               }} onPress={() =>
                 props.navigation.push(routeName.DISH_DETAIL, {dish: data})
               }>
-              <FastImage style={{width: '20%', height: '100%'}} source={{uri:data.fullPath}} />
+              <FastImage style={{width: '20%', height: '100%'}} source={{uri:data.imageDataB}} />
               
               <View style={{flex: 1, marginLeft: 10}}>
                 <View

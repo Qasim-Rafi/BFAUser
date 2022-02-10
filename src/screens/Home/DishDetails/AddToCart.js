@@ -8,20 +8,15 @@ import {
 } from 'react-native';
 import {colors} from '../../../constants/colorsPallet';
 import ImageHeader from '../BottomTabs/Home/ImageHeader';
-import {RadioGroup, RadioButton} from 'react-native-flexi-radio-button';
 import ResponsiveText from '../../../components/RnText';
 import {hp, wp} from '../../../helpers/Responsiveness';
 import AddToCartDetails from './AddToCartDetails';
-import RnButton from '../../../components/RnButton';
 import CheckBox from '../../../components/Static/CheckBox';
 import {useDispatch, useSelector} from 'react-redux';
 import Icon from '../../../components/Icon';
 import {globalPath} from '../../../constants/globalPath';
 import {routeName} from '../../../constants/routeName';
 import {addCart, addDish, AddOrder} from '../../../redux/actions/user.actions';
-import {appReducers} from '../../../redux/reducers/app.reducers';
-import {Cart_Details} from '../../../constants/mock';
-import SharedData from '../BottomTabs/CartDetails/SharedData';
 import {TextInput} from 'react-native-gesture-handler';
 import {color} from 'react-native-reanimated';
 export default function AddToCart({route, navigation}) {

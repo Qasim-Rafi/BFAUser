@@ -1,35 +1,46 @@
-import React from 'react'
-import { ImageBackground, StyleSheet, Text, Image, TouchableOpacity, View } from 'react-native'
-import ResponsiveText from '../../../../components/RnText'
-import RnButton from '../../../../components/RnButton'
-import Swiper from 'react-native-swiper'
+import React from 'react';
+import {
+  ImageBackground,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import {colors} from '../../../../constants/colorsPallet';
+import Icon from '../../../../components/Icon';
+import {globalPath} from '../../../../constants/globalPath';
+import FastImage from 'react-native-fast-image';
 
-import { advertisementBannerFakeDATA } from '../../../../constants/mock'
-import { colors } from '../../../../constants/colorsPallet'
-import Icon from '../../../../components/Icon'
-import { globalPath } from '../../../../constants/globalPath'
-
-import IMG from '../../../../assets/fake_Images/salmon_asparagus.jpg'
-
-// const image = { uri: "." };
-
-const ImageHeader = (props) => {
+const ImageHeader = props => {
+  const BackImg = require('../../../../assets/fake_Images/defaultdish.png');
   return (
     <View style={styles.container}>
-      <ImageBackground imageStyle={{ opacity: 0.8, }} source={props.img ? { uri: props.img } : require('../../../../assets/fake_Images/Home-Recommendations-1.png')} resizeMode="cover" style={styles.image}>
-        <TouchableOpacity onPress={() => { props.navigation.goBack() }} style={{ margin: 20, backgroundColor: colors.yellow, paddingVertical: 10, alignSelf: 'flex-start', paddingHorizontal: 10, borderRadius: 25 }}>
+      <FastImage
+        imageStyle={{opacity: 0.8}}
+        source={props.img ? {uri: props.img} : BackImg}
+        resizeMode="cover"
+        style={styles.image}>
+        <TouchableOpacity
+          onPress={() => {
+            props.navigation.goBack();
+          }}
+          style={{
+            margin: 20,
+            backgroundColor: colors.yellow,
+            paddingVertical: 10,
+            alignSelf: 'flex-start',
+            paddingHorizontal: 10,
+            borderRadius: 25,
+          }}>
           <Icon source={globalPath.BACK_ARROW} />
         </TouchableOpacity>
-      </ImageBackground>
+      </FastImage>
     </View>
+  );
+};
 
-  )
-}
-
-export default ImageHeader
+export default ImageHeader;
 
 const styles = StyleSheet.create({
-
   container: {
     flex: 1,
   },
@@ -37,6 +48,4 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 200,
   },
-
 });
-

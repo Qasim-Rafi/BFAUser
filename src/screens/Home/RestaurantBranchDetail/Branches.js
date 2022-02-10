@@ -4,24 +4,12 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
-  Text,
-  ImageBackground,
-  Image,
 } from 'react-native';
-import Header from '../../../components/Header';
 import ResponsiveText from '../../../components/RnText';
 import {colors} from '../../../constants/colorsPallet';
 import {hp, wp} from '../../../helpers/Responsiveness';
-import {
-  advertisementBannerFakeDATA,
-  ourRecommendationFakeDATA,
-} from '../../../constants/mock';
 import {Rating} from 'react-native-ratings';
 import Icon from '../../../components/Icon';
-import {globalPath} from '../../../constants/globalPath';
-import {myListingTabs} from '../../../constants/mock';
-import {routeName} from '../../../constants/routeName';
-import SearchHeader from '../../../components/SearchHeader';
 
 const BranchesDetail = props => {
   const [data, setData] = React.useState(props.data);
@@ -32,7 +20,7 @@ const BranchesDetail = props => {
         <ScrollView showsHorizontalScrollIndicator={false}>
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
             <ResponsiveText size={4} color={colors.white}>
-              I-Lotus Restaurant
+              {props.restaurantNamer}
             </ResponsiveText>
             <ResponsiveText size={3.5} color={colors.grey}>
               View other Branches from this Restaurant

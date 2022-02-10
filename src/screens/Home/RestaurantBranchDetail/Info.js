@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { FacilityList } from '../../../components/Facility';
-import Icon from '../../../components/Icon';
-import RnButton from '../../../components/RnButton';
 import ResponsiveText from '../../../components/RnText';
-import { globalPath } from '../../../constants/globalPath';
-import { FacilityData } from '../../../constants/mock';
-import { hp, wp } from '../../../helpers/Responsiveness';
-import Comments from '../DishDetails/Comments';
 import TimeTable from './TimeTable';
 import Restaurant_Description from './ResturantDesceiption';
 import { colors } from '../../../constants/colorsPallet';
