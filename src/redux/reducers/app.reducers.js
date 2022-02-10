@@ -715,6 +715,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         restaurantDetail: {
           ...state.restaurantDetail,
+          data:{},
           refreshing: true,
         },
       };
@@ -732,6 +733,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         restaurantDetail: {
           ...state.restaurantDetail,
+          data:{},
           refreshing: false,
         },
       };
