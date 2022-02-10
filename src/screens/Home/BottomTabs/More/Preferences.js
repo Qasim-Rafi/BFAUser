@@ -6,11 +6,23 @@ import RnButton from '../../../../components/RnButton'
 import { globalPath } from '../../../../constants/globalPath'
 import ResponsiveText from '../../../../components/RnText'
 import { wp, hp } from '../../../../helpers/Responsiveness'
+import { useSelector,useDispatch } from 'react-redux'
 import { StackActions } from '@react-navigation/routers'
+import { useEffect } from 'react'
 import { CUISINES_DATA, OTHERS_DATA, POPULER_DISHES_DATA,} from '../../../../constants/mock'
 import { NavigationHelpersContext } from '@react-navigation/core'
+import { getFoodPrefrences } from '../../../../redux/actions/user.actions'
 
 export default function Preferences({navigation}) {
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(getFoodPrefrences(1, 4));
+    
+  })
+  const Prefrences = useSelector(state => state.appReducers.getFoodPrefrences.data);
+  const loading = useSelector(state => state.appReducers.getFoodPrefrences.loading);
+  console.log('Prefrences:',Preferences)
   const [itemList, setItemList] = React.useState([]);
   const toggleSelection =(item)=>{
     if(itemList.includes(item)){

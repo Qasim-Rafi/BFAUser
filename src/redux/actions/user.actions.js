@@ -25,6 +25,16 @@ export const moreFromRestaurant = (index, limit) => {
     }
   };
 };
+//GET PAYMENT HISTORY
+export const GETPAYMENTHISTORY = (index, limit) => {
+  return {
+    type: types.GET_PAYMENT_HISTORY_REQUEST,
+    data: {
+      index: index,
+      limit: limit
+    }
+  };
+};
 //APPLY FOR JOB
 
 export const applyForJob = (data, navigation) => {
@@ -108,6 +118,16 @@ export const getUserCusine = (index, limit) => {
 export const getBfaRecommendations = (index, limit) => {
   return {
     type: types.GET_BFA_RECOMMENDATION_REQUEST,
+    data: {
+      index: index,
+      limit: limit
+    }
+  };
+};
+//GET FOOD PREFRENCES
+export const getFoodPrefrences = (index, limit) => {
+  return {
+    type: types.GET_FOOD_PREFRENCES_REQUEST,
     data: {
       index: index,
       limit: limit

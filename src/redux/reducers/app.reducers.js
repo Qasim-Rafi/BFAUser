@@ -106,6 +106,14 @@ const initialState = {
     loading: false,
     data: [],
   },
+  getPaymentHistory: {
+    loading: false,
+    data: [],
+  },
+  getFoodPrefrences:{
+    loading: false,
+    data: [],
+  }
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -267,6 +275,34 @@ export const appReducers = (state = initialState, action) => {
           loading: false,
         },
       };
+      //Payment history
+      case types.GET_PAYMENT_HISTORY_REQUEST:
+      return {
+        ...state,
+        getPaymentHistory: {
+          ...state.getPaymentHistory,
+          loading: true,
+        },
+      };
+
+    case types.GET_PAYMENT_HISTORY_SUCCESS:
+      return {
+        ...state,
+        getPaymentHistory: {
+          ...state.getPaymentHistory,
+          data: [...state.getPaymentHistory.data, ...action.payload],
+          loading: false,
+        },
+      };
+
+    case types.GET_PAYMENT_HISTORY_FAILURE:
+      return {
+        ...state,
+        getPaymentHistory: {
+          ...state.getPaymentHistory,
+          loading: false,
+        },
+      };
     case types.GET_RESTAURANT_ALL_DISHES_SUCCESS:
       return {
         ...state,
@@ -303,6 +339,34 @@ export const appReducers = (state = initialState, action) => {
           loading: false,
         },
       };
+      //get Food Prefrences
+      case types.GET_FOOD_PREFRENCES_REQUEST:
+        return {
+          ...state,
+          getFoodPrefrences: {
+            ...state.getFoodPrefrences,
+            loading: true,
+          },
+        };
+      case types.GET_FOOD_PREFRENCES_SUCCESS:
+        console.log('Dataaaaaa: ', action.payload);
+  
+        return {
+          ...state,
+          getFoodPrefrences: {
+            ...state.getFoodPrefrences,
+            data: [...state.getFoodPrefrences.data, ...action.payload],
+            loading: false,
+          },
+        };
+      case types.GET_FOOD_PREFRENCES_FAILURE:
+        return {
+          ...state,
+          getFoodPrefrences: {
+            ...state.getFoodPrefrences,
+            loading: false,
+          },
+        };
     //Moore From Restraurant
     case types.MORE_FROM_RESTAURANT_REQUEST:
       return {

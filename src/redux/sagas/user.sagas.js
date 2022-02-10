@@ -196,6 +196,30 @@ function* getPeopleChoiceSagaApi(data) {
     yield put({ type: types.GET_PEOPLE_CHOICE_FAILURE, error: error });
   }
 }
+//GET PAYMENT HISTORY
+export function* getPaymentHistorySaga() {
+  yield takeLatest(types.GET_PAYMENT_HISTORY_REQUEST, getPaymentHistorySagaApi);
+}
+function* getPaymentHistorySagaApi(data) {
+  const limit = data.data.limit;
+  const index = data.data.index;
+  try {
+    const url = urls.PEOPLE_CHOICE + index + '/' + limit;
+    const response = yield Api.get(url);
+    if (response && response.data != null) {
+      yield put({
+        type: types.GET_PAYMENT_HISTORY_SUCCESS,
+        payload: response.data,
+      });
+    } else {
+      yield put({ type: types.GET_PAYMENT_HISTORY_FAILURE, error: error });
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({ type: types.GET_PAYMENT_HISTORY_FAILURE, error: error });
+  }
+}
 //Add Order
 export function* addOrderSaga() {
   console.log('saga function Works');
@@ -272,6 +296,29 @@ function* getCusineSagaApi(data) {
     // dispatch a success action to the store with the new data object
   } catch (error) {
     yield put({ type: types.GET_CUSINE_FAILURE, error: error });
+  }
+}
+//FOOD PREFRENCES
+export function* getFoodPrefrencesSaga() {
+  yield takeLatest(types.GET_FOOD_PREFRENCES_REQUEST, getFoodPrefrencesSagaApi);
+}
+function* getFoodPrefrencesSagaApi(data) {
+  const limit = data.data.limit;
+  const index = data.data.index;
+
+
+  try {
+    const url = urls.CUSINE_URL + index + '/' + limit;
+    const response = yield Api.get(url);
+    if (response && response.data != null) {
+      yield put({ type: types.GET_FOOD_PREFRENCES_SUCCESS, payload: response.data });
+    } else {
+      yield put({ type: types.GET_FOOD_PREFRENCES_FAILURE, error: error });
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({ type: types.GET_FOOD_PREFRENCES_FAILURE, error: error });
   }
 }
 
