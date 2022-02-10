@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { ADD_TO_CART_FAKE_DATA } from '../../../constants/mock';
 import ResponsiveText from '../../../components/RnText';
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
 import { wp } from '../../../helpers/Responsiveness';

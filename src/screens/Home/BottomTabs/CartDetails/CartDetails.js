@@ -19,10 +19,6 @@ import {colors} from '../../../../constants/colorsPallet';
 import {globalPath} from '../../../../constants/globalPath';
 import {hp, wp} from '../../../../helpers/Responsiveness';
 import Header from '../../../../components/Header';
-import {Cart_Details} from '../../../../constants/mock';
-import TransactionConfirmation from '../../DishDetails/TransactionConfirmation';
-import {routeName} from '../../../../constants/routeName';
-import {set} from 'react-native-reanimated';
 import SharedData from './SharedData';
 import {useSelector, useDispatch} from 'react-redux';
 import {
@@ -32,7 +28,6 @@ import {
   retriveCart,
 } from '../../../../redux/actions/user.actions';
 import AsyncStorage from '@react-native-community/async-storage';
-import urls from '../../../../redux/lib/urls';
 
 const CartDetails = ({navigation}) => {
   const cartList = useSelector(state => state.appReducers.cartList.data);

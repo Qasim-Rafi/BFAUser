@@ -25,10 +25,8 @@ import BranchesDetail from './Branches';
 import PromosBanner from '../BottomTabs/Promos/PromoBanner';
 import { colors } from '../../../constants/colorsPallet';
 import AwardsDetail from './AwardsDetail';
-import MenuTabs from '../Menu/MenuTabs';
 import { getRestaurentDeatil } from '../../../redux/actions/user.actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { Item } from 'react-native-paper/lib/typescript/components/List/List';
 
 export default function RestaurantBranchDetailScreen({ navigation, route }) {
   const [activeTab, setActiveTab] = React.useState(MenuSectionButtons[0].id);
@@ -39,9 +37,9 @@ export default function RestaurantBranchDetailScreen({ navigation, route }) {
   React.useEffect(() => {
     dispatch(getRestaurentDeatil(route.params));
     //route.params.restaurantId
-    console.log(route.params, 'params colsole');
+    // console.log(route.params, 'params colsole');
   }, []);
-  console.log('routeetetteetet vhvhh', data);
+  console.log('restaurant detail', data);
   return (
     <View style={{ backgroundColor: colors.black3, flex: 1 }}>
       <View style={styles.headerImage}>
@@ -84,7 +82,7 @@ export default function RestaurantBranchDetailScreen({ navigation, route }) {
           {activeTab === 1 && <Info data={data.restaurantBranchesAlldataforappList[0]} logo={data.restaurantLogo}/>}
           {activeTab === 2 && <PromosBanner />}
           {activeTab === 3 && <Menu navigation={navigation} data={data.restaurantBranchesAlldataforappList[0].restaurantMenulist} />}
-          {activeTab === 4 && <BranchesDetail navigation={navigation} data={data.restaurantBranchesAlldataforappList} />}
+          {activeTab === 4 && <BranchesDetail navigation={navigation} data={data.restaurantBranchesAlldataforappList} restaurantName={data.restaurantName}/>}
           {activeTab === 5 && <AwardsDetail navigation={navigation} data={data.restaurantBranchesAlldataforappList[0].awardlist} />}
         </View>
       ) : null}
