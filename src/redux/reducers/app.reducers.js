@@ -106,6 +106,10 @@ const initialState = {
     loading: false,
     data: [],
   },
+  your_ordersList: {
+    loading: false,
+    data: [],
+  },
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -213,6 +217,33 @@ export const appReducers = (state = initialState, action) => {
           loading: false,
         },
       };
+      case types.GET_ORDERS_REQUEST:
+        return {
+          ...state,
+          your_ordersList: {
+            ...state.your_ordersList,
+            loading: true,
+          },
+        };
+  
+      case types.GET_ORDERS_SUCCESS:
+        return {
+          ...state,
+          your_ordersList: {
+            ...state.your_ordersList,
+            data: action.payload,
+            loading: false,
+          },
+        };
+  
+      case types.GET_ORDERS_FAILURE:
+        return {
+          ...state,
+          your_ordersList: {
+            ...state.your_ordersList,
+            loading: false,
+          },
+        };
     case types.GET_APPLY_FOR_JOB_REQUEST:
       return {
         ...state,

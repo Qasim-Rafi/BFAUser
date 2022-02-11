@@ -894,3 +894,30 @@ function* checkoutOrderSagaApi(data) {
     // yield put({type: types.CHECKOUT_ORDER_FAILURE, payload: []});
   }
 }
+
+export function* getordersDataSaga() {
+  yield takeLatest(
+    types.GET_ORDERS_REQUEST,
+    getordersSagaApi,
+  );
+}
+function* getordersSagaApi(data) {
+  try {
+    const response = yield Api.get(
+      urls.GET_ALL_ORDERS,
+    );
+    console.log(response, 'heeeeeeeeee');
+    if (response && response.success == true) {
+      yield put({
+        type: types.GET_ORDERS_SUCCESS,
+        payload: response.data,
+      });
+    } else {
+      yield put({ type: types.GET_ORDERS_FAILURE, payload: [] });
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({ type: types.GET_ORDERS_FAILURE, payload: [] });
+  }
+}
