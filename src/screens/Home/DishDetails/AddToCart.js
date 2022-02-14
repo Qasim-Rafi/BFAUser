@@ -148,31 +148,21 @@ export default function AddToCart({route, navigation}) {
             ExtraChees={ExtraChees}
             SelectedDrinks={Drinks}
           />
-
-          <View
-            style={{
-              flexDirection: 'row',
-              flex: 0.15,
-              // backgroundColor: colors.black2,
-              justifyContent: 'space-between',
-              margin: 20,
-            }}>
-            <ResponsiveText color={colors.yellow} margin={[7, 0, 0, 7]}>
-              UpSize
-            </ResponsiveText>
             <View
-              style={{
-                height: hp(3.5),
-                width: wp(20),
-
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: 8,
-                borderRadius: 6,
-              }}>
-              <ResponsiveText color={colors.white}>Optional</ResponsiveText>
-            </View>
-          </View>
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          borderTopWidth: 1,
+          borderBottomWidth: 1,
+          borderColor: colors.black2,
+          padding: 5,
+          marginTop: 20,
+          marginHorizontal:10
+        }}>
+        <ResponsiveText color={colors.white}>{'Upsize'}</ResponsiveText>
+        <ResponsiveText color={colors.white}>{'Optional'}</ResponsiveText>
+      </View>
+          
           <View style={{padding: 20}}>
             {Object.keys(route.params.dish).length != 0 &&
             route.params.dish.restaurantDishLinkedItemList
