@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   Text,
@@ -15,12 +15,12 @@ import {
 } from 'react-native';
 import Icon from '../../../../components/Icon';
 import ResponsiveText from '../../../../components/RnText';
-import {colors} from '../../../../constants/colorsPallet';
-import {globalPath} from '../../../../constants/globalPath';
-import {hp, wp} from '../../../../helpers/Responsiveness';
+import { colors } from '../../../../constants/colorsPallet';
+import { globalPath } from '../../../../constants/globalPath';
+import { hp, wp } from '../../../../helpers/Responsiveness';
 import Header from '../../../../components/Header';
 import SharedData from './SharedData';
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   removeCart,
   addCart,
@@ -29,7 +29,7 @@ import {
 } from '../../../../redux/actions/user.actions';
 import AsyncStorage from '@react-native-community/async-storage';
 
-const CartDetails = ({navigation}) => {
+const CartDetails = ({ navigation }) => {
   const cartList = useSelector(state => state.appReducers.cartList.data);
   const dispatch = useDispatch();
   const [selectedItem, SetSelectedItem] = React.useState(null);
@@ -51,7 +51,7 @@ const CartDetails = ({navigation}) => {
   const newArray = [];
   cartList.forEach(obj => {
     if (!newArray.some(o => o.restaurantBranchId === obj.restaurantBranchId)) {
-      newArray.push({...obj});
+      newArray.push({ ...obj });
     }
   });
   React.useEffect(async () => {
@@ -137,7 +137,7 @@ const CartDetails = ({navigation}) => {
     //navigation.navigate(routeName.TRANSACTION_CONFIRMATION)
     //
   };
-  const ModalPoup = ({visible, children}) => {
+  const ModalPoup = ({ visible, children }) => {
     const [showModal, setShowModal] = React.useState(visible);
     const scaleValue = React.useRef(new Animated.Value(0)).current;
     React.useEffect(() => {
@@ -164,14 +164,14 @@ const CartDetails = ({navigation}) => {
       <Modal transparent visible={showModal}>
         <View style={styles.modalBackGround}>
           <Animated.View
-            style={[styles.modalContainer, {transform: [{scale: scaleValue}]}]}>
+            style={[styles.modalContainer, { transform: [{ scale: scaleValue }] }]}>
             {children}
           </Animated.View>
         </View>
       </Modal>
     );
   };
-  const renderItem = ({item}) => {
+  const renderItem = ({ item }) => {
     return (
       <View
         style={{
@@ -200,136 +200,136 @@ const CartDetails = ({navigation}) => {
             {cartList.length === 0
               ? undefined
               : cartList
-                  .filter(i => i.titleR == item.titleR)
-                  .map((item, index) => {
-                    return (
-                      <View
-                        style={{
-                          backgroundColor: colors.black2,
-                          marginHorizontal: 10,
-                          flexDirection: 'row',
-                          padding: 5,
-                          marginBottom: 10,
-                          borderRadius: 7,
-                          alignItems: 'center',
+                .filter(i => i.titleR == item.titleR)
+                .map((item, index) => {
+                  return (
+                    <View
+                      style={{
+                        backgroundColor: colors.black2,
+                        marginHorizontal: 10,
+                        flexDirection: 'row',
+                        padding: 5,
+                        marginBottom: 10,
+                        borderRadius: 7,
+                        alignItems: 'center',
+                      }}>
+                      <View>
+                        <Icon
+                          size={60}
+                          borderRadius={7}
+                          source={{ uri: item.imageDataB }}
+                        />
+                      </View>
+                      <TouchableOpacity
+                        onPress={() => {
+                          setVisible(true);
+                          SetSelectedItem(item);
                         }}>
-                        <View>
-                          <Icon
-                            size={60}
-                            borderRadius={7}
-                            source={{uri: item.imageDataB}}
-                          />
+                        <View
+                          style={{ justifyContent: 'center', width: wp(60) }}>
+                          <ResponsiveText
+                            size={3.5}
+                            color={colors.white}
+                            margin={[0, 0, 0, 10]}>
+                            {item.dishName}
+                          </ResponsiveText>
+                          <ResponsiveText
+                            size={2.5}
+                            color={colors.grey}
+                            margin={[-5, 0, 0, 10]}>
+                            {item.description}
+                          </ResponsiveText>
+                          <ResponsiveText
+                            size={3}
+                            color={colors.yellow}
+                            margin={[0, 0, 0, 10]}>
+                            $ {item.price}
+                          </ResponsiveText>
+                        </View>
+                      </TouchableOpacity>
+
+                      <View style={{ marginLeft: -15 }}>
+                        <TouchableOpacity
+                          onPress={() => {
+                            onItemDecrease(index, item.id);
+                          }}
+                          style={{
+                            backgroundColor: colors.yellow,
+                            height: hp(2),
+                            borderTopLeftRadius: 2,
+                            borderTopRightRadius: 2,
+                            alignItems: 'center',
+                            width: wp(6),
+                          }}>
+                          <ResponsiveText margin={[-3, 0, 0, 0]}>
+                            -
+                          </ResponsiveText>
+                        </TouchableOpacity>
+                        <View
+                          style={{
+                            height: hp(3),
+                            width: wp(6),
+                            backgroundColor: colors.black3,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            borderColor: colors.yellow,
+                            borderWidth: 1,
+                          }}>
+                          <ResponsiveText color={colors.yellow} size={3}>
+                            {item.quantity}
+                          </ResponsiveText>
                         </View>
                         <TouchableOpacity
                           onPress={() => {
-                            setVisible(true);
-                            SetSelectedItem(item);
+                            // item.quantity = item.quantity + 1;
+                            //onItemIncrease(item);
+                            onItemIncrease(index, item.id);
+                          }}
+                          style={{
+                            backgroundColor: colors.yellow,
+                            height: hp(2),
+                            borderBottomRightRadius: 2,
+                            borderBottomLeftRadius: 2,
+                            alignItems: 'center',
+                            width: wp(6),
                           }}>
-                          <View
-                            style={{justifyContent: 'center', width: wp(60)}}>
-                            <ResponsiveText
-                              size={3.5}
-                              color={colors.white}
-                              margin={[0, 0, 0, 10]}>
-                              {item.dishName}
-                            </ResponsiveText>
-                            <ResponsiveText
-                              size={2.5}
-                              color={colors.grey}
-                              margin={[-5, 0, 0, 10]}>
-                              {item.description}
-                            </ResponsiveText>
-                            <ResponsiveText
-                              size={3}
-                              color={colors.yellow}
-                              margin={[0, 0, 0, 10]}>
-                              $ {item.price}
-                            </ResponsiveText>
-                          </View>
+                          <ResponsiveText margin={[-3, 0, 0, 0]}>
+                            +
+                          </ResponsiveText>
                         </TouchableOpacity>
-
-                        <View style={{marginLeft: -15}}>
-                          <TouchableOpacity
-                            onPress={() => {
-                              onItemDecrease(index, item.id);
-                            }}
-                            style={{
-                              backgroundColor: colors.yellow,
-                              height: hp(2),
-                              borderTopLeftRadius: 2,
-                              borderTopRightRadius: 2,
-                              alignItems: 'center',
-                              width: wp(6),
-                            }}>
-                            <ResponsiveText margin={[-3, 0, 0, 0]}>
-                              -
-                            </ResponsiveText>
-                          </TouchableOpacity>
-                          <View
-                            style={{
-                              height: hp(3),
-                              width: wp(6),
-                              backgroundColor: colors.black3,
-                              justifyContent: 'center',
-                              alignItems: 'center',
-                              borderColor: colors.yellow,
-                              borderWidth: 1,
-                            }}>
-                            <ResponsiveText color={colors.yellow} size={3}>
-                              {item.quantity}
-                            </ResponsiveText>
-                          </View>
-                          <TouchableOpacity
-                            onPress={() => {
-                              // item.quantity = item.quantity + 1;
-                              //onItemIncrease(item);
-                              onItemIncrease(index, item.id);
-                            }}
-                            style={{
-                              backgroundColor: colors.yellow,
-                              height: hp(2),
-                              borderBottomRightRadius: 2,
-                              borderBottomLeftRadius: 2,
-                              alignItems: 'center',
-                              width: wp(6),
-                            }}>
-                            <ResponsiveText margin={[-3, 0, 0, 0]}>
-                              +
-                            </ResponsiveText>
-                          </TouchableOpacity>
-                        </View>
-                        <View style={{marginLeft: 15, marginTop: 15}}>
-                          <TouchableOpacity
-                            onPress={() => {
-                              Alert.alert(
-                                '',
-                                'Do you want to remove this item from cart ?',
-                                [
-                                  {
-                                    text: 'Cancel',
-                                    onPress: () => {},
-                                    style: 'cancel',
-                                  },
-                                  {
-                                    text: 'OK',
-                                    onPress: () => {
-                                      onItemRemove(item, index);
-                                    },
-                                  },
-                                ],
-                              );
-                            }}>
-                            <Icon
-                              source={globalPath.DELETE_ICON}
-                              tintColor={colors.yellow}
-                              margin={[-20, 0, 0, 0]}
-                              size={30}
-                            />
-                          </TouchableOpacity>
-                        </View>
                       </View>
-                    );
-                  })}
+                      <View style={{ marginLeft: 15, marginTop: 15 }}>
+                        <TouchableOpacity
+                          onPress={() => {
+                            Alert.alert(
+                              '',
+                              'Do you want to remove this item from cart ?',
+                              [
+                                {
+                                  text: 'Cancel',
+                                  onPress: () => { },
+                                  style: 'cancel',
+                                },
+                                {
+                                  text: 'OK',
+                                  onPress: () => {
+                                    onItemRemove(item, index);
+                                  },
+                                },
+                              ],
+                            );
+                          }}>
+                          <Icon
+                            source={globalPath.DELETE_ICON}
+                            tintColor={colors.yellow}
+                            margin={[-20, 0, 0, 0]}
+                            size={30}
+                          />
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                  );
+                })}
           </View>
 
           <View>
@@ -417,59 +417,91 @@ const CartDetails = ({navigation}) => {
     );
   };
   return (
-    <View style={{backgroundColor: colors.black3, flex: 1}}>
+    <View style={{ backgroundColor: colors.black3, flex: 1 }}>
       <ModalPoup visible={visible}>
         <View style={styles.header}>
           <TouchableOpacity onPress={() => setVisible(false)}>
             <Image
               source={require('../../../../assets/fake_Images/cross.png')}
-              style={{height: 22, width: 22}}
+              style={{ height: 22, width: 22 }}
             />
           </TouchableOpacity>
         </View>
 
         {selectedItem !== null ? (
-          <View style={{flexDirection: 'row'}}>
-            <Image
-              source={{uri: selectedItem.imageDataB}}
-              style={styles.popupImage}
-            />
+          <>
+            <View style={{ flexDirection: 'row' }}>
+              <Image
+                source={{ uri: selectedItem.imageDataB }}
+                style={styles.popupImage}
+              />
 
-            <View style={{flexDirection: 'column', marginLeft: 5}}>
-              <Text style={styles.ModalDish}>{selectedItem.cusineName}</Text>
-              <Text style={styles.ModalPrice}>$ 235</Text>
+              <View style={{ flexDirection: 'column', marginLeft: 5 }}>
+                <Text style={styles.ModalDish}>{selectedItem.cusineName}</Text>
+                <Text style={styles.ModalPrice}>$ {selectedItem.price}</Text>
+              </View>
             </View>
-          </View>
+
+            <View style={styles.ModalInnerDisign}>
+              <Text style={styles.headingDiscription}>
+                Description:
+              </Text>
+              <Text style={styles.ModalDiscription}>
+                {selectedItem.description}
+              </Text>
+              <Text style={styles.headingDrinks}>Drink:</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10 }}>
+                      <View style={{ backgroundColor: colors.white, height: 5, width: 5, borderRadius: 50, marginTop: 6 }}>
+                      </View>
+              <Text style={styles.ModalDrink}> {selectedItem.selectedDrink.softDrinkName}</Text>
+              </View>
+              <View>
+                <Text style={styles.headingAddOns}>Add ons: </Text>
+              </View>
+              {selectedItem.extraCheeses.length > 0
+                ?
+                selectedItem.extraCheeses.map((item, index) => {
+                  return (
+                    <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10 }}>
+                      <View style={{ backgroundColor: colors.white, height: 5, width: 5, borderRadius: 50, marginTop: 6 }}>
+                      </View>
+                      <Text style={styles.ModalDrink}>{item.dishExtraItemName}</Text>
+                    </View>
+                  )
+                })
+                : undefined
+              }
+              <View>
+              </View>
+              <Text style={styles.headingAddOns}>Upsize:</Text>
+              {selectedItem.linkItems.length > 0
+                ?
+                selectedItem.linkItems.map((item, index) => {
+                  return (
+                    <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10 }}>
+                      <View style={{ backgroundColor: colors.white, height: 5, width: 5, borderRadius: 50, marginTop: 6 }}>
+                      </View>
+                      <Text style={styles.ModalDrink}>{item.dishLinkedItemName}</Text>
+                    </View>
+                  )
+                })
+                : undefined
+              }
+              <Text style={styles.headingInstructions}>Remarks:</Text>
+              <Text style={styles.ModalInstructions}>
+          {selectedItem.instructions?selectedItem.instructions:"no remarks"}
+              </Text>
+            </View>
+            <View>
+              <Text style={{ color: colors.white, fontSize: 10, marginTop: 4, alignSelf: 'flex-end' }}>
+                Total: $ {selectedItem.totalPrice}
+              </Text>
+            </View>
+          </>
+
         ) : undefined}
-        <View style={styles.ModalInnerDisign}>
-          <Text style={styles.ModalDiscription}>
-            Description : The ingredients. Place the main ingredients of the
-            dish first, starting with the most expensive and important
-            ingredients
-          </Text>
-          <Text style={styles.ModalDrink}>Soft Drink : Sprite & coke</Text>
 
-          <Text style={{color: colors.white, fontSize: 10, marginTop: 4}}>
-            Extra Cheese : yes
-          </Text>
-          <Text style={styles.ModalAddons}>Add ons : Corn on the cob</Text>
 
-          <Text style={styles.ModalInstructions}>
-            Instructions : dried chilli flakes, to taste and desiccated coconut
-          </Text>
-        </View>
-        {/* <View>
-          <TouchableOpacity style={styles.signin}>
-
-            <Text style={{
-              backgroundColor: colors.yellow1, borderRadius: 20, marginVertical: 10, paddingVertical: 5
-              , textAlign: 'center'
-            }}>
-              Edit Order
-            </Text>
-
-          </TouchableOpacity>
-        </View> */}
       </ModalPoup>
       <View
         style={{
@@ -480,15 +512,18 @@ const CartDetails = ({navigation}) => {
         }}>
         <Header navigation={navigation} />
       </View>
-      <View style={{flex: 0.9, marginHorizontal: '1%'}}>
-        <FlatList
-          contentContainerStyle={{paddingVertical: 10}}
+      <View style={{ flex: 0.9, marginHorizontal: '1%',justifyContent:'center' }}>
+       {newArray.length>0? 
+       <FlatList
+          contentContainerStyle={{ paddingVertical: 10 }}
           data={newArray}
           keyExtractor={(item, index) => item + index}
           renderItem={renderItem}
-          // onViewableItemsChanged={onViewRef}
-          // viewabilityConfig={viewConfigRef.current}
-        />
+        // onViewableItemsChanged={onViewRef}
+        // viewabilityConfig={viewConfigRef.current}
+        />:<Text style={{alignSelf:'center',color:colors.white}}>
+          No order yet
+          </Text>}
       </View>
 
       <View style={styles.centeredView}></View>
@@ -506,7 +541,7 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     width: '80%',
-    height: '35%',
+    // height: '45%',
     backgroundColor: colors.black2,
     paddingHorizontal: 20,
     paddingVertical: 30,
@@ -551,10 +586,30 @@ const styles = StyleSheet.create({
     fontSize: 10,
     marginTop: 4,
   },
+  headingDiscription: {
+
+    color: colors.white,
+    fontSize: 10,
+    marginTop: 4,
+    fontWeight: "bold"
+  },
   ModalDrink: {
     color: colors.white,
     fontSize: 10,
     marginTop: 4,
+    marginLeft: 4
+  },
+  headingAddOns: {
+    color: colors.white,
+    fontSize: 10,
+    marginTop: 4,
+    fontWeight: "bold"
+  },
+  headingDrinks: {
+    color: colors.white,
+    fontSize: 10,
+    marginTop: 4,
+    fontWeight: "bold"
   },
   ModalAddons: {
     color: colors.white,
@@ -569,7 +624,13 @@ const styles = StyleSheet.create({
   ModalInstructions: {
     color: colors.white,
     fontSize: 10,
-    marginTop: 4,
+    marginTop: 1,
     marginVertical: 12,
   },
+  headingInstructions: {
+    color: colors.white,
+    fontSize: 10,
+    marginTop: 4,
+    fontWeight: "bold"
+  }
 });

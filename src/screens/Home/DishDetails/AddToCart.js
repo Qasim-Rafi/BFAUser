@@ -60,18 +60,20 @@ export default function AddToCart({route, navigation}) {
   // }];
   const ExtraChees = (item, index) => {
     //extraCheese.push(item)
-    if (extraCheese.some(o => o.dishExtraItemId === item.dishExtraItemId)) {
+    if (extraCheese.some(o => o.id === item.id)) {
       setExtrachess(
-        extraCheese.filter(i => i.dishExtraItemId !== item.dishExtraItemId),
+        extraCheese.filter(i => i.id !== item.id),
       );
     } else {
       extraCheese.push(item);
     }
+    console.log('Extraaaaaaa', extraCheese);
+
   };
 
   const LinkedItem = (item, index) => {
     //extraCheese.push(item)
-    if (linkedItem.some(o => o.dishLinkedItemId === item.dishLinkedItemId)) {
+    if (linkedItem.some(o => o.dishLinkedItemo === item.dishLinkedItemId)) {
       setlinkedItem(
         linkedItem.filter(i => i.dishLinkedItemId !== item.dishLinkedItemId),
       );
@@ -132,25 +134,25 @@ export default function AddToCart({route, navigation}) {
             style={{
               flexDirection: 'row',
               flex: 0.15,
-              backgroundColor: colors.black2,
+              // backgroundColor: colors.black2,
               justifyContent: 'space-between',
               margin: 20,
             }}>
             <ResponsiveText color={colors.yellow} margin={[7, 0, 0, 7]}>
               UpSize
             </ResponsiveText>
-            <TouchableOpacity
+            <View
               style={{
                 height: hp(3.5),
                 width: wp(20),
-                backgroundColor: colors.yellow,
+                
                 alignItems: 'center',
                 justifyContent: 'center',
                 margin: 8,
                 borderRadius: 6,
               }}>
               <ResponsiveText>Optional</ResponsiveText>
-            </TouchableOpacity>
+            </View>
           </View>
           <View style={{padding: 20}}>
             {Object.keys(route.params.dish).length != 0 &&

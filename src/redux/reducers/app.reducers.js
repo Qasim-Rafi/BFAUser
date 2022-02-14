@@ -113,7 +113,7 @@ const initialState = {
   getFoodPrefrences:{
     loading: false,
     data: [],
-  }
+  },
   your_ordersList: {
     loading: false,
     data: [],
