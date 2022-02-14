@@ -22,10 +22,14 @@ import {color} from 'react-native-reanimated';
 export default function AddToCart({route, navigation}) {
   const cartList = useSelector(state => state.appReducers.cartList.data);
   const loading = useSelector(state => state.appReducers.cartList.loading);
-  console.log('Add Admin: ', cartList);
+  // console.log('Add Admin: ', cartList);
   const [visible, setVisible] = React.useState(false);
   const [count, changeCount] = useState(1);
-  const [Selecteddrinks, setSelecteddrinks] = useState(route.params.dish.restaurantSoftDrinksList?route.params.dish.restaurantSoftDrinksList[0]:null);
+  const [Selecteddrinks, setSelecteddrinks] = useState(
+    route.params.dish.restaurantSoftDrinksList
+      ? route.params.dish.restaurantSoftDrinksList[0]
+      : null,
+  );
   const [dishPrice, updateDishPrice] = useState(route.params.dish.price);
   const [total, updateTotal] = useState(0);
   const dispatch = useDispatch();
@@ -36,8 +40,15 @@ export default function AddToCart({route, navigation}) {
   const [dish, addDish] = React.useState(route.params.dish);
   React.useEffect(() => {
     // addDish(route.params.dish);
-    updateTotal(dishPrice * count);
-  },[count]);
+    // var sumoflinedItems = linkedItem.reduce((a, c) => {
+    //   return a + c.price;
+    // }, 0);
+    var sumofExtra = extraCheese.reduce((a, c) => {
+      return a + c.price;
+    }, 0);
+
+    updateTotal((dishPrice * count )+ sumofExtra);
+  }, [count]);
   const Drinks = value => {
     setSelecteddrinks(value);
     console.log('Idddddddddd:', value);
@@ -61,14 +72,22 @@ export default function AddToCart({route, navigation}) {
   const ExtraChees = (item, index) => {
     //extraCheese.push(item)
     if (extraCheese.some(o => o.id === item.id)) {
-      setExtrachess(
-        extraCheese.filter(i => i.id !== item.id),
-      );
+      setExtrachess(extraCheese.filter(i => i.id !== item.id));
+      var sumofExtra = extraCheese
+        .filter(i => i.id !== item.id)
+        .reduce((a, c) => {
+          return a + c.price;
+        }, 0);
+
+        // console.log('removeeee',extraCheese.filter(i => i.id !== item.id));
     } else {
       extraCheese.push(item);
+      var sumofExtra = extraCheese.reduce((a, c) => {
+        return a + c.price;
+      }, 0);
     }
     console.log('Extraaaaaaa', extraCheese);
-
+    updateTotal((dishPrice * count) + sumofExtra);
   };
 
   const LinkedItem = (item, index) => {
@@ -145,13 +164,13 @@ export default function AddToCart({route, navigation}) {
               style={{
                 height: hp(3.5),
                 width: wp(20),
-                
+
                 alignItems: 'center',
                 justifyContent: 'center',
                 margin: 8,
                 borderRadius: 6,
               }}>
-              <ResponsiveText>Optional</ResponsiveText>
+              <ResponsiveText color={colors.white}>Optional</ResponsiveText>
             </View>
           </View>
           <View style={{padding: 20}}>
@@ -171,6 +190,9 @@ export default function AddToCart({route, navigation}) {
                           additem={LinkedItem}
                           value={item}
                         />
+                        {/* <ResponsiveText color={colors.white}>
+                          ${item.price}
+                        </ResponsiveText> */}
                       </View>
                     );
                   },

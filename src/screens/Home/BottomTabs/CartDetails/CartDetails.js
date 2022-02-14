@@ -356,6 +356,8 @@ const CartDetails = ({ navigation }) => {
                     .filter(i => i.titleR == item.titleR)
                     .reduce((a, c) => {
                       return a + c.price * c.quantity;
+                    }, 0)+item.extraCheeses.reduce((a, c) => {
+                      return a + c.price;
                     }, 0)}
                 </ResponsiveText>
               </View>
@@ -392,7 +394,9 @@ const CartDetails = ({ navigation }) => {
                     .filter(i => i.titleR == item.titleR)
                     .reduce((a, c) => {
                       return a + c.price * c.quantity;
-                    }, 0) + 6}
+                    }, 0) + 6+item.extraCheeses.reduce((a, c) => {
+                      return a + c.price;
+                    }, 0)}
                 </ResponsiveText>
               </View>
             </View>
