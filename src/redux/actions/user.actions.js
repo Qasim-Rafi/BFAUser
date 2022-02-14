@@ -295,13 +295,13 @@ export const GetDishByCusineId = (index,limit,id) => {
     }
   };
 };
-// //Get User categories actions
-// export const getUserCategories = (params) => {
-//   return {
-//     type: types.GET_USER_CATS_REQUEST,
-//     params,
-//   };
-// };
+//Get User categories actions
+export const getOrders = (params) => {
+  return {
+    type: types.GET_ORDERS_REQUEST,
+    params,
+  };
+};
 
 // export const getUserCategoriesReset = () => {
 //   return {
