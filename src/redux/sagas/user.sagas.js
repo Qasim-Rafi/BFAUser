@@ -958,6 +958,7 @@ function* getordersSagaApi(data) {
       yield put({
         type: types.GET_ORDERS_SUCCESS,
         payload: response.data,
+        
       });
     } else {
       yield put({ type: types.GET_ORDERS_FAILURE, payload: [] });
