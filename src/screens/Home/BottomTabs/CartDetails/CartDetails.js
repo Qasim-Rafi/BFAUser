@@ -50,7 +50,7 @@ const CartDetails = ({ navigation }) => {
   }, []);
   const newArray = [];
   cartList.forEach(obj => {
-    if (!newArray.some(o => o.restaurantBranchId === obj.restaurantBranchId)) {
+    if (!newArray.some(o => o.titleR === obj.titleR)) {
       newArray.push({ ...obj });
     }
   });
@@ -231,7 +231,7 @@ const CartDetails = ({ navigation }) => {
                             size={3.5}
                             color={colors.white}
                             margin={[0, 0, 0, 10]}>
-                            {item.dishName}
+                            {item.titleD}
                           </ResponsiveText>
                           <ResponsiveText
                             size={2.5}
