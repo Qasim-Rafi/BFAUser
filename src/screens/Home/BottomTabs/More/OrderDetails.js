@@ -10,6 +10,7 @@ import {globalPath} from '../../../../constants/globalPath';
 import Icon from '../../../../components/Icon';
 import Header from '../../../../components/Header';
 import ResponsiveText from '../../../../components/RnText';
+import moment from 'moment';
 import StaticMap from '../../../../components/StaticMap';
 import Restaurant_Description from '../../RestaurantBranchDetail/ResturantDesceiption';
 
@@ -60,7 +61,7 @@ export default function OrderDetails({navigation, route}) {
           Time:
         </ResponsiveText>
         <ResponsiveText size={3} color={colors.grey} margin={[0, 0, 0, 15]}>
-          {data.orderDateTime}
+          {moment(data.orderDateTimes).format("dddd, MMMM Do YYYY, h:mm a") }
         </ResponsiveText>
       </View>
 

@@ -225,7 +225,9 @@ export const appReducers = (state = initialState, action) => {
           loading: false,
         },
       };
+      //Get orders
       case types.GET_ORDERS_REQUEST:
+        console.log("myyydataaaaaaa:",action.payload)
         return {
           ...state,
           your_ordersList: {
@@ -235,6 +237,8 @@ export const appReducers = (state = initialState, action) => {
         };
   
       case types.GET_ORDERS_SUCCESS:
+        console.log("orderdata:",action.payload)
+
         return {
           ...state,
           your_ordersList: {
