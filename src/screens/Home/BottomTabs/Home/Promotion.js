@@ -57,6 +57,7 @@ const Promotion = props => {
                     onPress={() =>
                       props.navigation.navigate(routeName.DISH_DETAIL, {
                         dish: url,
+                        promotion:true
                       })
                     }>
                     <View

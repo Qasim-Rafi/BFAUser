@@ -1,16 +1,14 @@
-
-import types from "./types";
-
+import types from './types';
 
 //Login Action
-export const loginUser = (data) => {
+export const loginUser = data => {
   return {
     type: types.LOGIN_USER_REQUEST,
     data: data,
   };
 };
 //Profile Data
-export const getProfileData = (data) => {
+export const getProfileData = data => {
   return {
     type: types.GET_USER_PROFILE_DATA_REQUEST,
     data: data,
@@ -21,8 +19,8 @@ export const moreFromRestaurant = (index, limit) => {
     type: types.MORE_FROM_RESTAURANT_REQUEST,
     data: {
       index: index,
-      limit: limit
-    }
+      limit: limit,
+    },
   };
 };
 //GET PAYMENT HISTORY
@@ -31,8 +29,8 @@ export const GETPAYMENTHISTORY = (index, limit) => {
     type: types.GET_PAYMENT_HISTORY_REQUEST,
     data: {
       index: index,
-      limit: limit
-    }
+      limit: limit,
+    },
   };
 };
 //APPLY FOR JOB
@@ -41,24 +39,23 @@ export const applyForJob = (data, navigation) => {
   return {
     type: types.GET_APPLY_FOR_JOB_REQUEST,
     data: data,
-    navigation: navigation
+    navigation: navigation,
   };
 };
 //Register actions
-
 
 export const registerUser = (data, navigation) => {
   return {
     type: types.REGISTER_USER_REQUEST,
     data: data,
-    navigation: navigation
+    navigation: navigation,
   };
 };
 export const verifyUser = (code, navigation) => {
   return {
     type: types.VERIFY_USER_REQUEST,
     data: code,
-    navigation: navigation
+    navigation: navigation,
   };
 };
 //people choice
@@ -67,13 +64,13 @@ export const getPeopleChoice = (index, limit) => {
     type: types.GET_PEOPLE_CHOICE_REQUEST,
     data: {
       index: index,
-      limit: limit
-    }
+      limit: limit,
+    },
   };
 };
 
 //Add order
-export const AddOrder = (data) => {
+export const AddOrder = data => {
   return {
     type: types.ADD_ORDER_REQUEST,
     data: data,
@@ -86,20 +83,19 @@ export const getPromotions = (index, limit) => {
     type: types.GET_PROMOTIONS_REQUEST,
     data: {
       index: index,
-      limit: limit
-    }
+      limit: limit,
+    },
   };
 };
 //Brunei Food Awards
-
 
 export const getBruneiFoodRewards = (index, limit) => {
   return {
     type: types.GET_BRUNEI_FOOD_AWARDS_REQUEST,
     data: {
       index: index,
-      limit: limit
-    }
+      limit: limit,
+    },
   };
 };
 
@@ -110,8 +106,8 @@ export const getUserCusine = (index, limit) => {
     type: types.GET_CUSINE_REQUEST,
     data: {
       index: index,
-      limit: limit
-    }
+      limit: limit,
+    },
   };
 };
 //Get Recommendations
@@ -120,8 +116,8 @@ export const getBfaRecommendations = (index, limit) => {
     type: types.GET_BFA_RECOMMENDATION_REQUEST,
     data: {
       index: index,
-      limit: limit
-    }
+      limit: limit,
+    },
   };
 };
 //GET FOOD PREFRENCES
@@ -130,8 +126,8 @@ export const getFoodPrefrences = (index, limit) => {
     type: types.GET_FOOD_PREFRENCES_REQUEST,
     data: {
       index: index,
-      limit: limit
-    }
+      limit: limit,
+    },
   };
 };
 //Get  User
@@ -162,30 +158,29 @@ export const getPromoJobsData = (index, limit) => {
     type: types.GET_PROMO_JOBS_REQUEST,
     data: {
       index: index,
-      limit: limit
-    }
+      limit: limit,
+    },
   };
 };
 
 //Get  BFA PARTNERS
 
-export const getBfaPartners = (data) => {
+export const getBfaPartners = data => {
   return {
     type: types.GET_BFA_PARTNERS_REQUEST,
-    data: data
+    data: data,
   };
 };
 
 export const getRestaurantAllDishes = () => {
   return {
     type: types.GET_RESTAURANT_ALL_DISHES_REQUEST,
-
   };
 };
-export const getmoreaboutDish = (id) => {
+export const getmoreaboutDish = id => {
   return {
     type: types.GET_MORE_ABOUT_DISHES_REQUEST,
-    id: id
+    id: id,
   };
 };
 
@@ -201,48 +196,49 @@ export const getFavorite = (index, limit) => {
     type: types.GET_FAVORITE_REQUEST,
     data: {
       index: index,
-      limit: limit
-    }
+      limit: limit,
+    },
   };
 };
 
-export const addFavorite = (data) => {
+export const addFavorite = data => {
   // console.log('okokokokoko',data)
   return {
     type: types.ADD_FAVORITE_REQUEST,
-    data
+    data,
   };
 };
-export const onRemoveFavorite = (data) => {
+export const onRemoveFavorite = data => {
   return {
     type: types.ON_REMOVE_FAVORITE_REQUEST,
-    data
+    data,
   };
 };
 
 //Cart actions
-export const addCart = (data) => {
+export const addCart = data => {
   return {
     type: types.ADD_TO_CART_REQUEST,
     data,
   };
 };
-export const retriveCart = (data) => {
+export const retriveCart = data => {
   return {
     type: types.RETRIVE_CART_REQUEST,
     data,
   };
 };
-export const removeCart = (data) => {
+export const removeCart = data => {
   return {
     type: types.REMOVE_FROM_CART_REQUEST,
     data,
   };
 };
-export const checkoutOrder = (data) => {
+export const checkoutOrder = (data,navigation) => {
   return {
     type: types.CHECKOUT_ORDER_REQUEST,
     data,
+    navigation
   };
 };
 //What's new
@@ -251,63 +247,64 @@ export const getwhatsNew = (index, limit) => {
     type: types.GET_WHATSNEW_REQUEST,
     data: {
       index: index,
-      limit: limit
-    }
+      limit: limit,
+    },
   };
 };
-export const getRestaurentDeatil = (data) => {
+export const getRestaurentDeatil = data => {
   return {
     type: types.GET_RESTAURENT_DETAIL_REQUEST,
     data,
   };
 };
-//GET_ALL_FAVORITE_RESTAURANT 
-export const getFavorateRestaurent = (data) => {
-  console.log('resssssssss', data)
+//GET_ALL_FAVORITE_RESTAURANT
+export const getFavorateRestaurent = data => {
+  console.log('resssssssss', data);
   return {
     type: types.GET_ALL_FAVORITE_RESTAURANT_REQUEST,
-    data
+    data,
   };
 };
-//Add_FAVORITE_RESTAURANT 
-export const addFavoriteRestaurant = (data) => {
+//Add_FAVORITE_RESTAURANT
+export const addFavoriteRestaurant = data => {
   // console.log('okokokokoko',data)
   return {
     type: types.ADD_FAVORITE_RESTAURANT_REQUEST,
-    data
+    data,
   };
 };
 //REMOVE_FAVORITE_RESTAURANT
-export const RemoveFavoriteRestaurant = (data) => {
+export const RemoveFavoriteRestaurant = data => {
   return {
     type: types.REMOVE_FAVORITE_RESTAURANT_REQUEST,
-    data
+    data,
   };
 };
 //GetDishByCusineId
-export const GetDishByCusineId = (index,limit,id) => {
+export const GetDishByCusineId = (index, limit, id) => {
   return {
     type: types.GET_DISH_BY_CUSINE_ID_REQUEST,
-    data:{
-      index:index,
-      limit:limit,
-      id:id
-    }
+    data: {
+      index: index,
+      limit: limit,
+      id: id,
+    },
   };
 };
 //Get User categories actions
-export const getOrders = (params) => {
+export const getOrders = params => {
   return {
     type: types.GET_ORDERS_REQUEST,
     params,
   };
 };
 
-// export const getUserCategoriesReset = () => {
-//   return {
-//     type: types.GET_USER_CATS_RESET,
-//   };
-// };
+export const promotoinClick = data => {
+  return {
+    type: types.PROMOTION_CLICK_REQUEST,
+    data: data,
+  };
+};
 
 // //Get User categories actions
 // export const addRUpdateCategory = (params) => {

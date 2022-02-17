@@ -37,7 +37,11 @@ export default urls = {
   APPLY_FOR_JOBS: 'api/JobApplications/AddJobApplication',//for apply jobs,
   GET_DISH_BY_CUSINE_ID: 'api/RestaurantDish/GetRestaurantDishByCuisinesId/',
   ADD_ORDER: 'api/Order/AddOrder',
+  UPDATE_ORDER: 'api/Order/UpdateOrder/',
+
   GET_ALL_ORDERS:'api/Order/OrderListForUserApp',
+  PROMOTION_CLICK:'/api/PromotionlDish/AddPromotionlDishForRestaurantClick',
+
 
 
 

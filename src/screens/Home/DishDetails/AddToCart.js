@@ -16,11 +16,20 @@ import {useDispatch, useSelector} from 'react-redux';
 import Icon from '../../../components/Icon';
 import {globalPath} from '../../../constants/globalPath';
 import {routeName} from '../../../constants/routeName';
-import {addCart, addDish, AddOrder} from '../../../redux/actions/user.actions';
+import {
+  addCart,
+  addDish,
+  AddOrder,
+  checkoutOrder,
+} from '../../../redux/actions/user.actions';
 import {TextInput} from 'react-native-gesture-handler';
 import {color} from 'react-native-reanimated';
+import AsyncStorage from '@react-native-community/async-storage';
 export default function AddToCart({route, navigation}) {
   const cartList = useSelector(state => state.appReducers.cartList.data);
+  const orderList = useSelector(
+    state => state.appReducers.your_ordersList.data,
+  );
   const loading = useSelector(state => state.appReducers.cartList.loading);
   // console.log('Add Admin: ', cartList);
   const [visible, setVisible] = React.useState(false);
@@ -47,7 +56,7 @@ export default function AddToCart({route, navigation}) {
       return a + c.price;
     }, 0);
 
-    updateTotal((dishPrice * count )+ sumofExtra);
+    updateTotal(dishPrice * count + sumofExtra);
   }, [count]);
   const Drinks = value => {
     setSelecteddrinks(value);
@@ -79,7 +88,7 @@ export default function AddToCart({route, navigation}) {
           return a + c.price;
         }, 0);
 
-        // console.log('removeeee',extraCheese.filter(i => i.id !== item.id));
+      // console.log('removeeee',extraCheese.filter(i => i.id !== item.id));
     } else {
       extraCheese.push(item);
       var sumofExtra = extraCheese.reduce((a, c) => {
@@ -87,7 +96,7 @@ export default function AddToCart({route, navigation}) {
       }, 0);
     }
     console.log('Extraaaaaaa', extraCheese);
-    updateTotal((dishPrice * count) + sumofExtra);
+    updateTotal(dishPrice * count + sumofExtra);
   };
 
   const LinkedItem = (item, index) => {
@@ -117,7 +126,69 @@ export default function AddToCart({route, navigation}) {
     // Cart_Details.includes(dish) ? undefined : Cart_Details.push(dish);
     // SharedData.setData(dish);
   };
+  const submitOrder = async () => {
+    var userId = await AsyncStorage.getItem('@userId');
+    var checkData = orderList.find(
+      o =>
+        o.statusName === "PreOrder" &&
+        o.restaurantBranchId === dish.restaurantBranchId,
+    );
+    // console.log('filter    nnnn', checkData);
+    // console.log('filter    orderList', orderList);
+    // console.log('filter    dish', dish);
 
+    const addOrderDetail = [];
+    const orderDetailExtraItemList = [];
+    const orderDetailLinkedItemList = [];
+    // cartList.forEach(obj => {
+    // if (obj.restaurantBranchId === BrachId) {
+      if (extraCheese.length > 0) {
+        extraCheese.forEach(e => {
+          orderDetailExtraItemList.push({
+            restaurantDishExtraItemId: e.id,
+          });
+        });
+      }
+      if (linkedItem.length > 0) {
+        linkedItem.forEach(e => {
+          orderDetailLinkedItemList.push({
+            restaurantDishLinkedItemId: e.id,
+          });
+        });
+      }
+    addOrderDetail.push({
+      restaurantDishId: dish.id,
+      addOnId: Selecteddrinks ? Selecteddrinks.softDrinkId : 1,
+      quantity: count,
+      RestaurantSoftDrinkId: 5,
+      // RestaurantSoftDrinkId:Selecteddrinks ? Selecteddrinks.softDrinkId : 1,
+      Price: total,
+      orderDetailExtraItemList: orderDetailExtraItemList,
+      orderDetailLinkedItemList: orderDetailLinkedItemList,
+    });
+   
+    // }
+    // });
+    const obj = {
+      id: checkData ? checkData.id : 0,
+      customerId: userId,
+      statusType: 1,
+      orderStatus: 1,
+      ActionMode: checkData ? 2 : 1,
+      // couponNo: 'NO',
+      orderPlacedfrom: 'Application',
+      remarks: text,
+      restaurantBranchId: dish.restaurantBranchId,
+      amount: total,
+      addOrderDetail: addOrderDetail,
+      // orderDetailExtraItemList: orderDetailExtraItemList,
+      // orderDetailLinkedItemList: orderDetailLinkedItemList,
+    };
+    console.log('objjjjjjjjjjjj,obj', obj);
+    dispatch(checkoutOrder(obj,navigation));
+    //navigation.navigate(routeName.TRANSACTION_CONFIRMATION)
+    //
+  };
   return (
     <View style={{flex: 1}}>
       <ScrollView style={styles.container}>
@@ -148,21 +219,21 @@ export default function AddToCart({route, navigation}) {
             ExtraChees={ExtraChees}
             SelectedDrinks={Drinks}
           />
-            <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          borderTopWidth: 1,
-          borderBottomWidth: 1,
-          borderColor: colors.black2,
-          padding: 5,
-          marginTop: 20,
-          marginHorizontal:10
-        }}>
-        <ResponsiveText color={colors.white}>{'Upsize'}</ResponsiveText>
-        <ResponsiveText color={colors.white}>{'Optional'}</ResponsiveText>
-      </View>
-          
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              borderTopWidth: 1,
+              borderBottomWidth: 1,
+              borderColor: colors.black2,
+              padding: 5,
+              marginTop: 20,
+              marginHorizontal: 10,
+            }}>
+            <ResponsiveText color={colors.white}>{'Upsize'}</ResponsiveText>
+            <ResponsiveText color={colors.white}>{'Optional'}</ResponsiveText>
+          </View>
+
           <View style={{padding: 20}}>
             {Object.keys(route.params.dish).length != 0 &&
             route.params.dish.restaurantDishLinkedItemList
@@ -261,9 +332,8 @@ export default function AddToCart({route, navigation}) {
                 borderRadius: 6,
               }}
               onPress={() => {
-                AddToCart();
+                submitOrder();
                 // console.log("Data: ",data);
-
                 //             SharedData.setData(dish);
                 //             console.log(SharedData.data);
                 //             navigation.navigate(routeName.LANDING_SCREEN)

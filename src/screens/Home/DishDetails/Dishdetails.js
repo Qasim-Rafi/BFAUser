@@ -12,7 +12,7 @@ import Comments from './Comments';
 import RnButton from '../../../components/RnButton';
 import ResponsiveText from '../../../components/RnText';
 import {routeName} from '../../../constants/routeName';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Cart_Details} from '../../../constants/mock';
 import {
   advertisementBannerFakeDATA,
@@ -22,16 +22,32 @@ import FlashMessage, {
   showMessage,
   hideMessage,
 } from 'react-native-flash-message';
+import { promotoinClick } from '../../../redux/actions/user.actions';
 
 export default function DishDetails({route, navigation}) {
   const [dish, addDish] = React.useState({});
   const dropdownRef = React.useRef(null);
+  const dispatch=useDispatch()
 
   const cartList = useSelector(state => state.appReducers.cartList.data);
 
   const [showCalories, setShowCalories] = React.useState(false);
   React.useEffect(() => {
     addDish(route.params.dish);
+    if(route.params?.promotion){
+      console.log('promo', route.params?.promotion);
+      var obj={
+        "id": 0,
+        "createdByDateTime": "string",
+        "restaurantBranchId": route.params.dish.restaurantBranchId,
+        "restaurantDishId": route.params.dish.restaurantDishId,
+        "customerId": 83,
+        "customerName": "Altaf",
+        "fullPath": route.params.dish.imageDataB,
+        "dishName": route.params.dish.titleD
+      }
+       dispatch(promotoinClick(obj))
+    }
     console.log('detail dataaaaaaa', route.params);
   }, []);
 

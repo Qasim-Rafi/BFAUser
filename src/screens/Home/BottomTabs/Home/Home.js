@@ -48,6 +48,7 @@ import {
   getPeopleChoice,
   getwhatsNew,
   moreFromRestaurant,
+  getOrders,
 
 } from '../../../../redux/actions/user.actions';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -117,6 +118,7 @@ const Home = ({ navigation }) => {
     dispatch(getPromoJobsData(1, 10));
     dispatch(getBfaRecommendations(1, 4));
     dispatch(getBruneiFoodRewards(1, 4));
+    dispatch(getOrders());
 
 
   }, []);

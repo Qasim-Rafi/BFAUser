@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   Text,
@@ -15,22 +15,29 @@ import {
 } from 'react-native';
 import Icon from '../../../../components/Icon';
 import ResponsiveText from '../../../../components/RnText';
-import { colors } from '../../../../constants/colorsPallet';
-import { globalPath } from '../../../../constants/globalPath';
-import { hp, wp } from '../../../../helpers/Responsiveness';
+import {colors} from '../../../../constants/colorsPallet';
+import {globalPath} from '../../../../constants/globalPath';
+import {hp, wp} from '../../../../helpers/Responsiveness';
 import Header from '../../../../components/Header';
 import SharedData from './SharedData';
-import { useSelector, useDispatch } from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {
   removeCart,
   addCart,
   checkoutOrder,
   retriveCart,
+  getOrders,
 } from '../../../../redux/actions/user.actions';
 import AsyncStorage from '@react-native-community/async-storage';
 
-const CartDetails = ({ navigation }) => {
+const CartDetails = ({navigation}) => {
   const cartList = useSelector(state => state.appReducers.cartList.data);
+  const orderList = useSelector(
+    state => state.appReducers.your_ordersList.data,
+  );
+  const orderList_Loading = useSelector(
+    state => state.appReducers.your_ordersList.loading,
+  );
   const dispatch = useDispatch();
   const [selectedItem, SetSelectedItem] = React.useState(null);
   const [random, setRandom] = React.useState([]);
@@ -40,21 +47,23 @@ const CartDetails = ({ navigation }) => {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
-  React.useEffect(async () => {
-    const item = await AsyncStorage.getItem('cartData');
+  // React.useEffect(async () => {
+  //   const item = await AsyncStorage.removeItem('cartData');
 
-    console.log(JSON.parse(item), 'cart dataataaaaaaa');
-    if (item != null) {
-      dispatch(retriveCart(JSON.parse(item)));
-    }
-  }, []);
+  //   console.log(JSON.parse(item), 'cart dataataaaaaaa');
+  //   if (item != null) {
+  //     dispatch(retriveCart(JSON.parse(item)));
+  //   }
+  // }, []);
   const newArray = [];
   cartList.forEach(obj => {
     if (!newArray.some(o => o.titleR === obj.titleR)) {
-      newArray.push({ ...obj });
+      newArray.push({...obj});
     }
   });
   React.useEffect(async () => {
+    dispatch(getOrders());
+
     setRandom(SharedData.state.data);
     let sum = cartList.reduce((a, c) => {
       return a + c.price * c.quantity;
@@ -137,7 +146,7 @@ const CartDetails = ({ navigation }) => {
     //navigation.navigate(routeName.TRANSACTION_CONFIRMATION)
     //
   };
-  const ModalPoup = ({ visible, children }) => {
+  const ModalPoup = ({visible, children}) => {
     const [showModal, setShowModal] = React.useState(visible);
     const scaleValue = React.useRef(new Animated.Value(0)).current;
     React.useEffect(() => {
@@ -164,14 +173,14 @@ const CartDetails = ({ navigation }) => {
       <Modal transparent visible={showModal}>
         <View style={styles.modalBackGround}>
           <Animated.View
-            style={[styles.modalContainer, { transform: [{ scale: scaleValue }] }]}>
+            style={[styles.modalContainer, {transform: [{scale: scaleValue}]}]}>
             {children}
           </Animated.View>
         </View>
       </Modal>
     );
   };
-  const renderItem = ({ item }) => {
+  const renderItem = ({item}) => {
     return (
       <View
         style={{
@@ -194,14 +203,12 @@ const CartDetails = ({ navigation }) => {
                 margin={[15, 20, 15, 20]}
                 color={colors.yellow}
                 size={4}>
-                {item.titleR}
+                {item.restaurantName}
               </ResponsiveText>
             </View>
-            {cartList.length === 0
+            {item.addOrderDetail.length === 0
               ? undefined
-              : cartList
-                .filter(i => i.titleR == item.titleR)
-                .map((item, index) => {
+              : item.addOrderDetail.map((item, index) => {
                   return (
                     <View
                       style={{
@@ -217,7 +224,7 @@ const CartDetails = ({ navigation }) => {
                         <Icon
                           size={60}
                           borderRadius={7}
-                          source={{ uri: item.imageDataB }}
+                          source={{uri: item.imageDataB}}
                         />
                       </View>
                       <TouchableOpacity
@@ -225,13 +232,12 @@ const CartDetails = ({ navigation }) => {
                           setVisible(true);
                           SetSelectedItem(item);
                         }}>
-                        <View
-                          style={{ justifyContent: 'center', width: wp(60) }}>
+                        <View style={{justifyContent: 'center', width: wp(60)}}>
                           <ResponsiveText
                             size={3.5}
                             color={colors.white}
                             margin={[0, 0, 0, 10]}>
-                            {item.titleD}
+                            {item.dishName}
                           </ResponsiveText>
                           <ResponsiveText
                             size={2.5}
@@ -248,7 +254,7 @@ const CartDetails = ({ navigation }) => {
                         </View>
                       </TouchableOpacity>
 
-                      <View style={{ marginLeft: -15 }}>
+                      <View style={{marginLeft: -15}}>
                         <TouchableOpacity
                           onPress={() => {
                             onItemDecrease(index, item.id);
@@ -298,7 +304,7 @@ const CartDetails = ({ navigation }) => {
                           </ResponsiveText>
                         </TouchableOpacity>
                       </View>
-                      <View style={{ marginLeft: 15, marginTop: 15 }}>
+                      <View style={{marginLeft: wp(2), marginTop: 15}}>
                         <TouchableOpacity
                           onPress={() => {
                             Alert.alert(
@@ -307,13 +313,13 @@ const CartDetails = ({ navigation }) => {
                               [
                                 {
                                   text: 'Cancel',
-                                  onPress: () => { },
+                                  onPress: () => {},
                                   style: 'cancel',
                                 },
                                 {
                                   text: 'OK',
                                   onPress: () => {
-                                    onItemRemove(item, index);
+                                   // onItemRemove(item, index);
                                   },
                                 },
                               ],
@@ -352,13 +358,13 @@ const CartDetails = ({ navigation }) => {
                 </ResponsiveText>
                 <ResponsiveText color={colors.yellow} size={3}>
                   ${' '}
-                  {cartList
+                  {/* {cartList
                     .filter(i => i.titleR == item.titleR)
                     .reduce((a, c) => {
                       return a + c.price * c.quantity;
                     }, 0)+item.extraCheeses.reduce((a, c) => {
                       return a + c.price;
-                    }, 0)}
+                    }, 0)} */}
                 </ResponsiveText>
               </View>
               <View
@@ -389,14 +395,14 @@ const CartDetails = ({ navigation }) => {
                   Final Total
                 </ResponsiveText>
                 <ResponsiveText color={colors.yellow} size={4}>
-                  ${' '}
-                  {cartList
+                  $ {item.amount}
+                  {/* {cartList
                     .filter(i => i.titleR == item.titleR)
                     .reduce((a, c) => {
                       return a + c.price * c.quantity;
                     }, 0) + 6+item.extraCheeses.reduce((a, c) => {
                       return a + c.price;
-                    }, 0)}
+                    }, 0)} */}
                 </ResponsiveText>
               </View>
             </View>
@@ -421,91 +427,126 @@ const CartDetails = ({ navigation }) => {
     );
   };
   return (
-    <View style={{ backgroundColor: colors.black3, flex: 1 }}>
+    <View style={{backgroundColor: colors.black3, flex: 1}}>
       <ModalPoup visible={visible}>
         <View style={styles.header}>
           <TouchableOpacity onPress={() => setVisible(false)}>
             <Image
               source={require('../../../../assets/fake_Images/cross.png')}
-              style={{ height: 22, width: 22 }}
+              style={{height: 22, width: 22}}
             />
           </TouchableOpacity>
         </View>
 
         {selectedItem !== null ? (
           <>
-            <View style={{ flexDirection: 'row' }}>
+            <View style={{flexDirection: 'row'}}>
               <Image
-                source={{ uri: selectedItem.imageDataB }}
+                source={{uri: selectedItem.imageDataB}}
                 style={styles.popupImage}
               />
 
-              <View style={{ flexDirection: 'column', marginLeft: 5 }}>
-                <Text style={styles.ModalDish}>{selectedItem.cusineName}</Text>
+              <View style={{flexDirection: 'column', marginLeft: 5}}>
+                <Text style={styles.ModalDish}>{selectedItem.dishName}</Text>
                 <Text style={styles.ModalPrice}>$ {selectedItem.price}</Text>
               </View>
             </View>
 
             <View style={styles.ModalInnerDisign}>
-              <Text style={styles.headingDiscription}>
-                Description:
-              </Text>
+              <Text style={styles.headingDiscription}>Description:</Text>
               <Text style={styles.ModalDiscription}>
                 {selectedItem.description}
               </Text>
               <Text style={styles.headingDrinks}>Drink:</Text>
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10 }}>
-                      <View style={{ backgroundColor: colors.white, height: 5, width: 5, borderRadius: 50, marginTop: 6 }}>
-                      </View>
-              <Text style={styles.ModalDrink}> {selectedItem.selectedDrink.softDrinkName}</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  marginLeft: 10,
+                }}>
+                <View
+                  style={{
+                    backgroundColor: colors.white,
+                    height: 5,
+                    width: 5,
+                    borderRadius: 50,
+                    marginTop: 6,
+                  }}></View>
+                <Text style={styles.ModalDrink}> {selectedItem.addOnName}</Text>
               </View>
               <View>
                 <Text style={styles.headingAddOns}>Add ons: </Text>
               </View>
-              {selectedItem.extraCheeses.length > 0
-                ?
-                selectedItem.extraCheeses.map((item, index) => {
-                  return (
-                    <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10 }}>
-                      <View style={{ backgroundColor: colors.white, height: 5, width: 5, borderRadius: 50, marginTop: 6 }}>
+              {selectedItem.orderDetailExtraItemList.length > 0
+                ? selectedItem.orderDetailExtraItemList.map((item, index) => {
+                    return (
+                      <View
+                        style={{
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                          marginLeft: 10,
+                        }}>
+                        <View
+                          style={{
+                            backgroundColor: colors.white,
+                            height: 5,
+                            width: 5,
+                            borderRadius: 50,
+                            marginTop: 6,
+                          }}></View>
+                        <Text style={styles.ModalDrink}>
+                          {item.restaurantDishExtraItemName}
+                        </Text>
                       </View>
-                      <Text style={styles.ModalDrink}>{item.dishExtraItemName}</Text>
-                    </View>
-                  )
-                })
-                : undefined
-              }
-              <View>
-              </View>
+                    );
+                  })
+                : undefined}
+              <View></View>
               <Text style={styles.headingAddOns}>Upsize:</Text>
-              {selectedItem.linkItems.length > 0
-                ?
-                selectedItem.linkItems.map((item, index) => {
-                  return (
-                    <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10 }}>
-                      <View style={{ backgroundColor: colors.white, height: 5, width: 5, borderRadius: 50, marginTop: 6 }}>
+              {selectedItem.orderDetailLinkedItemList.length > 0
+                ? selectedItem.orderDetailLinkedItemList.map((item, index) => {
+                    return (
+                      <View
+                        style={{
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                          marginLeft: 10,
+                        }}>
+                        <View
+                          style={{
+                            backgroundColor: colors.white,
+                            height: 5,
+                            width: 5,
+                            borderRadius: 50,
+                            marginTop: 6,
+                          }}></View>
+                        <Text style={styles.ModalDrink}>
+                          {item.restaurantDishLinkedItemName}
+                        </Text>
                       </View>
-                      <Text style={styles.ModalDrink}>{item.dishLinkedItemName}</Text>
-                    </View>
-                  )
-                })
-                : undefined
-              }
+                    );
+                  })
+                : undefined}
               <Text style={styles.headingInstructions}>Remarks:</Text>
               <Text style={styles.ModalInstructions}>
-          {selectedItem.instructions?selectedItem.instructions:"no remarks"}
+                {selectedItem.instructions
+                  ? selectedItem.instructions
+                  : 'no remarks'}
               </Text>
             </View>
             <View>
-              <Text style={{ color: colors.white, fontSize: 10, marginTop: 4, alignSelf: 'flex-end' }}>
+              <Text
+                style={{
+                  color: colors.white,
+                  fontSize: 10,
+                  marginTop: 4,
+                  alignSelf: 'flex-end',
+                }}>
                 Total: $ {selectedItem.totalPrice}
               </Text>
             </View>
           </>
-
         ) : undefined}
-
-
       </ModalPoup>
       <View
         style={{
@@ -516,18 +557,22 @@ const CartDetails = ({ navigation }) => {
         }}>
         <Header navigation={navigation} />
       </View>
-      <View style={{ flex: 0.9, marginHorizontal: '1%',justifyContent:'center' }}>
-       {newArray.length>0? 
-       <FlatList
-          contentContainerStyle={{ paddingVertical: 10 }}
-          data={newArray}
-          keyExtractor={(item, index) => item + index}
-          renderItem={renderItem}
-        // onViewableItemsChanged={onViewRef}
-        // viewabilityConfig={viewConfigRef.current}
-        />:<Text style={{alignSelf:'center',color:colors.white}}>
-          No order yet
-          </Text>}
+      <View
+        style={{flex: 0.9, marginHorizontal: '1%', justifyContent: 'center'}}>
+        {orderList.length > 0 ? (
+          <FlatList
+            contentContainerStyle={{paddingVertical: 10}}
+            data={orderList}
+            keyExtractor={(item, index) => item + index}
+            renderItem={renderItem}
+            // onViewableItemsChanged={onViewRef}
+            // viewabilityConfig={viewConfigRef.current}
+          />
+        ) : (
+          <Text style={{alignSelf: 'center', color: colors.white}}>
+            No order yet
+          </Text>
+        )}
       </View>
 
       <View style={styles.centeredView}></View>
@@ -591,29 +636,28 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   headingDiscription: {
-
     color: colors.white,
     fontSize: 10,
     marginTop: 4,
-    fontWeight: "bold"
+    fontWeight: 'bold',
   },
   ModalDrink: {
     color: colors.white,
     fontSize: 10,
     marginTop: 4,
-    marginLeft: 4
+    marginLeft: 4,
   },
   headingAddOns: {
     color: colors.white,
     fontSize: 10,
     marginTop: 4,
-    fontWeight: "bold"
+    fontWeight: 'bold',
   },
   headingDrinks: {
     color: colors.white,
     fontSize: 10,
     marginTop: 4,
-    fontWeight: "bold"
+    fontWeight: 'bold',
   },
   ModalAddons: {
     color: colors.white,
@@ -635,6 +679,6 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: 10,
     marginTop: 4,
-    fontWeight: "bold"
-  }
+    fontWeight: 'bold',
+  },
 });

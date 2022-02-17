@@ -22,18 +22,20 @@ class Api {
     return this.xhr(route, null, 'GET', sendAuthToken);
   }
 
-  static put(route, body, sendAuthToken = true) {
-    return this.xhr(route, body, 'PUT', sendAuthToken);
+  static put(route, body,formData, sendAuthToken = true) {
+    console.log(body, 'body put');
+
+    return this.xhr(route, body, 'PUT',formData, sendAuthToken);
   }
 
   static post(route, body, formData, sendAuthToken = false) {
     console.log(route, 'route');
-    console.log(body, 'body');
+    console.log(body, 'body post');
     return this.xhr(route, body, 'POST', formData, sendAuthToken);
   }
 
-  static delete(route, params, sendAuthToken = false) {
-    return this.xhr(route, params, 'DELETE', sendAuthToken);
+  static delete(route, params,formData, sendAuthToken = false) {
+    return this.xhr(route, params, 'DELETE',formData, sendAuthToken);
   }
 
   static async xhr(route, body, verb, formData, sendAuthToken) {
@@ -44,10 +46,7 @@ class Api {
       'Authorization',
       `Bearer ${await AsyncStorage.getItem('@token')}`,
     );
-    if(formData){
-
-    }else{
-
+    if(!formData){
       myHeaders.append("Content-Type", "application/json");
     }
 
@@ -68,7 +67,7 @@ class Api {
     console.log(options, 'options');
     try {
       const resp = await fetch(url, options);
-      console.log(resp, 'okokokoko');
+      console.log(resp, 'API response');
 
       return resp.json();
     } catch (err) {
