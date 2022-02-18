@@ -22,7 +22,6 @@ export default urls = {
   GET_ADD_BANNER: 'api/HomeAdSlideShowAdmin/GetHomeAdSlideShowAdminAll',
   GET_PROMO_NEWS: 'api/PromoItemNews/GetPromoNewsAdminAllAdmin',
   GET_PROMO_JOBS: 'api/PromoJobsAdmin/GetPromoJobsAdminAllAdminForapp/',
-  ADD_ORDERS: 'api/Order/AddOrder',
   PEOPLE_CHOICE: 'api/PeopleChoice/GetPeopleChoiceAll/',     ///people choice
   GET_ALL_WHATSNEW: 'api/RestaurantDish/GetdishWhatsNewAll/',   //Whats new 
   GET_ALL_PROMOTION: 'api/PromotionlDish/GetPromotionlDishIdAllapp/',  //Promostions
@@ -38,9 +37,9 @@ export default urls = {
   GET_DISH_BY_CUSINE_ID: 'api/RestaurantDish/GetRestaurantDishByCuisinesId/',
   ADD_ORDER: 'api/Order/AddOrder',
   UPDATE_ORDER: 'api/Order/UpdateOrder/',
-
   GET_ALL_ORDERS:'api/Order/OrderListForUserApp',
-  PROMOTION_CLICK:'/api/PromotionlDish/AddPromotionlDishForRestaurantClick',
+  PROMOTION_CLICK:'/api/PromotionlDish/AddPromotionlDishForRestaurantClick',  
+  CHECK_ORDER:'api/OrderBill/CheckOutOrder'  //
 
 
 

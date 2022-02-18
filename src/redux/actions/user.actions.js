@@ -69,13 +69,6 @@ export const getPeopleChoice = (index, limit) => {
   };
 };
 
-//Add order
-export const AddOrder = data => {
-  return {
-    type: types.ADD_ORDER_REQUEST,
-    data: data,
-  };
-};
 //PROMOTIONS
 
 export const getPromotions = (index, limit) => {
@@ -232,6 +225,13 @@ export const removeCart = data => {
   return {
     type: types.REMOVE_FROM_CART_REQUEST,
     data,
+  };
+};
+export const addOrder = (data,navigation) => {
+  return {
+    type: types.ADD_ORDER_REQUEST,
+    data,
+    navigation
   };
 };
 export const checkoutOrder = (data,navigation) => {

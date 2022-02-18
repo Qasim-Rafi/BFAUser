@@ -99,50 +99,20 @@ const CartDetails = ({navigation}) => {
     setRandom(cartList);
     dispatch(retriveCart(cartList));
   };
-  const submitOrder = async BrachId => {
+  const submitOrder = async Item => {
     var userId = await AsyncStorage.getItem('@userId');
-    const addOrderDetail = [];
-    const orderDetailExtraItemList = [];
-    const orderDetailLinkedItemList = [];
-    cartList.forEach(obj => {
-      if (obj.restaurantBranchId === BrachId) {
-        addOrderDetail.push({
-          restaurantDishId: obj.id,
-          addOnId: obj.selectedDrink ? obj.selectedDrink.softDrinkId : 1,
-          quantity: obj.quantity,
-        });
-        if (obj.extraCheeses.length > 0) {
-          obj.extraCheeses.forEach(e => {
-            orderDetailExtraItemList.push({
-              restaurantDishExtraItemId: e.id,
-            });
-          });
-        }
-        if (obj.linkItems.length > 0) {
-          obj.linkItems.forEach(e => {
-            orderDetailLinkedItemList.push({
-              restaurantDishLinkedItemId: e.id,
-            });
-          });
-        }
-      }
-    });
+   
     const obj = {
-      id: 0,
-      customerId: userId,
-      status: 1,
-      orderStatus: 2,
-      couponNo: 'NO',
-      orderPlacedfrom: 'Application',
-      remarks: 'ok',
-      restaurantBranchId: BrachId,
-      amount: 10,
-      addOrderDetail: addOrderDetail,
-      orderDetailExtraItemList: orderDetailExtraItemList,
-      orderDetailLinkedItemList: orderDetailLinkedItemList,
+      "id": 0,
+      "userId": 83,
+      "orderId": 202,
+      "amount": 69,
+      "resturantBranchId": 2,
+      "updatedDateTime": "string",
+      "updatebyId": 83
     };
     console.log('objjjjjjjjjjjj,obj', obj);
-    dispatch(checkoutOrder(obj));
+    dispatch(checkoutOrder(obj,navigation));
     //navigation.navigate(routeName.TRANSACTION_CONFIRMATION)
     //
   };
@@ -407,7 +377,7 @@ const CartDetails = ({navigation}) => {
               </View>
             </View>
             <TouchableOpacity
-              onPress={() => submitOrder(item.restaurantBranchId)}
+              onPress={() => submitOrder(item)}
               style={{
                 height: hp(5),
                 width: wp(80),

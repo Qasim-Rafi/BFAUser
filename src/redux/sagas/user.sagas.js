@@ -220,32 +220,32 @@ function* getPaymentHistorySagaApi(data) {
     yield put({type: types.GET_PAYMENT_HISTORY_FAILURE, error: error});
   }
 }
-//Add Order
-export function* addOrderSaga() {
-  console.log('saga function Works');
-  yield takeLatest(types.ADD_ORDER_REQUEST, addOrderApi);
-}
-function* addOrderApi(data) {
-  console.log(data, 'action in saga');
-  let {params, navigation} = data.data;
-  try {
-    const response = yield Api.post(urls.ADD_ORDERS, params);
-    console.log(response, 'response');
-    // dispatch a success action to the store with the new dog
-    if (response && response.data != null) {
-      yield AsyncStorage.setItem('@token', response.data.token);
-      yield AsyncStorage.setItem('@userId', response.data.loggedInUserId);
-      yield put({type: types.ADD_ORDER_SUCCESS, payload: response.data});
-      // navigation.dispatch(
-      //   StackActions.replace('Home')
-      // )
-    } else {
-      yield put({type: types.ADD_ORDER_FAILURE, error: error});
-    }
-  } catch (error) {
-    yield put({type: types.ADD_ORDER_FAILURE, error: error});
-  }
-}
+// //Add Order
+// export function* addOrderSaga() {
+//   console.log('saga function Works');
+//   yield takeLatest(types.ADD_ORDER_REQUEST, addOrderApi);
+// }
+// function* addOrderApi(data) {
+//   console.log(data, 'action in saga');
+//   let {params, navigation} = data.data;
+//   try {
+//     const response = yield Api.post(urls.ADD_ORDER, params);
+//     console.log(response, 'response');
+//     // dispatch a success action to the store with the new dog
+//     if (response && response.data != null) {
+//       yield AsyncStorage.setItem('@token', response.data.token);
+//       yield AsyncStorage.setItem('@userId', response.data.loggedInUserId);
+//       yield put({type: types.ADD_ORDER_SUCCESS, payload: response.data});
+//       // navigation.dispatch(
+//       //   StackActions.replace('Home')
+//       // )
+//     } else {
+//       yield put({type: types.ADD_ORDER_FAILURE, error: error});
+//     }
+//   } catch (error) {
+//     yield put({type: types.ADD_ORDER_FAILURE, error: error});
+//   }
+// }
 
 //Get user Awards saga
 export function* getBruneiFoodsAwardsSaga() {
@@ -917,11 +917,11 @@ function* getdishbycusineidSagaApi(data) {
     yield put({type: types.GET_DISH_BY_CUSINE_ID_FAILURE, payload: []});
   }
 }
-// checkout order
-export function* checkoutOrderSaga() {
-  yield takeLatest(types.CHECKOUT_ORDER_REQUEST, checkoutOrderSagaApi);
+// add order
+export function* addOrderSaga() {
+  yield takeLatest(types.ADD_ORDER_REQUEST, addOrderSagaApi);
 }
-function* checkoutOrderSagaApi(data) {
+function* addOrderSagaApi(data) {
   console.log('add order', data);
   var navigation = data.navigation;
   var response = null;
@@ -971,7 +971,33 @@ function* checkoutOrderSagaApi(data) {
     // yield put({type: types.CHECKOUT_ORDER_FAILURE, payload: []});
   }
 }
+// checkout order
+export function* checkOrderSaga() {
+  yield takeLatest(types.CHECKOUT_ORDER_REQUEST, checkOrderSagaApi);
+}
+function* checkOrderSagaApi(data) {
+  console.log('checkout order', data);
+  var navigation = data.navigation;
+  try {
+   const response = yield Api.post(urls.CHECK_ORDER, data.data, false);
+    console.log(response, 'check out ordr');
 
+    if (response && response.success == true) {
+      navigation.navigate(routeName.TRANSACTION_CONFIRMATION);
+
+      // yield takeLatest(types.GET_ORDERS_REQUEST, getordersSagaApi);
+
+      // yield put({
+      //   type: types.CHECKOUT_ORDER_FAILURE,
+      //   payload: response.data,
+      // });
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    // yield put({type: types.CHECKOUT_ORDER_FAILURE, payload: []});
+  }
+}
 export function* getordersDataSaga() {
   yield takeLatest(types.GET_ORDERS_REQUEST, getordersSagaApi);
 }

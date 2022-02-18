@@ -19,6 +19,7 @@ import {routeName} from '../../../constants/routeName';
 import {
   addCart,
   addDish,
+  addOrder,
   AddOrder,
   checkoutOrder,
 } from '../../../redux/actions/user.actions';
@@ -185,7 +186,7 @@ export default function AddToCart({route, navigation}) {
       // orderDetailLinkedItemList: orderDetailLinkedItemList,
     };
     console.log('objjjjjjjjjjjj,obj', obj);
-    dispatch(checkoutOrder(obj,navigation));
+    dispatch(addOrder(obj,navigation));
     //navigation.navigate(routeName.TRANSACTION_CONFIRMATION)
     //
   };
