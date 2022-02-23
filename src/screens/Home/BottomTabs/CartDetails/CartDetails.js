@@ -377,7 +377,7 @@ const CartDetails = ({navigation}) => {
               </View>
             </View>
             <TouchableOpacity
-              onPress={() => submitOrder(item)}
+              onPress={() => {item.statusName==="Pending"?{}:submitOrder(item)}}
               style={{
                 height: hp(5),
                 width: wp(80),
@@ -389,7 +389,7 @@ const CartDetails = ({navigation}) => {
                 marginTop: 15,
                 marginBottom: 30,
               }}>
-              <ResponsiveText size={3.5}>Check out</ResponsiveText>
+              <ResponsiveText size={3.5}>{item.statusName==="Pending"?item.statusName:'Check out'}</ResponsiveText>
             </TouchableOpacity>
           </View>
         </ScrollView>

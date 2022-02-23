@@ -30,7 +30,9 @@ export default function DishDetails({route, navigation}) {
   const dispatch=useDispatch()
 
   const cartList = useSelector(state => state.appReducers.cartList.data);
-
+  const orderList = useSelector(
+    state => state.appReducers.your_ordersList.data,
+  );
   const [showCalories, setShowCalories] = React.useState(false);
   React.useEffect(() => {
     addDish(route.params.dish);
@@ -56,9 +58,12 @@ export default function DishDetails({route, navigation}) {
     addDish(data);
   };
   const AddCart = data => {
-    if (!cartList.some(o => o.id === dish.id)) {
-      navigation.navigate(routeName.ADD_TO_CART, {dish: dish});
-    } else {
+    var checkData = orderList.find(
+      o =>
+        o.statusName === "PreOrder" &&
+        o.restaurantBranchId === dish.restaurantBranchId,
+    );
+    if (checkData&&checkData.addOrderDetail.some(o =>o.restaurantDishId === dish.id)) {
       dropdownRef.current.showMessage({
         message: 'Alert',
         description: 'Already in cart',
@@ -66,6 +71,9 @@ export default function DishDetails({route, navigation}) {
         icon: {icon: 'auto', position: 'left'},
         //backgroundColor:colors.black1
       });
+    } else {
+      navigation.navigate(routeName.ADD_TO_CART, {dish: dish});
+      
     }
   };
   return (

@@ -134,7 +134,7 @@ export default function AddToCart({route, navigation}) {
         o.statusName === "PreOrder" &&
         o.restaurantBranchId === dish.restaurantBranchId,
     );
-    // console.log('filter    nnnn', checkData);
+     console.log('filter    nnnn', checkData);
     // console.log('filter    orderList', orderList);
     // console.log('filter    dish', dish);
 
@@ -186,7 +186,17 @@ export default function AddToCart({route, navigation}) {
       // orderDetailLinkedItemList: orderDetailLinkedItemList,
     };
     console.log('objjjjjjjjjjjj,obj', obj);
-    dispatch(addOrder(obj,navigation));
+    // if(checkData.addOrderDetail.some(o =>o.restaurantDishId === dish.id)){
+    //   //var checkDish=checkData.addOrderDetail.some(o =>o.restaurantDishId === dish.id)
+    //   console.log('okoko');
+    // //   if(checkData.addOrderDetail.indexOf(dish.id) !== -1){
+    // //     alert("Value exists!")
+    // // } else{
+    // //     alert("Value does not exists!")
+    // // }
+    // //.some(elem => elem === obj)
+    // }
+     dispatch(addOrder(obj,navigation));
     //navigation.navigate(routeName.TRANSACTION_CONFIRMATION)
     //
   };
