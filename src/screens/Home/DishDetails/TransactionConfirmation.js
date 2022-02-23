@@ -22,7 +22,7 @@ export default function TransactionConfirmation({route, navigation}) {
   const [pickup, setPickup] = useState(true);
 
   useEffect(() => {
-    addTotal(route.params);
+    //addTotal(route.params);
   });
 
   const toggleModal = ({navigation, route}) => {
@@ -89,7 +89,7 @@ export default function TransactionConfirmation({route, navigation}) {
               }
               >
               <ResponsiveText color={colors.black} size={3}>
-                {route.params? route.params : 'Cash'}
+                {'Cash'}
               </ResponsiveText>
             </TouchableOpacity>
           </View>
@@ -479,7 +479,7 @@ export default function TransactionConfirmation({route, navigation}) {
                 }}
                 onPress={toggleModal}>
                 <ResponsiveText size={3} color={colors.yellow}>
-                  ok
+                  OK
                 </ResponsiveText>
               </TouchableOpacity>
             </View>

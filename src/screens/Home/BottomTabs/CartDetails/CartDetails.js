@@ -29,6 +29,9 @@ import {
   getOrders,
 } from '../../../../redux/actions/user.actions';
 import AsyncStorage from '@react-native-community/async-storage';
+import {routeName} from '../../../../constants/routeName';
+import Api from '../../../../redux/lib/api';
+import urls from '../../../../redux/lib/urls';
 
 const CartDetails = ({navigation}) => {
   const cartList = useSelector(state => state.appReducers.cartList.data);
@@ -79,13 +82,21 @@ const CartDetails = ({navigation}) => {
   };
 
   //increase quantity
-  const onItemIncrease = (index, id) => {
-    var i = cartList.findIndex(obj => obj.id === id);
+  const onItemIncrease = (index, item) => {
+    var obj = {
+      orderId: item.orderId,
+      restaurantDishId: item.restaurantDishId,
+      quantity: item.quantity,
+      price: item.price,
+    };
+    console.log('increase', obj);
+    // const res = Api.post(urls.UPDATE_QUANTITY, obj);
+    // var i = cartList.findIndex(obj => obj.id === id);
 
-    cartList[i].quantity = cartList[i].quantity + 1;
-    console.log('quantity', cartList);
-    setRandom(cartList);
-    dispatch(retriveCart(cartList));
+    // cartList[i].quantity = cartList[i].quantity + 1;
+    // console.log('quantity', cartList);
+    // setRandom(cartList);
+    // dispatch(retriveCart(cartList));
   };
   //Decrease quantity
   const onItemDecrease = (index, id) => {
@@ -101,19 +112,19 @@ const CartDetails = ({navigation}) => {
   };
   const submitOrder = async Item => {
     var userId = await AsyncStorage.getItem('@userId');
-   
+
     const obj = {
-      "id": 0,
-      "userId": 83,
-      "orderId": 202,
-      "amount": 69,
-      "resturantBranchId": 2,
-      "updatedDateTime": "string",
-      "updatebyId": 83
+      id: 0,
+      userId: 83,
+      orderId: 202,
+      amount: 69,
+      resturantBranchId: 2,
+      updatedDateTime: 'string',
+      updatebyId: 83,
     };
     console.log('objjjjjjjjjjjj,obj', obj);
-    dispatch(checkoutOrder(obj,navigation));
-    //navigation.navigate(routeName.TRANSACTION_CONFIRMATION)
+    // dispatch(checkoutOrder(obj,navigation));
+    navigation.navigate(routeName.TRANSACTION_CONFIRMATION, obj);
     //
   };
   const ModalPoup = ({visible, children}) => {
@@ -259,7 +270,7 @@ const CartDetails = ({navigation}) => {
                           onPress={() => {
                             // item.quantity = item.quantity + 1;
                             //onItemIncrease(item);
-                            onItemIncrease(index, item.id);
+                            onItemIncrease(index, item);
                           }}
                           style={{
                             backgroundColor: colors.yellow,
@@ -289,7 +300,7 @@ const CartDetails = ({navigation}) => {
                                 {
                                   text: 'OK',
                                   onPress: () => {
-                                   // onItemRemove(item, index);
+                                    // onItemRemove(item, index);
                                   },
                                 },
                               ],
@@ -377,7 +388,9 @@ const CartDetails = ({navigation}) => {
               </View>
             </View>
             <TouchableOpacity
-              onPress={() => {item.statusName==="Pending"?{}:submitOrder(item)}}
+              onPress={() => {
+                item.statusName === 'Pending' ? {} : submitOrder(item);
+              }}
               style={{
                 height: hp(5),
                 width: wp(80),
@@ -389,7 +402,9 @@ const CartDetails = ({navigation}) => {
                 marginTop: 15,
                 marginBottom: 30,
               }}>
-              <ResponsiveText size={3.5}>{item.statusName==="Pending"?item.statusName:'Check out'}</ResponsiveText>
+              <ResponsiveText size={3.5}>
+                {item.statusName === 'Pending' ? item.statusName : 'Check out'}
+              </ResponsiveText>
             </TouchableOpacity>
           </View>
         </ScrollView>
