@@ -15,7 +15,7 @@ const SeeAllButton = props => {
   return (
     <TouchableOpacity
       onPress={() => {
-        dispatch(props.action(1, 13))
+        //dispatch(props.action(1, 13))
         props.navigation
           ? props.navigation.navigate(routeName.ALL_DISHES_LIST, {
             data: props.data,

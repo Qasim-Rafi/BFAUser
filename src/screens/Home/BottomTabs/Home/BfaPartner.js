@@ -39,16 +39,17 @@ const BfaPartner = ({ props }) => {
   // console.log('loading', loading);
   const [moreData, setMoreData] = React.useState(false);
   const [modalVisble, setModalVisible] = React.useState(false)
+  const [loadingVisble, setloadingVisible] = React.useState(true)
   const [webIndex, setWebIndex] = React.useState(null)
 
   let bfaPartners = useSelector(state => state.appReducers.bfaPartners.data);
   const [title, setTitle] = React.useState(
-    bfaPartners.length <= 6 ? 'Less' : 'More' ,
+    bfaPartners.length <= 6 ? 'More' : 'Less' ,
   );
   const images = [];
   const lessImages = [];
   const siteAdd = []
-  if (bfaPartners.length>0) {
+  if (bfaPartners.length > 0) {
     bfaPartners.map(item => {
 
       if (images.includes(item.fullpath)) {
@@ -60,14 +61,14 @@ const BfaPartner = ({ props }) => {
     });
   }
 
-  if (bfaPartners.length>0) {
+  if (bfaPartners.length > 0) {
     bfaPartners.map((item, index) => {
       siteAdd.push(bfaPartners[index].siteUrl)
     })
   }
   // console.log(siteAdd);
 
-  if (bfaPartners.length>0) {
+  if (bfaPartners.length > 0) {
     for (var i = 0; i < 6; i++) {
       var img = bfaPartners[i].fullpath;
       //var src = img.replace(/\\/g, '/');
@@ -78,10 +79,6 @@ const BfaPartner = ({ props }) => {
       }
     }
   }
-
-
-
-
   const modalView = (index) => {
     setModalVisible(true)
     setWebIndex(index)
@@ -196,21 +193,49 @@ const BfaPartner = ({ props }) => {
             :
             undefined
         }
-
         <Modal visible={modalVisble} animationType="slide" transparent={true} style={{ borderRadius: 50 }} >
-          <View style={{ flex: 1, margin: 30, borderWidth: 1, backgroundColor: colors.black3, padding: 20, borderRadius: 30 }} >
+
+          {/* <Button title={'Close'} onPress={() => { setModalVisible(false), setloadingVisible(true) }} /> */}
+
+          <View style={{ backgroundColor: colors.black2, height: hp(60), width: wp(100), position: 'absolute', bottom: 0, paddingTop: hp(6) }} >
+            <View style={{ marginTop: 10, marginHorizontal: 5, position: 'absolute', flexDirection: 'row', justifyContent: "space-around" }}>
+              <View style={{ flex: 1, }}>
+                <Image
+                  source={require('../../../../assets/icons/bali-logo.png')}
+                  style={{ height: 33, width: wp(16), resizeMode: 'contain' }}
+                />
+              </View>
+
+              <TouchableOpacity onPress={() => { setModalVisible(false), setloadingVisible(true) }}
+              // style={{ position: 'absolute', right: 0, zindex: 1 }}
+              >
+                <Image
+                  source={require('../../../../assets/fake_Images/cross.png')}
+                  style={{ height: 33, width: 33 }}
+                />
+              </TouchableOpacity>
+            </View>
+
+
             <WebView
+              onLoad={() => setloadingVisible(false)}
               source={{ uri: siteAdd[webIndex] }}
-            // style={{height:'80%',width:'80%'}}
             />
+            {
+              loadingVisble === true ?
+                <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, backgroundColor: 'rgba(65, 65, 65, 0)', flex: 1 }}>
+                  <DotIndicator color={colors.black} size={5.6} />
+                </View>
+                :
+                undefined
+            }
             {console.log(siteAdd[webIndex], 'webIndex', webIndex)}
-            <Button title={'Close'} onPress={() => setModalVisible(false)} />
           </View>
         </Modal>
-      </View>
+      </View >
 
 
-    </View>
+    </View >
   );
 };
 
@@ -243,5 +268,27 @@ const styles = StyleSheet.create({
   },
   modalWeb: {
     marginTop: 50
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  header: {
+    width: '95%',
+    height: 30,
+    position: 'absolute',
+    margin: 15,
+    alignItems: 'flex-end',
   },
 });

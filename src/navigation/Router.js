@@ -25,7 +25,7 @@ const Router = () => {
         headerShown: false,
       }}>
         <Stack.Screen name="Auth" component={AuthStack} />
-        <Stack.Screen name="Home" component={HomeStack} />
+        <Stack.Screen name="Home" component={BottomTabs} />
       </Stack.Navigator>
       {/* {Token === '' || Token === null?<AuthStack/> :<HomeStack /> } */}
       

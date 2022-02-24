@@ -32,9 +32,15 @@ import {
   get_whatsNew,
   getwhatsNew,
 } from '../../../../redux/actions/user.actions';
+import {
+
+  DotIndicator,
+
+} from 'react-native-indicators';
 import { getWhatsNewSaga } from '../../../../redux/sagas/user.sagas';
 const WhatsNew = props => {
   const NewData = useSelector(state => state.appReducers.whatsnew.data,)
+  const loading = useSelector(state => state.appReducers.whatsnew.refreshing)
   const dispatch = useDispatch();
   return (
     <>
@@ -121,6 +127,14 @@ const WhatsNew = props => {
             })
           }
         </ScrollView>
+        {
+          loading === true ?
+            <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, backgroundColor: 'rgba(65, 65, 65, 0)', flex: 1 }}>
+              < DotIndicator color={colors.yellow} size={5} />
+            </View>
+            :
+            undefined
+        }
       </View>
     </>
   );

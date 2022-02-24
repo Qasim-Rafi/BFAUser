@@ -25,10 +25,8 @@ import BranchesDetail from './Branches';
 import PromosBanner from '../BottomTabs/Promos/PromoBanner';
 import { colors } from '../../../constants/colorsPallet';
 import AwardsDetail from './AwardsDetail';
-import MenuTabs from '../Menu/MenuTabs';
 import { getRestaurentDeatil } from '../../../redux/actions/user.actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { Item } from 'react-native-paper/lib/typescript/components/List/List';
 
 export default function RestaurantBranchDetailScreen({ navigation, route }) {
   const [activeTab, setActiveTab] = React.useState(MenuSectionButtons[0].id);
@@ -37,14 +35,15 @@ export default function RestaurantBranchDetailScreen({ navigation, route }) {
   const data = useSelector(state => state.appReducers.restaurantDetail.data);
   const loading = useSelector(state => state.appReducers.restaurantDetail.refreshing);
   React.useEffect(() => {
-    dispatch(getRestaurentDeatil(31));
+    dispatch(getRestaurentDeatil(route.params));
     //route.params.restaurantId
+    // console.log(route.params, 'params colsole');
   }, []);
-  console.log('routeetetteetet vhvhh', data);
+  console.log('restaurant detail', data);
   return (
     <View style={{ backgroundColor: colors.black3, flex: 1 }}>
       <View style={styles.headerImage}>
-        <ImageHeader navigation={navigation} img={data.imageData} />
+        <ImageHeader navigation={navigation} img={data.restaurantLogo} />
       </View>
       <View>
         <View
@@ -80,10 +79,10 @@ export default function RestaurantBranchDetailScreen({ navigation, route }) {
       {Object.keys(data).length != 0 ? (
         <View
           style={{ height: hp(70), paddingHorizontal: 20, paddingVertical: 10 }}>
-          {activeTab === 1 && <Info data={data.restaurantBranchesAlldataforappList[0]} />}
+          {activeTab === 1 && <Info data={data.restaurantBranchesAlldataforappList[0]} logo={data.restaurantLogo}/>}
           {activeTab === 2 && <PromosBanner />}
           {activeTab === 3 && <Menu navigation={navigation} data={data.restaurantBranchesAlldataforappList[0].restaurantMenulist} />}
-          {activeTab === 4 && <BranchesDetail navigation={navigation} data={data.restaurantBranchesAlldataforappList} />}
+          {activeTab === 4 && <BranchesDetail navigation={navigation} data={data.restaurantBranchesAlldataforappList} restaurantName={data.restaurantName}/>}
           {activeTab === 5 && <AwardsDetail navigation={navigation} data={data.restaurantBranchesAlldataforappList[0].awardlist} />}
         </View>
       ) : null}

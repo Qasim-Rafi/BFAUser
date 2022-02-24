@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {View, Text, Image,TouchableOpacity} from 'react-native';
 import Header from '../../../../components/Header';
 import {TRANSACTION_HISTORY_FAKE_DATA} from '../../../../constants/mock';
@@ -7,7 +7,18 @@ import Icon from '../../../../components/Icon';
 import {colors} from '../../../../constants/colorsPallet';
 import ResponsiveText from '../../../../components/RnText';
 import { globalPath } from '../../../../constants/globalPath';
+import { useSelector ,useDispatch} from 'react-redux';
+import { GETPAYMENTHISTORY } from '../../../../redux/actions/user.actions';
 export default function TransactionHistory({navigation}) {
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(GETPAYMENTHISTORY(1, 4));
+    
+  })
+  const HISTORY = useSelector(state => state.appReducers.getPaymentHistory.data);
+  const loading = useSelector(state => state.appReducers.getPaymentHistory.loading);
+  console.log('HISTORY:  ',HISTORY)
   return (
     <View style={{flex: 1, backgroundColor: colors.black3}}>
        <View style={{ flexDirection: 'row', justifyContent: "space-between",padding:7 }}>
@@ -49,9 +60,9 @@ export default function TransactionHistory({navigation}) {
             <View style={{width: '20%',justifyContent:'center', overflow: 'hidden',}}>
               <ResponsiveText
                 margin={[0, 0, 0, 0]}
-                color={colors.yellow}
+                color={item.type === 'out' ? colors.red3 : colors.yellow }
                 >
-                {item.price}
+                {item.type === 'out' ? '-' : null}{item.price}
               </ResponsiveText>
               <ResponsiveText
                 margin={[0, 0, 0, 0]}

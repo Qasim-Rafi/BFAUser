@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { FacilityList } from '../../../components/Facility';
-import Icon from '../../../components/Icon';
-import RnButton from '../../../components/RnButton';
 import ResponsiveText from '../../../components/RnText';
-import { globalPath } from '../../../constants/globalPath';
-import { FacilityData } from '../../../constants/mock';
-import { hp, wp } from '../../../helpers/Responsiveness';
-import Comments from '../DishDetails/Comments';
 import TimeTable from './TimeTable';
 import Restaurant_Description from './ResturantDesceiption';
 import { colors } from '../../../constants/colorsPallet';
@@ -16,8 +10,8 @@ const Info = (props) => {
   const [data, setData] = useState(props.data)
   console.log('okokoko', props.data)
   return (
-    <ScrollView>
-      <Restaurant_Description data={data} />
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <Restaurant_Description data={data} logo={props.logo}/>
       <View>
         <View style={{ marginHorizontal: 20, marginVertical: 10 }}>
           <ResponsiveText size={4} color={colors.white} >Facilities</ResponsiveText>
@@ -45,11 +39,7 @@ const Info = (props) => {
           {/* <Comments /> */}
         </View>
         <View style={{ margin: 20, paddingBottom: 50 }}>
-          <RnButton>
-            <ResponsiveText padding={0} color={colors.black}>
-              SUBMIT
-            </ResponsiveText>
-          </RnButton>
+         
         </View>
       </View>
     </ScrollView>

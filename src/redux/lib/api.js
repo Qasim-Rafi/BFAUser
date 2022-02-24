@@ -22,37 +22,41 @@ class Api {
     return this.xhr(route, null, 'GET', sendAuthToken);
   }
 
-  static put(route, body, sendAuthToken = true) {
-    return this.xhr(route, body, 'PUT', sendAuthToken);
+  static put(route, body,formData, sendAuthToken = true) {
+    console.log(body, 'body put');
+
+    return this.xhr(route, body, 'PUT',formData, sendAuthToken);
   }
 
-  static post(route, body, sendAuthToken = false) {
+  static post(route, body, formData, sendAuthToken = false) {
     console.log(route, 'route');
-    console.log(body, 'body');
-    return this.xhr(route, body, 'POST', sendAuthToken);
+    console.log(body, 'body post');
+    return this.xhr(route, body, 'POST', formData, sendAuthToken);
   }
 
-  static delete(route, params, sendAuthToken = false) {
-    return this.xhr(route, params, 'DELETE', sendAuthToken);
+  static delete(route, params,formData, sendAuthToken = false) {
+    return this.xhr(route, params, 'DELETE',formData, sendAuthToken);
   }
 
-  static async xhr(route, body, verb, sendAuthToken) {
+  static async xhr(route, body, verb, formData, sendAuthToken) {
     const url = `${urls.HOST}${route}`;
-    console.log(url)
+    console.log(url);
     const myHeaders = new Headers();
     myHeaders.append(
       'Authorization',
       `Bearer ${await AsyncStorage.getItem('@token')}`,
     );
-    myHeaders.append('Content-Type', 'application/json');
+    if(!formData){
+      myHeaders.append("Content-Type", "application/json");
+    }
 
     let options = null;
     if (body) {
       options = {
         method: verb,
-        body: JSON.stringify(body),
+        body: formData ? body : JSON.stringify(body),
         headers: myHeaders,
-       // redirect: 'follow',
+        redirect: 'follow',
       };
     } else {
       options = {
@@ -60,11 +64,11 @@ class Api {
         headers: myHeaders,
       };
     }
-    // options.headers = Api.headers();
-
     console.log(options, 'options');
     try {
       const resp = await fetch(url, options);
+      console.log(resp, 'API response');
+
       return resp.json();
     } catch (err) {
       console.log(err, 'error');
@@ -86,7 +90,7 @@ class Api {
       };
       console.log(error, 'Error message from API.js');
       console.log(err.response, 'Err message from API.js');
-      throw err.response ? {...err.response.data, error} : err;
+      throw err.response ? {...err.response.data, error} : error;
     }
   }
 }

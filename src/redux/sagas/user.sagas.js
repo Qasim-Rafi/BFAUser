@@ -96,6 +96,40 @@ function* registerUserApi(data, response) {
     // });
   }
 }
+//Applyfor Job
+export function* applyJobSaga() {
+  console.log('saga function Works');
+  yield takeLatest(types.GET_APPLY_FOR_JOB_REQUEST, applyJobApi);
+}
+function* applyJobApi(data, response) {
+  console.log(data, 'action in saga');
+  // alert("response: ", response.success);
+  let body = data.data;
+  let navigation = data.navigation;
+  let formData = true;
+  console.log('bodyyyyyyy:', body);
+  try {
+    const response = yield Api.post(urls.APPLY_FOR_JOBS, body, formData);
+    console.log(response, 'responsefasfsdf');
+    if (response && response.success == true) {
+      yield put({type: types.GET_APPLY_FOR_JOB_SUCCESS, payload: response});
+      console.log('reponsessssss:', response);
+      showMessage({
+        message: 'Succes',
+        description: 'Submit successfully',
+        type: 'success',
+        icon: {icon: 'auto', position: 'left'},
+      });
+      navigation.goBack();
+    } else {
+      yield put({type: types.GET_APPLY_FOR_JOB_FAILURE, payload: response});
+    }
+  } catch (error) {
+    yield put({type: types.REGISTER_USER_FAILURE, error: error});
+    console.log(error, 'error saga catch');
+  }
+}
+//Verification
 export function* verifyUserSaga() {
   console.log('saga function Works');
   yield takeLatest(types.VERIFY_USER_REQUEST, verifyUserApi);
@@ -162,32 +196,56 @@ function* getPeopleChoiceSagaApi(data) {
     yield put({type: types.GET_PEOPLE_CHOICE_FAILURE, error: error});
   }
 }
-//Add Order
-export function* addOrderSaga() {
-  console.log('saga function Works');
-  yield takeLatest(types.ADD_ORDER_REQUEST, addOrderApi);
+//GET PAYMENT HISTORY
+export function* getPaymentHistorySaga() {
+  yield takeLatest(types.GET_PAYMENT_HISTORY_REQUEST, getPaymentHistorySagaApi);
 }
-function* addOrderApi(data) {
-  console.log(data, 'action in saga');
-  let {params, navigation} = data.data;
+function* getPaymentHistorySagaApi(data) {
+  const limit = data.data.limit;
+  const index = data.data.index;
   try {
-    const response = yield Api.post(urls.ADD_ORDERS, params);
-    console.log(response, 'response');
-    // dispatch a success action to the store with the new dog
+    const url = urls.PEOPLE_CHOICE + index + '/' + limit;
+    const response = yield Api.get(url);
     if (response && response.data != null) {
-      yield AsyncStorage.setItem('@token', response.data.token);
-      yield AsyncStorage.setItem('@userId', response.data.loggedInUserId);
-      yield put({type: types.ADD_ORDER_SUCCESS, payload: response.data});
-      // navigation.dispatch(
-      //   StackActions.replace('Home')
-      // )
+      yield put({
+        type: types.GET_PAYMENT_HISTORY_SUCCESS,
+        payload: response.data,
+      });
     } else {
-      yield put({type: types.ADD_ORDER_FAILURE, error: error});
+      yield put({type: types.GET_PAYMENT_HISTORY_FAILURE, error: error});
     }
+
+    // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({type: types.ADD_ORDER_FAILURE, error: error});
+    yield put({type: types.GET_PAYMENT_HISTORY_FAILURE, error: error});
   }
 }
+// //Add Order
+// export function* addOrderSaga() {
+//   console.log('saga function Works');
+//   yield takeLatest(types.ADD_ORDER_REQUEST, addOrderApi);
+// }
+// function* addOrderApi(data) {
+//   console.log(data, 'action in saga');
+//   let {params, navigation} = data.data;
+//   try {
+//     const response = yield Api.post(urls.ADD_ORDER, params);
+//     console.log(response, 'response');
+//     // dispatch a success action to the store with the new dog
+//     if (response && response.data != null) {
+//       yield AsyncStorage.setItem('@token', response.data.token);
+//       yield AsyncStorage.setItem('@userId', response.data.loggedInUserId);
+//       yield put({type: types.ADD_ORDER_SUCCESS, payload: response.data});
+//       // navigation.dispatch(
+//       //   StackActions.replace('Home')
+//       // )
+//     } else {
+//       yield put({type: types.ADD_ORDER_FAILURE, error: error});
+//     }
+//   } catch (error) {
+//     yield put({type: types.ADD_ORDER_FAILURE, error: error});
+//   }
+// }
 
 //Get user Awards saga
 export function* getBruneiFoodsAwardsSaga() {
@@ -238,6 +296,31 @@ function* getCusineSagaApi(data) {
     // dispatch a success action to the store with the new data object
   } catch (error) {
     yield put({type: types.GET_CUSINE_FAILURE, error: error});
+  }
+}
+//FOOD PREFRENCES
+export function* getFoodPrefrencesSaga() {
+  yield takeLatest(types.GET_FOOD_PREFRENCES_REQUEST, getFoodPrefrencesSagaApi);
+}
+function* getFoodPrefrencesSagaApi(data) {
+  const limit = data.data.limit;
+  const index = data.data.index;
+
+  try {
+    const url = urls.CUSINE_URL + index + '/' + limit;
+    const response = yield Api.get(url);
+    if (response && response.data != null) {
+      yield put({
+        type: types.GET_FOOD_PREFRENCES_SUCCESS,
+        payload: response.data,
+      });
+    } else {
+      yield put({type: types.GET_FOOD_PREFRENCES_FAILURE, error: error});
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({type: types.GET_FOOD_PREFRENCES_FAILURE, error: error});
   }
 }
 
@@ -437,16 +520,45 @@ function* getRestaurantDishesSagaApi() {
     yield put({type: types.GET_RESTAURANT_ALL_DISHES_FAILURE, error: error});
   }
 }
+//More from Restaurant
+export function* moreFromRestSaga() {
+  yield takeLatest(types.MORE_FROM_RESTAURANT_REQUEST, moreFromRestSagaApi);
+}
+function* moreFromRestSagaApi(data) {
+  const limit = data.data.limit;
+  const index = data.data.index;
+
+  console.log('paramsssssssssss: ', data);
+  const url = urls.RESTAURANT_DISH_ALL + index + '/' + limit;
+  console.log('People Url: ', url);
+  try {
+    const response = yield Api.get(url);
+    if (response && response.data != null) {
+      yield put({
+        type: types.MORE_FROM_RESTAURANT_SUCCESS,
+        payload: response.data,
+      });
+      // navigation.navigate(routeName.Categories,{data:response.data});
+    } else {
+      yield put({type: types.MORE_FROM_RESTAURANT_FAILURE, payload: []});
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({type: types.MORE_FROM_RESTAURANT_FAILURE, error: error});
+  }
+}
 ///FAVORITES
 export function* getFavoritesSaga() {
   yield takeLatest(types.GET_FAVORITE_REQUEST, getFavoritesSagaApi);
 }
 function* getFavoritesSagaApi(data) {
-  console.log(data);
   const limit = data.data.limit;
   const index = data.data.index;
   try {
     const response = yield Api.get(urls.GET_ALL_FAVORITE + index + '/' + limit);
+    console.log('fav resssss', response);
+
     if (response && response.data != null) {
       yield put({
         type: types.GET_FAVORITE_SUCCESS,
@@ -749,11 +861,12 @@ export function* moreaboutDishSaga() {
 }
 function* moreaboutDishSagaApi(data) {
   const id = data.id;
-  console.log('moreabouttttt:', data);
+  // console.log('moreabouttttt:', data);
 
   try {
-    const response = yield Api.get(urls.DISH_CALORIE);
-    if (response && response.data != null) {
+    const response = yield Api.get(urls.DISH_CALORIE + id);
+    console.log('resss', response);
+    if (response && response.success == true) {
       yield put({
         type: types.GET_MORE_ABOUT_DISHES_SUCCESS,
         payload: response.data,
@@ -767,6 +880,164 @@ function* moreaboutDishSagaApi(data) {
 
     // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({type: types.REMOVE_FAVORITE_RESTAURANT_FAILURE, error: 'error'});
+    yield put({type: types.GET_MORE_ABOUT_DISHES_FAILURE, error: error});
+    console.log('error saga', error);
+  }
+}
+//GetDishByCusineId
+export function* getdishbycusineidDataSaga() {
+  yield takeLatest(
+    types.GET_DISH_BY_CUSINE_ID_REQUEST,
+    getdishbycusineidSagaApi,
+  );
+}
+function* getdishbycusineidSagaApi(data) {
+  console.log('cousin by id', data);
+  const id = data.data.id;
+  const index = data.data.index;
+  const limit = data.data.limit;
+
+  try {
+    const response = yield Api.get(
+      urls.GET_DISH_BY_CUSINE_ID + id + '/' + index + '/' + limit,
+    );
+    console.log(response, 'heeeeeeeeee');
+    if (response && response.success == true) {
+      yield put({
+        type: types.GET_DISH_BY_CUSINE_ID_SUCCESS,
+        payload: response.data,
+      });
+      // navigation.navigate(routeName.Categories,{data:response.data});
+    } else {
+      yield put({type: types.GET_DISH_BY_CUSINE_ID_FAILURE, payload: []});
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({type: types.GET_DISH_BY_CUSINE_ID_FAILURE, payload: []});
+  }
+}
+// add order
+export function* addOrderSaga() {
+  yield takeLatest(types.ADD_ORDER_REQUEST, addOrderSagaApi);
+}
+function* addOrderSagaApi(data) {
+  console.log('add order', data);
+  var navigation = data.navigation;
+  var response = null;
+  try {
+    if (data.data.ActionMode == 1) {
+      response = yield Api.post(urls.ADD_ORDER, data.data, false);
+      // console.log(response, 'post cart resssssss');
+    } else {
+      response = yield Api.put(
+        urls.UPDATE_ORDER + data.data.id,
+        data.data,
+        false,
+      );
+    }
+    console.log(response, 'put cart resssssss');
+
+    if (response && response.success == true) {
+      navigation.navigate(routeName.LANDING_SCREEN);
+
+      // yield takeLatest(types.GET_ORDERS_REQUEST, getordersSagaApi);
+
+      // yield put({
+      //   type: types.CHECKOUT_ORDER_FAILURE,
+      //   payload: response.data,
+      // });
+      try {
+        const response = yield Api.get(urls.GET_ALL_ORDERS);
+        if (response && response.success == true) {
+          yield put({
+            type: types.GET_ORDERS_SUCCESS,
+            payload: response.data,
+          });
+        } else {
+          yield put({type: types.GET_ORDERS_FAILURE, payload: []});
+        }
+
+        // dispatch a success action to the store with the new data object
+      } catch (error) {
+        yield put({type: types.GET_ORDERS_FAILURE, payload: []});
+      }
+    } else {
+      // yield put({type: types.CHECKOUT_ORDER_FAILURE, payload: []});
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    // yield put({type: types.CHECKOUT_ORDER_FAILURE, payload: []});
+  }
+}
+// checkout order
+export function* checkOrderSaga() {
+  yield takeLatest(types.CHECKOUT_ORDER_REQUEST, checkOrderSagaApi);
+}
+function* checkOrderSagaApi(data) {
+  console.log('checkout order', data);
+  var navigation = data.navigation;
+  try {
+   const response = yield Api.post(urls.CHECK_ORDER, data.data, false);
+    console.log(response, 'check out ordr');
+
+    if (response && response.success == true) {
+      navigation.navigate(routeName.TRANSACTION_CONFIRMATION);
+
+      // yield takeLatest(types.GET_ORDERS_REQUEST, getordersSagaApi);
+
+      // yield put({
+      //   type: types.CHECKOUT_ORDER_FAILURE,
+      //   payload: response.data,
+      // });
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    // yield put({type: types.CHECKOUT_ORDER_FAILURE, payload: []});
+  }
+}
+export function* getordersDataSaga() {
+  yield takeLatest(types.GET_ORDERS_REQUEST, getordersSagaApi);
+}
+function* getordersSagaApi(data) {
+  try {
+    const response = yield Api.get(urls.GET_ALL_ORDERS);
+    console.log(response, 'heeeeeeeeee');
+    if (response && response.success == true) {
+      yield put({
+        type: types.GET_ORDERS_SUCCESS,
+        payload: response.data,
+      });
+    } else {
+      yield put({type: types.GET_ORDERS_FAILURE, payload: []});
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({type: types.GET_ORDERS_FAILURE, payload: []});
+  }
+}
+
+export function* promotionClickDataSaga() {
+  yield takeLatest(types.PROMOTION_CLICK_REQUEST, promotionClickSagaApi);
+}
+function* promotionClickSagaApi(data) {
+  try {
+    const response = yield Api.post(urls.PROMOTION_CLICK, data.data, false);
+    console.log(response, 'PROMOTOI CLICK');
+    if (response && response.success == true) {
+      // yield put({
+      //   type: types.GET_ORDERS_SUCCESS,
+      //   payload: response.data,
+      // });
+    } else {
+      // yield put({type: types.GET_ORDERS_FAILURE, payload: []});
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    // yield put({type: types.GET_ORDERS_FAILURE, payload: []});
   }
 }

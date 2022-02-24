@@ -77,9 +77,9 @@ const area = [
 ]
 
 const distance = [
-    'Less than 3',
-    'More than 6',
-    'Above'
+    'Less than 3 Km',
+    'Between 3 Km to 6 Km',
+    'More than 6 Km'
 ]
 
 const premise = [
@@ -204,7 +204,7 @@ export default class RandomWheel extends React.Component {
 
                             getWinner={(value, index) => {
                                 this.setState({ winnerValue: value, winnerIndex: index });
-                                this.props.navigation.navigate(routeName.RestaurantDetail)
+                                this.props.navigation.navigate(routeName.RestaurantDetail,value)
                                 // alert('Dish ID: ',participants[this.state.winnerIndex])
                             //    alert('Dish ID: '+participants[this.state.winnerIndex])
                             }}
