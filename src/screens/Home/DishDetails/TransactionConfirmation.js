@@ -13,6 +13,10 @@ import {colors} from '../../../constants/colorsPallet';
 import {globalPath} from '../../../constants/globalPath';
 import {routeName} from '../../../constants/routeName';
 import {hp, wp} from '../../../helpers/Responsiveness';
+import {useSelector, useDispatch} from 'react-redux';
+import {checkoutOrder} from '../../../redux/actions/user.actions';
+import urls from '../../../redux/lib/urls';
+import Api from '../../../redux/lib/api';
 
 export default function TransactionConfirmation({route, navigation}) {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -20,13 +24,23 @@ export default function TransactionConfirmation({route, navigation}) {
   const [count, changeCount] = useState(95);
   const [total, addTotal] = useState(0);
   const [pickup, setPickup] = useState(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     //addTotal(route.params);
   });
 
-  const toggleModal = ({navigation, route}) => {
+  const toggleModal = async() => {
+    // dispatch(checkoutOrder(route.params));
+    try {
+   const response = await Api.post(urls.CHECK_ORDER, route.params, false);
+      console.log('res check',response);
+      if (response && response.success == true) {
     setModalVisible(!isModalVisible);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -37,7 +51,11 @@ export default function TransactionConfirmation({route, navigation}) {
           backgroundColor: colors.black2,
           justifyContent: 'center',
         }}>
-        <Header iconPath={globalPath.BACK_ARROW} title={'Check out'} navigation={navigation} />
+        <Header
+          iconPath={globalPath.BACK_ARROW}
+          title={'Check out'}
+          navigation={navigation}
+        />
       </View>
       <View style={{flex: 0.9, backgroundColor: colors.black3}}>
         <ResponsiveText margin={[25, 0, 0, 20]} color={colors.yellow}>
@@ -62,11 +80,7 @@ export default function TransactionConfirmation({route, navigation}) {
           </ResponsiveText>
         </View>
         <TouchableOpacity
-          onPress={() =>
-            navigation.navigate(routeName.SELECT_PAYMENT_METHOD)
-          }
-        >
-          
+          onPress={() => navigation.navigate(routeName.SELECT_PAYMENT_METHOD)}>
           <View
             style={{
               marginHorizontal: 20,
@@ -86,8 +100,7 @@ export default function TransactionConfirmation({route, navigation}) {
               }}
               onPress={() =>
                 navigation.navigate(routeName.SELECT_PAYMENT_METHOD)
-              }
-              >
+              }>
               <ResponsiveText color={colors.black} size={3}>
                 {'Cash'}
               </ResponsiveText>
@@ -477,7 +490,7 @@ export default function TransactionConfirmation({route, navigation}) {
                   width: wp(83),
                   height: hp(5),
                 }}
-                onPress={toggleModal}>
+                onPress={()=>setModalVisible(!isModalVisible)}>
                 <ResponsiveText size={3} color={colors.yellow}>
                   OK
                 </ResponsiveText>
@@ -486,8 +499,6 @@ export default function TransactionConfirmation({route, navigation}) {
           </View>
           {/* ------------ ModalView End -------------- */}
         </Modal>
-
-        
       </View>
     </View>
   );

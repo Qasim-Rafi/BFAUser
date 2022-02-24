@@ -77,20 +77,47 @@ const CartDetails = ({navigation}) => {
   }, [random]);
 
   //Remove product
-  const onItemRemove = (data, position) => {
-    dispatch(removeCart(data));
+  const onItemRemove = async (item) => {
+    console.log('itemm',item);
+    // dispatch(removeCart(data));
+    try {
+      const res = await Api.delete(urls.DELETE_DISH_FROM_CART+item.orderId+'&restaurantDishId='+item.restaurantDishId);
+      console.log('res', res);
+      if (res && res.success == true) {
+        dispatch(getOrders());
+      } else {
+      }
+    } catch (error) {}
   };
-
+  const onClearOrder = async id => {
+    // dispatch(removeCart(data));
+    try {
+      const res = await Api.delete(urls.DELETE_ORDER_FROM_CART + id);
+      console.log('res', res);
+      if (res && res.success == true) {
+        dispatch(getOrders());
+      } else {
+      }
+    } catch (error) {}
+  };
   //increase quantity
-  const onItemIncrease = (index, item) => {
+  const onItemIncrease = async (index, item) => {
     var obj = {
       orderId: item.orderId,
       restaurantDishId: item.restaurantDishId,
-      quantity: item.quantity,
-      price: item.price,
+      quantity: item.quantity + 1,
+      price: 20,
     };
     console.log('increase', obj);
-    // const res = Api.post(urls.UPDATE_QUANTITY, obj);
+    try {
+      const res = await Api.put(urls.UPDATE_QUANTITY, obj);
+      console.log('res', res);
+      if (res && res.success == true) {
+        dispatch(getOrders());
+      } else {
+      }
+    } catch (error) {}
+
     // var i = cartList.findIndex(obj => obj.id === id);
 
     // cartList[i].quantity = cartList[i].quantity + 1;
@@ -99,31 +126,38 @@ const CartDetails = ({navigation}) => {
     // dispatch(retriveCart(cartList));
   };
   //Decrease quantity
-  const onItemDecrease = (index, id) => {
-    var i = cartList.findIndex(obj => obj.id === id);
-    cartList[i].quantity =
-      cartList[i].quantity > 1
-        ? cartList[i].quantity - 1
-        : cartList[i].quantity;
-
-    console.log('quantity', cartList);
-    setRandom(cartList);
-    dispatch(retriveCart(cartList));
+  const onItemDecrease = async item => {
+    var obj = {
+      orderId: item.orderId,
+      restaurantDishId: item.restaurantDishId,
+      quantity: item.quantity - 1,
+      price: 20,
+    };
+    console.log('increase', obj);
+    try {
+      const res = await Api.put(urls.UPDATE_QUANTITY, obj);
+      console.log('res', res);
+      if (res && res.success == true) {
+        dispatch(getOrders());
+      } else {
+      }
+    } catch (error) {}
   };
   const submitOrder = async Item => {
     var userId = await AsyncStorage.getItem('@userId');
+    console.log('itemmmmm', Item);
 
     const obj = {
       id: 0,
-      userId: 83,
-      orderId: 202,
-      amount: 69,
-      resturantBranchId: 2,
+      userId: userId,
+      orderId: Item.id,
+      amount: Item.amount,
+      resturantBranchId: Item.restaurantBranchId,
       updatedDateTime: 'string',
-      updatebyId: 83,
+      updatebyId: userId,
     };
     console.log('objjjjjjjjjjjj,obj', obj);
-    // dispatch(checkoutOrder(obj,navigation));
+    //dispatch(checkoutOrder(obj,navigation));
     navigation.navigate(routeName.TRANSACTION_CONFIRMATION, obj);
     //
   };
@@ -186,6 +220,14 @@ const CartDetails = ({navigation}) => {
                 size={4}>
                 {item.restaurantName}
               </ResponsiveText>
+              <TouchableOpacity onPress={() => onClearOrder(item.id)}>
+                <ResponsiveText
+                  margin={[15, 30, 15, -10]}
+                  color={colors.white}
+                  size={4}>
+                  Clear Order
+                </ResponsiveText>
+              </TouchableOpacity>
             </View>
             {item.addOrderDetail.length === 0
               ? undefined
@@ -238,7 +280,7 @@ const CartDetails = ({navigation}) => {
                       <View style={{marginLeft: -15}}>
                         <TouchableOpacity
                           onPress={() => {
-                            onItemDecrease(index, item.id);
+                            onItemDecrease(item);
                           }}
                           style={{
                             backgroundColor: colors.yellow,
@@ -300,7 +342,7 @@ const CartDetails = ({navigation}) => {
                                 {
                                   text: 'OK',
                                   onPress: () => {
-                                    // onItemRemove(item, index);
+                                    onItemRemove(item);
                                   },
                                 },
                               ],

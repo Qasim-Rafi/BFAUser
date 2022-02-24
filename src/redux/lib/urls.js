@@ -38,9 +38,12 @@ export default urls = {
   ADD_ORDER: 'api/Order/AddOrder',
   UPDATE_ORDER: 'api/Order/UpdateOrder/',
   GET_ALL_ORDERS:'api/Order/OrderListForUserApp',
-  PROMOTION_CLICK:'/api/PromotionlDish/AddPromotionlDishForRestaurantClick',  
+  PROMOTION_CLICK:'api/PromotionlDish/AddPromotionlDishForRestaurantClick',  
   CHECK_ORDER:'api/OrderBill/CheckOutOrder',  //
-  UPDATE_QUANTITY:'/api/Order/UpdateOrderQuantityPrice'
+  UPDATE_QUANTITY:'api/Order/UpdateOrderQuantityPrice',
+  DELETE_DISH_FROM_CART:'api/Order/DeleteOrderDish?orderId=',
+  DELETE_ORDER_FROM_CART:'api/Order/DeleteOrder/',//
+
 
 
 
