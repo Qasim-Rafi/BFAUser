@@ -36,7 +36,7 @@ import FlashMessage, {
   showMessage,
   hideMessage,
 } from 'react-native-flash-message';
-import { BarIndicator } from 'react-native-indicators';
+import {BarIndicator} from 'react-native-indicators';
 
 const CartDetails = ({navigation}) => {
   const cartList = useSelector(state => state.appReducers.cartList.data);
@@ -89,6 +89,8 @@ const CartDetails = ({navigation}) => {
     console.log('itemm', item);
     // dispatch(removeCart(data));
     try {
+      setLoading(true);
+
       const res = await Api.delete(
         urls.DELETE_DISH_FROM_CART +
           item.orderId +
@@ -98,7 +100,24 @@ const CartDetails = ({navigation}) => {
       console.log('res', res);
       if (res && res.success == true) {
         dispatch(getOrders());
+        setLoading(false);
+        dropdownRef.current.showMessage({
+          message: 'Alert',
+          description: 'Dish deleted',
+          type: 'success',
+          icon: {icon: 'auto', position: 'left'},
+          //backgroundColor:colors.black1
+        });
       } else {
+        setLoading(false);
+
+        dropdownRef.current.showMessage({
+          message: 'Alert',
+          description: 'Something went wrong',
+          type: 'danger',
+          icon: {icon: 'auto', position: 'left'},
+          //backgroundColor:colors.black1
+        });
       }
     } catch (error) {}
   };
@@ -251,6 +270,7 @@ const CartDetails = ({navigation}) => {
                 size={4}>
                 {item.restaurantName}
               </ResponsiveText>
+              {item.statusName === 'PreOrder' ?
               <TouchableOpacity onPress={() => onClearOrder(item.id)}>
                 <ResponsiveText
                   margin={[15, 30, 15, -10]}
@@ -258,7 +278,7 @@ const CartDetails = ({navigation}) => {
                   size={4}>
                   Clear Order
                 </ResponsiveText>
-              </TouchableOpacity>
+              </TouchableOpacity>:null}
             </View>
             {item.addOrderDetail.length === 0
               ? undefined
@@ -296,14 +316,14 @@ const CartDetails = ({navigation}) => {
                           <ResponsiveText
                             size={2.5}
                             color={colors.grey}
-                            margin={[-5, 0, 0, 10]}>
-                            {item.description}
+                            margin={[-3, 15, 0, 10]}>
+                            {item.dishDescription}
                           </ResponsiveText>
                           <ResponsiveText
                             size={3}
                             color={colors.yellow}
                             margin={[0, 0, 0, 10]}>
-                            $ {item.price}
+                            $ {item.dishPrice}
                           </ResponsiveText>
                         </View>
                       </TouchableOpacity>
@@ -373,7 +393,12 @@ const CartDetails = ({navigation}) => {
                                 {
                                   text: 'OK',
                                   onPress: () => {
-                                    onItemRemove(item);
+                                    if(item.statusName === 'PreOrder'){
+
+                                      onItemRemove(item);
+                                    }else{
+                                      Alert.alert('','Order in process')
+                                    }
                                   },
                                 },
                               ],
@@ -411,14 +436,7 @@ const CartDetails = ({navigation}) => {
                   Total
                 </ResponsiveText>
                 <ResponsiveText color={colors.yellow} size={3}>
-                  ${' '}
-                  {/* {cartList
-                    .filter(i => i.titleR == item.titleR)
-                    .reduce((a, c) => {
-                      return a + c.price * c.quantity;
-                    }, 0)+item.extraCheeses.reduce((a, c) => {
-                      return a + c.price;
-                    }, 0)} */}
+                  $ {item.amount}
                 </ResponsiveText>
               </View>
               <View
@@ -435,7 +453,7 @@ const CartDetails = ({navigation}) => {
                   Tips
                 </ResponsiveText>
                 <ResponsiveText color={colors.yellow} size={3}>
-                  $ 6.00
+                  $ 0.00
                 </ResponsiveText>
               </View>
               <View
@@ -462,7 +480,7 @@ const CartDetails = ({navigation}) => {
             </View>
             <TouchableOpacity
               onPress={() => {
-                item.statusName === 'Pending' ? {} : submitOrder(item);
+                item.statusName === 'PreOrder' ? submitOrder(item) : {};
               }}
               style={{
                 height: hp(5),
@@ -476,7 +494,7 @@ const CartDetails = ({navigation}) => {
                 marginBottom: 30,
               }}>
               <ResponsiveText size={3.5}>
-                {item.statusName === 'Pending' ? item.statusName : 'Check out'}
+                {item.statusName === 'PreOrder' ? 'Check out' : 'Pending'}
               </ResponsiveText>
             </TouchableOpacity>
           </View>
@@ -506,14 +524,14 @@ const CartDetails = ({navigation}) => {
 
               <View style={{flexDirection: 'column', marginLeft: 5}}>
                 <Text style={styles.ModalDish}>{selectedItem.dishName}</Text>
-                <Text style={styles.ModalPrice}>$ {selectedItem.price}</Text>
+                <Text style={styles.ModalPrice}>$ {selectedItem.dishPrice}</Text>
               </View>
             </View>
 
             <View style={styles.ModalInnerDisign}>
               <Text style={styles.headingDiscription}>Description:</Text>
               <Text style={styles.ModalDiscription}>
-                {selectedItem.description}
+                {selectedItem.dishDescription}
               </Text>
               <Text style={styles.headingDrinks}>Drink:</Text>
               <View
@@ -600,7 +618,7 @@ const CartDetails = ({navigation}) => {
                   marginTop: 4,
                   alignSelf: 'flex-end',
                 }}>
-                Total: $ {selectedItem.totalPrice}
+                Total: $ {selectedItem.itemTotalPrice}
               </Text>
             </View>
           </>
@@ -615,14 +633,21 @@ const CartDetails = ({navigation}) => {
         }}>
         <Header navigation={navigation} />
       </View>
-      {
-        isLoading === true ?
-          <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, backgroundColor: 'rgba(65, 65, 65, 0.5)', flex: 1 ,zIndex:10}}>
-            <BarIndicator color={colors.yellow} size={50} />
-          </View>
-          :
-          undefined
-      }
+      {isLoading === true ? (
+        <View
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            bottom: 0,
+            right: 0,
+            backgroundColor: 'rgba(65, 65, 65, 0.5)',
+            flex: 1,
+            zIndex: 10,
+          }}>
+          <BarIndicator color={colors.yellow} size={50} />
+        </View>
+      ) : undefined}
       <View
         style={{flex: 0.9, marginHorizontal: '1%', justifyContent: 'center'}}>
         {orderList.length > 0 ? (

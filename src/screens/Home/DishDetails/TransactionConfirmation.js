@@ -14,7 +14,7 @@ import {globalPath} from '../../../constants/globalPath';
 import {routeName} from '../../../constants/routeName';
 import {hp, wp} from '../../../helpers/Responsiveness';
 import {useSelector, useDispatch} from 'react-redux';
-import {checkoutOrder} from '../../../redux/actions/user.actions';
+import {checkoutOrder, getOrders} from '../../../redux/actions/user.actions';
 import urls from '../../../redux/lib/urls';
 import Api from '../../../redux/lib/api';
 
@@ -30,13 +30,27 @@ export default function TransactionConfirmation({route, navigation}) {
     //addTotal(route.params);
   });
 
-  const toggleModal = async() => {
+  const toggleModal = async () => {
     // dispatch(checkoutOrder(route.params));
     try {
-   const response = await Api.post(urls.CHECK_ORDER, route.params, false);
-      console.log('res check',response);
+      const response = await Api.post(urls.CHECK_ORDER, route.params, false);
+      console.log('res check', response);
       if (response && response.success == true) {
-    setModalVisible(!isModalVisible);
+        setModalVisible(!isModalVisible);
+        dispatch(getOrders());
+
+      // setLoading(false);
+        
+      } else {
+        // setLoading(false);
+
+        // dropdownRef.current.showMessage({
+        //   message: 'Alert',
+        //   description: 'Something went wrong',
+        //   type: 'danger',
+        //   icon: {icon: 'auto', position: 'left'},
+        //   //backgroundColor:colors.black1
+        // });
       }
     } catch (error) {
       console.log(error);
@@ -45,9 +59,9 @@ export default function TransactionConfirmation({route, navigation}) {
   const orderConfirmation = async DATA => {
     // dispatch(removeCart(data));
     try {
-      const res = await Api.post(urls.ORDER_CONFIRMATION,DATA);
+      const res = await Api.post(urls.ORDER_CONFIRMATION, DATA);
       console.log('res', res);
-      if (res && res.success == false) {
+      if (res && res.success == true) {
         toggleModal();
       } else {
       }
@@ -500,7 +514,7 @@ export default function TransactionConfirmation({route, navigation}) {
                   width: wp(83),
                   height: hp(5),
                 }}
-                onPress={()=>setModalVisible(!isModalVisible)}>
+                onPress={() => setModalVisible(!isModalVisible)}>
                 <ResponsiveText size={3} color={colors.yellow}>
                   OK
                 </ResponsiveText>
