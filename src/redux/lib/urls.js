@@ -43,6 +43,8 @@ export default urls = {
   UPDATE_QUANTITY:'api/Order/UpdateOrderQuantityPrice',
   DELETE_DISH_FROM_CART:'api/Order/DeleteOrderDish?orderId=',
   DELETE_ORDER_FROM_CART:'api/Order/DeleteOrder/',//
+  ORDER_CONFIRMATION:'api/OrderPayment/PaymentCheckMethodConfirmation',//
+
 
 
 

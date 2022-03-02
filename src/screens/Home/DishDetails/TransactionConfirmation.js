@@ -42,7 +42,17 @@ export default function TransactionConfirmation({route, navigation}) {
       console.log(error);
     }
   };
-
+  const orderConfirmation = async DATA => {
+    // dispatch(removeCart(data));
+    try {
+      const res = await Api.post(urls.ORDER_CONFIRMATION,DATA);
+      console.log('res', res);
+      if (res && res.success == false) {
+        toggleModal();
+      } else {
+      }
+    } catch (error) {}
+  };
   return (
     <View style={{flex: 1, backgroundColor: colors.black3}}>
       <View
@@ -363,7 +373,7 @@ export default function TransactionConfirmation({route, navigation}) {
               width: wp(90),
               backgroundColor: colors.yellow,
             }}
-            onPress={toggleModal}>
+            onPress={orderConfirmation}>
             <ResponsiveText>Confirm Payment</ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity

@@ -32,6 +32,11 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {routeName} from '../../../../constants/routeName';
 import Api from '../../../../redux/lib/api';
 import urls from '../../../../redux/lib/urls';
+import FlashMessage, {
+  showMessage,
+  hideMessage,
+} from 'react-native-flash-message';
+import { BarIndicator } from 'react-native-indicators';
 
 const CartDetails = ({navigation}) => {
   const cartList = useSelector(state => state.appReducers.cartList.data);
@@ -46,6 +51,9 @@ const CartDetails = ({navigation}) => {
   const [random, setRandom] = React.useState([]);
   const [totalPrice, setTotalPrice] = React.useState();
   const [visible, setVisible] = React.useState(false);
+  const [isLoading, setLoading] = React.useState(false);
+
+  const dropdownRef = React.useRef(null);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -77,11 +85,16 @@ const CartDetails = ({navigation}) => {
   }, [random]);
 
   //Remove product
-  const onItemRemove = async (item) => {
-    console.log('itemm',item);
+  const onItemRemove = async item => {
+    console.log('itemm', item);
     // dispatch(removeCart(data));
     try {
-      const res = await Api.delete(urls.DELETE_DISH_FROM_CART+item.orderId+'&restaurantDishId='+item.restaurantDishId);
+      const res = await Api.delete(
+        urls.DELETE_DISH_FROM_CART +
+          item.orderId +
+          '&restaurantDishId=' +
+          item.restaurantDishId,
+      );
       console.log('res', res);
       if (res && res.success == true) {
         dispatch(getOrders());
@@ -92,11 +105,29 @@ const CartDetails = ({navigation}) => {
   const onClearOrder = async id => {
     // dispatch(removeCart(data));
     try {
+      setLoading(true);
       const res = await Api.delete(urls.DELETE_ORDER_FROM_CART + id);
       console.log('res', res);
       if (res && res.success == true) {
         dispatch(getOrders());
+        setLoading(false);
+        dropdownRef.current.showMessage({
+          message: 'Alert',
+          description: 'Order cleared',
+          type: 'success',
+          icon: {icon: 'auto', position: 'left'},
+          //backgroundColor:colors.black1
+        });
       } else {
+        setLoading(false);
+
+        dropdownRef.current.showMessage({
+          message: 'Alert',
+          description: 'Something went wrong',
+          type: 'danger',
+          icon: {icon: 'auto', position: 'left'},
+          //backgroundColor:colors.black1
+        });
       }
     } catch (error) {}
   };
@@ -130,7 +161,7 @@ const CartDetails = ({navigation}) => {
     var obj = {
       orderId: item.orderId,
       restaurantDishId: item.restaurantDishId,
-      quantity: item.quantity - 1,
+      quantity: item.quantity === 1 ? item.quantity : item.quantity - 1,
       price: 20,
     };
     console.log('increase', obj);
@@ -584,6 +615,14 @@ const CartDetails = ({navigation}) => {
         }}>
         <Header navigation={navigation} />
       </View>
+      {
+        isLoading === true ?
+          <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, backgroundColor: 'rgba(65, 65, 65, 0.5)', flex: 1 ,zIndex:10}}>
+            <BarIndicator color={colors.yellow} size={50} />
+          </View>
+          :
+          undefined
+      }
       <View
         style={{flex: 0.9, marginHorizontal: '1%', justifyContent: 'center'}}>
         {orderList.length > 0 ? (
@@ -601,6 +640,7 @@ const CartDetails = ({navigation}) => {
           </Text>
         )}
       </View>
+      <FlashMessage ref={dropdownRef} />
 
       <View style={styles.centeredView}></View>
     </View>
