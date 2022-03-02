@@ -158,7 +158,7 @@ export default function AddToCart({route, navigation}) {
         });
       }
     addOrderDetail.push({
-      restaurantDishId: dish.id,
+      restaurantDishId: dish.restaurantDishId,
       addOnId: Selecteddrinks ? Selecteddrinks.softDrinkId : 1,
       quantity: count,
       RestaurantSoftDrinkId: 5,
