@@ -110,7 +110,6 @@ const CartDetails = ({navigation}) => {
         });
       } else {
         setLoading(false);
-        dispatch(getOrders());
 
         dropdownRef.current.showMessage({
           message: 'Alert',

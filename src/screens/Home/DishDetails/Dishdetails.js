@@ -63,7 +63,8 @@ export default function DishDetails({route, navigation}) {
         o.statusName === "PreOrder" &&
         o.restaurantBranchId === dish.restaurantBranchId,
     );
-    if (checkData&&checkData.addOrderDetail.some(o =>o.restaurantDishId === dish.id)) {
+    console.log('check data',checkData);
+    if (checkData&&checkData.addOrderDetail.some(o =>o.restaurantDishId === dish.restaurantDishId)) {
       dropdownRef.current.showMessage({
         message: 'Alert',
         description: 'Already in cart',

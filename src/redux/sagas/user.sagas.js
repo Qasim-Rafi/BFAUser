@@ -579,7 +579,7 @@ export function* addfavouriteSaga() {
   yield takeLatest(types.ADD_FAVORITE_REQUEST, addfavouritSagaApi);
 }
 function* addfavouritSagaApi(data) {
-  const dishId = data.data.id;
+  const dishId = data.data.restaurantDishId;
   const resId = data.data.restaurantBranchId;
 
   console.log('parammmmmmmmmm', data);
