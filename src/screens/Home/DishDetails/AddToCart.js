@@ -165,7 +165,8 @@ export default function AddToCart({route, navigation}) {
       quantity: count,
       RestaurantSoftDrinkId: 5,
       // RestaurantSoftDrinkId:Selecteddrinks ? Selecteddrinks.softDrinkId : 1,
-      Price: total,
+      Price: dish.price,
+      dishPrice: dish.price,
       orderDetailExtraItemList: orderDetailExtraItemList,
       orderDetailLinkedItemList: orderDetailLinkedItemList,
     });

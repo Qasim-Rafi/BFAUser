@@ -253,6 +253,7 @@ export const appReducers = (state = initialState, action) => {
           ...state,
           your_ordersList: {
             ...state.your_ordersList,
+            data: action.payload,
             loading: false,
           },
         };

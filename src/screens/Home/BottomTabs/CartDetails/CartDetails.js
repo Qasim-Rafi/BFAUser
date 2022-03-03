@@ -110,6 +110,7 @@ const CartDetails = ({navigation}) => {
         });
       } else {
         setLoading(false);
+        dispatch(getOrders());
 
         dropdownRef.current.showMessage({
           message: 'Alert',
@@ -156,7 +157,6 @@ const CartDetails = ({navigation}) => {
       orderId: item.orderId,
       restaurantDishId: item.restaurantDishId,
       quantity: item.quantity + 1,
-      price: 20,
     };
     console.log('increase', obj);
     try {
@@ -181,7 +181,6 @@ const CartDetails = ({navigation}) => {
       orderId: item.orderId,
       restaurantDishId: item.restaurantDishId,
       quantity: item.quantity === 1 ? item.quantity : item.quantity - 1,
-      price: 20,
     };
     console.log('increase', obj);
     try {
