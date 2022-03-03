@@ -147,6 +147,7 @@ export default function AddToCart({route, navigation}) {
         extraCheese.forEach(e => {
           orderDetailExtraItemList.push({
             restaurantDishExtraItemId: e.id,
+            price:e.price
           });
         });
       }
@@ -154,6 +155,7 @@ export default function AddToCart({route, navigation}) {
         linkedItem.forEach(e => {
           orderDetailLinkedItemList.push({
             restaurantDishLinkedItemId: e.id,
+            price:e.price
           });
         });
       }

@@ -393,12 +393,12 @@ const CartDetails = ({navigation}) => {
                                 {
                                   text: 'OK',
                                   onPress: () => {
-                                    if(item.statusName === 'PreOrder'){
+                                    // if(item.statusName === 'PreOrder'){
 
                                       onItemRemove(item);
-                                    }else{
-                                      Alert.alert('','Order in process')
-                                    }
+                                    // }else{
+                                    //   Alert.alert('','Order in process')
+                                    // }
                                   },
                                 },
                               ],
