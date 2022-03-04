@@ -206,7 +206,7 @@ const CartDetails = ({navigation}) => {
     };
     console.log('objjjjjjjjjjjj,obj', obj);
     //dispatch(checkoutOrder(obj,navigation));
-    navigation.navigate(routeName.TRANSACTION_CONFIRMATION, obj);
+    navigation.navigate(routeName.TRANSACTION_CONFIRMATION, {obj:obj,data:Item});
     //
   };
   const ModalPoup = ({visible, children}) => {
