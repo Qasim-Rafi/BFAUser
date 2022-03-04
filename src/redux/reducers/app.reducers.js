@@ -118,6 +118,10 @@ const initialState = {
     loading: false,
     data: [],
   },
+  NearestRestaurants: {
+    loading:false,
+    data:[],
+  }
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -904,6 +908,32 @@ export const appReducers = (state = initialState, action) => {
           getdishbycusineid: {
             ...state.getdishbycusineid,
             refreshing: false,
+          },
+        };
+        //GetDishByCusineId
+      case types.GET_NEAREST_RESTAURANT_REQUEST:
+        return {
+          ...state,
+          NearestRestaurants: {
+            ...state.NearestRestaurants,
+            loading: true,
+          },
+        };
+      case types.GET_NEAREST_RESTAURANT_SUCCESS:
+        return {
+          ...state,
+          NearestRestaurants: {
+            ...state.NearestRestaurants,
+            data: action.payload,
+            loading: false,
+          },
+        };
+      case types.GET_NEAREST_RESTAURANT_FAILURE:
+        return {
+          ...state,
+          NearestRestaurants: {
+            ...state.NearestRestaurants,
+            loading: false,
           },
         };
     default:

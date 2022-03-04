@@ -44,6 +44,8 @@ export default urls = {
   DELETE_ORDER_FROM_CART:'api/Order/DeleteOrder/',//
   ORDER_CONFIRMATION:'api/OrderPayment/PaymentCheckMethodConfirmation',//
 
+  GET_NEAREST_RESTAURANTS: 'api/RestaurantBranchesAdmin/GetNearestRestaurantBranchesByLocation/',
+
 
 
 

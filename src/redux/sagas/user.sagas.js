@@ -1041,3 +1041,26 @@ function* promotionClickSagaApi(data) {
     // yield put({type: types.GET_ORDERS_FAILURE, payload: []});
   }
 }
+
+export function* getNearestRestaurantsSaga() {
+  yield takeLatest(types.GET_NEAREST_RESTAURANT_REQUEST, getNearestRestaurantsSagaApi);
+}
+function* getNearestRestaurantsSagaApi(data) {
+  console.log(data, 'Data in getNearestRestaurantsSaga')
+  try {
+    const response = yield Api.get(urls.GET_NEAREST_RESTAURANTS+data.data.long+'/'+data.data.lat);
+    console.log(response, 'NearestRestaurants');
+    if (response && response.success == true) {
+      yield put({
+        type: types.GET_NEAREST_RESTAURANT_SUCCESS,
+        payload: response.data,
+      });
+    } else {
+      yield put({type: types.GET_NEAREST_RESTAURANT_FAILURE, payload: []});
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({type: types.GET_NEAREST_RESTAURANT_FAILURE, payload: []});
+  }
+}
