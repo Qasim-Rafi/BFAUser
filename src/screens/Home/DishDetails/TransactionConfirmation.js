@@ -21,7 +21,8 @@ import Api from '../../../redux/lib/api';
 export default function TransactionConfirmation({route, navigation}) {
   const [isModalVisible, setModalVisible] = useState(false);
   const [activeTabs, setActive] = useState('tab3');
-  const [count, changeCount] = useState(95);
+  const [count, changeCount] = useState(40);
+  const [data, setData] = useState(route.params.data);
   const [total, addTotal] = useState(0);
   const [pickup, setPickup] = useState(true);
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ export default function TransactionConfirmation({route, navigation}) {
   const toggleModal = async () => {
     // dispatch(checkoutOrder(route.params));
     try {
-      const response = await Api.post(urls.CHECK_ORDER, route.params, false);
+      const response = await Api.post(urls.CHECK_ORDER, route.params.obj, false);
       console.log('res check', response);
       if (response && response.success == true) {
         setModalVisible(!isModalVisible);
@@ -100,7 +101,7 @@ export default function TransactionConfirmation({route, navigation}) {
           }}>
           <ResponsiveText color={colors.white}>Restaurant Name</ResponsiveText>
           <ResponsiveText color={colors.yellow}>
-            I-Lotus Restaurant
+            {data.restaurantName}
           </ResponsiveText>
         </View>
         <TouchableOpacity
