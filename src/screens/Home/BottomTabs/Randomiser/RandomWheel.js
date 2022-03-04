@@ -1,7 +1,7 @@
 
 
 //Node Imports
-import React from 'react';
+import React, { useEffect } from 'react';
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
 import {
     Image, StyleSheet, TouchableOpacity, View, Text,
@@ -131,7 +131,7 @@ const premise = [
             started: false,
             isModalVisible: false,
             lat:null,
-            long:null
+            long:null,
         };
         this.child = null;
     }
@@ -191,13 +191,13 @@ const premise = [
     };
     render() {
         const wheelOptions = {
-            rewards: this.props.restaurantListNames,
+            rewards: this.props.restaurantList.map( names =>  names.name  ),
             knobSize: 30,
             borderWidth: 5,
             borderColor: '#fff',
             innerRadius: 30,
             duration: 6000,
-            iconRewards: this.props.restaurantListImages,
+            iconRewards: this.props.restaurantList.map( names =>  names.fullPath  ),
             backgroundColor: 'transparent',
 
             textAngle: 'horizontal',
@@ -234,7 +234,7 @@ const premise = [
                     </View>
                     <View style={styles.container}>
                         <StatusBar barStyle={'light-content'} />
-
+{ this.props.restaurantList.map( names =>  names.name  ).length?
                         <WheelOfFortune
                             options={wheelOptions}
 
@@ -245,7 +245,7 @@ const premise = [
                                 //    alert('Dish ID: '+participants[this.state.winnerIndex])
                             }}
                         />
-
+:null}
 
 
 
@@ -442,6 +442,11 @@ export default RandomWheel = (props) => {
       const  dispatch  = useDispatch();
       const restaurantList = useSelector(state => state.appReducers.NearestRestaurants.data)
 
+      useEffect(() => {
+        
+        return <RandomWheelClass {...props}  />
+      }, [restaurantList])
+      
     
       const restaurantListNames = restaurantList.map( names =>  names.name  )
       const restaurantListImages = restaurantList.map( image => image.fullPath  )
@@ -450,11 +455,13 @@ export default RandomWheel = (props) => {
       console.log(restaurantListImages,'restaurantListImages');
 
       console.log(restaurantList,'NearestRestaurants in RandomWheel');
-  
+
       return <RandomWheelClass {...props} 
       dispatch={dispatch}  
       restaurantListNames={restaurantListNames} 
-      restaurantListImages={restaurantListImages} />;
+      restaurantListImages={restaurantListImages} restaurantList={restaurantList} />
+  
+      ;
 
   };
 const styles = StyleSheet.create({
