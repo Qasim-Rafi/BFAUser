@@ -15,7 +15,6 @@ export default urls = {
   CUSINE_URL: 'api/Cusine/GetCusineAll/',        //Cusine list
   // PROMOTIONS: 'api/HomeAdSlideShowAdmin/GetHomeAdSlideShowAdminAll',
   RESTAURANT_DISH_ALL: 'api/RestaurantDish/GetRestaurantDishAll/',          /// bfa Recomendation
-  DISH_CALORIE: 'api/RestaurantBranchesAdmin/GetRestaurantDishCalorie/26',    //MORE about dish detail
   DISH_CALORIE: 'api/RestaurantBranchesAdmin/GetRestaurantDishCalorie/',    //MORE about dish detail
   GET_USER: 'api/Users/GetUser/2',
   GET_BFA_PARTNERS: 'api/AdminBFAPartner/GetAdminBFAPartnerAll/18/1/40',
@@ -38,8 +37,17 @@ export default urls = {
   ADD_ORDER: 'api/Order/AddOrder',
   UPDATE_ORDER: 'api/Order/UpdateOrder/',
   GET_ALL_ORDERS:'api/Order/OrderListForUserApp',
-  PROMOTION_CLICK:'/api/PromotionlDish/AddPromotionlDishForRestaurantClick',  
-  CHECK_ORDER:'api/OrderBill/CheckOutOrder'  //
+  PROMOTION_CLICK:'api/PromotionlDish/AddPromotionlDishForRestaurantClick',  
+  CHECK_ORDER:'api/OrderBill/CheckOutOrder',  //
+  UPDATE_QUANTITY:'api/Order/UpdateOrderQuantityPrice',
+  DELETE_DISH_FROM_CART:'api/Order/DeleteOrderDish?orderId=',
+  DELETE_ORDER_FROM_CART:'api/Order/DeleteOrder/',//
+  ORDER_CONFIRMATION:'api/OrderPayment/PaymentCheckMethodConfirmation',//
+
+  GET_NEAREST_RESTAURANTS: 'api/RestaurantBranchesAdmin/GetNearestRestaurantBranchesByLocation/',
+
+
+
 
 
 

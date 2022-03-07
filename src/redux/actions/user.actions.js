@@ -306,6 +306,13 @@ export const promotoinClick = data => {
   };
 };
 
+export const GetNearestRestaurantAction = data => {
+  return {
+    type: types.GET_NEAREST_RESTAURANT_REQUEST,
+    data: data,
+  };
+};
+
 // //Get User categories actions
 // export const addRUpdateCategory = (params) => {
 //   return {

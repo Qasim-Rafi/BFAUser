@@ -29,6 +29,14 @@ import {
   getOrders,
 } from '../../../../redux/actions/user.actions';
 import AsyncStorage from '@react-native-community/async-storage';
+import { routeName } from '../../../../constants/routeName';
+import Api from '../../../../redux/lib/api';
+import urls from '../../../../redux/lib/urls';
+import FlashMessage, {
+  showMessage,
+  hideMessage,
+} from 'react-native-flash-message';
+import { BarIndicator } from 'react-native-indicators';
 
 const CartDetails = ({ navigation }) => {
   const cartList = useSelector(state => state.appReducers.cartList.data);
@@ -43,6 +51,9 @@ const CartDetails = ({ navigation }) => {
   const [random, setRandom] = React.useState([]);
   const [totalPrice, setTotalPrice] = React.useState();
   const [visible, setVisible] = React.useState(false);
+  const [isLoading, setLoading] = React.useState(false);
+
+  const dropdownRef = React.useRef(null);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -74,46 +85,128 @@ const CartDetails = ({ navigation }) => {
   }, [random]);
 
   //Remove product
-  const onItemRemove = (data, position) => {
-    dispatch(removeCart(data));
+  const onItemRemove = async item => {
+    console.log('itemm', item);
+    // dispatch(removeCart(data));
+    try {
+      setLoading(true);
+
+      const res = await Api.delete(
+        urls.DELETE_DISH_FROM_CART +
+        item.orderId +
+        '&restaurantDishId=' +
+        item.restaurantDishId,
+      );
+      console.log('res', res);
+      if (res && res.success == true) {
+        dispatch(getOrders());
+        setLoading(false);
+        dropdownRef.current.showMessage({
+          message: 'Alert',
+          description: 'Dish deleted',
+          type: 'success',
+          icon: { icon: 'auto', position: 'left' },
+          //backgroundColor:colors.black1
+        });
+      } else {
+        setLoading(false);
+
+        dropdownRef.current.showMessage({
+          message: 'Alert',
+          description: 'Something went wrong',
+          type: 'danger',
+          icon: { icon: 'auto', position: 'left' },
+          //backgroundColor:colors.black1
+        });
+      }
+    } catch (error) { }
   };
+  const onClearOrder = async id => {
+    // dispatch(removeCart(data));
+    try {
+      setLoading(true);
+      const res = await Api.delete(urls.DELETE_ORDER_FROM_CART + id);
+      console.log('res', res);
+      if (res && res.success == true) {
+        dispatch(getOrders());
+        setLoading(false);
+        dropdownRef.current.showMessage({
+          message: 'Alert',
+          description: 'Order cleared',
+          type: 'success',
+          icon: { icon: 'auto', position: 'left' },
+          //backgroundColor:colors.black1
+        });
+      } else {
+        setLoading(false);
 
+        dropdownRef.current.showMessage({
+          message: 'Alert',
+          description: 'Something went wrong',
+          type: 'danger',
+          icon: { icon: 'auto', position: 'left' },
+          //backgroundColor:colors.black1
+        });
+      }
+    } catch (error) { }
+  };
   //increase quantity
-  const onItemIncrease = (index, id) => {
-    var i = cartList.findIndex(obj => obj.id === id);
+  const onItemIncrease = async (index, item) => {
+    var obj = {
+      orderId: item.orderId,
+      restaurantDishId: item.restaurantDishId,
+      quantity: item.quantity + 1,
+    };
+    console.log('increase', obj);
+    try {
+      const res = await Api.put(urls.UPDATE_QUANTITY, obj);
+      console.log('res', res);
+      if (res && res.success == true) {
+        dispatch(getOrders());
+      } else {
+      }
+    } catch (error) { }
 
-    cartList[i].quantity = cartList[i].quantity + 1;
-    console.log('quantity', cartList);
-    setRandom(cartList);
-    dispatch(retriveCart(cartList));
+    // var i = cartList.findIndex(obj => obj.id === id);
+
+    // cartList[i].quantity = cartList[i].quantity + 1;
+    // console.log('quantity', cartList);
+    // setRandom(cartList);
+    // dispatch(retriveCart(cartList));
   };
   //Decrease quantity
-  const onItemDecrease = (index, id) => {
-    var i = cartList.findIndex(obj => obj.id === id);
-    cartList[i].quantity =
-      cartList[i].quantity > 1
-        ? cartList[i].quantity - 1
-        : cartList[i].quantity;
-
-    console.log('quantity', cartList);
-    setRandom(cartList);
-    dispatch(retriveCart(cartList));
+  const onItemDecrease = async item => {
+    var obj = {
+      orderId: item.orderId,
+      restaurantDishId: item.restaurantDishId,
+      quantity: item.quantity === 1 ? item.quantity : item.quantity - 1,
+    };
+    console.log('increase', obj);
+    try {
+      const res = await Api.put(urls.UPDATE_QUANTITY, obj);
+      console.log('res', res);
+      if (res && res.success == true) {
+        dispatch(getOrders());
+      } else {
+      }
+    } catch (error) { }
   };
   const submitOrder = async Item => {
     var userId = await AsyncStorage.getItem('@userId');
+    console.log('itemmmmm', Item);
 
     const obj = {
-      "id": 0,
-      "userId": 83,
-      "orderId": 202,
-      "amount": 69,
-      "resturantBranchId": 2,
-      "updatedDateTime": "string",
-      "updatebyId": 83
+      id: 0,
+      userId: userId,
+      orderId: Item.id,
+      amount: Item.amount,
+      resturantBranchId: Item.restaurantBranchId,
+      updatedDateTime: 'string',
+      updatebyId: userId,
     };
     console.log('objjjjjjjjjjjj,obj', obj);
-    dispatch(checkoutOrder(obj, navigation));
-    //navigation.navigate(routeName.TRANSACTION_CONFIRMATION)
+    //dispatch(checkoutOrder(obj,navigation));
+    navigation.navigate(routeName.TRANSACTION_CONFIRMATION, { obj: obj, data: Item });
     //
   };
   const ModalPoup = ({ visible, children }) => {
@@ -175,6 +268,15 @@ const CartDetails = ({ navigation }) => {
                 size={4}>
                 {item.restaurantName}
               </ResponsiveText>
+              {item.statusName === 'PreOrder' ?
+                <TouchableOpacity onPress={() => onClearOrder(item.id)}>
+                  <ResponsiveText
+                    margin={[15, 30, 15, -10]}
+                    color={colors.white}
+                    size={4}>
+                    Clear Order
+                  </ResponsiveText>
+                </TouchableOpacity> : null}
             </View>
             {item.addOrderDetail.length === 0
               ? undefined
@@ -212,14 +314,14 @@ const CartDetails = ({ navigation }) => {
                         <ResponsiveText
                           size={2.5}
                           color={colors.grey}
-                          margin={[-5, 0, 0, 10]}>
-                          {item.description}
+                          margin={[-3, 15, 0, 10]}>
+                          {item.dishDescription}
                         </ResponsiveText>
                         <ResponsiveText
                           size={3}
                           color={colors.yellow}
                           margin={[0, 0, 0, 10]}>
-                          $ {item.price}
+                          $ {item.dishPrice}
                         </ResponsiveText>
                       </View>
                     </TouchableOpacity>
@@ -227,7 +329,7 @@ const CartDetails = ({ navigation }) => {
                     <View style={{ marginLeft: -15 }}>
                       <TouchableOpacity
                         onPress={() => {
-                          onItemDecrease(index, item.id);
+                          onItemDecrease(item);
                         }}
                         style={{
                           backgroundColor: colors.yellow,
@@ -259,7 +361,7 @@ const CartDetails = ({ navigation }) => {
                         onPress={() => {
                           // item.quantity = item.quantity + 1;
                           //onItemIncrease(item);
-                          onItemIncrease(index, item.id);
+                          onItemIncrease(index, item);
                         }}
                         style={{
                           backgroundColor: colors.yellow,
@@ -289,7 +391,12 @@ const CartDetails = ({ navigation }) => {
                               {
                                 text: 'OK',
                                 onPress: () => {
-                                  // onItemRemove(item, index);
+                                  // if(item.statusName === 'PreOrder'){
+
+                                  onItemRemove(item);
+                                  // }else{
+                                  //   Alert.alert('','Order in process')
+                                  // }
                                 },
                               },
                             ],
@@ -327,14 +434,7 @@ const CartDetails = ({ navigation }) => {
                   Total
                 </ResponsiveText>
                 <ResponsiveText color={colors.yellow} size={3}>
-                  ${' '}
-                  {/* {cartList
-                    .filter(i => i.titleR == item.titleR)
-                    .reduce((a, c) => {
-                      return a + c.price * c.quantity;
-                    }, 0)+item.extraCheeses.reduce((a, c) => {
-                      return a + c.price;
-                    }, 0)} */}
+                  $ {item.amount}
                 </ResponsiveText>
               </View>
               <View
@@ -351,7 +451,7 @@ const CartDetails = ({ navigation }) => {
                   Tips
                 </ResponsiveText>
                 <ResponsiveText color={colors.yellow} size={3}>
-                  $ 6.00
+                  $ 0.00
                 </ResponsiveText>
               </View>
               <View
@@ -377,7 +477,9 @@ const CartDetails = ({ navigation }) => {
               </View>
             </View>
             <TouchableOpacity
-              onPress={() => submitOrder(item)}
+              onPress={() => {
+                item.statusName === 'PreOrder' ? submitOrder(item) : {};
+              }}
               style={{
                 height: hp(5),
                 width: wp(80),
@@ -389,7 +491,9 @@ const CartDetails = ({ navigation }) => {
                 marginTop: 15,
                 marginBottom: 30,
               }}>
-              <ResponsiveText size={3.5}>Check out</ResponsiveText>
+              <ResponsiveText size={3.5}>
+                {item.statusName === 'PreOrder' ? 'Check out' : 'Pending'}
+              </ResponsiveText>
             </TouchableOpacity>
           </View>
         </ScrollView>
@@ -418,14 +522,14 @@ const CartDetails = ({ navigation }) => {
 
               <View style={{ flexDirection: 'column', marginLeft: 5 }}>
                 <Text style={styles.ModalDish}>{selectedItem.dishName}</Text>
-                <Text style={styles.ModalPrice}>$ {selectedItem.price}</Text>
+                <Text style={styles.ModalPrice}>$ {selectedItem.dishPrice}</Text>
               </View>
             </View>
 
             <View style={styles.ModalInnerDisign}>
               <Text style={styles.headingDiscription}>Description:</Text>
               <Text style={styles.ModalDiscription}>
-                {selectedItem.description}
+                {selectedItem.dishDescription}
               </Text>
               <Text style={styles.headingDrinks}>Drink:</Text>
               <View
@@ -512,7 +616,7 @@ const CartDetails = ({ navigation }) => {
                   marginTop: 4,
                   alignSelf: 'flex-end',
                 }}>
-                Total: $ {selectedItem.totalPrice}
+                Total: $ {selectedItem.itemTotalPrice}
               </Text>
             </View>
           </>
@@ -527,6 +631,21 @@ const CartDetails = ({ navigation }) => {
         }}>
         <Header navigation={navigation} />
       </View>
+      {isLoading === true ? (
+        <View
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            bottom: 0,
+            right: 0,
+            backgroundColor: 'rgba(65, 65, 65, 0.5)',
+            flex: 1,
+            zIndex: 10,
+          }}>
+          <BarIndicator color={colors.yellow} size={50} />
+        </View>
+      ) : undefined}
       <View
         style={{ flex: 0.9, marginHorizontal: '1%', justifyContent: 'center' }}>
         {orderList.length > 0 ? (
@@ -544,6 +663,7 @@ const CartDetails = ({ navigation }) => {
           </Text>
         )}
       </View>
+      <FlashMessage ref={dropdownRef} />
 
       <View style={styles.centeredView}></View>
     </View>

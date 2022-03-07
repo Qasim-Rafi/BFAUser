@@ -13,22 +13,61 @@ import {colors} from '../../../constants/colorsPallet';
 import {globalPath} from '../../../constants/globalPath';
 import {routeName} from '../../../constants/routeName';
 import {hp, wp} from '../../../helpers/Responsiveness';
+import {useSelector, useDispatch} from 'react-redux';
+import {checkoutOrder, getOrders} from '../../../redux/actions/user.actions';
+import urls from '../../../redux/lib/urls';
+import Api from '../../../redux/lib/api';
 
 export default function TransactionConfirmation({route, navigation}) {
   const [isModalVisible, setModalVisible] = useState(false);
   const [activeTabs, setActive] = useState('tab3');
-  const [count, changeCount] = useState(95);
+  const [count, changeCount] = useState(40);
+  const [data, setData] = useState(route.params.data);
   const [total, addTotal] = useState(0);
   const [pickup, setPickup] = useState(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    addTotal(route.params);
+    //addTotal(route.params);
   });
 
-  const toggleModal = ({navigation, route}) => {
-    setModalVisible(!isModalVisible);
-  };
+  const toggleModal = async () => {
+    // dispatch(checkoutOrder(route.params));
+    try {
+      const response = await Api.post(urls.CHECK_ORDER, route.params.obj, false);
+      console.log('res check', response);
+      if (response && response.success == true) {
+        setModalVisible(!isModalVisible);
+        dispatch(getOrders());
 
+      // setLoading(false);
+        
+      } else {
+        // setLoading(false);
+
+        // dropdownRef.current.showMessage({
+        //   message: 'Alert',
+        //   description: 'Something went wrong',
+        //   type: 'danger',
+        //   icon: {icon: 'auto', position: 'left'},
+        //   //backgroundColor:colors.black1
+        // });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const orderConfirmation = async DATA => {
+    // dispatch(removeCart(data));
+    try {
+      const res = await Api.post(urls.ORDER_CONFIRMATION, DATA);
+      console.log('res', res);
+      if (res && res.success == true) {
+        toggleModal();
+      } else {
+      }
+    } catch (error) {}
+  };
   return (
     <View style={{flex: 1, backgroundColor: colors.black3}}>
       <View
@@ -37,7 +76,11 @@ export default function TransactionConfirmation({route, navigation}) {
           backgroundColor: colors.black2,
           justifyContent: 'center',
         }}>
-        <Header iconPath={globalPath.BACK_ARROW} title={'Check out'} navigation={navigation} />
+        <Header
+          iconPath={globalPath.BACK_ARROW}
+          title={'Check out'}
+          navigation={navigation}
+        />
       </View>
       <View style={{flex: 0.9, backgroundColor: colors.black3}}>
         <ResponsiveText margin={[25, 0, 0, 20]} color={colors.yellow}>
@@ -58,15 +101,11 @@ export default function TransactionConfirmation({route, navigation}) {
           }}>
           <ResponsiveText color={colors.white}>Restaurant Name</ResponsiveText>
           <ResponsiveText color={colors.yellow}>
-            I-Lotus Restaurant
+            {data.restaurantName}
           </ResponsiveText>
         </View>
         <TouchableOpacity
-          onPress={() =>
-            navigation.navigate(routeName.SELECT_PAYMENT_METHOD)
-          }
-        >
-          
+          onPress={() => navigation.navigate(routeName.SELECT_PAYMENT_METHOD)}>
           <View
             style={{
               marginHorizontal: 20,
@@ -86,10 +125,9 @@ export default function TransactionConfirmation({route, navigation}) {
               }}
               onPress={() =>
                 navigation.navigate(routeName.SELECT_PAYMENT_METHOD)
-              }
-              >
+              }>
               <ResponsiveText color={colors.black} size={3}>
-                {route.params? route.params : 'Cash'}
+                {'Cash'}
               </ResponsiveText>
             </TouchableOpacity>
           </View>
@@ -350,7 +388,7 @@ export default function TransactionConfirmation({route, navigation}) {
               width: wp(90),
               backgroundColor: colors.yellow,
             }}
-            onPress={toggleModal}>
+            onPress={orderConfirmation}>
             <ResponsiveText>Confirm Payment</ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity
@@ -477,17 +515,15 @@ export default function TransactionConfirmation({route, navigation}) {
                   width: wp(83),
                   height: hp(5),
                 }}
-                onPress={toggleModal}>
+                onPress={() => setModalVisible(!isModalVisible)}>
                 <ResponsiveText size={3} color={colors.yellow}>
-                  ok
+                  OK
                 </ResponsiveText>
               </TouchableOpacity>
             </View>
           </View>
           {/* ------------ ModalView End -------------- */}
         </Modal>
-
-        
       </View>
     </View>
   );

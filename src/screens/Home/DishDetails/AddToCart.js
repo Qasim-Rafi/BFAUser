@@ -134,7 +134,7 @@ export default function AddToCart({route, navigation}) {
         o.statusName === "PreOrder" &&
         o.restaurantBranchId === dish.restaurantBranchId,
     );
-    // console.log('filter    nnnn', checkData);
+     console.log('filter    nnnn', checkData);
     // console.log('filter    orderList', orderList);
     // console.log('filter    dish', dish);
 
@@ -147,6 +147,7 @@ export default function AddToCart({route, navigation}) {
         extraCheese.forEach(e => {
           orderDetailExtraItemList.push({
             restaurantDishExtraItemId: e.id,
+            price:e.price
           });
         });
       }
@@ -154,16 +155,18 @@ export default function AddToCart({route, navigation}) {
         linkedItem.forEach(e => {
           orderDetailLinkedItemList.push({
             restaurantDishLinkedItemId: e.id,
+            price:e.price
           });
         });
       }
     addOrderDetail.push({
-      restaurantDishId: dish.id,
+      restaurantDishId: dish.restaurantDishId,
       addOnId: Selecteddrinks ? Selecteddrinks.softDrinkId : 1,
       quantity: count,
       RestaurantSoftDrinkId: 5,
       // RestaurantSoftDrinkId:Selecteddrinks ? Selecteddrinks.softDrinkId : 1,
-      Price: total,
+      Price: dish.price,
+      dishPrice: dish.price,
       orderDetailExtraItemList: orderDetailExtraItemList,
       orderDetailLinkedItemList: orderDetailLinkedItemList,
     });
@@ -186,7 +189,17 @@ export default function AddToCart({route, navigation}) {
       // orderDetailLinkedItemList: orderDetailLinkedItemList,
     };
     console.log('objjjjjjjjjjjj,obj', obj);
-    dispatch(addOrder(obj,navigation));
+    // if(checkData.addOrderDetail.some(o =>o.restaurantDishId === dish.id)){
+    //   //var checkDish=checkData.addOrderDetail.some(o =>o.restaurantDishId === dish.id)
+    //   console.log('okoko');
+    // //   if(checkData.addOrderDetail.indexOf(dish.id) !== -1){
+    // //     alert("Value exists!")
+    // // } else{
+    // //     alert("Value does not exists!")
+    // // }
+    // //.some(elem => elem === obj)
+    // }
+     dispatch(addOrder(obj,navigation));
     //navigation.navigate(routeName.TRANSACTION_CONFIRMATION)
     //
   };

@@ -1,12 +1,13 @@
 
 
 //Node Imports
-import React from 'react';
+import React, { useEffect } from 'react';
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
 import {
     Image, StyleSheet, TouchableOpacity, View, Text,
     StatusBar,
     Button,
+    PermissionsAndroid,
 } from 'react-native';
 
 
@@ -25,55 +26,58 @@ import { routeName } from '../../../../constants/routeName';
 import WheelOfFortune from 'react-native-wheel-of-fortune';
 import Modal from "react-native-modal";
 import DropDown from '../../../../components/DropDown';
+import Geolocation from 'react-native-geolocation-service';
+import { useDispatch, useSelector } from 'react-redux';
+import { GetNearestRestaurantAction } from '../../../../redux/actions/user.actions';
 
 
 const participants = [
-    
+
     'Imah`s',
     'Bandar Bus',
     'Hokkaido',
     'Pit-shop',
     'Jollibee',
-    'Anas Corner', 
+    'Anas Corner',
 ];
 
 const area = [
     'Berakas',
-'Burong Pingai Ayer',
-'Gadong', 
-'Kianggeh',
-'Kilanas',
-'Kota Batu',
-'Lumapas',
-'Mentiri',
-'Pangkalan Batu',
-'Peramu',
-'Saba',
-'Sengkurong',
-'Serasa',
-'Sungai Kebun',
-'Tamoi',
-'Bukit Sawat',
-'Kuala Balai',
-'Kuala Belait',
-'Labi',
-'Liang',
-'Melilas',
-'Seria',
-'Sukang',
-'Keriam',
-'Kiudang',
-'Lamunin',
-'Pekan Tutong',
-'Rambai',
-'Tanjong Maya',
-'Telisai',
-'Ukong',
-'Amo',
-'Bangar',
-'Batu Apoi',
-'Bokok',
-'Labu'
+    'Burong Pingai Ayer',
+    'Gadong',
+    'Kianggeh',
+    'Kilanas',
+    'Kota Batu',
+    'Lumapas',
+    'Mentiri',
+    'Pangkalan Batu',
+    'Peramu',
+    'Saba',
+    'Sengkurong',
+    'Serasa',
+    'Sungai Kebun',
+    'Tamoi',
+    'Bukit Sawat',
+    'Kuala Balai',
+    'Kuala Belait',
+    'Labi',
+    'Liang',
+    'Melilas',
+    'Seria',
+    'Sukang',
+    'Keriam',
+    'Kiudang',
+    'Lamunin',
+    'Pekan Tutong',
+    'Rambai',
+    'Tanjong Maya',
+    'Telisai',
+    'Ukong',
+    'Amo',
+    'Bangar',
+    'Batu Apoi',
+    'Bokok',
+    'Labu'
 ]
 
 const distance = [
@@ -117,7 +121,7 @@ const premise = [
 
 ]
 
-export default class RandomWheel extends React.Component {
+ class RandomWheelClass extends React.Component {
     constructor(props) {
         super(props);
 
@@ -126,11 +130,50 @@ export default class RandomWheel extends React.Component {
             winnerIndex: null,
             started: false,
             isModalVisible: false,
+            lat:null,
+            long:null,
         };
         this.child = null;
     }
 
-
+    componentDidMount() {
+        this.requestCurrentLocation();
+        // if (hasLocationPermission) {
+           
+        //   }
+    }
+    requestCurrentLocation = async () => {
+        try {
+            const granted = await PermissionsAndroid.request(
+                PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+                {
+                    'title': 'Bali',
+                    'message': 'Bali would like to access your location '
+                }
+            )
+            if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+                console.log("You can use the location")
+                Geolocation.getCurrentPosition(
+                    (position) => {
+                      console.log(position);
+                      this.setState({lat:position.coords.latitude, long: position.coords.longitude})
+                      this.props.dispatch(GetNearestRestaurantAction({lat:position.coords.latitude,long:position.coords.longitude}))
+                    },
+                    (error) => {
+                      // See error code charts below.
+                      console.log(error.code, error.message);
+                    },
+                    { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+                );
+                // alert("You can use the location");
+            } else {
+                console.log("location permission denied")
+                alert("Location permission denied");
+            }
+        } catch (err) {
+            console.warn(err)
+        }
+    }
     toggleModal = () => {
         this.setState({
             isModalVisible: !this.state.isModalVisible,
@@ -148,22 +191,15 @@ export default class RandomWheel extends React.Component {
     };
     render() {
         const wheelOptions = {
-            rewards: participants,
+            rewards: this.props.restaurantList.map( names =>  names.name  ),
             knobSize: 30,
             borderWidth: 5,
             borderColor: '#fff',
             innerRadius: 30,
             duration: 6000,
-            iconRewards: [
-                require('../../../../assets/fake_Images/wheel1.png'),
-                require('../../../../assets/fake_Images/wheel2.png'),
-                require('../../../../assets/fake_Images/wheel3.png'),
-                require('../../../../assets/fake_Images/wheel4.png'),
-                require('../../../../assets/fake_Images/wheel5.png'),
-                require('../../../../assets/fake_Images/wheel6.png'),
-            ],
+            iconRewards: this.props.restaurantList.map( names =>  names.fullPath  ),
             backgroundColor: 'transparent',
-            
+
             textAngle: 'horizontal',
             knobSource: require('../../../../assets/icons/knob.png'),
             onRef: ref => (this.child = ref),
@@ -198,18 +234,18 @@ export default class RandomWheel extends React.Component {
                     </View>
                     <View style={styles.container}>
                         <StatusBar barStyle={'light-content'} />
-
+{ this.props.restaurantList.map( names =>  names.name  ).length?
                         <WheelOfFortune
                             options={wheelOptions}
 
                             getWinner={(value, index) => {
                                 this.setState({ winnerValue: value, winnerIndex: index });
-                                this.props.navigation.navigate(routeName.RestaurantDetail,value)
+                                this.props.navigation.navigate(routeName.RestaurantDetail, value)
                                 // alert('Dish ID: ',participants[this.state.winnerIndex])
-                            //    alert('Dish ID: '+participants[this.state.winnerIndex])
+                                //    alert('Dish ID: '+participants[this.state.winnerIndex])
                             }}
-                        /> 
-
+                        />
+:null}
 
 
 
@@ -273,8 +309,23 @@ export default class RandomWheel extends React.Component {
                         style={{
                             flex: 1,
                             backgroundColor: colors.black3,
-                            justifyContent: 'space-between'
+                            justifyContent: 'space-between',
+                            borderRadius: 10
                         }}>
+                        <View style={{ position: 'absolute', marginTop: 10, marginHorizontal: 5, flexDirection: 'row', end: 5, top: 0 }}>
+
+
+                            <TouchableOpacity onPress={() => this.setState({
+                                isModalVisible: false
+                            })}
+                                style={{ height: hp(4), width: hp(4), justifyContent: 'center', alignItems: 'center' }}
+                            >
+                                <Image
+                                    source={require('../../../../assets/fake_Images/cross.png')}
+                                    style={{ height: hp(3.7), width: 33, marginBottom: 6 }}
+                                />
+                            </TouchableOpacity>
+                        </View>
                         <View style={{ marginTop: 40 }} >
 
                             <View style={{ backgroundColor: colors.black3, }}>
@@ -283,45 +334,46 @@ export default class RandomWheel extends React.Component {
                                 </ResponsiveText>
                             </View>
                             <View style={{ display: 'flex', flexDirection: 'row', marginTop: 5 }}>
-                            <RadioGroup color={colors.yellow} style={{ flex: 1, flexDirection: 'row' }}
-                            // onSelect = {(index, value) => this.onSelect(index, value)}
-                            >
-                                <RadioButton value={'item1'} style={{ marginStart: 10 }}>
-                                    <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>Dishes</ResponsiveText>
-                                </RadioButton>
+                                <RadioGroup color={colors.yellow} style={{ flex: 1, flexDirection: 'row' }}
+                                    // onSelect = {(index, value) => this.onSelect(index, value)}
+                                    selectedIndex={1}
+                                >
+                                    <RadioButton value={'item1'} style={{ marginStart: 10 }}>
+                                        <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>Dishes</ResponsiveText>
+                                    </RadioButton>
 
-                                <RadioButton value={'item2'} style={{ marginStart: 10 }}>
-                                    <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>Restaurants</ResponsiveText>
-                                </RadioButton>
-                            </RadioGroup>
+                                    <RadioButton value={'item2'} style={{ marginStart: 10 }}>
+                                        <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>Restaurants</ResponsiveText>
+                                    </RadioButton>
+                                </RadioGroup>
 
                             </View>
-                            <View style={{ marginStart: 10, marginTop:15 }}>
-                                
-                                <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, alignItems:'center' }}>
+                            <View style={{ marginStart: 10, marginTop: 15 }}>
+
+                                <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, alignItems: 'center' }}>
                                     <CheckBox />
                                     <ResponsiveText margin={[0, 0, 0, 10]} color={colors.grey1}>
                                         Area
                                     </ResponsiveText>
-                                    <View style={{marginStart:5}} >
+                                    <View style={{ marginStart: 5 }} >
                                         <DropDown data={area} height={hp(4)} width={wp(57)} />
                                     </View>
                                 </View>
-                                <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, alignItems:'center' }}>
+                                <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, alignItems: 'center' }}>
                                     <CheckBox />
                                     <ResponsiveText margin={[0, 0, 0, 10]} color={colors.grey1}>
                                         Distance
                                     </ResponsiveText>
-                                    <View style={{marginStart:5}} >
+                                    <View style={{ marginStart: 5 }} >
                                         <DropDown data={distance} height={hp(4)} width={wp(57)} />
                                     </View>
                                 </View>
-                                <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, alignItems:'center' }}>
+                                <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, alignItems: 'center' }}>
                                     <CheckBox />
                                     <ResponsiveText margin={[0, 0, 0, 10]} color={colors.grey1}>
                                         Premise
                                     </ResponsiveText>
-                                    <View style={{marginStart:5}} >
+                                    <View style={{ marginStart: 5 }} >
                                         <DropDown data={premise} height={hp(4)} width={wp(57)} />
                                     </View>
                                 </View>
@@ -385,7 +437,33 @@ export default class RandomWheel extends React.Component {
         );
     }
 }
+export default RandomWheel = (props) => {
 
+      const  dispatch  = useDispatch();
+      const restaurantList = useSelector(state => state.appReducers.NearestRestaurants.data)
+
+      useEffect(() => {
+        
+        return <RandomWheelClass {...props}  />
+      }, [restaurantList])
+      
+    
+      const restaurantListNames = restaurantList.map( names =>  names.name  )
+      const restaurantListImages = restaurantList.map( image => image.fullPath  )
+
+      console.log(restaurantListNames,'restaurantListNames');
+      console.log(restaurantListImages,'restaurantListImages');
+
+      console.log(restaurantList,'NearestRestaurants in RandomWheel');
+
+      return <RandomWheelClass {...props} 
+      dispatch={dispatch}  
+      restaurantListNames={restaurantListNames} 
+      restaurantListImages={restaurantListImages} restaurantList={restaurantList} />
+  
+      ;
+
+  };
 const styles = StyleSheet.create({
     container: {
         flex: 0.6,
