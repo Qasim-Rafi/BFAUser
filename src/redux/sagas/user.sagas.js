@@ -584,7 +584,7 @@ function* addfavouritSagaApi(data) {
 
   console.log('parammmmmmmmmm', data);
   var body = {
-    id: data.data.id,
+    id: data.data.restaurantDishId,
     userLiked: true,
   };
 
@@ -613,11 +613,11 @@ export function* onRemoveFavoriteSaga() {
   yield takeLatest(types.ON_REMOVE_FAVORITE_REQUEST, onRemoveFavoriteSagaApi);
 }
 function* onRemoveFavoriteSagaApi(data) {
-  const dishId = data.data.id;
+  const dishId = data.data.restaurantDishId;
   const resId = data.data.restaurantBranchId;
   console.log('removeeeeeeeee:', data);
   var body = {
-    id: data.data.id,
+    id: data.data.restaurantDishId,
     userLiked: false,
   };
 

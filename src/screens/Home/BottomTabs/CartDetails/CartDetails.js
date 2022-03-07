@@ -280,7 +280,7 @@ const CartDetails = ({navigation}) => {
             </View>
             {item.addOrderDetail.length === 0
               ? undefined
-              : item.addOrderDetail.map((item, index) => {
+              : item.addOrderDetail.map((v, index) => {
                   return (
                     <View
                       style={{
@@ -296,40 +296,41 @@ const CartDetails = ({navigation}) => {
                         <Icon
                           size={60}
                           borderRadius={7}
-                          source={{uri: item.imageDataB}}
+                          source={{uri: v.imageDataB}}
                         />
                       </View>
                       <TouchableOpacity
                         onPress={() => {
                           setVisible(true);
-                          SetSelectedItem(item);
+                          SetSelectedItem(v);
                         }}>
                         <View style={{justifyContent: 'center', width: wp(60)}}>
                           <ResponsiveText
                             size={3.5}
                             color={colors.white}
                             margin={[0, 0, 0, 10]}>
-                            {item.dishName}
+                            {v.dishName}
                           </ResponsiveText>
                           <ResponsiveText
                             size={2.5}
                             color={colors.grey}
                             margin={[-3, 15, 0, 10]}>
-                            {item.dishDescription}
+                            {v.dishDescription}
                           </ResponsiveText>
                           <ResponsiveText
                             size={3}
                             color={colors.yellow}
                             margin={[0, 0, 0, 10]}>
-                            $ {item.dishPrice}
+                            $ {v.dishPrice}
                           </ResponsiveText>
                         </View>
                       </TouchableOpacity>
+                      {item.statusName === 'PreOrder' ?
 
                       <View style={{marginLeft: -15}}>
                         <TouchableOpacity
                           onPress={() => {
-                            onItemDecrease(item);
+                            onItemDecrease(v);
                           }}
                           style={{
                             backgroundColor: colors.yellow,
@@ -354,14 +355,14 @@ const CartDetails = ({navigation}) => {
                             borderWidth: 1,
                           }}>
                           <ResponsiveText color={colors.yellow} size={3}>
-                            {item.quantity}
+                            {v.quantity}
                           </ResponsiveText>
                         </View>
                         <TouchableOpacity
                           onPress={() => {
                             // item.quantity = item.quantity + 1;
                             //onItemIncrease(item);
-                            onItemIncrease(index, item);
+                            onItemIncrease(index, v);
                           }}
                           style={{
                             backgroundColor: colors.yellow,
@@ -376,6 +377,8 @@ const CartDetails = ({navigation}) => {
                           </ResponsiveText>
                         </TouchableOpacity>
                       </View>
+                     :null}
+                     {item.statusName === 'PreOrder' ?
                       <View style={{marginLeft: wp(2), marginTop: 15}}>
                         <TouchableOpacity
                           onPress={() => {
@@ -393,7 +396,7 @@ const CartDetails = ({navigation}) => {
                                   onPress: () => {
                                     // if(item.statusName === 'PreOrder'){
 
-                                      onItemRemove(item);
+                                      onItemRemove(v);
                                     // }else{
                                     //   Alert.alert('','Order in process')
                                     // }
@@ -410,7 +413,8 @@ const CartDetails = ({navigation}) => {
                           />
                         </TouchableOpacity>
                       </View>
-                    </View>
+                   :null}
+                   </View>
                   );
                 })}
           </View>
@@ -423,6 +427,7 @@ const CartDetails = ({navigation}) => {
                 marginHorizontal: 20,
                 marginTop: 20,
                 borderRadius: 7,
+                marginBottom:hp(2)
               }}>
               <View
                 style={{
@@ -476,6 +481,7 @@ const CartDetails = ({navigation}) => {
                 </ResponsiveText>
               </View>
             </View>
+            {item.statusName === 'PreOrder' ?
             <TouchableOpacity
               onPress={() => {
                 item.statusName === 'PreOrder' ? submitOrder(item) : {};
@@ -494,7 +500,7 @@ const CartDetails = ({navigation}) => {
               <ResponsiveText size={3.5}>
                 {item.statusName === 'PreOrder' ? 'Check out' : 'Pending'}
               </ResponsiveText>
-            </TouchableOpacity>
+            </TouchableOpacity>:null}
           </View>
         </ScrollView>
       </View>
