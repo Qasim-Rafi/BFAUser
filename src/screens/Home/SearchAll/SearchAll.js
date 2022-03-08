@@ -18,56 +18,11 @@ import { FiltersDummyData } from '../../../constants/mock'
 export default function SearchAll({ navigation }) {
   // const [activeTab, setActiveTab] = React.useState(myListingTabs[0].id);
   const [isModalVisible, setModalVisible] = React.useState(false);
-<<<<<<< Updated upstream
-  const [dataFiltersDummyData, setFiltersDummyData] = React.useState();
-
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
-  const [SelectItem, setSelectItem] = React.useState();
-  React.useEffect(() => {
-    setFiltersDummyData(FiltersDummyData)
-
-  }, [FiltersDummyData]);
-
-  const onPressHandler = (item, index,i) => {
-    // setSelectItem({selectedItem: item});
-    console.log(index, 'onpreeeeeee')
-    dataFiltersDummyData[0].data[index].select = !dataFiltersDummyData[0].data[index].select
-    setFiltersDummyData(dataFiltersDummyData)
-  };
-  const onSelect = (check) => {
-    // setSelectItem({selectedItem: item});
-    return check;
-  };
-  const renderItem = (item, index,i) => {
-    return (
-      <TouchableOpacity onPress={() => onPressHandler(item.select, index,i)}
-        style={{
-          borderRadius: 7,
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor:item.select ? colors.yellow : colors.black3,
-          marginHorizontal: 10,
-          padding: 10,
-          marginTop: 10,
-          borderColor: colors.grey1,
-          borderWidth: 0.5
-        }}>
-        <ResponsiveText color={colors.white} fontFamily={'regular'}>
-          {item.name}<ResponsiveText color={colors.yellow}>({item.value})
-          </ResponsiveText>
-        </ResponsiveText>
-      </TouchableOpacity>
-    )
-  }
-=======
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
 
 
->>>>>>> Stashed changes
   return (
     <View style={{ flex: 1, backgroundColor: colors.black3 }}>
       {/* ÷<SearchHeader navigation={navigation}/>? */}
@@ -130,14 +85,8 @@ export default function SearchAll({ navigation }) {
           </View>
           <View style={{ flex: 0.9 }} >
             <FlatList
-<<<<<<< Updated upstream
-              data={dataFiltersDummyData}
-               extraData={dataFiltersDummyData}
-              renderItem={({ item, i }) => (
-=======
               data={FiltersDummyData}
               renderItem={({ item, index }) => (
->>>>>>> Stashed changes
                 <>
                   <View style={{ margin: 20 }}>
                     <ResponsiveText size={4} color={colors.white}>{item.title}</ResponsiveText>
@@ -157,17 +106,6 @@ export default function SearchAll({ navigation }) {
                     }}>
                     {item.data.map((item, index) => {
                       return (
-<<<<<<< Updated upstream
-
-                        renderItem(item, index,i)
-                      )
-                    })}
-                  </View>
-                </>)}
-              keyExtractor={item => item.id}
-            />
-
-=======
                         <View
                           style={{
                             borderRadius: 7,
@@ -192,24 +130,17 @@ export default function SearchAll({ navigation }) {
 
                 </>)}
               keyExtractor={item => item.id} />
->>>>>>> Stashed changes
             <View style={{ height: 50, backgroundColor: colors.black2, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
               <ResponsiveText margin={[0, 20, 0, 20]} color={colors.yellow}>2523 Properties</ResponsiveText>
               <TouchableOpacity onPress={toggleModal} style={{ backgroundColor: colors.yellow, borderRadius: 3, padding: 6, marginRight: 20 }}>
                 <ResponsiveText size={3.3}>Show Result</ResponsiveText>
               </TouchableOpacity>
-<<<<<<< Updated upstream
-            </View>
-          </View>
-        </View>
-=======
 
             </View>
           </View>
         </View>
 
 
->>>>>>> Stashed changes
         {/* ------------ ModalView End -------------- */}
       </Modal>
 
