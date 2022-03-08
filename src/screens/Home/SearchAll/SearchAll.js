@@ -18,18 +18,18 @@ import { FiltersDummyData } from '../../../constants/mock'
 export default function SearchAll({ navigation }) {
   // const [activeTab, setActiveTab] = React.useState(myListingTabs[0].id);
   const [isModalVisible, setModalVisible] = React.useState(false);
-  const [dataFiltersDummyData, setFiltersDummyData] = React.useState(FiltersDummyData);
+  const [dataFiltersDummyData, setFiltersDummyData] = React.useState();
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
   const [SelectItem, setSelectItem] = React.useState();
   React.useEffect(() => {
-    setFiltersDummyData(dataFiltersDummyData)
+    setFiltersDummyData(FiltersDummyData)
 
   }, [FiltersDummyData]);
 
-  const onPressHandler = (item, index) => {
+  const onPressHandler = (item, index,i) => {
     // setSelectItem({selectedItem: item});
     console.log(index, 'onpreeeeeee')
     dataFiltersDummyData[0].data[index].select = !dataFiltersDummyData[0].data[index].select
@@ -39,14 +39,14 @@ export default function SearchAll({ navigation }) {
     // setSelectItem({selectedItem: item});
     return check;
   };
-  const renderItem = (item, index) => {
+  const renderItem = (item, index,i) => {
     return (
-      <TouchableOpacity onPress={() => onPressHandler(item.select, index)}
+      <TouchableOpacity onPress={() => onPressHandler(item.select, index,i)}
         style={{
           borderRadius: 7,
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: onSelect(item.select) ? colors.yellow : colors.black3,
+          backgroundColor:item.select ? colors.yellow : colors.black3,
           marginHorizontal: 10,
           padding: 10,
           marginTop: 10,
@@ -124,7 +124,7 @@ export default function SearchAll({ navigation }) {
             <FlatList
               data={dataFiltersDummyData}
                extraData={dataFiltersDummyData}
-              renderItem={({ item, index }) => (
+              renderItem={({ item, i }) => (
                 <>
                   <View style={{ margin: 20 }}>
                     <ResponsiveText size={4} color={colors.white}>{item.title}</ResponsiveText>
@@ -145,7 +145,7 @@ export default function SearchAll({ navigation }) {
                     {item.data.map((item, index) => {
                       return (
 
-                        renderItem(item, index)
+                        renderItem(item, index,i)
                       )
                     })}
                   </View>
