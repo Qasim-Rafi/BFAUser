@@ -12,9 +12,7 @@ import ResponsiveText from './RnText';
 import { routeName } from '../constants/routeName';
 import { colors } from '../constants/colorsPallet';
 import { color } from 'react-native-reanimated';
-import { useDispatch } from 'react-redux';
 import { getUserProfile } from '../redux/actions/user.actions';
-
 const Header = ({
   navigation,
   showRightMenu = true,
@@ -23,6 +21,7 @@ const Header = ({
 
   ...props
 }) => {
+
   const [searchBar, toggleSearchBar] = React.useState('false');
   return (
     <View
@@ -91,7 +90,7 @@ const Header = ({
           height={hp(6)}
           width={inputWidth}
         /> */}
-            <TouchableOpacity onPress={() => navigation.navigate(routeName.SEARCH_RESULT)}>
+            <TouchableOpacity onPress={() => navigation.navigate(routeName.SearchAll)}>
               <TextInput
                 style={{ height: hp(6), width: wp(50), color: colors.white }}
                 editable={false}
