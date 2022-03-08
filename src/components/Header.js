@@ -46,7 +46,7 @@ const Header = ({
           borderRadius: 10,
           marginEnd: 5,
         }}>
-        <View style={ props.iconPath ? { flexDirection: 'row', alignItems: 'center',justifyContent:'center', backgroundColor:colors.yellow1,height: wp(13), width: wp(13),borderRadius:wp(6.5) } :{ flexDirection: 'row', alignItems: 'center'} }>
+        <View style={props.iconPath ? { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: colors.yellow1, height: wp(13), width: wp(13), borderRadius: wp(6.5) } : { flexDirection: 'row', alignItems: 'center' }}>
           <Icon
             margin={[0, 0, 0, 0]}
             size={props.iconPath ? 25 : 44}
@@ -61,8 +61,8 @@ const Header = ({
         </View>
       </TouchableOpacity>
       {props.iconPath ? (
-        <View style={{alignItems:'center', justifyContent:'center',height: hp(6), width: wp(50),paddingLeft:wp(17)}}>
-          <Text style={{color:colors.white,fontSize:wp(6), fontWeight:'bold'}}>
+        <View style={{ alignItems: 'center', justifyContent: 'center', height: hp(6), width: wp(50), paddingLeft: wp(17) }}>
+          <Text style={{ color: colors.white, fontSize: wp(6), fontWeight: 'bold' }}>
             {title}
           </Text>
         </View>
@@ -91,17 +91,21 @@ const Header = ({
           height={hp(6)}
           width={inputWidth}
         /> */}
-            <TextInput
-              style={{ height: hp(6), width: wp(50), color: colors.white }}
-              editable={searchBar === 'true' ? true : false}
-              fontSize={11}
-              placeholderTextColor={colors.white}
-              placeholder={
-                searchBar === 'true'
-                  ? 'Search Dishes, Restaurants or Promo'
-                  : ''
-              }
-            />
+            <TouchableOpacity onPress={() => navigation.navigate(routeName.SEARCH_RESULT)}>
+              <TextInput
+                style={{ height: hp(6), width: wp(50), color: colors.white }}
+                editable={false}
+                onP
+                fontSize={11}
+                placeholderTextColor={colors.white}
+                placeholder={
+                  searchBar === 'true'
+                    ? 'Search Dishes, Restaurants or Promo'
+                    : ''
+                }
+              />
+            </TouchableOpacity>
+
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {

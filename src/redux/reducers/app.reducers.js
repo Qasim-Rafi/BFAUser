@@ -709,7 +709,7 @@ export const appReducers = (state = initialState, action) => {
         favorite: {
           ...state.favorite,
           data: state.favorite.data.filter(
-            item => item.id !== action.payload.id,
+            item => item.restaurantDishId !== action.payload.restaurantDishId,
           ),
           refreshing: false,
         },

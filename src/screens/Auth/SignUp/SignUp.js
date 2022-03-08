@@ -318,7 +318,7 @@ export default function Signup({ navigation }) {
             <View style={styles.footer}>
               {/* <Icon size={wp(8)}  margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
               <ResponsiveText margin={[2, 10]} color={colors.white}>
-                I already have account{' '}
+                You already have account{' '}
                 <ResponsiveText
                   fontFamily="Bold"
                   color={colors.yellow}
