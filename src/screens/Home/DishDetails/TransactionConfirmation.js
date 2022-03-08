@@ -374,7 +374,7 @@ export default function TransactionConfirmation({route, navigation}) {
               justifyContent: 'space-between',
             }}>
             <ResponsiveText color={colors.white}>Final</ResponsiveText>
-            <ResponsiveText color={colors.yellow}>$ 11.00</ResponsiveText>
+            <ResponsiveText color={colors.yellow}>$ {total}.00</ResponsiveText>
           </View>
         </View>
         <View style={{alignItems: 'center'}}>
@@ -413,7 +413,7 @@ export default function TransactionConfirmation({route, navigation}) {
           statusBarTranslucent={true}
           backdropOpacity={0.9}
           style={{justifyContent: 'flex-end'}}
-          onModalHide={() => navigation.push('Home')}>
+          onModalHide={() => navigation.goBack()}>
           {/* ------------ ModalView -------------- */}
           <View
             style={{
@@ -462,7 +462,7 @@ export default function TransactionConfirmation({route, navigation}) {
                   color={colors.yellow}
                   size={3}
                   margin={[0, 10, 0, 0]}>
-                  $11.00
+                  ${total}.00
                 </ResponsiveText>
               </View>
               <View style={{flex: 0.1}}>
@@ -472,7 +472,7 @@ export default function TransactionConfirmation({route, navigation}) {
               </View>
               <View style={{flex: 0.45}}>
                 <ResponsiveText color={colors.yellow} size={3}>
-                  I-Lotus Restaurant
+                {data.restaurantName}
                 </ResponsiveText>
               </View>
             </View>
@@ -493,7 +493,7 @@ export default function TransactionConfirmation({route, navigation}) {
               </View>
               <View style={{flex: 0.45, marginTop: 5}}>
                 <ResponsiveText size={3} color={colors.yellow}>
-                  100 pts
+                  0 pts
                 </ResponsiveText>
               </View>
             </View>

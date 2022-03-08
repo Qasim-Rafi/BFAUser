@@ -206,7 +206,10 @@ const CartDetails = ({navigation}) => {
     };
     console.log('objjjjjjjjjjjj,obj', obj);
     //dispatch(checkoutOrder(obj,navigation));
-    navigation.navigate(routeName.TRANSACTION_CONFIRMATION, {obj:obj,data:Item});
+    navigation.navigate(routeName.TRANSACTION_CONFIRMATION, {
+      obj: obj,
+      data: Item,
+    });
     //
   };
   const ModalPoup = ({visible, children}) => {
@@ -243,6 +246,37 @@ const CartDetails = ({navigation}) => {
       </Modal>
     );
   };
+  const currentStatus = status => {
+    if (status === 'NewOrder') {
+      return 'In Queue';
+    } else {
+      return status;
+    }
+  };
+  const cancelOrder = async id => {
+    const userId = await AsyncStorage.getItem('@userId');
+    var obj = {
+        "orderStatus": 5,
+        "updatedDateTime": new Date(),
+        "updatebyId": userId
+    };
+    console.log('obj',obj);
+    try {
+        const res = await Api.put(urls.UPDATE_ORDER_STATUS + id, obj);
+        console.log('ree', res);
+        if (res && res.success == true) {
+          dispatch(getOrders());
+          dropdownRef.current.showMessage({
+            message: 'Alert',
+            description: 'Order Canceled',
+            type: 'success',
+            icon: {icon: 'auto', position: 'left'},
+            //backgroundColor:colors.black1
+          });
+        } else {
+        }
+    } catch (error) { }
+};
   const renderItem = ({item}) => {
     return (
       <View
@@ -268,20 +302,23 @@ const CartDetails = ({navigation}) => {
                 size={4}>
                 {item.restaurantName}
               </ResponsiveText>
-              {item.statusName === 'PreOrder' ?
-              <TouchableOpacity onPress={() => onClearOrder(item.id)}>
+              {item.statusName === 'PreOrder' ? (
+                <TouchableOpacity onPress={() => onClearOrder(item.id)}>
+                  <ResponsiveText
+                    margin={[15, 30, 15, -10]}
+                    color={colors.white}
+                    size={4}>
+                    Clear Order
+                  </ResponsiveText>
+                </TouchableOpacity>
+              ) : (
                 <ResponsiveText
-                  margin={[15, 30, 15, -10]}
-                  color={colors.white}
-                  size={4}>
-                  Clear Order
-                </ResponsiveText>
-              </TouchableOpacity>:<ResponsiveText
                   margin={[15, 30, 15, -10]}
                   color={colors.green1}
                   size={4}>
-                  In Process
-                </ResponsiveText>}
+                  {currentStatus(item.statusName)}
+                </ResponsiveText>
+              )}
             </View>
             {item.addOrderDetail.length === 0
               ? undefined
@@ -330,96 +367,95 @@ const CartDetails = ({navigation}) => {
                           </ResponsiveText>
                         </View>
                       </TouchableOpacity>
-                      {item.statusName === 'PreOrder' ?
-
-                      <View style={{marginLeft: -15}}>
-                        <TouchableOpacity
-                          onPress={() => {
-                            onItemDecrease(v);
-                          }}
-                          style={{
-                            backgroundColor: colors.yellow,
-                            height: hp(2),
-                            borderTopLeftRadius: 2,
-                            borderTopRightRadius: 2,
-                            alignItems: 'center',
-                            width: wp(6),
-                          }}>
-                          <ResponsiveText margin={[-3, 0, 0, 0]}>
-                            -
-                          </ResponsiveText>
-                        </TouchableOpacity>
-                        <View
-                          style={{
-                            height: hp(3),
-                            width: wp(6),
-                            backgroundColor: colors.black3,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            borderColor: colors.yellow,
-                            borderWidth: 1,
-                          }}>
-                          <ResponsiveText color={colors.yellow} size={3}>
-                            {v.quantity}
-                          </ResponsiveText>
+                      {item.statusName === 'PreOrder' ? (
+                        <View style={{marginLeft: -15}}>
+                          <TouchableOpacity
+                            onPress={() => {
+                              onItemDecrease(v);
+                            }}
+                            style={{
+                              backgroundColor: colors.yellow,
+                              height: hp(2),
+                              borderTopLeftRadius: 2,
+                              borderTopRightRadius: 2,
+                              alignItems: 'center',
+                              width: wp(6),
+                            }}>
+                            <ResponsiveText margin={[-3, 0, 0, 0]}>
+                              -
+                            </ResponsiveText>
+                          </TouchableOpacity>
+                          <View
+                            style={{
+                              height: hp(3),
+                              width: wp(6),
+                              backgroundColor: colors.black3,
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                              borderColor: colors.yellow,
+                              borderWidth: 1,
+                            }}>
+                            <ResponsiveText color={colors.yellow} size={3}>
+                              {v.quantity}
+                            </ResponsiveText>
+                          </View>
+                          <TouchableOpacity
+                            onPress={() => {
+                              // item.quantity = item.quantity + 1;
+                              //onItemIncrease(item);
+                              onItemIncrease(index, v);
+                            }}
+                            style={{
+                              backgroundColor: colors.yellow,
+                              height: hp(2),
+                              borderBottomRightRadius: 2,
+                              borderBottomLeftRadius: 2,
+                              alignItems: 'center',
+                              width: wp(6),
+                            }}>
+                            <ResponsiveText margin={[-3, 0, 0, 0]}>
+                              +
+                            </ResponsiveText>
+                          </TouchableOpacity>
                         </View>
-                        <TouchableOpacity
-                          onPress={() => {
-                            // item.quantity = item.quantity + 1;
-                            //onItemIncrease(item);
-                            onItemIncrease(index, v);
-                          }}
-                          style={{
-                            backgroundColor: colors.yellow,
-                            height: hp(2),
-                            borderBottomRightRadius: 2,
-                            borderBottomLeftRadius: 2,
-                            alignItems: 'center',
-                            width: wp(6),
-                          }}>
-                          <ResponsiveText margin={[-3, 0, 0, 0]}>
-                            +
-                          </ResponsiveText>
-                        </TouchableOpacity>
-                      </View>
-                     :null}
-                     {item.statusName === 'PreOrder' ?
-                      <View style={{marginLeft: wp(2), marginTop: 15}}>
-                        <TouchableOpacity
-                          onPress={() => {
-                            Alert.alert(
-                              '',
-                              'Do you want to remove this item from cart ?',
-                              [
-                                {
-                                  text: 'Cancel',
-                                  onPress: () => {},
-                                  style: 'cancel',
-                                },
-                                {
-                                  text: 'OK',
-                                  onPress: () => {
-                                    // if(item.statusName === 'PreOrder'){
+                      ) : null}
+                      {item.statusName === 'PreOrder' ? (
+                        <View style={{marginLeft: wp(2), marginTop: 15}}>
+                          <TouchableOpacity
+                            onPress={() => {
+                              Alert.alert(
+                                '',
+                                'Do you want to remove this item from cart ?',
+                                [
+                                  {
+                                    text: 'Cancel',
+                                    onPress: () => {},
+                                    style: 'cancel',
+                                  },
+                                  {
+                                    text: 'OK',
+                                    onPress: () => {
+                                      // if(item.statusName === 'PreOrder'){
 
                                       onItemRemove(v);
-                                    // }else{
-                                    //   Alert.alert('','Order in process')
-                                    // }
+                                      // }else{
+                                      //   Alert.alert('','Order in process')
+                                      // }
+                                    },
                                   },
-                                },
-                              ],
-                            );
-                          }}>
-                          <Icon
-                            source={globalPath.DELETE_ICON}
-                            tintColor={colors.yellow}
-                            margin={[-20, 0, 0, 0]}
-                            size={30}
-                          />
-                        </TouchableOpacity>
-                      </View>
-                   :null}
-                   </View>
+                                ],
+                              );
+                            }}>
+                            <Icon
+                              source={globalPath.DELETE_ICON}
+                              tintColor={colors.yellow}
+                              margin={[-20, 0, 0, 0]}
+                              size={30}
+                            />
+                          </TouchableOpacity>
+                        </View>
+                      ) : null}
+                    </View>
                   );
                 })}
           </View>
@@ -432,7 +468,7 @@ const CartDetails = ({navigation}) => {
                 marginHorizontal: 20,
                 marginTop: 20,
                 borderRadius: 7,
-                marginBottom:hp(2)
+                marginBottom: hp(2),
               }}>
               <View
                 style={{
@@ -486,26 +522,45 @@ const CartDetails = ({navigation}) => {
                 </ResponsiveText>
               </View>
             </View>
-            {item.statusName === 'PreOrder' ?
-            <TouchableOpacity
-              onPress={() => {
-                item.statusName === 'PreOrder' ? submitOrder(item) : {};
-              }}
-              style={{
-                height: hp(5),
-                width: wp(80),
-                backgroundColor: colors.yellow,
-                borderRadius: 7,
-                justifyContent: 'center',
-                alignItems: 'center',
-                alignSelf: 'center',
-                marginTop: 15,
-                marginBottom: 30,
-              }}>
-              <ResponsiveText size={3.5}>
-                {item.statusName === 'PreOrder' ? 'Check out' : 'Pending'}
-              </ResponsiveText>
-            </TouchableOpacity>:null}
+            {item.statusName === 'PreOrder' ? (
+              <TouchableOpacity
+                onPress={() => {
+                  submitOrder(item) 
+                }}
+                style={{
+                  height: hp(5),
+                  width: wp(80),
+                  backgroundColor: colors.yellow,
+                  borderRadius: 7,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  alignSelf: 'center',
+                  marginTop: 15,
+                  marginBottom: 30,
+                }}>
+                <ResponsiveText size={3.5}>
+                  {item.statusName === 'PreOrder' ? 'Check out' : 'Pending'}
+                </ResponsiveText>
+              </TouchableOpacity>
+            ) : item.statusName === 'NewOrder' ? (
+              <TouchableOpacity
+                onPress={() => {
+                  cancelOrder(item.id) 
+                }}
+                style={{
+                  height: hp(5),
+                  width: wp(80),
+                  backgroundColor: colors.yellow,
+                  borderRadius: 7,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  alignSelf: 'center',
+                  marginTop: 15,
+                  marginBottom: 30,
+                }}>
+                <ResponsiveText size={3.5}>{'Cancel Order'}</ResponsiveText>
+              </TouchableOpacity>
+            ) : null}
           </View>
         </ScrollView>
       </View>
@@ -533,7 +588,9 @@ const CartDetails = ({navigation}) => {
 
               <View style={{flexDirection: 'column', marginLeft: 5}}>
                 <Text style={styles.ModalDish}>{selectedItem.dishName}</Text>
-                <Text style={styles.ModalPrice}>$ {selectedItem.dishPrice}</Text>
+                <Text style={styles.ModalPrice}>
+                  $ {selectedItem.dishPrice}
+                </Text>
               </View>
             </View>
 
