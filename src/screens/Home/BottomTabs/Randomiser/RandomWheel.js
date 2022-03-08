@@ -29,6 +29,7 @@ import DropDown from '../../../../components/DropDown';
 import Geolocation from 'react-native-geolocation-service';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetNearestRestaurantAction } from '../../../../redux/actions/user.actions';
+import { showMessage } from 'react-native-flash-message';
 
 
 const participants = [
@@ -121,7 +122,7 @@ const premise = [
 
 ]
 
- class RandomWheelClass extends React.Component {
+class RandomWheelClass extends React.Component {
     constructor(props) {
         super(props);
 
@@ -130,17 +131,16 @@ const premise = [
             winnerIndex: null,
             started: false,
             isModalVisible: false,
-            lat:null,
-            long:null,
+            lat: null,
+            long: null,
+            distance: 3,
+            loading:false
         };
         this.child = null;
     }
 
     componentDidMount() {
         this.requestCurrentLocation();
-        // if (hasLocationPermission) {
-           
-        //   }
     }
     requestCurrentLocation = async () => {
         try {
@@ -155,13 +155,13 @@ const premise = [
                 console.log("You can use the location")
                 Geolocation.getCurrentPosition(
                     (position) => {
-                      console.log(position);
-                      this.setState({lat:position.coords.latitude, long: position.coords.longitude})
-                      this.props.dispatch(GetNearestRestaurantAction({lat:position.coords.latitude,long:position.coords.longitude}))
+                        console.log(position);
+                        this.setState({ lat: position.coords.latitude, long: position.coords.longitude })
+                        this.props.dispatch(GetNearestRestaurantAction({ lat: position.coords.latitude, long: position.coords.longitude, distance: this.state.distance }))
                     },
                     (error) => {
-                      // See error code charts below.
-                      console.log(error.code, error.message);
+                        // See error code charts below.
+                        console.log(error.code, error.message);
                     },
                     { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
                 );
@@ -191,13 +191,13 @@ const premise = [
     };
     render() {
         const wheelOptions = {
-            rewards: this.props.restaurantList.map( names =>  names.name  ),
+            rewards: this.props.restaurantList.map(names => names.name),
             knobSize: 30,
             borderWidth: 5,
             borderColor: '#fff',
-            innerRadius: 30,
+            innerRadius: 40,
             duration: 6000,
-            iconRewards: this.props.restaurantList.map( names =>  names.fullPath  ),
+            iconRewards: this.props.restaurantList.map(names => names.fullPath),
             backgroundColor: 'transparent',
 
             textAngle: 'horizontal',
@@ -234,18 +234,24 @@ const premise = [
                     </View>
                     <View style={styles.container}>
                         <StatusBar barStyle={'light-content'} />
-{ this.props.restaurantList.map( names =>  names.name  ).length?
-                        <WheelOfFortune
-                            options={wheelOptions}
+                        {!this.props.loading?
+                        this.props.restaurantList.map(names => names.name).length ?
+                            <WheelOfFortune
+                                options={wheelOptions}
 
-                            getWinner={(value, index) => {
-                                this.setState({ winnerValue: value, winnerIndex: index });
-                                this.props.navigation.navigate(routeName.RestaurantDetail, value)
-                                // alert('Dish ID: ',participants[this.state.winnerIndex])
-                                //    alert('Dish ID: '+participants[this.state.winnerIndex])
-                            }}
-                        />
-:null}
+                                getWinner={(value, index) => {
+                                    this.setState({ winnerValue: value, winnerIndex: index });
+                                    this.props.navigation.navigate(routeName.RestaurantDetail, this.props.restaurantList.find(element => element.name === value).restaurantBranchId)
+                                    // alert('Dish ID: ',participants[this.state.winnerIndex])
+                                    //    alert('Dish ID: '+participants[this.state.winnerIndex])
+                                }}
+                            />
+                            : showMessage({
+                                message: "Oooopsss...",
+                                description: "Seems like there are no restaurants in area you provided.",
+                                type: "info",
+                              })
+                             :null }
 
 
 
@@ -302,6 +308,11 @@ const premise = [
                     // onModalHide={()=>navigation.navigate(routeName.LANDING_SCREEN)}
                     statusBarTranslucent={true}
                     coverScreen={true}
+                    onModalHide={()=>{
+                        setTimeout(() => {
+                            this.forceUpdate()
+                        }, 3000);
+                    }}
                 >
                     {/* ------------ ModalView -------------- */}
 
@@ -365,7 +376,14 @@ const premise = [
                                         Distance
                                     </ResponsiveText>
                                     <View style={{ marginStart: 5 }} >
-                                        <DropDown data={distance} height={hp(4)} width={wp(57)} />
+                                        <DropDown 
+                                            data={distance} 
+                                            height={hp(4)} 
+                                            width={wp(57)} 
+                                            onSelect={(selectedItem, index)=>{
+                                                console.log(selectedItem,index,'DropDown Selections');
+                                                index === 0 ? this.setState({distance:1}) : index === 1 ? this.setState({distance:6}) : index === 2 ? this.setState({distance:10}) : null
+                                            }} />
                                     </View>
                                 </View>
                                 <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, alignItems: 'center' }}>
@@ -416,7 +434,12 @@ const premise = [
                                 marginBottom: 30,
                             }}>
                             <TouchableOpacity
-                                onPress={this.toggleModal}
+                                onPress={()=>{
+                                    {
+                                        this.setState({isModalVisible:false}); 
+                                        this.props.dispatch(GetNearestRestaurantAction({ lat: this.state.lat, long: this.state.long, distance: this.state.distance }));
+                                    }
+                                }}
                                 style={{
                                     backgroundColor: colors.yellow,
                                     width: wp(85),
@@ -439,31 +462,33 @@ const premise = [
 }
 export default RandomWheel = (props) => {
 
-      const  dispatch  = useDispatch();
-      const restaurantList = useSelector(state => state.appReducers.NearestRestaurants.data)
+    const dispatch = useDispatch();
+    const restaurantList = useSelector(state => state.appReducers.NearestRestaurants.data)
+    const loading = useSelector(state => state.appReducers.NearestRestaurants.loading)
 
-      useEffect(() => {
-        
-        return <RandomWheelClass {...props}  />
-      }, [restaurantList])
-      
-    
-      const restaurantListNames = restaurantList.map( names =>  names.name  )
-      const restaurantListImages = restaurantList.map( image => image.fullPath  )
 
-      console.log(restaurantListNames,'restaurantListNames');
-      console.log(restaurantListImages,'restaurantListImages');
+    useEffect(() => {
 
-      console.log(restaurantList,'NearestRestaurants in RandomWheel');
+        return <RandomWheelClass {...props} />
+    }, [restaurantList])
 
-      return <RandomWheelClass {...props} 
-      dispatch={dispatch}  
-      restaurantListNames={restaurantListNames} 
-      restaurantListImages={restaurantListImages} restaurantList={restaurantList} />
-  
-      ;
 
-  };
+    const restaurantListNames = restaurantList.map(names => names.name)
+    const restaurantListImages = restaurantList.map(image => image.fullPath)
+
+    console.log(restaurantListNames, 'restaurantListNames');
+    console.log(restaurantListImages, 'restaurantListImages');
+
+    console.log(restaurantList, 'NearestRestaurants in RandomWheel');
+
+    return <RandomWheelClass {...props}
+        dispatch={dispatch}
+        restaurantListNames={restaurantListNames}
+        restaurantListImages={restaurantListImages} restaurantList={restaurantList} loading={loading}/>
+
+        ;
+
+};
 const styles = StyleSheet.create({
     container: {
         flex: 0.6,

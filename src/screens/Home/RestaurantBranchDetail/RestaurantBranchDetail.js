@@ -39,7 +39,7 @@ export default function RestaurantBranchDetailScreen({ navigation, route }) {
     //route.params.restaurantId
     // console.log(route.params, 'params colsole');
   }, []);
-  console.log('restaurant detail', data);
+  console.log('restaurant detail', route.params);
   return (
     <View style={{ backgroundColor: colors.black3, flex: 1 }}>
       <View style={styles.headerImage}>
