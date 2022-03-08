@@ -50,10 +50,10 @@ export default function DropDown(props) {
           );
         }}
         dropdownIconPosition={"right"}
-        data={props.data ? props.data : undefined}
-        onSelect={(selectedItem, index) => {
-          console.log(selectedItem, index);
-        }}
+        data={props.data ? props.data : []}
+        onSelect={props.onSelect
+          ? props.onSelect:()=>{}
+      }
         buttonTextAfterSelection={(selectedItem, index) => {
           return selectedItem;
         }}

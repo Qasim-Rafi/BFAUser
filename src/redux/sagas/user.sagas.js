@@ -1048,7 +1048,7 @@ export function* getNearestRestaurantsSaga() {
 function* getNearestRestaurantsSagaApi(data) {
   console.log(data, 'Data in getNearestRestaurantsSaga')
   try {
-    const response = yield Api.get(urls.GET_NEAREST_RESTAURANTS+data.data.long+'/'+data.data.lat);
+    const response = yield Api.get(urls.GET_NEAREST_RESTAURANTS+data.data.long+'/'+data.data.lat+'/'+ data.data.distance);
     console.log(response, 'NearestRestaurants');
     if (response && response.success == true) {
       yield put({
