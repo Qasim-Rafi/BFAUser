@@ -824,22 +824,31 @@ export const FiltersDummyData = [
       {
         name: 'Breakfast Included',
         value: '102',
+        select:false,
       },
       {
         name: 'Book Without Credit Card',
         value: '10',
+        select:false,
+
       },
       {
         name: 'Hotels',
         value: '10',
+        select:false,
+
       },
       {
         name: 'Parking',
         value: '10',
+        select:false,
+
       },
       {
         name: 'SwimmingPools',
         value: '10',
+        select:false,
+
       },
     ],
   },
