@@ -67,7 +67,7 @@ const Header = ({
           </Text>
         </View>
       ) : (
-        <View
+        <TouchableOpacity onPress={() => navigation.navigate(routeName.SEARCH_RESULT)}
           style={{
             alignItems: 'center',
             justifyContent: 'center',
@@ -78,7 +78,7 @@ const Header = ({
             backgroundColor:
               searchBar === 'true' ? 'rgba(64,64,64,0.5)' : undefined,
           }}>
-          <TouchableOpacity>
+          <TouchableOpacity >
             {/* // onPress={() => searchBar==='true'? navigation.navigate(routeName.FeaturedSearch) : undefined}> */}
             {/* <Input
           editable={searchBar==='true'? true : false}
@@ -91,7 +91,7 @@ const Header = ({
           height={hp(6)}
           width={inputWidth}
         /> */}
-            <TouchableOpacity onPress={() => navigation.navigate(routeName.SEARCH_RESULT)}>
+            <TouchableOpacity >
               <TextInput
                 style={{ height: hp(6), width: wp(50), color: colors.white }}
                 editable={false}
@@ -116,7 +116,7 @@ const Header = ({
             style={{ marginStart: 5, borderRadius: 10 }}>
             <Icon source={globalPath.SEARCH_LOGO} size={25} />
           </TouchableOpacity>
-        </View>
+        </TouchableOpacity>
       )}
       {showRightMenu &&
         (props.iconPath ? (
