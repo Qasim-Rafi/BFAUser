@@ -110,7 +110,7 @@ const initialState = {
     loading: false,
     data: [],
   },
-  getFoodPrefrences:{
+  getFoodPrefrences: {
     loading: false,
     data: [],
   },
@@ -119,13 +119,18 @@ const initialState = {
     data: [],
   },
   NearestRestaurants: {
-    loading:false,
-    data:[],
+    loading: false,
+    data: [],
   },
   AllAreas: {
-    loading:false,
-    data:[],
+    loading: false,
+    data: [],
   },
+
+  SearchResult: {
+    loading: false,
+    data: [],
+  }
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -233,38 +238,38 @@ export const appReducers = (state = initialState, action) => {
           loading: false,
         },
       };
-      //Get orders
-      case types.GET_ORDERS_REQUEST:
-        console.log("myyydataaaaaaa:",action.payload)
-        return {
-          ...state,
-          your_ordersList: {
-            ...state.your_ordersList,
-            loading: true,
-          },
-        };
-  
-      case types.GET_ORDERS_SUCCESS:
-        console.log("orderdata:",action.payload)
+    //Get orders
+    case types.GET_ORDERS_REQUEST:
+      console.log("myyydataaaaaaa:", action.payload)
+      return {
+        ...state,
+        your_ordersList: {
+          ...state.your_ordersList,
+          loading: true,
+        },
+      };
 
-        return {
-          ...state,
-          your_ordersList: {
-            ...state.your_ordersList,
-            data: action.payload,
-            loading: false,
-          },
-        };
-  
-      case types.GET_ORDERS_FAILURE:
-        return {
-          ...state,
-          your_ordersList: {
-            ...state.your_ordersList,
-            data: action.payload,
-            loading: false,
-          },
-        };
+    case types.GET_ORDERS_SUCCESS:
+      console.log("orderdata:", action.payload)
+
+      return {
+        ...state,
+        your_ordersList: {
+          ...state.your_ordersList,
+          data: action.payload,
+          loading: false,
+        },
+      };
+
+    case types.GET_ORDERS_FAILURE:
+      return {
+        ...state,
+        your_ordersList: {
+          ...state.your_ordersList,
+          data: action.payload,
+          loading: false,
+        },
+      };
     case types.GET_APPLY_FOR_JOB_REQUEST:
       return {
         ...state,
@@ -319,8 +324,8 @@ export const appReducers = (state = initialState, action) => {
           loading: false,
         },
       };
-      //Payment history
-      case types.GET_PAYMENT_HISTORY_REQUEST:
+    //Payment history
+    case types.GET_PAYMENT_HISTORY_REQUEST:
       return {
         ...state,
         getPaymentHistory: {
@@ -344,6 +349,42 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         getPaymentHistory: {
           ...state.getPaymentHistory,
+          loading: false,
+        },
+      };
+    case types.GET_RESTAURANT_ALL_DISHES_SUCCESS:
+      return {
+        ...state,
+        cusineDetail: {
+          ...state.restaurantDishesDetail,
+          data: action.payload,
+        },
+      };
+    //Search Result
+    case types.GET_SEARCH_REQUEST:
+      return {
+        ...state,
+        SearchResult: {
+          ...state.SearchResult,
+          loading: true,
+        },
+      };
+
+    case types.GET_SEARCH_SUCCESS:
+      return {
+        ...state,
+        SearchResult: {
+          ...state.SearchResult,
+          data: [action.payload],
+          loading: false,
+        },
+      };
+
+    case types.GET_SEARCH_FAILURE:
+      return {
+        ...state,
+        SearchResult: {
+          ...state.SearchResult,
           loading: false,
         },
       };
@@ -383,34 +424,34 @@ export const appReducers = (state = initialState, action) => {
           loading: false,
         },
       };
-      //get Food Prefrences
-      case types.GET_FOOD_PREFRENCES_REQUEST:
-        return {
-          ...state,
-          getFoodPrefrences: {
-            ...state.getFoodPrefrences,
-            loading: true,
-          },
-        };
-      case types.GET_FOOD_PREFRENCES_SUCCESS:
-        console.log('Dataaaaaa: ', action.payload);
-  
-        return {
-          ...state,
-          getFoodPrefrences: {
-            ...state.getFoodPrefrences,
-            data: [...state.getFoodPrefrences.data, ...action.payload],
-            loading: false,
-          },
-        };
-      case types.GET_FOOD_PREFRENCES_FAILURE:
-        return {
-          ...state,
-          getFoodPrefrences: {
-            ...state.getFoodPrefrences,
-            loading: false,
-          },
-        };
+    //get Food Prefrences
+    case types.GET_FOOD_PREFRENCES_REQUEST:
+      return {
+        ...state,
+        getFoodPrefrences: {
+          ...state.getFoodPrefrences,
+          loading: true,
+        },
+      };
+    case types.GET_FOOD_PREFRENCES_SUCCESS:
+      console.log('Dataaaaaa: ', action.payload);
+
+      return {
+        ...state,
+        getFoodPrefrences: {
+          ...state.getFoodPrefrences,
+          data: [...state.getFoodPrefrences.data, ...action.payload],
+          loading: false,
+        },
+      };
+    case types.GET_FOOD_PREFRENCES_FAILURE:
+      return {
+        ...state,
+        getFoodPrefrences: {
+          ...state.getFoodPrefrences,
+          loading: false,
+        },
+      };
     //Moore From Restraurant
     case types.MORE_FROM_RESTAURANT_REQUEST:
       return {
@@ -759,7 +800,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         restaurantDetail: {
           ...state.restaurantDetail,
-          data:{},
+          data: {},
           refreshing: true,
         },
       };
@@ -777,7 +818,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         restaurantDetail: {
           ...state.restaurantDetail,
-          data:{},
+          data: {},
           refreshing: false,
         },
       };
@@ -888,83 +929,135 @@ export const appReducers = (state = initialState, action) => {
           loading: false,
         },
       };
-      //GetDishByCusineId
-      case types.GET_DISH_BY_CUSINE_ID_REQUEST:
-        return {
-          ...state,
-          getdishbycusineid: {
-            ...state.getdishbycusineid,
-            refreshing: true,
-          },
-        };
-      case types.GET_DISH_BY_CUSINE_ID_SUCCESS:
-        return {
-          ...state,
-          getdishbycusineid: {
-            ...state.getdishbycusineid,
-            data: [...state.getdishbycusineid.data, ...action.payload],
-            refreshing: false,
-          },
-        };
-      case types.GET_DISH_BY_CUSINE_ID_FAILURE:
-        return {
-          ...state,
-          getdishbycusineid: {
-            ...state.getdishbycusineid,
-            refreshing: false,
-          },
-        };
-        //GetDishByCusineId
-      case types.GET_NEAREST_RESTAURANT_REQUEST:
-        return {
-          ...state,
-          NearestRestaurants: {
-            ...state.NearestRestaurants,
-            loading: true,
-          },
-        };
-      case types.GET_NEAREST_RESTAURANT_SUCCESS:
-        return {
-          ...state,
-          NearestRestaurants: {
-            ...state.NearestRestaurants,
-            data: action.payload,
-            loading: false,
-          },
-        };
-      case types.GET_NEAREST_RESTAURANT_FAILURE:
-        return {
-          ...state,
-          NearestRestaurants: {
-            ...state.NearestRestaurants,
-            loading: false,
-          },
-        };
-        case types.GET_AREA_ALL_REQUEST:
-        return {
-          ...state,
-          AllAreas: {
-            ...state.NearestRestaurants,
-            loading: true,
-          },
-        };
-      case types.GET_AREA_ALL_SUCCESS:
-        return {
-          ...state,
-          AllAreas: {
-            ...state.NearestRestaurants,
-            data: action.payload,
-            loading: false,
-          },
-        };
-      case types.GET_AREA_ALL_FAILURE:
-        return {
-          ...state,
-          AllAreas: {
-            ...state.NearestRestaurants,
-            loading: false,
-          },
-        };
+    //GetDishByCusineId
+    case types.GET_DISH_BY_CUSINE_ID_REQUEST:
+      return {
+        ...state,
+        getdishbycusineid: {
+          ...state.getdishbycusineid,
+          refreshing: true,
+        },
+      };
+    case types.GET_DISH_BY_CUSINE_ID_SUCCESS:
+      return {
+        ...state,
+        getdishbycusineid: {
+          ...state.getdishbycusineid,
+          data: [...state.getdishbycusineid.data, ...action.payload],
+          refreshing: false,
+        },
+      };
+    case types.GET_DISH_BY_CUSINE_ID_FAILURE:
+      return {
+        ...state,
+        getdishbycusineid: {
+          ...state.getdishbycusineid,
+          refreshing: false,
+        },
+      };
+    //GetDishByCusineId
+    case types.GET_NEAREST_RESTAURANT_REQUEST:
+      return {
+        ...state,
+        NearestRestaurants: {
+          ...state.NearestRestaurants,
+          loading: true,
+        },
+      };
+    case types.GET_NEAREST_RESTAURANT_SUCCESS:
+      return {
+        ...state,
+        NearestRestaurants: {
+          ...state.NearestRestaurants,
+          data: action.payload,
+          loading: false,
+        },
+      };
+    case types.GET_NEAREST_RESTAURANT_FAILURE:
+      return {
+        ...state,
+        NearestRestaurants: {
+          ...state.NearestRestaurants,
+          loading: false,
+        },
+      };
+    case types.GET_AREA_ALL_REQUEST:
+      return {
+        ...state,
+        AllAreas: {
+          ...state.NearestRestaurants,
+          loading: true,
+        },
+      };
+    case types.GET_AREA_ALL_SUCCESS:
+      return {
+        ...state,
+        AllAreas: {
+          ...state.NearestRestaurants,
+          data: action.payload,
+          loading: false,
+        },
+      };
+    case types.GET_AREA_ALL_FAILURE:
+      return {
+        ...state,
+        AllAreas: {
+          ...state.NearestRestaurants,
+          loading: false,
+        },
+      };
+    //GetDishByCusineId
+    case types.GET_DISH_BY_CUSINE_ID_REQUEST:
+      return {
+        ...state,
+        getdishbycusineid: {
+          ...state.getdishbycusineid,
+          refreshing: true,
+        },
+      };
+    case types.GET_DISH_BY_CUSINE_ID_SUCCESS:
+      return {
+        ...state,
+        getdishbycusineid: {
+          ...state.getdishbycusineid,
+          data: [...state.getdishbycusineid.data, ...action.payload],
+          refreshing: false,
+        },
+      };
+    case types.GET_DISH_BY_CUSINE_ID_FAILURE:
+      return {
+        ...state,
+        getdishbycusineid: {
+          ...state.getdishbycusineid,
+          refreshing: false,
+        },
+      };
+    //GetDishByCusineId
+    case types.GET_NEAREST_RESTAURANT_REQUEST:
+      return {
+        ...state,
+        NearestRestaurants: {
+          ...state.NearestRestaurants,
+          loading: true,
+        },
+      };
+    case types.GET_NEAREST_RESTAURANT_SUCCESS:
+      return {
+        ...state,
+        NearestRestaurants: {
+          ...state.NearestRestaurants,
+          data: action.payload,
+          loading: false,
+        },
+      };
+    case types.GET_NEAREST_RESTAURANT_FAILURE:
+      return {
+        ...state,
+        NearestRestaurants: {
+          ...state.NearestRestaurants,
+          loading: false,
+        },
+      };
     default:
       return state;
   }

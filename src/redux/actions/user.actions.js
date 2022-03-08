@@ -14,6 +14,17 @@ export const getProfileData = data => {
     data: data,
   };
 };
+//Search bar
+export const SearchResult = (SearchText, selected) => {
+  return {
+    type: types.GET_SEARCH_REQUEST,
+    data: {
+      SearchText: SearchText,
+      selected: selected
+    }
+  };
+};
+//More from rest
 export const moreFromRestaurant = (index, limit) => {
   return {
     type: types.MORE_FROM_RESTAURANT_REQUEST,
@@ -227,14 +238,14 @@ export const removeCart = data => {
     data,
   };
 };
-export const addOrder = (data,navigation) => {
+export const addOrder = (data, navigation) => {
   return {
     type: types.ADD_ORDER_REQUEST,
     data,
     navigation
   };
 };
-export const checkoutOrder = (data,navigation) => {
+export const checkoutOrder = (data, navigation) => {
   return {
     type: types.CHECKOUT_ORDER_REQUEST,
     data,

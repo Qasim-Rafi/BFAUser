@@ -36,14 +36,23 @@ export default urls = {
   GET_DISH_BY_CUSINE_ID: 'api/RestaurantDish/GetRestaurantDishByCuisinesId/',
   ADD_ORDER: 'api/Order/AddOrder',
   UPDATE_ORDER: 'api/Order/UpdateOrder/',
-  GET_ALL_ORDERS:'api/Order/OrderListForUserApp',
-  PROMOTION_CLICK:'api/PromotionlDish/AddPromotionlDishForRestaurantClick',  
-  CHECK_ORDER:'api/OrderBill/CheckOutOrder',  //
-  UPDATE_QUANTITY:'api/Order/UpdateOrderQuantityPrice',
-  DELETE_DISH_FROM_CART:'api/Order/DeleteOrderDish?orderId=',
-  DELETE_ORDER_FROM_CART:'api/Order/DeleteOrder/',//
-  ORDER_CONFIRMATION:'api/OrderPayment/PaymentCheckMethodConfirmation',//
+  GET_ALL_ORDERS: 'api/Order/OrderListForUserApp',
+  PROMOTION_CLICK: 'api/PromotionlDish/AddPromotionlDishForRestaurantClick',
+  CHECK_ORDER: 'api/OrderBill/CheckOutOrder',  //
+  UPDATE_QUANTITY: 'api/Order/UpdateOrderQuantityPrice',
+  DELETE_DISH_FROM_CART: 'api/Order/DeleteOrderDish?orderId=',
+  DELETE_ORDER_FROM_CART: 'api/Order/DeleteOrder/',//
+  ORDER_CONFIRMATION: 'api/OrderPayment/PaymentCheckMethodConfirmation',//
   UPDATE_ORDER_STATUS: 'api/Order/UpdateOrderStatus/',
+  GET_ALL_ORDERS: 'api/Order/OrderListForUserApp',
+  PROMOTION_CLICK: 'api/PromotionlDish/AddPromotionlDishForRestaurantClick',
+  CHECK_ORDER: 'api/OrderBill/CheckOutOrder',  //
+  UPDATE_QUANTITY: 'api/Order/UpdateOrderQuantityPrice',
+  DELETE_DISH_FROM_CART: 'api/Order/DeleteOrderDish?orderId=',
+  DELETE_ORDER_FROM_CART: 'api/Order/DeleteOrder/',//
+  ORDER_CONFIRMATION: 'api/OrderPayment/PaymentCheckMethodConfirmation',//
+  //Searchbar
+  SearchResult: 'api/RestaurantDish/HomeDashboardSearch?DishName=',
   GET_NEAREST_RESTAURANTS: 'api/RestaurantBranchesAdmin/GetNearestRestaurantBranchesByLocation/',
   GET_AREA_LIST: 'api/Lookups/GetArea',
 
