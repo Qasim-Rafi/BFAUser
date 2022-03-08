@@ -1064,3 +1064,25 @@ function* getNearestRestaurantsSagaApi(data) {
     yield put({type: types.GET_NEAREST_RESTAURANT_FAILURE, payload: []});
   }
 }
+export function* getAllAreaListSaga() {
+  yield takeLatest(types.GET_AREA_ALL_REQUEST, getAllAreaListSagaApi);
+}
+function* getAllAreaListSagaApi(data) {
+  console.log(data, 'Data in getAllAreaListSaga')
+  try {
+    const response = yield Api.get(urls.GET_AREA_LIST);
+    console.log(response, 'AllRestaurantList');
+    if (response && response.success == true) {
+      yield put({
+        type: types.GET_AREA_ALL_SUCCESS,
+        payload: response.data,
+      });
+    } else {
+      yield put({type: types.GET_AREA_ALL_FAILURE, payload: []});
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({type: types.GET_AREA_ALL_FAILURE, payload: []});
+  }
+}

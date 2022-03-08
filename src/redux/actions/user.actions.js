@@ -313,6 +313,13 @@ export const GetNearestRestaurantAction = data => {
   };
 };
 
+export const GetAreaAllListAction = data => {
+  return {
+    type: types.GET_AREA_ALL_REQUEST,
+    data: data,
+  };
+};
+
 // //Get User categories actions
 // export const addRUpdateCategory = (params) => {
 //   return {

@@ -45,7 +45,7 @@ export default urls = {
   ORDER_CONFIRMATION:'api/OrderPayment/PaymentCheckMethodConfirmation',//
 
   GET_NEAREST_RESTAURANTS: 'api/RestaurantBranchesAdmin/GetNearestRestaurantBranchesByLocation/',
-
+  GET_AREA_LIST: 'api/Lookups/GetArea',
 
 
 

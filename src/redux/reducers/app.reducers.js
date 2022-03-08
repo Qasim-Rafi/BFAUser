@@ -121,7 +121,11 @@ const initialState = {
   NearestRestaurants: {
     loading:false,
     data:[],
-  }
+  },
+  AllAreas: {
+    loading:false,
+    data:[],
+  },
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -932,6 +936,31 @@ export const appReducers = (state = initialState, action) => {
         return {
           ...state,
           NearestRestaurants: {
+            ...state.NearestRestaurants,
+            loading: false,
+          },
+        };
+        case types.GET_AREA_ALL_REQUEST:
+        return {
+          ...state,
+          AllAreas: {
+            ...state.NearestRestaurants,
+            loading: true,
+          },
+        };
+      case types.GET_AREA_ALL_SUCCESS:
+        return {
+          ...state,
+          AllAreas: {
+            ...state.NearestRestaurants,
+            data: action.payload,
+            loading: false,
+          },
+        };
+      case types.GET_AREA_ALL_FAILURE:
+        return {
+          ...state,
+          AllAreas: {
             ...state.NearestRestaurants,
             loading: false,
           },

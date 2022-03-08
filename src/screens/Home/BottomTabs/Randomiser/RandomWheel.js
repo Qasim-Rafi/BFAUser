@@ -28,7 +28,7 @@ import Modal from "react-native-modal";
 import DropDown from '../../../../components/DropDown';
 import Geolocation from 'react-native-geolocation-service';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetNearestRestaurantAction } from '../../../../redux/actions/user.actions';
+import { GetAreaAllListAction, GetNearestRestaurantAction } from '../../../../redux/actions/user.actions';
 import { showMessage } from 'react-native-flash-message';
 
 
@@ -134,13 +134,15 @@ class RandomWheelClass extends React.Component {
             lat: null,
             long: null,
             distance: 3,
-            loading:false
+            loading:false,
+            areaList:this.props.areaListNames,
         };
         this.child = null;
     }
 
     componentDidMount() {
         this.requestCurrentLocation();
+        this.props.dispatch(GetAreaAllListAction())
     }
     requestCurrentLocation = async () => {
         try {
@@ -367,7 +369,7 @@ class RandomWheelClass extends React.Component {
                                         Area
                                     </ResponsiveText>
                                     <View style={{ marginStart: 5 }} >
-                                        <DropDown data={area} height={hp(4)} width={wp(57)} />
+                                        <DropDown data={this.state.areaList} height={hp(4)} width={wp(57)} />
                                     </View>
                                 </View>
                                 <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, alignItems: 'center' }}>
@@ -466,6 +468,16 @@ export default RandomWheel = (props) => {
     const restaurantList = useSelector(state => state.appReducers.NearestRestaurants.data)
     const loading = useSelector(state => state.appReducers.NearestRestaurants.loading)
 
+    const restaurantListNames = restaurantList.map(names => names.name)
+    const restaurantListImages = restaurantList.map(image => image.fullPath)
+
+    const areaList = useSelector(state => state.appReducers.AllAreas.data)
+    const loadingAreaList = useSelector(state => state.appReducers.AllAreas.loading)
+
+    const areaListNames = areaList.map(names => names.name )
+    
+    console.log(areaList,'areaList in RandomWheel');
+    console.log(areaListNames,'areaListNames in RandomWheel');
 
     useEffect(() => {
 
@@ -473,8 +485,6 @@ export default RandomWheel = (props) => {
     }, [restaurantList])
 
 
-    const restaurantListNames = restaurantList.map(names => names.name)
-    const restaurantListImages = restaurantList.map(image => image.fullPath)
 
     console.log(restaurantListNames, 'restaurantListNames');
     console.log(restaurantListImages, 'restaurantListImages');
@@ -484,7 +494,7 @@ export default RandomWheel = (props) => {
     return <RandomWheelClass {...props}
         dispatch={dispatch}
         restaurantListNames={restaurantListNames}
-        restaurantListImages={restaurantListImages} restaurantList={restaurantList} loading={loading}/>
+        restaurantListImages={restaurantListImages} restaurantList={restaurantList} loading={loading} areaListNames={areaListNames}/>
 
         ;
 
