@@ -276,7 +276,12 @@ const CartDetails = ({navigation}) => {
                   size={4}>
                   Clear Order
                 </ResponsiveText>
-              </TouchableOpacity>:null}
+              </TouchableOpacity>:<ResponsiveText
+                  margin={[15, 30, 15, -10]}
+                  color={colors.green1}
+                  size={4}>
+                  In Process
+                </ResponsiveText>}
             </View>
             {item.addOrderDetail.length === 0
               ? undefined
