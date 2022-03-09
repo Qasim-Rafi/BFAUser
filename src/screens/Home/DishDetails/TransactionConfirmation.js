@@ -29,6 +29,7 @@ export default function TransactionConfirmation({route, navigation}) {
 
   useEffect(() => {
     //addTotal(route.params);
+    console.log('PARAMS CONFIRM ',route.params);
   });
 
   const toggleModal = async () => {
@@ -68,6 +69,17 @@ export default function TransactionConfirmation({route, navigation}) {
       }
     } catch (error) {}
   };
+  const Calculate=(totl,count)=>{
+    if(activeTabs === 'tab2'){
+      return totl+count
+    }else if(activeTabs === 'tab3'){
+      var x=totl *(count/100)
+      return totl+x
+    }
+    else{
+     return totl
+    }
+  }
   return (
     <View style={{flex: 1, backgroundColor: colors.black3}}>
       <View
@@ -345,7 +357,7 @@ export default function TransactionConfirmation({route, navigation}) {
               justifyContent: 'space-between',
             }}>
             <ResponsiveText color={colors.white}>Total</ResponsiveText>
-            <ResponsiveText color={colors.yellow}>${total}.00</ResponsiveText>
+            <ResponsiveText color={colors.yellow}>${data.amount}.00</ResponsiveText>
           </View>
           <View
             style={{
@@ -374,7 +386,7 @@ export default function TransactionConfirmation({route, navigation}) {
               justifyContent: 'space-between',
             }}>
             <ResponsiveText color={colors.white}>Final</ResponsiveText>
-            <ResponsiveText color={colors.yellow}>$ {total}.00</ResponsiveText>
+            <ResponsiveText color={colors.yellow}>$ { Calculate(data.amount,count)}</ResponsiveText>
           </View>
         </View>
         <View style={{alignItems: 'center'}}>

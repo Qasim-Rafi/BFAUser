@@ -336,6 +336,14 @@ export const GetAreaAllListAction = data => {
   };
 };
 
+export const GetPremiseAllListAction = data => {
+  return {
+    type: types.GET_PREMISE_ALL_REQUEST,
+    data: data,
+  };
+};
+
+
 // //Get User categories actions
 // export const addRUpdateCategory = (params) => {
 //   return {

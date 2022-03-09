@@ -28,58 +28,58 @@ import Modal from "react-native-modal";
 import DropDown from '../../../../components/DropDown';
 import Geolocation from 'react-native-geolocation-service';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetAreaAllListAction, GetNearestRestaurantAction } from '../../../../redux/actions/user.actions';
+import { GetAreaAllListAction, GetNearestRestaurantAction, GetPremiseAllListAction } from '../../../../redux/actions/user.actions';
 import { showMessage } from 'react-native-flash-message';
 
 
-const participants = [
+// const participants = [
 
-    'Imah`s',
-    'Bandar Bus',
-    'Hokkaido',
-    'Pit-shop',
-    'Jollibee',
-    'Anas Corner',
-];
+//     'Imah`s',
+//     'Bandar Bus',
+//     'Hokkaido',
+//     'Pit-shop',
+//     'Jollibee',
+//     'Anas Corner',
+// ];
 
-const area = [
-    'Berakas',
-    'Burong Pingai Ayer',
-    'Gadong',
-    'Kianggeh',
-    'Kilanas',
-    'Kota Batu',
-    'Lumapas',
-    'Mentiri',
-    'Pangkalan Batu',
-    'Peramu',
-    'Saba',
-    'Sengkurong',
-    'Serasa',
-    'Sungai Kebun',
-    'Tamoi',
-    'Bukit Sawat',
-    'Kuala Balai',
-    'Kuala Belait',
-    'Labi',
-    'Liang',
-    'Melilas',
-    'Seria',
-    'Sukang',
-    'Keriam',
-    'Kiudang',
-    'Lamunin',
-    'Pekan Tutong',
-    'Rambai',
-    'Tanjong Maya',
-    'Telisai',
-    'Ukong',
-    'Amo',
-    'Bangar',
-    'Batu Apoi',
-    'Bokok',
-    'Labu'
-]
+// const area = [
+//     'Berakas',
+//     'Burong Pingai Ayer',
+//     'Gadong',
+//     'Kianggeh',
+//     'Kilanas',
+//     'Kota Batu',
+//     'Lumapas',
+//     'Mentiri',
+//     'Pangkalan Batu',
+//     'Peramu',
+//     'Saba',
+//     'Sengkurong',
+//     'Serasa',
+//     'Sungai Kebun',
+//     'Tamoi',
+//     'Bukit Sawat',
+//     'Kuala Balai',
+//     'Kuala Belait',
+//     'Labi',
+//     'Liang',
+//     'Melilas',
+//     'Seria',
+//     'Sukang',
+//     'Keriam',
+//     'Kiudang',
+//     'Lamunin',
+//     'Pekan Tutong',
+//     'Rambai',
+//     'Tanjong Maya',
+//     'Telisai',
+//     'Ukong',
+//     'Amo',
+//     'Bangar',
+//     'Batu Apoi',
+//     'Bokok',
+//     'Labu'
+// ]
 
 const distance = [
     'Less than 3 Km',
@@ -87,40 +87,40 @@ const distance = [
     'More than 6 Km'
 ]
 
-const premise = [
-    'Airport Mall',
-    'Aman Hills Shopping Complex',
-    'Annajat Complex',
-    'Citis Square',
-    'Freshco',
-    'Gadong Centrepoint',
-    'Gadong Properties',
-    'Halim Plaza, Tutong',
-    'Hua Ho Department Store, Manggis',
-    'Jerudong Park Food Court',
-    'KB Sentral',
-    'Little Soho',
-    'Mabohai Shopping Complex',
-    'Mid Valley',
-    'One Riverside',
-    'Onecity Shopping Centre',
-    'Pavo Point',
-    'Petani Mall',
-    'Plaza Athirah',
-    'Regent Square',
-    'Rimba Point',
-    'Seri Qlap Mall',
-    'Seria Plaza',
-    'Setia Kenangan 2 Complex',
-    'Teck Guan Plaza',
-    'The Mall Gadong',
-    'The Walk, Beribi Central',
-    'Times Square Shopping Complex',
-    'V-Plaza Hotel',
-    'Wisma Jaya',
-    'Yayasan Sultan Haji Hassanal Bolkiah'
+// const premise = [
+//     'Airport Mall',
+//     'Aman Hills Shopping Complex',
+//     'Annajat Complex',
+//     'Citis Square',
+//     'Freshco',
+//     'Gadong Centrepoint',
+//     'Gadong Properties',
+//     'Halim Plaza, Tutong',
+//     'Hua Ho Department Store, Manggis',
+//     'Jerudong Park Food Court',
+//     'KB Sentral',
+//     'Little Soho',
+//     'Mabohai Shopping Complex',
+//     'Mid Valley',
+//     'One Riverside',
+//     'Onecity Shopping Centre',
+//     'Pavo Point',
+//     'Petani Mall',
+//     'Plaza Athirah',
+//     'Regent Square',
+//     'Rimba Point',
+//     'Seri Qlap Mall',
+//     'Seria Plaza',
+//     'Setia Kenangan 2 Complex',
+//     'Teck Guan Plaza',
+//     'The Mall Gadong',
+//     'The Walk, Beribi Central',
+//     'Times Square Shopping Complex',
+//     'V-Plaza Hotel',
+//     'Wisma Jaya',
+//     'Yayasan Sultan Haji Hassanal Bolkiah'
 
-]
+// ]
 
 class RandomWheelClass extends React.Component {
     constructor(props) {
@@ -136,13 +136,17 @@ class RandomWheelClass extends React.Component {
             distance: 3,
             loading:false,
             areaList:this.props.areaListNames,
+            premiseList: this.props.premiseListNames
         };
         this.child = null;
     }
 
+    
+
     componentDidMount() {
         this.requestCurrentLocation();
         this.props.dispatch(GetAreaAllListAction())
+        this.props.dispatch(GetPremiseAllListAction())
     }
     requestCurrentLocation = async () => {
         try {
@@ -192,6 +196,7 @@ class RandomWheelClass extends React.Component {
         // this.child._onPress()
     };
     render() {
+        console.log(this.state.areaList,'areaList in Class');
         const wheelOptions = {
             rewards: this.props.restaurantList.map(names => names.name),
             knobSize: 30,
@@ -394,7 +399,7 @@ class RandomWheelClass extends React.Component {
                                         Premise
                                     </ResponsiveText>
                                     <View style={{ marginStart: 5 }} >
-                                        <DropDown data={premise} height={hp(4)} width={wp(57)} />
+                                        <DropDown data={this.props.premiseListNames} height={hp(4)} width={wp(57)} />
                                     </View>
                                 </View>
                             </View>
@@ -475,9 +480,15 @@ export default RandomWheel = (props) => {
     const loadingAreaList = useSelector(state => state.appReducers.AllAreas.loading)
 
     const areaListNames = areaList.map(names => names.name )
+
+    const premiseList = useSelector(state=> state.appReducers.AllPremises.data )
+    const premiseListNames = premiseList.map(names => names.name)
     
     console.log(areaList,'areaList in RandomWheel');
     console.log(areaListNames,'areaListNames in RandomWheel');
+
+    console.log(premiseList,'premiseList in random Wheel');
+    console.log(premiseListNames,'premiseListNames in random Wheel');
 
     useEffect(() => {
 
@@ -493,8 +504,12 @@ export default RandomWheel = (props) => {
 
     return <RandomWheelClass {...props}
         dispatch={dispatch}
-        restaurantListNames={restaurantListNames}
-        restaurantListImages={restaurantListImages} restaurantList={restaurantList} loading={loading} areaListNames={areaListNames}/>
+        // restaurantListNames={restaurantListNames}
+        // restaurantListImages={restaurantListImages} 
+        restaurantList={restaurantList} loading={loading} 
+        areaListNames={areaListNames}
+        premiseListNames={premiseListNames}
+        />
 
         ;
 
