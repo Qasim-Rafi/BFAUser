@@ -55,6 +55,7 @@ export default urls = {
   SearchResult: 'api/RestaurantDish/HomeDashboardSearch?DishName=',
   GET_NEAREST_RESTAURANTS: 'api/RestaurantBranchesAdmin/GetNearestRestaurantBranchesByLocation/',
   GET_AREA_LIST: 'api/Lookups/GetArea',
+  GET_PREMISE_LIST: 'api/Lookups/Premise',
 
 
 

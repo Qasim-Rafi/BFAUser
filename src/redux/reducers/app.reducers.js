@@ -126,6 +126,10 @@ const initialState = {
     loading: false,
     data: [],
   },
+  AllPremises: {
+    loading:false,
+    data:[],
+  },
 
   SearchResult: {
     loading: false,
@@ -931,6 +935,188 @@ export const appReducers = (state = initialState, action) => {
           loading: false,
         },
       };
+      //GetDishByCusineId
+      // case types.GET_DISH_BY_CUSINE_ID_REQUEST:
+      //   return {
+      //     ...state,
+      //     getdishbycusineid: {
+      //       ...state.getdishbycusineid,
+      //       refreshing: true,
+      //     },
+      //   };
+      // case types.GET_DISH_BY_CUSINE_ID_SUCCESS:
+      //   return {
+      //     ...state,
+      //     getdishbycusineid: {
+      //       ...state.getdishbycusineid,
+      //       data: [...state.getdishbycusineid.data, ...action.payload],
+      //       refreshing: false,
+      //     },
+      //   };
+      // case types.GET_DISH_BY_CUSINE_ID_FAILURE:
+      //   return {
+      //     ...state,
+      //     getdishbycusineid: {
+      //       ...state.getdishbycusineid,
+      //       refreshing: false,
+      //     },
+      //   };
+        //GetDishByCusineId
+      case types.GET_NEAREST_RESTAURANT_REQUEST:
+        return {
+          ...state,
+          NearestRestaurants: {
+            ...state.NearestRestaurants,
+            loading: true,
+          },
+        };
+      case types.GET_NEAREST_RESTAURANT_SUCCESS:
+        return {
+          ...state,
+          NearestRestaurants: {
+            ...state.NearestRestaurants,
+            data: action.payload,
+            loading: false,
+          },
+        };
+      case types.GET_NEAREST_RESTAURANT_FAILURE:
+        return {
+          ...state,
+          NearestRestaurants: {
+            ...state.NearestRestaurants,
+            loading: false,
+          },
+        };
+        case types.GET_AREA_ALL_REQUEST:
+        return {
+          ...state,
+          AllAreas: {
+            ...state.AllAreas,
+            loading: true,
+          },
+        };
+      case types.GET_AREA_ALL_SUCCESS:
+        return {
+          ...state,
+          AllAreas: {
+            ...state.AllAreas,
+            data: action.payload,
+            loading: false,
+          },
+        };
+      case types.GET_AREA_ALL_FAILURE:
+        return {
+          ...state,
+          AllAreas: {
+            ...state.AllAreas,
+            loading: false,
+          },
+        };
+        //GetAllPremises
+        case types.GET_PREMISE_ALL_REQUEST:
+        return {
+          ...state,
+          AllPremises: {
+            ...state.AllPremises,
+            loading: true,
+          },
+        };
+      case types.GET_PREMISE_ALL_SUCCESS:
+        return {
+          ...state,
+          AllPremises: {
+            ...state.AllPremises,
+            data: action.payload,
+            loading: false,
+          },
+        };
+      case types.GET_PREMISE_ALL_FAILURE:
+        return {
+          ...state,
+          AllPremises: {
+            ...state.AllPremises,
+            loading: false,
+          },
+        };
+
+
+    //GetDishByCusineId
+    // case types.GET_DISH_BY_CUSINE_ID_REQUEST:
+    //   return {
+    //     ...state,
+    //     getdishbycusineid: {
+    //       ...state.getdishbycusineid,
+    //       refreshing: true,
+    //     },
+    //   };
+    // case types.GET_DISH_BY_CUSINE_ID_SUCCESS:
+    //   return {
+    //     ...state,
+    //     getdishbycusineid: {
+    //       ...state.getdishbycusineid,
+    //       data: [...state.getdishbycusineid.data, ...action.payload],
+    //       refreshing: false,
+    //     },
+    //   };
+    // case types.GET_DISH_BY_CUSINE_ID_FAILURE:
+    //   return {
+    //     ...state,
+    //     getdishbycusineid: {
+    //       ...state.getdishbycusineid,
+    //       refreshing: false,
+    //     },
+    //   };
+    //GetNearestRestaurant
+    // case types.GET_NEAREST_RESTAURANT_REQUEST:
+    //   return {
+    //     ...state,
+    //     NearestRestaurants: {
+    //       ...state.NearestRestaurants,
+    //       loading: true,
+    //     },
+    //   };
+    // case types.GET_NEAREST_RESTAURANT_SUCCESS:
+    //   return {
+    //     ...state,
+    //     NearestRestaurants: {
+    //       ...state.NearestRestaurants,
+    //       data: action.payload,
+    //       loading: false,
+    //     },
+    //   };
+    // case types.GET_NEAREST_RESTAURANT_FAILURE:
+    //   return {
+    //     ...state,
+    //     NearestRestaurants: {
+    //       ...state.NearestRestaurants,
+    //       loading: false,
+    //     },
+    //   };
+    // case types.GET_AREA_ALL_REQUEST:
+    //   return {
+    //     ...state,
+    //     AllAreas: {
+    //       ...state.NearestRestaurants,
+    //       loading: true,
+    //     },
+    //   };
+    // case types.GET_AREA_ALL_SUCCESS:
+    //   return {
+    //     ...state,
+    //     AllAreas: {
+    //       ...state.NearestRestaurants,
+    //       data: action.payload,
+    //       loading: false,
+    //     },
+    //   };
+    // case types.GET_AREA_ALL_FAILURE:
+    //   return {
+    //     ...state,
+    //     AllAreas: {
+    //       ...state.NearestRestaurants,
+    //       loading: false,
+    //     },
+    //   };
     //GetDishByCusineId
     case types.GET_DISH_BY_CUSINE_ID_REQUEST:
       return {
@@ -958,108 +1144,31 @@ export const appReducers = (state = initialState, action) => {
         },
       };
     //GetDishByCusineId
-    case types.GET_NEAREST_RESTAURANT_REQUEST:
-      return {
-        ...state,
-        NearestRestaurants: {
-          ...state.NearestRestaurants,
-          loading: true,
-        },
-      };
-    case types.GET_NEAREST_RESTAURANT_SUCCESS:
-      return {
-        ...state,
-        NearestRestaurants: {
-          ...state.NearestRestaurants,
-          data: action.payload,
-          loading: false,
-        },
-      };
-    case types.GET_NEAREST_RESTAURANT_FAILURE:
-      return {
-        ...state,
-        NearestRestaurants: {
-          ...state.NearestRestaurants,
-          loading: false,
-        },
-      };
-    case types.GET_AREA_ALL_REQUEST:
-      return {
-        ...state,
-        AllAreas: {
-          ...state.NearestRestaurants,
-          loading: true,
-        },
-      };
-    case types.GET_AREA_ALL_SUCCESS:
-      return {
-        ...state,
-        AllAreas: {
-          ...state.NearestRestaurants,
-          data: action.payload,
-          loading: false,
-        },
-      };
-    case types.GET_AREA_ALL_FAILURE:
-      return {
-        ...state,
-        AllAreas: {
-          ...state.NearestRestaurants,
-          loading: false,
-        },
-      };
-    //GetDishByCusineId
-    case types.GET_DISH_BY_CUSINE_ID_REQUEST:
-      return {
-        ...state,
-        getdishbycusineid: {
-          ...state.getdishbycusineid,
-          refreshing: true,
-        },
-      };
-    case types.GET_DISH_BY_CUSINE_ID_SUCCESS:
-      return {
-        ...state,
-        getdishbycusineid: {
-          ...state.getdishbycusineid,
-          data: [...state.getdishbycusineid.data, ...action.payload],
-          refreshing: false,
-        },
-      };
-    case types.GET_DISH_BY_CUSINE_ID_FAILURE:
-      return {
-        ...state,
-        getdishbycusineid: {
-          ...state.getdishbycusineid,
-          refreshing: false,
-        },
-      };
-    //GetDishByCusineId
-    case types.GET_NEAREST_RESTAURANT_REQUEST:
-      return {
-        ...state,
-        NearestRestaurants: {
-          ...state.NearestRestaurants,
-          loading: true,
-        },
-      };
-    case types.GET_NEAREST_RESTAURANT_SUCCESS:
-      return {
-        ...state,
-        NearestRestaurants: {
-          ...state.NearestRestaurants,
-          data: action.payload,
-          loading: false,
-        },
-      };
-    case types.GET_NEAREST_RESTAURANT_FAILURE:
-      return {
-        ...state,
-        NearestRestaurants: {
-          ...state.NearestRestaurants,
-          loading: false,
-        },
-      };
+    // case types.GET_NEAREST_RESTAURANT_REQUEST:
+    //   return {
+    //     ...state,
+    //     NearestRestaurants: {
+    //       ...state.NearestRestaurants,
+    //       loading: true,
+    //     },
+    //   };
+    // case types.GET_NEAREST_RESTAURANT_SUCCESS:
+    //   return {
+    //     ...state,
+    //     NearestRestaurants: {
+    //       ...state.NearestRestaurants,
+    //       data: action.payload,
+    //       loading: false,
+    //     },
+    //   };
+    // case types.GET_NEAREST_RESTAURANT_FAILURE:
+    //   return {
+    //     ...state,
+    //     NearestRestaurants: {
+    //       ...state.NearestRestaurants,
+    //       loading: false,
+    //     },
+    //   };
     default:
       return state;
   }
