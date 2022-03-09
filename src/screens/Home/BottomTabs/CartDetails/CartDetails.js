@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -37,6 +37,8 @@ import FlashMessage, {
   hideMessage,
 } from 'react-native-flash-message';
 import { BarIndicator } from 'react-native-indicators';
+import { Rating, AirbnbRating } from 'react-native-ratings';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const CartDetails = ({ navigation }) => {
   const cartList = useSelector(state => state.appReducers.cartList.data);
@@ -54,7 +56,10 @@ const CartDetails = ({ navigation }) => {
   const [isLoading, setLoading] = React.useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const dropdownRef = React.useRef(null);
-
+  // const WATER_IMAGE = require('./water.png');
+  const ratingCompleted = (rating) => {
+    console.log("Rating is: " + rating)
+  };
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -713,10 +718,47 @@ const CartDetails = ({ navigation }) => {
         ) : undefined}
       </ModalPoup>
       <ModalPoup visible={modalVisible}>
-
-        <View style={{alignSelf:'center'}}>
-          <Text>hello</Text>
-        </View>
+        <TouchableOpacity
+          style={[styles.button, styles.buttonClose]}
+          onPress={() => setModalVisible(!modalVisible)}
+        >
+          <Text style={styles.textStyle}>Close</Text>
+        </TouchableOpacity>
+        <AirbnbRating
+          count={5}
+          reviews={["Terrible", "Bad",  "OK", "Good","Very Good",]}
+          defaultRating={0}
+          size={0}
+        />
+        {/* <Rating
+          type='custom'
+          // ratingImage={WATER_IMAGE}
+          ratingColor={Colors.yellow}
+          ratingBackgroundColor={colors.white}
+          tintColor={colors.black2}
+          ratingCount={5}
+          imageSize={30}
+          onFinishRating={ratingCompleted}
+          style={{ paddingVertical: 10, backgroundColor: colors.black2 }}
+          ratingContainerStyle={{ backgroundColor: colors.black2 }}
+        /> */}
+        <TouchableOpacity
+          onPress={() => {
+            // cancelOrder(item.id)
+          }}
+          style={{
+            height: hp(5),
+            width: wp(40),
+            backgroundColor: colors.yellow,
+            borderRadius: 7,
+            justifyContent: 'center',
+            alignItems: 'center',
+            alignSelf: 'center',
+            marginTop: 15,
+            marginBottom: 5,
+          }}>
+          <ResponsiveText size={3.5}>{'Submit'}</ResponsiveText>
+        </TouchableOpacity>
       </ModalPoup>
       <View
         style={{
@@ -866,5 +908,21 @@ const styles = StyleSheet.create({
     fontSize: 10,
     marginTop: 4,
     fontWeight: 'bold',
+  },
+  buttonClose: {
+    backgroundColor: colors.red1,
+    width: wp(15),
+
+  },
+  button: {
+    borderRadius: 10,
+    padding: 5,
+    elevation: 2,
+
+  },
+  textStyle: {
+    color: colors.white,
+    fontWeight: "bold",
+    textAlign: "center"
   },
 });

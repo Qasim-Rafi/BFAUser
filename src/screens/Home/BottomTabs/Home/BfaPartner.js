@@ -69,7 +69,7 @@ const BfaPartner = ({ props }) => {
   // console.log(siteAdd);
 
   if (bfaPartners.length > 0) {
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < 4; i++) {
       var img = bfaPartners[i].fullpath;
       //var src = img.replace(/\\/g, '/');
       if (lessImages.includes(img)) {
