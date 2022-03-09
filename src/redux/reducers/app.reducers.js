@@ -135,6 +135,11 @@ const initialState = {
     loading: false,
     data: [],
   }
+  ,
+  orderHistory: {
+    loading: false,
+    data: [],
+  }
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -1143,32 +1148,32 @@ export const appReducers = (state = initialState, action) => {
           refreshing: false,
         },
       };
-    //GetDishByCusineId
-    // case types.GET_NEAREST_RESTAURANT_REQUEST:
-    //   return {
-    //     ...state,
-    //     NearestRestaurants: {
-    //       ...state.NearestRestaurants,
-    //       loading: true,
-    //     },
-    //   };
-    // case types.GET_NEAREST_RESTAURANT_SUCCESS:
-    //   return {
-    //     ...state,
-    //     NearestRestaurants: {
-    //       ...state.NearestRestaurants,
-    //       data: action.payload,
-    //       loading: false,
-    //     },
-    //   };
-    // case types.GET_NEAREST_RESTAURANT_FAILURE:
-    //   return {
-    //     ...state,
-    //     NearestRestaurants: {
-    //       ...state.NearestRestaurants,
-    //       loading: false,
-    //     },
-    //   };
+    //orderHistory
+    case types.GET_ORDERS_HISTORY_REQUEST:
+      return {
+        ...state,
+        orderHistory: {
+          ...state.orderHistory,
+          loading: true,
+        },
+      };
+    case types.GET_ORDERS_HISTORY_SUCCESS:
+      return {
+        ...state,
+        orderHistory: {
+          ...state.orderHistory,
+          data: action.payload,
+          loading: false,
+        },
+      };
+    case types.GET_ORDERS_HISTORY_FAILURE:
+      return {
+        ...state,
+        orderHistory: {
+          ...state.orderHistory,
+          loading: false,
+        },
+      };
     default:
       return state;
   }

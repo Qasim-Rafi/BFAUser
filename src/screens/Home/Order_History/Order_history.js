@@ -27,19 +27,19 @@ import Header from '../../../components/Header';
 import RnButton from '../../../components/RnButton';
 import { globalPath } from '../../../constants/globalPath';
 import { routeName } from '../../../constants/routeName';
-import { getOrders } from '../../../redux/actions/user.actions';
+import { getOrders, getOrdersHistory } from '../../../redux/actions/user.actions';
 import { useDispatch,useSelector } from 'react-redux';
 export default function Order_history({navigation}) {
   const orderList = useSelector(
-    state => state.appReducers.your_ordersList.data,
+    state => state.appReducers.orderHistory.data,
   );
   const orderList_Loading = useSelector(
-    state => state.appReducers.your_ordersList.loading,
+    state => state.appReducers.orderHistory.loading,
   );
   console.log("Ordersss: ",orderList)
   const dispatch=useDispatch()
   React.useEffect(() => {
-    dispatch(getOrders());
+    dispatch(getOrdersHistory());
 
 
   }, []);
