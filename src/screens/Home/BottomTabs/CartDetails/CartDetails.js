@@ -712,13 +712,12 @@ const CartDetails = ({ navigation }) => {
           </>
         ) : undefined}
       </ModalPoup>
-      <Modal animationType="slide"
-        transparent={true}
-        visible={modalVisible}>
+      <ModalPoup visible={modalVisible}>
+
         <View style={{alignSelf:'center'}}>
           <Text>hello</Text>
         </View>
-      </Modal>
+      </ModalPoup>
       <View
         style={{
           flex: 0.1,
