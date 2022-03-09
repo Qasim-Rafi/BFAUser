@@ -366,6 +366,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         SearchResult: {
           ...state.SearchResult,
+          data: [],
           loading: true,
         },
       };
@@ -375,7 +376,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         SearchResult: {
           ...state.SearchResult,
-          data: [action.payload],
+          data: action.payload,
           loading: false,
         },
       };
@@ -385,6 +386,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         SearchResult: {
           ...state.SearchResult,
+          data: action.payload,
           loading: false,
         },
       };
