@@ -1045,7 +1045,7 @@ export function* getordersHistoryDataSaga() {
 }
 function* getordersHistorySagaApi(data) {
   try {
-    const response = yield Api.get(urls.GET_ALL_ORDERS);
+    const response = yield Api.get(urls.GET_ORDERS_HISTORY);
     console.log(response, 'heeeeeeeeee');
     if (response && response.success == true) {
       yield put({

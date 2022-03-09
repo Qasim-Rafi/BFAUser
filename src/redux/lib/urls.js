@@ -17,7 +17,7 @@ export default urls = {
   RESTAURANT_DISH_ALL: 'api/RestaurantDish/GetRestaurantDishAll/',          /// bfa Recomendation
   DISH_CALORIE: 'api/RestaurantBranchesAdmin/GetRestaurantDishCalorie/',    //MORE about dish detail
   GET_USER: 'api/Users/GetUser/2',
-  GET_BFA_PARTNERS: 'api/AdminBFAPartner/GetAdminBFAPartnerAll/18/1/40',
+  GET_BFA_PARTNERS: 'api/AdminBFAPartner/GetAdminBFAPartnerAll/24/1/40',
   GET_ADD_BANNER: 'api/HomeAdSlideShowAdmin/GetHomeAdSlideShowAdminAll',
   GET_PROMO_NEWS: 'api/PromoItemNews/GetPromoNewsAdminAllAdmin',
   GET_PROMO_JOBS: 'api/PromoJobsAdmin/GetPromoJobsAdminAllAdminForapp/',
@@ -45,6 +45,7 @@ export default urls = {
   ORDER_CONFIRMATION: 'api/OrderPayment/PaymentCheckMethodConfirmation',//
   UPDATE_ORDER_STATUS: 'api/Order/UpdateOrderStatus/',
   GET_ALL_ORDERS: 'api/Order/OrderListForUserApp',
+  GET_ORDERS_HISTORY: 'api/Order/OrderHistory',
   PROMOTION_CLICK: 'api/PromotionlDish/AddPromotionlDishForRestaurantClick',
   CHECK_ORDER: 'api/OrderBill/CheckOutOrder',  //
   UPDATE_QUANTITY: 'api/Order/UpdateOrderQuantityPrice',
