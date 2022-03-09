@@ -126,6 +126,10 @@ const initialState = {
     loading:false,
     data:[],
   },
+  AllPremises: {
+    loading:false,
+    data:[],
+  },
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -965,6 +969,34 @@ export const appReducers = (state = initialState, action) => {
             loading: false,
           },
         };
+        //GetAllPremises
+        case types.GET_PREMISE_ALL_REQUEST:
+        return {
+          ...state,
+          AllPremises: {
+            ...state.NearestRestaurants,
+            loading: true,
+          },
+        };
+      case types.GET_PREMISE_ALL_SUCCESS:
+        return {
+          ...state,
+          AllPremises: {
+            ...state.NearestRestaurants,
+            data: action.payload,
+            loading: false,
+          },
+        };
+      case types.GET_PREMISE_ALL_FAILURE:
+        return {
+          ...state,
+          AllPremises: {
+            ...state.NearestRestaurants,
+            loading: false,
+          },
+        };
+
+
     default:
       return state;
   }

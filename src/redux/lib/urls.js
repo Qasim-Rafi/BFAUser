@@ -46,6 +46,7 @@ export default urls = {
   UPDATE_ORDER_STATUS: 'api/Order/UpdateOrderStatus/',
   GET_NEAREST_RESTAURANTS: 'api/RestaurantBranchesAdmin/GetNearestRestaurantBranchesByLocation/',
   GET_AREA_LIST: 'api/Lookups/GetArea',
+  GET_PREMISE_LIST: 'api/Lookups/Premise',
 
 
 

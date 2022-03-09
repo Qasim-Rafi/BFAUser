@@ -1064,6 +1064,7 @@ function* getNearestRestaurantsSagaApi(data) {
     yield put({type: types.GET_NEAREST_RESTAURANT_FAILURE, payload: []});
   }
 }
+
 export function* getAllAreaListSaga() {
   yield takeLatest(types.GET_AREA_ALL_REQUEST, getAllAreaListSagaApi);
 }
@@ -1084,5 +1085,27 @@ function* getAllAreaListSagaApi(data) {
     // dispatch a success action to the store with the new data object
   } catch (error) {
     yield put({type: types.GET_AREA_ALL_FAILURE, payload: []});
+  }
+}
+export function* getAllPremiseListSaga() {
+  yield takeLatest(types.GET_PREMISE_ALL_REQUEST, getAllPremiseListSagaApi);
+}
+function* getAllPremiseListSagaApi(data) {
+  console.log(data, 'Data in getAllPremiseListSaga')
+  try {
+    const response = yield Api.get(urls.GET_PREMISE_LIST);
+    console.log(response, 'AllPremiseList');
+    if (response && response.success == true) {
+      yield put({
+        type: types.GET_PREMISE_ALL_SUCCESS,
+        payload: response.data,
+      });
+    } else {
+      yield put({type: types.GET_PREMISE_ALL_FAILURE, payload: []});
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({type: types.GET_PREMISE_ALL_FAILURE, payload: []});
   }
 }
