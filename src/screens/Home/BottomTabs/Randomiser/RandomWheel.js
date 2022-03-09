@@ -1,7 +1,7 @@
 
 
 //Node Imports
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
 import {
     Image, StyleSheet, TouchableOpacity, View, Text,
@@ -134,14 +134,14 @@ class RandomWheelClass extends React.Component {
             lat: null,
             long: null,
             distance: 3,
-            loading:false,
-            areaList:this.props.areaListNames,
+            loading: false,
+            areaList: this.props.areaListNames,
             premiseList: this.props.premiseListNames
         };
         this.child = null;
     }
 
-    
+
 
     componentDidMount() {
         this.requestCurrentLocation();
@@ -196,7 +196,8 @@ class RandomWheelClass extends React.Component {
         // this.child._onPress()
     };
     render() {
-        console.log(this.state.areaList,'areaList in Class');
+        console.log(this.state.areaList, 'areaList in Class');
+        console.log(this.state.premiseList, 'premiseList in Class');
         const wheelOptions = {
             rewards: this.props.restaurantList.map(names => names.name),
             knobSize: 30,
@@ -241,24 +242,24 @@ class RandomWheelClass extends React.Component {
                     </View>
                     <View style={styles.container}>
                         <StatusBar barStyle={'light-content'} />
-                        {!this.props.loading?
-                        this.props.restaurantList.map(names => names.name).length ?
-                            <WheelOfFortune
-                                options={wheelOptions}
+                        {!this.props.loading ?
+                            this.props.restaurantList.map(names => names.name).length ?
+                                <WheelOfFortune
+                                    options={wheelOptions}
 
-                                getWinner={(value, index) => {
-                                    this.setState({ winnerValue: value, winnerIndex: index });
-                                    this.props.navigation.navigate(routeName.RestaurantDetail, this.props.restaurantList.find(element => element.name === value).restaurantBranchId)
-                                    // alert('Dish ID: ',participants[this.state.winnerIndex])
-                                    //    alert('Dish ID: '+participants[this.state.winnerIndex])
-                                }}
-                            />
-                            : showMessage({
-                                message: "Oooopsss...",
-                                description: "Seems like there are no restaurants in area you provided.",
-                                type: "info",
-                              })
-                             :null }
+                                    getWinner={(value, index) => {
+                                        this.setState({ winnerValue: value, winnerIndex: index });
+                                        this.props.navigation.navigate(routeName.RestaurantDetail, this.props.restaurantList.find(element => element.name === value).restaurantBranchId)
+                                        // alert('Dish ID: ',participants[this.state.winnerIndex])
+                                        //    alert('Dish ID: '+participants[this.state.winnerIndex])
+                                    }}
+                                />
+                                : showMessage({
+                                    message: "Oooopsss...",
+                                    description: "Seems like there are no restaurants in area you provided.",
+                                    type: "info",
+                                })
+                            : null}
 
 
 
@@ -315,7 +316,7 @@ class RandomWheelClass extends React.Component {
                     // onModalHide={()=>navigation.navigate(routeName.LANDING_SCREEN)}
                     statusBarTranslucent={true}
                     coverScreen={true}
-                    onModalHide={()=>{
+                    onModalHide={() => {
                         setTimeout(() => {
                             this.forceUpdate()
                         }, 3000);
@@ -374,7 +375,12 @@ class RandomWheelClass extends React.Component {
                                         Area
                                     </ResponsiveText>
                                     <View style={{ marginStart: 5 }} >
-                                        <DropDown data={this.state.areaList} height={hp(4)} width={wp(57)} />
+                                        {this.props.areaListNames.length>0?
+                                        <DropDown data={this.props.areaListNames} height={hp(4)} width={wp(57)} />
+                                            :
+                                        <DropDown data={[]} height={hp(4)} width={wp(57)} />
+
+                                        }
                                     </View>
                                 </View>
                                 <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, alignItems: 'center' }}>
@@ -383,13 +389,13 @@ class RandomWheelClass extends React.Component {
                                         Distance
                                     </ResponsiveText>
                                     <View style={{ marginStart: 5 }} >
-                                        <DropDown 
-                                            data={distance} 
-                                            height={hp(4)} 
-                                            width={wp(57)} 
-                                            onSelect={(selectedItem, index)=>{
-                                                console.log(selectedItem,index,'DropDown Selections');
-                                                index === 0 ? this.setState({distance:1}) : index === 1 ? this.setState({distance:6}) : index === 2 ? this.setState({distance:10}) : null
+                                        <DropDown
+                                            data={distance}
+                                            height={hp(4)}
+                                            width={wp(57)}
+                                            onSelect={(selectedItem, index) => {
+                                                console.log(selectedItem, index, 'DropDown Selections');
+                                                index === 0 ? this.setState({ distance: 1 }) : index === 1 ? this.setState({ distance: 6 }) : index === 2 ? this.setState({ distance: 10 }) : null
                                             }} />
                                     </View>
                                 </View>
@@ -441,9 +447,9 @@ class RandomWheelClass extends React.Component {
                                 marginBottom: 30,
                             }}>
                             <TouchableOpacity
-                                onPress={()=>{
+                                onPress={() => {
                                     {
-                                        this.setState({isModalVisible:false}); 
+                                        this.setState({ isModalVisible: false });
                                         this.props.dispatch(GetNearestRestaurantAction({ lat: this.state.lat, long: this.state.long, distance: this.state.distance }));
                                     }
                                 }}
@@ -473,43 +479,59 @@ export default RandomWheel = (props) => {
     const restaurantList = useSelector(state => state.appReducers.NearestRestaurants.data)
     const loading = useSelector(state => state.appReducers.NearestRestaurants.loading)
 
-    const restaurantListNames = restaurantList.map(names => names.name)
-    const restaurantListImages = restaurantList.map(image => image.fullPath)
+    // const restaurantListNames = restaurantList.map(names => names.name)
+    // const restaurantListImages = restaurantList.map(image => image.fullPath)
 
     const areaList = useSelector(state => state.appReducers.AllAreas.data)
     const loadingAreaList = useSelector(state => state.appReducers.AllAreas.loading)
 
-    const areaListNames = areaList.map(names => names.name )
+    const areaListNames = areaList.map(names => names.name)
 
-    const premiseList = useSelector(state=> state.appReducers.AllPremises.data )
+    const premiseList = useSelector(state => state.appReducers.AllPremises.data)
     const premiseListNames = premiseList.map(names => names.name)
-    
-    console.log(areaList,'areaList in RandomWheel');
-    console.log(areaListNames,'areaListNames in RandomWheel');
 
-    console.log(premiseList,'premiseList in random Wheel');
-    console.log(premiseListNames,'premiseListNames in random Wheel');
+    const [areasList, setAreasList] = useState(areaListNames)
+    const [premisesList, setPremisesList] = useState(premiseListNames)
+
+    console.log(areaList, 'areaList in RandomWheel');
+    console.log(areaListNames, 'areaListNames in RandomWheel');
+
+    console.log(premiseList, 'premiseList in random Wheel');
+    console.log(premiseListNames, 'premiseListNames in random Wheel');
 
     useEffect(() => {
+        console.log('UseEffect is working');
+        setAreasList(areaListNames)
+        setPremisesList(premiseListNames)
 
-        return <RandomWheelClass {...props} />
-    }, [restaurantList])
+        return <RandomWheelClass {...props}
+            dispatch={dispatch}
+            // restaurantListNames={restaurantListNames}
+            // restaurantListImages={restaurantListImages} 
+            restaurantList={restaurantList}
+            loading={loading}
+            areaListNames={areasList}
+            premiseListNames={premisesList}
+        />
+
+    }, [restaurantList, areaList, premiseList])
 
 
 
-    console.log(restaurantListNames, 'restaurantListNames');
-    console.log(restaurantListImages, 'restaurantListImages');
+    // console.log(restaurantListNames, 'restaurantListNames');
+    // console.log(restaurantListImages, 'restaurantListImages');
 
-    console.log(restaurantList, 'NearestRestaurants in RandomWheel');
+    // console.log(restaurantList, 'NearestRestaurants in RandomWheel');
 
     return <RandomWheelClass {...props}
         dispatch={dispatch}
         // restaurantListNames={restaurantListNames}
         // restaurantListImages={restaurantListImages} 
-        restaurantList={restaurantList} loading={loading} 
-        areaListNames={areaListNames}
-        premiseListNames={premiseListNames}
-        />
+        restaurantList={restaurantList}
+        loading={loading}
+        areaListNames={areasList}
+        premiseListNames={premisesList}
+    />
 
         ;
 
