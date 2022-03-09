@@ -309,7 +309,12 @@ export const getOrders = params => {
     params,
   };
 };
-
+export const getOrdersHistory = params => {
+  return {
+    type: types.GET_ORDERS_HISTORY_REQUEST,
+    params,
+  };
+};
 export const promotoinClick = data => {
   return {
     type: types.PROMOTION_CLICK_REQUEST,

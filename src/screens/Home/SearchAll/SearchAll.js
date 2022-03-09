@@ -256,7 +256,7 @@ export default function SearchAll({navigation}) {
               </View>
             </TouchableOpacity>
           )}
-          // keyExtractor={item => item.id}
+           keyExtractor={item => item.restaurantDishId}
         />
 
         {/* </ScrollView> */}

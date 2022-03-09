@@ -1040,7 +1040,27 @@ function* getordersSagaApi(data) {
     yield put({ type: types.GET_ORDERS_FAILURE, payload: [] });
   }
 }
+export function* getordersHistoryDataSaga() {
+  yield takeLatest(types.GET_ORDERS_HISTORY_REQUEST, getordersHistorySagaApi);
+}
+function* getordersHistorySagaApi(data) {
+  try {
+    const response = yield Api.get(urls.GET_ALL_ORDERS);
+    console.log(response, 'heeeeeeeeee');
+    if (response && response.success == true) {
+      yield put({
+        type: types.GET_ORDERS_HISTORY_SUCCESS,
+        payload: response.data,
+      });
+    } else {
+      yield put({ type: types.GET_ORDERS_HISTORY_FAILURE, payload: [] });
+    }
 
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({ type: types.GET_ORDERS_HISTORY_FAILURE, payload: [] });
+  }
+}
 export function* promotionClickDataSaga() {
   yield takeLatest(types.PROMOTION_CLICK_REQUEST, promotionClickSagaApi);
 }
