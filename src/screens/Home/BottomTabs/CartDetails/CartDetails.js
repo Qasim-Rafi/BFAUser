@@ -52,6 +52,7 @@ const CartDetails = ({ navigation }) => {
   const [selectedItem, SetSelectedItem] = React.useState(null);
   const [random, setRandom] = React.useState([]);
   const [totalPrice, setTotalPrice] = React.useState();
+  const [ratingCount, setRatingCount] = React.useState();
   const [visible, setVisible] = React.useState(false);
   const [isLoading, setLoading] = React.useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -222,14 +223,16 @@ const CartDetails = ({ navigation }) => {
     console.log('okkokokok',userId);
 
     try {
-      const res = await Api.post('AddStarRating?StarCount=5&UserId='+userId+'&UpdatedById='+userId+'&RestaurantBranchId='+Item.restaurantBranchId);
+      const res = await Api.post('AddStarRating?StarCount='+ratingCount+'&UserId='+userId+'&UpdatedById='+userId+'&RestaurantBranchId=333');
       console.log('res', res);
       if (res && res.success == true) {
         // dispatch(getOrders());
         console.log(res,'gggg')
       } else {
       }
-    } catch (error) { }
+    } catch (error) { 
+      console.log(error)
+    }
     //
   };
   const ModalPoup = ({ visible, children }) => {
@@ -741,9 +744,10 @@ const CartDetails = ({ navigation }) => {
         </TouchableOpacity>
         <AirbnbRating
           count={5}
-          reviews={["Terrible", "Bad",  "OK", "Good","Very Good",]}
-          defaultRating={0}
-          size={0}
+          reviews={["Terrible", "Bad",  "OK", "Good","Very Good"]}
+          defaultRating={3}
+          onFinishRating={(v)=>{setRatingCount(v);}}
+          size={25}
         />
         {/* <Rating
           type='custom'
@@ -762,8 +766,8 @@ const CartDetails = ({ navigation }) => {
             submitRating()
           }}
           style={{
-            height: hp(5),
-            width: wp(40),
+            height: hp(4),
+            width: wp(30),
             backgroundColor: colors.yellow,
             borderRadius: 7,
             justifyContent: 'center',
