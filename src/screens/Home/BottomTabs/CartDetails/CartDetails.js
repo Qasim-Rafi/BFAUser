@@ -50,6 +50,8 @@ const CartDetails = ({navigation}) => {
   );
   const dispatch = useDispatch();
   const [selectedItem, SetSelectedItem] = React.useState(null);
+  const [selectedBranch, SetSelectedBranch] = React.useState(null);
+
   const [random, setRandom] = React.useState([]);
   const [totalPrice, setTotalPrice] = React.useState();
   const [ratingCount, setRatingCount] = React.useState();
@@ -230,12 +232,20 @@ const CartDetails = ({navigation}) => {
           userId +
           '&UpdatedById=' +
           userId +
-          '&RestaurantBranchId=333',
+          '&RestaurantBranchId='+selectedBranch,
       );
       console.log('res', res);
       if (res && res.success == true) {
-        // dispatch(getOrders());
-        console.log(res, 'gggg');
+        dispatch(getOrders());
+        setModalVisible(!modalVisible)
+        // console.log(res, 'gggg');
+        dropdownRef.current.showMessage({
+          message: 'Alert',
+          description: 'Thanks for rating',
+          type: 'success',
+          icon: {icon: 'auto', position: 'left'},
+          //backgroundColor:colors.black1
+        });
       } else {
       }
     } catch (error) {
@@ -593,7 +603,7 @@ const CartDetails = ({navigation}) => {
               </TouchableOpacity>
             ) : item.statusName === 'Delivered' && item.ratingFlag == false ? (
               <TouchableOpacity
-                onPress={() => setModalVisible(true)}
+                onPress={() => {setModalVisible(true);SetSelectedBranch(item.restaurantBranchId)}}
                 style={{
                   height: hp(5),
                   width: wp(80),

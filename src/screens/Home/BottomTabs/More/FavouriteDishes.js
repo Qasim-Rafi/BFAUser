@@ -20,6 +20,11 @@ import {useSelector, useDispatch} from 'react-redux';
 export default function FavouriteDishes(props) {
   const favData = useSelector(state => state.appReducers.favorite.data);
   const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(getFavorite(1, 13));
+
+
+  }, []);
 
   return (
     <View style={{backgroundColor: colors.black3, flex: 1}}>
