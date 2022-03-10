@@ -26,12 +26,13 @@ import {
 import {TextInput} from 'react-native-gesture-handler';
 import {color} from 'react-native-reanimated';
 import AsyncStorage from '@react-native-community/async-storage';
+import { BarIndicator } from 'react-native-indicators';
 export default function AddToCart({route, navigation}) {
   const cartList = useSelector(state => state.appReducers.cartList.data);
   const orderList = useSelector(
     state => state.appReducers.your_ordersList.data,
   );
-  const loading = useSelector(state => state.appReducers.cartList.loading);
+  const loading = useSelector(state => state.appReducers.AddOrder.loading);
   // console.log('Add Admin: ', cartList);
   const [visible, setVisible] = React.useState(false);
   const [count, changeCount] = useState(1);
@@ -206,6 +207,21 @@ export default function AddToCart({route, navigation}) {
   return (
     <View style={{flex: 1}}>
       <ScrollView style={styles.container}>
+      {loading === true ? (
+        <View
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            bottom: 0,
+            right: 0,
+            backgroundColor: 'rgba(65, 65, 65, 0.5)',
+            flex: 1,
+            zIndex: 10,
+          }}>
+          <BarIndicator color={colors.yellow} size={50} />
+        </View>
+      ) : undefined}
         <View>
           <View style={styles.headerImage}>
             <ImageHeader
@@ -300,6 +316,7 @@ export default function AddToCart({route, navigation}) {
                 borderColor: color.black2,
                 alignContent: 'center',
                 backgroundColor: colors.black2,
+                color:colors.white
               }}
               textAlignVertical="top"
               multiline={true}

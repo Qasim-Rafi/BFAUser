@@ -59,7 +59,7 @@ const initialState = {
   },
 
   AddOrder: {
-    refreshing: true,
+    loading: false,
     data: {},
   },
   promotions: {

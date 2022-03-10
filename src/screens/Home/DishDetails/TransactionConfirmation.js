@@ -29,23 +29,25 @@ export default function TransactionConfirmation({route, navigation}) {
 
   useEffect(() => {
     //addTotal(route.params);
-    console.log('PARAMS CONFIRM ',route.params);
+    console.log('PARAMS CONFIRM ', route.params);
   });
 
   const toggleModal = async () => {
     // dispatch(checkoutOrder(route.params));
     try {
-      const response = await Api.post(urls.CHECK_ORDER, route.params.obj, false);
+      const response = await Api.post(
+        urls.CHECK_ORDER,
+        route.params.obj,
+        false,
+      );
       console.log('res check', response);
       if (response && response.success == true) {
         setModalVisible(!isModalVisible);
         dispatch(getOrders());
 
-      // setLoading(false);
-        
+        // setLoading(false);
       } else {
         // setLoading(false);
-
         // dropdownRef.current.showMessage({
         //   message: 'Alert',
         //   description: 'Something went wrong',
@@ -69,17 +71,16 @@ export default function TransactionConfirmation({route, navigation}) {
       }
     } catch (error) {}
   };
-  const Calculate=(totl,count)=>{
-    if(activeTabs === 'tab2'){
-      return totl+count
-    }else if(activeTabs === 'tab3'){
-      var x=totl *(count/100)
-      return totl+x
+  const Calculate = (totl, count) => {
+    if (activeTabs === 'tab2') {
+      return totl + count;
+    } else if (activeTabs === 'tab3') {
+      var x = totl * (count / 100);
+      return parseFloat(totl + x).toFixed(2);
+    } else {
+      return totl;
     }
-    else{
-     return totl
-    }
-  }
+  };
   return (
     <View style={{flex: 1, backgroundColor: colors.black3}}>
       <View
@@ -357,7 +358,9 @@ export default function TransactionConfirmation({route, navigation}) {
               justifyContent: 'space-between',
             }}>
             <ResponsiveText color={colors.white}>Total</ResponsiveText>
-            <ResponsiveText color={colors.yellow}>${data.amount}.00</ResponsiveText>
+            <ResponsiveText color={colors.yellow}>
+              ${data.amount}.00
+            </ResponsiveText>
           </View>
           <View
             style={{
@@ -386,7 +389,9 @@ export default function TransactionConfirmation({route, navigation}) {
               justifyContent: 'space-between',
             }}>
             <ResponsiveText color={colors.white}>Final</ResponsiveText>
-            <ResponsiveText color={colors.yellow}>$ { Calculate(data.amount,count)}</ResponsiveText>
+            <ResponsiveText color={colors.yellow}>
+              $ {Calculate(data.amount, count)}
+            </ResponsiveText>
           </View>
         </View>
         <View style={{alignItems: 'center'}}>
@@ -474,7 +479,7 @@ export default function TransactionConfirmation({route, navigation}) {
                   color={colors.yellow}
                   size={3}
                   margin={[0, 10, 0, 0]}>
-                  ${total}.00
+                  ${Calculate(data.amount, count)}
                 </ResponsiveText>
               </View>
               <View style={{flex: 0.1}}>
@@ -484,7 +489,7 @@ export default function TransactionConfirmation({route, navigation}) {
               </View>
               <View style={{flex: 0.45}}>
                 <ResponsiveText color={colors.yellow} size={3}>
-                {data.restaurantName}
+                  {data.restaurantName}
                 </ResponsiveText>
               </View>
             </View>
