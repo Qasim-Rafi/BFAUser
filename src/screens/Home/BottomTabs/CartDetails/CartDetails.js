@@ -217,6 +217,21 @@ const CartDetails = ({ navigation }) => {
     });
     //
   };
+  const submitRating = async Item => {
+    var userId = await AsyncStorage.getItem('@userId');
+    console.log('okkokokok',userId);
+
+    try {
+      const res = await Api.post('AddStarRating?StarCount=5&UserId='+userId+'&UpdatedById='+userId+'&RestaurantBranchId='+Item.restaurantBranchId);
+      console.log('res', res);
+      if (res && res.success == true) {
+        // dispatch(getOrders());
+        console.log(res,'gggg')
+      } else {
+      }
+    } catch (error) { }
+    //
+  };
   const ModalPoup = ({ visible, children }) => {
     const [showModal, setShowModal] = React.useState(visible);
     const scaleValue = React.useRef(new Animated.Value(0)).current;
@@ -531,7 +546,7 @@ const CartDetails = ({ navigation }) => {
             {item.statusName === 'PreOrder' ? (
               <TouchableOpacity
                 onPress={() => {
-                  submitOrder(item)
+                  submitOrder()
                 }}
                 style={{
                   height: hp(5),
@@ -744,7 +759,7 @@ const CartDetails = ({ navigation }) => {
         /> */}
         <TouchableOpacity
           onPress={() => {
-            // cancelOrder(item.id)
+            submitRating()
           }}
           style={{
             height: hp(5),
