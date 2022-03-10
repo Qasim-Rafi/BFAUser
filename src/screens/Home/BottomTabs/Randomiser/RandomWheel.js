@@ -28,7 +28,7 @@ import Modal from "react-native-modal";
 import DropDown from '../../../../components/DropDown';
 import Geolocation from 'react-native-geolocation-service';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetAreaAllListAction, GetNearestRestaurantAction, GetPremiseAllListAction } from '../../../../redux/actions/user.actions';
+import { GetAreaAllListAction, GetDistanceListAction, GetNearestRestaurantAction, GetPremiseAllListAction } from '../../../../redux/actions/user.actions';
 import { showMessage } from 'react-native-flash-message';
 
 
@@ -147,6 +147,7 @@ class RandomWheelClass extends React.Component {
         this.requestCurrentLocation();
         this.props.dispatch(GetAreaAllListAction())
         this.props.dispatch(GetPremiseAllListAction())
+        this.props.dispatch(GetDistanceListAction())
     }
     requestCurrentLocation = async () => {
         try {
@@ -389,14 +390,25 @@ class RandomWheelClass extends React.Component {
                                         Distance
                                     </ResponsiveText>
                                     <View style={{ marginStart: 5 }} >
-                                        <DropDown
-                                            data={distance}
+                                        {this.props.distance.length>0 ?
+                                            <DropDown
+                                            data={this.props.distance}
                                             height={hp(4)}
                                             width={wp(57)}
                                             onSelect={(selectedItem, index) => {
                                                 console.log(selectedItem, index, 'DropDown Selections');
                                                 index === 0 ? this.setState({ distance: 1 }) : index === 1 ? this.setState({ distance: 6 }) : index === 2 ? this.setState({ distance: 10 }) : null
                                             }} />
+                                        :
+                                        <DropDown
+                                        data={[]}
+                                        height={hp(4)}
+                                        width={wp(57)}
+                                        onSelect={(selectedItem, index) => {
+                                            console.log(selectedItem, index, 'DropDown Selections');
+                                            index === 0 ? this.setState({ distance: 1 }) : index === 1 ? this.setState({ distance: 6 }) : index === 2 ? this.setState({ distance: 10 }) : null
+                                        }} />
+                                        }
                                     </View>
                                 </View>
                                 <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, alignItems: 'center' }}>
@@ -489,15 +501,20 @@ export default RandomWheel = (props) => {
 
     const premiseList = useSelector(state => state.appReducers.AllPremises.data)
     const premiseListNames = premiseList.map(names => names.name)
+    
+    const distanceList = useSelector(state => state.appReducers.DistanceList.data)
+    const distanceListStrings = distanceList.map(string => string.stringValue)
+
+    console.log(distanceListStrings,'distanceList in wheel');
 
     const [areasList, setAreasList] = useState(areaListNames)
     const [premisesList, setPremisesList] = useState(premiseListNames)
 
-    console.log(areaList, 'areaList in RandomWheel');
-    console.log(areaListNames, 'areaListNames in RandomWheel');
+    // console.log(areaList, 'areaList in RandomWheel');
+    // console.log(areaListNames, 'areaListNames in RandomWheel');
 
-    console.log(premiseList, 'premiseList in random Wheel');
-    console.log(premiseListNames, 'premiseListNames in random Wheel');
+    // console.log(premiseList, 'premiseList in random Wheel');
+    // console.log(premiseListNames, 'premiseListNames in random Wheel');
 
     useEffect(() => {
         console.log('UseEffect is working');
@@ -510,8 +527,9 @@ export default RandomWheel = (props) => {
             // restaurantListImages={restaurantListImages} 
             restaurantList={restaurantList}
             loading={loading}
-            areaListNames={areasList}
-            premiseListNames={premisesList}
+            areaListNames={areaListNames}
+            premiseListNames={premiseListNames}
+            distance={distanceListStrings}
         />
 
     }, [restaurantList, areaList, premiseList])
@@ -531,6 +549,7 @@ export default RandomWheel = (props) => {
         loading={loading}
         areaListNames={areasList}
         premiseListNames={premisesList}
+        distance={distanceListStrings}
     />
 
         ;

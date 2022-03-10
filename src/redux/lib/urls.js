@@ -53,9 +53,11 @@ export default urls = {
   ORDER_CONFIRMATION: 'api/OrderPayment/PaymentCheckMethodConfirmation',//
   //Searchbar
   SearchResult: 'api/RestaurantDish/HomeDashboardSearch?DishName=',
+  
   GET_NEAREST_RESTAURANTS: 'api/RestaurantBranchesAdmin/GetNearestRestaurantBranchesByLocation/',
   GET_AREA_LIST: 'api/Lookups/GetArea',
   GET_PREMISE_LIST: 'api/Lookups/Premise',
+  GET_DISTANCE_LIST: 'api/Lookups/Distance',
 
 
 
