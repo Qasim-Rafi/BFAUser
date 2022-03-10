@@ -1150,3 +1150,25 @@ function* getAllPremiseListSagaApi(data) {
     yield put({type: types.GET_PREMISE_ALL_FAILURE, payload: []});
   }
 }
+export function* getDistanceListSaga() {
+  yield takeLatest(types.GET_DISTANCE_LIST_REQUEST, getDistanceListSagaApi);
+}
+function* getDistanceListSagaApi(data) {
+  console.log(data, 'Data in getDistanceListSagaApi')
+  try {
+    const response = yield Api.get(urls.GET_DISTANCE_LIST);
+    console.log(response, 'distanceList');
+    if (response && response.success == true) {
+      yield put({
+        type: types.GET_DISTANCE_LIST_SUCCESS,
+        payload: response.data,
+      });
+    } else {
+      yield put({type: types.GET_DISTANCE_LIST_FAILURE, payload: []});
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({type: types.GET_DISTANCE_LIST_FAILURE, payload: []});
+  }
+}

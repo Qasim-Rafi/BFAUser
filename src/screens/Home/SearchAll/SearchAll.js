@@ -10,6 +10,17 @@ import {
   ImageBackground,
   Image,
 } from 'react-native';
+import {
+  BallIndicator,
+  BarIndicator,
+  DotIndicator,
+  MaterialIndicator,
+  PacmanIndicator,
+  PulseIndicator,
+  SkypeIndicator,
+  UIActivityIndicator,
+  WaveIndicator,
+} from 'react-native-indicators';
 import Header from '../../../components/Header';
 import ResponsiveText from '../../../components/RnText';
 import {SearchResult} from '../../../redux/actions/user.actions';
@@ -32,6 +43,7 @@ import SearchHeader from '../../../components/SearchHeader';
 import Modal from 'react-native-modal';
 import {FiltersDummyData} from '../../../constants/mock';
 import FastImage from 'react-native-fast-image';
+import { ActivityIndicator } from 'react-native-paper';
 export default function SearchAll({navigation}) {
   const dispatch = useDispatch();
 
@@ -39,6 +51,7 @@ export default function SearchAll({navigation}) {
     dispatch(SearchResult());
   }, []);
   const DATA = useSelector(state => state.appReducers.SearchResult.data);
+  const Loading = useSelector(state => state.appReducers.SearchResult.loading);
   console.log('searching', DATA);
   const [searchBar, toggleSearchBar] = React.useState('false');
   const [SearchText, setSearchText] = React.useState('');
@@ -261,7 +274,14 @@ export default function SearchAll({navigation}) {
 
         {/* </ScrollView> */}
       </View>
-
+      {
+          Loading === true ?
+            <View style={{ position:'relative', top:10, left: 0, bottom: 0, right: 0, backgroundColor: 'rgba(65, 65, 65, 0)'}}>
+              <BarIndicator color={colors.yellow} size={hp(3)} />
+            </View>
+            :
+            undefined
+        }
       {/* <SortResult navigation={navigation} /> */}
     </View>
   );

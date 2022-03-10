@@ -139,7 +139,12 @@ const initialState = {
   orderHistory: {
     loading: false,
     data: [],
-  }
+  },
+
+  DistanceList: {
+    loading: false,
+    data: [],
+  },
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -1043,7 +1048,32 @@ export const appReducers = (state = initialState, action) => {
             loading: false,
           },
         };
-
+        
+        case types.GET_DISTANCE_LIST_REQUEST:
+        return {
+          ...state,
+          DistanceList: {
+            ...state.DistanceList,
+            loading: true,
+          },
+        };
+      case types.GET_DISTANCE_LIST_SUCCESS:
+        return {
+          ...state,
+          DistanceList: {
+            ...state.DistanceList,
+            data: action.payload,
+            loading: false,
+          },
+        };
+      case types.GET_DISTANCE_LIST_FAILURE:
+        return {
+          ...state,
+          DistanceList: {
+            ...state.DistanceList,
+            loading: false,
+          },
+        };
 
     //GetDishByCusineId
     // case types.GET_DISH_BY_CUSINE_ID_REQUEST:

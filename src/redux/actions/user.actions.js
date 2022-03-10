@@ -343,6 +343,12 @@ export const GetPremiseAllListAction = data => {
   };
 };
 
+export const GetDistanceListAction = data => {
+  return {
+    type: types.GET_DISTANCE_LIST_REQUEST,
+    data: data,
+  };
+};
 
 // //Get User categories actions
 // export const addRUpdateCategory = (params) => {
