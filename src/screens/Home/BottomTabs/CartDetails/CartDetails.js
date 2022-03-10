@@ -549,7 +549,7 @@ const CartDetails = ({ navigation }) => {
             {item.statusName === 'PreOrder' ? (
               <TouchableOpacity
                 onPress={() => {
-                  submitOrder()
+                  submitOrder(item)
                 }}
                 style={{
                   height: hp(5),

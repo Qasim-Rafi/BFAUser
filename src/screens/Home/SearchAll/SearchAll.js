@@ -214,7 +214,7 @@ export default function SearchAll({navigation}) {
                     alignSelf: 'center',
                     margin: 10,
                   }}
-                  source={{uri: item.restaurantLogo}}
+                  source={{uri: item.imageDataB}}
                 />
               </View>
               <View
