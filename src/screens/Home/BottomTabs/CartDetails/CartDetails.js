@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -15,12 +15,12 @@ import {
 } from 'react-native';
 import Icon from '../../../../components/Icon';
 import ResponsiveText from '../../../../components/RnText';
-import {colors} from '../../../../constants/colorsPallet';
-import {globalPath} from '../../../../constants/globalPath';
-import {hp, wp} from '../../../../helpers/Responsiveness';
+import { colors } from '../../../../constants/colorsPallet';
+import { globalPath } from '../../../../constants/globalPath';
+import { hp, wp } from '../../../../helpers/Responsiveness';
 import Header from '../../../../components/Header';
 import SharedData from './SharedData';
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   removeCart,
   addCart,
@@ -29,18 +29,15 @@ import {
   getOrders,
 } from '../../../../redux/actions/user.actions';
 import AsyncStorage from '@react-native-community/async-storage';
-import {routeName} from '../../../../constants/routeName';
+import { routeName } from '../../../../constants/routeName';
 import Api from '../../../../redux/lib/api';
 import urls from '../../../../redux/lib/urls';
-import FlashMessage, {
-  showMessage,
-  hideMessage,
-} from 'react-native-flash-message';
-import {BarIndicator} from 'react-native-indicators';
-import {Rating, AirbnbRating} from 'react-native-ratings';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import FlashMessage, { showMessage, hideMessage } from 'react-native-flash-message';
+import { BarIndicator } from 'react-native-indicators';
+import { Rating, AirbnbRating } from 'react-native-ratings';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-const CartDetails = ({navigation}) => {
+const CartDetails = ({ navigation }) => {
   const cartList = useSelector(state => state.appReducers.cartList.data);
   const orderList = useSelector(
     state => state.appReducers.your_ordersList.data,
@@ -77,7 +74,7 @@ const CartDetails = ({navigation}) => {
   const newArray = [];
   cartList.forEach(obj => {
     if (!newArray.some(o => o.titleR === obj.titleR)) {
-      newArray.push({...obj});
+      newArray.push({ ...obj });
     }
   });
   React.useEffect(async () => {
@@ -101,9 +98,9 @@ const CartDetails = ({navigation}) => {
 
       const res = await Api.delete(
         urls.DELETE_DISH_FROM_CART +
-          item.orderId +
-          '&restaurantDishId=' +
-          item.restaurantDishId,
+        item.orderId +
+        '&restaurantDishId=' +
+        item.restaurantDishId,
       );
       console.log('res', res);
       if (res && res.success == true) {
@@ -113,7 +110,7 @@ const CartDetails = ({navigation}) => {
           message: 'Alert',
           description: 'Dish deleted',
           type: 'success',
-          icon: {icon: 'auto', position: 'left'},
+          icon: { icon: 'auto', position: 'left' },
           //backgroundColor:colors.black1
         });
       } else {
@@ -123,11 +120,11 @@ const CartDetails = ({navigation}) => {
           message: 'Alert',
           description: 'Something went wrong',
           type: 'danger',
-          icon: {icon: 'auto', position: 'left'},
+          icon: { icon: 'auto', position: 'left' },
           //backgroundColor:colors.black1
         });
       }
-    } catch (error) {}
+    } catch (error) { }
   };
   const onClearOrder = async id => {
     // dispatch(removeCart(data));
@@ -142,7 +139,7 @@ const CartDetails = ({navigation}) => {
           message: 'Alert',
           description: 'Order cleared',
           type: 'success',
-          icon: {icon: 'auto', position: 'left'},
+          icon: { icon: 'auto', position: 'left' },
           //backgroundColor:colors.black1
         });
       } else {
@@ -152,11 +149,11 @@ const CartDetails = ({navigation}) => {
           message: 'Alert',
           description: 'Something went wrong',
           type: 'danger',
-          icon: {icon: 'auto', position: 'left'},
+          icon: { icon: 'auto', position: 'left' },
           //backgroundColor:colors.black1
         });
       }
-    } catch (error) {}
+    } catch (error) { }
   };
   //increase quantity
   const onItemIncrease = async (index, item) => {
@@ -173,7 +170,7 @@ const CartDetails = ({navigation}) => {
         dispatch(getOrders());
       } else {
       }
-    } catch (error) {}
+    } catch (error) { }
 
     // var i = cartList.findIndex(obj => obj.id === id);
 
@@ -197,7 +194,7 @@ const CartDetails = ({navigation}) => {
         dispatch(getOrders());
       } else {
       }
-    } catch (error) {}
+    } catch (error) { }
   };
   const submitOrder = async Item => {
     var userId = await AsyncStorage.getItem('@userId');
@@ -227,12 +224,12 @@ const CartDetails = ({navigation}) => {
     try {
       const res = await Api.post(
         'AddStarRating?StarCount=' +
-          ratingCount +
-          '&UserId=' +
-          userId +
-          '&UpdatedById=' +
-          userId +
-          '&RestaurantBranchId='+selectedBranch,
+        ratingCount +
+        '&UserId=' +
+        userId +
+        '&UpdatedById=' +
+        userId +
+        '&RestaurantBranchId=' + selectedBranch,
       );
       console.log('res', res);
       if (res && res.success == true) {
@@ -243,7 +240,7 @@ const CartDetails = ({navigation}) => {
           message: 'Alert',
           description: 'Thanks for rating',
           type: 'success',
-          icon: {icon: 'auto', position: 'left'},
+          icon: { icon: 'auto', position: 'left' },
           //backgroundColor:colors.black1
         });
       } else {
@@ -253,7 +250,7 @@ const CartDetails = ({navigation}) => {
     }
     //
   };
-  const ModalPoup = ({visible, children}) => {
+  const ModalPoup = ({ visible, children }) => {
     const [showModal, setShowModal] = React.useState(visible);
     const scaleValue = React.useRef(new Animated.Value(0)).current;
     React.useEffect(() => {
@@ -280,7 +277,7 @@ const CartDetails = ({navigation}) => {
       <Modal transparent visible={showModal}>
         <View style={styles.modalBackGround}>
           <Animated.View
-            style={[styles.modalContainer, {transform: [{scale: scaleValue}]}]}>
+            style={[styles.modalContainer, { transform: [{ scale: scaleValue }] }]}>
             {children}
           </Animated.View>
         </View>
@@ -311,14 +308,14 @@ const CartDetails = ({navigation}) => {
           message: 'Alert',
           description: 'Order Canceled',
           type: 'success',
-          icon: {icon: 'auto', position: 'left'},
+          icon: { icon: 'auto', position: 'left' },
           //backgroundColor:colors.black1
         });
       } else {
       }
-    } catch (error) {}
+    } catch (error) { }
   };
-  const renderItem = ({item}) => {
+  const renderItem = ({ item }) => {
     return (
       <View
         style={{
@@ -364,141 +361,141 @@ const CartDetails = ({navigation}) => {
             {item.addOrderDetail.length === 0
               ? undefined
               : item.addOrderDetail.map((v, index) => {
-                  return (
-                    <View
-                      style={{
-                        backgroundColor: colors.black2,
-                        marginHorizontal: 10,
-                        flexDirection: 'row',
-                        padding: 5,
-                        marginBottom: 10,
-                        borderRadius: 7,
-                        alignItems: 'center',
-                      }}>
-                      <View>
-                        <Icon
-                          size={60}
-                          borderRadius={7}
-                          source={{uri: v.imageDataB}}
-                        />
-                      </View>
-                      <TouchableOpacity
-                        onPress={() => {
-                          setVisible(true);
-                          SetSelectedItem(v);
-                        }}>
-                        <View style={{justifyContent: 'center', width: wp(60)}}>
-                          <ResponsiveText
-                            size={3.5}
-                            color={colors.white}
-                            margin={[0, 0, 0, 10]}>
-                            {v.dishName}
-                          </ResponsiveText>
-                          <ResponsiveText
-                            size={2.5}
-                            color={colors.grey}
-                            margin={[-3, 15, 0, 10]}>
-                            {v.dishDescription}
-                          </ResponsiveText>
-                          <ResponsiveText
-                            size={3}
-                            color={colors.yellow}
-                            margin={[0, 0, 0, 10]}>
-                            $ {v.dishPrice}
-                          </ResponsiveText>
-                        </View>
-                      </TouchableOpacity>
-                      {item.statusName === 'PreOrder' ? (
-                        <View style={{marginLeft: -15}}>
-                          <TouchableOpacity
-                            onPress={() => {
-                              onItemDecrease(v);
-                            }}
-                            style={{
-                              backgroundColor: colors.yellow,
-                              height: hp(2),
-                              borderTopLeftRadius: 2,
-                              borderTopRightRadius: 2,
-                              alignItems: 'center',
-                              width: wp(6),
-                            }}>
-                            <ResponsiveText margin={[-3, 0, 0, 0]}>
-                              -
-                            </ResponsiveText>
-                          </TouchableOpacity>
-                          <View
-                            style={{
-                              height: hp(3),
-                              width: wp(6),
-                              backgroundColor: colors.black3,
-                              justifyContent: 'center',
-                              alignItems: 'center',
-                              borderColor: colors.yellow,
-                              borderWidth: 1,
-                            }}>
-                            <ResponsiveText color={colors.yellow} size={3}>
-                              {v.quantity}
-                            </ResponsiveText>
-                          </View>
-                          <TouchableOpacity
-                            onPress={() => {
-                              // item.quantity = item.quantity + 1;
-                              //onItemIncrease(item);
-                              onItemIncrease(index, v);
-                            }}
-                            style={{
-                              backgroundColor: colors.yellow,
-                              height: hp(2),
-                              borderBottomRightRadius: 2,
-                              borderBottomLeftRadius: 2,
-                              alignItems: 'center',
-                              width: wp(6),
-                            }}>
-                            <ResponsiveText margin={[-3, 0, 0, 0]}>
-                              +
-                            </ResponsiveText>
-                          </TouchableOpacity>
-                        </View>
-                      ) : null}
-                      {item.statusName === 'PreOrder' ? (
-                        <View style={{marginLeft: wp(2), marginTop: 15}}>
-                          <TouchableOpacity
-                            onPress={() => {
-                              Alert.alert(
-                                '',
-                                'Do you want to remove this item from cart ?',
-                                [
-                                  {
-                                    text: 'Cancel',
-                                    onPress: () => {},
-                                    style: 'cancel',
-                                  },
-                                  {
-                                    text: 'OK',
-                                    onPress: () => {
-                                      // if(item.statusName === 'PreOrder'){
-
-                                      onItemRemove(v);
-                                      // }else{
-                                      //   Alert.alert('','Order in process')
-                                      // }
-                                    },
-                                  },
-                                ],
-                              );
-                            }}>
-                            <Icon
-                              source={globalPath.DELETE_ICON}
-                              tintColor={colors.yellow}
-                              margin={[-20, 0, 0, 0]}
-                              size={30}
-                            />
-                          </TouchableOpacity>
-                        </View>
-                      ) : null}
+                return (
+                  <View
+                    style={{
+                      backgroundColor: colors.black2,
+                      marginHorizontal: 10,
+                      flexDirection: 'row',
+                      padding: 5,
+                      marginBottom: 10,
+                      borderRadius: 7,
+                      alignItems: 'center',
+                    }}>
+                    <View>
+                      <Icon
+                        size={60}
+                        borderRadius={7}
+                        source={{ uri: v.imageDataB }}
+                      />
                     </View>
-                  );
-                })}
+                    <TouchableOpacity
+                      onPress={() => {
+                        setVisible(true);
+                        SetSelectedItem(v);
+                      }}>
+                      <View style={{ justifyContent: 'center', width: wp(60) }}>
+                        <ResponsiveText
+                          size={3.5}
+                          color={colors.white}
+                          margin={[0, 0, 0, 10]}>
+                          {v.dishName}
+                        </ResponsiveText>
+                        <ResponsiveText
+                          size={2.5}
+                          color={colors.grey}
+                          margin={[-3, 15, 0, 10]}>
+                          {v.dishDescription}
+                        </ResponsiveText>
+                        <ResponsiveText
+                          size={3}
+                          color={colors.yellow}
+                          margin={[0, 0, 0, 10]}>
+                          $ {v.dishPrice}
+                        </ResponsiveText>
+                      </View>
+                    </TouchableOpacity>
+                    {item.statusName === 'PreOrder' ? (
+                      <View style={{ marginLeft: -15 }}>
+                        <TouchableOpacity
+                          onPress={() => {
+                            onItemDecrease(v);
+                          }}
+                          style={{
+                            backgroundColor: colors.yellow,
+                            height: hp(2),
+                            borderTopLeftRadius: 2,
+                            borderTopRightRadius: 2,
+                            alignItems: 'center',
+                            width: wp(6),
+                          }}>
+                          <ResponsiveText margin={[-3, 0, 0, 0]}>
+                            -
+                          </ResponsiveText>
+                        </TouchableOpacity>
+                        <View
+                          style={{
+                            height: hp(3),
+                            width: wp(6),
+                            backgroundColor: colors.black3,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            borderColor: colors.yellow,
+                            borderWidth: 1,
+                          }}>
+                          <ResponsiveText color={colors.yellow} size={3}>
+                            {v.quantity}
+                          </ResponsiveText>
+                        </View>
+                        <TouchableOpacity
+                          onPress={() => {
+                            // item.quantity = item.quantity + 1;
+                            //onItemIncrease(item);
+                            onItemIncrease(index, v);
+                          }}
+                          style={{
+                            backgroundColor: colors.yellow,
+                            height: hp(2),
+                            borderBottomRightRadius: 2,
+                            borderBottomLeftRadius: 2,
+                            alignItems: 'center',
+                            width: wp(6),
+                          }}>
+                          <ResponsiveText margin={[-3, 0, 0, 0]}>
+                            +
+                          </ResponsiveText>
+                        </TouchableOpacity>
+                      </View>
+                    ) : null}
+                    {item.statusName === 'PreOrder' ? (
+                      <View style={{ marginLeft: wp(2), marginTop: 15 }}>
+                        <TouchableOpacity
+                          onPress={() => {
+                            Alert.alert(
+                              '',
+                              'Do you want to remove this item from cart ?',
+                              [
+                                {
+                                  text: 'Cancel',
+                                  onPress: () => { },
+                                  style: 'cancel',
+                                },
+                                {
+                                  text: 'OK',
+                                  onPress: () => {
+                                    // if(item.statusName === 'PreOrder'){
+
+                                    onItemRemove(v);
+                                    // }else{
+                                    //   Alert.alert('','Order in process')
+                                    // }
+                                  },
+                                },
+                              ],
+                            );
+                          }}>
+                          <Icon
+                            source={globalPath.DELETE_ICON}
+                            tintColor={colors.yellow}
+                            margin={[-20, 0, 0, 0]}
+                            size={30}
+                          />
+                        </TouchableOpacity>
+                      </View>
+                    ) : null}
+                  </View>
+                );
+              })}
           </View>
 
           <View>
@@ -603,7 +600,10 @@ const CartDetails = ({navigation}) => {
               </TouchableOpacity>
             ) : item.statusName === 'Delivered' && item.ratingFlag == false ? (
               <TouchableOpacity
-                onPress={() => {setModalVisible(true);SetSelectedBranch(item.restaurantBranchId)}}
+                onPress={() => {
+                  setModalVisible(true);
+                  SetSelectedBranch(item.restaurantBranchId)
+                }}
                 style={{
                   height: hp(5),
                   width: wp(80),
@@ -624,26 +624,26 @@ const CartDetails = ({navigation}) => {
     );
   };
   return (
-    <View style={{backgroundColor: colors.black3, flex: 1}}>
+    <View style={{ backgroundColor: colors.black3, flex: 1 }}>
       <ModalPoup visible={visible}>
         <View style={styles.header}>
           <TouchableOpacity onPress={() => setVisible(false)}>
             <Image
               source={require('../../../../assets/fake_Images/cross.png')}
-              style={{height: 22, width: 22}}
+              style={{ height: 22, width: 22 }}
             />
           </TouchableOpacity>
         </View>
 
         {selectedItem !== null ? (
           <>
-            <View style={{flexDirection: 'row'}}>
+            <View style={{ flexDirection: 'row' }}>
               <Image
-                source={{uri: selectedItem.imageDataB}}
+                source={{ uri: selectedItem.imageDataB }}
                 style={styles.popupImage}
               />
 
-              <View style={{flexDirection: 'column', marginLeft: 5}}>
+              <View style={{ flexDirection: 'column', marginLeft: 5 }}>
                 <Text style={styles.ModalDish}>{selectedItem.dishName}</Text>
                 <Text style={styles.ModalPrice}>
                   $ {selectedItem.dishPrice}
@@ -678,53 +678,53 @@ const CartDetails = ({navigation}) => {
               </View>
               {selectedItem.orderDetailExtraItemList.length > 0
                 ? selectedItem.orderDetailExtraItemList.map((item, index) => {
-                    return (
+                  return (
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        marginLeft: 10,
+                      }}>
                       <View
                         style={{
-                          flexDirection: 'row',
-                          alignItems: 'center',
-                          marginLeft: 10,
-                        }}>
-                        <View
-                          style={{
-                            backgroundColor: colors.white,
-                            height: 5,
-                            width: 5,
-                            borderRadius: 50,
-                            marginTop: 6,
-                          }}></View>
-                        <Text style={styles.ModalDrink}>
-                          {item.restaurantDishExtraItemName}
-                        </Text>
-                      </View>
-                    );
-                  })
+                          backgroundColor: colors.white,
+                          height: 5,
+                          width: 5,
+                          borderRadius: 50,
+                          marginTop: 6,
+                        }}></View>
+                      <Text style={styles.ModalDrink}>
+                        {item.restaurantDishExtraItemName}
+                      </Text>
+                    </View>
+                  );
+                })
                 : undefined}
               <View></View>
               <Text style={styles.headingAddOns}>Upsize:</Text>
               {selectedItem.orderDetailLinkedItemList.length > 0
                 ? selectedItem.orderDetailLinkedItemList.map((item, index) => {
-                    return (
+                  return (
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        marginLeft: 10,
+                      }}>
                       <View
                         style={{
-                          flexDirection: 'row',
-                          alignItems: 'center',
-                          marginLeft: 10,
-                        }}>
-                        <View
-                          style={{
-                            backgroundColor: colors.white,
-                            height: 5,
-                            width: 5,
-                            borderRadius: 50,
-                            marginTop: 6,
-                          }}></View>
-                        <Text style={styles.ModalDrink}>
-                          {item.restaurantDishLinkedItemName}
-                        </Text>
-                      </View>
-                    );
-                  })
+                          backgroundColor: colors.white,
+                          height: 5,
+                          width: 5,
+                          borderRadius: 50,
+                          marginTop: 6,
+                        }}></View>
+                      <Text style={styles.ModalDrink}>
+                        {item.restaurantDishLinkedItemName}
+                      </Text>
+                    </View>
+                  );
+                })
                 : undefined}
               <Text style={styles.headingInstructions}>Remarks:</Text>
               <Text style={styles.ModalInstructions}>
@@ -817,21 +817,19 @@ const CartDetails = ({navigation}) => {
         </View>
       ) : undefined}
       <View
-        style={{flex: 0.9, marginHorizontal: '1%', justifyContent: 'center'}}>
+        style={{ flex: 0.9, marginHorizontal: '1%', justifyContent: 'center' }}>
         {orderList.length > 0 ? (
           <FlatList
-            contentContainerStyle={{paddingVertical: 10}}
+            contentContainerStyle={{ paddingVertical: 10 }}
             data={orderList}
             keyExtractor={(item, index) => item + index}
             renderItem={renderItem}
-            // onViewableItemsChanged={onViewRef}
-            // viewabilityConfig={viewConfigRef.current}
+          // onViewableItemsChanged={onViewRef}
+          // viewabilityConfig={viewConfigRef.current}
           />
-        ) : (
-          <Text style={{alignSelf: 'center', color: colors.white}}>
-            No order yet
-          </Text>
-        )}
+        ) : <View style={{ width: wp(100), marginTop: 100, alignItems: 'center', alignSelf: 'center' }}>
+          <Icon borderColor={colors.yellow} borderWidth={0} borderRadius={0} size={250} source={globalPath.NORECORD_ICON} />
+        </View>}
       </View>
       <FlashMessage ref={dropdownRef} />
 

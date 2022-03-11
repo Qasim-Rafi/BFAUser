@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   ScrollView,
   View,
@@ -23,28 +23,28 @@ import {
 } from 'react-native-indicators';
 import Header from '../../../components/Header';
 import ResponsiveText from '../../../components/RnText';
-import {SearchResult} from '../../../redux/actions/user.actions';
-import {colors} from '../../../constants/colorsPallet';
-import {hp, wp} from '../../../helpers/Responsiveness';
-import {RadioGroup, RadioButton} from 'react-native-flexi-radio-button';
+import { SearchResult } from '../../../redux/actions/user.actions';
+import { colors } from '../../../constants/colorsPallet';
+import { hp, wp } from '../../../helpers/Responsiveness';
+import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
 import {
   advertisementBannerFakeDATA,
   ourRecommendationFakeDATA,
   Search_Result,
 } from '../../../constants/mock';
-import {Rating} from 'react-native-ratings';
+import { Rating } from 'react-native-ratings';
 import Icon from '../../../components/Icon';
-import {globalPath} from '../../../constants/globalPath';
-import {myListingTabs} from '../../../constants/mock';
-import {useDispatch, useSelector} from 'react-redux';
+import { globalPath } from '../../../constants/globalPath';
+import { myListingTabs } from '../../../constants/mock';
+import { useDispatch, useSelector } from 'react-redux';
 
-import {routeName} from '../../../constants/routeName';
+import { routeName } from '../../../constants/routeName';
 import SearchHeader from '../../../components/SearchHeader';
 import Modal from 'react-native-modal';
-import {FiltersDummyData} from '../../../constants/mock';
+import { FiltersDummyData } from '../../../constants/mock';
 import FastImage from 'react-native-fast-image';
 import { ActivityIndicator } from 'react-native-paper';
-export default function SearchAll({navigation}) {
+export default function SearchAll({ navigation }) {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -123,8 +123,8 @@ export default function SearchAll({navigation}) {
     );
   };
   return (
-    <View style={{flex: 1, backgroundColor: colors.black3}}>
-      <View style={{margin: 10, flexDirection: 'row', alignItems: 'center'}}>
+    <View style={{ flex: 1, backgroundColor: colors.black3 }}>
+      <View style={{ margin: 10, flexDirection: 'row', alignItems: 'center' }}>
         <TouchableOpacity
           style={{
             backgroundColor: colors.yellow,
@@ -165,20 +165,20 @@ export default function SearchAll({navigation}) {
           />
         </TouchableOpacity>
       </View>
-      <View style={{marginHorizontal: wp(3)}}>
-        <View style={{display: 'flex', flexDirection: 'row', marginTop: 5}}>
+      <View style={{ marginHorizontal: wp(3) }}>
+        <View style={{ display: 'flex', flexDirection: 'row', marginTop: 5 }}>
           <RadioGroup
             color={colors.yellow}
-            style={{flex: 1, flexDirection: 'row'}}
+            style={{ flex: 1, flexDirection: 'row' }}
             onSelect={(index, value) => onSelect(index, value)}
             selectedIndex={0}>
-            <RadioButton value={'Dishes'} style={{marginStart: 1}}>
+            <RadioButton value={'Dishes'} style={{ marginStart: 1 }}>
               <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>
                 Dishes{' '}
               </ResponsiveText>
             </RadioButton>
 
-            <RadioButton value={'Restaurants'} style={{marginStart: 10}}>
+            <RadioButton value={'Restaurants'} style={{ marginStart: 10 }}>
               <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>
                 Restaurants{' '}
               </ResponsiveText>
@@ -186,14 +186,8 @@ export default function SearchAll({navigation}) {
           </RadioGroup>
         </View>
         {SearchText != '' ? (
-          <View style={{margin:Note!=''? 20:0}}>
-            <ResponsiveText color={colors.white}>
-              {Note}
-              {/* Now showing dish result for "{SearchText}" */}
-            </ResponsiveText>
-            {/* <ResponsiveText color={colors.white} size={3}>
-              {SearchText.length} Result Found{' '}
-            </ResponsiveText> */}
+          <View style={{ width: wp(100), marginTop: 100, alignItems: 'center', alignSelf: 'center' }}>
+            <Icon borderColor={colors.yellow} borderWidth={0} borderRadius={0} size={250} source={globalPath.NORECORD_ICON} />
           </View>
         ) : null}
       </View>
@@ -202,7 +196,7 @@ export default function SearchAll({navigation}) {
         <FlatList
           data={DATA}
           // extraData={dataFiltersDummyData}
-          renderItem={({item, index}) => (
+          renderItem={({ item, index }) => (
             <TouchableOpacity
               style={{
                 flexDirection: 'row',
@@ -227,7 +221,7 @@ export default function SearchAll({navigation}) {
                     alignSelf: 'center',
                     margin: 10,
                   }}
-                  source={{uri: item.imageDataB}}
+                  source={{ uri: item.imageDataB }}
                 />
               </View>
               <View
@@ -260,7 +254,7 @@ export default function SearchAll({navigation}) {
                     }}
                   />
                 </View>
-                <View style={{margin: 20}}>
+                <View style={{ margin: 20 }}>
                   <Icon source={globalPath.LOCATION1} />
                   <ResponsiveText color={colors.white} top={5} size={3}>
                     1km
@@ -269,19 +263,19 @@ export default function SearchAll({navigation}) {
               </View>
             </TouchableOpacity>
           )}
-           keyExtractor={item => item.restaurantDishId}
+          keyExtractor={item => item.restaurantDishId}
         />
 
         {/* </ScrollView> */}
       </View>
       {
-          Loading === true ?
-            <View style={{ position:'relative', top:10, left: 0, bottom: 0, right: 0, backgroundColor: 'rgba(65, 65, 65, 0)'}}>
-              <BarIndicator color={colors.yellow} size={hp(3)} />
-            </View>
-            :
-            undefined
-        }
+        Loading === true ?
+          <View style={{ position: 'relative', top: 10, left: 0, bottom: 0, right: 0, backgroundColor: 'rgba(65, 65, 65, 0)' }}>
+            <BarIndicator color={colors.yellow} size={hp(3)} />
+          </View>
+          :
+          undefined
+      }
       {/* <SortResult navigation={navigation} /> */}
     </View>
   );
