@@ -1,68 +1,198 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   View,
   KeyboardAvoidingView,
   Image,
   Platform,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
-import { ScrollView, } from 'react-native-gesture-handler';
+import {ScrollView} from 'react-native-gesture-handler';
 
-import { hp, wp } from '../../../helpers/Responsiveness';
+import {hp, wp} from '../../../helpers/Responsiveness';
 import Icon from '../../../components/Icon';
 import Input from '../../../components/Input';
 import RnButton from '../../../components/RnButton';
 import ResponsiveText from '../../../components/RnText';
-import { globalPath } from '../../../constants/globalPath';
-import { Spacing } from '../../../constants/spacingScale';
+import {globalPath} from '../../../constants/globalPath';
+import {Spacing} from '../../../constants/spacingScale';
 import Line from '../../../components/Line';
-import { routeName } from '../../../constants/routeName';
-import { colors } from '../../../constants/colorsPallet';
+import {routeName} from '../../../constants/routeName';
+import {colors} from '../../../constants/colorsPallet';
 import Profile from './Profile';
 import Optional from './Optional';
-import { useSelector, useDispatch } from 'react-redux';
-import { profileTabs } from '../../../constants/mock';
-import { getProfileData } from '../../../redux/actions/user.actions';
+import {useSelector, useDispatch} from 'react-redux';
+import {profileTabs} from '../../../constants/mock';
+import {getProfileData} from '../../../redux/actions/user.actions';
+import CustomInput from '../../../components/customInput';
+import urls from '../../../redux/lib/urls';
+import Api from '../../../redux/lib/api';
 
-export default function ProfileScreen({ navigation }) {
+export default function ProfileScreen({navigation}) {
   const profileData = useSelector(state => state.appReducers.profileData.data);
   console.log('Profile: ', profileData);
   const loading = useSelector(state => state.appReducers.profileData.loading);
   console.log('loading', loading);
   const dispatch = useDispatch();
+  const [email, setEmail] = useState();
+  const [userName, setUsername] = useState();
+  const [fullName, setFullname] = useState();
+  const [editable, setEditable] = useState(false);
 
   React.useEffect(() => {
     dispatch(getProfileData());
     console.log('loading', loading);
-
   }, []);
   const [activeTab, setActiveTab] = React.useState(profileTabs[0].id);
-
+  const edit=()=>{
+    setFullname(profileData.fullName);
+    setEmail(profileData.email)
+    setUsername(profileData.username)
+    setEditable(true)
+  }
+  const submitData= async id => {
+    var obj = {
+      "username": userName,
+      "email": email,
+      "fullName": fullName,
+      "gender": "Male",
+      "dateofBirth": "2004/1/14",
+      "contactNumber": "0340040404040",
+      "updatebyId": profileData.id,
+      "updatedDateTime": new Date()
+    };
+    console.log('obj', obj);
+    try {
+      const res = await Api.put(urls.EDIT_PROFILE + profileData.id, obj);
+      console.log('ree', res);
+      if (res && res.success == true) {
+        dispatch(getProfileData());
+        // dropdownRef.current.showMessage({
+        //   message: 'Alert',
+        //   description: 'Order Canceled',
+        //   type: 'success',
+        //   icon: {icon: 'auto', position: 'left'},
+        //   //backgroundColor:colors.black1
+        // });
+      } else {
+      }
+    } catch (error) {}
+  };
+  const userInfo = () => {
+    return (
+      <View
+        style={{
+          flex: 0.7,
+          // borderTopRightRadius: wp(8),
+          // borderTopLeftRadius: wp(8),
+          backgroundColor: '#202020',
+          paddingTop: 10,
+        }}>
+        <ScrollView>
+          <View style={{flex: 0.68}}>
+            <CustomInput
+              placeHolderText={profileData.fullName}
+              fieldName={'Full Name'}
+              value={fullName}
+              onChangeText={(text)=>setFullname(text)}
+              editable={editable}
+            />
+            <CustomInput
+              placeHolderText={profileData.username}
+              fieldName={'User Name'}
+              value={userName}
+              onChangeText={(text)=>setUsername(text)}
+              editable={editable}
+            />
+            <CustomInput
+              placeHolderText={profileData.email}
+              fieldName={'Email'}
+              value={email}
+              onChangeText={(text)=>setEmail(text)}
+              editable={editable}
+            />
+            <CustomInput
+             placeHolderText={'000-000-0000'}
+             fieldName={'Phone'} 
+             />
+          </View>
+          <View style={{flex: 0.32, marginTop: 40, marginBottom: 20}}>
+            <TouchableOpacity onPress={()=>submitData()}
+              style={{
+                alignSelf: 'center',
+                backgroundColor: colors.yellow,
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderRadius: 7,
+                height: hp(5),
+                width: wp(80),
+              }}>
+              <ResponsiveText color={colors.black}>Save</ResponsiveText>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </View>
+    );
+  };
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-
       style={styles.container}>
       <View style={styles.container}>
         <View style={styles.screeninfo}>
-          <View style={{ flexDirection: 'row', justifyContent: "space-between", flex: .40 }}>
-            <TouchableOpacity style={{ backgroundColor: colors.black, height: hp(5), padding: 9, borderRadius: 20 }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              flex: 0.4,
+            }}>
+            <TouchableOpacity
+              style={{
+                backgroundColor: colors.black,
+                height: hp(5),
+                padding: 9,
+                borderRadius: 20,
+              }}
+              onPress={() => {
+                navigation.goBack();
+              }}>
+              <Icon source={globalPath.BACK_BLACK_ARROW} />
+            </TouchableOpacity>
             <ResponsiveText size={4}>Profile</ResponsiveText>
-            <TouchableOpacity style={{ backgroundColor: colors.black, height: hp(5), padding: 10, borderRadius: 20 }}><Icon source={globalPath.EDIT_PROFILE} /></TouchableOpacity>
+            <TouchableOpacity onPress={()=>edit()}
+              style={{
+                backgroundColor: colors.black,
+                height: hp(5),
+                padding: 10,
+                borderRadius: 20,
+              }}>
+              <Icon source={globalPath.EDIT_PROFILE} />
+            </TouchableOpacity>
           </View>
-          <View style={{ justifyContent: 'center', alignItems: 'center', flex: .45 }}>
-            <Image style={{ width: 100, height: 100, borderRadius: 50, marginBottom: 10 }}
-              source={profileData.fullpath ? { uri: profileData.fullpath } : globalPath.USER_PROFILE}
-
-
+          <View
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              flex: 0.45,
+            }}>
+            <Image
+              style={{
+                width: 100,
+                height: 100,
+                borderRadius: 50,
+                marginBottom: 10,
+              }}
+              source={
+                profileData.fullpath
+                  ? {uri: profileData.fullpath}
+                  : globalPath.USER_PROFILE
+              }
             />
             <ResponsiveText size={4}>{profileData.username}</ResponsiveText>
             {/* <ResponsiveText color={colors.lightBlack} size={3}>umargani@gmail.com</ResponsiveText> */}
           </View>
         </View>
-        <View style={{ flex: 0.09, flexDirection: 'row', marginTop: -10 }}>
-
+        <View style={{flex: 0.09, flexDirection: 'row', marginTop: -10}}>
           {profileTabs.map((items, index) => {
             return (
               <React.Fragment key={items.id}>
@@ -91,7 +221,6 @@ export default function ProfileScreen({ navigation }) {
             );
           })}
 
-
           {/* <View style={{flex:1, backgroundColor:colors.yellow1, justifyContent:'center', alignItems:'center'}}>
             <TouchableOpacity>
             <ResponsiveText size={4}>Profile</ResponsiveText>
@@ -107,13 +236,10 @@ export default function ProfileScreen({ navigation }) {
         {/* <Profile /> */}
         {/* <ScrollView style={{flex:0.9,margin:20}}> */}
 
-        {activeTab === 1 && <Profile />}
+        {activeTab === 1 && userInfo()}
         {activeTab === 2 && <Optional />}
 
         {/* </ScrollView> */}
-
-
-
       </View>
     </KeyboardAvoidingView>
   );
