@@ -4,8 +4,8 @@ import { colors } from '../../constants/colorsPallet'
 import Icon from '../Icon'
 import { globalPath } from '../../constants/globalPath'
 import ResponsiveText from '../RnText'
-export default function CheckBox({text,onPress,value,additem}) {
-   const [checked, setChecked] = React.useState(false);
+export default function CheckBox({text,onPress,value,additem, checkedd}) {
+   const [checked, setChecked] = React.useState( checkedd? checkedd : false);
     return (
         <TouchableOpacity style={{flexDirection:'row'}}
         onPress={()=>{setChecked(!checked);if(additem){additem(value)}}}

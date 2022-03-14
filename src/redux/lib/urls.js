@@ -60,6 +60,7 @@ export default urls = {
   GET_PREMISE_LIST: 'api/Lookups/Premise',
   GET_DISTANCE_LIST: 'api/Lookups/Distance',
 
+  ADD_USER_RANDOMISER: 'api/UserRandomizerSetting/AddUserRandomizerSetting',
 
 
 
