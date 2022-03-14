@@ -29,6 +29,9 @@ import {hp, wp} from '../../../helpers/Responsiveness';
 import {RadioGroup, RadioButton} from 'react-native-flexi-radio-button';
 import {
   advertisementBannerFakeDATA,
+  AwardsMenuSectionsData,
+  CUISINES_DATA,
+  FacilityData,
   ourRecommendationFakeDATA,
   Search_Result,
 } from '../../../constants/mock';
@@ -44,6 +47,8 @@ import Modal from 'react-native-modal';
 import {FiltersDummyData} from '../../../constants/mock';
 import FastImage from 'react-native-fast-image';
 import {ActivityIndicator} from 'react-native-paper';
+import DropDown from '../../../components/DropDown';
+import { SafeAreaView } from 'react-native-safe-area-context';
 export default function SearchAll({navigation}) {
   const dispatch = useDispatch();
 
@@ -166,7 +171,7 @@ export default function SearchAll({navigation}) {
         </TouchableOpacity>
       </View>
       <View style={{marginHorizontal: wp(3)}}>
-        <View style={{display: 'flex', flexDirection: 'row', marginTop: 5}}>
+        <View style={{display: 'flex', flexDirection: 'row', marginTop: 5,alignItems:'center'}}>
           <RadioGroup
             color={colors.yellow}
             style={{flex: 1, flexDirection: 'row'}}
@@ -184,9 +189,243 @@ export default function SearchAll({navigation}) {
               </ResponsiveText>
             </RadioButton>
           </RadioGroup>
+          <TouchableOpacity onPress={()=>setModalVisible(true)}>
+            <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>
+                Filter{' '}
+              </ResponsiveText>
+          </TouchableOpacity>
+          
         </View>
-    
       </View>
+      <Modal
+        isVisible={isModalVisible}
+        backdropOpacity={0.9}
+        style={{justifyContent: 'flex-end'}}
+        animationIn={'slideInRight'}
+        animationOut={'slideOutRight'}
+        // onModalHide={()=>navigation.navigate(routeName.LANDING_SCREEN)}
+        coverScreen={true}>
+        <SafeAreaView
+          style={{flex: 1, marginLeft: wp(8), backgroundColor: colors.black3}}>
+        
+          <ScrollView>
+          <View
+            style={{
+              //flex: 0.1,
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              padding: 10,
+              backgroundColor: colors.black2,
+            }}>
+            <TouchableOpacity
+              onPress={() => setModalVisible(false)}
+              style={{
+                borderRadius: 5,
+                marginLeft: 5,
+                padding: 10,
+                backgroundColor: colors.black1,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Icon size={20} source={require('../../../assets/icons/x.png')} />
+            </TouchableOpacity>
+
+            <ResponsiveText color={colors.white} size={4}>
+              Filter By
+            </ResponsiveText>
+            <TouchableOpacity
+              // onPress={toggleModal}
+              style={{
+                paddingVertical: 8,
+                marginRight: -50,
+                paddingHorizontal: 10,
+                borderRadius: 5,
+                backgroundColor: colors.yellow,
+              }}>
+              <ResponsiveText color={colors.black} size={3.4}>
+                Reset
+              </ResponsiveText>
+            </TouchableOpacity>
+            <Icon />
+          </View>
+            <View  style={{padding: wp(5)}}>
+            <ResponsiveText margin={[5, 0, 2, 0]} color={colors.yellow}>
+              District
+            </ResponsiveText>
+            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
+              Area
+            </ResponsiveText>
+            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
+              Premise
+            </ResponsiveText>
+            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <ResponsiveText margin={[10, 0, 5, 0]} color={colors.yellow}>
+              Cuisine
+            </ResponsiveText>
+            <View
+              style={{
+                flexDirection: 'row',
+                //alignItems: 'center',
+                //justifyContent: 'center',
+                paddingHorizontal: 0,
+                flexWrap: 'wrap',
+                // alignContent: 'center',
+                paddingTop: hp(1),
+                borderTopWidth: 0.3,
+                borderTopColor: colors.white,
+              }}>
+              {CUISINES_DATA.map((item, index) => {
+                return (
+                  <TouchableOpacity
+                  // onPress={()=>toggleSelection(item)}
+                  >
+                    <View
+                      style={{
+                        borderRadius: 18,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: colors.black2,
+                        marginHorizontal: 5,
+                        paddingVertical: 10,
+                        paddingHorizontal: 20,
+                        marginTop: 10,
+                      }}>
+                      <Text style={{fontSize: 10, color: colors.white}}>
+                        {item.title}
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+            
+            <ResponsiveText margin={[25, 0, 2, 0]} color={colors.yellow}>
+              Dish Type
+            </ResponsiveText>
+            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
+              Dish Tag
+            </ResponsiveText>
+            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
+              Restaurant Type
+            </ResponsiveText>
+            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
+              Occasion
+            </ResponsiveText>
+            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <ResponsiveText margin={[10, 0, 5, 0]} color={colors.yellow}>
+              Facilities
+            </ResponsiveText>
+            <View
+              style={{
+                flexDirection: 'row',
+                //alignItems: 'center',
+                //justifyContent: 'center',
+                paddingHorizontal: 0,
+                flexWrap: 'wrap',
+                // alignContent: 'center',
+                paddingTop: hp(1),
+                borderTopWidth: 0.3,
+                borderTopColor: colors.white,
+              }}>
+              {FacilityData.map((item, index) => {
+                return (
+                  <TouchableOpacity
+                  // onPress={()=>toggleSelection(item)}
+                  >
+                    <View
+                      style={{
+                        borderRadius: 18,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: colors.black2,
+                        marginHorizontal: 5,
+                        paddingVertical: 10,
+                        paddingHorizontal: 20,
+                        marginTop: 10,
+                      }}>
+                      <Text style={{fontSize: 10, color: colors.white}}>
+                        {item.name}
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+            <ResponsiveText margin={[25, 0, 2, 0]} color={colors.yellow}>
+              Wi-Fi
+            </ResponsiveText>
+            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
+              Private Room
+            </ResponsiveText>
+            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
+              Group Table
+            </ResponsiveText>
+            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
+              Prayer Room
+            </ResponsiveText>
+            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <ResponsiveText margin={[10, 0, 5, 0]} color={colors.yellow}>
+              Awards
+            </ResponsiveText>
+            <View
+              style={{
+                flexDirection: 'row',
+                //alignItems: 'center',
+                //justifyContent: 'center',
+                paddingHorizontal: 0,
+                flexWrap: 'wrap',
+                // alignContent: 'center',
+                paddingTop: hp(1),
+                borderTopWidth: 0.3,
+                borderTopColor: colors.white,
+              }}>
+              {AwardsMenuSectionsData.map((item, index) => {
+                return (
+                  <TouchableOpacity
+                  // onPress={()=>toggleSelection(item)}
+                  >
+                    <View
+                      style={{
+                        borderRadius: 18,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: colors.black2,
+                        marginHorizontal: 5,
+                        paddingVertical: 10,
+                        paddingHorizontal: 20,
+                        marginTop: 10,
+                      }}>
+                      <Text style={{fontSize: 10, color: colors.white}}>
+                        {item.title}
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+            <ResponsiveText margin={[25, 0, 2, 0]} color={colors.yellow}>
+              By Star Rating
+            </ResponsiveText>
+            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
+              Preferences (Select 5)
+            </ResponsiveText>
+            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <View style={{height:hp(10)}}></View>
+            </View>
+          </ScrollView>
+        </SafeAreaView>
+      </Modal>
+
       <View>
         {/* <ScrollView showsHorizontalScrollIndicator={false} > */}
         {DATA.length > 0 ? (
@@ -262,8 +501,7 @@ export default function SearchAll({navigation}) {
             )}
             keyExtractor={item => item.restaurantDishId}
           />
-        ) : (
-          Loading === false ?
+        ) : Loading === false ? (
           <View
             style={{
               width: wp(100),
@@ -278,14 +516,15 @@ export default function SearchAll({navigation}) {
               size={250}
               source={globalPath.NORECORD_ICON}
             />
-          </View>:null
-        )}
+          </View>
+        ) : null}
         {/* </ScrollView> */}
       </View>
       {Loading === true ? (
         <View
           style={{
-            position: 'absolute',justifyContent:'center',
+            position: 'absolute',
+            justifyContent: 'center',
             top: 10,
             left: 0,
             bottom: 0,

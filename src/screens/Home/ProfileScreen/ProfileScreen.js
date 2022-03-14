@@ -44,22 +44,22 @@ export default function ProfileScreen({navigation}) {
     console.log('loading', loading);
   }, []);
   const [activeTab, setActiveTab] = React.useState(profileTabs[0].id);
-  const edit=()=>{
+  const edit = () => {
     setFullname(profileData.fullName);
-    setEmail(profileData.email)
-    setUsername(profileData.username)
-    setEditable(true)
-  }
-  const submitData= async id => {
+    setEmail(profileData.email);
+    setUsername(profileData.username);
+    setEditable(true);
+  };
+  const submitData = async id => {
     var obj = {
-      "username": userName,
-      "email": email,
-      "fullName": fullName,
-      "gender": "Male",
-      "dateofBirth": "2004/1/14",
-      "contactNumber": "0340040404040",
-      "updatebyId": profileData.id,
-      "updatedDateTime": new Date()
+      username: userName,
+      email: email,
+      fullName: fullName,
+      gender: 'Male',
+      dateofBirth: '2004/1/14',
+      contactNumber: '0340040404040',
+      updatebyId: profileData.id,
+      updatedDateTime: new Date(),
     };
     console.log('obj', obj);
     try {
@@ -67,6 +67,8 @@ export default function ProfileScreen({navigation}) {
       console.log('ree', res);
       if (res && res.success == true) {
         dispatch(getProfileData());
+        setEditable(false);
+
         // dropdownRef.current.showMessage({
         //   message: 'Alert',
         //   description: 'Order Canceled',
@@ -94,30 +96,28 @@ export default function ProfileScreen({navigation}) {
               placeHolderText={profileData.fullName}
               fieldName={'Full Name'}
               value={fullName}
-              onChangeText={(text)=>setFullname(text)}
+              onChangeText={text => setFullname(text)}
               editable={editable}
             />
             <CustomInput
               placeHolderText={profileData.username}
               fieldName={'User Name'}
               value={userName}
-              onChangeText={(text)=>setUsername(text)}
+              onChangeText={text => setUsername(text)}
               editable={editable}
             />
             <CustomInput
               placeHolderText={profileData.email}
               fieldName={'Email'}
               value={email}
-              onChangeText={(text)=>setEmail(text)}
+              onChangeText={text => setEmail(text)}
               editable={editable}
             />
-            <CustomInput
-             placeHolderText={'000-000-0000'}
-             fieldName={'Phone'} 
-             />
+            <CustomInput placeHolderText={'000-000-0000'} fieldName={'Phone'} />
           </View>
           <View style={{flex: 0.32, marginTop: 40, marginBottom: 20}}>
-            <TouchableOpacity onPress={()=>submitData()}
+            <TouchableOpacity
+              onPress={() => submitData()}
               style={{
                 alignSelf: 'center',
                 backgroundColor: colors.yellow,
@@ -159,7 +159,8 @@ export default function ProfileScreen({navigation}) {
               <Icon source={globalPath.BACK_BLACK_ARROW} />
             </TouchableOpacity>
             <ResponsiveText size={4}>Profile</ResponsiveText>
-            <TouchableOpacity onPress={()=>edit()}
+            <TouchableOpacity
+              onPress={() => edit()}
               style={{
                 backgroundColor: colors.black,
                 height: hp(5),
