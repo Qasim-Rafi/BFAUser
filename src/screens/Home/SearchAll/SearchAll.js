@@ -161,8 +161,7 @@ export default function SearchAll({navigation}) {
         />
         <TouchableOpacity
           onPress={() => {
-            //Search();
-            setModalVisible(true);
+            Search();
           }}>
           <Icon
             source={globalPath.SEARCH_LOGO}
@@ -172,7 +171,7 @@ export default function SearchAll({navigation}) {
         </TouchableOpacity>
       </View>
       <View style={{marginHorizontal: wp(3)}}>
-        <View style={{display: 'flex', flexDirection: 'row', marginTop: 5}}>
+        <View style={{display: 'flex', flexDirection: 'row', marginTop: 5,alignItems:'center'}}>
           <RadioGroup
             color={colors.yellow}
             style={{flex: 1, flexDirection: 'row'}}
@@ -190,6 +189,12 @@ export default function SearchAll({navigation}) {
               </ResponsiveText>
             </RadioButton>
           </RadioGroup>
+          <TouchableOpacity onPress={()=>setModalVisible(true)}>
+            <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>
+                Filter{' '}
+              </ResponsiveText>
+          </TouchableOpacity>
+          
         </View>
       </View>
       <Modal
