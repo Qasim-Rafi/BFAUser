@@ -145,6 +145,10 @@ const initialState = {
     loading: false,
     data: [],
   },
+  getApplyJobList: {
+    loading: false,
+    data: [],
+  },
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -1204,8 +1208,33 @@ export const appReducers = (state = initialState, action) => {
           loading: false,
         },
       };
+      //GetAppliedJobs
+    case types.GET_APPLY_JOB_LIST_REQUEST:
+      return {
+        ...state,
+        getApplyJobList: {
+          ...state.getApplyJobList,
+          loading: true,
+        },
+      };
+    case types.GET_APPLY_JOB_LIST_SUCCESS:
+      return {
+        ...state,
+        getApplyJobList: {
+          ...state.ApplyJobList,
+          data: action.payload,
+          loading: false,
+        },
+      };
+    case types.GET_APPLY_JOB_LIST_FAILURE:
+      return {
+        ...state,
+        getApplyJobList: {
+          ...state.getApplyJobList,
+          loading: false,
+        },
+      };
     default:
       return state;
   }
-
 };

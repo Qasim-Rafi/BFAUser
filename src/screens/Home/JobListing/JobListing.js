@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { ImageBackground, ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { colors } from '../../../constants/colorsPallet'
 import { hp, wp } from '../../../helpers/Responsiveness'
@@ -8,14 +8,21 @@ import { PROMOS_JOBS } from '../../../constants/mock'
 import { routeName } from '../../../constants/routeName'
 import Header from '../../../components/Header'
 import { globalPath } from '../../../constants/globalPath'
-import { useSelector } from 'react-redux'
 import urls from '../../../redux/lib/urls'
+import { getApplyJobList } from '../../../redux/actions/user.actions'
+import {useSelector, useDispatch} from 'react-redux';
 
 
 const JobListing = ({ navigation }) => {
-    const JobsList = useSelector(state => state.appReducers.promoJobs.data);
+    const JobsList = useSelector(state => state.appReducers.getApplyJobList.data);
     console.log("Jobs data: ", JobsList);
-
+    const dispatch = useDispatch();
+    React.useEffect(() => {
+      dispatch( getApplyJobList());
+  
+  
+    }, []);
+     
     return (
         <View style={{ flex: 1, backgroundColor: colors.black3 }}>
             <View style={{ flexDirection: 'row', justifyContent: "space-between", padding: 7 }}>
