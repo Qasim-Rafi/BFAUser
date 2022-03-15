@@ -8,7 +8,7 @@ export default function CheckBox({text,onPress,value,additem, checkedd}) {
    const [checked, setChecked] = React.useState( checkedd? checkedd : false);
     return (
         <TouchableOpacity style={{flexDirection:'row'}}
-        onPress={()=>{setChecked(!checked);if(additem){additem(value)}}}
+        onPress={()=>{setChecked(!checked);if(additem){additem(value);if(onPress){onPress}}}}
         >
         <View style={{height:20, width:20,borderRadius:3, 
             backgroundColor:checked ? colors.yellow: colors.black3,

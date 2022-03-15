@@ -30,14 +30,19 @@ import Geolocation from 'react-native-geolocation-service';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetAreaAllListAction, GetDistanceListAction, GetNearestRestaurantAction, GetPremiseAllListAction } from '../../../../redux/actions/user.actions';
 import { showMessage } from 'react-native-flash-message';
+import urls from '../../../../redux/lib/urls';
+import Api from '../../../../redux/lib/api';
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 
 class RandomWheelClass extends React.Component {
     constructor(props) {
         super(props);
+        var userId = await AsyncStorage.getItem('@userId');
 
         this.state = {
+            userId: userId,
             winnerValue: null,
             winnerIndex: null,
             started: false,
@@ -48,13 +53,15 @@ class RandomWheelClass extends React.Component {
             loading: false,
             areaList: this.props.areaListNames,
             premiseList: this.props.premiseListNames,
+            restaurantSelected: true,
+            selectedAreaId:1,
+            selectedDistanceId:3,
+            selectedPremiseId:1,
             noOfResults:1,
             areaSelected:false,
             distanceSelected:false,
             premiseSelected:false,
-            selectedAreaId:null,
-            selectedDistanceId:3,
-            selectedPremiseId:null,
+            dishesSelected: false,
         };
         this.child = null;
     }
@@ -124,21 +131,46 @@ class RandomWheelClass extends React.Component {
         this.child._tryAgain();
         // this.child._onPress()
     };
-
-    onSelectResult = (index, value) => {
-        console.log('selected index and value' , index , value)
-    }
+     addSettings = async (index, item) => {
+        var obj ={
+            "userId": 94,
+            "createdDateTime": new Date(),
+            "isRestaurant": this.state.restaurantSelected,
+            "areaId": this.state.selectedAreaId,
+            "distance": this.state.selectedDistanceId,
+            "premiseId": this.state.selectedPremiseId,
+            "noOfResult": this.state.noOfResults
+          }
+        console.log('increase', obj);
+        try {
+          const res = await Api.post(urls.ADD_USER_RANDOMISER, obj);
+          console.log('res', res);
+          if (res && res.success == true) {
+            dispatch(getOrders());
+          } else {
+          }
+        } catch (error) { }
+    
+        // var i = cartList.findIndex(obj => obj.id === id);
+    
+        // cartList[i].quantity = cartList[i].quantity + 1;
+        // console.log('quantity', cartList);
+        // setRandom(cartList);
+        // dispatch(retriveCart(cartList));
+      };
     render() {
         // console.log(this.state.areaList, 'areaList in Class');
         // console.log(this.state.premiseList, 'premiseList in Class');
         // console.log(this.state.noOfResults);
         // console.log(this.state.selectedDistanceId,'selectedDistanceId');
+        // console.log(new Date().toLocaleString().replace(',',''))
+        console.log(this.state.userId,'UserId');
         const wheelOptions = {
             rewards: this.props.restaurantList.map(names => names.name),
             knobSize: 30,
             borderWidth: 5,
             borderColor: '#fff',
-            innerRadius: 40,
+            innerRadius: 30,
             duration: 6000,
             iconRewards: this.props.restaurantList.map(names => names.fullPath),
             backgroundColor: 'transparent',
@@ -172,7 +204,7 @@ class RandomWheelClass extends React.Component {
                         <ResponsiveText size={4} color={colors.yellow} margin={[20, 0, 0, 20]} >What to Eat?</ResponsiveText>
                         <TouchableOpacity onPress={this.toggleModal} style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 20, }} >
                             <Icon source={globalPath.FILTER_ICON} size={20} tintColor={colors.grey} />
-                            <ResponsiveText color={colors.grey} size={3.5} margin={0, 0, 0, 5} >Refine Search</ResponsiveText>
+                            <ResponsiveText color={colors.grey} size={3.5} margin={[0, 0, 0, 5]} >Refine Search</ResponsiveText>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.container}>
@@ -290,14 +322,17 @@ class RandomWheelClass extends React.Component {
                             </View>
                             <View style={{ display: 'flex', flexDirection: 'row', marginTop: 5 }}>
                                 <RadioGroup color={colors.yellow} style={{ flex: 1, flexDirection: 'row' }}
-                                    // onSelect = {(index, value) => this.onSelect(index, value)}
+                                    onSelect = {(index, value) => {
+                                        index === 0 ? this.setState({dishesSelected:true,restaurantSelected:false})  : index === 1 ? this.setState({dishesSelected:false,restaurantSelected:true}) : null
+                                        console.log(this.state.dishesSelected,this.state.restaurantSelected);
+                                    }}
                                     selectedIndex={1}
                                 >
-                                    <RadioButton value={'item1'} style={{ marginStart: 10 }}>
+                                    <RadioButton value={'Dishes'} style={{ marginStart: 10 }}>
                                         <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>Dishes</ResponsiveText>
                                     </RadioButton>
 
-                                    <RadioButton value={'item2'} style={{ marginStart: 10 }}>
+                                    <RadioButton value={'Restaurants'} style={{ marginStart: 10 }}>
                                         <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>Restaurants</ResponsiveText>
                                     </RadioButton>
                                 </RadioGroup>
@@ -306,13 +341,14 @@ class RandomWheelClass extends React.Component {
                             <View style={{ marginStart: 10, marginTop: 15 }}>
 
                                 <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, alignItems: 'center' }}>
-                                    <CheckBox additem={this.selectCheck} value={'area'} />
+                                    <CheckBox additem={this.selectCheck} value={'area'} checkedd={this.state.areaSelected} />
                                     <ResponsiveText margin={[0, 0, 0, 10]} color={colors.grey1}>
                                         Area
                                     </ResponsiveText>
                                     <View style={{ marginStart: 5 }} >
                                         {this.props.areaListNames.length>0?
                                         <DropDown 
+                                            disabled={!this.state.areaSelected}
                                             data={this.props.areaListNames} 
                                             height={hp(4)} width={wp(57)} 
                                             onSelect={(selectedItem, index) => {
@@ -329,12 +365,13 @@ class RandomWheelClass extends React.Component {
                                     </View>
                                 </View>
                                 <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, alignItems: 'center' }}>
-                                    <CheckBox additem={this.selectCheck} value={'distance'} checkedd={true} />
+                                    <CheckBox additem={this.selectCheck} value={'distance'} checkedd={this.state.distanceSelected} />
                                     <ResponsiveText margin={[0, 0, 0, 10]} color={colors.grey1}>
                                         Distance
                                     </ResponsiveText>
                                     <View style={{ marginStart: 5 }} >
                                         <DropDown
+                                        disabled={!this.state.distanceSelected}
                                         data={ this.props.distance}
                                         height={hp(4)}
                                         width={wp(57)}
@@ -357,12 +394,12 @@ class RandomWheelClass extends React.Component {
                                     </View>
                                 </View>
                                 <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, alignItems: 'center' }}>
-                                    <CheckBox additem={this.selectCheck} value={'premise'} />
+                                    <CheckBox additem={this.selectCheck} value={'premise'}  checkedd={this.state.premiseSelected} />
                                     <ResponsiveText margin={[0, 0, 0, 10]} color={colors.grey1}>
                                         Premise
                                     </ResponsiveText>
                                     <View style={{ marginStart: 5 }} >
-                                        <DropDown data={this.props.premiseListNames} height={hp(4)} width={wp(57)} />
+                                        <DropDown disabled={!this.state.premiseSelected} data={this.props.premiseListNames} height={hp(4)} width={wp(57)} />
                                     </View>
                                 </View>
                             </View>
@@ -411,7 +448,8 @@ class RandomWheelClass extends React.Component {
                                 onPress={() => {
                                     {
                                         this.setState({ isModalVisible: false });
-                                        this.props.dispatch(GetNearestRestaurantAction({ lat: this.state.lat, long: this.state.long, distance: this.state.distance }));
+                                        this.props.dispatch(GetNearestRestaurantAction({ lat: this.state.lat, long: this.state.long, distance: this.state.selectedDistanceId }));
+                                        this.addSettings();
                                     }
                                 }}
                                 style={{
