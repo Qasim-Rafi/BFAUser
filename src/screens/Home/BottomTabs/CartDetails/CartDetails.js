@@ -51,7 +51,7 @@ const CartDetails = ({ navigation }) => {
 
   const [random, setRandom] = React.useState([]);
   const [totalPrice, setTotalPrice] = React.useState();
-  const [ratingCount, setRatingCount] = React.useState();
+  const [ratingCount, setRatingCount] = React.useState(3);
   const [visible, setVisible] = React.useState(false);
   const [isLoading, setLoading] = React.useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -756,7 +756,7 @@ const CartDetails = ({ navigation }) => {
         <AirbnbRating
           count={5}
           reviews={['Terrible', 'Bad', 'OK', 'Good', 'Very Good']}
-          defaultRating={3}
+          defaultRating={ratingCount}
           onFinishRating={v => {
             setRatingCount(v);
           }}

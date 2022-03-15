@@ -56,7 +56,7 @@ export default function Optional() {
           placeHolderText={'Graduate'}
           fieldName={'Educational Background'}
         />
-        <CustomInput placeHolderText={'Married'} fieldName={'Marital STatus'} />
+        <CustomInput placeHolderText={'Married'} fieldName={'Marital Status'} />
         <CustomInput placeHolderText={'3'} fieldName={'No of Children'} />
         <View style={{marginTop:15}}>
           <ResponsiveText size={3} color={colors.grey1} margin={[0,0,5,30]}>Empoyment Sector</ResponsiveText>

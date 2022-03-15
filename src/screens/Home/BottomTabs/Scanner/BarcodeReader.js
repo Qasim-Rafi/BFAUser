@@ -15,7 +15,7 @@ import {
   Header,
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
-import routeName from '../../../../constants/routeName'
+import {routeName} from '../../../../constants/routeName'
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import {colors} from '../../../../constants/colorsPallet';
 import {hp} from '../../../../helpers/Responsiveness';
@@ -34,6 +34,7 @@ const BarcodeReader = ({navigation})=> {
    const onSuccess = (e) => {
         setResult(e.data)
         setScan(false)
+        navigation.navigate(routeName.INVOICE_LIST)
         
       }
       

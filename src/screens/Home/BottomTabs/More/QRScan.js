@@ -29,15 +29,14 @@ import ResponsiveText from '../../../../components/RnText';
 const QRScan = ({navigation})=> {
     const [scan, setScan] = useState(true)
     const [result, setResult] = useState()
+    console.log('eedewferf');
     
 
    const onSuccess = (e) => {
-        setResult(e.data)
+        setResult(e)
         setScan(false)
         
       }
-    
-     
 
 
       return (
