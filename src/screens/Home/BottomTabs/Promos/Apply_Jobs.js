@@ -115,7 +115,7 @@ export default function Apply_Jobs({ navigation, route }) {
             {' '}
             Job Title : 
           </ResponsiveText>
-          <ResponsiveText size={4} color={colors.white}>
+          <ResponsiveText size={4} color={colors.grey}>
           {'              '}
               {data.jobTitle}
               </ResponsiveText>
@@ -125,7 +125,7 @@ export default function Apply_Jobs({ navigation, route }) {
           {' '}
             Description : 
           </ResponsiveText>
-          <ResponsiveText size={4} color={colors.white}>
+          <ResponsiveText size={4} color={colors.grey}>
           {'         '}
           {data.jobDescription}
           </ResponsiveText>
@@ -135,7 +135,7 @@ export default function Apply_Jobs({ navigation, route }) {
           {' '}
             Restaurant : 
           </ResponsiveText>
-          <ResponsiveText size={4} color={colors.white}>
+          <ResponsiveText size={4} color={colors.grey}>
           {'          '}
           {data.restuarantName}
           </ResponsiveText>
@@ -145,7 +145,7 @@ export default function Apply_Jobs({ navigation, route }) {
           {' '}
             Salary : 
           </ResponsiveText>
-          <ResponsiveText size={4} color={colors.white}>
+          <ResponsiveText size={4} color={colors.grey}>
           {'                   '}
           {data.salaryRange}
           </ResponsiveText>
