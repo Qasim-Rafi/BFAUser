@@ -34,15 +34,9 @@ const QRScan = ({navigation})=> {
 
    const onSuccess = (e) => {
         setResult(e)
-        console.log(e);
         setScan(false)
-        getOrderData(e.data);
         
       }
-    const getOrderData=(id)=>{
-
-    }
-     
 
 
       return (
