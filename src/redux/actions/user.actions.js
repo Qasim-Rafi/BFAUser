@@ -349,6 +349,12 @@ export const GetDistanceListAction = data => {
     data: data,
   };
 };
+export const getApplyJobList = data => {
+  return {
+    type: types.GET_APPLY_JOB_LIST_REQUEST,
+    data: data,
+  };
+};
 
 // //Get User categories actions
 // export const addRUpdateCategory = (params) => {

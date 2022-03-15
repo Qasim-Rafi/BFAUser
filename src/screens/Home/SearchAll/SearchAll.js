@@ -147,7 +147,7 @@ export default function SearchAll({navigation}) {
         <TextInput
           style={{
             height: hp(6),
-            width: wp(75),
+            width: wp(73),
             backgroundColor: colors.black1,
             borderRadius: wp(4),
             padding: wp(4),
@@ -189,7 +189,12 @@ export default function SearchAll({navigation}) {
               </ResponsiveText>
             </RadioButton>
           </RadioGroup>
-          <TouchableOpacity onPress={()=>setModalVisible(true)}>
+          <TouchableOpacity onPress={()=>setModalVisible(true)} style={{flexDirection:'row'}}>
+            <Icon
+            source={globalPath.PREFERANCES}
+            size={20}
+            margin={[0, 0, 0, 10]}
+          />
             <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>
                 Filter{' '}
               </ResponsiveText>

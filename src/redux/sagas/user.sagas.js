@@ -1172,3 +1172,26 @@ function* getDistanceListSagaApi(data) {
     yield put({type: types.GET_DISTANCE_LIST_FAILURE, payload: []});
   }
 }
+ //GetAppliedJobs
+export function* getApplyJobListSaga() {
+  yield takeLatest(types.GET_APPLY_JOB_LIST_REQUEST, getApplyJobListSagaApi);
+}
+function* getApplyJobListSagaApi(data) {
+  console.log(data, 'Data in getApplyJobListSagaApi')
+  try {
+    const response = yield Api.get(urls.GET_APPLY_JOB_LIST);
+    console.log(response, 'distanceList');
+    if (response && response.success == true) {
+      yield put({
+        type: types.GET_APPLY_JOB_LIST_SUCCESS,
+        payload: response.data,
+      });
+    } else {
+      yield put({type: types.GET_APPLY_JOB_LIST_FAILURE, payload: []});
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({type: types.GET_APPLY_JOB_LIST_FAILURE, payload: []});
+  }
+}
