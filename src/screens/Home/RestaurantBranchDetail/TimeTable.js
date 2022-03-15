@@ -24,14 +24,14 @@ export default function TimeTable(props) {
         <ResponsiveText>Operation Hours</ResponsiveText>
       </View>
       <Table borderStyle={{ borderWidth: 0 }}>
-        <Row data={tableHead} flexArr={[1.67, 2, 2]} style={styles.head} textStyle={{textAlign:'center',color:colors.white}} />
+        <Row data={tableHead} flexArr={[1.3, 2, 2]} style={styles.head} textStyle={{textAlign:'center',color:colors.white}} />
         <TableWrapper style={styles.wrapper}>
           <Col data={tableTitle} style={styles.title} heightArr={[28, 28]} textStyle={styles.Headertext}  />
           <Rows data={data.map((v) => {
             return (
               [v.openingTime, v.closingTime]
             )
-          })} flexArr={[0.1, 1, 1]} style={styles.row} textStyle={styles.text} />
+          })} flexArr={[1, 1, 1]} style={styles.row} textStyle={styles.text} />
         </TableWrapper>
       </Table>
     </View>
