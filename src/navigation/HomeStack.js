@@ -38,6 +38,7 @@ import ContactUs from '../screens/Home/BottomTabs/More/ContactUs';
 import MoreAboutDishes from '../screens/Home/BottomTabs/More/MoreAboutDishes';
 import MyReviews from '../screens/Home/BottomTabs/More/MyReviews';
 import QRScan from '../screens/Home/BottomTabs/More/QRScan';
+import InvoiceList from '../screens/Home/BottomTabs/More/InvoiceList';
 import AllDishesList from '../screens/Home/BottomTabs/Home/AllDishesList';
 import BarcodeReader from '../screens/Home/BottomTabs/Scanner/BarcodeReader';
 import More from '../screens/Home/BottomTabs/More/More';
@@ -105,6 +106,7 @@ function HomeStack() {
       <Stack.Screen name={routeName.MORE_ABOUT_DISHES} component={MoreAboutDishes} />
       <Stack.Screen name={routeName.MY_REVIEWS} component={MyReviews} />
       <Stack.Screen name={routeName.SCAN_QR} component={QRScan} />
+      <Stack.Screen name={routeName.INVOICE_LIST} component={InvoiceList} />
       <Stack.Screen name={routeName.BARCODE_READER} component={BarcodeReader} />
       <Stack.Screen
         name={routeName.ALL_DISHES_LIST}
