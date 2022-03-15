@@ -82,6 +82,8 @@ const PARKING_ICON = require('../assets/icons/parking.png');
 const WIFI_ICON = require('../assets/icons/wifi.png');
 const MOSQUE_ICON = require('../assets/icons/mosque.png');
 const NORECORD_ICON = require('../assets/icons/norecordfound.png');
+const INVOICE_ICON = require('../assets/icons/Invoice.png');
+
 
 
 // STATIC DUMMY IMAGES
@@ -229,6 +231,8 @@ export const globalPath = {
   COWRIES,
   DELETE_ICON,
   NORECORD_ICON,
+  INVOICE_ICON,
+
   FAQ,
   FAVOURITES,
   ICON_VIEW,

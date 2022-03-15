@@ -1855,6 +1855,23 @@ export const CARD_DATA = [
     url: require('../assets/icons/mastercard-2.png'),
   },
 ];
+export const INVOICE_DATA = [
+  {
+    cardType: 'Bali Coin',
+    cardNo: 'Scan to pay with your Bali Coin',
+    url: require('../assets/icons/cowries.png'),
+  },
+  {
+    cardType: 'Card',
+    cardNo: 'Scan to pay with your preferred card',
+    url: require('../assets/icons/card.png'),
+  },
+  {
+    cardType: 'Cash',
+    cardNo: 'Scan to pay with cash',
+    url: require('../assets/icons/cash.png'),
+  },
+];
 
 export const Cart_Details = [
   // {
