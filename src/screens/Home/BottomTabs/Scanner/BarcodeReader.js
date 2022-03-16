@@ -34,7 +34,7 @@ const BarcodeReader = ({navigation})=> {
    const onSuccess = (e) => {
         setResult(e.data)
         setScan(false)
-        navigation.navigate(routeName.INVOICE_LIST)
+        navigation.navigate(routeName.INVOICE_LIST,e.data)
         
       }
       
@@ -56,8 +56,8 @@ const BarcodeReader = ({navigation})=> {
               
               <View >
                 { result &&
-                  <View style={{alignItems:'flex-start', margin:30}}>
-                    <ResponsiveText color={colors.white} size={3.5} >{result}</ResponsiveText>
+                  <View style={{alignItems:'center', margin:30}}>
+                    <ResponsiveText color={colors.white} textAlign={'center'} size={3.5} >{'Reset for scan again'}</ResponsiveText>
                     <TouchableOpacity
                       onPress={() => {
                           onReset()
