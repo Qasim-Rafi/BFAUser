@@ -28,7 +28,7 @@ import Modal from "react-native-modal";
 import DropDown from '../../../../components/DropDown';
 import Geolocation from 'react-native-geolocation-service';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetAreaAllListAction, GetDistanceListAction, GetNearestRestaurantAction, GetPremiseAllListAction } from '../../../../redux/actions/user.actions';
+import { GetAreaAllListAction, GetDistanceListAction, GetNearestRestaurantAction, GetPremiseAllListAction, GetUserRandomiserSetting } from '../../../../redux/actions/user.actions';
 import { showMessage } from 'react-native-flash-message';
 import urls from '../../../../redux/lib/urls';
 import Api from '../../../../redux/lib/api';
@@ -53,14 +53,12 @@ class RandomWheelClass extends React.Component {
             long: null,
             distance: 3,
             loading: false,
-            areaList: this.props.areaListNames,
-            premiseList: this.props.premiseListNames,
             restaurantSelected: true,
-            selectedAreaId:1,
-            selectedDistanceId:3,
-            selectedPremiseId:1,
+            selectedAreaId:2,
+            selectedDistanceId: 6,
+            selectedPremiseId: 2,
             noOfResults:1,
-            areaSelected:false,
+            areaSelected: false,
             distanceSelected:false,
             premiseSelected:false,
             dishesSelected: false,
@@ -76,10 +74,19 @@ class RandomWheelClass extends React.Component {
         this.props.dispatch(GetPremiseAllListAction())
         this.props.dispatch(GetDistanceListAction())
         this.getUserId()
+        this.setState({
+            restaurantSelected: this.props.userRandomiserSetting?this.props.userRandomiserSetting.isRestaurant : true,
+            selectedAreaId: this.props.userRandomiserSetting? this.props.userRandomiserSetting.areaId :2,
+            selectedDistanceId:this.props.userRandomiserSetting? this.props.userRandomiserSetting.distance : 6,
+            selectedPremiseId: this.props.userRandomiserSetting? this.props.userRandomiserSetting.premiseId : 2,
+            noOfResults: this.props.userRandomiserSetting?this.props.userRandomiserSetting.noOfResult : 1,
+            areaSelected: this.props.userRandomiserSetting? true : false,
+        })
     }
     getUserId = async () => {
         var userIdGet = await AsyncStorage.getItem('@userId');
         this.setState({userId:userIdGet})
+        this.props.dispatch(GetUserRandomiserSetting({userId:userIdGet}))
     }
     requestCurrentLocation = async () => {
         try {
@@ -172,6 +179,9 @@ class RandomWheelClass extends React.Component {
         // console.log(this.state.selectedDistanceId,'selectedDistanceId');
         // console.log(new Date().toLocaleString().replace(',',''))
         // console.log(this.state.userId,'UserId');
+        console.log(this.props.userRandomiserSetting,'userRandomiserSettinn');
+        console.log(this.state.areaSelected,'areaSelected');
+
         const wheelOptions = {
             rewards: this.props.restaurantList.map(names => names.name),
             knobSize: 30,
@@ -499,6 +509,9 @@ export default RandomWheel = (props) => {
     const distanceList = useSelector(state => state.appReducers.DistanceList.data)
     const distanceListStrings = distanceList.map(string => string.stringValue)
 
+    const userRandomiserSetting = useSelector(state => state.appReducers.getUserRandomiserSetting.data)
+    console.log(userRandomiserSetting,'userRandomiserSetting in RW');
+
     // console.log(distanceListStrings,'distanceList in wheel');
 
     useEffect(() => {
@@ -523,6 +536,7 @@ export default RandomWheel = (props) => {
         premiseListNames={premiseListNames}
         distance={distanceListStrings}
         distanceList={distanceList}
+        userRandomiserSetting={userRandomiserSetting}
     />
 
 };

@@ -1195,3 +1195,25 @@ function* getApplyJobListSagaApi(data) {
     yield put({type: types.GET_APPLY_JOB_LIST_FAILURE, payload: []});
   }
 }
+export function* getUserRandomiserSaga() {
+  yield takeLatest(types.GET_USER_RANDOMISER_SETTING_REQUEST, getUserRandomiserSagaApi);
+}
+function* getUserRandomiserSagaApi(data) {
+  console.log(data, 'Data in getUserRandomiserSaga')
+  try {
+    const response = yield Api.get(urls.GET_USER_RANDOMISER_SETTING+ data.data.userId);
+    console.log(response, 'getUserRandomizerSaga');
+    if (response && response.success == true) {
+      yield put({
+        type: types.GET_USER_RANDOMISER_SETTING_SUCCESS,
+        payload: response.data,
+      });
+    } else {
+      yield put({type: types.GET_USER_RANDOMISER_SETTING_FAILURE, payload: {}});
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({type: types.GET_USER_RANDOMISER_SETTING_FAILURE, payload: {}});
+  }
+}

@@ -355,6 +355,12 @@ export const getApplyJobList = data => {
     data: data,
   };
 };
+export const GetUserRandomiserSetting = data => {
+  return {
+    type: types.GET_USER_RANDOMISER_SETTING_REQUEST,
+    data: data,
+  };
+};
 
 // //Get User categories actions
 // export const addRUpdateCategory = (params) => {

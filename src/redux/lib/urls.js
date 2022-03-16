@@ -64,7 +64,7 @@ export default urls = {
   GET_ORDER_BY_ID:'api/Order/GetOrderByIdforApp/',
 
   ADD_USER_RANDOMISER: 'api/UserRandomizerSetting/AddUserRandomizerSetting',
-
+  GET_USER_RANDOMISER_SETTING:'api/UserRandomizerSetting/GetUserRandomizerSettingById/'
 
 
 
