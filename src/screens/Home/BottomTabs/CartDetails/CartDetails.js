@@ -247,7 +247,7 @@ const CartDetails = ({ navigation }) => {
           icon: { icon: 'auto', position: 'left' },
           //backgroundColor:colors.black1
         });
-        navigation.navigate(routeName.LANDING_SCREEN)
+        // navigation.navigate(routeName.LANDING_SCREEN)
       } else {
       }
     } catch (error) {
