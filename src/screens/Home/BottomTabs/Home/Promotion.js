@@ -57,7 +57,7 @@ const Promotion = props => {
                     onPress={() =>
                       props.navigation.navigate(routeName.DISH_DETAIL, {
                         dish: url,
-                        promotion:true
+                        promotion: true
                       })
                     }>
                     <View
@@ -92,6 +92,17 @@ const Promotion = props => {
                           </Text>
                           : undefined
                         } */}
+                        <Text
+                          style={{
+                            top: hp(0), borderTopRightRadius: 15,
+                            opacity: 1, alignSelf: 'flex-start',
+                            color: 'white', padding: 4,
+                            backgroundColor: colors.yellow1,
+                            fontWeight: '600', fontSize: 8.5,marginBottom: hp(6)
+                          }}
+                        >
+                          {'flat '+url.dishonOff+'% off'}
+                        </Text>
                         <Text
                           style={{
                             color: 'white', padding: 3, opacity: 0.7,

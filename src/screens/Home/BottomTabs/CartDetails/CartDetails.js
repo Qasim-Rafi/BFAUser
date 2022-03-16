@@ -11,7 +11,7 @@ import {
   Alert,
   Modal,
   FlatList,
-  ScrollView,
+  ScrollView,TextInput
 } from 'react-native';
 import Icon from '../../../../components/Icon';
 import ResponsiveText from '../../../../components/RnText';
@@ -28,6 +28,8 @@ import {
   retriveCart,
   getOrders,
 } from '../../../../redux/actions/user.actions';
+// import {TextInput} from 'react-native-gesture-handler';
+import {color} from 'react-native-reanimated';
 import AsyncStorage from '@react-native-community/async-storage';
 import { routeName } from '../../../../constants/routeName';
 import Api from '../../../../redux/lib/api';
@@ -55,6 +57,7 @@ const CartDetails = ({ navigation }) => {
   const [visible, setVisible] = React.useState(false);
   const [isLoading, setLoading] = React.useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [text, setText] = useState('');
   const dropdownRef = React.useRef(null);
   // const WATER_IMAGE = require('./water.png');
   const ratingCompleted = rating => {
@@ -229,7 +232,8 @@ const CartDetails = ({ navigation }) => {
         userId +
         '&UpdatedById=' +
         userId +
-        '&RestaurantBranchId=' + selectedBranch,
+        '&RestaurantBranchId=' + selectedBranch+
+        '&Reviews='+text,
       );
       console.log('res', res);
       if (res && res.success == true) {
@@ -243,6 +247,7 @@ const CartDetails = ({ navigation }) => {
           icon: { icon: 'auto', position: 'left' },
           //backgroundColor:colors.black1
         });
+        navigation.navigate(routeName.LANDING_SCREEN)
       } else {
       }
     } catch (error) {
@@ -598,7 +603,9 @@ const CartDetails = ({ navigation }) => {
                 }}>
                 <ResponsiveText size={3.5}>{'Cancel Order'}</ResponsiveText>
               </TouchableOpacity>
-            ) : item.statusName === 'Delivered' && item.ratingFlag == false ? (
+            ) :
+            //  item.statusName === 'Delivered' && item.ratingFlag == false ? 
+            (
               <TouchableOpacity
                 onPress={() => {
                   setModalVisible(true);
@@ -617,7 +624,9 @@ const CartDetails = ({ navigation }) => {
                 }}>
                 <ResponsiveText size={3.5}>{'Rating'}</ResponsiveText>
               </TouchableOpacity>
-            ) : null}
+            )
+            //  : null
+             }
           </View>
         </ScrollView>
       </View>
@@ -762,18 +771,41 @@ const CartDetails = ({ navigation }) => {
           }}
           size={25}
         />
-        {/* <Rating
-          type='custom'
-          // ratingImage={WATER_IMAGE}
-          ratingColor={Colors.yellow}
-          ratingBackgroundColor={colors.white}
-          tintColor={colors.black2}
-          ratingCount={5}
-          imageSize={30}
-          onFinishRating={ratingCompleted}
-          style={{ paddingVertical: 10, backgroundColor: colors.black2 }}
-          ratingContainerStyle={{ backgroundColor: colors.black2 }}
-        /> */}
+        
+        <View style={{flexDirection: 'row', margin: 20}}>
+            <TouchableOpacity
+            // onPress={() => setVisible(!visible)}
+            >
+              <Icon source={globalPath.PLUS_ICON} />
+            </TouchableOpacity>
+            <ResponsiveText color={colors.white} margin={[0, 0, 0, 10]}>
+              Add Remarks
+            </ResponsiveText>
+          </View>
+
+          <View
+            style={{
+              margin: 5,
+              paddingHorizontal: 10,
+            }}>
+            <TextInput
+              style={{
+                height: 70,
+                borderWidth: 2,
+                borderRadius: 3,
+                paddingHorizontal: 15,
+                borderColor: color.yellow,
+                alignContent: 'center',
+                backgroundColor: colors.grey1,           
+              }}
+              textAlignVertical="top"
+              multiline={true}
+              placeholder="Remarks..."
+              onChangeText={text => setText(text)}
+              defaultValue={text}
+              placeholderTextColor={colors.white}
+            />
+          </View>
         <TouchableOpacity
           onPress={() => {
             submitRating();

@@ -61,7 +61,8 @@ export default urls = {
   GET_PREMISE_LIST: 'api/Lookups/Premise',
   GET_DISTANCE_LIST: 'api/Lookups/Distance',
   GET_APPLY_JOB_LIST: 'api/PeopleChoice/GetPeopleChoiceLikedAll/1/10',
-  GET_ORDER_BY_ID:'api/Order/GetOrderByIdforApp/'
+  GET_ORDER_BY_ID:'api/Order/GetOrderByIdforApp/',
+  ADD_PAYMENT:'api/Order/AddOrderPayment'
 
 
 
