@@ -25,13 +25,10 @@ export const SearchResult = (SearchText, selected) => {
   };
 };
 //More from rest
-export const moreFromRestaurant = (index, limit) => {
+export const moreFromRestaurant = (id) => {
   return {
     type: types.MORE_FROM_RESTAURANT_REQUEST,
-    data: {
-      index: index,
-      limit: limit,
-    },
+    data: id
   };
 };
 //GET PAYMENT HISTORY

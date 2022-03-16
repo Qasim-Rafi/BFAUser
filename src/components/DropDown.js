@@ -28,6 +28,7 @@ export default function DropDown(props) {
 
 
       <SelectDropdown
+        disabled={props.disabled? props.disabled : false}
         statusBarTranslucent={true}
         dropdownStyle={{ borderRadius: 7, borderBottomWidth: 0 }}
         dropdown1RowTxtStyle={{ color: colors.white, textAlign: "left", marginStart: 20, fontSize: 14, }}
@@ -43,10 +44,10 @@ export default function DropDown(props) {
           borderRadius: 7,
 
         }}
-        buttonTextStyle={{ color: colors.white, fontSize: 14, textAlign: 'left', }}
+        buttonTextStyle={{ color: props.disabled? colors.grey :colors.white, fontSize: 14, textAlign: 'left', }}
         renderDropdownIcon={() => {
           return (
-            <Icon source={globalPath.DOWN_ARROW} tintColor={colors.white} size={10} />
+            <Icon source={globalPath.DOWN_ARROW} tintColor={props.disabled? colors.grey :colors.white} size={10} />
           );
         }}
         dropdownIconPosition={"right"}

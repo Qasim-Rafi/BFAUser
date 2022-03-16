@@ -111,7 +111,7 @@ export default function DishDescription(props) {
           </View>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => navigation.navigate(routeName.CONTACT_US)}>
+          onPress={() => navigation.navigate(routeName.CONTACT_US,props.item.restaurantBranchId)}>
           <View style={{alignItems: 'center'}}>
             <Icon source={globalPath.CONTACT} />
             <ResponsiveText top={5} color={colors.yellow}>

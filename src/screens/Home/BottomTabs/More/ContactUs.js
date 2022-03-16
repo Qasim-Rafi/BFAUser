@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 import { colors } from '../../../../constants/colorsPallet'
 import Icon from '../../../../components/Icon'
@@ -6,9 +6,47 @@ import Header from '../../../../components/Header'
 import { globalPath } from '../../../../constants/globalPath'
 import ResponsiveText from '../../../../components/RnText'
 import { hp, wp } from '../../../../helpers/Responsiveness'
+import Api from '../../../../redux/lib/api'
+import urls from '../../../../redux/lib/urls'
 
 
-export default function ContactUs({ navigation }) {
+export default function ContactUs({ navigation ,route}) {
+  const [data, setData] = useState({});
+  const [loading, setLoading] = useState(false);
+
+    React.useEffect(() => {
+        // dispatch(getProfileData());
+        // console.log('loading', loading);
+        getData()
+      }, []);
+      const getData = async id => {
+        // var obj = {
+        //   orderStatus: 5,
+        //   updatedDateTime: new Date(),
+        //   updatebyId: userId,
+        // };
+        // console.log('obj', obj);
+        try {
+            setLoading(true)
+          const res = await Api.get(urls.GET_CONATACT_FROM_DISH+route.params);
+          console.log('ree', res);
+          if (res && res.success == true) {
+            setLoading(false)
+    
+            setData(res.data);
+            // dropdownRef.current.showMessage({
+            //   message: 'Alert',
+            //   description: 'Order Canceled',
+            //   type: 'success',
+            //   icon: { icon: 'auto', position: 'left' },
+            //   //backgroundColor:colors.black1
+            // });
+          } else {
+            setLoading(false)
+    
+          }
+        } catch (error) {}
+      };
     return (
         <View style={{ flex: 1, backgroundColor: colors.black3 }}>
             <View style={{ flexDirection: 'row', justifyContent: "space-between", padding: 7 }}>
@@ -42,7 +80,7 @@ export default function ContactUs({ navigation }) {
                         height: hp(6), width: wp(90), alignSelf: 'center',
                         borderRadius: 7, flexDirection: 'row'
                     }}>
-                        <ResponsiveText color={colors.white} size={5.5} margin={[10, 20, 10, 20]}>+673 223 4011</ResponsiveText>
+                        <ResponsiveText color={colors.white} size={5} margin={[10, 20, 10, 20]}>+673 223 4011</ResponsiveText>
                     </View>
                 </View>
                 <View style={{ marginTop: 10, }}>
@@ -52,7 +90,7 @@ export default function ContactUs({ navigation }) {
                         height: hp(6), width: wp(90), alignSelf: 'center',
                         borderRadius: 7, flexDirection: 'row'
                     }}>
-                        <ResponsiveText color={colors.white} size={5.5} margin={[10, 20, 10, 20]}>excapadebrunei@gmail.com</ResponsiveText>
+                        <ResponsiveText color={colors.white} size={5} margin={[10, 20, 10, 20]}>excapadebrunei@gmail.com</ResponsiveText>
                     </View>
                 </View>
                 <View style={{ marginTop: 10, }}>
@@ -62,17 +100,16 @@ export default function ContactUs({ navigation }) {
                         height: hp(6), width: wp(90), alignSelf: 'center',
                         borderRadius: 7, flexDirection: 'row'
                     }}>
-                        <ResponsiveText color={colors.white} size={5.5} margin={[10, 20, 10, 20]}>excapade.com</ResponsiveText>
+                        <ResponsiveText color={colors.white} size={5} margin={[10, 20, 10, 20]}>excapade.com</ResponsiveText>
                     </View>
                 </View>
                 <View style={{ marginTop: 10, }}>
                     <ResponsiveText color={colors.grey1} size={3} margin={[0, 20, 0, 20]}>Address: </ResponsiveText>
                     <View style={{
-                        backgroundColor: colors.black1,
-                        height: hp(7.5), width: wp(90), alignSelf: 'center',
+                        backgroundColor: colors.black1, width: wp(90), alignSelf: 'center',
                         borderRadius: 7, flexDirection: 'row'
                     }}>
-                        <ResponsiveText color={colors.white} size={4} margin={[10, 20, 10, 20]}>Regent Square, Kiulap 2, Bandar </ResponsiveText>
+                        <ResponsiveText numberOfLines={4}  color={colors.white} size={3} margin={[10, 20, 10, 20]}>Regent Square, Kiulap , Bandar Regent Square, Kiulap , BandarRegent Square, Kiulap , BandarRegent Square, Kiulap , Bandar</ResponsiveText>
                     </View>
                 </View>
 

@@ -478,6 +478,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         moreFromRest: {
           ...state.moreFromRest,
+          data: [],
           loading: true,
         },
       };
@@ -488,7 +489,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         moreFromRest: {
           ...state.moreFromRest,
-          data: [...state.moreFromRest.data, ...action.payload],
+          data: action.payload,
           loading: false,
         },
       };
@@ -497,6 +498,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         moreFromRest: {
           ...state.moreFromRest,
+          data: [],
           loading: false,
         },
       };
