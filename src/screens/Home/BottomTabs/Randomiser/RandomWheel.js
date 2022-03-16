@@ -39,10 +39,12 @@ import AsyncStorage from '@react-native-community/async-storage';
 class RandomWheelClass extends React.Component {
     constructor(props) {
         super(props);
-        var userId = await AsyncStorage.getItem('@userId');
+
+
+        
 
         this.state = {
-            userId: userId,
+            userId: null,
             winnerValue: null,
             winnerIndex: null,
             started: false,
@@ -73,6 +75,11 @@ class RandomWheelClass extends React.Component {
         this.props.dispatch(GetAreaAllListAction())
         this.props.dispatch(GetPremiseAllListAction())
         this.props.dispatch(GetDistanceListAction())
+        this.getUserId()
+    }
+    getUserId = async () => {
+        var userIdGet = await AsyncStorage.getItem('@userId');
+        this.setState({userId:userIdGet})
     }
     requestCurrentLocation = async () => {
         try {
@@ -133,7 +140,7 @@ class RandomWheelClass extends React.Component {
     };
      addSettings = async (index, item) => {
         var obj ={
-            "userId": 94,
+            "userId": this.state.userId,
             "createdDateTime": new Date(),
             "isRestaurant": this.state.restaurantSelected,
             "areaId": this.state.selectedAreaId,
@@ -164,7 +171,7 @@ class RandomWheelClass extends React.Component {
         // console.log(this.state.noOfResults);
         // console.log(this.state.selectedDistanceId,'selectedDistanceId');
         // console.log(new Date().toLocaleString().replace(',',''))
-        console.log(this.state.userId,'UserId');
+        // console.log(this.state.userId,'UserId');
         const wheelOptions = {
             rewards: this.props.restaurantList.map(names => names.name),
             knobSize: 30,
@@ -492,7 +499,7 @@ export default RandomWheel = (props) => {
     const distanceList = useSelector(state => state.appReducers.DistanceList.data)
     const distanceListStrings = distanceList.map(string => string.stringValue)
 
-    console.log(distanceListStrings,'distanceList in wheel');
+    // console.log(distanceListStrings,'distanceList in wheel');
 
     useEffect(() => {
         console.log('UseEffect is working')
