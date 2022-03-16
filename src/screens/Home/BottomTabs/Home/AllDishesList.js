@@ -83,13 +83,13 @@ export default function AllDishesList({ route, navigation }) {
                   ? state.appReducers.moreFromRest.data
                   : state.appReducers.getdishbycusineid.refreshing,
   );
-  React.useEffect(() => {
-    onLoad();
-    // console.log(
-    //   'aja data',
-    //   data.filter(v => v.cusineName == title),
-    // );
-  }, []);
+  // React.useEffect(() => {
+  //   onLoad();
+  //   // console.log(
+  //   //   'aja data',
+  //   //   data.filter(v => v.cusineName == title),
+  //   // );
+  // }, []);
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={{ marginHorizontal: 8, marginVertical: 10, flex: 1 }}
