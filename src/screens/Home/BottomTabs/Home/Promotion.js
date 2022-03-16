@@ -75,7 +75,7 @@ const Promotion = props => {
                           flex: 1,
                           padding: 5,
                           overflow: 'hidden',
-                          justifyContent: 'flex-end',
+                          justifyContent: 'space-between',
                           backgroundColor: 'rgba(0,0,0,1)',
                         }}
                         source={{ uri: url.imageDataB }}>
@@ -94,15 +94,16 @@ const Promotion = props => {
                         } */}
                         <Text
                           style={{
-                            top: hp(0), borderTopRightRadius: 15,
+                            top: hp(1), borderTopRightRadius: 15,
                             opacity: 1, alignSelf: 'flex-start',
                             color: 'white', padding: 4,
                             backgroundColor: colors.yellow1,
-                            fontWeight: '600', fontSize: 8.5,marginBottom: hp(6)
+                            fontWeight: '600', fontSize: 8.5,
                           }}
                         >
                           {'flat '+url.dishonOff+'% off'}
                         </Text>
+                        <View>
                         <Text
                           style={{
                             color: 'white', padding: 3, opacity: 0.7,
@@ -122,7 +123,7 @@ const Promotion = props => {
 
                         >
                           {url.titleR}
-                        </Text>
+                        </Text></View>
                         {/* <ResponsiveText
                       source={{uri:url.fullPath}}>
                       <ResponsiveText
