@@ -31,13 +31,13 @@ const MoreFromResturant = (props, navigation) => {
     const dispatch = useDispatch();
 
     React.useEffect(() => {
-        dispatch(moreFromRestaurant(1, 4));
+        dispatch(moreFromRestaurant(props.restaurantBranchId));
 
     }, [])
     return (
         <>
             <View style={styles.yourFavoriteHeaderSection}>
-                <ResponsiveText size={4} color={colors.white}>More From Resturant</ResponsiveText>
+                <ResponsiveText size={4} color={colors.white}>More From {props.title}</ResponsiveText>
                 <SeeAllButton
                     title={'More From Restaurant'}
                     navigation={props.navigation}
@@ -48,7 +48,7 @@ const MoreFromResturant = (props, navigation) => {
                 <ScrollView showsHorizontalScrollIndicator={false} horizontal>
                     {moreFromRest.length > 0 ?
                         moreFromRest.map((url, index) => {
-                            if (index < 4) {
+                            // if (index < 4) {
                                 return (
                                     <TouchableOpacity
                                         onPress={() =>
@@ -87,9 +87,8 @@ const MoreFromResturant = (props, navigation) => {
                                     </TouchableOpacity>
 
                                 )
-                            }
                         }) : !loading ?
-                            <Text style={{ textAlign: 'center' }}>
+                            <Text style={{ textAlign: 'center',color:colors.white,alignSelf:'center' }}>
                                 No data found
                             </Text> : null
                     }

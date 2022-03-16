@@ -17,6 +17,7 @@ export default urls = {
   // PROMOTIONS: 'api/HomeAdSlideShowAdmin/GetHomeAdSlideShowAdminAll',
   RESTAURANT_DISH_ALL: 'api/RestaurantDish/GetRestaurantDishAll/',          /// bfa Recomendation
   DISH_CALORIE: 'api/RestaurantBranchesAdmin/GetRestaurantDishCalorie/',    //MORE about dish detail
+  MORE_RESTAURANT: 'api/RestaurantDish/GetMoreFromRestaurant/',    //MORE from restaurant
   GET_USER: 'api/Users/GetUser/2',
   GET_BFA_PARTNERS: 'api/AdminBFAPartner/GetAdminBFAPartnerAll/24/1/40',
   GET_ADD_BANNER: 'api/HomeAdSlideShowAdmin/GetHomeAdSlideShowAdminAll',
@@ -61,7 +62,9 @@ export default urls = {
   GET_PREMISE_LIST: 'api/Lookups/Premise',
   GET_DISTANCE_LIST: 'api/Lookups/Distance',
   GET_APPLY_JOB_LIST: 'api/PeopleChoice/GetPeopleChoiceLikedAll/1/10',
-  GET_ORDER_BY_ID:'api/Order/GetOrderByIdforApp/'
+  GET_ORDER_BY_ID:'api/Order/GetOrderByIdforApp/',
+  GET_CONATACT_FROM_DISH:'api/RestaurantBranchesAdmin/GetRestaurantContactInfo/',
+
 
 
 
