@@ -66,6 +66,7 @@ export default urls = {
   GET_CONATACT_FROM_DISH:'api/RestaurantBranchesAdmin/GetRestaurantContactInfo/',
 
 
+  ADD_USER_RANDOMISER: 'api/UserRandomizerSetting/AddUserRandomizerSetting',
 
 
 
