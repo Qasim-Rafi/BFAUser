@@ -352,6 +352,13 @@ export const getApplyJobList = data => {
     data: data,
   };
 };
+// GetAllReviews
+export const getAllReviews = data => {
+  return {
+    type: types.GET_ALL_REVIEWS_LIST_REQUEST,
+    data: data,
+  };
+};
 
 // //Get User categories actions
 // export const addRUpdateCategory = (params) => {

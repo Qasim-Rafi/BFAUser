@@ -5,7 +5,7 @@ import {
   KeyboardAvoidingView,
   Image,
   Platform,
-  TouchableOpacity,
+  TouchableOpacity,Text
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
@@ -25,6 +25,11 @@ import {useSelector, useDispatch} from 'react-redux';
 import {profileTabs} from '../../../constants/mock';
 import {getProfileData} from '../../../redux/actions/user.actions';
 import CustomInput from '../../../components/customInput';
+import {RadioButton, RadioGroup} from 'react-native-flexi-radio-button';
+import DropDown from '../../../components/CustomizeDropdown';
+import Dropdown from '../../../components/DropDown';
+import DateTimePicker from '@react-native-community/datetimepicker';
+
 import urls from '../../../redux/lib/urls';
 import Api from '../../../redux/lib/api';
 
@@ -38,7 +43,38 @@ export default function ProfileScreen({navigation}) {
   const [userName, setUsername] = useState();
   const [fullName, setFullname] = useState();
   const [editable, setEditable] = useState(false);
+  const [gender, setgender] = useState('');
+   const Gender = [
+    {lable: "Male  ", icon: require('../../../assets/icons/male.png') },
+   { lable: "Female  ", icon: require('../../../assets/icons/female.png') }
+   ];
+  // const Gender=['Male','Female']
+  const [date, setDate] = useState(null);
+  const [mode, setMode] = useState('date');
+  const [show, setShow] = useState(false);
 
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === 'ios');
+    setDate(currentDate);
+  };
+
+  const showMode = currentMode => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const dateFormat = (date) => {
+    if (date != null) {
+      return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+    }
+  };
+
+  const showDAtepicker = () => {
+    setShow(true);
+  };
+  const industry = ["Education", "Social Media", "Employer", "Business"];
+  const employmentSec = ['Private', 'Government', 'Semi-Government', ];
   React.useEffect(() => {
     dispatch(getProfileData());
     console.log('loading', loading);
@@ -79,6 +115,134 @@ export default function ProfileScreen({navigation}) {
       } else {
       }
     } catch (error) {}
+  };
+  const Optional=()=> {
+    return(
+<View style={styles.formArea}>
+      <ScrollView style={{flexGrow: 1}}>
+        <View style={{marginTop:20, marginBottom:-30, marginLeft:20}} >
+      <ResponsiveText color={colors.grey1} size={3} margin={[0, 0, 0, 10]}>
+            Are you interested in receiving potential job offers?
+          </ResponsiveText>
+          <RadioGroup
+            color={colors.yellow}
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+              marginTop: -5,
+              marginBottom: 30,
+            }}>
+            <RadioButton value={'item1'} style={{marginStart: 0}}>
+              <ResponsiveText color={colors.grey1} margin={[0, 7, 0, 7]}>
+                Yes
+              </ResponsiveText>
+            </RadioButton>
+
+            <RadioButton value={'item2'} style={{marginStart: 10}}>
+              <ResponsiveText color={colors.grey1} margin={[0, 7, 0, 7]}>
+                No
+              </ResponsiveText>
+            </RadioButton>
+          </RadioGroup>
+          </View>
+        {/* <CustomInput placeHolderText={'20/8/1980'} fieldName={'Birthday'} /> */}
+        <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+              <DropDown data={Gender}
+                onSelect={(selectedItem, index) => {
+                  console.log(selectedItem, index);
+                  setgender(selectedItem.lable)
+                }}
+                height={hp(6)} width={wp(39)} />
+              <View>
+                <View style={{ borderWidth: 2, zIndex: 0, borderRadius: 10 }}>
+                  <Text
+                    style={{
+                      fontSize: 7,
+                      position: 'absolute',
+                      zIndex: 1,
+                      top: -5,
+                      marginStart: 9,
+                      color: colors.white,
+                    }}>
+                    Date of birth
+                  </Text>
+
+                  <TouchableOpacity onPress={showDAtepicker}>
+                    <Text
+                      style={{
+                        color: colors.white,
+                        textAlign: 'center',
+                        textAlignVertical: 'center',
+                        backgroundColor: '#3f3f3f',
+                        padding: 13,
+                        borderStartWidth: 10,
+                        borderRadius: 10,
+                        paddingHorizontal: 30,
+                        paddingVertical: 16,
+                        fontSize: 12,
+                      }}>
+                      {date == null ? 'Month/Day/Year' : dateFormat(date)}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+            {show && (
+              <DateTimePicker
+                // testID="dateTimePicker"
+                value={new Date}
+                mode={'date'}
+                // is24Hour={true}
+                display="default"
+                onChange={onChange}
+              />
+            )}
+        <CustomInput
+          placeHolderText={'Graduate'}
+          fieldName={'Educational Background'}
+        />
+        <CustomInput placeHolderText={'Married'} fieldName={'Marital Status'} />
+        <CustomInput placeHolderText={'3'} fieldName={'No of Children'} />
+        <View style={{marginTop:15}}>
+          <ResponsiveText size={3} color={colors.grey1} margin={[0,0,5,30]}>Empoyment Sector</ResponsiveText>
+          <Dropdown data={employmentSec}/>
+          </View>
+        <View style={{marginTop:15}}>
+          <ResponsiveText size={3} color={colors.grey1} margin={[0,0,5,30]}>Industry</ResponsiveText>
+          <Dropdown data={industry}/>
+          </View>
+
+        {/* <CustomInput
+          placeHolderText={'Private'}
+          dropdownList={true}
+          fieldName={'Employment sector'}
+        /> */}
+        {/* <CustomInput placeHolderText={'Education'} fieldName={'Industry'} /> */}
+        <View
+          style={{
+            justifyContent: 'center',
+            marginTop: 40,
+            marginBottom: 50,
+            width: wp(90),
+            alignSelf: 'center',
+          }}>
+          
+          <TouchableOpacity
+            style={{
+              alignSelf: 'center',
+              backgroundColor: colors.yellow,
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 7,
+              height: hp(5),
+              width: wp(80),
+            }}>
+            <ResponsiveText color={colors.black}>Save</ResponsiveText>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </View>
+    )
   };
   const userInfo = () => {
     return (
@@ -281,5 +445,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  formArea: {
+    flex: 0.7,
+    // borderTopRightRadius: wp(8),
+    // borderTopLeftRadius: wp(8),
+    backgroundColor: '#202020',
+    paddingTop: 10,
   },
 });

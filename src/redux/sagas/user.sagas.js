@@ -1194,3 +1194,26 @@ function* getApplyJobListSagaApi(data) {
     yield put({type: types.GET_APPLY_JOB_LIST_FAILURE, payload: []});
   }
 }
+ // GetAllReviews
+ export function* getAllReviewsSaga() {
+  yield takeLatest(types.GET_ALL_REVIEWS_LIST_REQUEST, getAllReviewsSagaApi);
+}
+function* getAllReviewsSagaApi(data) {
+  console.log(data, 'Data in getAllReviews')
+  try {
+    const response = yield Api.get(urls.GET_ALL_REVIEWS_LIST);
+    console.log(response, 'distanceList');
+    if (response && response.success == true) {
+      yield put({
+        type: types.GET_ALL_REVIEWS_LIST_SUCCESS,
+        payload: response.data,
+      });
+    } else {
+      yield put({type: types.GET_ALL_REVIEWS_LIST_FAILURE, payload: []});
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({type: types.GET_ALL_REVIEWS_LIST_FAILURE, payload: []});
+  }
+}

@@ -8,8 +8,17 @@ import { globalPath } from '../../../../constants/globalPath'
 import { hp, wp } from '../../../../helpers/Responsiveness'
 import { Rating } from 'react-native-ratings'
 import { MY_REVIEWS_DATA } from '../../../../constants/mock'
+import {useSelector, useDispatch} from 'react-redux';
+import {getAllReviews} from '../../../../redux/actions/user.actions';
 
 export default function MyReviews({navigation}) {
+    const Reviews = useSelector(state => state.appReducers.getAllReviews.data);
+    console.log('revewssssss',Reviews)
+    const dispatch = useDispatch();
+    React.useEffect(() => {
+      dispatch(getAllReviews());
+  
+    }, []);
     return (
         <View style={{ flex:1, backgroundColor:colors.black3}}>
         <View style={{ flexDirection: 'row', justifyContent: "space-between",padding:7 }}>
