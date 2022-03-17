@@ -1201,7 +1201,8 @@ export function* getUserRandomiserSaga() {
 function* getUserRandomiserSagaApi(data) {
   console.log(data, 'Data in getUserRandomiserSaga')
   try {
-    const response = yield Api.get(urls.GET_USER_RANDOMISER_SETTING+ data.data.userId);
+    const profileId = yield AsyncStorage.getItem('@userId');
+    const response = yield Api.get(urls.GET_USER_RANDOMISER_SETTING+ profileId);
     console.log(response, 'getUserRandomizerSaga');
     if (response && response.success == true) {
       yield put({
