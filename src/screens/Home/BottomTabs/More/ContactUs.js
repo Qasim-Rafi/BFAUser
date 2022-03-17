@@ -80,7 +80,7 @@ export default function ContactUs({ navigation ,route}) {
                         height: hp(6), width: wp(90), alignSelf: 'center',
                         borderRadius: 7, flexDirection: 'row'
                     }}>
-                        <ResponsiveText color={colors.white} size={5} margin={[10, 20, 10, 20]}>+673 223 4011</ResponsiveText>
+                        <ResponsiveText color={colors.white} size={5} margin={[10, 20, 10, 20]}>{data.phoneNo}</ResponsiveText>
                     </View>
                 </View>
                 <View style={{ marginTop: 10, }}>
@@ -90,7 +90,7 @@ export default function ContactUs({ navigation ,route}) {
                         height: hp(6), width: wp(90), alignSelf: 'center',
                         borderRadius: 7, flexDirection: 'row'
                     }}>
-                        <ResponsiveText color={colors.white} size={5} margin={[10, 20, 10, 20]}>excapadebrunei@gmail.com</ResponsiveText>
+                        <ResponsiveText color={colors.white} size={5} margin={[10, 20, 10, 20]}>{data.email}</ResponsiveText>
                     </View>
                 </View>
                 <View style={{ marginTop: 10, }}>
@@ -100,7 +100,7 @@ export default function ContactUs({ navigation ,route}) {
                         height: hp(6), width: wp(90), alignSelf: 'center',
                         borderRadius: 7, flexDirection: 'row'
                     }}>
-                        <ResponsiveText color={colors.white} size={5} margin={[10, 20, 10, 20]}>excapade.com</ResponsiveText>
+                        <ResponsiveText color={colors.white} size={5} margin={[10, 20, 10, 20]}>{data.siteUrl}</ResponsiveText>
                     </View>
                 </View>
                 <View style={{ marginTop: 10, }}>
@@ -109,7 +109,7 @@ export default function ContactUs({ navigation ,route}) {
                         backgroundColor: colors.black1, width: wp(90), alignSelf: 'center',
                         borderRadius: 7, flexDirection: 'row'
                     }}>
-                        <ResponsiveText numberOfLines={4}  color={colors.white} size={3} margin={[10, 20, 10, 20]}>Regent Square, Kiulap , Bandar Regent Square, Kiulap , BandarRegent Square, Kiulap , BandarRegent Square, Kiulap , Bandar</ResponsiveText>
+                        <ResponsiveText numberOfLines={4}  color={colors.white} size={3} margin={[10, 20, 10, 20]}>{data.branchAddress}</ResponsiveText>
                     </View>
                 </View>
 
