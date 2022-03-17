@@ -13,6 +13,7 @@ import MapView from '../screens/Home/MapView/MapView';
 import Menu from '../screens/Home/Menu/Menu';
 import Order_history from '../screens/Home/Order_History/Order_history';
 import ProfileScreen from '../screens/Home/ProfileScreen/ProfileScreen';
+import ProfileDisplay from '../screens/Home/ProfileScreen/ProfileDisplay';
 import RestaurantDetail from '../screens/Home/RestaurantBranchDetail/RestaurantBranchDetail';
 import FilterSearch from '../screens/Home/SearchAll/FilterSearch';
 import SearchAll from '../screens/Home/SearchAll/SearchAll';
@@ -77,6 +78,7 @@ function HomeStack() {
       <Stack.Screen name={routeName.ORDER_HISTORY} component={Order_history} />
       <Stack.Screen name={routeName.RestaurantDetail} component={RestaurantDetail} />
       <Stack.Screen name={routeName.PROFILE_SCREEN} component={ProfileScreen} />
+      <Stack.Screen name={routeName.PROFILE_DISPLAY} component={ProfileDisplay} />
       <Stack.Screen name={routeName.MENU} component={Menu} />
       <Stack.Screen name={routeName.MAP_VIEW} component={MapView} />
       <Stack.Screen name={routeName.FilterSearch} component={FilterSearch} />
