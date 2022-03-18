@@ -30,7 +30,8 @@ import {RadioButton, RadioGroup} from 'react-native-flexi-radio-button';
 import DropDown from '../../../components/CustomizeDropdown';
 import Dropdown from '../../../components/DropDown';
 import DateTimePicker from '@react-native-community/datetimepicker';
-
+import ImagePicker from 'react-native-image-crop-picker';
+import Modal from "react-native-modal";
 import urls from '../../../redux/lib/urls';
 import Api from '../../../redux/lib/api';
 
@@ -53,7 +54,7 @@ export default function ProfileScreen({navigation}) {
   const [date, setDate] = useState(null);
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
-
+  const [img, setImg] = useState(null);
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
@@ -117,6 +118,34 @@ export default function ProfileScreen({navigation}) {
       }
     } catch (error) {}
   };
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+  const takePhotoFromCamera = () => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true
+    }).then(image => {
+      console.log(image.cropRect);
+      setImg(image)
+      setModalVisible(!isModalVisible);
+    });
+  }
+  const openPhoneCamera = () => {
+    ImagePicker.openCamera({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then(image => {
+      console.log(image);
+      setImg(image)
+      setModalVisible(!isModalVisible);
+
+    });
+  }
   const Optional = () => {
     return (
       <View style={styles.formArea}>
@@ -359,7 +388,7 @@ export default function ProfileScreen({navigation}) {
               alignItems: 'center',
               flex: 0.45,
             }}>
-            <Image
+            {/* <Image
               style={{
                 width: 100,
                 height: 100,
@@ -371,7 +400,37 @@ export default function ProfileScreen({navigation}) {
                   ? {uri: profileData.fullpath}
                   : globalPath.USER_PROFILE
               }
-            />
+            /> */}
+            <View style={styles.header}>
+              <View style={{ flexDirection: 'row' }}>
+                <Image style={{
+                  width: 100,
+                  height: 100,
+                  borderRadius: 50,
+                  marginBottom: 10,
+                }}
+                  source={img==null? globalPath.USER_PROFILE:{uri:img.path}}
+                  // {profileData.fullpath ? { uri: profileData.fullpath } : globalPath.USER_PROFILE}
+                />
+                <View style={{ height: hp(3.6), width: wp(7.4), alignItems: 'center', justifyContent: 'center' }}>
+                  <TouchableOpacity onPress={toggleModal}>
+                    <Image style={{ height: hp(2.4), width: wp(7), marginRight: hp(4), borderRadius: 30 }}
+                      source={globalPath.CAMERA_ICON} />
+
+                  </TouchableOpacity>
+                  <Modal isVisible={isModalVisible}
+                    onSwipeComplete={() => toggleModal(false)}
+                    swipeDirection={["left", "right", 'down', 'up']}
+                    animationIn='slideInUp'
+                  >
+                    <View style={{ height: hp(40), width: wp(90), backgroundColor: colors.white, borderRadius: hp(4), justifyContent: 'center', alignItems: 'center' }}>
+                      <RnButton gradColor={[colors.green1, colors.yellow]} title={'Take Photo'} onPress={openPhoneCamera} />
+                      <RnButton margin={[50, 0, 0, 0]} gradColor={[colors.green1, colors.yellow]} title={'Take Photo from gallery'} onPress={takePhotoFromCamera} />
+                    </View>
+                  </Modal>
+                </View>
+              </View>
+            </View>
             <ResponsiveText size={4}>{profileData.fullName}</ResponsiveText>
             <ResponsiveText color={colors.lightBlack} size={3}>{profileData.email}</ResponsiveText>
           </View>
