@@ -86,7 +86,7 @@ const More = ({ route, navigation }) => {
             />
           </TouchableOpacity>
           <View style={{ justifyContent: 'center', marginLeft: 10 }}>
-            <ResponsiveText size={4}>{profileData.username}</ResponsiveText>
+            <ResponsiveText size={4}>{profileData.fullName}</ResponsiveText>
             <ResponsiveText color={colors.lightBlack} size={3}>
               {profileData.email}
             </ResponsiveText>

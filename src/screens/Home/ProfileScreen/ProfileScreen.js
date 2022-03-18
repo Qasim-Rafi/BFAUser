@@ -12,16 +12,9 @@ import {ScrollView} from 'react-native-gesture-handler';
 
 import {hp, wp} from '../../../helpers/Responsiveness';
 import Icon from '../../../components/Icon';
-import Input from '../../../components/Input';
-import RnButton from '../../../components/RnButton';
 import ResponsiveText from '../../../components/RnText';
 import {globalPath} from '../../../constants/globalPath';
-import {Spacing} from '../../../constants/spacingScale';
-import Line from '../../../components/Line';
-import {routeName} from '../../../constants/routeName';
 import {colors} from '../../../constants/colorsPallet';
-import Profile from './Profile';
-import Optional from './Optional';
 import {useSelector, useDispatch} from 'react-redux';
 import {profileTabs} from '../../../constants/mock';
 import {getProfileData} from '../../../redux/actions/user.actions';
@@ -43,8 +36,15 @@ export default function ProfileScreen({navigation}) {
   const [email, setEmail] = useState();
   const [userName, setUsername] = useState();
   const [fullName, setFullname] = useState();
+  const [ContactNo, setContactNo] = useState();
+
   const [editable, setEditable] = useState(false);
+  const [JobIntrest, setJobIntrest] = useState(false);
+
   const [gender, setgender] = useState('');
+  const [EducationalBack, setEducationalBack] = useState();
+  const [child, setChild] = useState('');
+
   const Gender = [
     {lable: 'Male  ', icon: require('../../../assets/icons/male.png')},
     {lable: 'Female  ', icon: require('../../../assets/icons/female.png')},
@@ -93,7 +93,7 @@ export default function ProfileScreen({navigation}) {
       email: email,
       fullName: fullName,
       gender: 'Male',
-      dateofBirth: '2004/1/14',
+      dateofBirth: dateFormat(date),
       contactNumber: '0340040404040',
       updatebyId: profileData.id,
       updatedDateTime: new Date(),
@@ -104,7 +104,6 @@ export default function ProfileScreen({navigation}) {
       console.log('ree', res);
       if (res && res.success == true) {
         dispatch(getProfileData());
-        setEditable(false);
 
         // dropdownRef.current.showMessage({
         //   message: 'Alert',
@@ -116,6 +115,12 @@ export default function ProfileScreen({navigation}) {
       } else {
       }
     } catch (error) {}
+  };
+  const onSelect = (chindex, value) => {
+    // setSelectItem({selectedItem: item});
+    console.log('butttonn', value);
+    setJobIntrest(value);
+    // return check;
   };
   const Optional = () => {
     return (
@@ -130,19 +135,21 @@ export default function ProfileScreen({navigation}) {
             </ResponsiveText>
             <RadioGroup
               color={colors.yellow}
+              selectedIndex={1}
+              onSelect={(index, value) => onSelect(index, value)}
               style={{
                 flex: 1,
                 flexDirection: 'row',
                 marginTop: -5,
                 marginBottom: 30,
               }}>
-              <RadioButton value={'item1'} style={{marginStart: 0}}>
+              <RadioButton value={true} style={{marginStart: 0}}>
                 <ResponsiveText color={colors.grey1} margin={[0, 7, 0, 7]}>
                   Yes
                 </ResponsiveText>
               </RadioButton>
 
-              <RadioButton value={'item2'} style={{marginStart: 10}}>
+              <RadioButton value={false} style={{marginStart: 10}}>
                 <ResponsiveText color={colors.grey1} margin={[0, 7, 0, 7]}>
                   No
                 </ResponsiveText>
@@ -150,7 +157,12 @@ export default function ProfileScreen({navigation}) {
             </RadioGroup>
           </View>
           {/* <CustomInput placeHolderText={'20/8/1980'} fieldName={'Birthday'} /> */}
-          <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-evenly',
+              marginTop: hp(2),
+            }}>
             <DropDown
               data={Gender}
               onSelect={(selectedItem, index) => {
@@ -161,34 +173,34 @@ export default function ProfileScreen({navigation}) {
               width={wp(39)}
             />
             <View>
-              <View style={{borderWidth: 2, zIndex: 0, borderRadius: 10}}>
+              <View style={{borderWidth: 0, zIndex: 0, borderRadius: 20}}>
                 <Text
                   style={{
-                    fontSize: 7,
+                    fontSize: 10,
                     position: 'absolute',
                     zIndex: 1,
-                    top: -5,
+                    top: -15,
                     marginStart: 9,
-                    color: colors.white,
+                    color: colors.grey,
                   }}>
                   Date of birth
                 </Text>
 
-                <TouchableOpacity onPress={showDAtepicker}>
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: colors.black1,
+                    padding: 18,
+                    borderRadius: 8,
+                  }}
+                  onPress={showDAtepicker}>
                   <Text
                     style={{
                       color: colors.white,
                       textAlign: 'center',
                       textAlignVertical: 'center',
-                      backgroundColor: '#3f3f3f',
-                      padding: 13,
-                      borderStartWidth: 10,
-                      borderRadius: 10,
-                      paddingHorizontal: 30,
-                      paddingVertical: 16,
                       fontSize: 12,
                     }}>
-                    {date == null ? 'Month/Day/Year' : dateFormat(date)}
+                    {date == null ? 'Month / Day / Year' : dateFormat(date)}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -206,13 +218,21 @@ export default function ProfileScreen({navigation}) {
           )}
           <CustomInput
             placeHolderText={'Graduate'}
+            value={EducationalBack}
+            onChangeText={text => setEducationalBack(text)}
             fieldName={'Educational Background'}
           />
           <CustomInput
             placeHolderText={'Married'}
             fieldName={'Marital Status'}
           />
-          <CustomInput placeHolderText={'3'} fieldName={'No of Children'} />
+          <CustomInput
+            placeHolderText={'3'}
+            value={child}
+            onChangeText={text => setChild(text)}
+            fieldName={'No of Children'}
+          />
+
           <View style={{marginTop: 15}}>
             <ResponsiveText
               size={3}
@@ -280,23 +300,25 @@ export default function ProfileScreen({navigation}) {
               fieldName={'Full Name'}
               value={fullName}
               onChangeText={text => setFullname(text)}
-              editable={editable}
             />
             <CustomInput
               placeHolderText={profileData.username}
               fieldName={'User Name'}
               value={userName}
               onChangeText={text => setUsername(text)}
-              editable={editable}
             />
             <CustomInput
               placeHolderText={profileData.email}
               fieldName={'Email'}
               value={email}
               onChangeText={text => setEmail(text)}
-              editable={editable}
             />
-            <CustomInput placeHolderText={'000-000-0000'} fieldName={'Phone'} />
+            <CustomInput
+              placeHolderText={'000-000-0000'}
+              value={ContactNo}
+              onChangeText={text => setContactNo(text)}
+              fieldName={'Phone'}
+            />
           </View>
           <View style={{flex: 0.32, marginTop: 40, marginBottom: 20}}>
             <TouchableOpacity
@@ -350,7 +372,7 @@ export default function ProfileScreen({navigation}) {
                 padding: 10,
                 borderRadius: 20,
               }}>
-              <Icon source={globalPath.EDIT_PROFILE} />
+              <Icon source={globalPath.RIGHT_ARROW} />
             </TouchableOpacity>
           </View>
           <View
@@ -373,7 +395,9 @@ export default function ProfileScreen({navigation}) {
               }
             />
             <ResponsiveText size={4}>{profileData.fullName}</ResponsiveText>
-            <ResponsiveText color={colors.lightBlack} size={3}>{profileData.email}</ResponsiveText>
+            <ResponsiveText color={colors.lightBlack} size={3}>
+              {profileData.email}
+            </ResponsiveText>
           </View>
         </View>
         <View style={{flex: 0.09, flexDirection: 'row', marginTop: -10}}>
@@ -421,7 +445,7 @@ export default function ProfileScreen({navigation}) {
         {/* <ScrollView style={{flex:0.9,margin:20}}> */}
 
         {activeTab === 1 && userInfo()}
-        {activeTab === 2 && <Optional />}
+        {activeTab === 2 && Optional()}
 
         {/* </ScrollView> */}
       </View>

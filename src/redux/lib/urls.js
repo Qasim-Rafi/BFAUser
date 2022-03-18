@@ -67,6 +67,10 @@ export default urls = {
   GET_CONATACT_FROM_DISH:'api/RestaurantBranchesAdmin/GetRestaurantContactInfo/',
   ADD_USER_RANDOMISER: 'api/UserRandomizerSetting/AddUserRandomizerSetting',
   GET_ALL_REVIEWS_LIST: 'GetAllReviews',
+  GET_LOOKUP_INDUSTRY:'api/Lookups/GetLookUpIndustry',
+  GET_LOOKUP_EMP_SEC:'api/Lookups/GetLookUpEmploymentSector',
+  GET_LOOKUP_MARITAL_STATUS:'api/Lookups/GetLookUpMarriageStatus',
+
 
 
 
