@@ -12,6 +12,7 @@ import {
   Modal,
   FlatList,
   ScrollView,
+  TextInput,RefreshControl
 } from 'react-native';
 import Icon from '../../../../components/Icon';
 import ResponsiveText from '../../../../components/RnText';
@@ -28,20 +29,24 @@ import {
   retriveCart,
   getOrders,
 } from '../../../../redux/actions/user.actions';
+// import {TextInput} from 'react-native-gesture-handler';
+import { color } from 'react-native-reanimated';
 import AsyncStorage from '@react-native-community/async-storage';
 import { routeName } from '../../../../constants/routeName';
 import Api from '../../../../redux/lib/api';
 import urls from '../../../../redux/lib/urls';
-import FlashMessage, { showMessage, hideMessage } from 'react-native-flash-message';
+import FlashMessage, {
+  showMessage,
+  hideMessage,
+} from 'react-native-flash-message';
 import { BarIndicator } from 'react-native-indicators';
 import { Rating, AirbnbRating } from 'react-native-ratings';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import RNModal from 'react-native-modal';
 
 const CartDetails = ({ navigation }) => {
   const cartList = useSelector(state => state.appReducers.cartList.data);
-  const orderList = useSelector(
-    state => state.appReducers.your_ordersList.data,
-  );
+  const orderList = useSelector(state => state.appReducers.your_ordersList.data);
   const orderList_Loading = useSelector(
     state => state.appReducers.your_ordersList.loading,
   );
@@ -55,7 +60,14 @@ const CartDetails = ({ navigation }) => {
   const [visible, setVisible] = React.useState(false);
   const [isLoading, setLoading] = React.useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [text, setText] = useState('');
   const dropdownRef = React.useRef(null);
+  const [refreshing, setRefreshing] = React.useState(false);
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(6000).then(() => setRefreshing(false));
+    dispatch(getOrders());
+  }, []);
   // const WATER_IMAGE = require('./water.png');
   const ratingCompleted = rating => {
     console.log('Rating is: ' + rating);
@@ -71,6 +83,9 @@ const CartDetails = ({ navigation }) => {
   //     dispatch(retriveCart(JSON.parse(item)));
   //   }
   // }, []);
+  const wait = timeout => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+  };
   const newArray = [];
   cartList.forEach(obj => {
     if (!newArray.some(o => o.titleR === obj.titleR)) {
@@ -229,12 +244,15 @@ const CartDetails = ({ navigation }) => {
         userId +
         '&UpdatedById=' +
         userId +
-        '&RestaurantBranchId=' + selectedBranch,
+        '&RestaurantBranchId=' +
+        selectedBranch +
+        '&Reviews=' +
+        text,
       );
       console.log('res', res);
       if (res && res.success == true) {
         dispatch(getOrders());
-        setModalVisible(!modalVisible)
+        setModalVisible(!modalVisible);
         // console.log(res, 'gggg');
         dropdownRef.current.showMessage({
           message: 'Alert',
@@ -243,6 +261,7 @@ const CartDetails = ({ navigation }) => {
           icon: { icon: 'auto', position: 'left' },
           //backgroundColor:colors.black1
         });
+        // navigation.navigate(routeName.LANDING_SCREEN)
       } else {
       }
     } catch (error) {
@@ -325,7 +344,9 @@ const CartDetails = ({ navigation }) => {
           margin: 5,
           borderRadius: 20,
         }}>
-        <ScrollView>
+        <ScrollView 
+         
+         >
           <View>
             <View
               style={{
@@ -602,7 +623,7 @@ const CartDetails = ({ navigation }) => {
               <TouchableOpacity
                 onPress={() => {
                   setModalVisible(true);
-                  SetSelectedBranch(item.restaurantBranchId)
+                  SetSelectedBranch(item.restaurantBranchId);
                 }}
                 style={{
                   height: hp(5),
@@ -747,51 +768,79 @@ const CartDetails = ({ navigation }) => {
           </>
         ) : undefined}
       </ModalPoup>
-      <ModalPoup visible={modalVisible}>
-        <TouchableOpacity
-          style={[styles.button, styles.buttonClose]}
-          onPress={() => setModalVisible(!modalVisible)}>
-          <Text style={styles.textStyle}>Close</Text>
-        </TouchableOpacity>
-        <AirbnbRating
-          count={5}
-          reviews={['Terrible', 'Bad', 'OK', 'Good', 'Very Good']}
-          defaultRating={ratingCount}
-          onFinishRating={v => {
-            setRatingCount(v);
-          }}
-          size={25}
-        />
-        {/* <Rating
-          type='custom'
-          // ratingImage={WATER_IMAGE}
-          ratingColor={Colors.yellow}
-          ratingBackgroundColor={colors.white}
-          tintColor={colors.black2}
-          ratingCount={5}
-          imageSize={30}
-          onFinishRating={ratingCompleted}
-          style={{ paddingVertical: 10, backgroundColor: colors.black2 }}
-          ratingContainerStyle={{ backgroundColor: colors.black2 }}
-        /> */}
-        <TouchableOpacity
-          onPress={() => {
-            submitRating();
-          }}
-          style={{
-            height: hp(4),
-            width: wp(30),
-            backgroundColor: colors.yellow,
-            borderRadius: 7,
-            justifyContent: 'center',
-            alignItems: 'center',
-            alignSelf: 'center',
-            marginTop: 15,
-            marginBottom: 5,
-          }}>
-          <ResponsiveText size={3.5}>{'Submit'}</ResponsiveText>
-        </TouchableOpacity>
-      </ModalPoup>
+      <RNModal
+        isVisible={modalVisible}
+        backdropOpacity={0.9}
+        // contentContainerStyle={{height:hp(20)}}
+        // deviceWidth={wp(100)}
+        // deviceHeight={hp(20)}
+        animationIn={'slideInUp'}
+        animationOut={'slideOutDown'}
+        customBackdrop={<View style={{ flex: 1 }} />}
+      // onModalHide={()=>navigation.navigate(routeName.LANDING_SCREEN)}
+      // coverScreen={true}
+      >
+        <View style={{ backgroundColor: colors.black3, padding: wp(5), borderRadius: 20 }}>
+          <TouchableOpacity
+            style={[styles.button, styles.buttonClose]}
+            onPress={() => setModalVisible(!modalVisible)}>
+            <Text style={styles.textStyle}>Close</Text>
+          </TouchableOpacity>
+          <AirbnbRating
+            count={5}
+            reviews={['Terrible', 'Bad', 'OK', 'Good', 'Very Good']}
+            defaultRating={ratingCount}
+            onFinishRating={v => {
+              setRatingCount(v);
+            }}
+            size={25}
+          />
+
+          <View
+            style={{
+              margin: 5,
+              paddingHorizontal: 10,
+              marginVertical: wp(3)
+            }}>
+            <TextInput
+              style={{
+                height: 70,
+                // borderWidth: 2,
+                color: colors.white,
+                borderRadius: 3,
+                paddingHorizontal: 15,
+                borderColor: color.yellow,
+                alignContent: 'center',
+                backgroundColor: colors.black2,
+              }}
+              textAlignVertical="top"
+              multiline={true}
+              placeholder="Remarks..."
+              onChangeText={text => setText(text)}
+              onEndEditing={text => console.log(text)}
+              // defaultValue={text}
+              placeholderTextColor={colors.grey}
+            />
+          </View>
+          <TouchableOpacity
+            onPress={() => {
+              submitRating();
+            }}
+            style={{
+              height: hp(4),
+              width: wp(30),
+              backgroundColor: colors.yellow,
+              borderRadius: 7,
+              justifyContent: 'center',
+              alignItems: 'center',
+              alignSelf: 'center',
+              marginTop: 15,
+              marginBottom: 5,
+            }}>
+            <ResponsiveText size={3.5}>{'Submit'}</ResponsiveText>
+          </TouchableOpacity>
+        </View>
+      </RNModal>
       <View
         style={{
           flex: 0.1,
@@ -824,12 +873,35 @@ const CartDetails = ({ navigation }) => {
             data={orderList}
             keyExtractor={(item, index) => item + index}
             renderItem={renderItem}
+            onRefresh={onRefresh}
+          refreshing={orderList_Loading}
+            // onRefresh={
+            //   <RefreshControl
+            //   colors={Colors.yellow}
+            //     size={30}
+            //     refreshing={refreshing}
+            //   />
+            // }
           // onViewableItemsChanged={onViewRef}
           // viewabilityConfig={viewConfigRef.current}
           />
-        ) : <View style={{ width: wp(100), marginTop: 100, alignItems: 'center', alignSelf: 'center' }}>
-          <Icon borderColor={colors.yellow} borderWidth={0} borderRadius={0} size={250} source={globalPath.NORECORD_ICON} />
-        </View>}
+        ) : (
+          <View
+            style={{
+              width: wp(100),
+              marginTop: 100,
+              alignItems: 'center',
+              alignSelf: 'center',
+            }}>
+            <Icon
+              borderColor={colors.yellow}
+              borderWidth={0}
+              borderRadius={0}
+              size={250}
+              source={globalPath.NORECORD_ICON}
+            />
+          </View>
+        )}
       </View>
       <FlashMessage ref={dropdownRef} />
 

@@ -525,11 +525,10 @@ export function* moreFromRestSaga() {
   yield takeLatest(types.MORE_FROM_RESTAURANT_REQUEST, moreFromRestSagaApi);
 }
 function* moreFromRestSagaApi(data) {
-  const limit = data.data.limit;
-  const index = data.data.index;
+  const id = data.data;
 
   console.log('paramsssssssssss: ', data);
-  const url = urls.RESTAURANT_DISH_ALL + index + '/' + limit;
+  const url = urls.MORE_RESTAURANT +id;
   console.log('People Url: ', url);
   try {
     const response = yield Api.get(url);
@@ -1217,5 +1216,29 @@ function* getUserRandomiserSagaApi(data) {
     // dispatch a success action to the store with the new data object
   } catch (error) {
     yield put({type: types.GET_USER_RANDOMISER_SETTING_FAILURE, payload: {}, success: response.success});
+  }
+}
+ // GetAllReviews
+ export function* getAllReviewsSaga() {
+  yield takeLatest(types.GET_ALL_REVIEWS_LIST_REQUEST, getAllReviewsSagaApi);
+}
+function* getAllReviewsSagaApi(data) {
+  console.log(data, 'Data in getAllReviews')
+  try {
+    const response = yield Api.get(urls.GET_ALL_REVIEWS_LIST);
+    console.log(response, 'distanceList');
+    if (response && response.success == true) {
+      yield put({
+        type: types.GET_ALL_REVIEWS_LIST_SUCCESS,
+        payload: response.data,
+      });
+    } else {
+      yield put({type: types.GET_ALL_REVIEWS_LIST_FAILURE, payload: []});
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    
+    yield put({type: types.GET_ALL_REVIEWS_LIST_FAILURE, payload: []});
   }
 }

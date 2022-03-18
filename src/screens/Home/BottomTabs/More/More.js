@@ -100,7 +100,7 @@ const More = ({ route, navigation }) => {
           <View style={{ margin: 20, }}>
             <ResponsiveText color={colors.white} size={4} >Profile</ResponsiveText>
             <TouchableOpacity
-              onPress={() => navigation.navigate(routeName.PROFILE_SCREEN)}
+              onPress={() => navigation.navigate(routeName.PROFILE_DISPLAY)}
               style={{ backgroundColor: colors.black2, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, borderRadius: 7 }} >
 
               <Icon size={20} source={globalPath.MORE_PROFILE} />

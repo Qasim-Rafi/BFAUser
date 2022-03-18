@@ -153,6 +153,10 @@ const initialState = {
     loading: false,
     data: {},
   },
+  getAllReviews: {
+    loading: false,
+    data: [],
+  },
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -482,6 +486,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         moreFromRest: {
           ...state.moreFromRest,
+          data: [],
           loading: true,
         },
       };
@@ -492,7 +497,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         moreFromRest: {
           ...state.moreFromRest,
-          data: [...state.moreFromRest.data, ...action.payload],
+          data: action.payload,
           loading: false,
         },
       };
@@ -501,6 +506,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         moreFromRest: {
           ...state.moreFromRest,
+          data: [],
           loading: false,
         },
       };
@@ -1266,6 +1272,32 @@ export const appReducers = (state = initialState, action) => {
             loading: false,
           },
         };
+      // GetAllReviews
+    case types.GET_ALL_REVIEWS_LIST_REQUEST:
+      return {
+        ...state,
+        getAllReviews: {
+          ...state.getAllReviews,
+          loading: true,
+        },
+      };
+    case types.GET_ALL_REVIEWS_LIST_SUCCESS:
+      return {
+        ...state,
+        getAllReviews: {
+          ...state.getAllReviews,
+          data: action.payload,
+          loading: false,
+        },
+      };
+    case types.GET_ALL_REVIEWS_LIST_FAILURE:
+      return {
+        ...state,
+        getAllReviews: {
+          ...state.getAllReviews,
+          loading: false,
+        },
+      };
     default:
       return state;
   }

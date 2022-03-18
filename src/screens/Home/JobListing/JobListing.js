@@ -14,14 +14,16 @@ import {useSelector, useDispatch} from 'react-redux';
 
 
 const JobListing = ({ navigation }) => {
-    const JobsList = useSelector(state => state.appReducers.getApplyJobList.data);
+    // const JobsList = useSelector(state => state.appReducers.getApplyJobList.data);
+    const JobsList = useSelector(state => state.appReducers.promoJobs.data);
+    const List_Loading = useSelector(state => state.appReducers.promoJobs.loading);
     console.log("Jobs data: ", JobsList);
     const dispatch = useDispatch();
-    React.useEffect(() => {
-      dispatch( getApplyJobList());
+    // React.useEffect(() => {
+    //   dispatch( getApplyJobList());
   
   
-    }, []);
+    // }, []);
      
     return (
         <View style={{ flex: 1, backgroundColor: colors.black3 }}>
