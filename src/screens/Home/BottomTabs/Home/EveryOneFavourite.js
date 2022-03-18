@@ -103,7 +103,8 @@ const EveryOneFavourite = props => {
                             style={{ paddingVertical: 10, alignSelf: 'flex-start' }}
                           /> */}
                           <AirbnbRating
-                            reviews={[]}
+                            showRating={false}
+                            isDisabled={true}
                             count={5}
                             defaultRating={url.ratingCount}
                             size={12}
