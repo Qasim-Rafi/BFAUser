@@ -161,10 +161,13 @@ const SCANNER_ICON = require('../assets/icons/scanner_yellow.png')
 const SCANNER_ICON_GREY = require('../assets/icons/scanner_gray.png')
 const BIRTHDAY_ICON = require('../assets/icons/birthday.png')
 const GENDER_ICON = require('../assets/icons/Gender.png')
+const CAMERA_ICON = require('../assets/icons/Cameraa.png')
+
 
 
 export const globalPath = {
   LOGOUT,
+  CAMERA_ICON,
   BIRTHDAY_ICON,
   GENDER_ICON,
   SCANNER_ICON_GREY,
