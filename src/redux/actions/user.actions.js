@@ -352,6 +352,12 @@ export const getApplyJobList = data => {
     data: data,
   };
 };
+export const GetUserRandomiserSetting = data => {
+  return {
+    type: types.GET_USER_RANDOMISER_SETTING_REQUEST,
+    data: data,
+  };
+};
 // GetAllReviews
 export const getAllReviews = data => {
   return {

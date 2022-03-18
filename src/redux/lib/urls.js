@@ -66,6 +66,8 @@ export default urls = {
   ADD_PAYMENT:'api/Order/AddOrderPayment',
   GET_CONATACT_FROM_DISH:'api/RestaurantBranchesAdmin/GetRestaurantContactInfo/',
   ADD_USER_RANDOMISER: 'api/UserRandomizerSetting/AddUserRandomizerSetting',
+  GET_USER_RANDOMISER_SETTING:'api/UserRandomizerSetting/GetUserRandomizerSettingById/',
+  UPDATE_USER_RANDOMISER:'api/UserRandomizerSetting/UpdateUserRandomizerSetting/',
   GET_ALL_REVIEWS_LIST: 'GetAllReviews',
   GET_LOOKUP_INDUSTRY:'api/Lookups/GetLookUpIndustry',
   GET_LOOKUP_EMP_SEC:'api/Lookups/GetLookUpEmploymentSector',

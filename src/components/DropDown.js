@@ -32,7 +32,8 @@ export default function DropDown(props) {
         statusBarTranslucent={true}
         dropdownStyle={{ borderRadius: 7, borderBottomWidth: 0 }}
         dropdown1RowTxtStyle={{ color: colors.white, textAlign: "left", marginStart: 20, fontSize: 14, }}
-        defaultValueByIndex={0}
+        defaultValue={props.defaultValue?props.defaultValue:null}
+        // defaultValueByIndex={0}
         rowTextStyle={{ color: colors.white, alignSelf: 'center', fontSize: 14 }}
         rowStyle={{ backgroundColor: colors.black1, borderBottomColor: colors.black1, borderBottomWidth: 0 }}
         buttonStyle={{
