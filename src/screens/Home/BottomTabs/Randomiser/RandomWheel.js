@@ -206,13 +206,13 @@ class RandomWheelClass extends React.Component {
         );
 
         const wheelOptions = {
-            rewards: this.props.restaurantList.map(names => names.name),
+            rewards: this.state.restaurantSelected ? this.props.restaurantList.map(names => names.name) : this.props.favoriteDishesData.map(names => names.dishName) ,
             knobSize: 30,
             borderWidth: 5,
             borderColor: '#fff',
             innerRadius: 30,
             duration: 6000,
-            iconRewards: this.props.restaurantList.map(names => names.fullPath),
+            iconRewards: this.state.restaurantSelected ? this.props.restaurantList.map(names => names.fullPath) : this.props.favoriteDishesData.map(names => names.imageDataB) ,
             backgroundColor: 'transparent',
 
             textAngle: 'horizontal',
@@ -256,7 +256,12 @@ class RandomWheelClass extends React.Component {
 
                                     getWinner={(value, index) => {
                                         this.setState({ winnerValue: value, winnerIndex: index });
-                                        this.props.navigation.navigate(routeName.RestaurantDetail, this.props.restaurantList.find(element => element.name === value).restaurantBranchId)
+                                        if(this.state.restaurantSelected){
+                                            this.props.navigation.navigate(routeName.RestaurantDetail, this.props.restaurantList.find(element => element.name === value).restaurantBranchId)
+                                        }else{
+                                            this.props.navigation.navigate(routeName.DISH_DETAIL,{ dish: this.props.favoriteDishesData.find(element => element.dishName === value)})
+                                        }
+
                                         // alert('Dish ID: ',participants[this.state.winnerIndex])
                                         //    alert('Dish ID: '+participants[this.state.winnerIndex])
                                     }}
@@ -527,6 +532,9 @@ export default RandomWheel = (props) => {
     const distanceList = useSelector(state => state.appReducers.DistanceList.data)
     const userRandomiserSetting = useSelector(state => state.appReducers.getUserRandomiserSetting.data)
     const userRandomiserSettingSuccess = useSelector(state => state.appReducers.getUserRandomiserSetting.success)
+    const favoriteDishesData = useSelector(state => state.appReducers.favorite.data)
+
+    console.log(favoriteDishesData,'favoriteDishesData');
 
     console.log('Effect of useEffect');
     console.log(userRandomiserSettingSuccess,'userRandomiserSettingSuccess');
@@ -540,6 +548,7 @@ export default RandomWheel = (props) => {
         distanceList={distanceList}
         userRandomiserSetting={userRandomiserSetting}
         userRandomiserSettingSuccess={userRandomiserSettingSuccess}
+        favoriteDishesData={favoriteDishesData}
     />
 
 };
