@@ -1208,13 +1208,14 @@ function* getUserRandomiserSagaApi(data) {
       yield put({
         type: types.GET_USER_RANDOMISER_SETTING_SUCCESS,
         payload: response.data,
+        success: response.success
       });
     } else {
-      yield put({type: types.GET_USER_RANDOMISER_SETTING_FAILURE, payload: {}});
+      yield put({type: types.GET_USER_RANDOMISER_SETTING_FAILURE, payload: {}, success: response.success});
     }
 
     // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({type: types.GET_USER_RANDOMISER_SETTING_FAILURE, payload: {}});
+    yield put({type: types.GET_USER_RANDOMISER_SETTING_FAILURE, payload: {}, success: response.success});
   }
 }

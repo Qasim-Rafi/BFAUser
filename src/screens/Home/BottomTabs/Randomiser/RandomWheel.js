@@ -62,6 +62,7 @@ class RandomWheelClass extends React.Component {
             distanceSelected: false,
             premiseSelected: false,
             dishesSelected: false,
+            getRandomiserSuccess: false,
         };
         this.child = null;
     }
@@ -75,7 +76,6 @@ class RandomWheelClass extends React.Component {
         this.props.dispatch(GetDistanceListAction())
         this.getUserId()
         this.setState({
-            restaurantSelected: this.props.userRandomiserSetting.isRestaurant ? this.props.userRandomiserSetting.isRestaurant : true,
             selectedAreaId: this.props.userRandomiserSetting.areaId ? this.props.userRandomiserSetting.areaId : 1,
             selectedDistanceId: this.props.userRandomiserSetting.distance ? this.props.userRandomiserSetting.distance : 6,
             selectedPremiseId: this.props.userRandomiserSetting.premiseId ? this.props.userRandomiserSetting.premiseId : 1,
@@ -83,6 +83,8 @@ class RandomWheelClass extends React.Component {
             areaSelected: this.props.userRandomiserSetting.areaId ? true : false,
             distanceSelected: this.props.userRandomiserSetting.distance ? true : false,
             premiseSelected: this.props.userRandomiserSetting.premiseId ? true : false,
+            restaurantSelected: typeof(this.props.userRandomiserSetting.isRestaurant) === "boolean"  ? this.props.userRandomiserSetting.isRestaurant : true,
+            getRandomiserSuccess: this.props.userRandomiserSettingSuccess
         })
     }
     getUserId = async () => {
@@ -143,7 +145,10 @@ class RandomWheelClass extends React.Component {
         });
 
         this.setState({ winnerIndex: null });
-        this.child._tryAgain();
+        if(this.props.restaurantList.map(names => names.name).length){
+
+            this.child._tryAgain();
+        }
         // this.child._onPress()
     };
     addUserRandomiserSettings = async (index, item) => {
@@ -156,12 +161,32 @@ class RandomWheelClass extends React.Component {
             "premiseId": this.state.selectedPremiseId,
             "noOfResult": this.state.noOfResults
         }
-        console.log('increase', obj);
+        console.log('addUserRandomiserSettings obj', obj);
         try {
             const res = await Api.post(urls.ADD_USER_RANDOMISER, obj);
             console.log('res', res);
             if (res && res.success == true) {
-                dispatch(getOrders());
+                this.props.dispatch(GetUserRandomiserSetting());
+            } else {
+            }
+        } catch (error) { console.log(error);}
+    };
+    updateUserRandomiserSettings = async (index, item) => {
+        var obj = {
+            "isRestaurant": this.state.restaurantSelected,
+            "areaId": this.state.selectedAreaId,
+            "distance": this.state.selectedDistanceId,
+            "premiseId": this.state.selectedPremiseId,
+            "noOfResult": this.state.noOfResults,
+            "updatedById": this.state.userId,
+            "updateDateTime": new Date(),
+        }
+        console.log('updateUserRandomiserSettings obj', obj);
+        try {
+            const res = await Api.put(urls.UPDATE_USER_RANDOMISER+this.state.userId, obj);
+            console.log('res', res);
+            if (res && res.success == true) {
+                this.props.dispatch(GetUserRandomiserSetting());
             } else {
             }
         } catch (error) { console.log(error);}
@@ -176,7 +201,8 @@ class RandomWheelClass extends React.Component {
         // console.log(this.props.userRandomiserSetting, 'userRandomiserSettinn');
         console.log(this.state.areaSelected, 'areaSelected', this.state.selectedAreaId, 
         this.state.selectedDistanceId, this.state.selectedPremiseId,
-        this.state.distanceSelected,this.state.premiseSelected,
+        this.state.distanceSelected,this.state.premiseSelected,this.state.restaurantSelected,this.props.userRandomiserSetting.isRestaurant,
+        this.state.getRandomiserSuccess,'getRandomiserSuccess',
         );
 
         const wheelOptions = {
@@ -235,11 +261,13 @@ class RandomWheelClass extends React.Component {
                                         //    alert('Dish ID: '+participants[this.state.winnerIndex])
                                     }}
                                 />
-                                : showMessage({
-                                    message: "Oooopsss...",
-                                    description: "Seems like there are no restaurants in area you provided.",
-                                    type: "info",
-                                })
+                                : 
+                                // showMessage({
+                                //     message: "Oooopsss...",
+                                //     description: "Seems like there are no restaurants in area you provided.",
+                                //     type: "info",
+                                // })
+                                null
                             : null}
 
 
@@ -278,6 +306,7 @@ class RandomWheelClass extends React.Component {
                         }}>
                         <TouchableOpacity
                             onPress={this.buttonPress}
+                            disabled={this.props.loading}
                             style={{
                                 backgroundColor: colors.yellow,
                                 width: wp(85),
@@ -340,7 +369,7 @@ class RandomWheelClass extends React.Component {
                                         index === 0 ? this.setState({ dishesSelected: true, restaurantSelected: false }) : index === 1 ? this.setState({ dishesSelected: false, restaurantSelected: true }) : null
                                         console.log(this.state.dishesSelected, this.state.restaurantSelected);
                                     }}
-                                    selectedIndex={1}
+                                    selectedIndex={this.state.restaurantSelected?1:0}
                                 >
                                     <RadioButton value={'Dishes'} style={{ marginStart: 10 }}>
                                         <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>Dishes</ResponsiveText>
@@ -430,7 +459,7 @@ class RandomWheelClass extends React.Component {
                                                 this.setState({ noOfResults: value })
                                                 console.log(index, value, this.state.noOfResults);
                                             }}
-                                            selectedIndex={0}
+                                            selectedIndex={this.state.noOfResults-1}
                                         >
                                             <RadioButton value={1} style={{ marginStart: 10 }}>
                                                 <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>1</ResponsiveText>
@@ -461,7 +490,11 @@ class RandomWheelClass extends React.Component {
                                     {
                                         this.setState({ isModalVisible: false });
                                         this.props.dispatch(GetNearestRestaurantAction({ lat: this.state.lat, long: this.state.long, distance: this.state.selectedDistanceId }));
-                                        this.addUserRandomiserSettings();
+                                        if(this.state.getRandomiserSuccess){
+                                            this.updateUserRandomiserSettings()
+                                        }else{
+                                            this.addUserRandomiserSettings();
+                                        }
                                     }
                                 }}
                                 style={{
@@ -493,8 +526,10 @@ export default RandomWheel = (props) => {
     const premiseList = useSelector(state => state.appReducers.AllPremises.data)
     const distanceList = useSelector(state => state.appReducers.DistanceList.data)
     const userRandomiserSetting = useSelector(state => state.appReducers.getUserRandomiserSetting.data)
+    const userRandomiserSettingSuccess = useSelector(state => state.appReducers.getUserRandomiserSetting.success)
 
     console.log('Effect of useEffect');
+    console.log(userRandomiserSettingSuccess,'userRandomiserSettingSuccess');
 
     return <RandomWheelClass {...props}
         dispatch={dispatch}
@@ -504,6 +539,7 @@ export default RandomWheel = (props) => {
         premiseList={premiseList}
         distanceList={distanceList}
         userRandomiserSetting={userRandomiserSetting}
+        userRandomiserSettingSuccess={userRandomiserSettingSuccess}
     />
 
 };

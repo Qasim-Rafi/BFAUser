@@ -1253,6 +1253,7 @@ export const appReducers = (state = initialState, action) => {
           getUserRandomiserSetting: {
             ...state.getUserRandomiserSetting,
             data: action.payload,
+            success: action.success,
             loading: false,
           },
         };
@@ -1261,6 +1262,7 @@ export const appReducers = (state = initialState, action) => {
           ...state,
           getUserRandomiserSetting: {
             ...state.getUserRandomiserSetting,
+            success: action.success,
             loading: false,
           },
         };
