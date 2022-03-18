@@ -149,6 +149,10 @@ const initialState = {
     loading: false,
     data: [],
   },
+  getUserRandomiserSetting: {
+    loading: false,
+    data: {},
+  },
   getAllReviews: {
     loading: false,
     data: [],
@@ -1240,6 +1244,34 @@ export const appReducers = (state = initialState, action) => {
           loading: false,
         },
       };
+      //getUserRandomiserSetting
+      case types.GET_USER_RANDOMISER_SETTING_REQUEST:
+        return {
+          ...state,
+          getUserRandomiserSetting: {
+            ...state.getUserRandomiserSetting,
+            loading: true,
+          },
+        };
+      case types.GET_USER_RANDOMISER_SETTING_SUCCESS:
+        return {
+          ...state,
+          getUserRandomiserSetting: {
+            ...state.getUserRandomiserSetting,
+            data: action.payload,
+            success: action.success,
+            loading: false,
+          },
+        };
+      case types.GET_USER_RANDOMISER_SETTING_FAILURE:
+        return {
+          ...state,
+          getUserRandomiserSetting: {
+            ...state.getUserRandomiserSetting,
+            success: action.success,
+            loading: false,
+          },
+        };
       // GetAllReviews
     case types.GET_ALL_REVIEWS_LIST_REQUEST:
       return {

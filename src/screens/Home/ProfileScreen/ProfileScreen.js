@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -8,35 +8,33 @@ import {
   TouchableOpacity,
   Text,
 } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import {ScrollView} from 'react-native-gesture-handler';
 
-import { hp, wp } from '../../../helpers/Responsiveness';
+import {hp, wp} from '../../../helpers/Responsiveness';
 import Icon from '../../../components/Icon';
 import Input from '../../../components/Input';
 import RnButton from '../../../components/RnButton';
 import ResponsiveText from '../../../components/RnText';
-import { globalPath } from '../../../constants/globalPath';
-import { Spacing } from '../../../constants/spacingScale';
+import {globalPath} from '../../../constants/globalPath';
+import {Spacing} from '../../../constants/spacingScale';
 import Line from '../../../components/Line';
-import { routeName } from '../../../constants/routeName';
-import { colors } from '../../../constants/colorsPallet';
+import {routeName} from '../../../constants/routeName';
+import {colors} from '../../../constants/colorsPallet';
 import Profile from './Profile';
 import Optional from './Optional';
-import { useSelector, useDispatch } from 'react-redux';
-import { profileTabs } from '../../../constants/mock';
-import { getProfileData } from '../../../redux/actions/user.actions';
+import {useSelector, useDispatch} from 'react-redux';
+import {profileTabs} from '../../../constants/mock';
+import {getProfileData} from '../../../redux/actions/user.actions';
 import CustomInput from '../../../components/customInput';
-import { RadioButton, RadioGroup } from 'react-native-flexi-radio-button';
+import {RadioButton, RadioGroup} from 'react-native-flexi-radio-button';
 import DropDown from '../../../components/CustomizeDropdown';
 import Dropdown from '../../../components/DropDown';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import ImagePicker from 'react-native-image-crop-picker';
+
 import urls from '../../../redux/lib/urls';
 import Api from '../../../redux/lib/api';
-import Modal from "react-native-modal";
 
-
-export default function ProfileScreen({ navigation }) {
+export default function ProfileScreen({navigation}) {
   const profileData = useSelector(state => state.appReducers.profileData.data);
   console.log('Profile: ', profileData);
   const loading = useSelector(state => state.appReducers.profileData.loading);
@@ -48,14 +46,13 @@ export default function ProfileScreen({ navigation }) {
   const [editable, setEditable] = useState(false);
   const [gender, setgender] = useState('');
   const Gender = [
-    { lable: 'Male  ', icon: require('../../../assets/icons/male.png') },
-    { lable: 'Female  ', icon: require('../../../assets/icons/female.png') },
+    {lable: 'Male  ', icon: require('../../../assets/icons/male.png')},
+    {lable: 'Female  ', icon: require('../../../assets/icons/female.png')},
   ];
   // const Gender=['Male','Female']
   const [date, setDate] = useState(null);
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
-  const [img, setImg] = useState(null);
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -118,42 +115,13 @@ export default function ProfileScreen({ navigation }) {
         // });
       } else {
       }
-    } catch (error) { }
+    } catch (error) {}
   };
-  const [isModalVisible, setModalVisible] = useState(false);
-
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
-  const takePhotoFromCamera = () => {
-    ImagePicker.openPicker({
-      width: 300,
-      height: 400,
-      cropping: true
-    }).then(image => {
-      console.log(image.cropRect);
-      setImg(image)
-      setModalVisible(!isModalVisible);
-    });
-  }
-  const openPhoneCamera = () => {
-    ImagePicker.openCamera({
-      width: 300,
-      height: 400,
-      cropping: true,
-    }).then(image => {
-      console.log(image);
-      setImg(image)
-      setModalVisible(!isModalVisible);
-
-    });
-  }
-
   const Optional = () => {
     return (
       <View style={styles.formArea}>
-        <ScrollView style={{ flexGrow: 1 }}>
-          <View style={{ marginTop: 20, marginBottom: -30, marginLeft: 20 }}>
+        <ScrollView style={{flexGrow: 1}}>
+          <View style={{marginTop: 20, marginBottom: -30, marginLeft: 20}}>
             <ResponsiveText
               color={colors.grey1}
               size={3}
@@ -168,13 +136,13 @@ export default function ProfileScreen({ navigation }) {
                 marginTop: -5,
                 marginBottom: 30,
               }}>
-              <RadioButton value={'item1'} style={{ marginStart: 0 }}>
+              <RadioButton value={'item1'} style={{marginStart: 0}}>
                 <ResponsiveText color={colors.grey1} margin={[0, 7, 0, 7]}>
                   Yes
                 </ResponsiveText>
               </RadioButton>
 
-              <RadioButton value={'item2'} style={{ marginStart: 10 }}>
+              <RadioButton value={'item2'} style={{marginStart: 10}}>
                 <ResponsiveText color={colors.grey1} margin={[0, 7, 0, 7]}>
                   No
                 </ResponsiveText>
@@ -182,7 +150,7 @@ export default function ProfileScreen({ navigation }) {
             </RadioGroup>
           </View>
           {/* <CustomInput placeHolderText={'20/8/1980'} fieldName={'Birthday'} /> */}
-          <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+          <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
             <DropDown
               data={Gender}
               onSelect={(selectedItem, index) => {
@@ -193,7 +161,7 @@ export default function ProfileScreen({ navigation }) {
               width={wp(39)}
             />
             <View>
-              <View style={{ borderWidth: 2, zIndex: 0, borderRadius: 10 }}>
+              <View style={{borderWidth: 2, zIndex: 0, borderRadius: 10}}>
                 <Text
                   style={{
                     fontSize: 7,
@@ -245,7 +213,7 @@ export default function ProfileScreen({ navigation }) {
             fieldName={'Marital Status'}
           />
           <CustomInput placeHolderText={'3'} fieldName={'No of Children'} />
-          <View style={{ marginTop: 15 }}>
+          <View style={{marginTop: 15}}>
             <ResponsiveText
               size={3}
               color={colors.grey1}
@@ -254,7 +222,7 @@ export default function ProfileScreen({ navigation }) {
             </ResponsiveText>
             <Dropdown data={employmentSec} />
           </View>
-          <View style={{ marginTop: 15 }}>
+          <View style={{marginTop: 15}}>
             <ResponsiveText
               size={3}
               color={colors.grey1}
@@ -306,7 +274,7 @@ export default function ProfileScreen({ navigation }) {
           paddingTop: 10,
         }}>
         <ScrollView>
-          <View style={{ flex: 0.68 }}>
+          <View style={{flex: 0.68}}>
             <CustomInput
               placeHolderText={profileData.fullName}
               fieldName={'Full Name'}
@@ -330,7 +298,7 @@ export default function ProfileScreen({ navigation }) {
             />
             <CustomInput placeHolderText={'000-000-0000'} fieldName={'Phone'} />
           </View>
-          <View style={{ flex: 0.32, marginTop: 40, marginBottom: 20 }}>
+          <View style={{flex: 0.32, marginTop: 40, marginBottom: 20}}>
             <TouchableOpacity
               onPress={() => submitData()}
               style={{
@@ -391,7 +359,7 @@ export default function ProfileScreen({ navigation }) {
               alignItems: 'center',
               flex: 0.45,
             }}>
-            {/* <Image
+            <Image
               style={{
                 width: 100,
                 height: 100,
@@ -403,43 +371,12 @@ export default function ProfileScreen({ navigation }) {
                   ? {uri: profileData.fullpath}
                   : globalPath.USER_PROFILE
               }
-              {img==null? globalPath.FemaleUser:{uri:img.path}}
-            /> */}
-            <View style={styles.header}>
-              <View style={{ flexDirection: 'row' }}>
-                <Image style={{
-                  width: 100,
-                  height: 100,
-                  borderRadius: 50,
-                  marginBottom: 10,
-                }}
-                  source={img==null? globalPath.USER_PROFILE:{uri:img.path}}
-                  // {profileData.fullpath ? { uri: profileData.fullpath } : globalPath.USER_PROFILE}
-                />
-                <View style={{ height: hp(3.6), width: wp(7.4), alignItems: 'center', justifyContent: 'center' }}>
-                  <TouchableOpacity onPress={toggleModal}>
-                    <Image style={{ height: hp(2.4), width: wp(7), marginRight: hp(4), borderRadius: 30 }}
-                      source={globalPath.CAMERA_ICON} />
-
-                  </TouchableOpacity>
-                  <Modal isVisible={isModalVisible}
-                    onSwipeComplete={() => toggleModal(false)}
-                    swipeDirection={["left", "right", 'down', 'up']}
-                    animationIn='slideInUp'
-                  >
-                    <View style={{ height: hp(40), width: wp(90), backgroundColor: colors.white, borderRadius: hp(4), justifyContent: 'center', alignItems: 'center' }}>
-                      <RnButton gradColor={[colors.green1, colors.yellow]} title={'Take Photo'} onPress={openPhoneCamera} />
-                      <RnButton margin={[50, 0, 0, 0]} gradColor={[colors.green1, colors.yellow]} title={'Take Photo from gallery'} onPress={takePhotoFromCamera} />
-                    </View>
-                  </Modal>
-                </View>
-              </View>
-            </View>
+            />
             <ResponsiveText size={4}>{profileData.fullName}</ResponsiveText>
             <ResponsiveText color={colors.lightBlack} size={3}>{profileData.email}</ResponsiveText>
           </View>
         </View>
-        <View style={{ flex: 0.09, flexDirection: 'row', marginTop: -10 }}>
+        <View style={{flex: 0.09, flexDirection: 'row', marginTop: -10}}>
           {profileTabs.map((items, index) => {
             return (
               <React.Fragment key={items.id}>
@@ -534,10 +471,5 @@ const styles = StyleSheet.create({
     // borderTopLeftRadius: wp(8),
     backgroundColor: '#202020',
     paddingTop: 10,
-  },
-  userInfo: {
-    top: hp(-3),
-    fontSize: hp(1.3),
-    color: colors.white
   },
 });
