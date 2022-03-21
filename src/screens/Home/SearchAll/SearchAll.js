@@ -50,6 +50,7 @@ import {ActivityIndicator} from 'react-native-paper';
 import DropDown from '../../../components/DropDown';
 import { SafeAreaView } from 'react-native-safe-area-context';
 export default function SearchAll({navigation}) {
+  const data=['Amauat','Salmon','Chicken Teryaki','Spicy Chicken','Lamp Shank Biryani']
   const dispatch = useDispatch();
 
   // React.useEffect(() => {
@@ -310,19 +311,19 @@ export default function SearchAll({navigation}) {
             <ResponsiveText margin={[25, 0, 2, 0]} color={colors.yellow}>
               Dish Type
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={data} height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
               Dish Tag
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={data}height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
               Restaurant Type
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={data}height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
               Occasion
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={data}height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 5, 0]} color={colors.yellow}>
               Facilities
             </ResponsiveText>
