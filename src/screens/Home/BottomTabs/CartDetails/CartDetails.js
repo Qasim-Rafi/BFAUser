@@ -786,6 +786,18 @@ const CartDetails = ({ navigation }) => {
             onPress={() => setModalVisible(!modalVisible)}>
             <Text style={styles.textStyle}>Close</Text>
           </TouchableOpacity>
+          {/* <TouchableOpacity
+              onPress={() => setModalVisible(false)}
+              style={{
+                borderRadius: 5,
+                marginLeft: 5,
+                padding: 10,
+                backgroundColor: colors.black1,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Icon size={20} source={require('../../../assets/icons/x.png')} />
+            </TouchableOpacity> */}
           <AirbnbRating
             count={5}
             reviews={['Terrible', 'Bad', 'OK', 'Good', 'Very Good']}
