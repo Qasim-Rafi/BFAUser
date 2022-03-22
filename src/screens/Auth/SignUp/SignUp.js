@@ -29,8 +29,10 @@ import FlashMessage, {
   hideMessage,
 } from 'react-native-flash-message';
 import { registerUser } from '../../../redux/actions/user.actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { color } from 'react-native-reanimated';
+import Api from '../../../redux/lib/api';
+import urls from '../../../redux/lib/urls';
 export default function Signup({ navigation }) {
 
   const dropdownRef = React.useRef(null);
@@ -48,6 +50,23 @@ export default function Signup({ navigation }) {
     { lable: "Female  ", icon: require('../../../assets/icons/female.png') }
   ];
 
+  // const signUpResponse = useSelector(state => state.)
+  const signupResponse = useSelector(state => state.login_User.signupScreen.message)
+
+  // var dateMinus13 = new Date();
+  // dateMinus13.setDate( dateMinus13.getDate() - 6 );
+  // dateMinus13.setFullYear( dateMinus13.getFullYear() - 1 );
+  // $("#searchDateFrom").val((dateMinus13.getMonth() ) + '/' + (dateMinus13.getDate()) + '/' + (dateMinus13.getFullYear()))
+
+  const [errorString, setErrorString] = useState('');
+
+  React.useEffect(() => {
+    console.log("responseeeeeee",errorString)
+    signupResponse ? setErrorString(signupResponse) : null
+    // loginNetworkErr ? setErrorString(loginNetworkErr.message) : null
+  }, [signupResponse])
+
+
   const [date, setDate] = useState(null);
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
@@ -56,6 +75,8 @@ export default function Signup({ navigation }) {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
     setDate(currentDate);
+    console.log(date);
+    checkExisting()
   };
 
   const showMode = currentMode => {
@@ -71,6 +92,7 @@ export default function Signup({ navigation }) {
 
   const showDAtepicker = () => {
     setShow(true);
+    console.log('onChange Called');
   };
 
 
@@ -164,7 +186,7 @@ export default function Signup({ navigation }) {
         "updatedDateTime": `${new Date()}`,
         "areaId": 1,
         "gender": gender,
-        "dateofBirth": dateFormat(date),
+        "dateofBirth": date,
         "contactNumber": phoneNum
       }
       dispatch(registerUser(obj, navigation))
@@ -185,6 +207,43 @@ export default function Signup({ navigation }) {
     }
   };
 
+  const checkExisting = async () => {
+    console.log('checkExisting called');
+    var obj = {
+      "username": userName,
+      "email": email,
+      "fullName": firstName + ' ' + lastName,
+      "password": password,
+      "userTypeId": 3,
+      "restaurantId": 11,
+      "updatebyId": 0,
+      "updatedDateTime": `${new Date()}`,
+      "areaId": 1,
+      "gender": gender,
+      "dateofBirth": date,
+      "contactNumber": phoneNum,
+    }
+
+    console.log('checkExisting obj', obj);
+    try {
+        const res = await Api.post(urls.REGISTER_URL_CHECKS,obj);
+        console.log('res', res);
+        if (res && res.success == true) {
+            // this.props.dispatch(GetUserRandomiserSetting());
+            console.log('success = true');
+        } else {
+          // alert(res.message)
+          showMessage({
+            message: 'Error',
+            description: res.message,
+            duration: 3000 ,
+            type: 'danger',
+            icon: { icon: 'auto', position: 'left' }})
+          setErrorString(res.message)
+        }
+    } catch (error) { console.log(error);}
+  }
+
   return (
     <KeyboardAvoidingView style={{ flex: 1, backgroundColor: colors.black }} behavior={Platform.OS === "ios" ? "padding" : null}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -196,7 +255,7 @@ export default function Signup({ navigation }) {
               color={colors.yellow}
               fontFamily="Regular"
               size={8}>
-              Sign Up
+              SignUp
             </ResponsiveText>
             <ResponsiveText margin={[1, 0, 0, 0]} color={colors.white}>
               Please SignUp to Continue
@@ -230,13 +289,16 @@ export default function Signup({ navigation }) {
               iconMargin={[0, 10, 0, 0]}
               placeholder="User Name"
               onChnageText={text => setuserName(text)}
+              onPressOut={()=>checkExisting()}
               leftIcon={globalPath.MALE_LOGO}
+
             />
             <Input
               padding={[0, 0, 0, 25]}
               iconMargin={[0, 10, 0, 0]}
               placeholder="Email"
               onChnageText={text => setEmail(text)}
+              onPressOut={()=>checkExisting()}
               leftIcon={globalPath.EMAIL_LOGO}
             />
             <Input
@@ -246,6 +308,7 @@ export default function Signup({ navigation }) {
               iconMargin={[0, 10, 0, 0]}
               placeholder="Phone"
               leftIcon={globalPath.PHONE_LOGO}
+              onPressOut={()=>checkExisting()}
             />
             <Input
               margin={[0, 0, 15, 0]}
@@ -301,7 +364,7 @@ export default function Signup({ navigation }) {
             {show && (
               <DateTimePicker
                 // testID="dateTimePicker"
-                value={new Date}
+                value={new Date('Jan 1, 2009')}
                 mode={'date'}
                 // is24Hour={true}
                 display="default"
@@ -314,6 +377,8 @@ export default function Signup({ navigation }) {
               margin={[20, 0]}
               title="SIGN UP "
             />
+
+            <ResponsiveText color={colors.red} >{errorString}</ResponsiveText>
 
             <View style={styles.footer}>
               {/* <Icon size={wp(8)}  margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}

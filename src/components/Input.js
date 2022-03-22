@@ -32,6 +32,7 @@ const Input = ({
   fontSize,
   value,
   onSubmitEditing,
+  onPressOut,
   ...props
 }) => {
   // const [showPassword, setShowPassword] = React.useState(secureTextEntry);
@@ -107,6 +108,8 @@ const Input = ({
           // secureTextEntry={showPassword ? true : false}
           secureTextEntry={secureTextEntry?visible:false}
           onChangeText={onChnageText ? txt => onChnageText(txt) : null}
+          // onSubmitEditing={onSubmitEditing}
+          onPressOut={onPressOut}
         />
 
         {secureTextEntry && (
