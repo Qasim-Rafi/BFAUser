@@ -104,7 +104,7 @@ export default function SearchAll({navigation}) {
       setNote('');
     } else {
       setNote('Please type atleast 3 characters');
-    }
+    }ƒ
   };
   const renderItem = (item, index, i) => {
     return (
@@ -259,15 +259,15 @@ export default function SearchAll({navigation}) {
             <ResponsiveText margin={[5, 0, 2, 0]} color={colors.yellow}>
               District
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={data} height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
               Area
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={data} height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
               Premise
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={data} height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 5, 0]} color={colors.yellow}>
               Cuisine
             </ResponsiveText>
