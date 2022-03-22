@@ -366,19 +366,19 @@ export default function SearchAll({navigation}) {
             <ResponsiveText margin={[25, 0, 2, 0]} color={colors.yellow}>
               Wi-Fi
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={data} height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
               Private Room
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={data} height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
               Group Table
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={data} height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
               Prayer Room
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={data} height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 5, 0]} color={colors.yellow}>
               Awards
             </ResponsiveText>
@@ -450,6 +450,7 @@ export default function SearchAll({navigation}) {
                 onPress={() =>
                   navigation.navigate(routeName.DISH_DETAIL, {dish: item})
                 }>
+                  {}
                 <View
                   style={{
                     justifyContent: 'center',

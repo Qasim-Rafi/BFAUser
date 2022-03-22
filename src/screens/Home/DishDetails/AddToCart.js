@@ -249,6 +249,8 @@ export default function AddToCart({route, navigation}) {
             ExtraChees={ExtraChees}
             SelectedDrinks={Drinks}
           />
+          {
+            route.params.dish.restaurantDishLinkedItemList.length>0?
           <View
             style={{
               flexDirection: 'row',
@@ -262,8 +264,8 @@ export default function AddToCart({route, navigation}) {
             }}>
             <ResponsiveText color={colors.white}>{'Upsize'}</ResponsiveText>
             <ResponsiveText color={colors.white}>{'Optional'}</ResponsiveText>
-          </View>
-
+          </View>:undefined
+}
           <View style={{padding: 20}}>
             {Object.keys(route.params.dish).length != 0 &&
             route.params.dish.restaurantDishLinkedItemList
@@ -327,7 +329,7 @@ export default function AddToCart({route, navigation}) {
           </View>
         </View>
 
-        <View style={{flexDirection: 'row', height: hp(9)}}>
+        <View style={{flexDirection: 'row', height: hp(9),position:'relative'}}>
           <View
             style={{
               flexDirection: 'row',
