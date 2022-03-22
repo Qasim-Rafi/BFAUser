@@ -23,7 +23,7 @@ import {
 } from 'react-native-indicators';
 import Header from '../../../components/Header';
 import ResponsiveText from '../../../components/RnText';
-import {SearchResult} from '../../../redux/actions/user.actions';
+import {GetAreaAllListAction, GetPremiseAllListAction, SearchResult} from '../../../redux/actions/user.actions';
 import {colors} from '../../../constants/colorsPallet';
 import {hp, wp} from '../../../helpers/Responsiveness';
 import {RadioGroup, RadioButton} from 'react-native-flexi-radio-button';
@@ -34,6 +34,8 @@ import {
   FacilityData,
   ourRecommendationFakeDATA,
   Search_Result,
+  DISH_TAG,
+  OTHERS_DATA,
 } from '../../../constants/mock';
 import {Rating} from 'react-native-ratings';
 import Icon from '../../../components/Icon';
@@ -53,15 +55,54 @@ export default function SearchAll({navigation}) {
   const data=['Amauat','Salmon','Chicken Teryaki','Spicy Chicken','Lamp Shank Biryani']
   const dispatch = useDispatch();
 
-  // React.useEffect(() => {
-  //   dispatch(SearchResult());
-  // }, []);
+  // MOCK_DATA 
+  const DISH_TYPE = ['Drinks', 'Side Dish', 'Main Dish', 'Dessert']
+  const RESTAURANT_TYPE = ['Café','Fast Food', 'Food Court', 'Home Based', 'Restaurant', 'Stalls']
+  const OCCASION = ['Birthdays','Business','Casual' ,'Fine Dining','High Tea','Large Groups','Outdoor Dining','Romantic','Quick Bites','Budget','Dinner', 'Lunch']
+  const WIFI = ['Standard Wi-Fi (Up to 50Mbps)','High Speed Wi-Fi (Up to 300 Mbps)']
+  const PRIVATE_ROOM = ['Private room - Up to 12','Private room - Up to 24']
+  const GROUP_TABLE = ['Group Table - Table for 10', 'Group Table - Table for 12', 'Group Table - Table for 6', 'Group Table - Table for 8']
+  const PRAYER_ROOM = ['Prayer room - Group', 'Prayer room - Single']
+  const AWARDS = ['Best Dish Awards', 'Top 10 Dish Awards', 'Best Participating Dish Awards', 'Lifetime Achievement Awards', 'Best Restaurant Awards', 'Best Catering Awards', 'Best Barista Awards', 'Best Chef Awards']
+  const STAR_RATINGS = [5,4,3,2,1,'No ratings']
+
+
+  React.useEffect(() => {
+    // dispatch(SearchResult());
+
+    areaList.length  > -1 ? dispatch(GetAreaAllListAction()) : null
+    premiseList.length > -1 ? dispatch(GetPremiseAllListAction()) : null
+
+  }, []);
+  
   const DATA = useSelector(state => state.appReducers.SearchResult.data);
   const Loading = useSelector(state => state.appReducers.SearchResult.loading);
   console.log('searching', DATA);
+
+    const districtList = ['Brunei Muara', 'Belait', 'Tutong', 'Temburong']
+    const areaList = useSelector(state => state.appReducers.AllAreas.data)
+    const premiseList = useSelector(state => state.appReducers.AllPremises.data)
+    
+
+
+    
+
   const [searchBar, toggleSearchBar] = React.useState('false');
   const [SearchText, setSearchText] = React.useState('');
   const [Note, setNote] = React.useState('');
+  const [itemList, setItemList] = React.useState([]);
+  const toggleSelection =(item)=>{
+    if(itemList.includes(item)){
+      const newArray = itemList.filter((item1)=>{
+        return item!==item1
+     });
+     setItemList(newArray);
+    }
+    else
+    {
+      itemList.length<5 ? setItemList([...itemList, item]) : undefined
+    }
+  }
 
   const [selected, setSelected] = React.useState('Dishes');
 
@@ -259,15 +300,15 @@ export default function SearchAll({navigation}) {
             <ResponsiveText margin={[5, 0, 2, 0]} color={colors.yellow}>
               District
             </ResponsiveText>
-            <DropDown data={data} height={hp(5)} width={wp(73)} />
+            <DropDown data={districtList} height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
               Area
             </ResponsiveText>
-            <DropDown data={data} height={hp(5)} width={wp(73)} />
+            <DropDown data={areaList.map(e=>e.name)} height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
               Premise
             </ResponsiveText>
-            <DropDown data={data} height={hp(5)} width={wp(73)} />
+            <DropDown data={premiseList.map(e=>e.name)} height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 5, 0]} color={colors.yellow}>
               Cuisine
             </ResponsiveText>
@@ -311,19 +352,19 @@ export default function SearchAll({navigation}) {
             <ResponsiveText margin={[25, 0, 2, 0]} color={colors.yellow}>
               Dish Type
             </ResponsiveText>
-            <DropDown data={data} height={hp(5)} width={wp(73)} />
+            <DropDown data={DISH_TYPE} height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
               Dish Tag
             </ResponsiveText>
-            <DropDown data={data}height={hp(5)} width={wp(73)} />
+            <DropDown data={DISH_TAG}height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
               Restaurant Type
             </ResponsiveText>
-            <DropDown data={data}height={hp(5)} width={wp(73)} />
+            <DropDown data={RESTAURANT_TYPE}height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
               Occasion
             </ResponsiveText>
-            <DropDown data={data}height={hp(5)} width={wp(73)} />
+            <DropDown data={OCCASION}height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 5, 0]} color={colors.yellow}>
               Facilities
             </ResponsiveText>
@@ -366,19 +407,19 @@ export default function SearchAll({navigation}) {
             <ResponsiveText margin={[25, 0, 2, 0]} color={colors.yellow}>
               Wi-Fi
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={WIFI} height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
               Private Room
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={PRIVATE_ROOM} height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
               Group Table
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={GROUP_TABLE} height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
               Prayer Room
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={PRAYER_ROOM} height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 5, 0]} color={colors.yellow}>
               Awards
             </ResponsiveText>
@@ -394,7 +435,7 @@ export default function SearchAll({navigation}) {
                 borderTopWidth: 0.3,
                 borderTopColor: colors.white,
               }}>
-              {AwardsMenuSectionsData.map((item, index) => {
+              {AWARDS.map((item, index) => {
                 return (
                   <TouchableOpacity
                   // onPress={()=>toggleSelection(item)}
@@ -411,7 +452,7 @@ export default function SearchAll({navigation}) {
                         marginTop: 10,
                       }}>
                       <Text style={{fontSize: 10, color: colors.white}}>
-                        {item.title}
+                        {item}
                       </Text>
                     </View>
                   </TouchableOpacity>
@@ -421,11 +462,47 @@ export default function SearchAll({navigation}) {
             <ResponsiveText margin={[25, 0, 2, 0]} color={colors.yellow}>
               By Star Rating
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={STAR_RATINGS} height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
               Preferences (Select 5)
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            {/* <DropDown data={[]} height={hp(5)} width={wp(73)} /> */}
+            <View
+              style={{
+                flexDirection: 'row',
+                //alignItems: 'center',
+                //justifyContent: 'center',
+                paddingHorizontal: 0,
+                flexWrap: 'wrap',
+                // alignContent: 'center',
+                paddingTop: hp(1),
+                borderTopWidth: 0.3,
+                borderTopColor: colors.white,
+              }}>
+              {OTHERS_DATA.map((item, index) => {
+                return (
+                  <TouchableOpacity
+                  onPress={()=>toggleSelection(item)}
+                  >
+                    <View
+                      style={{
+                        borderRadius: 18,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: itemList.includes(item) ? colors.yellow : colors.black2,
+                        marginHorizontal: 5,
+                        paddingVertical: 10,
+                        paddingHorizontal: 20,
+                        marginTop: 10,
+                      }}>
+                      <Text style={{fontSize: 10, color: itemList.includes(item) ? colors.black : colors.white}}>
+                        {item.title}
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
             <View style={{height:hp(10)}}></View>
             </View>
           </ScrollView>
