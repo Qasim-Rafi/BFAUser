@@ -145,7 +145,7 @@ export default function SearchAll({navigation}) {
       setNote('');
     } else {
       setNote('Please type atleast 3 characters');
-    }ƒ
+    }
   };
   const renderItem = (item, index, i) => {
     return (
@@ -527,6 +527,7 @@ export default function SearchAll({navigation}) {
                 onPress={() =>
                   navigation.navigate(routeName.DISH_DETAIL, {dish: item})
                 }>
+                  {}
                 <View
                   style={{
                     justifyContent: 'center',

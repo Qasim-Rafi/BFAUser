@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -6,16 +6,16 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import {colors} from '../../../constants/colorsPallet';
+import { colors } from '../../../constants/colorsPallet';
 import ImageHeader from '../BottomTabs/Home/ImageHeader';
 import ResponsiveText from '../../../components/RnText';
-import {hp, wp} from '../../../helpers/Responsiveness';
+import { hp, wp } from '../../../helpers/Responsiveness';
 import AddToCartDetails from './AddToCartDetails';
 import CheckBox from '../../../components/Static/CheckBox';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Icon from '../../../components/Icon';
-import {globalPath} from '../../../constants/globalPath';
-import {routeName} from '../../../constants/routeName';
+import { globalPath } from '../../../constants/globalPath';
+import { routeName } from '../../../constants/routeName';
 import {
   addCart,
   addDish,
@@ -23,11 +23,11 @@ import {
   AddOrder,
   checkoutOrder,
 } from '../../../redux/actions/user.actions';
-import {TextInput} from 'react-native-gesture-handler';
-import {color} from 'react-native-reanimated';
+import { TextInput } from 'react-native-gesture-handler';
+import { color } from 'react-native-reanimated';
 import AsyncStorage from '@react-native-community/async-storage';
 import { BarIndicator } from 'react-native-indicators';
-export default function AddToCart({route, navigation}) {
+export default function AddToCart({ route, navigation }) {
   const cartList = useSelector(state => state.appReducers.cartList.data);
   const orderList = useSelector(
     state => state.appReducers.your_ordersList.data,
@@ -135,7 +135,7 @@ export default function AddToCart({route, navigation}) {
         o.statusName === "PreOrder" &&
         o.restaurantBranchId === dish.restaurantBranchId,
     );
-     console.log('filter    nnnn', checkData);
+    console.log('filter    nnnn', checkData);
     // console.log('filter    orderList', orderList);
     // console.log('filter    dish', dish);
 
@@ -144,22 +144,22 @@ export default function AddToCart({route, navigation}) {
     const orderDetailLinkedItemList = [];
     // cartList.forEach(obj => {
     // if (obj.restaurantBranchId === BrachId) {
-      if (extraCheese.length > 0) {
-        extraCheese.forEach(e => {
-          orderDetailExtraItemList.push({
-            restaurantDishExtraItemId: e.id,
-            price:e.price
-          });
+    if (extraCheese.length > 0) {
+      extraCheese.forEach(e => {
+        orderDetailExtraItemList.push({
+          restaurantDishExtraItemId: e.id,
+          price: e.price
         });
-      }
-      if (linkedItem.length > 0) {
-        linkedItem.forEach(e => {
-          orderDetailLinkedItemList.push({
-            restaurantDishLinkedItemId: e.id,
-            price:e.price
-          });
+      });
+    }
+    if (linkedItem.length > 0) {
+      linkedItem.forEach(e => {
+        orderDetailLinkedItemList.push({
+          restaurantDishLinkedItemId: e.id,
+          price: e.price
         });
-      }
+      });
+    }
     addOrderDetail.push({
       restaurantDishId: dish.restaurantDishId,
       addOnId: Selecteddrinks ? Selecteddrinks.softDrinkId : 1,
@@ -171,7 +171,7 @@ export default function AddToCart({route, navigation}) {
       orderDetailExtraItemList: orderDetailExtraItemList,
       orderDetailLinkedItemList: orderDetailLinkedItemList,
     });
-   
+
     // }
     // });
     const obj = {
@@ -200,28 +200,28 @@ export default function AddToCart({route, navigation}) {
     // // }
     // //.some(elem => elem === obj)
     // }
-     dispatch(addOrder(obj,navigation));
+    dispatch(addOrder(obj, navigation));
     //navigation.navigate(routeName.TRANSACTION_CONFIRMATION)
     //
   };
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <ScrollView style={styles.container}>
-      {loading === true ? (
-        <View
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            bottom: 0,
-            right: 0,
-            backgroundColor: 'rgba(65, 65, 65, 0.5)',
-            flex: 1,
-            zIndex: 10,
-          }}>
-          <BarIndicator color={colors.yellow} size={50} />
-        </View>
-      ) : undefined}
+        {loading === true ? (
+          <View
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              bottom: 0,
+              right: 0,
+              backgroundColor: 'rgba(65, 65, 65, 0.5)',
+              flex: 1,
+              zIndex: 10,
+            }}>
+            <BarIndicator color={colors.yellow} size={50} />
+          </View>
+        ) : undefined}
         <View>
           <View style={styles.headerImage}>
             <ImageHeader
@@ -229,9 +229,9 @@ export default function AddToCart({route, navigation}) {
               img={route.params.dish.imageDataB}
             />
           </View>
-          <View style={{padding: 20}}>
+          <View style={{ padding: 20 }}>
             <View
-              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+              style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
               <ResponsiveText color={colors.white}>
                 {route.params.dish.dishName}
               </ResponsiveText>
@@ -249,6 +249,8 @@ export default function AddToCart({route, navigation}) {
             ExtraChees={ExtraChees}
             SelectedDrinks={Drinks}
           />
+          {
+            route.params.dish.restaurantDishLinkedItemList.length>0?
           <View
             style={{
               flexDirection: 'row',
@@ -262,36 +264,42 @@ export default function AddToCart({route, navigation}) {
             }}>
             <ResponsiveText color={colors.white}>{'Upsize'}</ResponsiveText>
             <ResponsiveText color={colors.white}>{'Optional'}</ResponsiveText>
-          </View>
-
+          </View>:undefined
+}
           <View style={{padding: 20}}>
             {Object.keys(route.params.dish).length != 0 &&
-            route.params.dish.restaurantDishLinkedItemList
+              route.params.dish.restaurantDishLinkedItemList
               ? route.params.dish.restaurantDishLinkedItemList.map(
-                  (item, index) => {
-                    return (
-                      <View
-                        style={{
-                          flexDirection: 'row',
-                          justifyContent: 'space-between',
-                          marginTop: 10,
-                        }}>
-                        <CheckBox
-                          text={item.dishLinkedItemName}
-                          additem={LinkedItem}
-                          value={item}
-                        />
-                        {/* <ResponsiveText color={colors.white}>
+                (item, index) => {
+                  return (
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        marginTop: 10,
+                      }}>
+                      <CheckBox
+                        text={item.dishLinkedItemName}
+                        additem={LinkedItem}
+                        value={item}
+                      />
+                      {/* <ResponsiveText color={colors.white}>
                           ${item.price}
                         </ResponsiveText> */}
-                      </View>
-                    );
-                  },
-                )
+                    </View>
+                  );
+                },
+              )
               : null}
+              {/* // (loading == false ?
+              //   <View style={{ width: wp(100), marginTop: 100, alignItems: 'center', alignSelf: 'center' }}>
+              //     <Icon borderColor={colors.yellow} borderWidth={0} borderRadius={0} size={250} source={require('../../../components/../assets/icons/norecordfound.png')} />
+              //   </View> : null
+              // ) */}
+              
           </View>
 
-          <View style={{flexDirection: 'row', margin: 20}}>
+          <View style={{ flexDirection: 'row', margin: 20 }}>
             <TouchableOpacity
             // onPress={() => setVisible(!visible)}
             >
@@ -316,7 +324,7 @@ export default function AddToCart({route, navigation}) {
                 borderColor: color.black2,
                 alignContent: 'center',
                 backgroundColor: colors.black2,
-                color:colors.white
+                color: colors.white
               }}
               textAlignVertical="top"
               multiline={true}
@@ -327,7 +335,7 @@ export default function AddToCart({route, navigation}) {
           </View>
         </View>
 
-        <View style={{flexDirection: 'row', height: hp(9)}}>
+        <View style={{flexDirection: 'row', height: hp(9),position:'relative'}}>
           <View
             style={{
               flexDirection: 'row',
@@ -336,7 +344,7 @@ export default function AddToCart({route, navigation}) {
               width: wp(62),
               padding: 16,
             }}>
-            <View style={{flexDirection: 'row'}}>
+            <View style={{ flexDirection: 'row' }}>
               <TouchableOpacity
                 onPress={() => changeCount(count > 1 ? count - 1 : 1)}>
                 <Icon size={28} source={globalPath.MINUS_ICON} />
@@ -352,7 +360,7 @@ export default function AddToCart({route, navigation}) {
               ${total}.00
             </ResponsiveText>
           </View>
-          <View style={{padding: 16, backgroundColor: colors.black1}}>
+          <View style={{ padding: 16, backgroundColor: colors.black1 }}>
             <TouchableOpacity
               style={{
                 height: hp(4),

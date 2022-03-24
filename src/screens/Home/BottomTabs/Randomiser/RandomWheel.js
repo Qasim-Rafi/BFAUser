@@ -498,7 +498,7 @@ class RandomWheelClass extends React.Component {
                                         if(this.state.getRandomiserSuccess){
                                             this.updateUserRandomiserSettings()
                                         }else{
-                                            this.addUserRandomiserSettings();
+                                            this.addUserRandomiserSettings();   
                                         }
                                     }
                                 }}
