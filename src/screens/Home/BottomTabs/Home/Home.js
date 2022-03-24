@@ -106,7 +106,7 @@ const Home = ({ navigation }) => {
   React.useEffect(() => {
     dispatch(getAddBannerData());
     dispatch(getPeopleChoice(1, 4))
-    dispatch(getPromotions(1, 10));
+    dispatch(getPromotions(1, 4));
     dispatch(getPeopleChoice(1, 4));
     dispatch(getBfaPartners(6));
     // callAPI();
