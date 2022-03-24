@@ -50,6 +50,7 @@ import {ActivityIndicator} from 'react-native-paper';
 import DropDown from '../../../components/DropDown';
 import { SafeAreaView } from 'react-native-safe-area-context';
 export default function SearchAll({navigation}) {
+  const data=['Amauat','Salmon','Chicken Teryaki','Spicy Chicken','Lamp Shank Biryani']
   const dispatch = useDispatch();
 
   // React.useEffect(() => {
@@ -103,7 +104,7 @@ export default function SearchAll({navigation}) {
       setNote('');
     } else {
       setNote('Please type atleast 3 characters');
-    }
+    }ƒ
   };
   const renderItem = (item, index, i) => {
     return (
@@ -258,15 +259,15 @@ export default function SearchAll({navigation}) {
             <ResponsiveText margin={[5, 0, 2, 0]} color={colors.yellow}>
               District
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={data} height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
               Area
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={data} height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
               Premise
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={data} height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 5, 0]} color={colors.yellow}>
               Cuisine
             </ResponsiveText>
@@ -310,19 +311,19 @@ export default function SearchAll({navigation}) {
             <ResponsiveText margin={[25, 0, 2, 0]} color={colors.yellow}>
               Dish Type
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={data} height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
               Dish Tag
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={data}height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
               Restaurant Type
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={data}height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
               Occasion
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={data}height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 5, 0]} color={colors.yellow}>
               Facilities
             </ResponsiveText>
@@ -365,19 +366,19 @@ export default function SearchAll({navigation}) {
             <ResponsiveText margin={[25, 0, 2, 0]} color={colors.yellow}>
               Wi-Fi
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={data} height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
               Private Room
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={data} height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
               Group Table
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={data} height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
               Prayer Room
             </ResponsiveText>
-            <DropDown data={[]} height={hp(5)} width={wp(73)} />
+            <DropDown data={data} height={hp(5)} width={wp(73)} />
             <ResponsiveText margin={[10, 0, 5, 0]} color={colors.yellow}>
               Awards
             </ResponsiveText>
@@ -449,6 +450,7 @@ export default function SearchAll({navigation}) {
                 onPress={() =>
                   navigation.navigate(routeName.DISH_DETAIL, {dish: item})
                 }>
+                  {}
                 <View
                   style={{
                     justifyContent: 'center',
