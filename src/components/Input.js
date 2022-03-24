@@ -84,7 +84,7 @@ const Input = ({
           />
         )}
         {countryCode && (
-          <Text style={{color:colors.white,paddingBottom:6,fontWeight:'bold'}}>+673:</Text>
+          <Text style={{color:colors.white,paddingBottom:6,fontWeight:'bold'}}>{countryCode}</Text>
         )}
         <TextInput
           // value={value && value}
