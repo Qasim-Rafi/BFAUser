@@ -89,8 +89,8 @@ export default function SearchAll({ navigation }) {
 
   }, []);
   
-  const DATA = useSelector(state => state.appReducers.SearchResult.data);
-  const Loading = useSelector(state => state.appReducers.SearchResult.loading);
+  // const DATA = useSelector(state => state.appReducers.SearchResult.data);
+  // const Loading = useSelector(state => state.appReducers.SearchResult.loading);
   console.log('searching', DATA);
 
     const districtList = ['Brunei Muara', 'Belait', 'Tutong', 'Temburong']
@@ -102,8 +102,8 @@ export default function SearchAll({ navigation }) {
     
 
   const [searchBar, toggleSearchBar] = React.useState('false');
-  const [SearchText, setSearchText] = React.useState('');
-  const [Note, setNote] = React.useState('');
+  // const [SearchText, setSearchText] = React.useState('');
+  // const [Note, setNote] = React.useState('');
   const [itemList, setItemList] = React.useState([]);
   const toggleSelection =(item)=>{
     if(itemList.includes(item)){
