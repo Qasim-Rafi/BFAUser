@@ -45,12 +45,23 @@ export default function ProfileScreen({navigation}) {
   const [userName, setUsername] = useState();
   const [fullName, setFullname] = useState();
   const [editable, setEditable] = useState(false);
+  const [JobInterest, setJobInterest] = useState(false);
+
   const [gender, setgender] = useState('');
+  const [education, setEducation] = useState('');
+  const [MaritialStatus, setMaritialStatus] = useState('');
+  const [EmpSec, setEmpSec] = useState('');
+  const [SelectedIndustry, setSelectedIndustry] = useState('');
+  const [children, setChildren] = useState('');
+
   const [IndustryData, setIndustryData] = useState([]);
+  const [EmploymentSector, setEmploymentSector] = useState([]);
+  const [MarriageStatusData, setMarriageStatusData] = useState([]);
+
 
   const Gender = [
-    {lable: 'Male  ', icon: require('../../../assets/icons/male.png')},
-    {lable: 'Female  ', icon: require('../../../assets/icons/female.png')},
+    {id:1,lable: 'Male', icon: require('../../../assets/icons/male.png')},
+    {id:2,lable: 'Female', icon: require('../../../assets/icons/female.png')},
   ];
   // const Gender=['Male','Female']
   const [date, setDate] = useState(null);
@@ -82,17 +93,46 @@ export default function ProfileScreen({navigation}) {
   React.useEffect(() => {
    // dispatch(getProfileData());
    GetLookUpIndustry()
+   GetLookUpEmploymentSector();
+   GetLookUpMarriageStatus();
+   defaultData()
     console.log('loading', loading);
   }, []);
   const [activeTab, setActiveTab] = React.useState(profileTabs[0].id);
 
+  const  defaultData=()=>{
+    setgender(profileData.gender);
+    setFullname(profileData.fullName);
+    setEmail(profileData.email);
+    setUsername(profileData.username);
+  }
 
   const GetLookUpIndustry = async item => {
     try {
       const res = await Api.get(urls.GET_LOOKUP_INDUSTRY);
-      console.log('res', res);
+      console.log('GetLookUpIndustry res', res);
       if (res && res.success == true) {
         setIndustryData(res.data)
+      } else {
+      }
+    } catch (error) { }
+  };
+  const GetLookUpEmploymentSector = async item => {
+    try {
+      const res = await Api.get(urls.GET_LOOKUP_EMP_SEC);
+      console.log('GetLookUpEmploymentSector res', res);
+      if (res && res.success == true) {
+        setEmploymentSector(res.data)
+      } else {
+      }
+    } catch (error) { }
+  };
+  const GetLookUpMarriageStatus = async item => {
+    try {
+      const res = await Api.get(urls.GET_LOOKUP_MARITAL_STATUS);
+      console.log('GetLookUpMarriageStatus', res);
+      if (res && res.success == true) {
+        setMarriageStatusData(res.data)
       } else {
       }
     } catch (error) { }
@@ -120,7 +160,6 @@ export default function ProfileScreen({navigation}) {
       console.log('ree', res);
       if (res && res.success == true) {
         dispatch(getProfileData());
-        setEditable(false);
 
         // dropdownRef.current.showMessage({
         //   message: 'Alert',
@@ -173,6 +212,7 @@ export default function ProfileScreen({navigation}) {
               Are you interested in receiving potential job offers?
             </ResponsiveText>
             <RadioGroup
+              selectedIndex={JobInterest?1:0}
               color={colors.yellow}
               style={{
                 flex: 1,
@@ -180,13 +220,13 @@ export default function ProfileScreen({navigation}) {
                 marginTop: -5,
                 marginBottom: 30,
               }}>
-              <RadioButton value={'item1'} style={{marginStart: 0}}>
+              <RadioButton value={true} style={{marginStart: 0}}>
                 <ResponsiveText color={colors.grey1} margin={[0, 7, 0, 7]}>
                   Yes
                 </ResponsiveText>
               </RadioButton>
 
-              <RadioButton value={'item2'} style={{marginStart: 10}}>
+              <RadioButton value={false} style={{marginStart: 10}}>
                 <ResponsiveText color={colors.grey1} margin={[0, 7, 0, 7]}>
                   No
                 </ResponsiveText>
@@ -197,6 +237,8 @@ export default function ProfileScreen({navigation}) {
           <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
             <DropDown
               data={Gender}
+              // defaultValue={'Male'}
+              defaultValueByIndex={1}
               onSelect={(selectedItem, index) => {
                 console.log(selectedItem, index);
                 setgender(selectedItem.lable);
@@ -252,10 +294,15 @@ export default function ProfileScreen({navigation}) {
             placeHolderText={'Graduate'}
             fieldName={'Educational Background'}
           />
-          <CustomInput
-            placeHolderText={'Married'}
-            fieldName={'Marital Status'}
-          />
+           <View style={{marginTop: 15}}>
+            <ResponsiveText
+              size={3}
+              color={colors.grey1}
+              margin={[0, 0, 5, 30]}>
+              Marital Status
+            </ResponsiveText>
+            <Dropdown data={MarriageStatusData.map((v)=>{return v.name})} />
+          </View>
           <CustomInput placeHolderText={'3'} fieldName={'No of Children'} />
           <View style={{marginTop: 15}}>
             <ResponsiveText
@@ -264,7 +311,7 @@ export default function ProfileScreen({navigation}) {
               margin={[0, 0, 5, 30]}>
               Empoyment Sector
             </ResponsiveText>
-            <Dropdown data={employmentSec} />
+            <Dropdown data={EmploymentSector.map((v)=>{return v.name})} />
           </View>
           <View style={{marginTop: 15}}>
             <ResponsiveText
@@ -273,7 +320,7 @@ export default function ProfileScreen({navigation}) {
               margin={[0, 0, 5, 30]}>
               Industry
             </ResponsiveText>
-            <Dropdown data={industry} />
+            <Dropdown data={IndustryData.map((v)=>{return v.name})} />
           </View>
 
           {/* <CustomInput
@@ -324,21 +371,18 @@ export default function ProfileScreen({navigation}) {
               fieldName={'Full Name'}
               value={fullName}
               onChangeText={text => setFullname(text)}
-              editable={editable}
             />
             <CustomInput
               placeHolderText={profileData.username}
               fieldName={'User Name'}
               value={userName}
               onChangeText={text => setUsername(text)}
-              editable={editable}
             />
             <CustomInput
               placeHolderText={profileData.email}
               fieldName={'Email'}
               value={email}
               onChangeText={text => setEmail(text)}
-              editable={editable}
             />
             <CustomInput placeHolderText={'000-000-0000'} fieldName={'Phone'} />
           </View>
