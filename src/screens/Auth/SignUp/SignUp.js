@@ -40,10 +40,13 @@ export default function Signup({ navigation }) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [userName, setuserName] = useState('');
-  const [email, setEmail] = useState('saniya@gmail.com');
+  const [email, setEmail] = useState('');
   const [phoneNum, setPhoneNum] = useState('');
+  const [CellphoneNum, setCellphoneNum] = useState('');
   const [password, setPassword] = useState('');
+  const [Address, setAddress] = useState('');
   const [gender, setgender] = useState('');
+
   const [confirmPassword, setConfirmPassword] = useState();
   const Gender = [
     { lable: "Male  ", icon: require('../../../assets/icons/male.png') },
@@ -104,6 +107,7 @@ export default function Signup({ navigation }) {
       dropdownRef.current.showMessage({
         message: 'Error',
         description: 'First name is Required',
+        duration: 3000 ,
         type: 'danger',
         icon: { icon: 'auto', position: 'left' },
       });
@@ -132,11 +136,28 @@ export default function Signup({ navigation }) {
     } else if (phoneNum === '') {
       dropdownRef.current.showMessage({
         message: 'Error',
-        description: 'PhoneNumber is Required',
+        description: 'TelePhone Number is Required',
         type: 'danger',
         icon: { icon: 'auto', position: 'left' },
       });
-    } else if (password === '') {
+    }
+    else if (CellphoneNum === '') {
+      dropdownRef.current.showMessage({
+        message: 'Error',
+        description: 'CellPhone is Required',
+        type: 'danger',
+        icon: { icon: 'auto', position: 'left' },
+      });
+    } 
+    else if (Address === '') {
+      dropdownRef.current.showMessage({
+        message: 'Error',
+        description: 'Address is Required',
+        type: 'danger',
+        icon: { icon: 'auto', position: 'left' },
+      });
+    } 
+     else if (password === '') {
       dropdownRef.current.showMessage({
         message: 'Error',
         description: 'Password is Required',
@@ -187,7 +208,10 @@ export default function Signup({ navigation }) {
         "areaId": 1,
         "gender": gender,
         "dateofBirth": date,
-        "contactNumber": phoneNum
+        "contactNumber": phoneNum,
+        "CellPhone": '+673'+CellphoneNum,
+        "Address":Address,
+        
       }
       dispatch(registerUser(obj, navigation))
       // dispatch(registerUser({
@@ -209,6 +233,7 @@ export default function Signup({ navigation }) {
 
   const checkExisting = async () => {
     console.log('checkExisting called');
+    setErrorString('')
     var obj = {
       "username": userName,
       "email": email,
@@ -221,12 +246,15 @@ export default function Signup({ navigation }) {
       "areaId": 1,
       "gender": gender,
       "dateofBirth": date,
-      "contactNumber": phoneNum,
+      "TeleNumber": phoneNum,
+      "Address":Address,
+      "contactNumber": '+673'+CellphoneNum,
+        
     }
 
     console.log('checkExisting obj', obj);
     try {
-        const res = await Api.post(urls.REGISTER_URL_CHECKS,obj);
+         const res = await Api.post(urls.REGISTER_URL_CHECKS,obj);
         console.log('res', res);
         if (res && res.success == true) {
             // this.props.dispatch(GetUserRandomiserSetting());
@@ -267,7 +295,7 @@ export default function Signup({ navigation }) {
               <Input
                 width={wp(39)}
                 margin={[0, 0, 15, 0]}
-                padding={[0, 0, 0, 25]}
+                padding={[0, 0, 0, 12]}
                 onChnageText={text => setFirstName(text)}
                 iconMargin={[0, 10, 0, 0]}
                 placeholder="First name"
@@ -277,7 +305,7 @@ export default function Signup({ navigation }) {
                 width={wp(39)}
                 onChnageText={text => setLastName(text)}
                 margin={[0, 0, 15, 0]}
-                padding={[0, 0, 0, 25]}
+                padding={[0, 0, 0, 15]}
                 iconMargin={[0, 10, 0, 0]}
                 placeholder="Last name"
                 leftIcon={globalPath.USER_LOGO}
@@ -302,12 +330,34 @@ export default function Signup({ navigation }) {
               leftIcon={globalPath.EMAIL_LOGO}
             />
             <Input
-              margin={[15, 0, 15, 0]}
+              margin={[15, 0, 0, 0]}
               padding={[0, 0, 0, 25]}
               onChnageText={text => setPhoneNum(text)}
               iconMargin={[0, 10, 0, 0]}
-              placeholder="Phone"
+              placeholder="Telephone"
               leftIcon={globalPath.PHONE_LOGO}
+              onPressOut={()=>checkExisting()}
+            />
+            <Input
+              margin={[15, 0, 0, 0]}
+              padding={[0, 0, 0, 20]}
+              onChnageText={text => setCellphoneNum(text)}
+              iconMargin={[0, 10, 0, 0]}
+              placeholder= "Cellphone"
+              countryCode="+92"
+              leftIcon={globalPath.TELEPHONE_LOGO}
+              iconSize={hp(4)}
+              onPressOut={()=>checkExisting()}
+            />
+             <Input
+              margin={[15, 0, 15, 0]}
+              padding={[0, 0, 0, 20]}
+              onChnageText={text => setAddress(text)}
+              iconMargin={[0, 10, 0, 0]}
+              placeholder= "Address"
+              // countryCode="+92"
+              leftIcon={globalPath.ADDRESS_LOGO}
+              iconSize={hp(3)}
               onPressOut={()=>checkExisting()}
             />
             <Input

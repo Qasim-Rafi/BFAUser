@@ -19,16 +19,21 @@ import RandomiserWheel from '../screens/Home/BottomTabs/Randomiser/RandomWheel';
 import RandomWheel from '../screens/Home/BottomTabs/Randomiser/RandomWheel';
 import NewsFeed from '../screens/Home/BottomTabs/Promos/NewsFeed';
 import HomeStack from './HomeStack';
+import { useSelector } from 'react-redux';
 
 
 const Tab = createBottomTabNavigator();
 
 export default function BottomTabs(props) {
+
+  const orderList = useSelector(state => state.appReducers.your_ordersList.data)
+  const preOrder = orderList.filter(e=> e.statusName == "PreOrder")
+  
   return (
     <Tab.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
+      // screenOptions={{
+      //   headerShown: false,
+      // }}
       tabBarOptions={{
        
 
@@ -129,7 +134,9 @@ export default function BottomTabs(props) {
       <Tab.Screen
         name={"Cart"}
         component={CartDetails}
-        options={{ headerShown: false }}
+        options={{ headerShown: false, 
+          tabBarBadge:  preOrder.length>0 ? preOrder.length : null 
+          }}
       />
       <Tab.Screen
         name={"Inbox"}

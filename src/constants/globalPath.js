@@ -8,6 +8,8 @@ const USER_LOGO = require('../assets/fake_Images/user.png');
 const USER_PROFILE = require('../assets/fake_Images/user_pic.png');
 const MALE_LOGO = require('../assets/icons/male.png');
 const PHONE_LOGO = require('../assets/icons/phone.png');
+const TELEPHONE_LOGO = require('../assets/icons/Burnai.png');
+const ADDRESS_LOGO = require('../assets/icons/address.png');
 const EMAIL_LOGO = require('../assets/fake_Images/email.png');
 const PASSWORD_LOGO = require('../assets/icons/password.png');
 const GOOGLE_LOGO = require('../assets/icons/google.png');
@@ -183,6 +185,8 @@ export const globalPath = {
   MORE_LANGUAGE,
   MINUS_ICON,
   PLUS_ICON,
+  TELEPHONE_LOGO,
+  ADDRESS_LOGO,
   HOME_GREY,
   CHECKOUT_GREY,
   FEED_GREY,
