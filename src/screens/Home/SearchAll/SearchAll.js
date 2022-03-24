@@ -104,7 +104,7 @@ export default function SearchAll({navigation}) {
       setNote('');
     } else {
       setNote('Please type atleast 3 characters');
-    }ƒ
+    }
   };
   const renderItem = (item, index, i) => {
     return (

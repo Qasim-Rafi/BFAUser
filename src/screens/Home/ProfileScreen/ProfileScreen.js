@@ -46,6 +46,8 @@ export default function ProfileScreen({navigation}) {
   const [fullName, setFullname] = useState();
   const [editable, setEditable] = useState(false);
   const [gender, setgender] = useState('');
+  const [IndustryData, setIndustryData] = useState([]);
+
   const Gender = [
     {lable: 'Male  ', icon: require('../../../assets/icons/male.png')},
     {lable: 'Female  ', icon: require('../../../assets/icons/female.png')},
@@ -78,10 +80,23 @@ export default function ProfileScreen({navigation}) {
   const industry = ['Education', 'Social Media', 'Employer', 'Business'];
   const employmentSec = ['Private', 'Government', 'Semi-Government'];
   React.useEffect(() => {
-    dispatch(getProfileData());
+   // dispatch(getProfileData());
+   GetLookUpIndustry()
     console.log('loading', loading);
   }, []);
   const [activeTab, setActiveTab] = React.useState(profileTabs[0].id);
+
+
+  const GetLookUpIndustry = async item => {
+    try {
+      const res = await Api.get(urls.GET_LOOKUP_INDUSTRY);
+      console.log('res', res);
+      if (res && res.success == true) {
+        setIndustryData(res.data)
+      } else {
+      }
+    } catch (error) { }
+  };
   const edit = () => {
     setFullname(profileData.fullName);
     setEmail(profileData.email);
