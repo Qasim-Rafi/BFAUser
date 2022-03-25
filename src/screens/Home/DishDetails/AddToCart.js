@@ -63,8 +63,8 @@ export default function AddToCart({route, navigation}) {
       return a + c.price;
     }, 0);
 
-    updateTotal(dishPrice * count + sumofExtra);
-  }, [count]);
+    updateTotal((dishPrice + sumofExtra )* count );
+  }, [count,extraCheese.length]);
   const Drinks = value => {
     setSelecteddrinks(value);
     console.log('Idddddddddd:', value);
@@ -275,7 +275,7 @@ export default function AddToCart({route, navigation}) {
             ExtraChees={ExtraChees}
             SelectedDrinks={Drinks}
           />
-          {route.params.dish.restaurantDishLinkedItemList.length > 0 ? (
+          {route.params.dish.restaurantDishLinkedItemList?.length > 0 ? (
             <View
               style={{
                 flexDirection: 'row',

@@ -40,7 +40,6 @@ export default urls = {
   UPDATE_ORDER: 'api/Order/UpdateOrder/',
   GET_ALL_ORDERS: 'api/Order/OrderListForUserApp',
   PROMOTION_CLICK: 'api/PromotionlDish/AddPromotionlDishForRestaurantClick',
-  CHECK_ORDER: 'api/OrderBill/CheckOutOrder',  //
   UPDATE_QUANTITY: 'api/Order/UpdateOrderQuantityPrice',
   DELETE_DISH_FROM_CART: 'api/Order/DeleteOrderDish?orderId=',
   DELETE_ORDER_FROM_CART: 'api/Order/DeleteOrder/',//
@@ -53,7 +52,6 @@ export default urls = {
   UPDATE_QUANTITY: 'api/Order/UpdateOrderQuantityPrice',
   DELETE_DISH_FROM_CART: 'api/Order/DeleteOrderDish?orderId=',
   DELETE_ORDER_FROM_CART: 'api/Order/DeleteOrder/',//
-  ORDER_CONFIRMATION: 'api/OrderPayment/PaymentCheckMethodConfirmation',//
   //Searchbar
   SearchResult: 'api/RestaurantDish/HomeDashboardSearch?DishName=',
   

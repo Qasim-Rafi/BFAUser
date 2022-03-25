@@ -15,7 +15,7 @@ export default function AddToCartDetails(props) {
 
   return (
     <View style={{ margin: 20 }}>
-      {props.data.restaurantSoftDrinksList.length > 0 ?
+      {props.data.restaurantSoftDrinksList?.length > 0 ?
         <View
           style={{
             flexDirection: 'row',
@@ -41,7 +41,7 @@ export default function AddToCartDetails(props) {
         onSelect={(index, value) => onselect(index, value)} selectedIndex={0}
       >
         {Object.keys(props.data).length != 0 && props.data.restaurantSoftDrinksList
-          ? props.data.restaurantSoftDrinksList.map((item1, index) => {
+          ? props.data.restaurantSoftDrinksList?.map((item1, index) => {
             return (
               <RadioButton
                 style={{ padding: 10 }}
@@ -71,7 +71,7 @@ export default function AddToCartDetails(props) {
           })
           : null}
       </RadioGroup>
-      {props.data.restaurantDishExtraItemList.length > 0 ?
+      {props.data.restaurantDishExtraItemList?.length > 0 ?
         <View
           style={{
             flexDirection: 'row',
@@ -89,7 +89,7 @@ export default function AddToCartDetails(props) {
       }
 
       {Object.keys(props.data).length != 0 && props.data.restaurantDishExtraItemList
-        ? props.data.restaurantDishExtraItemList.map((item, index) => {
+        ? props.data.restaurantDishExtraItemList?.map((item, index) => {
           return (
             <View
               style={{
