@@ -134,14 +134,16 @@ export default function Signup({navigation}) {
         type: 'danger',
         icon: {icon: 'auto', position: 'left'},
       });
-    } else if (phoneNum === '') {
-      dropdownRef.current.showMessage({
-        message: 'Error',
-        description: 'TelePhone Number is Required',
-        type: 'danger',
-        icon: {icon: 'auto', position: 'left'},
-      });
-    } else if (CellphoneNum === '') {
+    } 
+    // else if (phoneNum === '') {
+    //   dropdownRef.current.showMessage({
+    //     message: 'Error',
+    //     description: 'TelePhone Number is Required',
+    //     type: 'danger',
+    //     icon: {icon: 'auto', position: 'left'},
+    //   });
+    // } 
+    else if (CellphoneNum === '') {
       dropdownRef.current.showMessage({
         message: 'Error',
         description: 'CellPhone is Required',
@@ -232,22 +234,27 @@ export default function Signup({navigation}) {
     console.log('checkExisting called');
     setErrorString('');
     var obj = {
-      username: userName,
-      email: email,
-      fullName: 'string',
-      address: 'string',
-      cellPhone: 'string',
-      password: 'string',
-      userTypeId: 3,
-      restaurantId: 0,
-      updatebyId: 0,
-      updatedDateTime: 'string',
-      areaId: 0,
-      gender: 'string',
-      dateofBirth: 'string',
-      contactNumber: CellphoneNum,
-      restaurantBranchId: 0,
-    };
+      "userName": userName,
+      "email": email,
+      "phone": CellphoneNum
+    }
+    // {
+    //   username: userName,
+    //   email: email,
+    //   fullName: 'string',
+    //   address: 'string',
+    //   cellPhone: 'string',
+    //   password: 'string',
+    //   userTypeId: 3,
+    //   restaurantId: 0,
+    //   updatebyId: 0,
+    //   updatedDateTime: 'string',
+    //   areaId: 0,
+    //   gender: 'string',
+    //   dateofBirth: 'string',
+    //   contactNumber: CellphoneNum,
+    //   restaurantBranchId: 0,
+    // };
     // var obj1 = {
     //   username: userName,
     //   email: email,
@@ -351,7 +358,7 @@ export default function Signup({navigation}) {
               padding={[0, 0, 0, 25]}
               onChnageText={text => setPhoneNum(text)}
               iconMargin={[0, 10, 0, 0]}
-              placeholder="Telephone"
+              placeholder="Telephone(optional)"
               leftIcon={globalPath.PHONE_LOGO}
               onPressOut={() => checkExisting()}
             />
