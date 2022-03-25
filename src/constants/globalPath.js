@@ -167,7 +167,8 @@ const CAMERA_ICON = require('../assets/icons/Cameraa.png')
 const Calender_ICON = require('../assets/icons/Calender.png')
 const SignUp_Phone_ICON = require('../assets/icons/SignupPhone.png')
 const SignUp_GENDER_ICON = require('../assets/icons/signupgender.png')
-
+const State_ICON = require('../assets/icons/signupstate.png');
+const ZIP_ICON = require('../assets/icons/zip.png');
 
 
 export const globalPath = {
@@ -175,6 +176,8 @@ export const globalPath = {
   CAMERA_ICON,
   BIRTHDAY_ICON,
   SignUp_GENDER_ICON,
+  State_ICON,
+  ZIP_ICON,
   Calender_ICON,
   SignUp_Phone_ICON,
   GENDER_ICON,

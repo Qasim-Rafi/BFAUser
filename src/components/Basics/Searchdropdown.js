@@ -5,6 +5,7 @@ import {
     ScrollView,
     View,
     Text,
+    KeyboardAvoidingView,
     TextInput,
 } from 'react-native';
 import { hp, wp } from '../../helpers/Responsiveness';
@@ -57,6 +58,7 @@ export default function SearchDropDown(props) {
                             }
                         })
                         :
+                       
                         <View
                             style={styles.noResultView}>
                             <Text style={styles.noResultText}>No search items matched</Text>
@@ -109,7 +111,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         backgroundColor: colors.black1,
         // margin: 20,
-        height: hp(90),
+        height: hp(10),
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',

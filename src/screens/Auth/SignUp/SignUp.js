@@ -410,7 +410,7 @@ export default function Signup({ navigation }) {
                 iconMargin={[0, 10, 0, 0]}
 
                 placeholder="State"
-                // leftIcon={globalPath.USER_LOGO}
+                leftIcon={globalPath.State_ICON}
               />
               <Input
                 width={wp(39)}
@@ -421,12 +421,12 @@ export default function Signup({ navigation }) {
                 padding={[0, 0, 0, 15]}
                 iconMargin={[0, 10, 0, 0]}
                 placeholder="Postcode"
-                // leftIcon={globalPath.USER_LOGO}
+                leftIcon={globalPath.ZIP_ICON}
               />
 
             </View>
             <View
-              style={{ flexDirection: 'row', justifyContent: 'space-between' ,top:-8 }}>
+              style={{ flexDirection: 'row', justifyContent: 'space-between' ,top:-15 }}>
               <DropDown
                 data={Gender}
                 onSelect={(selectedItem, index) => {
@@ -454,6 +454,7 @@ export default function Signup({ navigation }) {
               <DateTimePicker
                 // testID="dateTimePicker"
                 value={new Date('Jan 1, 2009')}
+                minimumDate={new Date(2009, 0, 1)}
                 mode={'date'}
                 // is24Hour={true}
                 display="default"
@@ -462,8 +463,9 @@ export default function Signup({ navigation }) {
             )}
             <RnButton
               onPress={() => validation()}
-              fontFamily="light"
-              margin={[20, 0]}
+              fontFamily="bold"
+              margin={[-7, 0]}
+              textColor={colors.black}
               title="SIGN UP "
             />
 

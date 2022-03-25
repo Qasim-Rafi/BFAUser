@@ -589,7 +589,7 @@ function* getSearchResult(data) {
     }
   }
   try {
-    const response = yield Api.get(`${urls.SearchResult}${data.data.selected === 'Dishes' ? Search : ''}${'&RestaurentName='}${data.data.selected === 'Restaurants' ? Search : ''}`);
+    const response = yield Api.get(`${urls.SearchResult}${data.data.selected === 1 ? Search : ''}${'&RestaurentName='}${data.data.selected === 2 ? Search : ''}`);
     if (response && response.data != null) {
       yield put({
         type: types.GET_SEARCH_SUCCESS,

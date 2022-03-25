@@ -67,10 +67,11 @@ export default urls = {
   GET_USER_RANDOMISER_SETTING:'api/UserRandomizerSetting/GetUserRandomizerSettingById/',
   UPDATE_USER_RANDOMISER:'api/UserRandomizerSetting/UpdateUserRandomizerSetting/',
   GET_ALL_REVIEWS_LIST: 'GetAllReviews',
+
   GET_LOOKUP_INDUSTRY:'api/Lookups/GetLookUpIndustry',
   GET_LOOKUP_EMP_SEC:'api/Lookups/GetLookUpEmploymentSector',
   GET_LOOKUP_MARITAL_STATUS:'api/Lookups/GetLookUpMarriageStatus',
-AUTO_SUGGESTIONS_ON_SEARCH:'​api/RestaurantDish/SuggestionHomeDashboard?'
+AUTO_SUGGESTIONS_ON_SEARCH:'api/RestaurantDish/SuggestionHomeDashboard/'
 
 
 

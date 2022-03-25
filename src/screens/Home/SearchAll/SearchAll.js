@@ -118,7 +118,7 @@ export default function SearchAll({ navigation }) {
     }
   }
 
-  const [selected, setSelected] = React.useState('Dishes');
+  const [selected, setSelected] = React.useState(1);
   const [filtered, setFiltered] = useState(data)
   const [searching, setSearching] = useState(false)
   const [isModalVisible, setModalVisible] = React.useState(false);
@@ -129,7 +129,7 @@ export default function SearchAll({ navigation }) {
 
   const GetSuggestionData = async rest => {
     try {
-      const res = await Api.get(selected==='Dishes'?'api/RestaurantDish/SuggestionHomeDashboard?DishName='+rest:'api/RestaurantDish/SuggestionHomeDashboard?RestaurentName='+rest);
+      const res = await Api.get(urls.AUTO_SUGGESTIONS_ON_SEARCH+selected+'/'+rest);
       console.log('GetLookUpMarriageStatus', res);
       if (res && res.success == true) {
         setSuggestionData(res.data)
@@ -284,13 +284,13 @@ export default function SearchAll({ navigation }) {
             style={{ flex: 1, flexDirection: 'row' }}
             onSelect={(index, value) => onSelect(index, value)}
             selectedIndex={0}>
-            <RadioButton value={'Dishes'} style={{ marginStart: 1 }} >
+            <RadioButton value={1} style={{ marginStart: 1 }} >
               <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>
                 Dishes{' '}
               </ResponsiveText>
             </RadioButton>
 
-            <RadioButton value={'Restaurants'} style={{ marginStart: 10 }}>
+            <RadioButton value={2} style={{ marginStart: 10 }}>
               <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>
                 Restaurants{' '}
               </ResponsiveText>
@@ -311,7 +311,7 @@ export default function SearchAll({ navigation }) {
       </View>
       {
         Note?
-        <Text style={{color:colors.white,alignSelf:"center",top:10}}>{Note}</Text>:null
+        <Text style={{color:colors.white,alignSelf:"center",top:10 ,paddingBottom:hp(3)}}>{Note}</Text>:null
       }
       <Modal
         isVisible={isModalVisible}
@@ -585,7 +585,7 @@ export default function SearchAll({ navigation }) {
             data={DATA}
             // extraData={dataFiltersDummyData}
             renderItem={({ item, index }) => {
-              if(selected=='Dishes'){
+              if(selected==1){
               return(
               <TouchableOpacity
                 style={{
