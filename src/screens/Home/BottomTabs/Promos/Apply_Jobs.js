@@ -218,12 +218,12 @@ export default function Apply_Jobs({ navigation, route }) {
         </View>
 
 
-        <TouchableOpacity style={styles.signin} onPress={() => validation()}>
+        <TouchableOpacity style={[styles.signin,{backgroundColor: data.userAppliedStatus === "Applied" ? colors.grey6 : colors.yellow}]} disabled={data.userAppliedStatus === "Applied" ? true : false} onPress={() => validation()}>
           {loading == true ?
             <  SkypeIndicator count={5} color={colors.black} size={30} />
             :
             <Text style={{fontWeight:'800',color:colors.black,top:15}}>
-              Submit
+              {data.userAppliedStatus === "Applied" ? 'Already Applied' : 'Submit'}
             </Text>
           }
         </TouchableOpacity>
@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
     width: wp(80),
   },
   signin: {
-    backgroundColor: colors.yellow,
+    
     width: wp(80),
     height: hp(6),
     borderRadius: 7, alignItems: 'center',

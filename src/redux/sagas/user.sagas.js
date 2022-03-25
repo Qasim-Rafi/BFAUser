@@ -416,7 +416,7 @@ function* getJobsNewsSagaApi(data) {
 
   console.log('paramsssssssssss: ', data);
   const url = urls.GET_PROMO_JOBS + index + '/' + limit;
-  console.log('People Url: ', url);
+  console.log('GET_PROMO_JOBS: ', url);
   try {
     const response = yield Api.get(url);
     if (response && response.data != null) {
