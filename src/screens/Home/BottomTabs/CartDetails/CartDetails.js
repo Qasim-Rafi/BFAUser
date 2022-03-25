@@ -93,7 +93,10 @@ const CartDetails = ({ navigation }) => {
     }
   });
   React.useEffect(async () => {
-    dispatch(getOrders());
+    // setInterval(() => {
+    //   dispatch(getOrders());
+    // }, 2000);
+    
 
     setRandom(SharedData.state.data);
     let sum = cartList.reduce((a, c) => {
@@ -102,6 +105,10 @@ const CartDetails = ({ navigation }) => {
     setTotalPrice(sum);
     console.log('sum: ', sum);
     console.log('cart data........', cartList);
+    const interval = setInterval(() => {
+      dispatch(getOrders());
+    }, 5000);
+    return () => clearInterval(interval);
   }, [random]);
 
   //Remove product
@@ -885,7 +892,7 @@ const CartDetails = ({ navigation }) => {
             data={orderList}
             keyExtractor={(item, index) => item + index}
             renderItem={renderItem}
-            onRefresh={onRefresh}
+           // onRefresh={onRefresh}
           refreshing={orderList_Loading}
             // onRefresh={
             //   <RefreshControl

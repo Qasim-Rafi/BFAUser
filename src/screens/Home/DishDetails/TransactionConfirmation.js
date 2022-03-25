@@ -117,7 +117,7 @@ export default function TransactionConfirmation({route, navigation}) {
             {data.restaurantName}
           </ResponsiveText>
         </View>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => navigation.navigate(routeName.SELECT_PAYMENT_METHOD)}>
           <View
             style={{
@@ -144,7 +144,7 @@ export default function TransactionConfirmation({route, navigation}) {
               </ResponsiveText>
             </TouchableOpacity>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <View
           style={{
@@ -406,7 +406,7 @@ export default function TransactionConfirmation({route, navigation}) {
               backgroundColor: colors.yellow,
             }}
             onPress={orderConfirmation}>
-            <ResponsiveText>Confirm Payment</ResponsiveText>
+            <ResponsiveText>Order Confirmation</ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => navigation.goBack()}
@@ -449,7 +449,7 @@ export default function TransactionConfirmation({route, navigation}) {
                 borderTopLeftRadius: 7,
               }}>
               <ResponsiveText color={colors.white} size={3.5}>
-                Payment Successful
+                Order Placed
               </ResponsiveText>
             </View>
             <View
@@ -461,7 +461,7 @@ export default function TransactionConfirmation({route, navigation}) {
                 marginHorizontal: 15,
               }}>
               <ResponsiveText color={colors.grey1} size={2.6}>
-                You have successfully paid:
+                Order placed successfully
               </ResponsiveText>
             </View>
             <View

@@ -122,7 +122,9 @@ const Home = ({ navigation }) => {
     
     dispatch(getOrders());
     dispatch(GetUserRandomiserSetting())
-
+    // setInterval(() => {
+    //   dispatch(getOrders());
+    // }, 5000);
 
 
   }, []);
