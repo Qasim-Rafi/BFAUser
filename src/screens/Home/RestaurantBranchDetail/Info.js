@@ -8,7 +8,7 @@ import { colors } from '../../../constants/colorsPallet';
 
 const Info = (props) => {
   const [data, setData] = useState(props.data)
-  console.log('okokoko', props.data)
+  console.log('facilities', props.data)
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <Restaurant_Description data={data} logo={props.logo}/>

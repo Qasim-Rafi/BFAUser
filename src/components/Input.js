@@ -18,6 +18,7 @@ const Input = ({
   iconSize,
   height,
   margin,
+  maxlength,
   padding,
   zIndex,
   fontFamily,
@@ -26,6 +27,7 @@ const Input = ({
   rightIconMargin,
   placeholderTextColor,
   width,
+  keyboardType,
   containerStyle,
   secureTextEntry,
   onChnageText,
@@ -34,6 +36,7 @@ const Input = ({
   onSubmitEditing,
   onPressOut,
   countryCode,
+  autoCapitalize,
   ...props
 }) => {
   // const [showPassword, setShowPassword] = React.useState(secureTextEntry);
@@ -91,6 +94,9 @@ const Input = ({
           {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
           editable={props.editable}
           // secureTextEntry={false}
+          keyboardType={keyboardType}
+          maxLength={maxlength}
+          autoCapitalize={autoCapitalize}
           style={[
             fontSize && { fontSize },
             styles.Input,

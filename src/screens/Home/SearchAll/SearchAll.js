@@ -140,7 +140,7 @@ export default function SearchAll({ navigation }) {
   };
   const Search = (text) => {
     console.log(text);
-    if (text < 3) {
+    if (text.length < 3) {
       setNote('Please type atleast 3 characters');
     } else {
       dispatch(SearchResult(text.toLowerCase(), selected));
@@ -154,31 +154,32 @@ export default function SearchAll({ navigation }) {
   const onSearch = (text) => {
     setSearchText(text);
 
-    console.log(text);
-    if (text < 3) {
+    console.log(text.length);
+    if (text.length < 3) {
       setNote('Please type atleast 3 characters');
+      setSearching(false)
     } else {
       // dispatch(SearchResult(SearchText.toLowerCase(), selected));
       setNote(`Now showing dish result for "${SearchText}"`);
     console.log('text');
-
+    setSearching(true)
       GetSuggestionData(text);
 
     }
-    if (text) {
-      setSearching(true)
-      const temp = text.toLowerCase()
+    // if (text) {
+    //   setSearching(true)
+    //   const temp = text.toLowerCase()
 
-      const tempList = data.filter(item => {
-        if (item.match(temp))
-          return item
-      })
-      setFiltered(tempList)
-    }
-    else {
-      setSearching(false)
-      setFiltered(data)
-    }
+    //   const tempList = data.filter(item => {
+    //     if (item.match(temp))
+    //       return item
+    //   })
+    //   setFiltered(tempList)
+    // }
+    // else {
+    //   setSearching(false)
+    //   setFiltered(data)
+    // }
 
   }
   const onPressHandler = (item, index, i) => {
@@ -283,7 +284,7 @@ export default function SearchAll({ navigation }) {
             style={{ flex: 1, flexDirection: 'row' }}
             onSelect={(index, value) => onSelect(index, value)}
             selectedIndex={0}>
-            <RadioButton value={'Dishes'} style={{ marginStart: 1 }}>
+            <RadioButton value={'Dishes'} style={{ marginStart: 1 }} >
               <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>
                 Dishes{' '}
               </ResponsiveText>
@@ -308,6 +309,10 @@ export default function SearchAll({ navigation }) {
 
         </View>
       </View>
+      {
+        Note?
+        <Text style={{color:colors.white,alignSelf:"center",top:10}}>{Note}</Text>:null
+      }
       <Modal
         isVisible={isModalVisible}
         backdropOpacity={0.9}
