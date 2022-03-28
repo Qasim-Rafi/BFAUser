@@ -34,10 +34,13 @@ export default function TransactionConfirmation({route, navigation}) {
 
   const toggleModal = async () => {
     // dispatch(checkoutOrder(route.params));
+    var obj={...route.params.obj, ...{OrderType:pickup==true?2:1}}
+    console.log('res check', obj);
+
     try {
       const response = await Api.post(
         urls.CHECK_ORDER,
-        route.params.obj,
+        obj,
         false,
       );
       console.log('res check', response);

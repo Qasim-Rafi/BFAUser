@@ -105,12 +105,35 @@ const CartDetails = ({ navigation }) => {
     setTotalPrice(sum);
     console.log('sum: ', sum);
     console.log('cart data........', cartList);
-    const interval = setInterval(() => {
-      dispatch(getOrders());
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [random]);
 
+    // let intervalId =  setInterval(() => {
+    //    // dispatch(getOrders());//
+    //     console.log('runnnn');
+    //   }, 5000);
+    // return(() => {
+    //     clearInterval(intervalId)
+    //     console.log('outttt');
+    // })
+    
+  }, [random]);
+  React.useEffect(() => {
+    let interval=null
+    const unsubscribe = navigation.addListener('focus', (e) => {
+      // Prevent default action
+      // e.preventDefault();
+       interval = setInterval(() => {
+        // dispatch(getOrders());
+      console.log('focusss');
+
+      }, 5000);
+
+      // return () => {clearInterval(interval);
+      // console.log('blurrrrrr');}
+    });
+    return () => {clearInterval(interval);
+      console.log('blurrrrrr');};
+
+  }, [navigation]);
   //Remove product
   const onItemRemove = async item => {
     console.log('itemm', item);
