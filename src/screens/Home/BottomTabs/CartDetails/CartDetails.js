@@ -137,9 +137,7 @@ const CartDetails = ({ navigation }) => {
        interval = setInterval(() => {
          dispatch(getOrders());
       console.log('focusss');
-
       }, 5000);
-
     });
    
       const unsubscribe = navigation.addListener('blur', (e) => {
