@@ -92,7 +92,7 @@ const CartDetails = ({ navigation }) => {
       newArray.push({ ...obj });
     }
   });
-  React.useEffect(async () => {
+  React.useEffect( () => {
     // setInterval(() => {
     //   dispatch(getOrders());
     // }, 2000);
@@ -105,7 +105,20 @@ const CartDetails = ({ navigation }) => {
     setTotalPrice(sum);
     console.log('sum: ', sum);
     console.log('cart data........', cartList);
-
+    // const delay = 2;
+    // const limit = 2;
+    // let i = 1;
+    
+    // console.log('START!');
+    // const limitedInterval = setInterval(() => {
+    //   console.log(`message ${i}, appeared after ${delay * i++} seconds`);
+      
+    //   // if (i > limit) {
+    //   //   clearInterval(limitedInterval);
+    //   //   console.log('interval cleared!');
+    //   // }
+    // }, 2000);
+    // return clearInterval(limitedInterval)
     // let intervalId =  setInterval(() => {
     //    // dispatch(getOrders());//
     //     console.log('runnnn');
@@ -118,20 +131,26 @@ const CartDetails = ({ navigation }) => {
   }, [random]);
   React.useEffect(() => {
     let interval=null
-    const unsubscribe = navigation.addListener('focus', (e) => {
+    const subscribe = navigation.addListener('focus', (e) => {
       // Prevent default action
       // e.preventDefault();
        interval = setInterval(() => {
-        // dispatch(getOrders());
+         dispatch(getOrders());
       console.log('focusss');
 
       }, 5000);
 
-      // return () => {clearInterval(interval);
-      // console.log('blurrrrrr');}
     });
-    return () => {clearInterval(interval);
-      console.log('blurrrrrr');};
+   
+      const unsubscribe = navigation.addListener('blur', (e) => {
+        // Prevent default action
+        // e.preventDefault();
+        clearInterval(interval);
+        console.log('blurrrrrr');
+  
+        // return () => {clearInterval(interval);
+        // console.log('blurrrrrr');}
+      });
 
   }, [navigation]);
   //Remove product
