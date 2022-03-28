@@ -648,10 +648,10 @@ export default function SearchAll({ navigation }) {
                   }}>
                    
                   <ResponsiveText size={2.7} color={colors.white}>
-                    {item.titleR}
+                    {item.restaurentName}
                   </ResponsiveText>
-                  <ResponsiveText size={3} color={colors.white}>
-                      {item.awardName}
+                  <ResponsiveText size={2.2} color={colors.white}>
+                      {item.branchAddress}
                     </ResponsiveText>
                   <Rating
                     size={2}
