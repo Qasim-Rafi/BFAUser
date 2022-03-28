@@ -15,10 +15,10 @@ export default function NotificationList({navigation}) {
   useEffect(()=>{
     dispatch(GETPAYMENTHISTORY(1, 4));
     
-  })
+  },[])
   const HISTORY = useSelector(state => state.appReducers.getPaymentHistory.data);
   const loading = useSelector(state => state.appReducers.getPaymentHistory.loading);
-  console.log('HISTORY:  ',HISTORY)
+//   console.log('HISTORY:  ',HISTORY)
   return (
     <View style={{flex: 1, backgroundColor: colors.black3}}>
        <View style={{ flexDirection: 'row', justifyContent: "space-between",padding:7 }}>
