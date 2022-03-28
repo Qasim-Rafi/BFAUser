@@ -3,14 +3,15 @@ import {View, StyleSheet, ImageBackground, Image} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 import {colors} from '../../constants/colorsPallet';
-import {iconPath} from '../../constants/icon';
+import { globalPath } from '../../constants/globalPath';
+// import {iconPath} from '../../constants/icon';
 import {wp} from '../../helpers/Responsiveness';
-import {gStyles} from '../../styles/global';
+// import {gStyles} from '../../styles/global';
 import Icon from '../Icon';
 import RnButton from '../RnButton';
 import ResponsiveText from '../RnText';
-import withToolTip from '../HigherOrderComponents/withToolTip';
-import Header from '../Header';
+// import withToolTip from '../HigherOrderComponents/withToolTip';
+// import Header from '../Header';
 
 const deleteNotification = [
   {
@@ -25,7 +26,7 @@ const Notifications = (props) => {
 
   return (
     <View style={styles.container}>
-      <ResponsiveText margin={[0, 15]} size={'h5'} fontFamily="SemiBold">
+      <ResponsiveText margin={[0, 15]} size={5} fontFamily="SemiBold">
         Recent
       </ResponsiveText>
       <View
@@ -39,16 +40,16 @@ const Notifications = (props) => {
           {backgroundColor: colors.red4, marginTop: wp(2)},
         ]}>
         <View style={styles.imageWraper}>
-          <ResponsiveText size={'h3'} color={colors.white}>
+          <ResponsiveText size={3} color={colors.white}>
             M
           </ResponsiveText>
           <View style={styles.userNameCircle}>
-            <Image source={iconPath.PROFILE_ICON} style={styles.profileIcon} />
+            <Image source={globalPath.PROFILE_ICON} style={styles.profileIcon} />
           </View>
         </View>
         <View style={styles.notificationTxtArea}>
           <ResponsiveText
-            size={'h6'}
+            size={6}
             numberOfLines={3}
             fontFamily={'SemiBold'}
             color={colors.black}>
@@ -97,18 +98,18 @@ const Notifications = (props) => {
           <View>
             <TouchableOpacity
               onPress={() => {
-                props.toggleAlign(deleteNotification, yOffsets, 0);
+               // props.toggleAlign(deleteNotification, yOffsets, 0);
               }}>
               <Icon
                 margin={[0, 0, 0, 3]}
-                source={iconPath.ALLIGN_ICON}
+                source={globalPath.ALLIGN_ICON}
                 width={wp(4)}
                 tintColor={colors.grey}
                 height={wp(4)}
               />
             </TouchableOpacity>
             <ResponsiveText
-              size={'h7'}
+              size={7}
               color={colors.grey}
               margin={[8, 2.5, 0, 0]}>
               5m
@@ -116,27 +117,27 @@ const Notifications = (props) => {
           </View>
         </View>
       </View>
-      <ResponsiveText margin={[10, 0, 0, 15]} size={'h5'} fontFamily="SemiBold">
+      <ResponsiveText margin={[10, 0, 0, 15]} size={5} fontFamily="SemiBold">
         Earlier
       </ResponsiveText>
       <View
         ref={view2}
-        onLayout={(event) => {
-          const y = event.nativeEvent.layout.y;
-          yOffsets.push(y);
-        }}
+        // onLayout={(event) => {
+        //   const y = event.nativeEvent.layout.y;
+        //   yOffsets.push(y);
+        // }}
         style={[styles.notificationCard, {marginTop: wp(2)}]}>
         <View style={styles.imageWraper}>
-          <ResponsiveText size={'h3'} color={colors.white}>
+          <ResponsiveText size={3} color={colors.white}>
             M
           </ResponsiveText>
           <View style={styles.userNameCircle}>
-            <Image source={iconPath.PROFILE_ICON} style={styles.profileIcon} />
+            <Image source={globalPath.PROFILE_ICON} style={styles.profileIcon} />
           </View>
         </View>
         <View style={styles.notificationTxtArea}>
           <ResponsiveText
-            size={'h6'}
+            size={6}
             numberOfLines={3}
             fontFamily={'SemiBold'}
             color={'grey'}>
@@ -175,18 +176,18 @@ const Notifications = (props) => {
           <View>
             <TouchableOpacity
               onPress={() => {
-                props.toggleAlign(deleteNotification, yOffsets, 1);
+               // props.toggleAlign(deleteNotification, yOffsets, 1);
               }}>
               <Icon
                 margin={[0, 0, 0, 3]}
-                source={iconPath.ALLIGN_ICON}
+                source={globalPath.ALLIGN_ICON}
                 width={wp(4)}
                 tintColor={colors.grey}
                 height={wp(4)}
               />
             </TouchableOpacity>
             <ResponsiveText
-              size={'h7'}
+              size={7}
               color={colors.grey}
               margin={[8, 2.5, 0, 0]}>
               5m
@@ -198,7 +199,7 @@ const Notifications = (props) => {
   );
 };
 
-export default withToolTip(Notifications);
+export default Notifications;
 
 const styles = StyleSheet.create({
   container: {

@@ -66,63 +66,85 @@ const Header = ({
           </Text>
         </View>
       ) : (
-        <TouchableOpacity onPress={() => navigation.navigate(routeName.SEARCH_RESULT)}
-          style={{
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexDirection: 'row',
-            borderRadius: 7,
-            marginHorizontal: 10,
-            paddingHorizontal: 10,
-            backgroundColor:
-              searchBar === 'true' ? 'rgba(64,64,64,0.5)' : undefined,
-          }}>
-          <TouchableOpacity >
-            {/* // onPress={() => searchBar==='true'? navigation.navigate(routeName.FeaturedSearch) : undefined}> */}
-            {/* <Input
-          editable={searchBar==='true'? true : false}
-          fontSize={11}
-          onSubmitEditing={()=>{}}
-          placeholder={searchBar==='true'? "Search Dishes, Restaurants or Promo" : ""}
-          padding={[0, 0, 0, 5]}
+        // <TouchableOpacity onPress={() => navigation.navigate(routeName.SearchAll)}
+        //   style={{
+        //     alignItems: 'center',
+        //     justifyContent: 'center',
+        //     flexDirection: 'row',
+        //     borderRadius: 7,
+        //     marginHorizontal: 10,
+        //     paddingHorizontal: 10,
+        //     backgroundColor:
+        //       searchBar === 'true' ? 'rgba(64,64,64,0.5)' : undefined,
+        //   }}>
+        //   <TouchableOpacity >
+        //     {/* // onPress={() => searchBar==='true'? navigation.navigate(routeName.FeaturedSearch) : undefined}> */}
+        //     {/* <Input
+        //   editable={searchBar==='true'? true : false}
+        //   fontSize={11}
+        //   onSubmitEditing={()=>{}}
+        //   placeholder={searchBar==='true'? "Search Dishes, Restaurants or Promo" : ""}
+        //   padding={[0, 0, 0, 5]}
           
           
-          height={hp(6)}
-          width={inputWidth}
-        /> */}
-            <TouchableOpacity onPress={() => navigation.navigate(routeName.SearchAll)}>
-              <TextInput
-                style={{ height: hp(6), width: wp(50), color: colors.white }}
-                editable={false}
-                onP
-                fontSize={11}
-                placeholderTextColor={colors.white}
-                placeholder={
-                  searchBar === 'true'
-                    ? 'Search Dishes, Restaurants or Promo'
-                    : ''
-                }
-              />
-            </TouchableOpacity>
+        //   height={hp(6)}
+        //   width={inputWidth}
+        // /> */}
+        //     <TouchableOpacity onPress={() => navigation.navigate(routeName.SearchAll)}>
+        //       <TextInput
+        //         style={{ height: hp(6), width: wp(50), color: colors.white }}
+        //         editable={false}
+        //         onP
+        //         fontSize={11}
+        //         placeholderTextColor={colors.white}
+        //         placeholder={
+        //           searchBar === 'true'
+        //             ? 'Search Dishes, Restaurants or Promo'
+        //             : ''
+        //         }
+        //       />
+        //     </TouchableOpacity>
 
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              searchBar === 'true'
-                ? navigation.navigate(routeName.SearchAll)
-                : toggleSearchBar('true');
-            }}
-            style={{ marginStart: 5, borderRadius: 10 }}>
-            <Icon source={globalPath.SEARCH_LOGO} size={25} />
-          </TouchableOpacity>
-        </TouchableOpacity>
+        //   </TouchableOpacity>
+          
+        // </TouchableOpacity>
+        <View style={{width:wp(55),alignItems:'flex-end'}}>
+        <TouchableOpacity
+        onPress={() => {
+          // searchBar === 'true'
+          //   ? 
+            navigation.navigate(routeName.SearchAll)
+           // : toggleSearchBar('true');
+        }}
+        style={{ marginStart: 5, borderRadius: 10 }}>
+        <Icon source={globalPath.SEARCH_LOGO} size={25} />
+      </TouchableOpacity>
+      </View>
       )}
       {showRightMenu &&
         (props.iconPath ? (
           <View />
         ) : (
           <TouchableOpacity
-            style={{ marginRight: -10 }}
+            style={{ marginHorizontal: wp(5) }}
+            onPress={() => {
+              navigation.navigate(routeName.NOTIFICATION_SCREEN);
+            }}>
+            <Icon
+              borderRadius={30}
+              size={props.iconPath ? (wp(10), hp(6)) : 30}
+              resizeMode={'cover'}
+              source={globalPath.NOTIFICATION}
+
+            />
+          </TouchableOpacity>
+        ))}
+        {showRightMenu &&
+        (props.iconPath ? (
+          <View />
+        ) : (
+          <TouchableOpacity
+            style={{ marginRight:wp(2) }}
             onPress={() => {
               navigation.navigate(routeName.MORE_BOTTOM);
             }}>

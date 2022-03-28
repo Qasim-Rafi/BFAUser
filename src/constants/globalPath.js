@@ -169,6 +169,8 @@ const SignUp_Phone_ICON = require('../assets/icons/SignupPhone.png')
 const SignUp_GENDER_ICON = require('../assets/icons/signupgender.png')
 const State_ICON = require('../assets/icons/signupstate.png');
 const ZIP_ICON = require('../assets/icons/zip.png');
+const NOTIFICATION = require('../assets/icons/notification.png');
+
 
 
 export const globalPath = {
@@ -201,6 +203,7 @@ export const globalPath = {
   FEED_GREY,
   RANDOM_GREY,
   MORE_GREY,
+  NOTIFICATION,
   //ICON PATHS HERE
   BACK_BLACK_ARROW,
   EDIT_PROFILE,
