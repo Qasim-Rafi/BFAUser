@@ -71,7 +71,9 @@ export default urls = {
   GET_LOOKUP_INDUSTRY:'api/Lookups/GetLookUpIndustry',
   GET_LOOKUP_EMP_SEC:'api/Lookups/GetLookUpEmploymentSector',
   GET_LOOKUP_MARITAL_STATUS:'api/Lookups/GetLookUpMarriageStatus',
-AUTO_SUGGESTIONS_ON_SEARCH:'api/RestaurantDish/SuggestionHomeDashboard/'
+AUTO_SUGGESTIONS_ON_SEARCH:'api/RestaurantDish/SuggestionHomeDashboard/',
+
+GET_TRANSACTION_HISTORY: 'api/Order/GetUserTransactionHistoryById/',
 
 
 
