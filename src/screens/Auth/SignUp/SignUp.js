@@ -361,11 +361,12 @@ export default function Signup({ navigation }) {
               padding={[0, 0, 0, 25]}
               iconMargin={[0, 10, 0, 0]}
               placeholder="Email"
+              autoCapitalize={"none"}
               onChnageText={text => setEmail(text.trim())}
               onBlur={() => checkExisting(2)}
               leftIcon={globalPath.EMAIL_LOGO}
             />
-            <Input
+            {/* <Input
               margin={[15, 0, 0, 0]}
               padding={[0, 0, 0, 25]}
               onChnageText={text => setPhoneNum(text)}
@@ -375,14 +376,14 @@ export default function Signup({ navigation }) {
               placeholder="Telephone(Optional)"
               leftIcon={globalPath.PHONE_LOGO}
              // onPressOut={() => checkExisting()}
-            />
+            /> */}
             <Input
               margin={[15, 0, 0, 0]}
               padding={[0, 0, 0, 20]}
               maxlength={7}
               onChnageText={text => setCellphoneNum(text)}
               iconMargin={[0, 10, 0, 0]}
-              placeholder="000-0000    (Required)"
+              placeholder="000-0000(Required)"
               countryCode="+673 "
               keyboardType={"numeric"}
               leftIcon={globalPath.SignUp_Phone_ICON}
