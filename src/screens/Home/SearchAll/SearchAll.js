@@ -79,31 +79,16 @@ export default function SearchAll({ navigation }) {
   const PRAYER_ROOM = ['Prayer room - Group', 'Prayer room - Single']
   const AWARDS = ['Best Dish Awards', 'Top 10 Dish Awards', 'Best Participating Dish Awards', 'Lifetime Achievement Awards', 'Best Restaurant Awards', 'Best Catering Awards', 'Best Barista Awards', 'Best Chef Awards']
   const STAR_RATINGS = [5,4,3,2,1,'No ratings']
-
-
   React.useEffect(() => {
     // dispatch(SearchResult());
-
     areaList.length  > -1 ? dispatch(GetAreaAllListAction()) : null
     premiseList.length > -1 ? dispatch(GetPremiseAllListAction()) : null
-
   }, []);
-  
-  // const DATA = useSelector(state => state.appReducers.SearchResult.data);
-  // const Loading = useSelector(state => state.appReducers.SearchResult.loading);
   console.log('searching', DATA);
-
     const districtList = ['Brunei Muara', 'Belait', 'Tutong', 'Temburong']
     const areaList = useSelector(state => state.appReducers.AllAreas.data)
     const premiseList = useSelector(state => state.appReducers.AllPremises.data)
-    
-
-
-    
-
   const [searchBar, toggleSearchBar] = React.useState('false');
-  // const [SearchText, setSearchText] = React.useState('');
-  // const [Note, setNote] = React.useState('');
   const [itemList, setItemList] = React.useState([]);
   const toggleSelection =(item)=>{
     if(itemList.includes(item)){
@@ -117,16 +102,12 @@ export default function SearchAll({ navigation }) {
       itemList.length<5 ? setItemList([...itemList, item]) : undefined
     }
   }
-
   const [selected, setSelected] = React.useState(1);
   const [filtered, setFiltered] = useState(data)
   const [searching, setSearching] = useState(false)
   const [isModalVisible, setModalVisible] = React.useState(false);
   const [dataFiltersDummyData, setFiltersDummyData] = React.useState();
   const [SuggestionData, setSuggestionData] = React.useState([]);
-
-
-
   const GetSuggestionData = async rest => {
     try {
       const res = await Api.get(urls.AUTO_SUGGESTIONS_ON_SEARCH+selected+'/'+rest);
@@ -147,13 +128,10 @@ export default function SearchAll({ navigation }) {
       setNote(`Now showing dish result for "${text}"`);
       setSuggestionData([])
       setSearching(false)
-
-
     }
   };
   const onSearch = (text) => {
     setSearchText(text);
-
     console.log(text.length);
     if (text.length < 3) {
       setNote('Please type atleast 3 characters');
@@ -164,23 +142,7 @@ export default function SearchAll({ navigation }) {
     console.log('text');
     setSearching(true)
       GetSuggestionData(text);
-
     }
-    // if (text) {
-    //   setSearching(true)
-    //   const temp = text.toLowerCase()
-
-    //   const tempList = data.filter(item => {
-    //     if (item.match(temp))
-    //       return item
-    //   })
-    //   setFiltered(tempList)
-    // }
-    // else {
-    //   setSearching(false)
-    //   setFiltered(data)
-    // }
-
   }
   const onPressHandler = (item, index, i) => {
     // setSelectItem({selectedItem: item});
@@ -189,11 +151,13 @@ export default function SearchAll({ navigation }) {
       !dataFiltersDummyData[0].data[index].select;
     setFiltersDummyData(dataFiltersDummyData);
   };
-  const onSelect = (chindex, value) => {
+  const onSelect = (text, value) => {
     // setSelectItem({selectedItem: item});
     console.log('butttonn', value);
     setSelected(value);
-    // return check;
+    dispatch(SearchResult('',selected));
+    setSuggestionData([])
+    setSearchText('')
   };
   const onChangeSearchText = Text => {
     setSearchText(Text);
@@ -250,25 +214,13 @@ export default function SearchAll({ navigation }) {
           padding: wp(4),
           color: colors.white,
         }}
+        value={SearchText}
         editable={true}
         fontSize={11}
         placeholderTextColor={colors.grey}
         placeholder={'Search....'}
         onChangeText={text =>onSearch(text)}
-
       />
-    
-        {/* <TouchableOpacity
-          onPress={() => {
-            Search();
-          }}>
-          <Icon
-            source={globalPath.SEARCH_LOGO}
-            size={25}
-            margin={[0, 0, 0, 10]}
-          />
-        </TouchableOpacity> */}
-      
       </View>
       {
         searching &&
