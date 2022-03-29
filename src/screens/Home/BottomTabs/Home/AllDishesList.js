@@ -86,9 +86,7 @@ export default function AllDishesList({ route, navigation }) {
   );
   React.useEffect(() => {
     // onLoad();
-    console.log('route.params.id',route.params.id);
     if(route.params.id){
-
       dispatch(GetDishByCusineId(index, 13, route.params.id));
     }
     // console.log(
