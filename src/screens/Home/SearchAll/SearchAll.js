@@ -692,8 +692,8 @@ export default function SearchAll({ navigation }) {
               borderWidth={0}
               borderRadius={0}
               margin={[hp(3),0,0,0]}
-              size={300}
-              source={require('../../../assets/icons/search-img.png')}
+              size={250}
+              source={require('../../../assets/icons/seaching_search.png')}
             />
           </View>:null
         }

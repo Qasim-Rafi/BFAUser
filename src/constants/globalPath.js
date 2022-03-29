@@ -169,11 +169,13 @@ const SignUp_Phone_ICON = require('../assets/icons/SignupPhone.png')
 const SignUp_GENDER_ICON = require('../assets/icons/signupgender.png')
 const State_ICON = require('../assets/icons/signupstate.png');
 const ZIP_ICON = require('../assets/icons/zip.png');
+const Link_icon = require('../assets/icons/contactlink.png');
 
 
 export const globalPath = {
   LOGOUT,
   CAMERA_ICON,
+  Link_icon,
   BIRTHDAY_ICON,
   SignUp_GENDER_ICON,
   State_ICON,
