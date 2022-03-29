@@ -447,12 +447,13 @@ const CartDetails = ({ navigation }) => {
                         source={{ uri: v.imageDataB }}
                       />
                     </View>
-                    <TouchableOpacity
+                    
+                      <View style={{ justifyContent: 'center', width: wp(60) }}>
+                      <TouchableOpacity
                       onPress={() => {
                         setVisible(true);
                         SetSelectedItem(v);
                       }}>
-                      <View style={{ justifyContent: 'center', width: wp(60) }}>
                         <ResponsiveText
                           size={3.5}
                           color={colors.white}
@@ -471,8 +472,9 @@ const CartDetails = ({ navigation }) => {
                           margin={[0, 0, 0, 10]}>
                           $ {v.dishPrice}
                         </ResponsiveText>
-                      </View>
                     </TouchableOpacity>
+
+                      </View>
                     {item.statusName === 'PreOrder' ? (
                       <View style={{ marginLeft: -15 }}>
                         <TouchableOpacity
@@ -589,7 +591,7 @@ const CartDetails = ({ navigation }) => {
                   $ {item.amount}
                 </ResponsiveText>
               </View>
-              <View
+              {/* <View
                 style={{
                   flexDirection: 'row',
                   marginTop: 15,
@@ -605,7 +607,7 @@ const CartDetails = ({ navigation }) => {
                 <ResponsiveText color={colors.yellow} size={3}>
                   $ 0.00
                 </ResponsiveText>
-              </View>
+              </View> */}
               <View
                 style={{
                   flexDirection: 'row',
