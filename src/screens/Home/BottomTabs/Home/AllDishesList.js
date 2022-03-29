@@ -97,7 +97,7 @@ export default function AllDishesList({ route, navigation }) {
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={{ marginHorizontal: 8, marginVertical: 10, flex: 1 }}
-      onPress={() => navigation.navigate(routeName.DISH_DETAIL, { dish: item })}>
+      onPress={() => navigation.push(routeName.DISH_DETAIL, { dish: item })}>
       <View
         style={{
           //width: wp(26),

@@ -382,7 +382,7 @@ export default function AddToCart({route, navigation}) {
               </TouchableOpacity>
             </View>
             <ResponsiveText size={5} color={colors.white}>
-              ${total}.00
+              ${parseFloat(total).toFixed(2)}
             </ResponsiveText>
           </View>
           <View style={{padding: 16, backgroundColor: colors.black1}}>

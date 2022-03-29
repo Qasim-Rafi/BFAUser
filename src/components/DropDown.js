@@ -34,6 +34,7 @@ export default function DropDown(props) {
         dropdown1RowTxtStyle={{ color: colors.white, textAlign: "left", marginStart: 20, fontSize: 14, }}
         defaultValue={props.defaultValue?props.defaultValue:null}
         // defaultValueByIndex={0}
+        defaultButtonText={props.defaultButtonText?props.defaultButtonText:null}
         rowTextStyle={{ color: colors.white, alignSelf: 'center', fontSize: 14 }}
         rowStyle={{ backgroundColor: colors.black1, borderBottomColor: colors.black1, borderBottomWidth: 0 }}
         buttonStyle={{

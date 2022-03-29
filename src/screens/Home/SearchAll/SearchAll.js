@@ -447,7 +447,7 @@ export default function SearchAll({navigation}) {
               <ResponsiveText margin={[25, 0, 2, 0]} color={colors.yellow}>
                 Dish Type
               </ResponsiveText>
-              <DropDown data={DISH_TYPE} height={hp(5)} width={wp(73)} />
+              <DropDown defaultButtonText={'Select Type'} data={DISH_TYPE} height={hp(5)} width={wp(73)} />
               <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
                 Dish Tag
               </ResponsiveText>
