@@ -271,7 +271,7 @@ export default function AllDishesList({ route, navigation }) {
         stickyHeaderIndices={[0]}
         onEndReached={() => onLoad()}
         onEndReachedThreshold={0.2}
-        data={route.params.id ? data.filter(v => v.cusineName == title) : data}
+        data={route.params.id ? data.filter(v => v.cusineName == title) : Array.from(new Set(data.map(JSON.stringify))).map(JSON.parse)}
         keyExtractor={item => item.id.toString()}
         renderItem={renderItem}
         numColumns={3}
