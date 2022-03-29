@@ -108,7 +108,7 @@ const Header = ({
         //   </TouchableOpacity>
           
         // </TouchableOpacity>
-        <View style={{width:wp(70),alignItems:'flex-end'}}>
+        <View style={{width:wp(58),alignItems:'flex-end'}}>
         <TouchableOpacity
         onPress={() => {
           // searchBar === 'true'
@@ -116,7 +116,7 @@ const Header = ({
             navigation.navigate(routeName.SearchAll)
            // : toggleSearchBar('true');
         }}
-        style={{borderRadius: 10,marginRight:20 }}>
+        style={{borderRadius: 10,marginRight:10 }}>
         <Icon source={globalPath.SEARCH_LOGO} size={22} />
       </TouchableOpacity>
       </View>
@@ -144,7 +144,7 @@ const Header = ({
           <View />
         ) : (
           <TouchableOpacity
-            style={{ marginRight:wp(6) }}
+            style={{ marginRight:wp(0) }}
             onPress={() => {
               navigation.navigate(routeName.MORE_BOTTOM);
             }}>
