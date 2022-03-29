@@ -130,7 +130,7 @@ export default function SearchAll({navigation}) {
   ];
   const STAR_RATINGS = [5, 4, 3, 2, 1, 'No ratings'];
   React.useEffect(() => {
-    // dispatch(SearchResult());
+    dispatch(SearchResult('', selected));
     areaList.length > -1 ? dispatch(GetAreaAllListAction()) : null;
     premiseList.length > -1 ? dispatch(GetPremiseAllListAction()) : null;
   }, []);
