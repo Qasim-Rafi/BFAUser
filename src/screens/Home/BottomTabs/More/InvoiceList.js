@@ -20,17 +20,19 @@ import Icon from '../../../../components/Icon';
 import ResponsiveText from '../../../../components/RnText';
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
 import { INVOICE_DATA } from '../../../../constants/mock';
+import Modal from 'react-native-modal';
+
 import Api from '../../../../redux/lib/api';
 import urls from '../../../../redux/lib/urls';
 import { BarIndicator } from 'react-native-indicators';
+import FlashMessage from 'react-native-flash-message';
 
 const InvoiceList = ({ navigation, route }) => {
   const [isModalVisible, setModalVisible] = useState(false);
-  const [isModal2Visible, setModal2Visible] = useState(false);
   const [checked, setCheck] = useState(false);
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
-
+  const dropdownRef = React.useRef(null);
 
   React.useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -42,8 +44,18 @@ const InvoiceList = ({ navigation, route }) => {
     return unsubscribe;
   }, [navigation]);
   const submitOrder = async Item => {
-    console.log('itemmmmm', Item);
-
+    // console.log('itemmmmm', Item);
+if(data.statusName==='Paid'){
+  dropdownRef.current.showMessage({
+    message: 'Alert',
+    description: "Already paid",
+    type: 'success',
+    // duration:'3000',
+    icon: { icon: 'auto', position: 'left' },
+    backgroundColor: colors.red,
+  });
+  return false;
+}
     const obj = {
       id: 0,
       orderId: data.id,
@@ -56,7 +68,16 @@ const InvoiceList = ({ navigation, route }) => {
       const res = await Api.post(urls.ADD_PAYMENT, obj);
       console.log('res', res);
       if (res && res.success == true) {
-        navigation.navigate(routeName.LANDING_SCREEN,);
+        setModalVisible(true)
+        // dropdownRef.current.showMessage({
+        //   message: 'Alert',
+        //   description: "paid Successfully",
+        //   type: 'success',
+        //   // duration:'6000',
+        //   icon: { icon: 'auto', position: 'left' },
+        //   backgroundColor: colors.green1,
+        // });
+        // navigation.navigate(routeName.LANDING_SCREEN,);
 
       } else {
       }
@@ -267,8 +288,6 @@ const InvoiceList = ({ navigation, route }) => {
 
                                 alignItems: 'center',
                               }}>
-                              {/* <TouchableOpacity
-                                                         onPress={() => navigation.navigate(routeName.VIEW_CARD)}> */}
                               <View
                                 style={{
                                   width: wp(70),
@@ -321,8 +340,129 @@ const InvoiceList = ({ navigation, route }) => {
               </View>
             </View>
           </View>}
+          <Modal
+          isVisible={isModalVisible}
+          statusBarTranslucent={true}
+          backdropOpacity={0.9}
+          style={{justifyContent: 'flex-end'}}
+          onModalHide={() => navigation.goBack()}>
+          {/* ------------ ModalView -------------- */}
+          <View
+            style={{
+              flex: 0.3,
+              backgroundColor: colors.black2,
+              borderRadius: 7,
+              marginBottom: 20,
+            }}>
+            <View
+              style={{
+                flex: 0.2,
+                backgroundColor: colors.black1,
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderTopRightRadius: 7,
+                borderTopLeftRadius: 7,
+              }}>
+              <ResponsiveText color={colors.white} size={3.5}>
+               Payment Confirmation
+              </ResponsiveText>
+            </View>
+            <View
+              style={{
+                flex: 0.18,
+                backgroundColor: colors.black2,
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginHorizontal: 15,
+              }}>
+              <ResponsiveText color={colors.grey1} size={3}>
+              Your order has been paid successfully 
+              </ResponsiveText>
+            </View>
+            <View
+              style={{
+                flex: 0.13,
+                backgroundColor: colors.black2,
+                flexDirection: 'row',
+                alignItems: 'center',
+                borderBottomWidth: 2,
+                borderBottomColor: colors.black1,
+                marginHorizontal: 15,
+              }}>
+              <View style={{flex: 0.45, alignItems: 'flex-end'}}>
+                <ResponsiveText
+                  color={colors.yellow}
+                  size={3}
+                  margin={[0, 10, 0, 0]}>
+                 {data.amount}
+                </ResponsiveText>
+              </View>
+              <View style={{flex: 0.1}}>
+                <ResponsiveText color={colors.white} size={3}>
+                  To
+                </ResponsiveText>
+              </View>
+              <View style={{flex: 0.45}}>
+                <ResponsiveText color={colors.yellow} size={3}>
+                  {data.restaurantName}
+                </ResponsiveText>
+              </View>
+            </View>
+            <View
+              style={{
+                flex: 0.2,
+                backgroundColor: colors.black2,
+                flexDirection: 'row',
+                marginHorizontal: 15,
+              }}>
+              {/* <View style={{flex: 0.55, marginTop: 5}}>
+                <ResponsiveText
+                  size={3}
+                  color={colors.white}
+                  margin={[0, 0, 0, 15]}>
+                  Your Current Points:
+                </ResponsiveText>
+              </View>
+              <View style={{flex: 0.45, marginTop: 5}}>
+                <ResponsiveText size={3} color={colors.yellow}>
+                  0 pts
+                </ResponsiveText>
+              </View> */}
+            </View>
+            <View
+              style={{
+                flex: 0.29,
+                backgroundColor: colors.black2,
+                alignItems: 'center',
+                borderBottomLeftRadius: 7,
+                borderBottomRightRadius: 7,
+              }}>
+              <TouchableOpacity
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  borderRadius: 5,
+                  borderWidth: 1,
+                  borderColor: colors.yellow,
+                  width: wp(83),
+                  height: hp(5),
+                }}
+                onPress={() => {setModalVisible(!isModalVisible)}
+        // navigation.navigate(routeName.LANDING_SCREEN,)
+                }>
+                <ResponsiveText size={3} color={colors.yellow}>
+                  OK
+                </ResponsiveText>
+              </TouchableOpacity>
+            </View>
+          </View>
+          {/* ------------ ModalView End -------------- */}
+        </Modal>
       </ScrollView>
+  <FlashMessage ref={dropdownRef} />
+
     </View>
+
   );
 };
 

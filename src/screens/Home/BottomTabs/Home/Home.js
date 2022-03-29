@@ -60,6 +60,7 @@ import WhatsNew from './WhatNew';
 import { bfaPartnerSelecter } from '../../../../redux/lib/selectors';
 import { getBfaRecommendationSaga } from '../../../../redux/sagas/user.sagas';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import FlashMessage from 'react-native-flash-message';
 const wait = timeout => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 };
@@ -69,6 +70,7 @@ const Home = ({ navigation }) => {
   );
 
   const [refreshing, setRefreshing] = React.useState(false);
+  const dropdownRef = React.useRef(null);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -207,6 +209,8 @@ const Home = ({ navigation }) => {
       <View style={{ flex: 0.1, position: 'absolute', top: 0 }}>
         <Header screen={'home'} navigation={navigation} />
       </View>
+  <FlashMessage ref={dropdownRef} />
+
     </View>
   );
 };

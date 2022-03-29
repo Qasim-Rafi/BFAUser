@@ -57,7 +57,7 @@ export default function MenuTabs(props) {
              {activeTab === 1 && <FullMenu/>}
              {activeTab === 2 && <PromosBanner/>}
             {activeTab === 3 && <Menu navigation={props.navigation} />}
-            {activeTab === 4 && <BranchesDetail  navigation={props.navigation}/>}
+            {/* {activeTab === 4 && <BranchesDetail  navigation={props.navigation}/>} */}
         </ScrollView>
         </View>
         </View>

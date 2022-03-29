@@ -1049,11 +1049,11 @@ export const BranchDetailButtons = [
     icon: require('../assets/icons/menu_icon.png'),
   },
 
-  {
-    id: 4,
-    title: 'Branches',
-    icon: require('../assets/icons/branches_icon.png'),
-  },
+  // {
+  //   id: 4,
+  //   title: 'Branches',
+  //   icon: require('../assets/icons/branches_icon.png'),
+  // },
   {
     id: 5,
     title: 'Awards',

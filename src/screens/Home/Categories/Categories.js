@@ -14,7 +14,6 @@ export default function Categories({ navigation, route }) {
   const { data } = route.params;
   // const [index, setindex] = useState(4);
   // var index=4;
-
   const newArray = [];
   data.forEach(obj => {
     if (!newArray.some(o => o.name[0] === obj.name[0])) {
@@ -22,7 +21,6 @@ export default function Categories({ navigation, route }) {
     }
 
   });
-
   const [activeAlphabet, setActiveAlphabet] = useState(null);
   const scrollRef = useRef(null)
   const viewConfigRef = React.useRef({ viewAreaCoveragePercentThreshold: 50 })
@@ -38,7 +36,6 @@ export default function Categories({ navigation, route }) {
     console.log("Changed in this ", changed[0].item.title);
   }, []);
   const renderItem = ({ item }) => {
-
     return (
       <View style={styles.item}>
         <Text style={styles.header}>{item.name[0]}</Text>
