@@ -79,7 +79,7 @@ const YourFavourite = props => {
       <View style={styles.AwardWinningDishesItemsSection}>
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           {favData.length > 0
-            ? favData.map((url, item) => {
+            ? Array.from(new Set(favData.map(JSON.stringify))).map(JSON.parse).map((url, item) => {
               return (
                 <TouchableOpacity
                   onPress={() =>

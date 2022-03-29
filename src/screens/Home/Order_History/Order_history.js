@@ -43,13 +43,34 @@ export default function Order_history({navigation}) {
 
 
   }, []);
+  const submitOrder = async Item => {
+    // var userId = await AsyncStorage.getItem('@userId');
+    console.log('itemmmmm', Item);
+
+    const obj = {
+      id: 0,
+      userId: Item.customerId,
+      orderId: Item.id,
+      amount: Item.amount,
+      resturantBranchId: Item.restaurantBranchId,
+      updatedDateTime: 'string',
+      updatebyId: Item.customerId,
+    };
+    console.log('objjjjjjjjjjjj,obj', obj);
+    //dispatch(checkoutOrder(obj,navigation));
+    navigation.navigate(routeName.TRANSACTION_CONFIRMATION, {
+      obj: obj,
+      data: Item,
+    });
+    //
+  };
   return (
     <View style={{flex: 1, backgroundColor: '#202020'}}>
        <View style={{ flexDirection: 'row', justifyContent: "space-between",padding:7 }}>
             <TouchableOpacity style={{ backgroundColor:colors.yellow1,paddingVertical:10,paddingHorizontal:10,borderRadius:20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
           </View>
-      <View style={{flex: 0.7, margin: 20}}>
-        <ResponsiveText color={colors.white}>My Orders</ResponsiveText>
+      <ScrollView style={{flex: 0.7, margin: 20}}>
+        <ResponsiveText color={colors.yellow}>My Orders</ResponsiveText>
         {orderList.map((item, index) => {
           return (
             <TouchableOpacity onPress={()=>navigation.navigate(routeName.ORDER_DETAILS,{data:item})}>
@@ -76,7 +97,7 @@ export default function Order_history({navigation}) {
                     {item.restaurantName}
                   </ResponsiveText>
                   <ResponsiveText color={colors.yellow}>
-                    ${item.price}
+                    ${item.amount}
                   </ResponsiveText>
                 </View>
                 <View style={{flexDirection: 'row'}}>
@@ -93,7 +114,7 @@ export default function Order_history({navigation}) {
                       Items : 
                     </ResponsiveText>
                     <Text style={{color:colors.white,fontSize:10,marginLeft:2} } >
-                        { item.dishlist.length}
+                        { item.addOrderDetail.length}
                     </Text>
                   </View>
                   <View style={{flexDirection: 'row', marginLeft: 20,}}>
@@ -101,11 +122,11 @@ export default function Order_history({navigation}) {
                       Status:
                     </ResponsiveText>
                     <ResponsiveText size={2.5} color={colors.white}>
-                      {item.orderStatusName}
+                      {item.statusName}
                     </ResponsiveText>
                   </View>
                   <View>
-                  <TouchableOpacity
+                  <TouchableOpacity onPress={()=>submitOrder(item)}
                       style={{
                         backgroundColor: colors.yellow,
                         padding:3,
@@ -120,7 +141,7 @@ export default function Order_history({navigation}) {
           </TouchableOpacity>
           );
         })}
-      </View>
+      </ScrollView>
       {
          orderList_Loading === true ?
             <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, backgroundColor: 'rgba(65, 65, 65, 0.4)', flex: 1 }}>
