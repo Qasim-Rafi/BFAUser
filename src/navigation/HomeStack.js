@@ -48,6 +48,8 @@ import Wallet from '../screens/Home/Wallet/Wallet'
 import TopUp from '../screens/Home/Wallet/topUp'
 import Transfer from '../screens/Home/Wallet/transfer';
 import Home from '../screens/Home/BottomTabs/Home/Home';
+import Notifications from '../components/Static/Notifications';
+import NotificationList from '../screens/Home/BottomTabs/Home/NotificationList';
 
 const Stack = createNativeStackNavigator();
 
@@ -110,6 +112,8 @@ function HomeStack() {
       <Stack.Screen name={routeName.SCAN_QR} component={QRScan} />
       <Stack.Screen name={routeName.INVOICE_LIST} component={InvoiceList} />
       <Stack.Screen name={routeName.BARCODE_READER} component={BarcodeReader} />
+      <Stack.Screen name={routeName.NOTIFICATION_SCREEN} component={NotificationList} />
+
       <Stack.Screen
         name={routeName.ALL_DISHES_LIST}
         component={AllDishesList}

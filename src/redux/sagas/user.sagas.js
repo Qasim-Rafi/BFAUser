@@ -201,10 +201,10 @@ export function* getPaymentHistorySaga() {
   yield takeLatest(types.GET_PAYMENT_HISTORY_REQUEST, getPaymentHistorySagaApi);
 }
 function* getPaymentHistorySagaApi(data) {
-  const limit = data.data.limit;
-  const index = data.data.index;
+  const profileId = yield AsyncStorage.getItem('@userId');
   try {
-    const url = urls.PEOPLE_CHOICE + index + '/' + limit;
+    // const url = urls.PEOPLE_CHOICE + index + '/' + limit;
+    const url = urls.GET_TRANSACTION_HISTORY + profileId;
     const response = yield Api.get(url);
     if (response && response.data != null) {
       yield put({
@@ -589,7 +589,7 @@ function* getSearchResult(data) {
     }
   }
   try {
-    const response = yield Api.get(`${urls.SearchResult}${data.data.selected === 1 ? Search : ''}${'&RestaurentName='}${data.data.selected === 2 ? Search : ''}`);
+    const response = yield Api.get(`${urls.SearchResult}${data.data.selected === 'Dishes' ? Search : ''}${'&RestaurentName='}${data.data.selected === 'Restaurants' ? Search : ''}`);
     if (response && response.data != null) {
       yield put({
         type: types.GET_SEARCH_SUCCESS,
