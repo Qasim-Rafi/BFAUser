@@ -8,7 +8,7 @@ import { wp } from '../../../helpers/Responsiveness';
 import Fonts from '../../../helpers/Fonts';
 
 
-const tableHead = ['', 'Opening Time', 'Closing Time'];
+const tableHead = ['Day', 'Opening Time', 'Closing Time'];
 const tableTitle = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 
@@ -24,9 +24,9 @@ export default function TimeTable(props) {
         <ResponsiveText>Operation Hours</ResponsiveText>
       </View>
       <Table borderStyle={{ borderWidth: 0 }}>
-        <Row data={tableHead} flexArr={[1.3, 2, 2]} style={styles.head} textStyle={{textAlign:'center',color:colors.white}} />
+        <Row data={tableHead} flexArr={[1.3, 2, 2]} style={styles.head} textStyle={{textAlign:'center',color:colors.grey}} />
         <TableWrapper style={styles.wrapper}>
-          <Col data={tableTitle} style={styles.title} heightArr={[28, 28]} textStyle={styles.Headertext}  />
+          <Col data={tableTitle} style={styles.title} heightArr={[46, 30]} textStyle={styles.Headertext}  />
           <Rows data={data.map((v) => {
             return (
               [v.openingTime, v.closingTime]
@@ -40,10 +40,10 @@ export default function TimeTable(props) {
 }
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, paddingTop: 30, },
-  head: { height: 40,},
+  head: { height: 30,},
   wrapper: { flexDirection: 'row' },
-  title: { flex: 1,fontSize:wp(4),color:'red' },
-  row: { height: 28 },
+  title: { flex: 1,fontSize:wp(1),color:'red' },
+  row: { height: 35 },
   text: { textAlign: 'center', color: colors.yellow },
-  Headertext: {  color: colors.white,fontSize:wp(4) ,fontFamily: Fonts.Regular,}
+  Headertext: {  color: colors.white,fontSize:wp(3.4) ,fontFamily: Fonts.Regular,}
 });
