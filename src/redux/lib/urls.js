@@ -6,7 +6,8 @@ export default urls = {
 
   //Auth Urls
   LOGIN_URL: 'api/Auth/login',  //Sign in
-  REGISTER_URL: 'api/Users/AddUser',     //Sign up
+  REGISTER_URL_CHECKS: 'api/Users/AddUserChecks',     //Sign up
+  EDIT_PROFILE: 'api/Users/UpdateUser/',     //Sign up
   VERIFICATION_CODE: 'api/Users/UpdateUserMobileVerification', // Code verification
   PACKAGES_ALL_URL: 'api/Package/GetPackageAll',
   GET_PROFILE_DATA: 'api/Users/GetUser/',   //User data by id
@@ -16,8 +17,9 @@ export default urls = {
   // PROMOTIONS: 'api/HomeAdSlideShowAdmin/GetHomeAdSlideShowAdminAll',
   RESTAURANT_DISH_ALL: 'api/RestaurantDish/GetRestaurantDishAll/',          /// bfa Recomendation
   DISH_CALORIE: 'api/RestaurantBranchesAdmin/GetRestaurantDishCalorie/',    //MORE about dish detail
+  MORE_RESTAURANT: 'api/RestaurantDish/GetMoreFromRestaurant/',    //MORE from restaurant
   GET_USER: 'api/Users/GetUser/2',
-  GET_BFA_PARTNERS: 'api/AdminBFAPartner/GetAdminBFAPartnerAll/18/1/40',
+  GET_BFA_PARTNERS: 'api/AdminBFAPartner/GetAdminBFAPartnerAll/24/1/40',
   GET_ADD_BANNER: 'api/HomeAdSlideShowAdmin/GetHomeAdSlideShowAdminAll',
   GET_PROMO_NEWS: 'api/PromoItemNews/GetPromoNewsAdminAllAdmin',
   GET_PROMO_JOBS: 'api/PromoJobsAdmin/GetPromoJobsAdminAllAdminForapp/',
@@ -36,16 +38,42 @@ export default urls = {
   GET_DISH_BY_CUSINE_ID: 'api/RestaurantDish/GetRestaurantDishByCuisinesId/',
   ADD_ORDER: 'api/Order/AddOrder',
   UPDATE_ORDER: 'api/Order/UpdateOrder/',
-  GET_ALL_ORDERS:'api/Order/OrderListForUserApp',
-  PROMOTION_CLICK:'api/PromotionlDish/AddPromotionlDishForRestaurantClick',  
-  CHECK_ORDER:'api/OrderBill/CheckOutOrder',  //
-  UPDATE_QUANTITY:'api/Order/UpdateOrderQuantityPrice',
-  DELETE_DISH_FROM_CART:'api/Order/DeleteOrderDish?orderId=',
-  DELETE_ORDER_FROM_CART:'api/Order/DeleteOrder/',//
-  ORDER_CONFIRMATION:'api/OrderPayment/PaymentCheckMethodConfirmation',//
-
+  GET_ALL_ORDERS: 'api/Order/OrderListForUserApp',
+  PROMOTION_CLICK: 'api/PromotionlDish/AddPromotionlDishForRestaurantClick',
+  UPDATE_QUANTITY: 'api/Order/UpdateOrderQuantityPrice',
+  DELETE_DISH_FROM_CART: 'api/Order/DeleteOrderDish?orderId=',
+  DELETE_ORDER_FROM_CART: 'api/Order/DeleteOrder/',//
+  ORDER_CONFIRMATION: 'api/OrderPayment/PaymentCheckMethodConfirmation',//
+  UPDATE_ORDER_STATUS: 'api/Order/UpdateOrderStatus/',
+  GET_ALL_ORDERS: 'api/Order/OrderListForUserApp',
+  GET_ORDERS_HISTORY: 'api/Order/OrderHistory',
+  PROMOTION_CLICK: 'api/PromotionlDish/AddPromotionlDishForRestaurantClick',
+  CHECK_ORDER: 'api/OrderBill/CheckOutOrder',  //
+  UPDATE_QUANTITY: 'api/Order/UpdateOrderQuantityPrice',
+  DELETE_DISH_FROM_CART: 'api/Order/DeleteOrderDish?orderId=',
+  DELETE_ORDER_FROM_CART: 'api/Order/DeleteOrder/',//
+  //Searchbar
+  SearchResult: 'api/RestaurantDish/HomeDashboardSearch?DishName=',
+  
   GET_NEAREST_RESTAURANTS: 'api/RestaurantBranchesAdmin/GetNearestRestaurantBranchesByLocation/',
+  GET_AREA_LIST: 'api/Lookups/GetArea',
+  GET_PREMISE_LIST: 'api/Lookups/Premise',
+  GET_DISTANCE_LIST: 'api/Lookups/Distance',
+  GET_APPLY_JOB_LIST: 'api/PeopleChoice/GetPeopleChoiceLikedAll/1/10',
+  GET_ORDER_BY_ID:'api/Order/GetOrderByIdforApp/',
+  ADD_PAYMENT:'api/Order/AddOrderPayment',
+  GET_CONATACT_FROM_DISH:'api/RestaurantBranchesAdmin/GetRestaurantContactInfo/',
+  ADD_USER_RANDOMISER: 'api/UserRandomizerSetting/AddUserRandomizerSetting',
+  GET_USER_RANDOMISER_SETTING:'api/UserRandomizerSetting/GetUserRandomizerSettingById/',
+  UPDATE_USER_RANDOMISER:'api/UserRandomizerSetting/UpdateUserRandomizerSetting/',
+  GET_ALL_REVIEWS_LIST: 'GetAllReviews',
 
+  GET_LOOKUP_INDUSTRY:'api/Lookups/GetLookUpIndustry',
+  GET_LOOKUP_EMP_SEC:'api/Lookups/GetLookUpEmploymentSector',
+  GET_LOOKUP_MARITAL_STATUS:'api/Lookups/GetLookUpMarriageStatus',
+AUTO_SUGGESTIONS_ON_SEARCH:'api/RestaurantDish/SuggestionHomeDashboard/',
+
+GET_TRANSACTION_HISTORY: 'api/Order/GetUserTransactionHistoryById/',
 
 
 

@@ -86,7 +86,7 @@ const More = ({ route, navigation }) => {
             />
           </TouchableOpacity>
           <View style={{ justifyContent: 'center', marginLeft: 10 }}>
-            <ResponsiveText size={4}>{profileData.username}</ResponsiveText>
+            <ResponsiveText size={4}>{profileData.fullName}</ResponsiveText>
             <ResponsiveText color={colors.lightBlack} size={3}>
               {profileData.email}
             </ResponsiveText>
@@ -100,7 +100,7 @@ const More = ({ route, navigation }) => {
           <View style={{ margin: 20, }}>
             <ResponsiveText color={colors.white} size={4} >Profile</ResponsiveText>
             <TouchableOpacity
-              onPress={() => navigation.navigate(routeName.PROFILE_SCREEN)}
+              onPress={() => navigation.navigate(routeName.PROFILE_DISPLAY)}
               style={{ backgroundColor: colors.black2, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, borderRadius: 7 }} >
 
               <Icon size={20} source={globalPath.MORE_PROFILE} />
@@ -109,7 +109,10 @@ const More = ({ route, navigation }) => {
               </ResponsiveText>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => navigation.navigate(routeName.MYWHITLIST)}
+              onPress={() => navigation.navigate(routeName.ALL_DISHES_LIST, {
+                data: [],
+                title: "PG's Favourites",
+              })}
               style={{ backgroundColor: colors.black2, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
               <Icon size={20} source={globalPath.HEART} />
               <ResponsiveText margin={[0, 0, 0, 10]} size={3.5} color={colors.grey}>

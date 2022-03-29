@@ -12,9 +12,7 @@ import ResponsiveText from './RnText';
 import { routeName } from '../constants/routeName';
 import { colors } from '../constants/colorsPallet';
 import { color } from 'react-native-reanimated';
-import { useDispatch } from 'react-redux';
 import { getUserProfile } from '../redux/actions/user.actions';
-
 const Header = ({
   navigation,
   showRightMenu = true,
@@ -23,6 +21,7 @@ const Header = ({
 
   ...props
 }) => {
+
   const [searchBar, toggleSearchBar] = React.useState('false');
   return (
     <View
@@ -46,7 +45,7 @@ const Header = ({
           borderRadius: 10,
           marginEnd: 5,
         }}>
-        <View style={ props.iconPath ? { flexDirection: 'row', alignItems: 'center',justifyContent:'center', backgroundColor:colors.yellow1,height: wp(13), width: wp(13),borderRadius:wp(6.5) } :{ flexDirection: 'row', alignItems: 'center'} }>
+        <View style={props.iconPath ? { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: colors.yellow1, height: wp(13), width: wp(13), borderRadius: wp(6.5) } : { flexDirection: 'row', alignItems: 'center' }}>
           <Icon
             margin={[0, 0, 0, 0]}
             size={props.iconPath ? 25 : 44}
@@ -61,65 +60,91 @@ const Header = ({
         </View>
       </TouchableOpacity>
       {props.iconPath ? (
-        <View style={{alignItems:'center', justifyContent:'center',height: hp(6), width: wp(50),paddingLeft:wp(17)}}>
-          <Text style={{color:colors.white,fontSize:wp(6), fontWeight:'bold'}}>
+        <View style={{ alignItems: 'center', justifyContent: 'center', height: hp(6), width: wp(50), paddingLeft: wp(17) }}>
+          <Text style={{ color: colors.white, fontSize: wp(6), fontWeight: 'bold' }}>
             {title}
           </Text>
         </View>
       ) : (
-        <View
-          style={{
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexDirection: 'row',
-            borderRadius: 7,
-            marginHorizontal: 10,
-            paddingHorizontal: 10,
-            backgroundColor:
-              searchBar === 'true' ? 'rgba(64,64,64,0.5)' : undefined,
-          }}>
-          <TouchableOpacity>
-            {/* // onPress={() => searchBar==='true'? navigation.navigate(routeName.FeaturedSearch) : undefined}> */}
-            {/* <Input
-          editable={searchBar==='true'? true : false}
-          fontSize={11}
-          onSubmitEditing={()=>{}}
-          placeholder={searchBar==='true'? "Search Dishes, Restaurants or Promo" : ""}
-          padding={[0, 0, 0, 5]}
+        // <TouchableOpacity onPress={() => navigation.navigate(routeName.SearchAll)}
+        //   style={{
+        //     alignItems: 'center',
+        //     justifyContent: 'center',
+        //     flexDirection: 'row',
+        //     borderRadius: 7,
+        //     marginHorizontal: 10,
+        //     paddingHorizontal: 10,
+        //     backgroundColor:
+        //       searchBar === 'true' ? 'rgba(64,64,64,0.5)' : undefined,
+        //   }}>
+        //   <TouchableOpacity >
+        //     {/* // onPress={() => searchBar==='true'? navigation.navigate(routeName.FeaturedSearch) : undefined}> */}
+        //     {/* <Input
+        //   editable={searchBar==='true'? true : false}
+        //   fontSize={11}
+        //   onSubmitEditing={()=>{}}
+        //   placeholder={searchBar==='true'? "Search Dishes, Restaurants or Promo" : ""}
+        //   padding={[0, 0, 0, 5]}
           
           
-          height={hp(6)}
-          width={inputWidth}
-        /> */}
-            <TextInput
-              style={{ height: hp(6), width: wp(50), color: colors.white }}
-              editable={searchBar === 'true' ? true : false}
-              fontSize={11}
-              placeholderTextColor={colors.white}
-              placeholder={
-                searchBar === 'true'
-                  ? 'Search Dishes, Restaurants or Promo'
-                  : ''
-              }
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              searchBar === 'true'
-                ? navigation.navigate(routeName.SearchAll)
-                : toggleSearchBar('true');
-            }}
-            style={{ marginStart: 5, borderRadius: 10 }}>
-            <Icon source={globalPath.SEARCH_LOGO} size={25} />
-          </TouchableOpacity>
-        </View>
+        //   height={hp(6)}
+        //   width={inputWidth}
+        // /> */}
+        //     <TouchableOpacity onPress={() => navigation.navigate(routeName.SearchAll)}>
+        //       <TextInput
+        //         style={{ height: hp(6), width: wp(50), color: colors.white }}
+        //         editable={false}
+        //         onP
+        //         fontSize={11}
+        //         placeholderTextColor={colors.white}
+        //         placeholder={
+        //           searchBar === 'true'
+        //             ? 'Search Dishes, Restaurants or Promo'
+        //             : ''
+        //         }
+        //       />
+        //     </TouchableOpacity>
+
+        //   </TouchableOpacity>
+          
+        // </TouchableOpacity>
+        <View style={{width:wp(55),alignItems:'flex-end'}}>
+        <TouchableOpacity
+        onPress={() => {
+          // searchBar === 'true'
+          //   ? 
+            navigation.navigate(routeName.SearchAll)
+           // : toggleSearchBar('true');
+        }}
+        style={{ marginStart: 5, borderRadius: 10 }}>
+        <Icon source={globalPath.SEARCH_LOGO} size={25} />
+      </TouchableOpacity>
+      </View>
       )}
       {showRightMenu &&
         (props.iconPath ? (
           <View />
         ) : (
           <TouchableOpacity
-            style={{ marginRight: -10 }}
+            style={{ marginHorizontal: wp(5) }}
+            onPress={() => {
+              navigation.navigate(routeName.NOTIFICATION_SCREEN);
+            }}>
+            <Icon
+              borderRadius={30}
+              size={props.iconPath ? (wp(10), hp(6)) : 30}
+              resizeMode={'cover'}
+              source={globalPath.NOTIFICATION}
+
+            />
+          </TouchableOpacity>
+        ))}
+        {showRightMenu &&
+        (props.iconPath ? (
+          <View />
+        ) : (
+          <TouchableOpacity
+            style={{ marginRight:wp(2) }}
             onPress={() => {
               navigation.navigate(routeName.MORE_BOTTOM);
             }}>

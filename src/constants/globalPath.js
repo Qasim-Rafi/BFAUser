@@ -8,6 +8,8 @@ const USER_LOGO = require('../assets/fake_Images/user.png');
 const USER_PROFILE = require('../assets/fake_Images/user_pic.png');
 const MALE_LOGO = require('../assets/icons/male.png');
 const PHONE_LOGO = require('../assets/icons/phone.png');
+const TELEPHONE_LOGO = require('../assets/icons/Burnai.png');
+const ADDRESS_LOGO = require('../assets/icons/address.png');
 const EMAIL_LOGO = require('../assets/fake_Images/email.png');
 const PASSWORD_LOGO = require('../assets/icons/password.png');
 const GOOGLE_LOGO = require('../assets/icons/google.png');
@@ -81,6 +83,10 @@ const RADIO_DOT = require('../assets/icons/radio.png');
 const PARKING_ICON = require('../assets/icons/parking.png');
 const WIFI_ICON = require('../assets/icons/wifi.png');
 const MOSQUE_ICON = require('../assets/icons/mosque.png');
+const NORECORD_ICON = require('../assets/icons/norecordfound.png');
+const INVOICE_ICON = require('../assets/icons/Invoice.png');
+
+
 
 // STATIC DUMMY IMAGES
 
@@ -155,9 +161,30 @@ const FILTER_ICON = require('../assets/icons/filter.png')
 const WALLET_ICON = require('../assets/icons/wallet.png')
 const SCANNER_ICON = require('../assets/icons/scanner_yellow.png')
 const SCANNER_ICON_GREY = require('../assets/icons/scanner_gray.png')
+const BIRTHDAY_ICON = require('../assets/icons/birthday.png')
+const GENDER_ICON = require('../assets/icons/Gender.png')
+const CAMERA_ICON = require('../assets/icons/Cameraa.png')
+const Calender_ICON = require('../assets/icons/Calender.png')
+const SignUp_Phone_ICON = require('../assets/icons/SignupPhone.png')
+const SignUp_GENDER_ICON = require('../assets/icons/signupgender.png')
+const State_ICON = require('../assets/icons/signupstate.png');
+const ZIP_ICON = require('../assets/icons/zip.png');
+const Link_icon = require('../assets/icons/contactlink.png');
+const NOTIFICATION = require('../assets/icons/notification.png');
+
+
 
 export const globalPath = {
   LOGOUT,
+  CAMERA_ICON,
+  Link_icon,
+  BIRTHDAY_ICON,
+  SignUp_GENDER_ICON,
+  State_ICON,
+  ZIP_ICON,
+  Calender_ICON,
+  SignUp_Phone_ICON,
+  GENDER_ICON,
   SCANNER_ICON_GREY,
   WALLET_ICON,
   SCANNER_ICON,
@@ -171,11 +198,14 @@ export const globalPath = {
   MORE_LANGUAGE,
   MINUS_ICON,
   PLUS_ICON,
+  TELEPHONE_LOGO,
+  ADDRESS_LOGO,
   HOME_GREY,
   CHECKOUT_GREY,
   FEED_GREY,
   RANDOM_GREY,
   MORE_GREY,
+  NOTIFICATION,
   //ICON PATHS HERE
   BACK_BLACK_ARROW,
   EDIT_PROFILE,
@@ -226,6 +256,9 @@ export const globalPath = {
   CONTACT_US,
   COWRIES,
   DELETE_ICON,
+  NORECORD_ICON,
+  INVOICE_ICON,
+
   FAQ,
   FAVOURITES,
   ICON_VIEW,

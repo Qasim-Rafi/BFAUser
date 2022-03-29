@@ -16,6 +16,7 @@ import { wp, hp } from '../../../../helpers/Responsiveness';
 import ResponsiveText from '../../../../components/RnText';
 import { useSelector, useDispatch } from 'react-redux';
 import { routeName } from '../../../../constants/routeName';
+import { Rating, AirbnbRating } from 'react-native-ratings';
 import Icon from '../../../../components/Icon';
 import {
   getRestaurantAllDishes,
@@ -83,13 +84,13 @@ export default function AllDishesList({ route, navigation }) {
                   ? state.appReducers.moreFromRest.data
                   : state.appReducers.getdishbycusineid.refreshing,
   );
-  React.useEffect(() => {
-    onLoad();
-    console.log(
-      'aja data',
-      data.filter(v => v.cusineName == title),
-    );
-  }, []);
+  // React.useEffect(() => {
+  //   onLoad();
+  //   // console.log(
+  //   //   'aja data',
+  //   //   data.filter(v => v.cusineName == title),
+  //   // );
+  // }, []);
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={{ marginHorizontal: 8, marginVertical: 10, flex: 1 }}
@@ -113,11 +114,47 @@ export default function AllDishesList({ route, navigation }) {
             backgroundColor: 'rgba(0,0,0,1)',
           }}
           source={item.url ? item.url : { uri: item.imageDataB }}>
+            {title == "Promotions" ? (
+            <Text
+            style={{
+              top: hp(0), borderTopRightRadius: 15,
+              opacity: 1, alignSelf: 'flex-start',
+              color: 'white', padding: 4,
+              backgroundColor: colors.yellow1,
+              fontWeight: '600', fontSize: 8.5, marginBottom: hp(6)
+            }}
+          >
+            {'flat ' + item.dishonOff + '% off'}
+          </Text>
+          ) : null}
+         
           {title == "PG's Favourites" ? (
             <Icon size={15} source={globalPath.F_HEART} />
           ) : null}
+          {title == "Brunei Food Awards" ? (
+            <Text
+              style={{
+                top: hp(1), borderTopRightRadius: 15,
+                opacity: 1, alignSelf: 'flex-start',
+                color: 'white', padding: 2,
+                backgroundColor: colors.black,
+                fontWeight: '600', fontSize: 8.5
+              }}
+            >
+              {item.titleA}
+            </Text>
+          ) : null}
           <View style={{ alignItems: 'flex-end' }}></View>
+
           <View>
+            {title == "People's Choice" ? (
+              <Rating
+                tintColor={'rgba(0, 0, 0, 0.8)'}
+                imageSize={13}
+                // tintColor={'transparent'}
+                style={{ paddingVertical: 10, alignSelf: 'flex-start' }}
+              />
+            ) : null}
             <Text
               style={{
                 marginTop: 1,

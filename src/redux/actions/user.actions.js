@@ -14,13 +14,21 @@ export const getProfileData = data => {
     data: data,
   };
 };
-export const moreFromRestaurant = (index, limit) => {
+//Search bar
+export const SearchResult = (SearchText, selected) => {
+  return {
+    type: types.GET_SEARCH_REQUEST,
+    data: {
+      SearchText: SearchText,
+      selected: selected
+    }
+  };
+};
+//More from rest
+export const moreFromRestaurant = (id) => {
   return {
     type: types.MORE_FROM_RESTAURANT_REQUEST,
-    data: {
-      index: index,
-      limit: limit,
-    },
+    data: id
   };
 };
 //GET PAYMENT HISTORY
@@ -227,14 +235,14 @@ export const removeCart = data => {
     data,
   };
 };
-export const addOrder = (data,navigation) => {
+export const addOrder = (data, navigation) => {
   return {
     type: types.ADD_ORDER_REQUEST,
     data,
     navigation
   };
 };
-export const checkoutOrder = (data,navigation) => {
+export const checkoutOrder = (data, navigation) => {
   return {
     type: types.CHECKOUT_ORDER_REQUEST,
     data,
@@ -298,7 +306,12 @@ export const getOrders = params => {
     params,
   };
 };
-
+export const getOrdersHistory = params => {
+  return {
+    type: types.GET_ORDERS_HISTORY_REQUEST,
+    params,
+  };
+};
 export const promotoinClick = data => {
   return {
     type: types.PROMOTION_CLICK_REQUEST,
@@ -309,6 +322,46 @@ export const promotoinClick = data => {
 export const GetNearestRestaurantAction = data => {
   return {
     type: types.GET_NEAREST_RESTAURANT_REQUEST,
+    data: data,
+  };
+};
+
+export const GetAreaAllListAction = data => {
+  return {
+    type: types.GET_AREA_ALL_REQUEST,
+    data: data,
+  };
+};
+
+export const GetPremiseAllListAction = data => {
+  return {
+    type: types.GET_PREMISE_ALL_REQUEST,
+    data: data,
+  };
+};
+
+export const GetDistanceListAction = data => {
+  return {
+    type: types.GET_DISTANCE_LIST_REQUEST,
+    data: data,
+  };
+};
+export const getApplyJobList = data => {
+  return {
+    type: types.GET_APPLY_JOB_LIST_REQUEST,
+    data: data,
+  };
+};
+export const GetUserRandomiserSetting = data => {
+  return {
+    type: types.GET_USER_RANDOMISER_SETTING_REQUEST,
+    data: data,
+  };
+};
+// GetAllReviews
+export const getAllReviews = data => {
+  return {
+    type: types.GET_ALL_REVIEWS_LIST_REQUEST,
     data: data,
   };
 };

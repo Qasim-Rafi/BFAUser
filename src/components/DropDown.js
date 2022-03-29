@@ -28,10 +28,12 @@ export default function DropDown(props) {
 
 
       <SelectDropdown
+        disabled={props.disabled? props.disabled : false}
         statusBarTranslucent={true}
         dropdownStyle={{ borderRadius: 7, borderBottomWidth: 0 }}
         dropdown1RowTxtStyle={{ color: colors.white, textAlign: "left", marginStart: 20, fontSize: 14, }}
-        defaultValueByIndex={0}
+        defaultValue={props.defaultValue?props.defaultValue:null}
+        // defaultValueByIndex={0}
         rowTextStyle={{ color: colors.white, alignSelf: 'center', fontSize: 14 }}
         rowStyle={{ backgroundColor: colors.black1, borderBottomColor: colors.black1, borderBottomWidth: 0 }}
         buttonStyle={{
@@ -43,17 +45,17 @@ export default function DropDown(props) {
           borderRadius: 7,
 
         }}
-        buttonTextStyle={{ color: colors.white, fontSize: 14, textAlign: 'left', }}
+        buttonTextStyle={{ color: props.disabled? colors.grey :colors.white, fontSize: 14, textAlign: 'left', }}
         renderDropdownIcon={() => {
           return (
-            <Icon source={globalPath.DOWN_ARROW} tintColor={colors.white} size={10} />
+            <Icon source={globalPath.DOWN_ARROW} tintColor={props.disabled? colors.grey :colors.white} size={10} />
           );
         }}
         dropdownIconPosition={"right"}
-        data={props.data ? props.data : undefined}
-        onSelect={(selectedItem, index) => {
-          console.log(selectedItem, index);
-        }}
+        data={props.data ? props.data : []}
+        onSelect={props.onSelect
+          ? props.onSelect:()=>{}
+      }
         buttonTextAfterSelection={(selectedItem, index) => {
           return selectedItem;
         }}

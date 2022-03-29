@@ -1,7 +1,7 @@
 
 
 //Node Imports
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
 import {
     Image, StyleSheet, TouchableOpacity, View, Text,
@@ -28,119 +28,68 @@ import Modal from "react-native-modal";
 import DropDown from '../../../../components/DropDown';
 import Geolocation from 'react-native-geolocation-service';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetNearestRestaurantAction } from '../../../../redux/actions/user.actions';
+import { GetAreaAllListAction, GetDistanceListAction, GetNearestRestaurantAction, GetPremiseAllListAction, GetUserRandomiserSetting } from '../../../../redux/actions/user.actions';
+import { showMessage } from 'react-native-flash-message';
+import urls from '../../../../redux/lib/urls';
+import Api from '../../../../redux/lib/api';
+import AsyncStorage from '@react-native-community/async-storage';
 
 
-const participants = [
 
-    'Imah`s',
-    'Bandar Bus',
-    'Hokkaido',
-    'Pit-shop',
-    'Jollibee',
-    'Anas Corner',
-];
-
-const area = [
-    'Berakas',
-    'Burong Pingai Ayer',
-    'Gadong',
-    'Kianggeh',
-    'Kilanas',
-    'Kota Batu',
-    'Lumapas',
-    'Mentiri',
-    'Pangkalan Batu',
-    'Peramu',
-    'Saba',
-    'Sengkurong',
-    'Serasa',
-    'Sungai Kebun',
-    'Tamoi',
-    'Bukit Sawat',
-    'Kuala Balai',
-    'Kuala Belait',
-    'Labi',
-    'Liang',
-    'Melilas',
-    'Seria',
-    'Sukang',
-    'Keriam',
-    'Kiudang',
-    'Lamunin',
-    'Pekan Tutong',
-    'Rambai',
-    'Tanjong Maya',
-    'Telisai',
-    'Ukong',
-    'Amo',
-    'Bangar',
-    'Batu Apoi',
-    'Bokok',
-    'Labu'
-]
-
-const distance = [
-    'Less than 3 Km',
-    'Between 3 Km to 6 Km',
-    'More than 6 Km'
-]
-
-const premise = [
-    'Airport Mall',
-    'Aman Hills Shopping Complex',
-    'Annajat Complex',
-    'Citis Square',
-    'Freshco',
-    'Gadong Centrepoint',
-    'Gadong Properties',
-    'Halim Plaza, Tutong',
-    'Hua Ho Department Store, Manggis',
-    'Jerudong Park Food Court',
-    'KB Sentral',
-    'Little Soho',
-    'Mabohai Shopping Complex',
-    'Mid Valley',
-    'One Riverside',
-    'Onecity Shopping Centre',
-    'Pavo Point',
-    'Petani Mall',
-    'Plaza Athirah',
-    'Regent Square',
-    'Rimba Point',
-    'Seri Qlap Mall',
-    'Seria Plaza',
-    'Setia Kenangan 2 Complex',
-    'Teck Guan Plaza',
-    'The Mall Gadong',
-    'The Walk, Beribi Central',
-    'Times Square Shopping Complex',
-    'V-Plaza Hotel',
-    'Wisma Jaya',
-    'Yayasan Sultan Haji Hassanal Bolkiah'
-
-]
-
- class RandomWheelClass extends React.Component {
+class RandomWheelClass extends React.Component {
     constructor(props) {
         super(props);
 
+
+
+
         this.state = {
+            userId: null,
             winnerValue: null,
             winnerIndex: null,
             started: false,
             isModalVisible: false,
-            lat:null,
-            long:null
+            lat: null,
+            long: null,
+            distance: 3,
+            loading: false,
+            restaurantSelected: true,
+            selectedAreaId: 1,
+            selectedDistanceId: 6,
+            selectedPremiseId: 1,
+            noOfResults: 1,
+            areaSelected: false,
+            distanceSelected: false,
+            premiseSelected: false,
+            dishesSelected: false,
+            getRandomiserSuccess: false,
         };
         this.child = null;
     }
 
+
+
     componentDidMount() {
         this.requestCurrentLocation();
-        // if (hasLocationPermission) {
-           
-        //   }
+        this.props.dispatch(GetAreaAllListAction())
+        this.props.dispatch(GetPremiseAllListAction())
+        this.props.dispatch(GetDistanceListAction())
+        this.getUserId()
+        this.setState({
+            selectedAreaId: this.props.userRandomiserSetting.areaId ? this.props.userRandomiserSetting.areaId : 1,
+            selectedDistanceId: this.props.userRandomiserSetting.distance ? this.props.userRandomiserSetting.distance : 6,
+            selectedPremiseId: this.props.userRandomiserSetting.premiseId ? this.props.userRandomiserSetting.premiseId : 1,
+            noOfResults: this.props.userRandomiserSetting.noOfResult ? this.props.userRandomiserSetting.noOfResult : 1,
+            areaSelected: this.props.userRandomiserSetting.areaId ? true : false,
+            distanceSelected: this.props.userRandomiserSetting.distance ? true : false,
+            premiseSelected: this.props.userRandomiserSetting.premiseId ? true : false,
+            restaurantSelected: typeof(this.props.userRandomiserSetting.isRestaurant) === "boolean"  ? this.props.userRandomiserSetting.isRestaurant : true,
+            getRandomiserSuccess: this.props.userRandomiserSettingSuccess
+        })
+    }
+    getUserId = async () => {
+        var userIdGet = await AsyncStorage.getItem('@userId');
+        this.setState({ userId: userIdGet })
     }
     requestCurrentLocation = async () => {
         try {
@@ -155,13 +104,13 @@ const premise = [
                 console.log("You can use the location")
                 Geolocation.getCurrentPosition(
                     (position) => {
-                      console.log(position);
-                      this.setState({lat:position.coords.latitude, long: position.coords.longitude})
-                      this.props.dispatch(GetNearestRestaurantAction({lat:position.coords.latitude,long:position.coords.longitude}))
+                        console.log(position);
+                        this.setState({ lat: position.coords.latitude, long: position.coords.longitude })
+                        this.props.dispatch(GetNearestRestaurantAction({ lat: position.coords.latitude, long: position.coords.longitude, distance: this.state.selectedDistanceId }))
                     },
                     (error) => {
-                      // See error code charts below.
-                      console.log(error.code, error.message);
+                        // See error code charts below.
+                        console.log(error.code, error.message);
                     },
                     { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
                 );
@@ -179,25 +128,91 @@ const premise = [
             isModalVisible: !this.state.isModalVisible,
         });
     };
+    selectCheck = (v) => {
+        console.log('okoko', v);
+        if (v == 'area') {
+            this.setState({ areaSelected: !this.state.areaSelected })
+        } else if (v == 'distance') {
+            this.setState({ distanceSelected: !this.state.distanceSelected })
 
+        } else if (v == 'premise') {
+            this.setState({ premiseSelected: !this.state.premiseSelected })
+        }
+    };
     buttonPress = () => {
         this.setState({
             started: true,
         });
 
         this.setState({ winnerIndex: null });
-        this.child._tryAgain();
+        if(this.props.restaurantList.map(names => names.name).length){
+
+            this.child._tryAgain();
+        }
         // this.child._onPress()
     };
+    addUserRandomiserSettings = async (index, item) => {
+        var obj = {
+            "userId": this.state.userId,
+            "createdDateTime": new Date(),
+            "isRestaurant": this.state.restaurantSelected,
+            "areaId": this.state.selectedAreaId,
+            "distance": this.state.selectedDistanceId,
+            "premiseId": this.state.selectedPremiseId,
+            "noOfResult": this.state.noOfResults
+        }
+        console.log('addUserRandomiserSettings obj', obj);
+        try {
+            const res = await Api.post(urls.ADD_USER_RANDOMISER, obj);
+            console.log('res', res);
+            if (res && res.success == true) {
+                this.props.dispatch(GetUserRandomiserSetting());
+            } else {
+            }
+        } catch (error) { console.log(error);}
+    };
+    updateUserRandomiserSettings = async (index, item) => {
+        var obj = {
+            "isRestaurant": this.state.restaurantSelected,
+            "areaId": this.state.selectedAreaId,
+            "distance": this.state.selectedDistanceId,
+            "premiseId": this.state.selectedPremiseId,
+            "noOfResult": this.state.noOfResults,
+            "updatedById": this.state.userId,
+            "updateDateTime": new Date(),
+        }
+        console.log('updateUserRandomiserSettings obj', obj);
+        try {
+            const res = await Api.put(urls.UPDATE_USER_RANDOMISER+this.state.userId, obj);
+            console.log('res', res);
+            if (res && res.success == true) {
+                this.props.dispatch(GetUserRandomiserSetting());
+            } else {
+            }
+        } catch (error) { console.log(error);}
+    };
     render() {
+        // console.log(this.state.areaList, 'areaList in Class');
+        // console.log(this.state.premiseList, 'premiseList in Class');
+        // console.log(this.state.noOfResults);
+        // console.log(this.state.selectedDistanceId,'selectedDistanceId');
+        // console.log(new Date().toLocaleString().replace(',',''))
+        // console.log(this.state.userId,'UserId');
+        // console.log(this.props.userRandomiserSetting, 'userRandomiserSettinn');
+        console.log(this.state.areaSelected, 'areaSelected', this.state.selectedAreaId, 
+        this.state.selectedDistanceId, this.state.selectedPremiseId,
+        this.state.distanceSelected,this.state.premiseSelected,this.state.restaurantSelected,this.props.userRandomiserSetting.isRestaurant,
+        this.state.getRandomiserSuccess,'getRandomiserSuccess',
+        );
+
         const wheelOptions = {
-            rewards: this.props.restaurantListNames,
+            rewards: this.state.restaurantSelected ? this.props.restaurantList.map(names => names.name) : this.props.favoriteDishesData.map(names => names.dishName) ,
             knobSize: 30,
             borderWidth: 5,
             borderColor: '#fff',
             innerRadius: 30,
             duration: 6000,
-            iconRewards: this.props.restaurantListImages,
+            iconRewards: this.state.restaurantSelected ? this.props.restaurantList.map(names => names.fullPath) : this.props.favoriteDishesData.map(names => names.imageDataB) ,
             backgroundColor: 'transparent',
 
             textAngle: 'horizontal',
@@ -229,23 +244,36 @@ const premise = [
                         <ResponsiveText size={4} color={colors.yellow} margin={[20, 0, 0, 20]} >What to Eat?</ResponsiveText>
                         <TouchableOpacity onPress={this.toggleModal} style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 20, }} >
                             <Icon source={globalPath.FILTER_ICON} size={20} tintColor={colors.grey} />
-                            <ResponsiveText color={colors.grey} size={3.5} margin={0, 0, 0, 5} >Refine Search</ResponsiveText>
+                            <ResponsiveText color={colors.grey} size={3.5} margin={[0, 0, 0, 5]} >Refine Search</ResponsiveText>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.container}>
                         <StatusBar barStyle={'light-content'} />
+                        {!this.props.loading ?
+                            this.props.restaurantList.map(names => names.name).length ?
+                                <WheelOfFortune
+                                    options={wheelOptions}
 
-                        <WheelOfFortune
-                            options={wheelOptions}
+                                    getWinner={(value, index) => {
+                                        this.setState({ winnerValue: value, winnerIndex: index });
+                                        if(this.state.restaurantSelected){
+                                            this.props.navigation.navigate(routeName.RestaurantDetail, this.props.restaurantList.find(element => element.name === value).restaurantBranchId)
+                                        }else{
+                                            this.props.navigation.navigate(routeName.DISH_DETAIL,{ dish: this.props.favoriteDishesData.find(element => element.dishName === value)})
+                                        }
 
-                            getWinner={(value, index) => {
-                                this.setState({ winnerValue: value, winnerIndex: index });
-                                this.props.navigation.navigate(routeName.RestaurantDetail, value)
-                                // alert('Dish ID: ',participants[this.state.winnerIndex])
-                                //    alert('Dish ID: '+participants[this.state.winnerIndex])
-                            }}
-                        />
-
+                                        // alert('Dish ID: ',participants[this.state.winnerIndex])
+                                        //    alert('Dish ID: '+participants[this.state.winnerIndex])
+                                    }}
+                                />
+                                : 
+                                // showMessage({
+                                //     message: "Oooopsss...",
+                                //     description: "Seems like there are no restaurants in area you provided.",
+                                //     type: "info",
+                                // })
+                                null
+                            : null}
 
 
 
@@ -283,6 +311,7 @@ const premise = [
                         }}>
                         <TouchableOpacity
                             onPress={this.buttonPress}
+                            disabled={this.props.loading}
                             style={{
                                 backgroundColor: colors.yellow,
                                 width: wp(85),
@@ -290,6 +319,7 @@ const premise = [
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 borderRadius: 7,
+
                             }}>
                             <ResponsiveText color={colors.black3}>Randomise</ResponsiveText>
                         </TouchableOpacity>
@@ -302,6 +332,11 @@ const premise = [
                     // onModalHide={()=>navigation.navigate(routeName.LANDING_SCREEN)}
                     statusBarTranslucent={true}
                     coverScreen={true}
+                    onModalHide={() => {
+                        setTimeout(() => {
+                            this.forceUpdate()
+                        }, 3000);
+                    }}
                 >
                     {/* ------------ ModalView -------------- */}
 
@@ -335,14 +370,17 @@ const premise = [
                             </View>
                             <View style={{ display: 'flex', flexDirection: 'row', marginTop: 5 }}>
                                 <RadioGroup color={colors.yellow} style={{ flex: 1, flexDirection: 'row' }}
-                                    // onSelect = {(index, value) => this.onSelect(index, value)}
-                                    selectedIndex={1}
+                                    onSelect={(index, value) => {
+                                        index === 0 ? this.setState({ dishesSelected: true, restaurantSelected: false }) : index === 1 ? this.setState({ dishesSelected: false, restaurantSelected: true }) : null
+                                        console.log(this.state.dishesSelected, this.state.restaurantSelected);
+                                    }}
+                                    selectedIndex={this.state.restaurantSelected?1:0}
                                 >
-                                    <RadioButton value={'item1'} style={{ marginStart: 10 }}>
+                                    <RadioButton value={'Dishes'} style={{ marginStart: 10 }}>
                                         <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>Dishes</ResponsiveText>
                                     </RadioButton>
 
-                                    <RadioButton value={'item2'} style={{ marginStart: 10 }}>
+                                    <RadioButton value={'Restaurants'} style={{ marginStart: 10 }}>
                                         <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>Restaurants</ResponsiveText>
                                     </RadioButton>
                                 </RadioGroup>
@@ -351,30 +389,63 @@ const premise = [
                             <View style={{ marginStart: 10, marginTop: 15 }}>
 
                                 <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, alignItems: 'center' }}>
-                                    <CheckBox />
+                                    <CheckBox additem={this.selectCheck} value={'area'} checkedd={this.state.areaSelected} />
                                     <ResponsiveText margin={[0, 0, 0, 10]} color={colors.grey1}>
                                         Area
                                     </ResponsiveText>
                                     <View style={{ marginStart: 5 }} >
-                                        <DropDown data={area} height={hp(4)} width={wp(57)} />
+                                        {this.props.areaList.length > 0 ?
+                                            <DropDown
+                                                disabled={!this.state.areaSelected}
+                                                data={this.props.areaList.map(names => names.name)}
+                                                height={hp(4)} width={wp(57)}
+                                                defaultValue={this.props.areaList.length>0? this.props.areaList.find(e => e.id == this.state.selectedAreaId).name:'null'}
+                                                onSelect={(selectedItem, index) => {
+                                                    console.log('selectedAreaId', this.props.areaList.find(e => e.name == selectedItem).id);
+                                                    this.setState({
+                                                        selectedAreaId: this.props.areaList.find(e => e.name == selectedItem).id
+                                                    })
+                                                }}
+                                            />
+                                            :
+                                            <DropDown data={[]} height={hp(4)} width={wp(57)} />
+
+                                        }
                                     </View>
                                 </View>
                                 <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, alignItems: 'center' }}>
-                                    <CheckBox />
+                                    <CheckBox additem={this.selectCheck} value={'distance'} checkedd={this.state.distanceSelected} />
                                     <ResponsiveText margin={[0, 0, 0, 10]} color={colors.grey1}>
                                         Distance
                                     </ResponsiveText>
                                     <View style={{ marginStart: 5 }} >
-                                        <DropDown data={distance} height={hp(4)} width={wp(57)} />
+                                        <DropDown
+                                            disabled={!this.state.distanceSelected}
+                                            data={this.props.distanceList.map(string => string.stringValue)}
+                                            height={hp(4)}
+                                            width={wp(57)}
+                                            defaultValue={this.props.distanceList.find(e => e.intValue == this.state.selectedDistanceId)?.stringValue}
+                                            onSelect={(selectedItem, index) => {
+                                                console.log(selectedItem, index, 'DropDown Selections');
+                                                console.log(this.props.distanceList.find(element => element.stringValue == selectedItem).intValue);
+                                                this.setState({ selectedDistanceId: this.props.distanceList.find(element => element.stringValue == selectedItem).intValue })
+                                                // index === 0 ? this.setState({ distance: 1 }) : index === 1 ? this.setState({ distance: 6 }) : index === 2 ? this.setState({ distance: 10 }) : null
+                                            }} />
                                     </View>
                                 </View>
                                 <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, alignItems: 'center' }}>
-                                    <CheckBox />
+                                    <CheckBox additem={this.selectCheck} value={'premise'} checkedd={this.state.premiseSelected} />
                                     <ResponsiveText margin={[0, 0, 0, 10]} color={colors.grey1}>
                                         Premise
                                     </ResponsiveText>
                                     <View style={{ marginStart: 5 }} >
-                                        <DropDown data={premise} height={hp(4)} width={wp(57)} />
+                                        <DropDown
+                                            disabled={!this.state.premiseSelected} 
+                                            data={this.props.premiseList.map(names => names.name)}
+                                            defaultValue={this.props.premiseList.find(e => e.id == this.state.selectedPremiseId)?.name}
+                                            height={hp(4)} 
+                                            width={wp(57)} 
+                                        />
                                     </View>
                                 </View>
                             </View>
@@ -389,17 +460,21 @@ const premise = [
 
                                     <View style={{ display: 'flex', flexDirection: 'row', marginTop: 5 }}>
                                         <RadioGroup color={colors.yellow} style={{ flex: 1, flexDirection: 'row' }}
-                                        // onSelect = {(index, value) => this.onSelect(index, value)}
+                                            onSelect={(index, value) => {
+                                                this.setState({ noOfResults: value })
+                                                console.log(index, value, this.state.noOfResults);
+                                            }}
+                                            selectedIndex={this.state.noOfResults-1}
                                         >
-                                            <RadioButton value={'item1'} style={{ marginStart: 10 }}>
+                                            <RadioButton value={1} style={{ marginStart: 10 }}>
                                                 <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>1</ResponsiveText>
                                             </RadioButton>
 
-                                            <RadioButton value={'item2'} style={{ marginStart: 10 }}>
+                                            <RadioButton value={2} style={{ marginStart: 10 }}>
                                                 <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>2</ResponsiveText>
                                             </RadioButton>
 
-                                            <RadioButton value={'item3'} style={{ marginStart: 10 }}>
+                                            <RadioButton value={3} style={{ marginStart: 10 }}>
                                                 <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>3</ResponsiveText>
                                             </RadioButton>
                                         </RadioGroup>
@@ -416,7 +491,17 @@ const premise = [
                                 marginBottom: 30,
                             }}>
                             <TouchableOpacity
-                                onPress={this.toggleModal}
+                                onPress={() => {
+                                    {
+                                        this.setState({ isModalVisible: false });
+                                        this.props.dispatch(GetNearestRestaurantAction({ lat: this.state.lat, long: this.state.long, distance: this.state.selectedDistanceId }));
+                                        if(this.state.getRandomiserSuccess){
+                                            this.updateUserRandomiserSettings()
+                                        }else{
+                                            this.addUserRandomiserSettings();   
+                                        }
+                                    }
+                                }}
                                 style={{
                                     backgroundColor: colors.yellow,
                                     width: wp(85),
@@ -439,24 +524,34 @@ const premise = [
 }
 export default RandomWheel = (props) => {
 
-      const  dispatch  = useDispatch();
-      const restaurantList = useSelector(state => state.appReducers.NearestRestaurants.data)
+    const dispatch = useDispatch();
+    const restaurantList = useSelector(state => state.appReducers.NearestRestaurants.data)
+    const loading = useSelector(state => state.appReducers.NearestRestaurants.loading)
+    const areaList = useSelector(state => state.appReducers.AllAreas.data)
+    const premiseList = useSelector(state => state.appReducers.AllPremises.data)
+    const distanceList = useSelector(state => state.appReducers.DistanceList.data)
+    const userRandomiserSetting = useSelector(state => state.appReducers.getUserRandomiserSetting.data)
+    const userRandomiserSettingSuccess = useSelector(state => state.appReducers.getUserRandomiserSetting.success)
+    const favoriteDishesData = useSelector(state => state.appReducers.favorite.data)
 
-    
-      const restaurantListNames = restaurantList.map( names =>  names.name  )
-      const restaurantListImages = restaurantList.map( image => image.fullPath  )
+    console.log(favoriteDishesData,'favoriteDishesData');
 
-      console.log(restaurantListNames,'restaurantListNames');
-      console.log(restaurantListImages,'restaurantListImages');
+    console.log('Effect of useEffect');
+    console.log(userRandomiserSettingSuccess,'userRandomiserSettingSuccess');
 
-      console.log(restaurantList,'NearestRestaurants in RandomWheel');
-  
-      return <RandomWheelClass {...props} 
-      dispatch={dispatch}  
-      restaurantListNames={restaurantListNames} 
-      restaurantListImages={restaurantListImages} />;
+    return <RandomWheelClass {...props}
+        dispatch={dispatch}
+        restaurantList={restaurantList}
+        loading={loading}
+        areaList={areaList}
+        premiseList={premiseList}
+        distanceList={distanceList}
+        userRandomiserSetting={userRandomiserSetting}
+        userRandomiserSettingSuccess={userRandomiserSettingSuccess}
+        favoriteDishesData={favoriteDishesData}
+    />
 
-  };
+};
 const styles = StyleSheet.create({
     container: {
         flex: 0.6,

@@ -22,18 +22,24 @@ import {
   addOrder,
   AddOrder,
   checkoutOrder,
+  getOrders,
 } from '../../../redux/actions/user.actions';
 import {TextInput} from 'react-native-gesture-handler';
 import {color} from 'react-native-reanimated';
 import AsyncStorage from '@react-native-community/async-storage';
+import {BarIndicator} from 'react-native-indicators';
+import Api from '../../../redux/lib/api';
+import urls from '../../../redux/lib/urls';
 export default function AddToCart({route, navigation}) {
   const cartList = useSelector(state => state.appReducers.cartList.data);
   const orderList = useSelector(
     state => state.appReducers.your_ordersList.data,
   );
-  const loading = useSelector(state => state.appReducers.cartList.loading);
+  //const loading = useSelector(state => state.appReducers.AddOrder.loading);
   // console.log('Add Admin: ', cartList);
   const [visible, setVisible] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
+
   const [count, changeCount] = useState(1);
   const [Selecteddrinks, setSelecteddrinks] = useState(
     route.params.dish.restaurantSoftDrinksList
@@ -57,8 +63,8 @@ export default function AddToCart({route, navigation}) {
       return a + c.price;
     }, 0);
 
-    updateTotal(dishPrice * count + sumofExtra);
-  }, [count]);
+    updateTotal((dishPrice + sumofExtra )* count );
+  }, [count,extraCheese.length]);
   const Drinks = value => {
     setSelecteddrinks(value);
     console.log('Idddddddddd:', value);
@@ -131,10 +137,10 @@ export default function AddToCart({route, navigation}) {
     var userId = await AsyncStorage.getItem('@userId');
     var checkData = orderList.find(
       o =>
-        o.statusName === "PreOrder" &&
+        o.statusName === 'PreOrder' &&
         o.restaurantBranchId === dish.restaurantBranchId,
     );
-     console.log('filter    nnnn', checkData);
+    console.log('filter    nnnn', checkData);
     // console.log('filter    orderList', orderList);
     // console.log('filter    dish', dish);
 
@@ -143,22 +149,22 @@ export default function AddToCart({route, navigation}) {
     const orderDetailLinkedItemList = [];
     // cartList.forEach(obj => {
     // if (obj.restaurantBranchId === BrachId) {
-      if (extraCheese.length > 0) {
-        extraCheese.forEach(e => {
-          orderDetailExtraItemList.push({
-            restaurantDishExtraItemId: e.id,
-            price:e.price
-          });
+    if (extraCheese.length > 0) {
+      extraCheese.forEach(e => {
+        orderDetailExtraItemList.push({
+          restaurantDishExtraItemId: e.id,
+          price: e.price,
         });
-      }
-      if (linkedItem.length > 0) {
-        linkedItem.forEach(e => {
-          orderDetailLinkedItemList.push({
-            restaurantDishLinkedItemId: e.id,
-            price:e.price
-          });
+      });
+    }
+    if (linkedItem.length > 0) {
+      linkedItem.forEach(e => {
+        orderDetailLinkedItemList.push({
+          restaurantDishLinkedItemId: e.id,
+          price: e.price,
         });
-      }
+      });
+    }
     addOrderDetail.push({
       restaurantDishId: dish.restaurantDishId,
       addOnId: Selecteddrinks ? Selecteddrinks.softDrinkId : 1,
@@ -170,7 +176,7 @@ export default function AddToCart({route, navigation}) {
       orderDetailExtraItemList: orderDetailExtraItemList,
       orderDetailLinkedItemList: orderDetailLinkedItemList,
     });
-   
+
     // }
     // });
     const obj = {
@@ -189,6 +195,27 @@ export default function AddToCart({route, navigation}) {
       // orderDetailLinkedItemList: orderDetailLinkedItemList,
     };
     console.log('objjjjjjjjjjjj,obj', obj);
+    var response = null;
+
+    try {
+      setLoading(true);
+      if (obj.ActionMode == 1) {
+        response = await Api.post(urls.ADD_ORDER, obj, false);
+        // console.log(response, 'post cart resssssss');
+      } else {
+        response = await Api.put(urls.UPDATE_ORDER + obj.id, obj, false);
+      }
+      console.log('res', response);
+      if (response && response.success == true) {
+        dispatch(getOrders());
+        navigation.navigate(routeName.LANDING_SCREEN);
+        setLoading(false);
+      } else {
+        setLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
     // if(checkData.addOrderDetail.some(o =>o.restaurantDishId === dish.id)){
     //   //var checkDish=checkData.addOrderDetail.some(o =>o.restaurantDishId === dish.id)
     //   console.log('okoko');
@@ -199,13 +226,28 @@ export default function AddToCart({route, navigation}) {
     // // }
     // //.some(elem => elem === obj)
     // }
-     dispatch(addOrder(obj,navigation));
+    // dispatch(addOrder(obj, navigation));
     //navigation.navigate(routeName.TRANSACTION_CONFIRMATION)
     //
   };
   return (
     <View style={{flex: 1}}>
       <ScrollView style={styles.container}>
+        {loading === true ? (
+          <View
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              bottom: 0,
+              right: 0,
+              backgroundColor: 'rgba(65, 65, 65, 0.5)',
+              flex: 1,
+              zIndex: 10,
+            }}>
+            <BarIndicator color={colors.yellow} size={50} />
+          </View>
+        ) : undefined}
         <View>
           <View style={styles.headerImage}>
             <ImageHeader
@@ -233,21 +275,22 @@ export default function AddToCart({route, navigation}) {
             ExtraChees={ExtraChees}
             SelectedDrinks={Drinks}
           />
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              borderTopWidth: 1,
-              borderBottomWidth: 1,
-              borderColor: colors.black2,
-              padding: 5,
-              marginTop: 20,
-              marginHorizontal: 10,
-            }}>
-            <ResponsiveText color={colors.white}>{'Upsize'}</ResponsiveText>
-            <ResponsiveText color={colors.white}>{'Optional'}</ResponsiveText>
-          </View>
-
+          {route.params.dish.restaurantDishLinkedItemList?.length > 0 ? (
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                borderTopWidth: 1,
+                borderBottomWidth: 1,
+                borderColor: colors.black2,
+                padding: 5,
+                marginTop: 20,
+                marginHorizontal: 10,
+              }}>
+              <ResponsiveText color={colors.white}>{'Upsize'}</ResponsiveText>
+              <ResponsiveText color={colors.white}>{'Optional'}</ResponsiveText>
+            </View>
+          ) : undefined}
           <View style={{padding: 20}}>
             {Object.keys(route.params.dish).length != 0 &&
             route.params.dish.restaurantDishLinkedItemList
@@ -273,6 +316,11 @@ export default function AddToCart({route, navigation}) {
                   },
                 )
               : null}
+            {/* // (loading == false ?
+              //   <View style={{ width: wp(100), marginTop: 100, alignItems: 'center', alignSelf: 'center' }}>
+              //     <Icon borderColor={colors.yellow} borderWidth={0} borderRadius={0} size={250} source={require('../../../components/../assets/icons/norecordfound.png')} />
+              //   </View> : null
+              // ) */}
           </View>
 
           <View style={{flexDirection: 'row', margin: 20}}>
@@ -300,6 +348,7 @@ export default function AddToCart({route, navigation}) {
                 borderColor: color.black2,
                 alignContent: 'center',
                 backgroundColor: colors.black2,
+                color: colors.white,
               }}
               textAlignVertical="top"
               multiline={true}
@@ -310,7 +359,8 @@ export default function AddToCart({route, navigation}) {
           </View>
         </View>
 
-        <View style={{flexDirection: 'row', height: hp(9)}}>
+        <View
+          style={{flexDirection: 'row', height: hp(9), position: 'relative'}}>
           <View
             style={{
               flexDirection: 'row',

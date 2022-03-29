@@ -1,68 +1,500 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   View,
   KeyboardAvoidingView,
   Image,
   Platform,
-  TouchableOpacity
+  TouchableOpacity,
+  Text,
 } from 'react-native';
-import { ScrollView, } from 'react-native-gesture-handler';
+import {ScrollView} from 'react-native-gesture-handler';
 
-import { hp, wp } from '../../../helpers/Responsiveness';
+import {hp, wp} from '../../../helpers/Responsiveness';
 import Icon from '../../../components/Icon';
 import Input from '../../../components/Input';
 import RnButton from '../../../components/RnButton';
 import ResponsiveText from '../../../components/RnText';
-import { globalPath } from '../../../constants/globalPath';
-import { Spacing } from '../../../constants/spacingScale';
+import {globalPath} from '../../../constants/globalPath';
+import {Spacing} from '../../../constants/spacingScale';
 import Line from '../../../components/Line';
-import { routeName } from '../../../constants/routeName';
-import { colors } from '../../../constants/colorsPallet';
+import {routeName} from '../../../constants/routeName';
+import {colors} from '../../../constants/colorsPallet';
 import Profile from './Profile';
 import Optional from './Optional';
-import { useSelector, useDispatch } from 'react-redux';
-import { profileTabs } from '../../../constants/mock';
-import { getProfileData } from '../../../redux/actions/user.actions';
+import {useSelector, useDispatch} from 'react-redux';
+import {profileTabs} from '../../../constants/mock';
+import {getProfileData} from '../../../redux/actions/user.actions';
+import CustomInput from '../../../components/customInput';
+import {RadioButton, RadioGroup} from 'react-native-flexi-radio-button';
+import DropDown from '../../../components/CustomizeDropdown';
+import Dropdown from '../../../components/DropDown';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import ImagePicker from 'react-native-image-crop-picker';
+import Modal from "react-native-modal";
+import urls from '../../../redux/lib/urls';
+import Api from '../../../redux/lib/api';
 
-export default function ProfileScreen({ navigation }) {
+export default function ProfileScreen({navigation}) {
   const profileData = useSelector(state => state.appReducers.profileData.data);
   console.log('Profile: ', profileData);
   const loading = useSelector(state => state.appReducers.profileData.loading);
   console.log('loading', loading);
   const dispatch = useDispatch();
+  const [email, setEmail] = useState();
+  const [userName, setUsername] = useState();
+  const [fullName, setFullname] = useState();
+  const [editable, setEditable] = useState(false);
+  const [JobInterest, setJobInterest] = useState(false);
 
+  const [gender, setgender] = useState('');
+  const [education, setEducation] = useState('');
+  const [MaritialStatus, setMaritialStatus] = useState('');
+  const [EmpSec, setEmpSec] = useState('');
+  const [SelectedIndustry, setSelectedIndustry] = useState('');
+  const [children, setChildren] = useState('');
+
+  const [IndustryData, setIndustryData] = useState([]);
+  const [EmploymentSector, setEmploymentSector] = useState([]);
+  const [MarriageStatusData, setMarriageStatusData] = useState([]);
+
+
+  const Gender = [
+    {id:1,lable: 'Male', icon: require('../../../assets/icons/male.png')},
+    {id:2,lable: 'Female', icon: require('../../../assets/icons/female.png')},
+  ];
+  // const Gender=['Male','Female']
+  const [date, setDate] = useState(null);
+  const [mode, setMode] = useState('date');
+  const [show, setShow] = useState(false);
+  const [img, setImg] = useState(null);
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === 'ios');
+    setDate(currentDate);
+  };
+
+  const showMode = currentMode => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const dateFormat = date => {
+    if (date != null) {
+      return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+    }
+  };
+
+  const showDAtepicker = () => {
+    setShow(true);
+  };
+  const industry = ['Education', 'Social Media', 'Employer', 'Business'];
+  const employmentSec = ['Private', 'Government', 'Semi-Government'];
   React.useEffect(() => {
-    dispatch(getProfileData());
+   // dispatch(getProfileData());
+   GetLookUpIndustry()
+   GetLookUpEmploymentSector();
+   GetLookUpMarriageStatus();
+   defaultData()
     console.log('loading', loading);
-
   }, []);
   const [activeTab, setActiveTab] = React.useState(profileTabs[0].id);
 
+  const  defaultData=()=>{
+    setgender(profileData.gender);
+    setFullname(profileData.fullName);
+    setEmail(profileData.email);
+    setUsername(profileData.username);
+  }
+
+  const GetLookUpIndustry = async item => {
+    try {
+      const res = await Api.get(urls.GET_LOOKUP_INDUSTRY);
+      console.log('GetLookUpIndustry res', res);
+      if (res && res.success == true) {
+        setIndustryData(res.data)
+      } else {
+      }
+    } catch (error) { }
+  };
+  const GetLookUpEmploymentSector = async item => {
+    try {
+      const res = await Api.get(urls.GET_LOOKUP_EMP_SEC);
+      console.log('GetLookUpEmploymentSector res', res);
+      if (res && res.success == true) {
+        setEmploymentSector(res.data)
+      } else {
+      }
+    } catch (error) { }
+  };
+  const GetLookUpMarriageStatus = async item => {
+    try {
+      const res = await Api.get(urls.GET_LOOKUP_MARITAL_STATUS);
+      console.log('GetLookUpMarriageStatus', res);
+      if (res && res.success == true) {
+        setMarriageStatusData(res.data)
+      } else {
+      }
+    } catch (error) { }
+  };
+  const edit = () => {
+    setFullname(profileData.fullName);
+    setEmail(profileData.email);
+    setUsername(profileData.username);
+    setEditable(true);
+  };
+  const submitData = async id => {
+    var obj = {
+      username: userName,
+      email: email,
+      fullName: fullName,
+      gender: 'Male',
+      dateofBirth: '2004/1/14',
+      contactNumber: '0340040404040',
+      updatebyId: profileData.id,
+      updatedDateTime: new Date(),
+    };
+    console.log('obj', obj);
+    try {
+      const res = await Api.put(urls.EDIT_PROFILE + profileData.id, obj);
+      console.log('ree', res);
+      if (res && res.success == true) {
+        dispatch(getProfileData());
+
+        // dropdownRef.current.showMessage({
+        //   message: 'Alert',
+        //   description: 'Order Canceled',
+        //   type: 'success',
+        //   icon: {icon: 'auto', position: 'left'},
+        //   //backgroundColor:colors.black1
+        // });
+      } else {
+      }
+    } catch (error) {}
+  };
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+  const takePhotoFromCamera = () => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true
+    }).then(image => {
+      console.log(image.cropRect);
+      setImg(image)
+      setModalVisible(!isModalVisible);
+    });
+  }
+  const openPhoneCamera = () => {
+    ImagePicker.openCamera({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then(image => {
+      console.log(image);
+      setImg(image)
+      setModalVisible(!isModalVisible);
+
+    });
+  }
+  const Optional = () => {
+    return (
+      <View style={styles.formArea}>
+        <ScrollView style={{flexGrow: 1}}>
+          <View style={{marginTop: 20, marginBottom: -30, marginLeft: 20}}>
+            <ResponsiveText
+              color={colors.grey1}
+              size={3}
+              margin={[0, 0, 0, 10]}>
+              Are you interested in receiving potential job offers?
+            </ResponsiveText>
+            <RadioGroup
+              selectedIndex={JobInterest?1:0}
+              color={colors.yellow}
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+                marginTop: -5,
+                marginBottom: 30,
+              }}>
+              <RadioButton value={true} style={{marginStart: 0}}>
+                <ResponsiveText color={colors.grey1} margin={[0, 7, 0, 7]}>
+                  Yes
+                </ResponsiveText>
+              </RadioButton>
+
+              <RadioButton value={false} style={{marginStart: 10}}>
+                <ResponsiveText color={colors.grey1} margin={[0, 7, 0, 7]}>
+                  No
+                </ResponsiveText>
+              </RadioButton>
+            </RadioGroup>
+          </View>
+          {/* <CustomInput placeHolderText={'20/8/1980'} fieldName={'Birthday'} /> */}
+          <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+            <DropDown
+              data={Gender}
+              // defaultValue={'Male'}
+              defaultValueByIndex={1}
+              onSelect={(selectedItem, index) => {
+                console.log(selectedItem, index);
+                setgender(selectedItem.lable);
+              }}
+              height={hp(6)}
+              width={wp(39)}
+            />
+            <View>
+              <View style={{borderWidth: 2, zIndex: 0, borderRadius: 10}}>
+                <Text
+                  style={{
+                    fontSize: 7,
+                    position: 'absolute',
+                    zIndex: 1,
+                    top: -5,
+                    marginStart: 9,
+                    color: colors.white,
+                  }}>
+                  Date of birth
+                </Text>
+
+                <TouchableOpacity onPress={showDAtepicker}>
+                  <Text
+                    style={{
+                      color: colors.white,
+                      textAlign: 'center',
+                      textAlignVertical: 'center',
+                      backgroundColor: '#3f3f3f',
+                      padding: 13,
+                      borderStartWidth: 10,
+                      borderRadius: 10,
+                      paddingHorizontal: 30,
+                      paddingVertical: 16,
+                      fontSize: 12,
+                    }}>
+                    {date == null ? 'Month/Day/Year' : dateFormat(date)}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+          {show && (
+            <DateTimePicker
+              // testID="dateTimePicker"
+              value={new Date()}
+              mode={'date'}
+              // is24Hour={true}
+              display="default"
+              onChange={onChange}
+            />
+          )}
+          <CustomInput
+            placeHolderText={'Graduate'}
+            fieldName={'Educational Background'}
+          />
+           <View style={{marginTop: 15}}>
+            <ResponsiveText
+              size={3}
+              color={colors.grey1}
+              margin={[0, 0, 5, 30]}>
+              Marital Status
+            </ResponsiveText>
+            <Dropdown data={MarriageStatusData.map((v)=>{return v.name})} />
+          </View>
+          <CustomInput placeHolderText={'3'} fieldName={'No of Children'} />
+          <View style={{marginTop: 15}}>
+            <ResponsiveText
+              size={3}
+              color={colors.grey1}
+              margin={[0, 0, 5, 30]}>
+              Empoyment Sector
+            </ResponsiveText>
+            <Dropdown data={EmploymentSector.map((v)=>{return v.name})} />
+          </View>
+          <View style={{marginTop: 15}}>
+            <ResponsiveText
+              size={3}
+              color={colors.grey1}
+              margin={[0, 0, 5, 30]}>
+              Industry
+            </ResponsiveText>
+            <Dropdown data={IndustryData.map((v)=>{return v.name})} />
+          </View>
+
+          {/* <CustomInput
+          placeHolderText={'Private'}
+          dropdownList={true}
+          fieldName={'Employment sector'}
+        /> */}
+          {/* <CustomInput placeHolderText={'Education'} fieldName={'Industry'} /> */}
+          <View
+            style={{
+              justifyContent: 'center',
+              marginTop: 40,
+              marginBottom: 50,
+              width: wp(90),
+              alignSelf: 'center',
+            }}>
+            <TouchableOpacity
+              style={{
+                alignSelf: 'center',
+                backgroundColor: colors.yellow,
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderRadius: 7,
+                height: hp(5),
+                width: wp(80),
+              }}>
+              <ResponsiveText color={colors.black}>Save</ResponsiveText>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </View>
+    );
+  };
+  const userInfo = () => {
+    return (
+      <View
+        style={{
+          flex: 0.7,
+          // borderTopRightRadius: wp(8),
+          // borderTopLeftRadius: wp(8),
+          backgroundColor: '#202020',
+          paddingTop: 10,
+        }}>
+        <ScrollView>
+          <View style={{flex: 0.68}}>
+            <CustomInput
+              placeHolderText={profileData.fullName}
+              fieldName={'Full Name'}
+              value={fullName}
+              onChangeText={text => setFullname(text)}
+            />
+            <CustomInput
+              placeHolderText={profileData.username}
+              fieldName={'User Name'}
+              value={userName}
+              onChangeText={text => setUsername(text)}
+            />
+            <CustomInput
+              placeHolderText={profileData.email}
+              fieldName={'Email'}
+              value={email}
+              onChangeText={text => setEmail(text)}
+            />
+            <CustomInput placeHolderText={'000-000-0000'} fieldName={'Phone'} />
+          </View>
+          <View style={{flex: 0.32, marginTop: 40, marginBottom: 20}}>
+            <TouchableOpacity
+              onPress={() => submitData()}
+              style={{
+                alignSelf: 'center',
+                backgroundColor: colors.yellow,
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderRadius: 7,
+                height: hp(5),
+                width: wp(80),
+              }}>
+              <ResponsiveText color={colors.black}>Save</ResponsiveText>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </View>
+    );
+  };
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-
       style={styles.container}>
       <View style={styles.container}>
         <View style={styles.screeninfo}>
-          <View style={{ flexDirection: 'row', justifyContent: "space-between", flex: .40 }}>
-            <TouchableOpacity style={{ backgroundColor: colors.black, height: hp(5), padding: 9, borderRadius: 20 }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              flex: 0.4,
+            }}>
+            <TouchableOpacity
+              style={{
+                backgroundColor: colors.black,
+                height: hp(5),
+                padding: 9,
+                borderRadius: 20,
+              }}
+              onPress={() => {
+                navigation.goBack();
+              }}>
+              <Icon source={globalPath.BACK_BLACK_ARROW} />
+            </TouchableOpacity>
             <ResponsiveText size={4}>Profile</ResponsiveText>
-            <TouchableOpacity style={{ backgroundColor: colors.black, height: hp(5), padding: 10, borderRadius: 20 }}><Icon source={globalPath.EDIT_PROFILE} /></TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => edit()}
+              style={{
+                backgroundColor: colors.black,
+                height: hp(5),
+                padding: 10,
+                borderRadius: 20,
+              }}>
+              <Icon source={globalPath.EDIT_PROFILE} />
+            </TouchableOpacity>
           </View>
-          <View style={{ justifyContent: 'center', alignItems: 'center', flex: .45 }}>
-            <Image style={{ width: 100, height: 100, borderRadius: 50, marginBottom: 10 }}
-              source={profileData.fullpath ? { uri: profileData.fullpath } : globalPath.USER_PROFILE}
+          <View
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              flex: 0.45,
+            }}>
+            {/* <Image
+              style={{
+                width: 100,
+                height: 100,
+                borderRadius: 50,
+                marginBottom: 10,
+              }}
+              source={
+                profileData.fullpath
+                  ? {uri: profileData.fullpath}
+                  : globalPath.USER_PROFILE
+              }
+            /> */}
+            <View style={styles.header}>
+              <View style={{ flexDirection: 'row' }}>
+                <Image style={{
+                  width: 100,
+                  height: 100,
+                  borderRadius: 50,
+                  marginBottom: 10,
+                }}
+                  source={img==null? globalPath.USER_PROFILE:{uri:img.path}}
+                  // {profileData.fullpath ? { uri: profileData.fullpath } : globalPath.USER_PROFILE}
+                />
+                <View style={{ height: hp(3.6), width: wp(7.4), alignItems: 'center', justifyContent: 'center' }}>
+                  <TouchableOpacity onPress={toggleModal}>
+                    <Image style={{ height: hp(2.4), width: wp(7), marginRight: hp(4), borderRadius: 30 }}
+                      source={globalPath.CAMERA_ICON} />
 
-
-            />
-            <ResponsiveText size={4}>{profileData.username}</ResponsiveText>
-            {/* <ResponsiveText color={colors.lightBlack} size={3}>umargani@gmail.com</ResponsiveText> */}
+                  </TouchableOpacity>
+                  <Modal isVisible={isModalVisible}
+                    onSwipeComplete={() => toggleModal(false)}
+                    swipeDirection={["left", "right", 'down', 'up']}
+                    animationIn='slideInUp'
+                  >
+                    <View style={{ height: hp(40), width: wp(90), backgroundColor: colors.white, borderRadius: hp(4), justifyContent: 'center', alignItems: 'center' }}>
+                      <RnButton gradColor={[colors.green1, colors.yellow]} title={'Take Photo'} onPress={openPhoneCamera} />
+                      <RnButton margin={[50, 0, 0, 0]} gradColor={[colors.green1, colors.yellow]} title={'Take Photo from gallery'} onPress={takePhotoFromCamera} />
+                    </View>
+                  </Modal>
+                </View>
+              </View>
+            </View>
+            <ResponsiveText size={4}>{profileData.fullName}</ResponsiveText>
+            <ResponsiveText color={colors.lightBlack} size={3}>{profileData.email}</ResponsiveText>
           </View>
         </View>
-        <View style={{ flex: 0.09, flexDirection: 'row', marginTop: -10 }}>
-
+        <View style={{flex: 0.09, flexDirection: 'row', marginTop: -10}}>
           {profileTabs.map((items, index) => {
             return (
               <React.Fragment key={items.id}>
@@ -91,7 +523,6 @@ export default function ProfileScreen({ navigation }) {
             );
           })}
 
-
           {/* <View style={{flex:1, backgroundColor:colors.yellow1, justifyContent:'center', alignItems:'center'}}>
             <TouchableOpacity>
             <ResponsiveText size={4}>Profile</ResponsiveText>
@@ -107,13 +538,10 @@ export default function ProfileScreen({ navigation }) {
         {/* <Profile /> */}
         {/* <ScrollView style={{flex:0.9,margin:20}}> */}
 
-        {activeTab === 1 && <Profile />}
+        {activeTab === 1 && userInfo()}
         {activeTab === 2 && <Optional />}
 
         {/* </ScrollView> */}
-
-
-
       </View>
     </KeyboardAvoidingView>
   );
@@ -154,5 +582,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  formArea: {
+    flex: 0.7,
+    // borderTopRightRadius: wp(8),
+    // borderTopLeftRadius: wp(8),
+    backgroundColor: '#202020',
+    paddingTop: 10,
   },
 });

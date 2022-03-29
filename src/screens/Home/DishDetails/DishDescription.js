@@ -86,13 +86,13 @@ export default function DishDescription(props) {
         <TouchableOpacity
           style={{alignItems: 'center'}}
           onPress={() => {
-            favData.some(o => o.id === props.item.id) || props.item.userLiked
+            favData.some(o => o.restaurantDishId === props.item.restaurantDishId) || props.item.userLiked
               ? dispatch(onRemoveFavorite(props.item))
               : dispatch(addFavorite(props.item));
           }}>
           <Icon
             source={
-              props.item.userLiked || favData.some(o => o.id === props.item.id)
+              props.item.userLiked || favData.some(o => o.restaurantDishId === props.item.restaurantDishId)
                 ? globalPath.F_HEART
                 : globalPath.HEART
             }
@@ -111,7 +111,7 @@ export default function DishDescription(props) {
           </View>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => navigation.navigate(routeName.CONTACT_US)}>
+          onPress={() => navigation.navigate(routeName.CONTACT_US,props.item.restaurantBranchId)}>
           <View style={{alignItems: 'center'}}>
             <Icon source={globalPath.CONTACT} />
             <ResponsiveText top={5} color={colors.yellow}>

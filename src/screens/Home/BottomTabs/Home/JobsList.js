@@ -109,6 +109,23 @@ const JobsList = props => {
                         uri: url.fullPath,
                       }}>
                       {/* source={{uri: url.fullPath}}> */}
+
+                      {url.userAppliedStatus === "Applied" ?
+                        <Text
+                          style={{
+                            fontSize:wp(6),
+                            fontWeight:'bold',
+                            alignSelf: 'center',
+                            color: colors.yellow,
+                            position:'absolute',
+                            // left:'40%',
+                            // right:'40%',
+                            top:'45%',
+                          }}
+                        >
+                          {url.userAppliedStatus === "Applied" ? url.userAppliedStatus : null}
+                        </Text>
+                        : null}
                       <Text
                         style={{
                           color: 'white', padding: 3, opacity: 0.7,

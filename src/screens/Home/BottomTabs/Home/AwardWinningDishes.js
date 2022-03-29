@@ -65,6 +65,7 @@ const AwardWinningDishes = props => {
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           {FoodsAwards.length > 0
             ? FoodsAwards.map((url, index) => {
+              if (index < 4) {
               return (
                 <TouchableOpacity
                   onPress={() =>
@@ -85,9 +86,8 @@ const AwardWinningDishes = props => {
                       imageStyle={{ opacity: 1 }}
                       style={{
                         flex: 1,
-                        padding: 5,
                         overflow: 'hidden',
-                        justifyContent: 'flex-end',
+                        justifyContent: 'space-between',
                         backgroundColor: 'rgba(0,0,0,1)',
                       }}
                       source={{
@@ -100,33 +100,48 @@ const AwardWinningDishes = props => {
                     >
                       <Text
                         style={{
-                          opacity: 0.7,
-                          marginTop: 1,
-                          color: 'white', padding: 3,
-                          backgroundColor: '#383131', borderRadius: 7,
-                          textAlign: 'center', fontWeight: '600', fontSize: 8.5
+                          top: hp(1), borderTopRightRadius: 15,
+                          opacity: 1, alignSelf: 'flex-start',
+                          color: 'white', padding: 2,
+                          backgroundColor: colors.black,
+                          fontWeight: '600', fontSize: 8.5
                         }}
-
                       >
                         {url.titleA}
                       </Text>
-                      <Text
-                        style={{
-                          opacity: 0.7,
-                          color: 'white', padding: 3,
-                          backgroundColor: 'black', borderRadius: 7,
-                          textAlign: 'center', fontWeight: '800', fontSize: 9
-                        }}
+                      <View style={{ alignItems: "center" }}>
 
-                      >
-                        {url.titleR}
-                      </Text>
+                        <Text
+                          style={{
+                            opacity: 0.7,
+                            marginTop: 1,
+                            color: 'white', padding: 3,
+                            backgroundColor: '#383131', borderRadius: 7,
+                            textAlign: 'center', fontWeight: '600', fontSize: 8.5
+                          }}
+
+                        >
+                          {url.titleD}
+                        </Text>
+                        <Text
+                          style={{
+                            opacity: 0.7,
+                            color: 'white', padding: 3,
+                            backgroundColor: 'black', borderRadius: 7,
+                            textAlign: 'center', fontWeight: '800', fontSize: 9
+                          }}
+
+                        >
+                          {url.titleR}
+                        </Text>
+                      </View>
 
                     </FastImage>
                   </View>
                 </TouchableOpacity>
               );
-            })
+            }
+          })
             : undefined}
         </ScrollView >
         {

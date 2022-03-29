@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {View, Text, Image,TouchableOpacity} from 'react-native';
+import {View, Text, Image,TouchableOpacity,ScrollView} from 'react-native';
 import Header from '../../../../components/Header';
 import {TRANSACTION_HISTORY_FAKE_DATA} from '../../../../constants/mock';
 import {hp, wp} from '../../../../helpers/Responsiveness';
@@ -9,15 +9,16 @@ import ResponsiveText from '../../../../components/RnText';
 import { globalPath } from '../../../../constants/globalPath';
 import { useSelector ,useDispatch} from 'react-redux';
 import { GETPAYMENTHISTORY } from '../../../../redux/actions/user.actions';
+import moment from 'moment';
 export default function TransactionHistory({navigation}) {
   const dispatch = useDispatch();
 
-  useEffect(()=>{
-    dispatch(GETPAYMENTHISTORY(1, 4));
-    
-  })
   const HISTORY = useSelector(state => state.appReducers.getPaymentHistory.data);
   const loading = useSelector(state => state.appReducers.getPaymentHistory.loading);
+  useEffect(()=>{
+    HISTORY.length <= 0 ?  dispatch(GETPAYMENTHISTORY()) : null
+    
+  },[HISTORY])
   console.log('HISTORY:  ',HISTORY)
   return (
     <View style={{flex: 1, backgroundColor: colors.black3}}>
@@ -26,7 +27,10 @@ export default function TransactionHistory({navigation}) {
           </View>
       <View style={{flex:0.9, margin:20}}>
           <ResponsiveText margin={[0,0,20,0]} color={colors.yellow}size={4.5}>Transactions History</ResponsiveText>
-      {TRANSACTION_HISTORY_FAKE_DATA.map((item, index) => {
+          <View style={{}} >
+            <ScrollView>
+
+      {HISTORY.map((item, index) => {
           return(
             <View
             style={{
@@ -38,7 +42,7 @@ export default function TransactionHistory({navigation}) {
               flexDirection: 'row',
               overflow: 'hidden',
             }}>
-            <Icon source={item.url} borderRadius={7} size={60} />
+            <Icon source={{uri:item.fullPath}} borderRadius={7} size={60} />
             <View style={{flex: 1, marginLeft: 10, justifyContent:'center'}}>
               <View
                 style={{
@@ -47,22 +51,24 @@ export default function TransactionHistory({navigation}) {
                   overflow: 'hidden',
                 }}>
                 <ResponsiveText size={3.5} color={item.type === 'out' ? colors.red3 : colors.white }>
-                  {item.restaurant}
+                  {item.restaurantName}
                 </ResponsiveText>
               </View>
               <ResponsiveText color={colors.grey}  size={2.7}>
                 Order Id:  {item.orderId}
               </ResponsiveText>
               <ResponsiveText color={colors.grey}  size={2.5}>
-                Date:  {item.orderId}
+                Date:  {moment(item.orderDateTimes).format("MMMM Do YYYY, h:mm a") }
               </ResponsiveText>
             </View>
             <View style={{width: '20%',justifyContent:'center', overflow: 'hidden',}}>
               <ResponsiveText
                 margin={[0, 0, 0, 0]}
-                color={item.type === 'out' ? colors.red3 : colors.yellow }
+                // color={item.type === 'out' ? colors.red3 : colors.yellow }
+                color={colors.yellow}
                 >
-                {item.type === 'out' ? '-' : null}{item.price}
+                {/* {item.type === 'out' ? '-' : null} */}
+                {item.amount}
               </ResponsiveText>
               <ResponsiveText
                 margin={[0, 0, 0, 0]}
@@ -70,7 +76,7 @@ export default function TransactionHistory({navigation}) {
                 size={2.4}
                 
                 >
-                {item.wallet}
+                {item.paymentMode}
               </ResponsiveText>
             </View>
           </View>
@@ -78,6 +84,9 @@ export default function TransactionHistory({navigation}) {
          
         })
         }
+            </ScrollView>
+
+          </View>
       </View>
     </View>
   );

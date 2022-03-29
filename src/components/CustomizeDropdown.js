@@ -29,9 +29,13 @@ export default function DropDown(props) {
 
             <SelectDropdown
                 statusBarTranslucent={true}
+                defaultValue={props.defaultValue}
                 dropdownStyle={{ borderRadius: 7, borderBottomWidth: 0 }}
                 dropdown1RowTxtStyle={{ color: colors.white, textAlign: "left", marginStart: 20, fontSize: 14, }}
+                //   defaultValueByIndex={props.defaultValueByIndex !== 'Gender' ? props.defaultValueByIndex : null}
                 defaultValueByIndex={0}
+        //defaultValue={props.defaultValue?props.defaultValue:null}
+
                 rowTextStyle={{ color: colors.white, alignSelf: 'center', fontSize: 14 }}
                 rowStyle={{ backgroundColor: colors.black1, borderBottomColor: colors.black1, borderBottomWidth: 0 }}
                 buttonStyle={{
@@ -59,7 +63,7 @@ export default function DropDown(props) {
                         <View style={{ flexDirection: "row" }}>
 
                             <Icon source={selectedItem.icon} margin={[0, 0, 0, 10]} size={20} />
-                            <Text style={{color:colors.white,marginLeft:10,marginTop:2}}>{selectedItem.lable}</Text>
+                            <Text style={{color:colors.grey,marginLeft:10,top:-3}}>{selectedItem.lable}</Text>
                         </View>
                     );
                 }}

@@ -7,7 +7,10 @@ import {
   Platform,
   Button,
   TextInput,
-  TouchableOpacity, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard,
   Text,
   SafeAreaView,
 } from 'react-native';
@@ -29,24 +32,47 @@ import FlashMessage, {
   hideMessage,
 } from 'react-native-flash-message';
 import { registerUser } from '../../../redux/actions/user.actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { color } from 'react-native-reanimated';
+import Api from '../../../redux/lib/api';
+import urls from '../../../redux/lib/urls';
 export default function Signup({ navigation }) {
-
   const dropdownRef = React.useRef(null);
   const dispatch = useDispatch();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [userName, setuserName] = useState('');
-  const [email, setEmail] = useState('saniya@gmail.com');
+  const [email, setEmail] = useState('');
   const [phoneNum, setPhoneNum] = useState('');
+  const [CellphoneNum, setCellphoneNum] = useState('');
   const [password, setPassword] = useState('');
+  const [Address, setAddress] = useState('');
   const [gender, setgender] = useState('');
+  const [number, onChangeNumber] = React.useState("+973");
   const [confirmPassword, setConfirmPassword] = useState();
   const Gender = [
-    { lable: "Male  ", icon: require('../../../assets/icons/male.png') },
-    { lable: "Female  ", icon: require('../../../assets/icons/female.png') }
+    { lable: 'Gender', icon: require('../../../assets/icons/signupgender.png') },
+    { lable: 'Male', icon: require('../../../assets/icons/male.png') },
+    { lable: 'Female', icon: require('../../../assets/icons/female.png') },
   ];
+
+  // const signUpResponse = useSelector(state => state.)
+  const signupResponse = useSelector(
+    state => state.login_User.signupScreen.message,
+  );
+
+  // var dateMinus13 = new Date();
+  // dateMinus13.setDate( dateMinus13.getDate() - 6 );
+  // dateMinus13.setFullYear( dateMinus13.getFullYear() - 1 );
+  // $("#searchDateFrom").val((dateMinus13.getMonth() ) + '/' + (dateMinus13.getDate()) + '/' + (dateMinus13.getFullYear()))
+
+  const [errorString, setErrorString] = useState('');
+
+  React.useEffect(() => {
+    console.log('responseeeeeee', errorString);
+    signupResponse ? setErrorString(signupResponse) : null;
+    // loginNetworkErr ? setErrorString(loginNetworkErr.message) : null
+  }, [signupResponse]);
 
   const [date, setDate] = useState(null);
   const [mode, setMode] = useState('date');
@@ -56,6 +82,8 @@ export default function Signup({ navigation }) {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
     setDate(currentDate);
+    console.log(date);
+    // checkExisting();
   };
 
   const showMode = currentMode => {
@@ -63,7 +91,7 @@ export default function Signup({ navigation }) {
     setMode(currentMode);
   };
 
-  const dateFormat = (date) => {
+  const dateFormat = date => {
     if (date != null) {
       return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
     }
@@ -71,8 +99,8 @@ export default function Signup({ navigation }) {
 
   const showDAtepicker = () => {
     setShow(true);
+    console.log('onChange Called');
   };
-
 
   const expressions = {
     email: /^\w+([+.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
@@ -82,6 +110,7 @@ export default function Signup({ navigation }) {
       dropdownRef.current.showMessage({
         message: 'Error',
         description: 'First name is Required',
+        duration: 3000,
         type: 'danger',
         icon: { icon: 'auto', position: 'left' },
       });
@@ -99,18 +128,33 @@ export default function Signup({ navigation }) {
         type: 'danger',
         icon: { icon: 'auto', position: 'left' },
       });
-    }
-    else if (email === '') {
+    } else if (email === '') {
       dropdownRef.current.showMessage({
         message: 'Error',
         description: 'Email is Required',
         type: 'danger',
         icon: { icon: 'auto', position: 'left' },
       });
-    } else if (phoneNum === '') {
+    }
+    // else if (phoneNum === '') {
+    //   dropdownRef.current.showMessage({
+    //     message: 'Error',
+    //     description: 'TelePhone Number is Required',
+    //     type: 'danger',
+    //     icon: {icon: 'auto', position: 'left'},
+    //   });
+    // } 
+    else if (CellphoneNum === '') {
       dropdownRef.current.showMessage({
         message: 'Error',
-        description: 'PhoneNumber is Required',
+        description: 'CellPhone is Required',
+        type: 'danger',
+        icon: { icon: 'auto', position: 'left' },
+      });
+    } else if (Address === '') {
+      dropdownRef.current.showMessage({
+        message: 'Error',
+        description: 'Address is Required',
         type: 'danger',
         icon: { icon: 'auto', position: 'left' },
       });
@@ -136,7 +180,7 @@ export default function Signup({ navigation }) {
     //     type: 'danger',
     //     icon: {icon: 'auto', position: 'left'},
     //   });
-    //} 
+    //}
     // else if (password !== confirmPassword) {
     //   dropdownRef.current.showMessage({
     //     message: 'Error',
@@ -144,7 +188,7 @@ export default function Signup({ navigation }) {
     //     type: 'danger',
     //     icon: {icon: 'auto', position: 'left'},
     //   });
-    // } 
+    // }
     else if (!expressions.email.test(email) || email.includes(' ')) {
       dropdownRef.current.showMessage({
         message: 'Error',
@@ -154,20 +198,23 @@ export default function Signup({ navigation }) {
       });
     } else {
       var obj = {
-        "username": userName,
-        "email": email,
-        "fullName": firstName + ' ' + lastName,
-        "password": password,
-        "userTypeId": 3,
-        "restaurantId": 11,
-        "updatebyId": 0,
-        "updatedDateTime": `${new Date()}`,
-        "areaId": 1,
-        "gender": gender,
-        "dateofBirth": dateFormat(date),
-        "contactNumber": phoneNum
-      }
-      dispatch(registerUser(obj, navigation))
+        username: userName,
+        email: email,
+        fullName: firstName + ' ' + lastName,
+        password: password,
+        userTypeId: 3,
+        restaurantId: 11,
+        updatebyId: 0,
+        updatedDateTime: `${new Date()}`,
+        areaId: 1,
+        gender: gender=='Gender'?'':gender,
+        dateofBirth: date,
+        contactNumber: phoneNum,
+        CellPhone: '+673' + CellphoneNum,
+        Address: Address,
+      };
+      console.log(obj)
+     dispatch(registerUser(obj, navigation));
       // dispatch(registerUser({
       //   "username": "alii",
       //   "email": "uaa@gmail.com",
@@ -185,8 +232,75 @@ export default function Signup({ navigation }) {
     }
   };
 
+  const checkExisting = async (type) => {
+    console.log('checkExisting called');
+    setErrorString('');
+    var obj = {
+      "userName":type==1? userName:'',
+      "email":type==2? email:'',
+      "phone":type==3? CellphoneNum:''
+    }
+    // {
+    //   username: userName,
+    //   email: email,
+    //   fullName: 'string',
+    //   address: 'string',
+    //   cellPhone: 'string',
+    //   password: 'string',
+    //   userTypeId: 3,
+    //   restaurantId: 0,
+    //   updatebyId: 0,
+    //   updatedDateTime: 'string',
+    //   areaId: 0,
+    //   gender: 'string',
+    //   dateofBirth: 'string',
+    //   contactNumber: CellphoneNum,
+    //   restaurantBranchId: 0,
+    // };
+    // var obj1 = {
+    //   username: userName,
+    //   email: email,
+    //   fullName: 'string',
+    //   address: 'string',
+    //   cellPhone: 'string',
+    //   password: 'string',
+    //   userTypeId: 0,
+    //   restaurantId: 0,
+    //   updatebyId: 0,
+    //   updatedDateTime: 'string',
+    //   areaId: 0,
+    //   gender: 'string',
+    //   dateofBirth: 'string',
+    //   contactNumber: '7567567',
+    //   restaurantBranchId: 0,
+    // };
+    // console.log('checkExisting obj', obj1);
+    try {
+      const res = await Api.post(urls.REGISTER_URL_CHECKS, obj);
+      console.log('res', res);
+      if (res && res.success == true) {
+        // this.props.dispatch(GetUserRandomiserSetting());
+        console.log('success = true');
+      } else {
+        // alert(res.message)
+        showMessage({
+          message: 'Error',
+          description: res.message ? res.message : 'Something went wrong',
+          duration: 3000,
+          type: 'danger',
+          icon: { icon: 'auto', position: 'left' },
+        });
+        setErrorString(res.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <KeyboardAvoidingView style={{ flex: 1, backgroundColor: colors.black }} behavior={Platform.OS === "ios" ? "padding" : null}>
+    <KeyboardAvoidingView
+      style={{ flex: 1, backgroundColor: colors.black }}
+      behavior={Platform.OS === 'ios' ? 'padding' : null}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ScrollView style={{ flex: 1 }}>
           <View style={styles.screeninfo}>
@@ -196,15 +310,15 @@ export default function Signup({ navigation }) {
               color={colors.yellow}
               fontFamily="Regular"
               size={8}>
-              Sign Up
+              SignUp
             </ResponsiveText>
             <ResponsiveText margin={[1, 0, 0, 0]} color={colors.white}>
               Please SignUp to Continue
             </ResponsiveText>
           </View>
-          <View style={styles.formArea} >
-
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <View style={styles.formArea}>
+            <View
+              style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
               <Input
                 width={wp(39)}
                 margin={[0, 0, 15, 0]}
@@ -218,7 +332,7 @@ export default function Signup({ navigation }) {
                 width={wp(39)}
                 onChnageText={text => setLastName(text)}
                 margin={[0, 0, 15, 0]}
-                padding={[0, 0, 0, 25]}
+                padding={[0, 0, 0, 15]}
                 iconMargin={[0, 10, 0, 0]}
                 placeholder="Last name"
                 leftIcon={globalPath.USER_LOGO}
@@ -229,79 +343,119 @@ export default function Signup({ navigation }) {
               margin={[0, 0, 15, 0]}
               iconMargin={[0, 10, 0, 0]}
               placeholder="User Name"
+              autoCapitalize={"none"}
               onChnageText={text => setuserName(text)}
+              onBlur={() => checkExisting(1)}
               leftIcon={globalPath.MALE_LOGO}
-            />
-            <Input
-              padding={[0, 0, 0, 25]}
-              iconMargin={[0, 10, 0, 0]}
-              placeholder="Email"
-              onChnageText={text => setEmail(text)}
-              leftIcon={globalPath.EMAIL_LOGO}
-            />
-            <Input
-              margin={[15, 0, 15, 0]}
-              padding={[0, 0, 0, 25]}
-              onChnageText={text => setPhoneNum(text)}
-              iconMargin={[0, 10, 0, 0]}
-              placeholder="Phone"
-              leftIcon={globalPath.PHONE_LOGO}
             />
             <Input
               margin={[0, 0, 15, 0]}
               padding={[0, 0, 0, 25]}
               iconMargin={[0, 10, 0, 0]}
               placeholder="Password"
-              onChnageText={text => setPassword(text)}
+              onChnageText={text => setPassword(text.trim())}
               secureTextEntry
               leftIcon={globalPath.LOCK_LOGO}
             />
+            <Input
+              padding={[0, 0, 0, 25]}
+              iconMargin={[0, 10, 0, 0]}
+              placeholder="Email"
+              autoCapitalize={"none"}
+              onChnageText={text => setEmail(text.trim())}
+              onBlur={() => checkExisting(2)}
+              leftIcon={globalPath.EMAIL_LOGO}
+            />
+            {/* <Input
+              margin={[15, 0, 0, 0]}
+              padding={[0, 0, 0, 25]}
+              onChnageText={text => setPhoneNum(text)}
+              iconMargin={[0, 10, 0, 0]}
+              keyboardType={"numeric"}
+              maxlength={7}
+              placeholder="Telephone(Optional)"
+              leftIcon={globalPath.PHONE_LOGO}
+             // onPressOut={() => checkExisting()}
+            /> */}
+            <Input
+              margin={[15, 0, 0, 0]}
+              padding={[0, 0, 0, 20]}
+              maxlength={7}
+              onChnageText={text => setCellphoneNum(text)}
+              iconMargin={[0, 10, 0, 0]}
+              placeholder="000-0000(Required)"
+              countryCode="+673 "
+              keyboardType={"numeric"}
+              leftIcon={globalPath.SignUp_Phone_ICON}
+              iconSize={hp(2.5)}
+              onBlur={() => checkExisting(3)}
+            />
+            <Input
+              margin={[15, 0, 15, 0]}
+              padding={[0, 0, 0, 20]}
+              onChnageText={text => setAddress(text)}
+              iconMargin={[0, 10, 0, 0]}
+              placeholder="Address"
+              // countryCode="+92"
+              leftIcon={globalPath.ADDRESS_LOGO}
+              iconSize={hp(3)}
+             // onPressOut={() => checkExisting()}
+            />
+            <View
+              style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+              <Input
+                width={wp(39)}
+                margin={[0, 0, 15, 0]}
+                padding={[0, 0, 0, 25]}
+                onChnageText={text => setFirstName(text)}
+                iconMargin={[0, 10, 0, 0]}
 
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-              <DropDown data={Gender}
+                placeholder="State"
+                leftIcon={globalPath.State_ICON}
+              />
+              <Input
+                width={wp(39)}
+                onChnageText={text => setLastName(text)}
+                maxlength={5}
+                keyboardType={"numeric"}
+                margin={[0, 0, 15, 0]}
+                padding={[0, 0, 0, 15]}
+                iconMargin={[0, 10, 0, 0]}
+                placeholder="Postcode"
+                leftIcon={globalPath.ZIP_ICON}
+              />
+
+            </View>
+            <View
+              style={{ flexDirection: 'row', justifyContent: 'space-between' ,top:-15 }}>
+              <DropDown
+                data={Gender}
                 onSelect={(selectedItem, index) => {
                   console.log(selectedItem, index);
-                  setgender(selectedItem.lable)
+                  setgender(selectedItem.lable);
                 }}
-                height={hp(6)} width={wp(39)} />
-              <View>
-                <View style={{ borderWidth: 2, zIndex: 0, borderRadius: 10 }}>
-                  <Text
-                    style={{
-                      fontSize: 7,
-                      position: 'absolute',
-                      zIndex: 1,
-                      top: -5,
-                      marginStart: 9,
-                      color: colors.white,
-                    }}>
-                    Date of birth
-                  </Text>
-
-                  <TouchableOpacity onPress={showDAtepicker}>
-                    <Text
-                      style={{
-                        color: colors.white,
-                        textAlign: 'center',
-                        textAlignVertical: 'center',
-                        backgroundColor: '#3f3f3f',
-                        padding: 13,
-                        borderStartWidth: 10,
-                        borderRadius: 10,
-                        paddingHorizontal: 30,
-                        paddingVertical: 16,
-                        fontSize: 12,
-                      }}>
-                      {date == null ? 'Month/Day/Year' : dateFormat(date)}
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
+                height={hp(6)}
+                width={wp(39)}
+              />
+              <TouchableOpacity onPress={showDAtepicker}>
+                <Input
+                 width={wp(39)}
+                 onChnageText={text => setLastName(text)}
+                 keyboardType={"numeric"}
+                 editable={false}
+                 margin={[15, 0, 15, 0]}
+                 padding={[0, 0, 0, 15]}
+                 iconMargin={[0, 10, 0, 0]}
+                leftIcon={globalPath.Calender_ICON}
+                 placeholder={date == null ? 'Date of birth' : dateFormat(date)}
+                />
+              </TouchableOpacity>
             </View>
             {show && (
               <DateTimePicker
                 // testID="dateTimePicker"
-                value={new Date}
+                value={new Date('Jan 1, 2009')}
+                minimumDate={new Date(2009, 0, 1)}
                 mode={'date'}
                 // is24Hour={true}
                 display="default"
@@ -310,15 +464,18 @@ export default function Signup({ navigation }) {
             )}
             <RnButton
               onPress={() => validation()}
-              fontFamily="light"
-              margin={[20, 0]}
+              fontFamily="bold"
+              margin={[-7, 0]}
+              textColor={colors.black}
               title="SIGN UP "
             />
+
+            <ResponsiveText color={colors.red}>{errorString}</ResponsiveText>
 
             <View style={styles.footer}>
               {/* <Icon size={wp(8)}  margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
               <ResponsiveText margin={[2, 10]} color={colors.white}>
-                I already have account{' '}
+                Already have  an account ? {' '}
                 <ResponsiveText
                   fontFamily="Bold"
                   color={colors.yellow}
@@ -371,5 +528,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  input: {
+    backgroundColor: colors.black1,
+    height: hp(6),
+    width: wp(80),
+    borderColor: colors.black1,
+    borderRadius: 10,
+    margin: 15,
+    borderWidth: 1,
+    padding: 17,
+    alignSelf: 'center'
   },
 });

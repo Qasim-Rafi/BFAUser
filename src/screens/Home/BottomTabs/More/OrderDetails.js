@@ -88,7 +88,7 @@ export default function OrderDetails({navigation, route}) {
           </ResponsiveText>
         </View>
       </View>
-      {data.dishlist.map(item => {
+      {data.addOrderDetail.map(item => {
         return (
           <View
             style={{

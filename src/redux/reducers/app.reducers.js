@@ -59,7 +59,7 @@ const initialState = {
   },
 
   AddOrder: {
-    refreshing: true,
+    loading: false,
     data: {},
   },
   promotions: {
@@ -110,7 +110,7 @@ const initialState = {
     loading: false,
     data: [],
   },
-  getFoodPrefrences:{
+  getFoodPrefrences: {
     loading: false,
     data: [],
   },
@@ -119,9 +119,44 @@ const initialState = {
     data: [],
   },
   NearestRestaurants: {
+    loading: false,
+    data: [],
+  },
+  AllAreas: {
+    loading: false,
+    data: [],
+  },
+  AllPremises: {
     loading:false,
     data:[],
+  },
+
+  SearchResult: {
+    loading: false,
+    data: [],
   }
+  ,
+  orderHistory: {
+    loading: false,
+    data: [],
+  },
+
+  DistanceList: {
+    loading: false,
+    data: [],
+  },
+  getApplyJobList: {
+    loading: false,
+    data: [],
+  },
+  getUserRandomiserSetting: {
+    loading: false,
+    data: {},
+  },
+  getAllReviews: {
+    loading: false,
+    data: [],
+  },
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -229,38 +264,38 @@ export const appReducers = (state = initialState, action) => {
           loading: false,
         },
       };
-      //Get orders
-      case types.GET_ORDERS_REQUEST:
-        console.log("myyydataaaaaaa:",action.payload)
-        return {
-          ...state,
-          your_ordersList: {
-            ...state.your_ordersList,
-            loading: true,
-          },
-        };
-  
-      case types.GET_ORDERS_SUCCESS:
-        console.log("orderdata:",action.payload)
+    //Get orders
+    case types.GET_ORDERS_REQUEST:
+      console.log("myyydataaaaaaa:", action.payload)
+      return {
+        ...state,
+        your_ordersList: {
+          ...state.your_ordersList,
+          loading: true,
+        },
+      };
 
-        return {
-          ...state,
-          your_ordersList: {
-            ...state.your_ordersList,
-            data: action.payload,
-            loading: false,
-          },
-        };
-  
-      case types.GET_ORDERS_FAILURE:
-        return {
-          ...state,
-          your_ordersList: {
-            ...state.your_ordersList,
-            data: action.payload,
-            loading: false,
-          },
-        };
+    case types.GET_ORDERS_SUCCESS:
+      console.log("orderdata:", action.payload)
+
+      return {
+        ...state,
+        your_ordersList: {
+          ...state.your_ordersList,
+          data: action.payload,
+          loading: false,
+        },
+      };
+
+    case types.GET_ORDERS_FAILURE:
+      return {
+        ...state,
+        your_ordersList: {
+          ...state.your_ordersList,
+          data: action.payload,
+          loading: false,
+        },
+      };
     case types.GET_APPLY_FOR_JOB_REQUEST:
       return {
         ...state,
@@ -315,8 +350,8 @@ export const appReducers = (state = initialState, action) => {
           loading: false,
         },
       };
-      //Payment history
-      case types.GET_PAYMENT_HISTORY_REQUEST:
+    //Payment history
+    case types.GET_PAYMENT_HISTORY_REQUEST:
       return {
         ...state,
         getPaymentHistory: {
@@ -340,6 +375,44 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         getPaymentHistory: {
           ...state.getPaymentHistory,
+          loading: false,
+        },
+      };
+    case types.GET_RESTAURANT_ALL_DISHES_SUCCESS:
+      return {
+        ...state,
+        cusineDetail: {
+          ...state.restaurantDishesDetail,
+          data: action.payload,
+        },
+      };
+    //Search Result
+    case types.GET_SEARCH_REQUEST:
+      return {
+        ...state,
+        SearchResult: {
+          ...state.SearchResult,
+          data: [],
+          loading: true,
+        },
+      };
+
+    case types.GET_SEARCH_SUCCESS:
+      return {
+        ...state,
+        SearchResult: {
+          ...state.SearchResult,
+          data: action.payload,
+          loading: false,
+        },
+      };
+
+    case types.GET_SEARCH_FAILURE:
+      return {
+        ...state,
+        SearchResult: {
+          ...state.SearchResult,
+          data: action.payload,
           loading: false,
         },
       };
@@ -379,40 +452,41 @@ export const appReducers = (state = initialState, action) => {
           loading: false,
         },
       };
-      //get Food Prefrences
-      case types.GET_FOOD_PREFRENCES_REQUEST:
-        return {
-          ...state,
-          getFoodPrefrences: {
-            ...state.getFoodPrefrences,
-            loading: true,
-          },
-        };
-      case types.GET_FOOD_PREFRENCES_SUCCESS:
-        console.log('Dataaaaaa: ', action.payload);
-  
-        return {
-          ...state,
-          getFoodPrefrences: {
-            ...state.getFoodPrefrences,
-            data: [...state.getFoodPrefrences.data, ...action.payload],
-            loading: false,
-          },
-        };
-      case types.GET_FOOD_PREFRENCES_FAILURE:
-        return {
-          ...state,
-          getFoodPrefrences: {
-            ...state.getFoodPrefrences,
-            loading: false,
-          },
-        };
+    //get Food Prefrences
+    case types.GET_FOOD_PREFRENCES_REQUEST:
+      return {
+        ...state,
+        getFoodPrefrences: {
+          ...state.getFoodPrefrences,
+          loading: true,
+        },
+      };
+    case types.GET_FOOD_PREFRENCES_SUCCESS:
+      console.log('Dataaaaaa: ', action.payload);
+
+      return {
+        ...state,
+        getFoodPrefrences: {
+          ...state.getFoodPrefrences,
+          data: [...state.getFoodPrefrences.data, ...action.payload],
+          loading: false,
+        },
+      };
+    case types.GET_FOOD_PREFRENCES_FAILURE:
+      return {
+        ...state,
+        getFoodPrefrences: {
+          ...state.getFoodPrefrences,
+          loading: false,
+        },
+      };
     //Moore From Restraurant
     case types.MORE_FROM_RESTAURANT_REQUEST:
       return {
         ...state,
         moreFromRest: {
           ...state.moreFromRest,
+          data: [],
           loading: true,
         },
       };
@@ -423,7 +497,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         moreFromRest: {
           ...state.moreFromRest,
-          data: [...state.moreFromRest.data, ...action.payload],
+          data: action.payload,
           loading: false,
         },
       };
@@ -432,6 +506,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         moreFromRest: {
           ...state.moreFromRest,
+          data: [],
           loading: false,
         },
       };
@@ -709,7 +784,7 @@ export const appReducers = (state = initialState, action) => {
         favorite: {
           ...state.favorite,
           data: state.favorite.data.filter(
-            item => item.id !== action.payload.id,
+            item => item.restaurantDishId !== action.payload.restaurantDishId,
           ),
           refreshing: false,
         },
@@ -755,7 +830,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         restaurantDetail: {
           ...state.restaurantDetail,
-          data:{},
+          data: {},
           refreshing: true,
         },
       };
@@ -773,7 +848,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         restaurantDetail: {
           ...state.restaurantDetail,
-          data:{},
+          data: {},
           refreshing: false,
         },
       };
@@ -885,31 +960,31 @@ export const appReducers = (state = initialState, action) => {
         },
       };
       //GetDishByCusineId
-      case types.GET_DISH_BY_CUSINE_ID_REQUEST:
-        return {
-          ...state,
-          getdishbycusineid: {
-            ...state.getdishbycusineid,
-            refreshing: true,
-          },
-        };
-      case types.GET_DISH_BY_CUSINE_ID_SUCCESS:
-        return {
-          ...state,
-          getdishbycusineid: {
-            ...state.getdishbycusineid,
-            data: [...state.getdishbycusineid.data, ...action.payload],
-            refreshing: false,
-          },
-        };
-      case types.GET_DISH_BY_CUSINE_ID_FAILURE:
-        return {
-          ...state,
-          getdishbycusineid: {
-            ...state.getdishbycusineid,
-            refreshing: false,
-          },
-        };
+      // case types.GET_DISH_BY_CUSINE_ID_REQUEST:
+      //   return {
+      //     ...state,
+      //     getdishbycusineid: {
+      //       ...state.getdishbycusineid,
+      //       refreshing: true,
+      //     },
+      //   };
+      // case types.GET_DISH_BY_CUSINE_ID_SUCCESS:
+      //   return {
+      //     ...state,
+      //     getdishbycusineid: {
+      //       ...state.getdishbycusineid,
+      //       data: [...state.getdishbycusineid.data, ...action.payload],
+      //       refreshing: false,
+      //     },
+      //   };
+      // case types.GET_DISH_BY_CUSINE_ID_FAILURE:
+      //   return {
+      //     ...state,
+      //     getdishbycusineid: {
+      //       ...state.getdishbycusineid,
+      //       refreshing: false,
+      //     },
+      //   };
         //GetDishByCusineId
       case types.GET_NEAREST_RESTAURANT_REQUEST:
         return {
@@ -936,8 +1011,294 @@ export const appReducers = (state = initialState, action) => {
             loading: false,
           },
         };
+        case types.GET_AREA_ALL_REQUEST:
+        return {
+          ...state,
+          AllAreas: {
+            ...state.AllAreas,
+            loading: true,
+          },
+        };
+      case types.GET_AREA_ALL_SUCCESS:
+        return {
+          ...state,
+          AllAreas: {
+            ...state.AllAreas,
+            data: action.payload,
+            loading: false,
+          },
+        };
+      case types.GET_AREA_ALL_FAILURE:
+        return {
+          ...state,
+          AllAreas: {
+            ...state.AllAreas,
+            loading: false,
+          },
+        };
+        //GetAllPremises
+        case types.GET_PREMISE_ALL_REQUEST:
+        return {
+          ...state,
+          AllPremises: {
+            ...state.AllPremises,
+            loading: true,
+          },
+        };
+      case types.GET_PREMISE_ALL_SUCCESS:
+        return {
+          ...state,
+          AllPremises: {
+            ...state.AllPremises,
+            data: action.payload,
+            loading: false,
+          },
+        };
+      case types.GET_PREMISE_ALL_FAILURE:
+        return {
+          ...state,
+          AllPremises: {
+            ...state.AllPremises,
+            loading: false,
+          },
+        };
+        
+        case types.GET_DISTANCE_LIST_REQUEST:
+        return {
+          ...state,
+          DistanceList: {
+            ...state.DistanceList,
+            loading: true,
+          },
+        };
+      case types.GET_DISTANCE_LIST_SUCCESS:
+        return {
+          ...state,
+          DistanceList: {
+            ...state.DistanceList,
+            data: action.payload,
+            loading: false,
+          },
+        };
+      case types.GET_DISTANCE_LIST_FAILURE:
+        return {
+          ...state,
+          DistanceList: {
+            ...state.DistanceList,
+            loading: false,
+          },
+        };
+
+    //GetDishByCusineId
+    // case types.GET_DISH_BY_CUSINE_ID_REQUEST:
+    //   return {
+    //     ...state,
+    //     getdishbycusineid: {
+    //       ...state.getdishbycusineid,
+    //       refreshing: true,
+    //     },
+    //   };
+    // case types.GET_DISH_BY_CUSINE_ID_SUCCESS:
+    //   return {
+    //     ...state,
+    //     getdishbycusineid: {
+    //       ...state.getdishbycusineid,
+    //       data: [...state.getdishbycusineid.data, ...action.payload],
+    //       refreshing: false,
+    //     },
+    //   };
+    // case types.GET_DISH_BY_CUSINE_ID_FAILURE:
+    //   return {
+    //     ...state,
+    //     getdishbycusineid: {
+    //       ...state.getdishbycusineid,
+    //       refreshing: false,
+    //     },
+    //   };
+    //GetNearestRestaurant
+    // case types.GET_NEAREST_RESTAURANT_REQUEST:
+    //   return {
+    //     ...state,
+    //     NearestRestaurants: {
+    //       ...state.NearestRestaurants,
+    //       loading: true,
+    //     },
+    //   };
+    // case types.GET_NEAREST_RESTAURANT_SUCCESS:
+    //   return {
+    //     ...state,
+    //     NearestRestaurants: {
+    //       ...state.NearestRestaurants,
+    //       data: action.payload,
+    //       loading: false,
+    //     },
+    //   };
+    // case types.GET_NEAREST_RESTAURANT_FAILURE:
+    //   return {
+    //     ...state,
+    //     NearestRestaurants: {
+    //       ...state.NearestRestaurants,
+    //       loading: false,
+    //     },
+    //   };
+    // case types.GET_AREA_ALL_REQUEST:
+    //   return {
+    //     ...state,
+    //     AllAreas: {
+    //       ...state.NearestRestaurants,
+    //       loading: true,
+    //     },
+    //   };
+    // case types.GET_AREA_ALL_SUCCESS:
+    //   return {
+    //     ...state,
+    //     AllAreas: {
+    //       ...state.NearestRestaurants,
+    //       data: action.payload,
+    //       loading: false,
+    //     },
+    //   };
+    // case types.GET_AREA_ALL_FAILURE:
+    //   return {
+    //     ...state,
+    //     AllAreas: {
+    //       ...state.NearestRestaurants,
+    //       loading: false,
+    //     },
+    //   };
+    //GetDishByCusineId
+    case types.GET_DISH_BY_CUSINE_ID_REQUEST:
+      return {
+        ...state,
+        getdishbycusineid: {
+          ...state.getdishbycusineid,
+          refreshing: true,
+        },
+      };
+    case types.GET_DISH_BY_CUSINE_ID_SUCCESS:
+      return {
+        ...state,
+        getdishbycusineid: {
+          ...state.getdishbycusineid,
+          data: [...state.getdishbycusineid.data, ...action.payload],
+          refreshing: false,
+        },
+      };
+    case types.GET_DISH_BY_CUSINE_ID_FAILURE:
+      return {
+        ...state,
+        getdishbycusineid: {
+          ...state.getdishbycusineid,
+          refreshing: false,
+        },
+      };
+    //orderHistory
+    case types.GET_ORDERS_HISTORY_REQUEST:
+      return {
+        ...state,
+        orderHistory: {
+          ...state.orderHistory,
+          loading: true,
+        },
+      };
+    case types.GET_ORDERS_HISTORY_SUCCESS:
+      return {
+        ...state,
+        orderHistory: {
+          ...state.orderHistory,
+          data: action.payload,
+          loading: false,
+        },
+      };
+    case types.GET_ORDERS_HISTORY_FAILURE:
+      return {
+        ...state,
+        orderHistory: {
+          ...state.orderHistory,
+          loading: false,
+        },
+      };
+      //GetAppliedJobs
+    case types.GET_APPLY_JOB_LIST_REQUEST:
+      return {
+        ...state,
+        getApplyJobList: {
+          ...state.getApplyJobList,
+          loading: true,
+        },
+      };
+    case types.GET_APPLY_JOB_LIST_SUCCESS:
+      return {
+        ...state,
+        getApplyJobList: {
+          ...state.ApplyJobList,
+          data: action.payload,
+          loading: false,
+        },
+      };
+    case types.GET_APPLY_JOB_LIST_FAILURE:
+      return {
+        ...state,
+        getApplyJobList: {
+          ...state.getApplyJobList,
+          loading: false,
+        },
+      };
+      //getUserRandomiserSetting
+      case types.GET_USER_RANDOMISER_SETTING_REQUEST:
+        return {
+          ...state,
+          getUserRandomiserSetting: {
+            ...state.getUserRandomiserSetting,
+            loading: true,
+          },
+        };
+      case types.GET_USER_RANDOMISER_SETTING_SUCCESS:
+        return {
+          ...state,
+          getUserRandomiserSetting: {
+            ...state.getUserRandomiserSetting,
+            data: action.payload,
+            success: action.success,
+            loading: false,
+          },
+        };
+      case types.GET_USER_RANDOMISER_SETTING_FAILURE:
+        return {
+          ...state,
+          getUserRandomiserSetting: {
+            ...state.getUserRandomiserSetting,
+            success: action.success,
+            loading: false,
+          },
+        };
+      // GetAllReviews
+    case types.GET_ALL_REVIEWS_LIST_REQUEST:
+      return {
+        ...state,
+        getAllReviews: {
+          ...state.getAllReviews,
+          loading: true,
+        },
+      };
+    case types.GET_ALL_REVIEWS_LIST_SUCCESS:
+      return {
+        ...state,
+        getAllReviews: {
+          ...state.getAllReviews,
+          data: action.payload,
+          loading: false,
+        },
+      };
+    case types.GET_ALL_REVIEWS_LIST_FAILURE:
+      return {
+        ...state,
+        getAllReviews: {
+          ...state.getAllReviews,
+          loading: false,
+        },
+      };
     default:
       return state;
   }
-
 };

@@ -824,22 +824,31 @@ export const FiltersDummyData = [
       {
         name: 'Breakfast Included',
         value: '102',
+        select: false,
       },
       {
         name: 'Book Without Credit Card',
         value: '10',
+        select: false,
+
       },
       {
         name: 'Hotels',
         value: '10',
+        select: false,
+
       },
       {
         name: 'Parking',
         value: '10',
+        select: false,
+
       },
       {
         name: 'SwimmingPools',
         value: '10',
+        select: false,
+
       },
     ],
   },
@@ -1846,6 +1855,23 @@ export const CARD_DATA = [
     url: require('../assets/icons/mastercard-2.png'),
   },
 ];
+export const INVOICE_DATA = [
+  {
+    cardType: 'Bali Coin',
+    cardNo: 'Scan to pay with your Bali Coin',
+    url: require('../assets/icons/cowries.png'),
+  },
+  {
+    cardType: 'Card',
+    cardNo: 'Scan to pay with your preferred card',
+    url: require('../assets/icons/card.png'),
+  },
+  {
+    cardType: 'Cash',
+    cardNo: 'Scan to pay with cash',
+    url: require('../assets/icons/cash.png'),
+  },
+];
 
 export const Cart_Details = [
   // {
@@ -2017,3 +2043,72 @@ export const MY_REVIEWS_DATA = [
     url: require('../assets/fake_Images/reviews-pic-5.png'),
   },
 ];
+
+export const DISH_TAG = [
+  'Ambuyat Set',
+'Ayam Penyet',
+'Beef',
+'Budget',
+'Buns',
+'Burger',
+'Buttermilk Dishes',
+'Cake',
+'Cendol',
+'Chicken',
+'Chicken Rice',
+'Chicken Wings',
+'Coffee',
+'Crab',
+'Cucur',
+'Dessert',
+'Dim Sum',
+'Drinks(Other than Coffee / Tea)',
+'Fast Food',
+'Fish',
+'Flat Breads',
+'Fried Rice',
+'Gourmet',
+'Grilled / Bakar / BBQ',
+'Healthy',
+'Iced Desserts',
+'Kway Teow',
+'Laksa',
+'Lamb',
+'Light Bites',
+'Nasi Biryani',
+'Nasi Katok',
+'Nasi Lemak',
+'Noodle Soup',
+'Noodles',
+'Others',
+'Pasta',
+'Pastry',
+'Pie',
+'Pizza',
+'Platter(Fried / Grilled)',
+'Prawn',
+'Rendang',
+'Salad(Seafood / Fruits)',
+'Salted Egg Dishes',
+'Sandwich',
+'Satay',
+'Seafood',
+'Soto',
+'Sotong / Squid',
+'Soups',
+'Spicy',
+'Spring Roll',
+'Sushi Maki / Roll',
+'Tart',
+'Tea Drink',
+'Tofu',
+'Tom Yum',
+'Udang Galah',
+'Vegetables',
+'Vegetarian',
+'Wajid',
+'Breakfast',
+'Brunch',
+'Lunch',
+'Dinner'
+]

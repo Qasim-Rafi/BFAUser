@@ -29,22 +29,28 @@ export default function TransactionConfirmation({route, navigation}) {
 
   useEffect(() => {
     //addTotal(route.params);
+    console.log('PARAMS CONFIRM ', route.params);
   });
 
   const toggleModal = async () => {
     // dispatch(checkoutOrder(route.params));
+    var obj={...route.params.obj, ...{OrderType:pickup==true?2:1}}
+    console.log('res check', obj);
+
     try {
-      const response = await Api.post(urls.CHECK_ORDER, route.params.obj, false);
+      const response = await Api.post(
+        urls.CHECK_ORDER,
+        obj,
+        false,
+      );
       console.log('res check', response);
       if (response && response.success == true) {
         setModalVisible(!isModalVisible);
         dispatch(getOrders());
 
-      // setLoading(false);
-        
+        // setLoading(false);
       } else {
         // setLoading(false);
-
         // dropdownRef.current.showMessage({
         //   message: 'Alert',
         //   description: 'Something went wrong',
@@ -67,6 +73,16 @@ export default function TransactionConfirmation({route, navigation}) {
       } else {
       }
     } catch (error) {}
+  };
+  const Calculate = (totl, count) => {
+    if (activeTabs === 'tab2') {
+      return totl + count;
+    } else if (activeTabs === 'tab3') {
+      var x = totl * (count / 100);
+      return parseFloat(totl + x).toFixed(2);
+    } else {
+      return totl;
+    }
   };
   return (
     <View style={{flex: 1, backgroundColor: colors.black3}}>
@@ -104,7 +120,7 @@ export default function TransactionConfirmation({route, navigation}) {
             {data.restaurantName}
           </ResponsiveText>
         </View>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => navigation.navigate(routeName.SELECT_PAYMENT_METHOD)}>
           <View
             style={{
@@ -131,7 +147,7 @@ export default function TransactionConfirmation({route, navigation}) {
               </ResponsiveText>
             </TouchableOpacity>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <View
           style={{
@@ -345,7 +361,9 @@ export default function TransactionConfirmation({route, navigation}) {
               justifyContent: 'space-between',
             }}>
             <ResponsiveText color={colors.white}>Total</ResponsiveText>
-            <ResponsiveText color={colors.yellow}>${total}.00</ResponsiveText>
+            <ResponsiveText color={colors.yellow}>
+              ${data.amount}.00
+            </ResponsiveText>
           </View>
           <View
             style={{
@@ -374,7 +392,9 @@ export default function TransactionConfirmation({route, navigation}) {
               justifyContent: 'space-between',
             }}>
             <ResponsiveText color={colors.white}>Final</ResponsiveText>
-            <ResponsiveText color={colors.yellow}>$ 11.00</ResponsiveText>
+            <ResponsiveText color={colors.yellow}>
+              $ {Calculate(data.amount, count)}
+            </ResponsiveText>
           </View>
         </View>
         <View style={{alignItems: 'center'}}>
@@ -389,7 +409,7 @@ export default function TransactionConfirmation({route, navigation}) {
               backgroundColor: colors.yellow,
             }}
             onPress={orderConfirmation}>
-            <ResponsiveText>Confirm Payment</ResponsiveText>
+            <ResponsiveText>Order Confirmation</ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => navigation.goBack()}
@@ -413,7 +433,7 @@ export default function TransactionConfirmation({route, navigation}) {
           statusBarTranslucent={true}
           backdropOpacity={0.9}
           style={{justifyContent: 'flex-end'}}
-          onModalHide={() => navigation.push('Home')}>
+          onModalHide={() => navigation.goBack()}>
           {/* ------------ ModalView -------------- */}
           <View
             style={{
@@ -432,7 +452,7 @@ export default function TransactionConfirmation({route, navigation}) {
                 borderTopLeftRadius: 7,
               }}>
               <ResponsiveText color={colors.white} size={3.5}>
-                Payment Successful
+                Order Placed
               </ResponsiveText>
             </View>
             <View
@@ -444,7 +464,7 @@ export default function TransactionConfirmation({route, navigation}) {
                 marginHorizontal: 15,
               }}>
               <ResponsiveText color={colors.grey1} size={2.6}>
-                You have successfully paid:
+                Order placed successfully
               </ResponsiveText>
             </View>
             <View
@@ -462,7 +482,7 @@ export default function TransactionConfirmation({route, navigation}) {
                   color={colors.yellow}
                   size={3}
                   margin={[0, 10, 0, 0]}>
-                  $11.00
+                  ${Calculate(data.amount, count)}
                 </ResponsiveText>
               </View>
               <View style={{flex: 0.1}}>
@@ -472,7 +492,7 @@ export default function TransactionConfirmation({route, navigation}) {
               </View>
               <View style={{flex: 0.45}}>
                 <ResponsiveText color={colors.yellow} size={3}>
-                  I-Lotus Restaurant
+                  {data.restaurantName}
                 </ResponsiveText>
               </View>
             </View>
@@ -493,7 +513,7 @@ export default function TransactionConfirmation({route, navigation}) {
               </View>
               <View style={{flex: 0.45, marginTop: 5}}>
                 <ResponsiveText size={3} color={colors.yellow}>
-                  100 pts
+                  0 pts
                 </ResponsiveText>
               </View>
             </View>

@@ -34,7 +34,7 @@ const RnButton = ({
        
 
         {
-        height:hp(5),
+        height:hp(6.5),
         flexDirection:'row',
           // width: width ? width : undefined,
           // height: height ? height : undefined,

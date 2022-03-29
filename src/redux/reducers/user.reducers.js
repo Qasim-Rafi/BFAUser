@@ -80,6 +80,7 @@ export const login_User = (state = initialState, action) => {
           signupScreen: {
             ...state.signupScreen,
             data: action.payload,
+            message: action.payload.message,  
             refreshing: false,
           },
         };
@@ -91,6 +92,7 @@ export const login_User = (state = initialState, action) => {
             ...state.signupScreen,
             refreshing: false,
             data: action.payload,
+            message: action.payload.message,
           },
         };
     default:

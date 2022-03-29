@@ -5,19 +5,20 @@ import {
   TextInput,
   TouchableOpacity,
   KeyboardAvoidingView,
-  StatusBar,
+  StatusBar, Text
 } from 'react-native';
-import {colors} from '../constants/colorsPallet';
-import {iconPath} from '../constants/globalPath';
-import {handleMargin, handlePadding} from '../constants/theme';
+import { colors } from '../constants/colorsPallet';
+import { iconPath } from '../constants/globalPath';
+import { handleMargin, handlePadding } from '../constants/theme';
 import Fonts from '../helpers/Fonts';
-import {wp} from '../helpers/Responsiveness';
+import { wp } from '../helpers/Responsiveness';
 import Icon from './Icon';
 import Feather from 'react-native-vector-icons/Feather';
 const Input = ({
   iconSize,
   height,
   margin,
+  maxlength,
   padding,
   zIndex,
   fontFamily,
@@ -26,12 +27,16 @@ const Input = ({
   rightIconMargin,
   placeholderTextColor,
   width,
+  keyboardType,
   containerStyle,
   secureTextEntry,
   onChnageText,
   fontSize,
   value,
   onSubmitEditing,
+  onPressOut,
+  countryCode,
+  autoCapitalize,
   ...props
 }) => {
   // const [showPassword, setShowPassword] = React.useState(secureTextEntry);
@@ -68,32 +73,37 @@ const Input = ({
           margin ? handleMargin(margin) : undefined,
           padding ? handlePadding(padding) : undefined,
           props.style,
-          height && {height},
-          width && {width},
-          {zIndex: zIndex},
+          height && { height },
+          width && { width },
+          { zIndex: zIndex },
           containerStyle,
         ]}>
         {props.leftIcon && (
           <Icon
-            tintColor={tintColor ? tintColor : colors.yellow}
+            // tintColor={tintColor ? tintColor : colors.yellow}
             margin={iconMargin ? iconMargin : [0, 10, 0, -4]}
             source={props.leftIcon}
             size={iconSize}
           />
         )}
-
+        {countryCode && (
+          <Text style={{color:colors.white,paddingBottom:6,fontWeight:'bold'}}>{countryCode}</Text>
+        )}
         <TextInput
           // value={value && value}
           {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
           editable={props.editable}
           // secureTextEntry={false}
+          keyboardType={keyboardType}
+          maxLength={maxlength}
+          autoCapitalize={autoCapitalize}
           style={[
-            fontSize && {fontSize},
+            fontSize && { fontSize },
             styles.Input,
-            fontFamily && {fontFamily: Fonts[fontFamily]},
+            fontFamily && { fontFamily: Fonts[fontFamily] },
             (onSubmitEditing = props.onSubmitEditing),
             props.centerText
-              ? {textAlign: 'center', paddingLeft: 0}
+              ? { textAlign: 'center', paddingLeft: 0 }
               : undefined,
             props.textStyle,
             ,
@@ -105,8 +115,10 @@ const Input = ({
             placeholderTextColor ? placeholderTextColor : colors.grey1
           }
           // secureTextEntry={showPassword ? true : false}
-          secureTextEntry={secureTextEntry?visible:false}
+          secureTextEntry={secureTextEntry ? visible : false}
           onChangeText={onChnageText ? txt => onChnageText(txt) : null}
+          // onSubmitEditing={onSubmitEditing}
+          onPressOut={onPressOut}
         />
 
         {secureTextEntry && (

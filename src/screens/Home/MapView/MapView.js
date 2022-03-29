@@ -32,7 +32,7 @@ export default function MapView(props) {
   return (
     <View style={{flex: 1}}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={()=>props.navigation.goBack()}>
+        <TouchableOpacity style={styles.backArrow} onPress={()=>props.navigation.goBack()}>
         <Icon  source={globalPath.BACK_ARROW} />
         </TouchableOpacity>
         <ResponsiveText color={colors.white} size={5}>
@@ -167,4 +167,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     backgroundColor: colors.black2,
   },
+  backArrow:{
+    backgroundColor:colors.yellow,
+    padding:wp(3),
+    borderRadius:75
+  }
 });

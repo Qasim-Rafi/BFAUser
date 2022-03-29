@@ -113,57 +113,63 @@ export default function Apply_Jobs({ navigation, route }) {
         <View style={styles.marginTop}>
           <ResponsiveText size={4} color={colors.white}>
             {' '}
-            Job Title
+            Job Title : 
           </ResponsiveText>
-          <View
-            style={{
-              backgroundColor: colors.black2,
-              width: wp(90),
-              height: hp(7),
-              borderRadius: 6,
-            }}>
-            <TextInput
-              placeholderTextColor={colors.grey}
-              editable={false}
-              style={{ margin: 5, color: colors.grey }}
-              value={data.jobTitle}
-            />
+          <ResponsiveText size={4} color={colors.grey}>
+          {'         '}
+              {data.jobTitle}
+              </ResponsiveText>
+        </View>
+        <View style={styles.marginTop}>
+          <View style={{flex:1.2}}>
+            <ResponsiveText size={4} color={colors.white}>
+            Description : 
+          </ResponsiveText>
           </View>
+          <View style={{flex:2.5}}>
+          
+          <ResponsiveText size={3} color={colors.grey}>
+          {data.jobDescription}
+          </ResponsiveText>
+          </View>
+
         </View>
         <View style={styles.marginTop}>
           <ResponsiveText size={4} color={colors.white}>
-            Description
+          {' '}
+            Restaurant : 
           </ResponsiveText>
-          <View
-            style={{
-              backgroundColor: colors.black2,
-              width: wp(90),
-              borderRadius: 6,
-            }}>
-            <TextInput
-              multiline={true}
-              placeholderTextColor={colors.grey}
-              editable={false}
-              style={{ margin: 5, color: colors.grey }}
-              value={data.jobDescription}
-            />
-          </View>
+          <ResponsiveText size={4} color={colors.grey}>
+          {'    '}
+          {data.restuarantName}
+          </ResponsiveText>
+        </View>
+        <View style={styles.marginTop}>
+          <ResponsiveText size={4} color={colors.white}>
+          {' '}
+            Salary : 
+          </ResponsiveText>
+          <ResponsiveText size={4} color={colors.grey}>
+          {'             '}
+          {data.salaryRange}
+          </ResponsiveText>
         </View>
         <Text
           style={{
-            marginTop: 10,
+            marginTop: hp(4),
             color: colors.white,
             fontSize: 18,
             fontWeight: '500',
           }}>
+            {' '}
           Cover letter
         </Text>
         <View
           style={{
             backgroundColor: colors.black2,
             width: wp(90),
-            height: hp(7),
-            marginTop: 10,
+            height: hp(15),
+            marginTop: hp(2),
             borderRadius: 6,
           }}>
           <TextInput
@@ -173,15 +179,15 @@ export default function Apply_Jobs({ navigation, route }) {
             value={coverletter}
             onChangeText={setcoverletter}
             style={{ margin: 5, color: colors.grey }}
-            placeholder="Introduce yourself"
+            placeholder="Introduce yourself.."
           />
         </View>
-        <View style={styles.marginTop}>
+        <View style={{marginTop:20}}>
           <ResponsiveText size={4} color={colors.white}>
             {' '}
             Upload CV
           </ResponsiveText>
-          <View style={{ flexDirection: 'row' }}>
+          <View style={{flexDirection:'row'}}>
             <View
               style={{
                 backgroundColor: colors.black2,
@@ -212,13 +218,13 @@ export default function Apply_Jobs({ navigation, route }) {
         </View>
 
 
-        <TouchableOpacity style={styles.signin} onPress={() => validation()}>
+        <TouchableOpacity style={[styles.signin,{backgroundColor: data.userAppliedStatus === "Applied" ? colors.grey6 : colors.yellow}]} disabled={data.userAppliedStatus === "Applied" ? true : false} onPress={() => validation()}>
           {loading == true ?
             <  SkypeIndicator count={5} color={colors.black} size={30} />
             :
-            <ResponsiveText color={colors.black} size={4}>
-              Submit
-            </ResponsiveText>
+            <Text style={{fontWeight:'800',color:colors.black,top:15}}>
+              {data.userAppliedStatus === "Applied" ? 'Already Applied' : 'Submit'}
+            </Text>
           }
         </TouchableOpacity>
 
@@ -235,6 +241,7 @@ const styles = StyleSheet.create({
   },
   marginTop: {
     marginTop: 20,
+    flexDirection:'row',
   },
   btn_style: {
     borderRadius: 7,
@@ -245,14 +252,11 @@ const styles = StyleSheet.create({
     width: wp(80),
   },
   signin: {
-    backgroundColor: colors.yellow,
+    
     width: wp(80),
     height: hp(6),
     borderRadius: 7, alignItems: 'center',
-    alignContent: 'center',
-    justifyContent: 'center',
-    marginTop: 30,
-    justifyContent: 'center',
-    alignItems: 'center'
+    alignSelf:'center',
+    marginTop: hp(10),
   },
 });

@@ -13,6 +13,7 @@ import MapView from '../screens/Home/MapView/MapView';
 import Menu from '../screens/Home/Menu/Menu';
 import Order_history from '../screens/Home/Order_History/Order_history';
 import ProfileScreen from '../screens/Home/ProfileScreen/ProfileScreen';
+import ProfileDisplay from '../screens/Home/ProfileScreen/ProfileDisplay';
 import RestaurantDetail from '../screens/Home/RestaurantBranchDetail/RestaurantBranchDetail';
 import FilterSearch from '../screens/Home/SearchAll/FilterSearch';
 import SearchAll from '../screens/Home/SearchAll/SearchAll';
@@ -38,6 +39,7 @@ import ContactUs from '../screens/Home/BottomTabs/More/ContactUs';
 import MoreAboutDishes from '../screens/Home/BottomTabs/More/MoreAboutDishes';
 import MyReviews from '../screens/Home/BottomTabs/More/MyReviews';
 import QRScan from '../screens/Home/BottomTabs/More/QRScan';
+import InvoiceList from '../screens/Home/BottomTabs/More/InvoiceList';
 import AllDishesList from '../screens/Home/BottomTabs/Home/AllDishesList';
 import BarcodeReader from '../screens/Home/BottomTabs/Scanner/BarcodeReader';
 import More from '../screens/Home/BottomTabs/More/More';
@@ -46,6 +48,8 @@ import Wallet from '../screens/Home/Wallet/Wallet'
 import TopUp from '../screens/Home/Wallet/topUp'
 import Transfer from '../screens/Home/Wallet/transfer';
 import Home from '../screens/Home/BottomTabs/Home/Home';
+import Notifications from '../components/Static/Notifications';
+import NotificationList from '../screens/Home/BottomTabs/Home/NotificationList';
 
 const Stack = createNativeStackNavigator();
 
@@ -76,6 +80,7 @@ function HomeStack() {
       <Stack.Screen name={routeName.ORDER_HISTORY} component={Order_history} />
       <Stack.Screen name={routeName.RestaurantDetail} component={RestaurantDetail} />
       <Stack.Screen name={routeName.PROFILE_SCREEN} component={ProfileScreen} />
+      <Stack.Screen name={routeName.PROFILE_DISPLAY} component={ProfileDisplay} />
       <Stack.Screen name={routeName.MENU} component={Menu} />
       <Stack.Screen name={routeName.MAP_VIEW} component={MapView} />
       <Stack.Screen name={routeName.FilterSearch} component={FilterSearch} />
@@ -105,7 +110,10 @@ function HomeStack() {
       <Stack.Screen name={routeName.MORE_ABOUT_DISHES} component={MoreAboutDishes} />
       <Stack.Screen name={routeName.MY_REVIEWS} component={MyReviews} />
       <Stack.Screen name={routeName.SCAN_QR} component={QRScan} />
+      <Stack.Screen name={routeName.INVOICE_LIST} component={InvoiceList} />
       <Stack.Screen name={routeName.BARCODE_READER} component={BarcodeReader} />
+      <Stack.Screen name={routeName.NOTIFICATION_SCREEN} component={NotificationList} />
+
       <Stack.Screen
         name={routeName.ALL_DISHES_LIST}
         component={AllDishesList}
