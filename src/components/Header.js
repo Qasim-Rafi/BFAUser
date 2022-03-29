@@ -47,7 +47,7 @@ const Header = ({
         }}>
         <View style={props.iconPath ? { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: colors.yellow1, height: wp(13), width: wp(13), borderRadius: wp(6.5) } : { flexDirection: 'row', alignItems: 'center' }}>
           <Icon
-            margin={[10, 0, 0, 20]}
+            margin={[0, 0, 0, 0]}
             size={props.iconPath ? 25 : 44}
             source={props.iconPath ? props.iconPath : globalPath.BALI_ICON}
           />
@@ -108,7 +108,7 @@ const Header = ({
         //   </TouchableOpacity>
           
         // </TouchableOpacity>
-        <View style={{width:wp(70),alignItems:'flex-end'}}>
+        <View style={{width:wp(55),alignItems:'flex-end'}}>
         <TouchableOpacity
         onPress={() => {
           // searchBar === 'true'
@@ -116,8 +116,8 @@ const Header = ({
             navigation.navigate(routeName.SearchAll)
            // : toggleSearchBar('true');
         }}
-        style={{borderRadius: 10,marginRight:20 }}>
-        <Icon source={globalPath.SEARCH_LOGO} size={22} />
+        style={{ marginStart: 5, borderRadius: 10 }}>
+        <Icon source={globalPath.SEARCH_LOGO} size={25} />
       </TouchableOpacity>
       </View>
       )}
@@ -126,12 +126,12 @@ const Header = ({
           <View />
         ) : (
           <TouchableOpacity
-            style={{ marginHorizontal: wp(2) }}
+            style={{ marginHorizontal: wp(3) }}
             onPress={() => {
               navigation.navigate(routeName.NOTIFICATION_SCREEN);
             }}>
             <Icon
-              borderRadius={30} 
+              borderRadius={30}
               size={props.iconPath ? (wp(10), hp(6)) : 22}
               resizeMode={'cover'}
               source={globalPath.NOTIFICATION}
@@ -144,13 +144,13 @@ const Header = ({
           <View />
         ) : (
           <TouchableOpacity
-            style={{ marginRight:wp(6) }}
+            style={{ marginRight:wp(0) }}
             onPress={() => {
               navigation.navigate(routeName.MORE_BOTTOM);
             }}>
             <Icon
               borderRadius={30}
-              size={props.iconPath ? (wp(10), hp(6)) : 38}
+              size={props.iconPath ? (wp(10), hp(6)) : 42}
               resizeMode={'cover'}
               source={globalPath.USER_PROFILE}
 
@@ -163,11 +163,11 @@ const Header = ({
 
 const styles = {
   header: {
-    flex: 0.5,
+    flex: 0.1,
     flexDirection: 'row',
     alignItems: 'center',
     // justifyContent: 'center',
-    paddingHorizontal: 30,
+    paddingHorizontal: 20,
   },
   mainView: {
     width: '100%',
