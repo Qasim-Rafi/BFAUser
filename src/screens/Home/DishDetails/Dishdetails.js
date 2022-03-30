@@ -104,28 +104,7 @@ export default function DishDetails({route, navigation}) {
         {/* <PeopleSay /> */}
       </View>
 
-      {/* <Comments/> */}
-      {/* <View style={{ margin: 20, paddingBottom: 20 }}>
-
-
-                <RnButton onPress={() => {
-
-                    navigation.navigate(routeName.ADD_TO_CART, { dish: dish })
-
-                }}>
-
-                    <ResponsiveText padding={0} color={colors.black}>Add to Order</ResponsiveText>
-                </RnButton>
-            </View>
-        </View> */}
-      {/* {
-                favDataLoading === true ?
-                <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, backgroundColor: 'rgba(65, 65, 65, 0.5)', flex: 1 }}>
-                <BarIndicator color={colors.yellow} size={50} />
-                </View>
-                :
-                undefined
-            } */}
+  
       <FlashMessage ref={dropdownRef} />
     </ScrollView>
   );
