@@ -171,6 +171,29 @@ function* getProfileDataSagaApi(data) {
     yield put({ type: types.GET_USER_PROFILE_DATA_FAILURE, error: error });
   }
 }
+//get notification
+export function* getNotification() {
+  yield takeLatest(types.GET_NOTIFICATION_REQUEST, getNotificationApi);
+}
+function* getNotificationApi(data) {
+  try {
+    const notification = yield AsyncStorage.getItem('@userId');
+    console.log('notification', notification);
+    const response = yield Api.get(urls.GET_NOTIFICATIONS_ALL);
+    if (response && response.data != null) {
+      yield put({
+        type: types.GET_NOTIFICATION_SUCCESS,
+        payload: response.data,
+      });
+    } else {
+      yield put({ type: types.GET_NEAREST_RESTAURANT_FAILURE, error: error });
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({ type: types.GET_NOTIFICATION_FAILURE, error: error });
+  }
+}
 //People Choice
 export function* getPeopleChoiceSaga() {
   yield takeLatest(types.GET_PEOPLE_CHOICE_REQUEST, getPeopleChoiceSagaApi);

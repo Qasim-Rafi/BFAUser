@@ -14,6 +14,13 @@ export const getProfileData = data => {
     data: data,
   };
 };
+//Profile Data
+export const getNotificationData = data => {
+  return {
+    type: types.GET_NOTIFICATION_REQUEST,
+    data: data,
+  };
+};
 //Search bar
 export const SearchResult = (SearchText, selected) => {
   return {

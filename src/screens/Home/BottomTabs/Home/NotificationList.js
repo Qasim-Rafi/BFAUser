@@ -5,20 +5,25 @@ import {TRANSACTION_HISTORY_FAKE_DATA} from '../../../../constants/mock';
 import {hp, wp} from '../../../../helpers/Responsiveness';
 import Icon from '../../../../components/Icon';
 import {colors} from '../../../../constants/colorsPallet';
+import moment from 'moment';
+
 import ResponsiveText from '../../../../components/RnText';
 import { globalPath } from '../../../../constants/globalPath';
 import { useSelector ,useDispatch} from 'react-redux';
-import { GETPAYMENTHISTORY } from '../../../../redux/actions/user.actions';
+import { GETPAYMENTHISTORY,getNotificationData } from '../../../../redux/actions/user.actions';
 export default function NotificationList({navigation}) {
   const dispatch = useDispatch();
 
   useEffect(()=>{
     dispatch(GETPAYMENTHISTORY(1, 4));
+    dispatch(getNotificationData())
     
   },[])
   const HISTORY = useSelector(state => state.appReducers.getPaymentHistory.data);
+  const NotificationData = useSelector(state => state.appReducers.getNotification.data);
+  const NotificationLoading = useSelector(state => state.appReducers.getNotification.loading);
   const loading = useSelector(state => state.appReducers.getPaymentHistory.loading);
-//   console.log('HISTORY:  ',HISTORY)
+  console.log('NotificationData:  ',NotificationData)
   return (
     <View style={{flex: 1, backgroundColor: colors.black3}}>
        <View style={{ flexDirection: 'row', justifyContent: "space-between",padding:7 }}>
@@ -26,7 +31,7 @@ export default function NotificationList({navigation}) {
           </View>
       <View style={{flex:0.9, margin:20}}>
           <ResponsiveText margin={[0,0,20,0]} color={colors.yellow}size={4.5}>Notifications</ResponsiveText>
-      {TRANSACTION_HISTORY_FAKE_DATA.map((item, index) => {
+      {NotificationData.map((item, index) => {
           return(
             <View
             style={{
@@ -47,7 +52,7 @@ export default function NotificationList({navigation}) {
                   overflow: 'hidden',
                 }}>
                 <ResponsiveText size={2.5} color={colors.white  }>
-                  {item.restaurant}
+                  {item.remarks}
                 </ResponsiveText>
               </View>
               <View
@@ -61,7 +66,7 @@ export default function NotificationList({navigation}) {
                 </ResponsiveText>
               </View>
               <ResponsiveText color={colors.grey}  size={2.7}>
-                Order Id:  {item.orderId}
+                Order Id:  {item.id}
               </ResponsiveText>
             </View>
             <View style={{width: '20%',justifyContent:'flex-start', overflow: 'hidden',}}>
@@ -69,7 +74,7 @@ export default function NotificationList({navigation}) {
                 margin={[0, 0, 0, 0]}
                 color={ colors.white }
                 >
-                {'12 Sep 2022'}
+                 {moment(item.datetime).format("dddd, MMMM Do YYYY, h:mm a") }
               </ResponsiveText>
               {/* <ResponsiveText
                 margin={[0, 0, 0, 0]}
