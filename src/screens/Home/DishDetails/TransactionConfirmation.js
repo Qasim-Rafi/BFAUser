@@ -44,7 +44,7 @@ export default function TransactionConfirmation({route, navigation}) {
       if (response && response.success == true) {
         setModalVisible(!isModalVisible);
         dispatch(getOrders());
-
+        addNotification()
         // setLoading(false);
       } else {
         // setLoading(false);
@@ -67,6 +67,24 @@ export default function TransactionConfirmation({route, navigation}) {
       console.log('res', res);
       if (res && res.success == true) {
         toggleModal();
+      } else {
+      }
+    } catch (error) {}
+  };
+  const addNotification = async DATA => {
+    // dispatch(removeCart(data));
+    let formdata = new FormData();
+    formdata.append("NotificationType", 'Order');
+    formdata.append("Remarks", 'Order submited');
+    formdata.append("SourceId", route.params.obj.orderId);
+    formdata.append("Seen", false);
+    formdata.append("UserId", route.params.obj.userId);
+
+
+    try {
+      const res = await Api.post(urls.ADD_NOTIFICATIONS, formdata);
+      console.log('res', res);
+      if (res && res.success == true) {
       } else {
       }
     } catch (error) {}
