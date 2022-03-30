@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
   },
   linearGradient: {
     borderRadius: 5,
-    bottom:hp(13),
+    bottom:hp(11),
     width:wp(29),
     alignContent:'center',
     alignSelf:'center',
