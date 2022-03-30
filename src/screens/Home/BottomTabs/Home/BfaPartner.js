@@ -178,6 +178,7 @@ const BfaPartner = ({props}) => {
           numColumns={6}
           ListHeaderComponent={ContentThatGoesAboveTheFlatList}
           ListFooterComponent={ContentThatGoesBelowTheFlatList}
+          scrollEnabled={false}
         />
       ) : null}
     
