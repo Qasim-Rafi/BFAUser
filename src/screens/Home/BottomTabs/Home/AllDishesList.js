@@ -132,7 +132,7 @@ export default function AllDishesList({ route, navigation }) {
           ) : null}
          
           {title == "PG's Favourites" ? (
-            <Icon size={15} source={globalPath.F_HEART} />
+            <Icon size={15} margin={[0,0,0,wp(40)]} source={globalPath.favouriteicon_red} />
           ) : null}
           {title == "Brunei Food Awards" ? (
             <Text
@@ -163,8 +163,8 @@ export default function AllDishesList({ route, navigation }) {
                 marginTop: 1,
                 color: 'white',
                 padding: 3,
-                opacity: 0.7,
-                backgroundColor: '#383131',
+                opacity: 1,
+                backgroundColor: colors.black,
                 borderRadius: 7,
                 textAlign: 'center',
                 fontWeight: '600',

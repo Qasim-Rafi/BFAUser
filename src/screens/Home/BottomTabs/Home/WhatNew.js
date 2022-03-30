@@ -90,13 +90,12 @@ const WhatsNew = props => {
                         source={{ uri: url.imageDataB }}>
                         <Text
                           style={{
-                            opacity: 0.7,
+                            opacity:1,
                             marginTop: 1,
                             color: 'white', padding: 3,
-                            backgroundColor: '#383131', borderRadius: 7,
+                            backgroundColor:colors.black, borderRadius: 7,
                             textAlign: 'center', fontWeight: '600', fontSize: 8.5
                           }}
-
                         >
                           {url.titleR}
                         </Text>
@@ -106,11 +105,8 @@ const WhatsNew = props => {
                             backgroundColor: 'black', borderRadius: 7,
                             textAlign: 'center', fontWeight: '600', fontSize: 8.5
                           }}
-
                         >
                           {url.titleD}
-
-
                         </Text>
                         {/* <ResponsiveText
                       fontFamily="Regular"

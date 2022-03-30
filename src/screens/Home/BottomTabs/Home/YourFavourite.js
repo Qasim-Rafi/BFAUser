@@ -100,7 +100,7 @@ const YourFavourite = props => {
                       // imageStyle={{ opacity: 1 }}
                       style={{
                         flex: 1,
-                        opacity: 0.7,
+                        opacity: 1,
                         padding: 5,
                         overflow: 'hidden',
                         justifyContent: 'flex-end',
@@ -112,7 +112,7 @@ const YourFavourite = props => {
                     >
 
                       <View style={{ alignItems: 'flex-end', paddingBottom: '90%', flex: 1 }}>
-                        <Icon size={15} source={globalPath.F_HEART} />
+                        <Icon size={15} source={globalPath.favouriteicon_red} />
                       </View>
                       <View style={{ backgroundColor: color.black1 }}>
                       </View>
