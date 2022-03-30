@@ -119,18 +119,18 @@ const YourFavourite = props => {
                       <Text
                         style={{
                           marginTop: 1,
-                          opacity: 0.9,
+                          opacity: 1,
                           color: 'white', padding: 3,
-                          backgroundColor: '#383131', borderRadius: 7,
+                          backgroundColor:colors.black ,borderRadius: 7,
                           textAlign: 'center', fontWeight: '800', fontSize: 9
                         }}>
                         {url.titleD}
                       </Text>
                       <Text
                         style={{
-                          opacity: 0.8,
+                          opacity: 0.8,top:2,
                           color: 'white', padding: 3,
-                          backgroundColor: 'black', borderRadius: 7,
+                          backgroundColor: '#383131', borderRadius: 7,
                           textAlign: 'center', fontWeight: '900', fontSize: 9
                         }}
                       >

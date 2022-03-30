@@ -112,17 +112,9 @@ const JobsList = props => {
                       {/* source={{uri: url.fullPath}}> */}
 
                       {url.userAppliedStatus === "Applied" ?
-                        <LinearGradient start={{ x: -1, y: 0.9 }} end={{ x: 1, y: 0 }} colors={[colors.yellow, colors.black, colors.yellow]} style={styles.linearGradient}>
+                        <LinearGradient  start={{ x: -1, y: 0.9 }} end={{ x: 1, y: 0 }} colors={[colors.yellow, colors.black, colors.yellow]} style={styles.linearGradient}>
                         <Text
-                        style={{color:colors.white,fontSize:10,padding:5,textAlign:'center',alignContent:'center'}}
-                        // style={{
-                        // bottom:hp(13),width:wp(28),
-                        // alignItems:'center',textAlign:"center",alignContent:'center',
-                        //   opacity: 1, right:5,
-                        //   color: 'white', padding: 4,
-                        //   backgroundColor: colors.green1,
-                        //   fontWeight: '600', fontSize: 8.5,
-                        // }}
+                        style={{ color:colors.white,fontSize:10,padding:5,textAlign:'center'}}
                         >
                           {url.userAppliedStatus === "Applied" ? url.userAppliedStatus : null}
                         </Text>
@@ -135,13 +127,8 @@ const JobsList = props => {
                           backgroundColor: 'black', borderRadius: 7,
                           textAlign: 'center', fontWeight: '600', fontSize: 8.5
                         }}
-
                       >
                         {url.jobTitle}
-
-
-
-
                       </Text>
                       {/* <ResponsiveText
                         fontFamily="Regular"
@@ -203,11 +190,11 @@ const styles = StyleSheet.create({
     marginLeft: -5,
   },
   linearGradient: {
-    paddingLeft: 15,
-    paddingRight: 15,
     borderRadius: 5,
     bottom:hp(13),
-    width:wp(25),
-    alignItems:'center'
+    width:wp(29),
+    alignContent:'center',
+    alignSelf:'center',
+    // alignItems:'center'
   },
 });
