@@ -8,7 +8,7 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
+// import LinearGradient from 'react-native-linear-gradient';
 import Icon from '../../../../components/Icon';
 import { globalPath } from '../../../../constants/globalPath';
 
@@ -36,6 +36,7 @@ import { routeName } from '../../../../constants/routeName';
 import { hp, wp } from '../../../../helpers/Responsiveness';
 import { useSelector } from 'react-redux';
 import { getPromoJobsData } from '../../../../redux/actions/user.actions';
+import { color } from 'react-native-reanimated';
 const JobsList = props => {
   const List = useSelector(state => state.appReducers.promoJobs.data);
   const List_Loading = useSelector(state => state.appReducers.promoJobs.loading);
@@ -100,7 +101,7 @@ const JobsList = props => {
                         flex: 1,
                         padding: 5,
                         overflow: 'hidden',
-                        justifyContent: 'flex-end',
+                        justifyContent:url.userAppliedStatus === "Applied" ?'space-between':'flex-end',
                         backgroundColor: 'rgba(0,0,0,1)',
                         priority: FastImage.priority.high,
 
@@ -112,14 +113,13 @@ const JobsList = props => {
                       {/* source={{uri: url.fullPath}}> */}
 
                       {url.userAppliedStatus === "Applied" ?
-                        <LinearGradient  start={{ x: -1, y: 0.9 }} end={{ x: 1, y: 0 }} colors={[colors.yellow, colors.black, colors.yellow]} style={styles.linearGradient}>
+                        // <LinearGradient  start={{ x: -1, y: 0.9 }} end={{ x: 1, y: 0 }} colors={[colors.yellow, colors.black, colors.yellow]} style={styles.linearGradient}>
                         <Text
-                        style={{ color:colors.white,fontSize:10,padding:5,textAlign:'center'}}
+                        style={{ color:colors.white,fontSize:10,padding:5,textAlign:'center',backgroundColor:colors.yellow}}
                         >
                           {url.userAppliedStatus === "Applied" ? url.userAppliedStatus : null}
                         </Text>
-                        </LinearGradient>
-
+                        // </LinearGradient>
                         : null}
                       <Text
                         style={{
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
   },
   linearGradient: {
     borderRadius: 5,
-    bottom:hp(11),
+    // bottom:hp(11),
     width:wp(29),
     alignContent:'center',
     alignSelf:'center',
