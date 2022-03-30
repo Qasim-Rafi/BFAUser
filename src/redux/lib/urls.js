@@ -78,5 +78,7 @@ export default urls = {
   AUTO_SUGGESTIONS_ON_SEARCH: 'api/RestaurantDish/SuggestionHomeDashboard/',
   GET_TRANSACTION_HISTORY: 'api/Order/GetUserTransactionHistoryById/',
   GET_NOTIFICATIONS_ALL: 'api/NotificationPannel/GetNotificationPannelAll',
+  ADD_NOTIFICATIONS: 'api/NotificationPannel/AddNotificationPannel',
+
 
 };
