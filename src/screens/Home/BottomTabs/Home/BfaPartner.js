@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Modal,
   Button,
+  FlatList,
 } from 'react-native';
 import ResponsiveText from '../../../../components/RnText';
 import {BarIndicator, DotIndicator} from 'react-native-indicators';
@@ -85,8 +86,32 @@ const BfaPartner = ({props}) => {
   // useEffect(() => {
   //   dispatch(getBfaPartners(6))
   // }, [])
-  return (
-    <View style={{backgroundColor: colors.black3}}>
+  const renderItem = ({item, index}) => {
+    console.log(index);
+    return (
+      <View
+        style={{
+          backgroundColor: colors.white,
+          borderRadius: 5,
+          marginRight: 5,
+          marginVertical: 3,
+        }}>
+        <TouchableOpacity onPress={() => modalView(index)}>
+          <Icon
+            source={{
+              uri: item,
+            }}
+            // source={url}
+
+            size={wp(14)}
+            borderRadius={5}
+          />
+        </TouchableOpacity>
+      </View>
+    );
+  };
+  const ContentThatGoesAboveTheFlatList = ({item, index}) => {
+    return (
       <View style={styles.bfaPartnerHeaderSection}>
         <ResponsiveText size={4} color={colors.white}>
           Bali Partners
@@ -121,61 +146,11 @@ const BfaPartner = ({props}) => {
           />
         </TouchableOpacity>
       </View>
-
-      <View style={styles.bfaPartnerItemsSection}>
-        {images.length > 0
-          ? title === 'More'
-            ? lessImages.map((url, index) => {
-                console.log('urlllllllllll', url);
-                return (
-                  // <Icon source={url} size={35} borderRadius={5} />
-                  <View
-                    style={{
-                      backgroundColor: colors.white,
-                      borderRadius: 5,
-                      marginRight: 5,
-                      marginVertical: 3,
-                    }}>
-                    <TouchableOpacity onPress={() => modalView(index)}>
-                      <Icon
-                        source={{
-                          uri: url,
-                        }}
-                        // source={url}
-
-                        size={55}
-                        borderRadius={5}
-                      />
-                    </TouchableOpacity>
-                  </View>
-                );
-              })
-            : images.map((url, index) => {
-                return (
-                  // <Icon source={url} size={35} borderRadius={5} />
-                  <View
-                    style={{
-                      backgroundColor: colors.white,
-                      borderRadius: 5,
-                      marginRight: 5,
-                      marginVertical: 3,
-                    }}>
-                    <TouchableOpacity onPress={() => modalView(index)}>
-                      <Icon
-                        source={{
-                          uri: url,
-                        }}
-                        // source={url}
-
-                        size={55}
-                        borderRadius={5}
-                      />
-                    </TouchableOpacity>
-                  </View>
-                );
-              })
-          : undefined}
-
+    );
+  };
+  const ContentThatGoesBelowTheFlatList = ({item, index}) => {
+    return (
+      <View>
         {loading === true ? (
           <View
             style={{
@@ -190,72 +165,87 @@ const BfaPartner = ({props}) => {
             <DotIndicator color={colors.yellow} size={5} />
           </View>
         ) : undefined}
-        <Modal
-          visible={modalVisble}
-          animationType="slide"
-          transparent={true}
-          style={{borderRadius: 50}}>
-          {/* <Button title={'Close'} onPress={() => { setModalVisible(false), setloadingVisible(true) }} /> */}
+      </View>
+    );
+  };
+  return (
+    <View style={{flex:1,backgroundColor: colors.black3}}>
+      {images.length > 0 ? (
+        <FlatList
+          data={title === 'More' ? lessImages : images}
+          renderItem={renderItem}
+          keyExtractor={(item, index) => index.toString()}
+          numColumns={6}
+          ListHeaderComponent={ContentThatGoesAboveTheFlatList}
+          ListFooterComponent={ContentThatGoesBelowTheFlatList}
+        />
+      ) : null}
+    
+      <Modal
+        visible={modalVisble}
+        animationType="slide"
+        transparent={true}
+        style={{borderRadius: 50}}>
+        {/* <Button title={'Close'} onPress={() => { setModalVisible(false), setloadingVisible(true) }} /> */}
 
+        <View
+          style={{
+            backgroundColor: colors.black2,
+            height: hp(60),
+            width: wp(100),
+            position: 'absolute',
+            bottom: 0,
+            paddingTop: hp(6),
+          }}>
           <View
             style={{
-              backgroundColor: colors.black2,
-              height: hp(60),
-              width: wp(100),
+              marginTop: 10,
+              marginHorizontal: 5,
               position: 'absolute',
-              bottom: 0,
-              paddingTop: hp(6),
+              flexDirection: 'row',
+              justifyContent: 'space-around',
             }}>
-            <View
-              style={{
-                marginTop: 10,
-                marginHorizontal: 5,
-                position: 'absolute',
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-              }}>
-              <View style={{flex: 1}}>
-                <Image
-                  source={require('../../../../assets/icons/bali-logo.png')}
-                  style={{height: 33, width: wp(16), resizeMode: 'contain'}}
-                />
-              </View>
-
-              <TouchableOpacity
-                onPress={() => {
-                  setModalVisible(false), setloadingVisible(true);
-                }}
-                // style={{ position: 'absolute', right: 0, zindex: 1 }}
-              >
-                <Image
-                  source={require('../../../../assets/fake_Images/cross.png')}
-                  style={{height: 33, width: 33}}
-                />
-              </TouchableOpacity>
+            <View style={{flex: 1}}>
+              <Image
+                source={require('../../../../assets/icons/bali-logo.png')}
+                style={{height: 33, width: wp(16), resizeMode: 'contain'}}
+              />
             </View>
 
-            <WebView
-              onLoad={() => setloadingVisible(false)}
-              source={{uri: siteAdd[webIndex]}}
-            />
-            {loadingVisble === true ? (
-              <View
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  bottom: 0,
-                  right: 0,
-                  backgroundColor: 'rgba(65, 65, 65, 0)',
-                  flex: 1,
-                }}>
-                <DotIndicator color={colors.black} size={5.6} />
-              </View>
-            ) : undefined}
-            {console.log(siteAdd[webIndex], 'webIndex', webIndex)}
+            <TouchableOpacity
+              onPress={() => {
+                setModalVisible(false), setloadingVisible(true);
+              }}
+              // style={{ position: 'absolute', right: 0, zindex: 1 }}
+            >
+              <Image
+                source={require('../../../../assets/fake_Images/cross.png')}
+                style={{height: 33, width: 33}}
+              />
+            </TouchableOpacity>
           </View>
-        </Modal>
-      </View>
+
+          <WebView
+            onLoad={() => setloadingVisible(false)}
+            source={{uri: siteAdd[webIndex]}}
+          />
+          {loadingVisble === true ? (
+            <View
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                bottom: 0,
+                right: 0,
+                backgroundColor: 'rgba(65, 65, 65, 0)',
+                flex: 1,
+              }}>
+              <DotIndicator color={colors.black} size={5.6} />
+            </View>
+          ) : undefined}
+          {console.log(siteAdd[webIndex], 'webIndex', webIndex)}
+        </View>
+      </Modal>
     </View>
   );
 };
