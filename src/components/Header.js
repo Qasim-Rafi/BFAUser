@@ -40,8 +40,9 @@ const Header = ({
           height: hp(6.4),
           width: wp(10.4),
           // backgroundColor:props.iconPath ? colors.black1: undefined,
-          justifyContent: 'center',
+          // justifyContent: 'center',
           alignItems: 'center',
+          bottom:7.5,
           borderRadius: 10,
           marginEnd: 5,
         }}>
@@ -51,12 +52,7 @@ const Header = ({
             size={props.iconPath ? 25 : 44}
             source={props.iconPath ? props.iconPath : globalPath.BALI_ICON}
           />
-          {/* <Icon
-          margin={[0, 15, 0, 0]}
-          size={props.iconPath ? 25 : 30}
-          tintColor={colors.yellow}
-          source={props.iconPath ? undefined : globalPath.WALLET_ICON}
-        /> */}
+          
         </View>
       </TouchableOpacity>
       {props.iconPath ? (
@@ -66,48 +62,7 @@ const Header = ({
           </Text>
         </View>
       ) : (
-        // <TouchableOpacity onPress={() => navigation.navigate(routeName.SearchAll)}
-        //   style={{
-        //     alignItems: 'center',
-        //     justifyContent: 'center',
-        //     flexDirection: 'row',
-        //     borderRadius: 7,
-        //     marginHorizontal: 10,
-        //     paddingHorizontal: 10,
-        //     backgroundColor:
-        //       searchBar === 'true' ? 'rgba(64,64,64,0.5)' : undefined,
-        //   }}>
-        //   <TouchableOpacity >
-        //     {/* // onPress={() => searchBar==='true'? navigation.navigate(routeName.FeaturedSearch) : undefined}> */}
-        //     {/* <Input
-        //   editable={searchBar==='true'? true : false}
-        //   fontSize={11}
-        //   onSubmitEditing={()=>{}}
-        //   placeholder={searchBar==='true'? "Search Dishes, Restaurants or Promo" : ""}
-        //   padding={[0, 0, 0, 5]}
-          
-          
-        //   height={hp(6)}
-        //   width={inputWidth}
-        // /> */}
-        //     <TouchableOpacity onPress={() => navigation.navigate(routeName.SearchAll)}>
-        //       <TextInput
-        //         style={{ height: hp(6), width: wp(50), color: colors.white }}
-        //         editable={false}
-        //         onP
-        //         fontSize={11}
-        //         placeholderTextColor={colors.white}
-        //         placeholder={
-        //           searchBar === 'true'
-        //             ? 'Search Dishes, Restaurants or Promo'
-        //             : ''
-        //         }
-        //       />
-        //     </TouchableOpacity>
-
-        //   </TouchableOpacity>
-          
-        // </TouchableOpacity>
+    <View style={{flexDirection:'row',marginLeft:wp(10)}}>
         <View style={{width:wp(58),alignItems:'flex-end'}}>
         <TouchableOpacity
         onPress={() => {
@@ -120,6 +75,8 @@ const Header = ({
         <Icon source={globalPath.SEARCH_LOGO} size={22} />
       </TouchableOpacity>
       </View>
+      </View>
+
       )}
       {showRightMenu &&
         (props.iconPath ? (
