@@ -74,7 +74,7 @@ export default function NotificationList({navigation}) {
                 margin={[0, 0, 0, 0]}
                 color={ colors.white }
                 >
-                 {moment(item.datetime).format(" h:mm a") }
+                 {moment(item.datetime).fromNow('mm') } ago
               </ResponsiveText>
               {/* <ResponsiveText
                 margin={[0, 0, 0, 0]}
