@@ -157,6 +157,10 @@ const initialState = {
     loading: false,
     data: [],
   },
+  getNotification: {
+    loading: false,
+    data: [],
+  },
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -212,6 +216,33 @@ export const appReducers = (state = initialState, action) => {
           loading: false,
         },
       };
+      //NOTIFICATION
+      case types.GET_NOTIFICATION_REQUEST:
+        return {
+          ...state,
+          getNotification: {
+            ...state.getNotification,
+            loading: true,
+          },
+        };
+      case types.GET_NOTIFICATION_SUCCESS:
+        return {
+          ...state,
+          getNotification: {
+            ...state.getNotification,
+  
+            data: action.payload,
+            loading: false,
+          },
+        };
+      case types.GET_NOTIFICATION_FAILURE:
+        return {
+          ...state,
+          getNotification: {
+            ...state.getNotification,
+            loading: false,
+          },
+        };
     case types.GET_CUSINE_REQUEST:
       return {
         ...state,
