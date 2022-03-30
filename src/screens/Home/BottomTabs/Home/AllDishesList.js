@@ -255,7 +255,7 @@ export default function AllDishesList({ route, navigation }) {
         break;
 
       case 'More From Restaurant':
-        dispatch(moreFromRestaurant(index, 13));
+        dispatch(moreFromRestaurant(route.params.BranchId));
         break;
       default:
         dispatch(GetDishByCusineId(index, 13, route.params.id));

@@ -20,6 +20,7 @@ const SeeAllButton = props => {
           ? props.navigation.navigate(routeName.ALL_DISHES_LIST, {
             data: props.data,
             title: props.title,
+            BranchId:props.data
           })
           : undefined
 

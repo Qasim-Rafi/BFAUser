@@ -52,6 +52,7 @@ const MoreFromResturant = (props, navigation) => {
           title={'More From Restaurant'}
           navigation={props.navigation}
           action={moreFromRestaurant}
+          data={props.restaurantBranchId}
         />
       </View>
       <View style={styles.yourFavoriteItemsSection}>
@@ -155,7 +156,7 @@ const styles = StyleSheet.create({
   },
   yourFavoriteItemsSection: {
     flex: 1,
-    flexDirection: 'row',
+   // flexDirection: 'row',
     display: 'flex',
     paddingVertical: 10,
     justifyContent: 'center',
