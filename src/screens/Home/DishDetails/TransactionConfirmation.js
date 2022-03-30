@@ -14,7 +14,7 @@ import {globalPath} from '../../../constants/globalPath';
 import {routeName} from '../../../constants/routeName';
 import {hp, wp} from '../../../helpers/Responsiveness';
 import {useSelector, useDispatch} from 'react-redux';
-import {checkoutOrder, getOrders} from '../../../redux/actions/user.actions';
+import {checkoutOrder, getNotificationData, getOrders} from '../../../redux/actions/user.actions';
 import urls from '../../../redux/lib/urls';
 import Api from '../../../redux/lib/api';
 
@@ -44,7 +44,7 @@ export default function TransactionConfirmation({route, navigation}) {
       if (response && response.success == true) {
         setModalVisible(!isModalVisible);
         dispatch(getOrders());
-
+        addNotification()
         // setLoading(false);
       } else {
         // setLoading(false);
@@ -63,10 +63,29 @@ export default function TransactionConfirmation({route, navigation}) {
   const orderConfirmation = async DATA => {
     // dispatch(removeCart(data));
     try {
-      const res = await Api.post(urls.ORDER_CONFIRMATION, DATA);
+      const res = await Api.post(urls.ORDER_CONFIRMATION, DATA,false);
       console.log('res', res);
       if (res && res.success == true) {
         toggleModal();
+      } else {
+      }
+    } catch (error) {}
+  };
+  const addNotification = async DATA => {
+    // dispatch(removeCart(data));
+    let formdata = new FormData();
+    formdata.append("NotificationType", 'Order');
+    formdata.append("Remarks", 'Order submited');
+    formdata.append("SourceId", route.params.obj.orderId);
+    formdata.append("Seen", true);
+    formdata.append("UserId", route.params.obj.userId);
+
+
+    try {
+      const res = await Api.post(urls.ADD_NOTIFICATIONS, formdata,true);
+      console.log('res', res);
+      if (res && res.success == true) {
+        dispatch(getNotificationData())
       } else {
       }
     } catch (error) {}
