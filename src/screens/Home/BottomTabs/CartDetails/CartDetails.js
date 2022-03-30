@@ -904,8 +904,9 @@ const CartDetails = ({ navigation }) => {
       </RNModal>
       <View
         style={{
-          flex: 0.1,
-          alignItems: 'center',
+          flex: 0.08,
+          padding:6,
+          // alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: colors.black2,
         }}>
