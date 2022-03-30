@@ -51,6 +51,7 @@ import {
   moreFromRestaurant,
   getOrders,
   GetUserRandomiserSetting,
+  getNotificationData,
 } from '../../../../redux/actions/user.actions';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
@@ -124,6 +125,9 @@ const Home = ({navigation}) => {
 
     dispatch(getOrders());
     dispatch(GetUserRandomiserSetting());
+     setInterval(() => {
+      dispatch(getNotificationData());
+    }, 5000);
   }, []);
 
   return (

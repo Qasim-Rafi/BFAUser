@@ -93,11 +93,7 @@ const CartDetails = ({ navigation }) => {
     }
   });
   React.useEffect( () => {
-    // setInterval(() => {
-    //   dispatch(getOrders());
-    // }, 2000);
-    
-
+   
     setRandom(SharedData.state.data);
     let sum = cartList.reduce((a, c) => {
       return a + c.price * c.quantity;
