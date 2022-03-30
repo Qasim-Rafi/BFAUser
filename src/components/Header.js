@@ -92,7 +92,7 @@ const Header = ({
               navigation.navigate(routeName.NOTIFICATION_SCREEN);
             }}>
               {
-                       NotificationData.filter(A => A.seen == false).length===0?null:
+               NotificationData.filter(A => A.seen == false).length===0?null:
             <View style={{ position: 'absolute', backgroundColor: colors.red, width: 15, height: 15, borderRadius: 10, zIndex: 1, top: -5, left: 14 }}>
               
           
@@ -100,9 +100,7 @@ const Header = ({
                   {
                     NotificationData.filter(A => A.seen == false).length
                   }
-
                 </Text>
-              
             </View>
 }
             <Icon
