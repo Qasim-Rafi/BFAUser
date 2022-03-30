@@ -100,7 +100,7 @@ const JobsList = props => {
                         flex: 1,
                         padding: 5,
                         overflow: 'hidden',
-                        justifyContent: 'flex-end',
+                        justifyContent:url.userAppliedStatus === "Applied" ?'space-between':'flex-end',
                         backgroundColor: 'rgba(0,0,0,1)',
                         priority: FastImage.priority.high,
 
@@ -112,6 +112,9 @@ const JobsList = props => {
                       {/* source={{uri: url.fullPath}}> */}
 
                       {url.userAppliedStatus === "Applied" ?
+
+                   
+
                         <LinearGradient  start={{ x: -1, y: 0.9 }} end={{ x: 1, y: 0 }} colors={[colors.yellow, colors.black, colors.yellow]} style={styles.linearGradient}>
                         <Text
                         style={{ color:colors.white,fontSize:10,padding:5,textAlign:'center'}}
@@ -191,7 +194,7 @@ const styles = StyleSheet.create({
   },
   linearGradient: {
     borderRadius: 5,
-    bottom:hp(11),
+    // bottom:hp(11),
     width:wp(29),
     alignContent:'center',
     alignSelf:'center',
