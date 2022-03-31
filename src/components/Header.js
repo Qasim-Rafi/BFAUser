@@ -136,7 +136,7 @@ const Header = ({
                     fontSize: 10,
                     color: colors.white,
                   }}>
-                  {NotificationData.filter(A => A.seen == true).length}
+                  {NotificationData.filter(A => A.seen == false).length}
                 </Text>
               </View>
             )}

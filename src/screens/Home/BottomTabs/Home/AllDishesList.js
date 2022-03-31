@@ -81,7 +81,7 @@ export default function AllDishesList({ route, navigation }) {
               : title == 'Promotions'
                 ? state.appReducers.promotions.loading
                 : title == 'More From Restaurant'
-                  ? state.appReducers.moreFromRest.data
+                  ? state.appReducers.moreFromRest.loading
                   : state.appReducers.getdishbycusineid.refreshing,
   );
   React.useEffect(() => {
@@ -255,7 +255,7 @@ export default function AllDishesList({ route, navigation }) {
         break;
 
       case 'More From Restaurant':
-        dispatch(moreFromRestaurant(route.params.BranchId));
+       // dispatch(moreFromRestaurant(route.params.BranchId));
         break;
       default:
         dispatch(GetDishByCusineId(index, 13, route.params.id));

@@ -148,7 +148,7 @@ const Home = ({navigation}) => {
         <View style={styles.advertisementBanner}>
           <AdvertisementBanner navigation={navigation} />
         </View>
-        <ScrollView horizontal={true} style={styles.bfaPartnerContainer}>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.bfaPartnerContainer}>
           <BfaPartner navigation={navigation} />
         </ScrollView>
 
