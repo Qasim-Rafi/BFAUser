@@ -15,28 +15,28 @@ import {
   SafeAreaView,
 } from 'react-native';
 import DropDown from '../../../components/CustomizeDropdown';
-import { useState } from 'react';
-import { hp, wp } from '../../../helpers/Responsiveness';
+import {useState} from 'react';
+import {hp, wp} from '../../../helpers/Responsiveness';
 import Icon from '../../../components/Icon';
 import Input from '../../../components/Input';
 import RnButton from '../../../components/RnButton';
 import ResponsiveText from '../../../components/RnText';
-import { globalPath } from '../../../constants/globalPath';
-import { Spacing } from '../../../constants/spacingScale';
+import {globalPath} from '../../../constants/globalPath';
+import {Spacing} from '../../../constants/spacingScale';
 import Line from '../../../components/Line';
-import { routeName } from '../../../constants/routeName';
-import { colors } from '../../../constants/colorsPallet';
+import {routeName} from '../../../constants/routeName';
+import {colors} from '../../../constants/colorsPallet';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import FlashMessage, {
   showMessage,
   hideMessage,
 } from 'react-native-flash-message';
-import { registerUser } from '../../../redux/actions/user.actions';
-import { useDispatch, useSelector } from 'react-redux';
-import { color } from 'react-native-reanimated';
+import {registerUser} from '../../../redux/actions/user.actions';
+import {useDispatch, useSelector} from 'react-redux';
+import {color} from 'react-native-reanimated';
 import Api from '../../../redux/lib/api';
 import urls from '../../../redux/lib/urls';
-export default function Signup({ navigation }) {
+export default function Signup({navigation}) {
   const dropdownRef = React.useRef(null);
   const dispatch = useDispatch();
   const [firstName, setFirstName] = useState('');
@@ -48,12 +48,12 @@ export default function Signup({ navigation }) {
   const [password, setPassword] = useState('');
   const [Address, setAddress] = useState('');
   const [gender, setgender] = useState('');
-  const [number, onChangeNumber] = React.useState("+973");
+  const [number, onChangeNumber] = React.useState('+973');
   const [confirmPassword, setConfirmPassword] = useState();
   const Gender = [
-    { lable: 'Gender', icon: require('../../../assets/icons/signupgender.png') },
-    { lable: 'Male', icon: require('../../../assets/icons/male.png') },
-    { lable: 'Female', icon: require('../../../assets/icons/female.png') },
+    {lable: 'Gender', icon: require('../../../assets/icons/signupgender.png')},
+    {lable: 'Male', icon: require('../../../assets/icons/male.png')},
+    {lable: 'Female', icon: require('../../../assets/icons/female.png')},
   ];
 
   // const signUpResponse = useSelector(state => state.)
@@ -112,28 +112,28 @@ export default function Signup({ navigation }) {
         description: 'First name is Required',
         duration: 3000,
         type: 'danger',
-        icon: { icon: 'auto', position: 'left' },
+        icon: {icon: 'auto', position: 'left'},
       });
     } else if (lastName === '') {
       dropdownRef.current.showMessage({
         message: 'Error',
         description: 'Last name is Required',
         type: 'danger',
-        icon: { icon: 'auto', position: 'left' },
+        icon: {icon: 'auto', position: 'left'},
       });
     } else if (userName === '') {
       dropdownRef.current.showMessage({
         message: 'Error',
         description: 'User name is Required',
         type: 'danger',
-        icon: { icon: 'auto', position: 'left' },
+        icon: {icon: 'auto', position: 'left'},
       });
     } else if (email === '') {
       dropdownRef.current.showMessage({
         message: 'Error',
         description: 'Email is Required',
         type: 'danger',
-        icon: { icon: 'auto', position: 'left' },
+        icon: {icon: 'auto', position: 'left'},
       });
     }
     // else if (phoneNum === '') {
@@ -143,34 +143,34 @@ export default function Signup({ navigation }) {
     //     type: 'danger',
     //     icon: {icon: 'auto', position: 'left'},
     //   });
-    // } 
+    // }
     else if (CellphoneNum === '') {
       dropdownRef.current.showMessage({
         message: 'Error',
         description: 'CellPhone is Required',
         type: 'danger',
-        icon: { icon: 'auto', position: 'left' },
+        icon: {icon: 'auto', position: 'left'},
       });
     } else if (Address === '') {
       dropdownRef.current.showMessage({
         message: 'Error',
         description: 'Address is Required',
         type: 'danger',
-        icon: { icon: 'auto', position: 'left' },
+        icon: {icon: 'auto', position: 'left'},
       });
     } else if (password === '') {
       dropdownRef.current.showMessage({
         message: 'Error',
         description: 'Password is Required',
         type: 'danger',
-        icon: { icon: 'auto', position: 'left' },
+        icon: {icon: 'auto', position: 'left'},
       });
     } else if (password.length < 8) {
       dropdownRef.current.showMessage({
         message: 'Error',
         description: 'Password Length should be greater then 8',
         type: 'danger',
-        icon: { icon: 'auto', position: 'left' },
+        icon: {icon: 'auto', position: 'left'},
       });
     }
     // else if (confirmPassword === '') {
@@ -194,7 +194,7 @@ export default function Signup({ navigation }) {
         message: 'Error',
         description: 'Invalid Email',
         type: 'danger',
-        icon: { icon: 'auto', position: 'left' },
+        icon: {icon: 'auto', position: 'left'},
       });
     } else {
       var obj = {
@@ -205,16 +205,16 @@ export default function Signup({ navigation }) {
         userTypeId: 3,
         restaurantId: 11,
         updatebyId: 0,
-        updatedDateTime: `${new Date()}`,
+        // updatedDateTime: `${new Date()}`,
         areaId: 1,
-        gender: gender=='Gender'?'':gender,
-        dateofBirth: date,
-        contactNumber: phoneNum,
+        //  gender: gender=='Gender'?'':gender,
+        // dateofBirth: date,
+        //contactNumber: phoneNum,
         CellPhone: '+673' + CellphoneNum,
         Address: Address,
       };
-      console.log(obj)
-     dispatch(registerUser(obj, navigation));
+      console.log(obj);
+      dispatch(registerUser(obj, navigation));
       // dispatch(registerUser({
       //   "username": "alii",
       //   "email": "uaa@gmail.com",
@@ -232,14 +232,14 @@ export default function Signup({ navigation }) {
     }
   };
 
-  const checkExisting = async (type) => {
+  const checkExisting = async type => {
     console.log('checkExisting called');
     setErrorString('');
     var obj = {
-      "userName":type==1? userName:'',
-      "email":type==2? email:'',
-      "phone":type==3? CellphoneNum:''
-    }
+      userName: type == 1 ? userName : '',
+      email: type == 2 ? email : '',
+      phone: type == 3 ? CellphoneNum : '',
+    };
     // {
     //   username: userName,
     //   email: email,
@@ -288,7 +288,7 @@ export default function Signup({ navigation }) {
           description: res.message ? res.message : 'Something went wrong',
           duration: 3000,
           type: 'danger',
-          icon: { icon: 'auto', position: 'left' },
+          icon: {icon: 'auto', position: 'left'},
         });
         setErrorString(res.message);
       }
@@ -299,10 +299,10 @@ export default function Signup({ navigation }) {
 
   return (
     <KeyboardAvoidingView
-      style={{ flex: 1, backgroundColor: colors.black }}
+      style={{flex: 1, backgroundColor: colors.black}}
       behavior={Platform.OS === 'ios' ? 'padding' : null}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <ScrollView style={{ flex: 1 }}>
+        <ScrollView style={{flex: 1}}>
           <View style={styles.screeninfo}>
             <Icon source={globalPath.BALI_ICON} size={60} />
             <ResponsiveText
@@ -318,7 +318,7 @@ export default function Signup({ navigation }) {
           </View>
           <View style={styles.formArea}>
             <View
-              style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <Input
                 width={wp(39)}
                 margin={[0, 0, 15, 0]}
@@ -343,7 +343,7 @@ export default function Signup({ navigation }) {
               margin={[0, 0, 15, 0]}
               iconMargin={[0, 10, 0, 0]}
               placeholder="User Name"
-              autoCapitalize={"none"}
+              autoCapitalize={'none'}
               onChnageText={text => setuserName(text)}
               onBlur={() => checkExisting(1)}
               leftIcon={globalPath.MALE_LOGO}
@@ -361,7 +361,7 @@ export default function Signup({ navigation }) {
               padding={[0, 0, 0, 25]}
               iconMargin={[0, 10, 0, 0]}
               placeholder="Email"
-              autoCapitalize={"none"}
+              autoCapitalize={'none'}
               onChnageText={text => setEmail(text.trim())}
               onBlur={() => checkExisting(2)}
               leftIcon={globalPath.EMAIL_LOGO}
@@ -385,7 +385,7 @@ export default function Signup({ navigation }) {
               iconMargin={[0, 10, 0, 0]}
               placeholder="000-0000(Required)"
               countryCode="+673 "
-              keyboardType={"numeric"}
+              keyboardType={'numeric'}
               leftIcon={globalPath.SignUp_Phone_ICON}
               iconSize={hp(2.5)}
               onBlur={() => checkExisting(3)}
@@ -399,17 +399,16 @@ export default function Signup({ navigation }) {
               // countryCode="+92"
               leftIcon={globalPath.ADDRESS_LOGO}
               iconSize={hp(3)}
-             // onPressOut={() => checkExisting()}
+              // onPressOut={() => checkExisting()}
             />
             <View
-              style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <Input
                 width={wp(39)}
                 margin={[0, 0, 15, 0]}
                 padding={[0, 0, 0, 25]}
                 onChnageText={text => setFirstName(text)}
                 iconMargin={[0, 10, 0, 0]}
-
                 placeholder="State"
                 leftIcon={globalPath.State_ICON}
               />
@@ -417,16 +416,15 @@ export default function Signup({ navigation }) {
                 width={wp(39)}
                 onChnageText={text => setLastName(text)}
                 maxlength={5}
-                keyboardType={"numeric"}
+                keyboardType={'numeric'}
                 margin={[0, 0, 15, 0]}
                 padding={[0, 0, 0, 15]}
                 iconMargin={[0, 10, 0, 0]}
                 placeholder="Postcode"
                 leftIcon={globalPath.ZIP_ICON}
               />
-
             </View>
-            <View
+            {/* <View
               style={{ flexDirection: 'row', justifyContent: 'space-between' ,top:-15 }}>
               <DropDown
                 data={Gender}
@@ -450,7 +448,7 @@ export default function Signup({ navigation }) {
                  placeholder={date == null ? 'Date of birth' : dateFormat(date)}
                 />
               </TouchableOpacity>
-            </View>
+            </View> */}
             {show && (
               <DateTimePicker
                 // testID="dateTimePicker"
@@ -465,7 +463,7 @@ export default function Signup({ navigation }) {
             <RnButton
               onPress={() => validation()}
               fontFamily="bold"
-              margin={[-7, 0]}
+              margin={[9, 0]}
               textColor={colors.black}
               title="SIGN UP "
             />
@@ -475,7 +473,7 @@ export default function Signup({ navigation }) {
             <View style={styles.footer}>
               {/* <Icon size={wp(8)}  margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
               <ResponsiveText margin={[2, 10]} color={colors.white}>
-                Already have  an account ? {' '}
+                Already have an account ?{' '}
                 <ResponsiveText
                   fontFamily="Bold"
                   color={colors.yellow}
@@ -538,6 +536,6 @@ const styles = StyleSheet.create({
     margin: 15,
     borderWidth: 1,
     padding: 17,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
 });

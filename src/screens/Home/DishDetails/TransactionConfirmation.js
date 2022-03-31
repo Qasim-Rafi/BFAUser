@@ -77,7 +77,7 @@ export default function TransactionConfirmation({route, navigation}) {
     formdata.append("NotificationType", 'Order');
     formdata.append("Remarks", 'Order submited');
     formdata.append("SourceId", route.params.obj.orderId);
-    formdata.append("Seen", false);
+    // formdata.append("Seen", false);
     formdata.append("UserId", route.params.obj.userId);
 
 
