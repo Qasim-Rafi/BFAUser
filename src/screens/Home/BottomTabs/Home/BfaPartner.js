@@ -103,7 +103,7 @@ const BfaPartner = ({props}) => {
             }}
             // source={url}
 
-            size={wp(14)}
+            size={wp(13.8)}
             borderRadius={5}
           />
         </TouchableOpacity>
@@ -121,7 +121,7 @@ const BfaPartner = ({props}) => {
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
-            paddingLeft: 10,
+            // paddingLeft: 10,
           }}
           onPress={() => {
             if (title === 'Less') {
@@ -169,7 +169,7 @@ const BfaPartner = ({props}) => {
     );
   };
   return (
-    <View style={{flex:1,backgroundColor: colors.black3}}>
+    <View style={{flex:1,backgroundColor: colors.black3,width:wp(99),paddingRight:wp(5)}}>
       {images.length > 0 ? (
         <FlatList
           data={title === 'More' ? lessImages : images}
@@ -256,6 +256,7 @@ export default BfaPartner;
 const styles = StyleSheet.create({
   bfaPartnerHeaderSection: {
     paddingTop: 5,
+    paddingRight:10,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
