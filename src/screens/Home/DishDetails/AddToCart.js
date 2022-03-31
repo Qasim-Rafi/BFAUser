@@ -52,6 +52,7 @@ export default function AddToCart({route, navigation}) {
   const [text, setText] = useState('');
   const [extraCheese, setExtrachess] = useState([]);
   const [linkedItem, setlinkedItem] = useState([]);
+  const [SelectedDrinks, setSelectedDrinks] = useState([]);
 
   const [dish, addDish] = React.useState(route.params.dish);
   React.useEffect(() => {
@@ -59,17 +60,26 @@ export default function AddToCart({route, navigation}) {
     // var sumoflinedItems = linkedItem.reduce((a, c) => {
     //   return a + c.price;
     // }, 0);
-    var sumofExtra = extraCheese.reduce((a, c) => {
-      return a + c.price;
-    }, 0);
-
-    updateTotal((dishPrice + sumofExtra )* count );
-  }, [count,extraCheese.length]);
+    PriceCalculations()
+  
+  }, [count,extraCheese.length,SelectedDrinks.length]);
   const Drinks = value => {
     setSelecteddrinks(value);
     console.log('Idddddddddd:', value);
   };
+ 
+  const PriceCalculations=()=>{
+    var sumofExtra = extraCheese.reduce((a, c) => {
+      return a + c.price * c.quantity;
+    }, 0);
+    var sumofDrinks = SelectedDrinks.reduce((a, c) => {
+      return a + (c.price * c.quantity);
+    }, 0);
+    console.log('sum of extra',sumofExtra);
+    console.log('sumofDrinks',sumofDrinks);
 
+    updateTotal((dishPrice  * count)+ sumofExtra +sumofDrinks);
+  }
   // const data = () => [{
   //   "id": 0,
   //   customerId: 10,
@@ -85,27 +95,93 @@ export default function AddToCart({route, navigation}) {
   //   // price: '8.00',
   //   // url: require('../../../assets/fake_Images/cart-1.png'),
   // }];
-  const ExtraChees = (item, index) => {
+  const AddDrinks = (item, index) => {
     //extraCheese.push(item)
-    if (extraCheese.some(o => o.id === item.id)) {
-      setExtrachess(extraCheese.filter(i => i.id !== item.id));
-      var sumofExtra = extraCheese
-        .filter(i => i.id !== item.id)
-        .reduce((a, c) => {
-          return a + c.price;
-        }, 0);
+    dish.restaurantSoftDrinksList[index].quantity=1
+  
+    if (SelectedDrinks.some(o => o.id === item.id)) {
+      setSelectedDrinks(SelectedDrinks.filter(i => i.id !== item.id));
+      delete dish.restaurantSoftDrinksList[index].quantity;
+      // var sumofDrinks = SelectedDrinks
+      //   .filter(i => i.id !== item.id)
+      //   .reduce((a, c) => {
+      //     return a + (c.price * c.quantity);
+      //   }, 0);
 
       // console.log('removeeee',extraCheese.filter(i => i.id !== item.id));
     } else {
-      extraCheese.push(item);
-      var sumofExtra = extraCheese.reduce((a, c) => {
-        return a + c.price;
-      }, 0);
+      SelectedDrinks.push(dish.restaurantSoftDrinksList[index]);
+      // var sumofDrinks = SelectedDrinks.reduce((a, c) => {
+      //   return a + (c.price * c.quantity);
+      // }, 0);
     }
-    console.log('Extraaaaaaa', extraCheese);
-    updateTotal(dishPrice * count + sumofExtra);
-  };
+    // updateTotal(total + sumofDrinks);
+  PriceCalculations()
 
+     console.log('SelectedDrinks', SelectedDrinks);
+  };
+ const UpdateDrinksQ=(index,type)=>{
+   if(type=='inc'){
+    //  extraCheese[index].quantity=extraCheese[index].quantity+1;
+    dish.restaurantSoftDrinksList[index].quantity=dish.restaurantSoftDrinksList[index].quantity+1
+    addDish(dish)
+    // console.log(extraCheese[index].quantity);
+   }
+   else if(type=='dec'){
+    // extraCheese[index].quantity=extraCheese[index].quantity>1?extraCheese[index].quantity -1 :1;
+    dish.restaurantSoftDrinksList[index].quantity=dish.restaurantSoftDrinksList[index].quantity>1?dish.restaurantSoftDrinksList[index].quantity -1:1
+   }
+  //  var sumofDrinks = SelectedDrinks.reduce((a, c) => {
+  //   return a + (c.price * c.quantity);
+  // }, 0);
+  // updateTotal(total + sumofDrinks);
+  PriceCalculations()
+
+ }
+  const ExtraChees = (item, index) => {
+    //extraCheese.push(item)
+    dish.restaurantDishExtraItemList[index].quantity=1
+  
+    if (extraCheese.some(o => o.id === item.id)) {
+      setExtrachess(extraCheese.filter(i => i.id !== item.id));
+      delete dish.restaurantDishExtraItemList[index].quantity;
+      // var sumofExtra = extraCheese
+      //   .filter(i => i.id !== item.id)
+      //   .reduce((a, c) => {
+      //     return a + (c.price * c.quantity);
+      //   }, 0);
+
+      // console.log('removeeee',extraCheese.filter(i => i.id !== item.id));
+    } else {
+      extraCheese.push(dish.restaurantDishExtraItemList[index]);
+      // var sumofExtra = extraCheese.reduce((a, c) => {
+      //   return a + (c.price * c.quantity);
+      // }, 0);
+    }
+    // updateTotal(total + sumofExtra);
+  PriceCalculations()
+
+    // console.log('Extraaaaaaa', sumofExtra);
+  };
+ const UpdateExtra=(index,type)=>{
+   if(type=='inc'){
+    //  extraCheese[index].quantity=extraCheese[index].quantity+1;
+    dish.restaurantDishExtraItemList[index].quantity=dish.restaurantDishExtraItemList[index].quantity+1
+    addDish(dish)
+    // console.log(extraCheese[index].quantity);
+   }
+   else if(type=='dec'){
+    // extraCheese[index].quantity=extraCheese[index].quantity>1?extraCheese[index].quantity -1 :1;
+    dish.restaurantDishExtraItemList[index].quantity=dish.restaurantDishExtraItemList[index].quantity>1?dish.restaurantDishExtraItemList[index].quantity -1:1
+   }
+  //  var sumofExtra = extraCheese.reduce((a, c) => {
+  //   return a + (c.price * c.quantity);
+  // }, 0);
+  // updateTotal(total + sumofExtra);
+  PriceCalculations()
+
+
+ }
   const LinkedItem = (item, index) => {
     //extraCheese.push(item)
     if (linkedItem.some(o => o.dishLinkedItemo === item.dishLinkedItemId)) {
@@ -271,9 +347,12 @@ export default function AddToCart({route, navigation}) {
             </ResponsiveText>
           </View>
           <AddToCartDetails
-            data={route.params.dish}
+            data={dish}
             ExtraChees={ExtraChees}
             SelectedDrinks={Drinks}
+            UpdateExtra={UpdateExtra}
+            AddDrinks={AddDrinks}
+            UpdateDrinksQ={UpdateDrinksQ}
           />
           {route.params.dish.restaurantDishLinkedItemList?.length > 0 ? (
             <View

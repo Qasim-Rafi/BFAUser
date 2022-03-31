@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {View, Text, Image,TouchableOpacity} from 'react-native';
+import {View, Text, Image,TouchableOpacity, ScrollView} from 'react-native';
 import Header from '../../../../components/Header';
 import {TRANSACTION_HISTORY_FAKE_DATA} from '../../../../constants/mock';
 import {hp, wp} from '../../../../helpers/Responsiveness';
@@ -29,7 +29,7 @@ export default function NotificationList({navigation}) {
        <View style={{ flexDirection: 'row', justifyContent: "space-between",padding:7 }}>
             <TouchableOpacity style={{ backgroundColor:colors.yellow1,paddingVertical:10,paddingHorizontal:10,borderRadius:20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
           </View>
-      <View style={{flex:0.9, margin:20}}>
+      <ScrollView style={{flex:0.9, margin:20}} showsVerticalScrollIndicator={false} >
           <ResponsiveText margin={[0,0,20,0]} color={colors.yellow}size={4.5}>Notifications</ResponsiveText>
       {NotificationData.map((item, index) => {
           return(
@@ -90,7 +90,7 @@ export default function NotificationList({navigation}) {
          
         })
         }
-      </View>
+      </ScrollView>
     </View>
   );
 }
