@@ -35,13 +35,16 @@ import SeeAllButton from '../../../../components/SeeAllButton';
 import { routeName } from '../../../../constants/routeName';
 import { hp, wp } from '../../../../helpers/Responsiveness';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getPromoJobsData } from '../../../../redux/actions/user.actions';
 import { color } from 'react-native-reanimated';
 const JobsList = props => {
+
   const List = useSelector(state => state.appReducers.promoJobs.data);
   const List_Loading = useSelector(state => state.appReducers.promoJobs.loading);
   console.log('Job List: ', List);
   // console.log('Loading: ', List_Loading);
+  
   return (
     <>
       <View style={styles.recommendationHeaderSection}>
@@ -79,6 +82,7 @@ const JobsList = props => {
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           {List.length > 0
             ? List.map((url, index) => {
+              if (index < 4) {
               return (
                 <TouchableOpacity
                   onPress={() =>
@@ -123,7 +127,7 @@ const JobsList = props => {
                         : null}
                       <Text
                         style={{
-                          color: 'white', padding: 3, opacity: 0.7,
+                          color: 'white', padding: 3, opacity: 1,
                           backgroundColor: 'black', borderRadius: 7,
                           textAlign: 'center', fontWeight: '600', fontSize: 8.5
                         }}
@@ -147,6 +151,7 @@ const JobsList = props => {
                   </View>
                 </TouchableOpacity>
               );
+                    }
             })
             : undefined}
         </ScrollView>
