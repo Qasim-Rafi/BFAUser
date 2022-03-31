@@ -37,6 +37,7 @@ import { color } from 'react-native-reanimated';
 import { getFavorite } from '../../../../redux/actions/user.actions';
 
 const YourFavourite = props => {
+  const profileData = useSelector(state => state.appReducers.profileData.data);
   const favData = useSelector(state => state.appReducers.favorite.data,)
   const loading = useSelector(state => state.appReducers.favorite.refreshing)
   const dispatch = useDispatch();

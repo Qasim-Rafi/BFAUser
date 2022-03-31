@@ -36,10 +36,6 @@ const NewsFeed = props => {
     dispatch(getPromoNewsData());
     console.log('News: ', NewsData);
   },[]);
- 
- 
-
-  
   return (
     <View style={{backgroundColor: colors.black3, flex: 1}}>
       <View

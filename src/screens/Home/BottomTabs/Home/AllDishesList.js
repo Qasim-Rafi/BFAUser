@@ -137,10 +137,10 @@ export default function AllDishesList({ route, navigation }) {
           {title == "Brunei Food Awards" ? (
             <Text
               style={{
-                top: hp(1), borderTopRightRadius: 15,
+               left:-5, borderTopRightRadius: 15,
                 opacity: 1, alignSelf: 'flex-start',
-                color: 'white', padding: 2,
-                backgroundColor: colors.black,
+                color: 'black', padding: 2,
+                backgroundColor: colors.yellow,
                 fontWeight: '600', fontSize: 8.5
               }}
             >

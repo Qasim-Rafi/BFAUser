@@ -109,10 +109,11 @@ const More = ({ route, navigation }) => {
               </ResponsiveText>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => navigation.navigate(routeName.ALL_DISHES_LIST, {
-                data: [],
-                title: "PG's Favourites",
-              })}
+             onPress={() => navigation.navigate(routeName.MYWHITLIST)}
+              // onPress={() => navigation.navigate(routeName.ALL_DISHES_LIST, {
+              //   data: [],
+              //   title: "PG's Favourites",
+              // })}
               style={{ backgroundColor: colors.black2, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
               <Icon size={20} source={globalPath.HEART} />
               <ResponsiveText margin={[0, 0, 0, 10]} size={3.5} color={colors.grey}>

@@ -44,10 +44,13 @@ const JobListing = ({ navigation ,route}) => {
                                 <View style={{ backgroundColor: colors.black2, height: hp(10), borderRadius: 5, marginTop: 10, flexDirection: 'row' }}>
                                     <View style={{ marginTop: '2%', marginLeft: '2%', }}><Icon source={{ uri: item.fullPath }} borderRadius={5} size={65} /></View>
                                     <View style={{ marginTop: '2%', marginLeft: '2%' }}>
-                                        <View >
+                                        <View  style={{flexDirection:'row',justifyContent:"space-between"}}>
                                             <ResponsiveText color={colors.white}>{item.jobTitle}</ResponsiveText>
+                                            <Text style={{ fontWeight: '800', color: colors.black,backgroundColor:colors.yellow1,borderRadius:5,alignSelf:'flex-end',left:wp(10) }}>
+                                                    {item.userAppliedStatus === "Applied" ? 'Already Applied' : undefined}
+                                                </Text>
                                         </View>
-                                        <View style={{ flexDirection: 'row' }}>
+                                        <View style={{ flexDirection: 'row',justifyContent:'space-between' }}>
                                             <ResponsiveText size={2.8} color={colors.yellow}>{item.restuarantName}</ResponsiveText>
                                             <ResponsiveText size={2.8} margin={[0, 0, 0, 5]} color={colors.grey}>{item.areaName}</ResponsiveText>
                                         </View>
@@ -56,13 +59,9 @@ const JobListing = ({ navigation ,route}) => {
                                                 <ResponsiveText size={2.8} color={colors.grey}>Date:</ResponsiveText>
                                                 <ResponsiveText size={2.8} color={colors.white}>{item.postedOn}</ResponsiveText>
                                             </View>
-                                            <View style={{backgroundColor:colors.yellow,borderRadius:5,bottom:hp(6),left:wp(35)}}>
-                                            <Text style={{ fontWeight: '800', color: colors.white,  }}>
-                                                    {item.userAppliedStatus === "Applied" ? 'Already Applied' : undefined}
-                                                </Text>
-                                            </View>
+                                         
                                            
-                                            <View style={{ marginLeft: 5, flexDirection: 'row' }}>
+                                            <View style={{  flexDirection: 'row' }}>
                                                
                                                 <ResponsiveText size={2.8} color={colors.grey}>Experience : {item.experience}</ResponsiveText>
                                             </View>

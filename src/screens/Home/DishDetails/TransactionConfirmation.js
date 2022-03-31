@@ -109,7 +109,7 @@ export default function TransactionConfirmation({route, navigation}) {
           justifyContent: 'center',
         }}>
         <Header
-          iconPath={globalPath.BACK_ARROW}
+          // iconPath={globalPath.BACK_ARROW}
           title={'Check out'}
           navigation={navigation}
         />
