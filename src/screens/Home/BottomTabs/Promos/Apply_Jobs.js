@@ -14,7 +14,9 @@ import { globalPath } from '../../../../constants/globalPath';
 import { hp, wp } from '../../../../helpers/Responsiveness';
 import Icon from '../../../../components/Icon';
 import { useSelector } from 'react-redux';
-
+import Api from '../../../../redux/lib/api';
+import urls from '../../../../redux/lib/urls';
+import { getPromoJobsData } from '../../../../redux/actions/user.actions';
 import FlashMessage from 'react-native-flash-message';
 import DocumentPicker from 'react-native-document-picker';
 import { set } from 'react-native-reanimated';
@@ -35,15 +37,17 @@ import { useDispatch } from 'react-redux';
 // Pick a single file
 export default function Apply_Jobs({ navigation, route }) {
   console.log(':ressssss::', route.params.data);
+
   const [data, setdata] = React.useState(route.params.data);
   const [coverletter, setcoverletter] = React.useState('');
   const dropdownRef = React.useRef(null);
   const [file, setFile] = React.useState(null);
+  const [loader, setLoader] = React.useState(false);
   const dispatch = useDispatch();
   const loading = useSelector(
     state => state.appReducers.applyForJob.loading,
   );
-  const validation = () => {
+  const validation = async()  => {
     if (coverletter === '') {
       dropdownRef.current.showMessage({
         message: 'Error',
@@ -66,9 +70,23 @@ export default function Apply_Jobs({ navigation, route }) {
       formdata.append('restaurantBranchId', route.params.data.restaurantBranchId);
       formdata.append('id', '0');
       formdata.append('createdById', '0');
-      dispatch(applyForJob(formdata, navigation));
+      // dispatch(applyForJob(formdata, navigation));
+      // dispatch(getPromoJobsData(1, 4));
+      try {
+        setLoader(true)
+        const res = await Api.post(urls.APPLY_FOR_JOBS ,formdata,true);
+        console.log('jobsssApplied', res);
+        if (res && res.success == true) {
+          dispatch(getPromoJobsData(1,4))
+          setLoader(false)
+          navigation.goBack();
+        } else {
+          setLoader(false)
+        }
+      } catch (error) {}
     }
   };
+
   const Pickfile = async () => {
     try {
       const res = await DocumentPicker.pick({
@@ -219,7 +237,7 @@ export default function Apply_Jobs({ navigation, route }) {
 
 
         <TouchableOpacity style={[styles.signin,{backgroundColor: data.userAppliedStatus === "Applied" ? colors.grey6 : colors.yellow}]} disabled={data.userAppliedStatus === "Applied" ? true : false} onPress={() => validation()}>
-          {loading == true ?
+          {loader == true ?
             <  SkypeIndicator count={5} color={colors.black} size={30} />
             :
             <Text style={{fontWeight:'800',color:colors.black,top:15}}>
