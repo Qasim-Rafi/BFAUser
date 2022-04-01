@@ -352,6 +352,7 @@ export default function Signup({navigation}) {
               onChnageText={text => setPassword(text.trim())}
               secureTextEntry
               leftIcon={globalPath.LOCK_LOGO}
+              autoCapitalize={'none'}
             />
             <Input
               padding={[0, 0, 0, 25]}

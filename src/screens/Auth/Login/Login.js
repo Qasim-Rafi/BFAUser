@@ -186,6 +186,8 @@ export default function Login({ navigation }) {
               onChnageText={text => setPassword(text)}
               secureTextEntry={true}
               leftIcon={globalPath.LOCK_LOGO}
+              // keyboardType={Platform.OS == 'android'? 'visible-password' : 'default' }
+              autoCapitalize={'none'}
             />
             <View style={styles.forgotPasswordContainer}>
               {/* <Line color={colors.grey5} width={wp(20)} />

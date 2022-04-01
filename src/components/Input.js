@@ -93,10 +93,11 @@ const Input = ({
           // value={value && value}
           {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
           editable={props.editable}
+          caretHidden={false}
           // secureTextEntry={false}
-          keyboardType={keyboardType}
+          keyboardType={ !visible ? 'visible-password' : keyboardType}
           maxLength={maxlength}
-          autoCapitalize={autoCapitalize}
+          autoCapitalize={autoCapitalize ? autoCapitalize : 'sentences'}
           style={[
             fontSize && { fontSize },
             styles.Input,
