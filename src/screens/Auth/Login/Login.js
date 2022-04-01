@@ -182,7 +182,7 @@ export default function Login({ navigation }) {
               padding={[0, 0, 0, 25]}
               iconMargin={[0, 10, 0, 0]}
               placeholder="Password"
-              keyboardType="ascii-capable"
+              // keyboardType="ascii-capable"
               onChnageText={text => setPassword(text)}
               secureTextEntry={true}
               leftIcon={globalPath.LOCK_LOGO}
