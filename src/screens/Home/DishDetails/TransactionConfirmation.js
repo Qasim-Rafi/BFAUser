@@ -28,6 +28,8 @@ export default function TransactionConfirmation({route, navigation}) {
   const [count, changeCount] = useState(40);
   const [data, setData] = useState(route.params.data);
   const [total, addTotal] = useState(0);
+  const [tip, setTip] = useState();
+
   const [pickup, setPickup] = useState(true);
   const dispatch = useDispatch();
 
@@ -88,6 +90,8 @@ export default function TransactionConfirmation({route, navigation}) {
     formdata.append('SourceId', route.params.obj.orderId);
     // formdata.append("Seen", false);
     formdata.append('UserId', route.params.obj.userId);
+    formdata.append('RestaurantBranchId', route.params.obj.restaurantBranchId);
+
 
     try {
       const res = await Api.post(urls.ADD_NOTIFICATIONS, formdata, true);
@@ -98,14 +102,27 @@ export default function TransactionConfirmation({route, navigation}) {
       }
     } catch (error) {}
   };
-  const Calculate = (totl, count) => {
+  const Calculate = (totl) => {
     if (activeTabs === 'tab2') {
-      return totl + count;
+      return  count;
     } else if (activeTabs === 'tab3') {
-      var x = totl * (count / 100);
-      return parseFloat(totl + x).toFixed(2);
+      var x = data.amount * (count / 100);
+      console.log(x);
+      return parseFloat(x).toFixed(2);
     } else {
-      return totl;
+      return 0;
+    }
+  };
+  const totalsum = (totl) => {
+    if (activeTabs === 'tab2') {
+      var x=data.amount+ count
+      return parseFloat(x).toFixed(2);
+    } else if (activeTabs === 'tab3') {
+      var x =data.amount+  data.amount * (count / 100);
+      console.log(x);
+      return parseFloat(x).toFixed(2);
+    } else {
+      return parseFloat(data.amount).toFixed(2);
     }
   };
   return (
@@ -387,7 +404,7 @@ export default function TransactionConfirmation({route, navigation}) {
             }}>
             <ResponsiveText color={colors.white}>Total</ResponsiveText>
             <ResponsiveText color={colors.yellow}>
-              ${data.amount}.00
+              ${parseFloat(data.amount).toFixed(2)}
             </ResponsiveText>
           </View>
           <View
@@ -403,8 +420,8 @@ export default function TransactionConfirmation({route, navigation}) {
             <ResponsiveText color={colors.white}>Tips</ResponsiveText>
             <ResponsiveText color={colors.yellow}>
               {activeTabs === 'tab2' ? '$' : ''}
-              {count}
-              {activeTabs === 'tab3' ? '%' : ''}
+              {Calculate()}
+              {activeTabs === 'tab3' ? '$' : ''}
             </ResponsiveText>
           </View>
           <View
@@ -418,7 +435,7 @@ export default function TransactionConfirmation({route, navigation}) {
             }}>
             <ResponsiveText color={colors.white}>Final</ResponsiveText>
             <ResponsiveText color={colors.yellow}>
-              $ {Calculate(data.amount, count)}
+              $ {totalsum()}
             </ResponsiveText>
           </View>
         </View>

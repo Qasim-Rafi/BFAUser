@@ -47,6 +47,9 @@ export default function Signup({navigation}) {
   const [CellphoneNum, setCellphoneNum] = useState('');
   const [password, setPassword] = useState('');
   const [Address, setAddress] = useState('');
+  const [state, setState] = useState('');
+  const [PostCode, setPostCode] = useState('');
+
   const [gender, setgender] = useState('');
   const [number, onChangeNumber] = React.useState('+973');
   const [confirmPassword, setConfirmPassword] = useState();
@@ -71,6 +74,14 @@ export default function Signup({navigation}) {
   React.useEffect(() => {
     console.log('responseeeeeee', errorString);
     signupResponse ? setErrorString(signupResponse) : null;
+    // signupResponse?
+    // dropdownRef.current.showMessage({
+    //   message: 'Error',
+    //   description: signupResponse,
+    //   type: 'danger',
+    //   icon: {icon: 'auto', position: 'left'},
+    // })
+    // :null
     // loginNetworkErr ? setErrorString(loginNetworkErr.message) : null
   }, [signupResponse]);
 
@@ -198,20 +209,22 @@ export default function Signup({navigation}) {
       });
     } else {
       var obj = {
-        username: userName,
-        email: email,
-        fullName: firstName + ' ' + lastName,
-        password: password,
-        userTypeId: 3,
-        restaurantId: 11,
-        updatebyId: 0,
+        UserName: userName,
+        Email: email,
+        FullName: firstName + ' ' + lastName,
+        Password: password,
+        UserTypeId: 3,
+        // restaurantId: 11,
+        // updatebyId: 0,
         // updatedDateTime: `${new Date()}`,
-        areaId: 1,
+        // areaId: 1,
         //  gender: gender=='Gender'?'':gender,
         // dateofBirth: date,
         //contactNumber: phoneNum,
-        CellPhone: '+673' + CellphoneNum,
+        ContactNumber: '+673' + CellphoneNum,
         Address: Address,
+        State:state,
+        PostalCode:PostCode
       };
       console.log(obj);
       dispatch(registerUser(obj, navigation));
@@ -235,52 +248,35 @@ export default function Signup({navigation}) {
   const checkExisting = async type => {
     console.log('checkExisting called');
     setErrorString('');
+    const expressions = {
+      email: /^\w+([+.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+    };
+    if (!expressions.email.test(email) || email.includes(' ')) {
+      dropdownRef.current.showMessage({
+        message: 'Error',
+        description: 'Invalid Email',
+        type: 'danger',
+        icon: {icon: 'auto', position: 'left'},
+      });
+    return false
+    }
     var obj = {
       userName: type == 1 ? userName : '',
       email: type == 2 ? email : '',
-      phone: type == 3 ? CellphoneNum : '',
+      phone: type == 3 ? '+673' + CellphoneNum : '',
     };
-    // {
-    //   username: userName,
-    //   email: email,
-    //   fullName: 'string',
-    //   address: 'string',
-    //   cellPhone: 'string',
-    //   password: 'string',
-    //   userTypeId: 3,
-    //   restaurantId: 0,
-    //   updatebyId: 0,
-    //   updatedDateTime: 'string',
-    //   areaId: 0,
-    //   gender: 'string',
-    //   dateofBirth: 'string',
-    //   contactNumber: CellphoneNum,
-    //   restaurantBranchId: 0,
-    // };
-    // var obj1 = {
-    //   username: userName,
-    //   email: email,
-    //   fullName: 'string',
-    //   address: 'string',
-    //   cellPhone: 'string',
-    //   password: 'string',
-    //   userTypeId: 0,
-    //   restaurantId: 0,
-    //   updatebyId: 0,
-    //   updatedDateTime: 'string',
-    //   areaId: 0,
-    //   gender: 'string',
-    //   dateofBirth: 'string',
-    //   contactNumber: '7567567',
-    //   restaurantBranchId: 0,
-    // };
-    // console.log('checkExisting obj', obj1);
     try {
       const res = await Api.post(urls.REGISTER_URL_CHECKS, obj);
       console.log('res', res);
       if (res && res.success == true) {
-        // this.props.dispatch(GetUserRandomiserSetting());
         console.log('success = true');
+        showMessage({
+          message: 'Success',
+          description:type == 1 ? 'User Name is valid':type == 2?'Email is valid':type == 3 ?'Contact number is valid':'',
+          duration: 3000,
+          type: 'success',
+          icon: {icon: 'auto', position: 'left'},
+        });
       } else {
         // alert(res.message)
         showMessage({
@@ -407,14 +403,14 @@ export default function Signup({navigation}) {
                 width={wp(39)}
                 margin={[0, 0, 15, 0]}
                 padding={[0, 0, 0, 25]}
-                onChnageText={text => setFirstName(text)}
+                onChnageText={text => setState(text)}
                 iconMargin={[0, 10, 0, 0]}
                 placeholder="State"
                 leftIcon={globalPath.State_ICON}
               />
               <Input
                 width={wp(39)}
-                onChnageText={text => setLastName(text)}
+                onChnageText={text => setPostCode(text)}
                 maxlength={5}
                 keyboardType={'numeric'}
                 margin={[0, 0, 15, 0]}
@@ -473,7 +469,7 @@ export default function Signup({navigation}) {
             <View style={styles.footer}>
               {/* <Icon size={wp(8)}  margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
               <ResponsiveText margin={[2, 10]} color={colors.white}>
-                Already have an account ?{' '}
+                Already have an account?{' '}
                 <ResponsiveText
                   fontFamily="Bold"
                   color={colors.yellow}

@@ -1,38 +1,37 @@
-import React from 'react';
-import {
-  StyleSheet,
-  View,
-  ImageBackground,
-  Platform,
-  Text
-} from 'react-native';
+import React, {useRef} from 'react';
+import {StyleSheet, View, ImageBackground, Platform, Text} from 'react-native';
 import {ScrollView, TouchableOpacity} from 'react-native';
 import {
-    CodeField,
-    Cursor,
-    useBlurOnFulfill,
-    useClearByFocusCell,
-  } from 'react-native-confirmation-code-field';
+  CodeField,
+  Cursor,
+  useBlurOnFulfill,
+  useClearByFocusCell,
+} from 'react-native-confirmation-code-field';
 import {hp, wp} from '../../../helpers/Responsiveness';
 import RnButton from '../../../components/RnButton';
 import ResponsiveText from '../../../components/RnText';
 import {globalPath} from '../../../constants/globalPath';
 import {Spacing} from '../../../constants/spacingScale';
-import { routeName } from '../../../constants/routeName';
-import { StackActions } from '@react-navigation/routers';
+import {routeName} from '../../../constants/routeName';
+import {StackActions} from '@react-navigation/routers';
 
-import { colors } from '../../../constants/colorsPallet';
-import { TextInput } from 'react-native-gesture-handler';
+import {colors} from '../../../constants/colorsPallet';
+import {TextInput} from 'react-native-gesture-handler';
 import Preferences from '../../Home/BottomTabs/More/Preferences';
-import { useDispatch } from 'react-redux';
-import { verifyUser } from '../../../redux/actions/user.actions';
-
+import {useDispatch} from 'react-redux';
+import {verifyUser} from '../../../redux/actions/user.actions';
+import FlashMessage, {
+  showMessage,
+  hideMessage,
+} from 'react-native-flash-message';
 const CELL_COUNT = 6;
 
 export default function VerificationCode({navigation}) {
-  const [userName ,setUserName]=React.useState('');
-  const [password ,setPassword]=React.useState('');
-  const dispatch=useDispatch()
+  const [userName, setUserName] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const dropdownRef = React.useRef(null);
+
+  const dispatch = useDispatch();
   const [value, setValue] = React.useState('');
   const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
@@ -40,15 +39,28 @@ export default function VerificationCode({navigation}) {
     setValue,
   });
 
+  const checkCode = () => {
+    if (value != '000000') {
+      dropdownRef.current.showMessage({
+        message: 'Error',
+        description: 'Enable to verify',
+        duration: 3000,
+        type: 'danger',
+        icon: {icon: 'auto', position: 'left'},
+      });
+    } else {
+      dispatch(verifyUser(0, navigation));
+    }
+  };
   return (
     // <KeyboardAvoidingView
     //   behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     //   keyboardVerticalOffset={hp(-10)}
     //   style={styles.container}>
-    <ScrollView contentContainerStyle={{flexGrow:1}}>
-      <ImageBackground style={styles.container} source={globalPath.BG_IMAGE} >
+    <ScrollView contentContainerStyle={{flexGrow: 1}}>
+      <ImageBackground style={styles.container} source={globalPath.BG_IMAGE}>
         <View style={styles.screeninfo}>
-          <ResponsiveText  color={colors.yellow} fontFamily="Regular" size={8} >
+          <ResponsiveText color={colors.yellow} fontFamily="Regular" size={8}>
             Verification
           </ResponsiveText>
           <ResponsiveText color={colors.white}>
@@ -56,46 +68,59 @@ export default function VerificationCode({navigation}) {
           </ResponsiveText>
         </View>
         <View style={styles.formArea}>
-            <View style={{justifyContent:'center',alignItems:'center',marginBottom:20}}>
-            <ResponsiveText size={4} color={colors.yellow}> Verify your mobile number</ResponsiveText>
-            <ResponsiveText textAlign={'center'} color={colors.white}> A text message with 6 digit code send to Your Mobile number</ResponsiveText>
-            </View>
-          <View >
-          <CodeField
-        ref={ref}
-        {...props}
-        value={value}
-        onChangeText={setValue}
-        cellCount={CELL_COUNT}
-        rootStyle={styles.codeFiledRoot}
-        keyboardType="number-pad"
-        textContentType="oneTimeCode"
-        renderCell={({index, symbol, isFocused}) => (
-          <Text
-            key={index}
-            style={[styles.cell, isFocused && styles.focusCell]}
-            onLayout={getCellOnLayoutHandler(index)}>
-            {symbol || (isFocused ? <Cursor /> : null)}
-          </Text>
-        )}
-      />
-
+          <View
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginBottom: 20,
+            }}>
+            <ResponsiveText size={4} color={colors.yellow}>
+              {' '}
+              Verify your mobile number
+            </ResponsiveText>
+            <ResponsiveText textAlign={'center'} color={colors.white}>
+              {' '}
+              A text message with 6 digit code send to Your Mobile number
+            </ResponsiveText>
           </View>
-        
-          <RnButton onPress={()=>dispatch(verifyUser(0,navigation))} fontFamily='SemiBold'  margin={[20, 0]} title="Continue" />
-         
+          <View>
+            <CodeField
+              ref={ref}
+              {...props}
+              value={value}
+              onChangeText={setValue}
+              cellCount={CELL_COUNT}
+              rootStyle={styles.codeFiledRoot}
+              keyboardType="number-pad"
+              textContentType="oneTimeCode"
+              renderCell={({index, symbol, isFocused}) => (
+                <Text
+                  key={index}
+                  style={[styles.cell, isFocused && styles.focusCell]}
+                  onLayout={getCellOnLayoutHandler(index)}>
+                  {symbol || (isFocused ? <Cursor /> : null)}
+                </Text>
+              )}
+            />
+          </View>
 
-
+          <RnButton
+            onPress={() => checkCode()}
+            fontFamily="SemiBold"
+            margin={[20, 0]}
+            title="Continue"
+          />
         </View>
       </ImageBackground>
-      </ScrollView>
+      <FlashMessage ref={dropdownRef} />
+    </ScrollView>
     // </KeyboardAvoidingView>
   );
 }
 const styles = StyleSheet.create({
   container: {
-    height:hp(100),
-    width:wp(100),
+    height: hp(100),
+    width: wp(100),
     // height: hp(120),
     // justifyContent: 'center',
     // alignItems: 'center',
@@ -141,15 +166,14 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#00000030',
     textAlign: 'center',
-    justifyContent:'center',
-    color:colors.yellow,
-    backgroundColor:colors.black2
-
+    justifyContent: 'center',
+    color: colors.yellow,
+    backgroundColor: colors.black2,
   },
   focusCell: {
-    borderColor:colors.grey1,
-    color:colors.yellow,
+    borderColor: colors.grey1,
+    color: colors.yellow,
     textAlign: 'center',
-    justifyContent:'center',
+    justifyContent: 'center',
   },
 });
