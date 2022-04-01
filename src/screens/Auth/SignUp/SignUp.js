@@ -117,6 +117,7 @@ export default function Signup({navigation}) {
     email: /^\w+([+.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
   };
   const validation = () => {
+    setErrorString('')
     if (firstName === '') {
       dropdownRef.current.showMessage({
         message: 'Error',
