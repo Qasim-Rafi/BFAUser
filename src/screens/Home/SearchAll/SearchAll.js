@@ -733,7 +733,7 @@ export default function SearchAll({navigation}) {
                           {item.restaurentName}
                         </ResponsiveText>
                         <ResponsiveText size={2.2} color={colors.white}>
-                          {item.branchAddress}
+                          {item.branchAlias}
                         </ResponsiveText>
                         <Rating
                           size={2}
