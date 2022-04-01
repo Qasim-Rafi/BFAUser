@@ -6,6 +6,8 @@ export default urls = {
 
   //Auth Urls
   LOGIN_URL: 'api/Auth/login', //Sign in
+  FORGOT_PASSWORD:'api/Users/ChangePasswordCheckUserApp',  // forgot password
+  CHANGE_PASSWORD:'api/Users/ChangeUserPasswordUserApp/',
   REGISTER_URL_CHECKS: 'api/Users/AddUserChecks', //Sign up
   EDIT_PROFILE: 'api/Users/UpdateUser/', //Sign up
   VERIFICATION_CODE: 'api/Users/UpdateUserMobileVerification', // Code verification
@@ -30,8 +32,7 @@ export default urls = {
   // ADD_FAVORITE: 'api/RestaurantDish/UpdateRestaurantDishLiked/',
   REMOVE_fAVOURITE_DISH: 'api/RestaurantDish/UpdateDishUnliked/', //unlike dish
   ADD_FAVORITE_DISH: 'api/RestaurantDish/UpdateRestaurantDishLiked/', //LIKE DISHfav
-  GET_RESTAURANT_DETAIL:
-    'api/RestaurantBranchesAdmin/GetRestaurantdetailforAppAlldata/',
+  GET_RESTAURANT_DETAIL:'api/RestaurantBranchesAdmin/GetRestaurantdetailforAppAlldata/',    //Restaurant detail
   GET_ALL_FAVORITE_RESTAURANT: 'api/PeopleChoice/GetPeopleChoiceLikedAll/1/10',
   ADD_RESTAURANT_FAVORITE: 'api/PeopleChoice/UpdatePeopleChoiceLiked/',
   REMOVE_FAVORITE_RESTAURANT: 'api/PeopleChoice/UpdatePeopleChoiceUnliked',
@@ -77,9 +78,9 @@ export default urls = {
   GET_LOOKUP_MARITAL_STATUS: 'api/Lookups/GetLookUpMarriageStatus',
   AUTO_SUGGESTIONS_ON_SEARCH: 'api/RestaurantDish/SuggestionHomeDashboard/',
   GET_TRANSACTION_HISTORY: 'api/Order/GetUserTransactionHistoryById/',
-  GET_NOTIFICATIONS_ALL: 'api/NotificationPannel/GetNotificationPannelAll',
-  ADD_NOTIFICATIONS: 'api/NotificationPannel/AddNotificationPannel',
-  SEEN_NOTIFICATIONS:'api/NotificationPannel/SeenNotificationforUser'
+  GET_NOTIFICATIONS_ALL: 'api/NotificationPannel/GetNotificationPannelAll',  //get notification
+  ADD_NOTIFICATIONS: 'api/NotificationPannel/AddNotificationPannel',     //  add notification
+  SEEN_NOTIFICATIONS:'api/NotificationPannel/SeenNotificationforUser'   //Seen notification
 
 
 };

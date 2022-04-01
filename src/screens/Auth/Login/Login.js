@@ -190,11 +190,13 @@ export default function Login({ navigation }) {
               autoCapitalize={'none'}
             />
             <View style={styles.forgotPasswordContainer}>
-              {/* <Line color={colors.grey5} width={wp(20)} />
+              <Line color={colors.grey5} width={wp(20)} />
+              <TouchableOpacity onPress={()=>navigation.navigate(routeName.FORGOT_PASSWORD)}>
             <ResponsiveText margin={[0, 10]} color={colors.white}>
               Forgot Password?
             </ResponsiveText>
-            <Line color={colors.grey5} width={wp(20)} /> */}
+            </TouchableOpacity>
+            <Line color={colors.grey5} width={wp(20)} />
             </View>
             <ResponsiveText textAlign='center' margin={[-15, 0, 7, 0]} color={colors.red} fontFamily="Regular" size={3}>
               {errorString}
