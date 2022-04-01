@@ -20,6 +20,7 @@ const More = ({ route, navigation }) => {
   const loading = useSelector(state => state.appReducers.profileData.loading);
   console.log('loading', loading);
   const dispatch = useDispatch();
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
   React.useEffect(() => {
     dispatch(getProfileData());
@@ -52,11 +53,11 @@ const More = ({ route, navigation }) => {
   return (
     <>
 
-      <View style={{ backgroundColor: colors.black3, flex: 1, flexDirection: 'column', justifyContent: 'space-between' }}>
+      <View style={{ backgroundColor: isThemeDark ? colors.black3 : colors.bgWhite, flex: 1, flexDirection: 'column', justifyContent: 'space-between' }}>
 
         <View style={{ flex: 0.05, backgroundColor: colors.yellow, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', paddingVertical: 10 }} >
           <View style={{ flexDirection: 'row', justifyContent: "space-between", flex: .97 }}>
-            <TouchableOpacity style={{ backgroundColor: colors.black, paddingVertical: 10, paddingHorizontal: 10, borderRadius: 20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
+            <TouchableOpacity style={{ backgroundColor: isThemeDark? colors.black: colors.white, paddingVertical: 10, paddingHorizontal: 10, borderRadius: 20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} tintColor={isThemeDark? colors.white: colors.black} /></TouchableOpacity>
           </View>
           <TouchableOpacity onPress={logout}>
 
@@ -98,10 +99,10 @@ const More = ({ route, navigation }) => {
 
         <ScrollView style={{ flex: 0.5 }}>
           <View style={{ margin: 20, }}>
-            <ResponsiveText color={colors.white} size={4} >Profile</ResponsiveText>
+            <ResponsiveText color={isThemeDark? colors.white: colors.black} size={4} >Profile</ResponsiveText>
             <TouchableOpacity
               onPress={() => navigation.navigate(routeName.PROFILE_DISPLAY)}
-              style={{ backgroundColor: colors.black2, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, borderRadius: 7 }} >
+              style={{ backgroundColor: isThemeDark? colors.black2: colors.white, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, borderRadius: 7 }} >
 
               <Icon size={20} source={globalPath.MORE_PROFILE} />
               <ResponsiveText margin={[0, 0, 0, 10]} size={3.5} color={colors.grey}>
@@ -123,7 +124,7 @@ const More = ({ route, navigation }) => {
             <TouchableOpacity
               onPress={() => navigation.navigate(routeName.MY_REVIEWS)}
 
-              style={{ backgroundColor: colors.black2, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
+              style={{ backgroundColor: isThemeDark? colors.black2: colors.white, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
               <Icon size={20} source={globalPath.MORE_REVIEWS} />
               <ResponsiveText margin={[0, 0, 0, 10]} size={3.5} color={colors.grey}>
                 My Reviews
@@ -131,7 +132,7 @@ const More = ({ route, navigation }) => {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => navigation.navigate(routeName.PREFERENCES)}
-              style={{ backgroundColor: colors.black2, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
+              style={{ backgroundColor: isThemeDark? colors.black2: colors.white, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
               <Icon size={20} source={globalPath.PREFERANCES} />
               <ResponsiveText margin={[0, 0, 0, 10]} size={3.5} color={colors.grey}>
                 Food Preference
@@ -139,7 +140,7 @@ const More = ({ route, navigation }) => {
             </TouchableOpacity>
             <TouchableOpacity
               // onPress={()=>navigation.navigate(routeName.)}
-              style={{ backgroundColor: colors.black2, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
+              style={{ backgroundColor: isThemeDark? colors.black2: colors.white, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
               <Icon size={20} source={globalPath.INTERACTIVE} />
               <ResponsiveText margin={[0, 0, 0, 10]} size={3.5} color={colors.grey}>
                 Bali Interactive
@@ -147,7 +148,7 @@ const More = ({ route, navigation }) => {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => navigation.navigate(routeName.JOB_LISTING)}
-              style={{ backgroundColor: colors.black2, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
+              style={{ backgroundColor: isThemeDark? colors.black2: colors.white, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
               <Icon size={20} source={globalPath.JOBS} />
               <ResponsiveText margin={[0, 0, 0, 10]} size={3.5} color={colors.grey}>
                 Jobs Listing
@@ -161,12 +162,13 @@ const More = ({ route, navigation }) => {
                 Inbox
               </ResponsiveText>
             </TouchableOpacity>
-            <ResponsiveText margin={[10, 0, 0, 0]} color={colors.white} size={4} >
+
+            <ResponsiveText margin={[10, 0, 0, 0]} color={isThemeDark? colors.white: colors.black} size={4} >
               Payment information
             </ResponsiveText>
             <TouchableOpacity
               onPress={() => navigation.navigate(routeName.SCAN_QR)}
-              style={{ backgroundColor: colors.black2, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
+              style={{ backgroundColor: isThemeDark? colors.black2: colors.white, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
               <Icon size={20} source={globalPath.QR_SCAN} />
               <ResponsiveText margin={[0, 0, 0, 10]} size={3.5} color={colors.grey}>
                 Scan QR Code
@@ -174,7 +176,7 @@ const More = ({ route, navigation }) => {
             </TouchableOpacity>
             {/* <TouchableOpacity
               onPress={() => navigation.navigate(routeName.ORDER_HISTORY)}
-              style={{ backgroundColor: colors.black2, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
+              style={{ backgroundColor: isThemeDark? colors.black2: colors.white, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
               <Icon size={20} source={globalPath.ORDERS} />
               <ResponsiveText margin={[0, 0, 0, 10]} size={3.5} color={colors.grey}>
                 Orders
@@ -182,7 +184,7 @@ const More = ({ route, navigation }) => {
             </TouchableOpacity> */}
             <TouchableOpacity
               onPress={() => navigation.navigate(routeName.TRANSACTION_HISTORY)}
-              style={{ backgroundColor: colors.black2, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
+              style={{ backgroundColor: isThemeDark? colors.black2: colors.white, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
               <Icon size={20} source={globalPath.MORE_PAYMENT} />
               <ResponsiveText margin={[0, 0, 0, 10]} size={3.5} color={colors.grey}>
                 Payment History
@@ -190,18 +192,18 @@ const More = ({ route, navigation }) => {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => navigation.navigate(routeName.MANAGE_CARDS)}
-              style={{ backgroundColor: colors.black2, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
+              style={{ backgroundColor: isThemeDark? colors.black2: colors.white, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
               <Icon size={20} source={globalPath.CARD_MANAGEMENT} />
               <ResponsiveText margin={[0, 0, 0, 10]} size={3.5} color={colors.grey}>
                 Card Management
               </ResponsiveText>
             </TouchableOpacity>
-            <ResponsiveText margin={[10, 0, 0, 0]} color={colors.white} size={4} >
+            <ResponsiveText margin={[10, 0, 0, 0]} color={isThemeDark? colors.white: colors.black} size={4} >
               Others
             </ResponsiveText>
             <TouchableOpacity
               onPress={() => navigation.navigate(routeName.SETTINGS)}
-              style={{ backgroundColor: colors.black2, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
+              style={{ backgroundColor: isThemeDark? colors.black2: colors.white, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
               <Icon size={20} source={globalPath.SETTINGS} />
               <ResponsiveText margin={[0, 0, 0, 10]} size={3.5} color={colors.grey}>
                 Settings
@@ -209,7 +211,7 @@ const More = ({ route, navigation }) => {
             </TouchableOpacity>
             <TouchableOpacity
               // onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
-              style={{ backgroundColor: colors.black2, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
+              style={{ backgroundColor: isThemeDark? colors.black2: colors.white, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
               <Icon size={20} source={globalPath.FAQ} />
               <ResponsiveText margin={[0, 0, 0, 10]} size={3.5} color={colors.grey}>
                 FAQ
@@ -217,7 +219,7 @@ const More = ({ route, navigation }) => {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => navigation.navigate(routeName.CONTACT_US)}
-              style={{ backgroundColor: colors.black2, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
+              style={{ backgroundColor: isThemeDark? colors.black2: colors.white, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
               <Icon size={20} source={globalPath.CONTACT} />
               <ResponsiveText margin={[0, 0, 0, 10]} size={3.5} color={colors.grey}>
                 Contact Us

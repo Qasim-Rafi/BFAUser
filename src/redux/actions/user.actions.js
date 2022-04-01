@@ -373,6 +373,14 @@ export const getAllReviews = data => {
   };
 };
 
+export const setTheme = data => {
+  console.log('setTheme: ', data);
+  return {
+    type: types.SET_THEME,
+    data: data,
+  }
+}
+
 // //Get User categories actions
 // export const addRUpdateCategory = (params) => {
 //   return {
