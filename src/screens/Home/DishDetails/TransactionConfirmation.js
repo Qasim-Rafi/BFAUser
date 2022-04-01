@@ -90,7 +90,7 @@ export default function TransactionConfirmation({route, navigation}) {
     formdata.append('SourceId', route.params.obj.orderId);
     // formdata.append("Seen", false);
     formdata.append('UserId', route.params.obj.userId);
-    formdata.append('RestaurantBranchId', route.params.obj.restaurantBranchId);
+    formdata.append('RestaurantBranchId', route.params.data.restaurantBranchId);
 
 
     try {

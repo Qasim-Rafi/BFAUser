@@ -162,14 +162,17 @@ export default function Signup({navigation}) {
         type: 'danger',
         icon: {icon: 'auto', position: 'left'},
       });
-    } else if (Address === '') {
-      dropdownRef.current.showMessage({
-        message: 'Error',
-        description: 'Address is Required',
-        type: 'danger',
-        icon: {icon: 'auto', position: 'left'},
-      });
-    } else if (password === '') {
+    } else 
+    // if (Address === '') {
+    //   dropdownRef.current.showMessage({
+    //     message: 'Error',
+    //     description: 'Address is Required',
+    //     type: 'danger',
+    //     icon: {icon: 'auto', position: 'left'},
+    //   });
+    // }
+    //  else 
+     if (password === '') {
       dropdownRef.current.showMessage({
         message: 'Error',
         description: 'Password is Required',
@@ -184,22 +187,22 @@ export default function Signup({navigation}) {
         icon: {icon: 'auto', position: 'left'},
       });
     }
-    // else if (confirmPassword === '') {
-    //   dropdownRef.current.showMessage({
-    //     message: 'Error',
-    //     description: 'Confirm Password is Required',
-    //     type: 'danger',
-    //     icon: {icon: 'auto', position: 'left'},
-    //   });
-    //}
-    // else if (password !== confirmPassword) {
-    //   dropdownRef.current.showMessage({
-    //     message: 'Error',
-    //     description: 'Password is not matched',
-    //     type: 'danger',
-    //     icon: {icon: 'auto', position: 'left'},
-    //   });
-    // }
+    else if (state === '') {
+      dropdownRef.current.showMessage({
+        message: 'Error',
+        description: 'State is Required',
+        type: 'danger',
+        icon: {icon: 'auto', position: 'left'},
+      });
+    }
+    else if (PostCode==='') {
+      dropdownRef.current.showMessage({
+        message: 'Error',
+        description: 'Post code is Required',
+        type: 'danger',
+        icon: {icon: 'auto', position: 'left'},
+      });
+    }
     else if (!expressions.email.test(email) || email.includes(' ')) {
       dropdownRef.current.showMessage({
         message: 'Error',
@@ -392,7 +395,7 @@ export default function Signup({navigation}) {
               padding={[0, 0, 0, 20]}
               onChnageText={text => setAddress(text)}
               iconMargin={[0, 10, 0, 0]}
-              placeholder="Address"
+              placeholder="Address(optional)"
               // countryCode="+92"
               leftIcon={globalPath.ADDRESS_LOGO}
               iconSize={hp(3)}
