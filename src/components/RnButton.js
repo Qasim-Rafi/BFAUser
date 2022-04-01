@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
+// import LinearGradient from 'react-native-linear-gradient'
 
 import { colors } from '../constants/colorsPallet';
 import { handleMargin, handlePadding } from '../constants/theme';
@@ -13,6 +14,7 @@ const RnButton = ({
   width,
   padding,
   margin,
+  gradColor,
   height,
   borderRadius,
   title,
@@ -42,6 +44,9 @@ const RnButton = ({
         },
       ]}
       {...props}>
+         {/* <LinearGradient colors={gradColor} start={{ x: 0.2, y: 0 }} end={{ x: 1, y: 0 }}
+        style={styles.linearGradient}
+      ></LinearGradient> */}
       {title && (
         <ResponsiveText
           size={3.7}

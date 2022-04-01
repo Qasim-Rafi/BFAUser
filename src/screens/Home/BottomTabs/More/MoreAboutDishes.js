@@ -24,9 +24,9 @@ export default function MoreAboutDishes({navigation, route}) {
     '#AEC8C9',
   ]
   React.useEffect(() => {
-    dispatch(getmoreaboutDish(route.params.id));
+    dispatch(getmoreaboutDish(route.params.restaurantDishId));
   }, []);
-  console.log(Data, 'moreaboutttttttttt');
+  console.log(route.params, 'moreaboutttttttttt');
 
   return (
     <View style={{flex: 1, backgroundColor: colors.black3}}>

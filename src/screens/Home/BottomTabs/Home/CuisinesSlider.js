@@ -48,7 +48,6 @@ const CuisinesSlider = (props) => {
                         , alignSelf:'center'}} >
                                 <ResponsiveText>Cuisines</ResponsiveText>
                                 <Icon size={wp(3)} margin={[0,0,0,10]}  tintColor='black' source={globalPath.RIGHT_ARROW} />
-
                                 </TouchableOpacity>
                         </View>
                     </ImageBackground>

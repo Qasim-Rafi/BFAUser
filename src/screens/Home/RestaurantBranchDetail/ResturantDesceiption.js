@@ -52,11 +52,11 @@ export default function Restaurant_Description(props) {
             </ResponsiveText>
             <ResponsiveText size={4} color={colors.yellow}></ResponsiveText>
           </View>
-          <Icon
+          {/* <Icon
             size={wp(18)}
             margin={[0, 20, 0, 0]}
             source={props.logo ? {uri: props.logo} : globalPath.RESTAURANT_LOGO}
-          />
+          /> */}
         </View>
 
         <View>

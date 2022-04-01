@@ -107,7 +107,7 @@ const Recommendation = props => {
                         <Text
                           style={{
                             margin: 1,
-                            opacity: 0.7,
+                            opacity: 1,
 
                             color: 'white', padding: 3, marginTop: 2,
                             backgroundColor: 'black', borderRadius: 7,

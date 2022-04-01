@@ -4,6 +4,7 @@ import {
   View,
   KeyboardAvoidingView,
   Image,
+  ScrollView,
   Platform,
   TouchableOpacity,
 } from 'react-native';
@@ -21,9 +22,7 @@ export default function MyWhitelist({navigation}) {
   const [activeTab, setActiveTab] = React.useState(favouriteTabs[0].id);
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.container}>
+    
       <View style={styles.container}>
         <View
           style={{
@@ -44,11 +43,9 @@ export default function MyWhitelist({navigation}) {
             <Icon source={globalPath.BACK_BLACK_ARROW} />
           </TouchableOpacity>
         </View>
-        {/* <View style={{flex:0.1, justifyContent:'center', backgroundColor:colors.black2}}>
-            <Header iconPath={globalPath.BACK_ARROW} navigation={navigation} />
-        </View> */}
-        <View style={{flex: 0.01, flexDirection: 'row', marginTop: -10}}>
-          {/* {favouriteTabs.map((items, index) => {
+        <View style={{flex: 0.1, flexDirection: 'row', marginTop: -10}}>
+          {favouriteTabs.map((items, index) => {
+            console.log('favouriteTabs',items)
             return (
               <React.Fragment key={items.id}>
                 <TouchableOpacity
@@ -65,7 +62,7 @@ export default function MyWhitelist({navigation}) {
                   padding={[3, 15]}>
                   <ResponsiveText
                     size={3.5}
-                    // fontFamily={items.id === activeTab ? 'Boldedium' : undefined}
+                    fontFamily={items.id === activeTab ? 'Boldedium' : undefined}
                     color={
                       items.id === activeTab ? colors.black : colors.white
                     }>
@@ -74,14 +71,13 @@ export default function MyWhitelist({navigation}) {
                 </TouchableOpacity>
               </React.Fragment>
             );
-          })} */}
-
+          })} 
           {/* <View style={{flex:1, backgroundColor:colors.yellow1, justifyContent:'center', alignItems:'center'}}>
             <TouchableOpacity>
             <ResponsiveText size={4}>Profile</ResponsiveText>
           </TouchableOpacity>
-          </View>      */}
-          {/* <View style={{flex:1, backgroundColor:colors.black2, justifyContent:'center', alignItems:'center'}}>
+          </View>      
+          <View style={{flex:1, backgroundColor:colors.black2, justifyContent:'center', alignItems:'center'}}>
           <TouchableOpacity >
             <ResponsiveText size={4}>Optional</ResponsiveText>
           </TouchableOpacity>
@@ -89,14 +85,11 @@ export default function MyWhitelist({navigation}) {
         </View>
 
         {/* <Profile /> */}
-        {/* <ScrollView style={{flex:0.9,margin:20}}> */}
-
-        {activeTab === 1 && <FavouriteDishes />}
-        {activeTab === 2 && <FavouriteRestaurants />}
-
-        {/* </ScrollView> */}
+         <ScrollView style={{flex:0.9,margin:20}}>
+        {activeTab === 1 && <FavouriteDishes navigation={navigation}/>}
+        {activeTab === 2 && <FavouriteRestaurants navigation={navigation}/>}
+         </ScrollView>
       </View>
-    </KeyboardAvoidingView>
   );
 }
 const styles = StyleSheet.create({

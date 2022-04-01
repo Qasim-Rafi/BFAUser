@@ -37,6 +37,7 @@ import { color } from 'react-native-reanimated';
 import { getFavorite } from '../../../../redux/actions/user.actions';
 
 const YourFavourite = props => {
+  const profileData = useSelector(state => state.appReducers.profileData.data);
   const favData = useSelector(state => state.appReducers.favorite.data,)
   const loading = useSelector(state => state.appReducers.favorite.refreshing)
   const dispatch = useDispatch();
@@ -100,7 +101,7 @@ const YourFavourite = props => {
                       // imageStyle={{ opacity: 1 }}
                       style={{
                         flex: 1,
-                        opacity: 0.7,
+                        opacity: 1,
                         padding: 5,
                         overflow: 'hidden',
                         justifyContent: 'flex-end',
@@ -112,25 +113,25 @@ const YourFavourite = props => {
                     >
 
                       <View style={{ alignItems: 'flex-end', paddingBottom: '90%', flex: 1 }}>
-                        <Icon size={15} source={globalPath.F_HEART} />
+                        <Icon size={15} source={globalPath.favouriteicon_red} />
                       </View>
                       <View style={{ backgroundColor: color.black1 }}>
                       </View>
                       <Text
                         style={{
                           marginTop: 1,
-                          opacity: 0.9,
+                          opacity: 1,
                           color: 'white', padding: 3,
-                          backgroundColor: '#383131', borderRadius: 7,
+                          backgroundColor:colors.black ,borderRadius: 7,
                           textAlign: 'center', fontWeight: '800', fontSize: 9
                         }}>
                         {url.titleD}
                       </Text>
                       <Text
                         style={{
-                          opacity: 0.8,
+                          opacity: 0.8,top:2,
                           color: 'white', padding: 3,
-                          backgroundColor: 'black', borderRadius: 7,
+                          backgroundColor: '#383131', borderRadius: 7,
                           textAlign: 'center', fontWeight: '900', fontSize: 9
                         }}
                       >

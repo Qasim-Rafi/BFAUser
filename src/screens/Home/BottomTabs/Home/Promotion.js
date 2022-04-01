@@ -94,9 +94,9 @@ const Promotion = props => {
                         } */}
                         <Text
                           style={{
-                            top: hp(1), borderTopRightRadius: 15,
+                             borderTopRightRadius: 15,
                             opacity: 1, alignSelf: 'flex-start',
-                            color: 'white', padding: 4,
+                            color: 'black', padding: 4,right:5,
                             backgroundColor: colors.yellow1,
                             fontWeight: '600', fontSize: 8.5,
                           }}
@@ -106,7 +106,7 @@ const Promotion = props => {
                         <View>
                         <Text
                           style={{
-                            color: 'white', padding: 3, opacity: 0.7,
+                            color: 'white', padding: 3, opacity:1,
                             backgroundColor: 'black', borderRadius: 7,
                             textAlign: 'center', fontWeight: '600', fontSize: 8.5
                           }}

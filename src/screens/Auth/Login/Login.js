@@ -173,6 +173,8 @@ export default function Login({ navigation }) {
               onChnageText={text => setUserName(text)}
               iconMargin={[0, 10, 0, 0]}
               placeholder="Username"
+              autoCapitalize={"none"}
+
               leftIcon={globalPath.USER_LOGO}
             />
             <Input
@@ -180,6 +182,7 @@ export default function Login({ navigation }) {
               padding={[0, 0, 0, 25]}
               iconMargin={[0, 10, 0, 0]}
               placeholder="Password"
+              keyboardType="ascii-capable"
               onChnageText={text => setPassword(text)}
               secureTextEntry={true}
               leftIcon={globalPath.LOCK_LOGO}

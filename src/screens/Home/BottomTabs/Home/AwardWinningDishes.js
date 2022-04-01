@@ -102,8 +102,8 @@ const AwardWinningDishes = props => {
                         style={{
                           top: hp(1), borderTopRightRadius: 15,
                           opacity: 1, alignSelf: 'flex-start',
-                          color: 'white', padding: 2,
-                          backgroundColor: colors.black,
+                          color: 'black', padding: 2,
+                          backgroundColor:colors.yellow1,
                           fontWeight: '600', fontSize: 8.5
                         }}
                       >
@@ -113,19 +113,21 @@ const AwardWinningDishes = props => {
 
                         <Text
                           style={{
-                            opacity: 0.7,
+                            opacity: 1,
                             marginTop: 1,
                             color: 'white', padding: 3,
-                            backgroundColor: '#383131', borderRadius: 7,
+                            backgroundColor:colors.black, borderRadius: 7,
                             textAlign: 'center', fontWeight: '600', fontSize: 8.5
                           }}
 
+// '#383131'
                         >
                           {url.titleD}
                         </Text>
                         <Text
                           style={{
                             opacity: 0.7,
+                            top:1,
                             color: 'white', padding: 3,
                             backgroundColor: 'black', borderRadius: 7,
                             textAlign: 'center', fontWeight: '800', fontSize: 9

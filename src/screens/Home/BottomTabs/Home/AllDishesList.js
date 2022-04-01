@@ -81,7 +81,7 @@ export default function AllDishesList({ route, navigation }) {
               : title == 'Promotions'
                 ? state.appReducers.promotions.loading
                 : title == 'More From Restaurant'
-                  ? state.appReducers.moreFromRest.data
+                  ? state.appReducers.moreFromRest.loading
                   : state.appReducers.getdishbycusineid.refreshing,
   );
   React.useEffect(() => {
@@ -132,15 +132,15 @@ export default function AllDishesList({ route, navigation }) {
           ) : null}
          
           {title == "PG's Favourites" ? (
-            <Icon size={15} source={globalPath.F_HEART} />
+            <Icon size={15} margin={[0,0,0,wp(40)]} source={globalPath.favouriteicon_red} />
           ) : null}
           {title == "Brunei Food Awards" ? (
             <Text
               style={{
-                top: hp(1), borderTopRightRadius: 15,
+               left:-5, borderTopRightRadius: 15,
                 opacity: 1, alignSelf: 'flex-start',
-                color: 'white', padding: 2,
-                backgroundColor: colors.black,
+                color: 'black', padding: 2,
+                backgroundColor: colors.yellow,
                 fontWeight: '600', fontSize: 8.5
               }}
             >
@@ -163,8 +163,8 @@ export default function AllDishesList({ route, navigation }) {
                 marginTop: 1,
                 color: 'white',
                 padding: 3,
-                opacity: 0.7,
-                backgroundColor: '#383131',
+                opacity: 1,
+                backgroundColor: colors.black,
                 borderRadius: 7,
                 textAlign: 'center',
                 fontWeight: '600',
@@ -255,7 +255,7 @@ export default function AllDishesList({ route, navigation }) {
         break;
 
       case 'More From Restaurant':
-        dispatch(moreFromRestaurant(index, 13));
+       // dispatch(moreFromRestaurant(route.params.BranchId));
         break;
       default:
         dispatch(GetDishByCusineId(index, 13, route.params.id));

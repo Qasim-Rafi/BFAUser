@@ -117,7 +117,7 @@ const EveryOneFavourite = props => {
                             style={{
                               color: 'white',
                               padding: 3,
-                              opacity: 0.7,
+                              opacity: 1,
                               backgroundColor: 'black',
                               borderRadius: 7,
                               textAlign: 'center',

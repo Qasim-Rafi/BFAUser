@@ -93,11 +93,7 @@ const CartDetails = ({ navigation }) => {
     }
   });
   React.useEffect( () => {
-    // setInterval(() => {
-    //   dispatch(getOrders());
-    // }, 2000);
-    
-
+   
     setRandom(SharedData.state.data);
     let sum = cartList.reduce((a, c) => {
       return a + c.price * c.quantity;
@@ -451,7 +447,7 @@ const CartDetails = ({ navigation }) => {
                       <View style={{ justifyContent: 'center', width: wp(60) }}>
                       <TouchableOpacity
                       onPress={() => {
-                        setVisible(true);
+                        setVisible(false);
                         SetSelectedItem(v);
                       }}>
                         <ResponsiveText
@@ -588,7 +584,7 @@ const CartDetails = ({ navigation }) => {
                   Total
                 </ResponsiveText>
                 <ResponsiveText color={colors.yellow} size={3}>
-                  $ {item.amount}
+                  $ {parseFloat(item.amount).toFixed(2)}
                 </ResponsiveText>
               </View>
               {/* <View
@@ -619,7 +615,7 @@ const CartDetails = ({ navigation }) => {
                   Final Total
                 </ResponsiveText>
                 <ResponsiveText color={colors.yellow} size={4}>
-                  $ {item.amount}
+                  $ {parseFloat(item.amount).toFixed(2)}
                   {/* {cartList
                     .filter(i => i.titleR == item.titleR)
                     .reduce((a, c) => {

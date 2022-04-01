@@ -8,6 +8,7 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
+// import LinearGradient from 'react-native-linear-gradient';
 import Icon from '../../../../components/Icon';
 import { globalPath } from '../../../../constants/globalPath';
 
@@ -34,12 +35,16 @@ import SeeAllButton from '../../../../components/SeeAllButton';
 import { routeName } from '../../../../constants/routeName';
 import { hp, wp } from '../../../../helpers/Responsiveness';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getPromoJobsData } from '../../../../redux/actions/user.actions';
+import { color } from 'react-native-reanimated';
 const JobsList = props => {
+
   const List = useSelector(state => state.appReducers.promoJobs.data);
   const List_Loading = useSelector(state => state.appReducers.promoJobs.loading);
   console.log('Job List: ', List);
   // console.log('Loading: ', List_Loading);
+  
   return (
     <>
       <View style={styles.recommendationHeaderSection}>
@@ -77,6 +82,7 @@ const JobsList = props => {
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           {List.length > 0
             ? List.map((url, index) => {
+              if (index < 4) {
               return (
                 <TouchableOpacity
                   onPress={() =>
@@ -99,8 +105,8 @@ const JobsList = props => {
                         flex: 1,
                         padding: 5,
                         overflow: 'hidden',
-                        justifyContent: 'flex-end',
-                        backgroundColor: 'rgba(0,0,0,1)',
+                        justifyContent:url.userAppliedStatus === "Applied" ?'space-between':'flex-end',
+                        backgroundColor: 'rgba(0,0,0,2)',
                         priority: FastImage.priority.high,
 
                       }}
@@ -111,34 +117,22 @@ const JobsList = props => {
                       {/* source={{uri: url.fullPath}}> */}
 
                       {url.userAppliedStatus === "Applied" ?
+                        // <LinearGradient  start={{ x: -1, y: 0.9 }} end={{ x: 1, y: 0 }} colors={[colors.yellow, colors.black, colors.yellow]} style={styles.linearGradient}>
                         <Text
-                          style={{
-                            fontSize:wp(6),
-                            fontWeight:'bold',
-                            alignSelf: 'center',
-                            color: colors.yellow,
-                            position:'absolute',
-                            // left:'40%',
-                            // right:'40%',
-                            top:'45%',
-                          }}
+                        style={{ fontWeight:'700', color:colors.black,fontSize:10,padding:5,textAlign:'center',backgroundColor:colors.yellow1}}
                         >
                           {url.userAppliedStatus === "Applied" ? url.userAppliedStatus : null}
                         </Text>
+                        // </LinearGradient>
                         : null}
                       <Text
                         style={{
-                          color: 'white', padding: 3, opacity: 0.7,
+                          color: 'white', padding: 3, opacity: 1,
                           backgroundColor: 'black', borderRadius: 7,
                           textAlign: 'center', fontWeight: '600', fontSize: 8.5
                         }}
-
                       >
                         {url.jobTitle}
-
-
-
-
                       </Text>
                       {/* <ResponsiveText
                         fontFamily="Regular"
@@ -157,6 +151,7 @@ const JobsList = props => {
                   </View>
                 </TouchableOpacity>
               );
+                    }
             })
             : undefined}
         </ScrollView>
@@ -198,5 +193,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     overflow: 'hidden',
     marginLeft: -5,
+  },
+  linearGradient: {
+    borderRadius: 5,
+    // bottom:hp(11),
+    width:wp(29),
+    alignContent:'center',
+    alignSelf:'center',
+    // alignItems:'center'
   },
 });

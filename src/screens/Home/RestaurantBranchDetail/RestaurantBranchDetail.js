@@ -79,7 +79,7 @@ export default function RestaurantBranchDetailScreen({ navigation, route }) {
       {Object.keys(data).length != 0 ? (
         <View
           style={{ height: hp(70), paddingHorizontal: 20, paddingVertical: 10 }}>
-          {activeTab === 1 && <Info data={data.restaurantBranchesAlldataforappList} logo={data.restaurantLogo}/>}
+          {activeTab === 1 && <Info data={data.restaurantBranchesAlldataforappList} />}
           {activeTab === 2 && <PromosBanner />}
           {activeTab === 3 && <Menu navigation={navigation} data={data.restaurantBranchesAlldataforappList.restaurantMenulist} />}
           {/* {activeTab === 4 && <BranchesDetail navigation={navigation} data={data.restaurantBranchesAlldataforappList} restaurantName={data.restaurantName}/>} */}

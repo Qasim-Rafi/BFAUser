@@ -1,21 +1,31 @@
-import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, TouchableOpacity} from 'react-native';
 import ResponsiveText from '../../../components/RnText';
-import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
-import { wp } from '../../../helpers/Responsiveness';
-import { colors } from '../../../constants/colorsPallet';
+import {RadioGroup, RadioButton} from 'react-native-flexi-radio-button';
+import {wp} from '../../../helpers/Responsiveness';
+import {colors} from '../../../constants/colorsPallet';
 import CheckBox from '../../../components/Static/CheckBox';
+import {globalPath} from '../../../constants/globalPath';
+import Icon from '../../../components/Icon';
 
 export default function AddToCartDetails(props) {
+  const [CheeseCount, setCheeseCount] = useState(1);
+  const [drinkCount, setDrinkCount] = useState(1);
+  React.useEffect(() => {
+    // addDish(route.params.dish);
+    // var sumoflinedItems = linkedItem.reduce((a, c) => {
+    //   return a + c.price;
+    // }, 0);
+  }, [CheeseCount]);
   const onselect = (index, value) => {
-    let drink = value.id
-    props.SelectedDrinks(value)
-    console.log("drink:", drink)
-  }
+    let drink = value.id;
+    props.SelectedDrinks(value);
+    console.log('drink:', drink);
+  };
 
   return (
-    <View style={{ margin: 20 }}>
-      {props.data.restaurantSoftDrinksList?.length > 0 ?
+    <View style={{margin: 20}}>
+      {props.data.restaurantSoftDrinksList?.length > 0 ? (
         <View
           style={{
             flexDirection: 'row',
@@ -30,48 +40,59 @@ export default function AddToCartDetails(props) {
             {'Choose Soft Drink'}
           </ResponsiveText>
           <ResponsiveText color={colors.white}>{'Required'}</ResponsiveText>
-        </View> :
-        undefined
-      }
+        </View>
+      ) : undefined}
 
-      <RadioGroup
-        size={16}
-        style={{ marginTop: 10 }}
-        color={colors.yellow}
-        onSelect={(index, value) => onselect(index, value)} selectedIndex={0}
-      >
-        {Object.keys(props.data).length != 0 && props.data.restaurantSoftDrinksList
-          ? props.data.restaurantSoftDrinksList?.map((item1, index) => {
+      {Object.keys(props.data).length != 0 &&
+      props.data.restaurantSoftDrinksList
+        ? props.data.restaurantSoftDrinksList?.map((item1, index) => {
             return (
-              <RadioButton
-                style={{ padding: 10 }}
-                value={item1}
-                color={colors.yellow}
-
-              >
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    width: wp(80),
-                    justifyContent: 'space-between',
-                  }}>
-                  <ResponsiveText
-                    margin={[0, 0, 0, 10]}
-                    size={3}
-                    color={colors.white}>
-                    {item1.softDrinkName}
-
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  padding: 10,
+                }}>
+                <CheckBox
+                  text={item1.softDrinkName}
+                  additem={props.AddDrinks}
+                  value={item1}
+                  index={index}
+                />
+                <View style={{flexDirection: 'row'}}>
+                  <ResponsiveText color={colors.white} margin={[0, 10]}>
+                    ${item1.quantity ? item1.price * item1.quantity : item1.price}
                   </ResponsiveText>
-                  {/* <ResponsiveText color={colors.white}>
-                      ${item1.price}
-                    </ResponsiveText> */}
+                  {item1.quantity ? (
+                    <View style={{flexDirection: 'row'}}>
+                      <TouchableOpacity
+                        onPress={() => {
+                          props.UpdateDrinksQ(index, 'dec');
+                          setCheeseCount(CheeseCount > 1 ? CheeseCount - 1 : 1);
+                        }}>
+                        <Icon size={28} source={globalPath.MINUS_ICON} />
+                      </TouchableOpacity>
+                      <ResponsiveText
+                        size={5}
+                        margin={[0, 10]}
+                        color={colors.white}>
+                        {item1.quantity}
+                      </ResponsiveText>
+                      <TouchableOpacity
+                        onPress={() => {
+                          props.UpdateDrinksQ(index, 'inc');
+                          setCheeseCount(CheeseCount + 1);
+                        }}>
+                        <Icon size={28} source={globalPath.PLUS_ICON} />
+                      </TouchableOpacity>
+                    </View>
+                  ) : null}
                 </View>
-              </RadioButton>
+              </View>
             );
           })
-          : null}
-      </RadioGroup>
-      {props.data.restaurantDishExtraItemList?.length > 0 ?
+        : null}
+      {props.data.restaurantDishExtraItemList?.length > 0 ? (
         <View
           style={{
             flexDirection: 'row',
@@ -84,26 +105,58 @@ export default function AddToCartDetails(props) {
           }}>
           <ResponsiveText color={colors.white}>{'Extra cheese'}</ResponsiveText>
           <ResponsiveText color={colors.white}>{'Optional'}</ResponsiveText>
-        </View> : undefined
+        </View>
+      ) : undefined}
 
-      }
-
-      {Object.keys(props.data).length != 0 && props.data.restaurantDishExtraItemList
+      {Object.keys(props.data).length != 0 &&
+      props.data.restaurantDishExtraItemList
         ? props.data.restaurantDishExtraItemList?.map((item, index) => {
-          return (
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                padding: 10,
-              }}>
-              <CheckBox text={item.dishExtraItemName} additem={props.ExtraChees} value={item} />
-              <ResponsiveText color={colors.white}>
-                ${item.price}
-              </ResponsiveText>
-            </View>
-          );
-        })
+            return (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  padding: 10,
+                }}>
+                <CheckBox
+                  text={item.dishExtraItemName}
+                  additem={props.ExtraChees}
+                  value={item}
+                  index={index}
+                />
+
+                <View style={{flexDirection: 'row'}}>
+                  <ResponsiveText color={colors.white} margin={[0, 10]}>
+                    ${item.quantity ? item.price * item.quantity : item.price}
+                  </ResponsiveText>
+                  {item.quantity ? (
+                    <View style={{flexDirection: 'row'}}>
+                      <TouchableOpacity
+                        onPress={() => {
+                          props.UpdateExtra(index, 'dec');
+                          setCheeseCount(CheeseCount > 1 ? CheeseCount - 1 : 1);
+                        }}>
+                        <Icon size={28} source={globalPath.MINUS_ICON} />
+                      </TouchableOpacity>
+                      <ResponsiveText
+                        size={5}
+                        margin={[0, 10]}
+                        color={colors.white}>
+                        {item.quantity}
+                      </ResponsiveText>
+                      <TouchableOpacity
+                        onPress={() => {
+                          props.UpdateExtra(index, 'inc');
+                          setCheeseCount(CheeseCount + 1);
+                        }}>
+                        <Icon size={28} source={globalPath.PLUS_ICON} />
+                      </TouchableOpacity>
+                    </View>
+                  ) : null}
+                </View>
+              </View>
+            );
+          })
         : null}
     </View>
   );

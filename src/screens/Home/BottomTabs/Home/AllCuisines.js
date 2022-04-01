@@ -118,17 +118,14 @@ const AllCuisines = props => {
                         source={{
                           uri: item.fullPath,
                           priority: FastImage.priority.normal,
-
                         }}>
-
                         {/* source={require('../../../../assets/fake_Images/japanese.png')}> */}
                         <Text
                           style={{
-                            color: 'white', padding: 3, opacity: 0.7,
+                            color: 'white', padding: 3, opacity: 1,
                             backgroundColor: 'black', borderRadius: 7,
                             textAlign: 'center', fontWeight: '600', fontSize: 8.5
                           }}
-
                         >
                           {item.name}
 

@@ -14,7 +14,11 @@ import {globalPath} from '../../../constants/globalPath';
 import {routeName} from '../../../constants/routeName';
 import {hp, wp} from '../../../helpers/Responsiveness';
 import {useSelector, useDispatch} from 'react-redux';
-import {checkoutOrder, getOrders} from '../../../redux/actions/user.actions';
+import {
+  checkoutOrder,
+  getNotificationData,
+  getOrders,
+} from '../../../redux/actions/user.actions';
 import urls from '../../../redux/lib/urls';
 import Api from '../../../redux/lib/api';
 
@@ -34,20 +38,22 @@ export default function TransactionConfirmation({route, navigation}) {
 
   const toggleModal = async () => {
     // dispatch(checkoutOrder(route.params));
-    var obj={...route.params.obj, ...{OrderType:pickup==true?2:1}}
+    var obj = {
+      ...route.params.obj,
+      ...{
+        OrderType: pickup == true ? 2 : 1,
+        tip: activeTabs === 'tab1' ? 0 : count,
+      },
+    };
     console.log('res check', obj);
 
     try {
-      const response = await Api.post(
-        urls.CHECK_ORDER,
-        obj,
-        false,
-      );
+      const response = await Api.post(urls.CHECK_ORDER, obj, false);
       console.log('res check', response);
       if (response && response.success == true) {
         setModalVisible(!isModalVisible);
         dispatch(getOrders());
-
+        addNotification();
         // setLoading(false);
       } else {
         // setLoading(false);
@@ -66,10 +72,28 @@ export default function TransactionConfirmation({route, navigation}) {
   const orderConfirmation = async DATA => {
     // dispatch(removeCart(data));
     try {
-      const res = await Api.post(urls.ORDER_CONFIRMATION, DATA);
+      const res = await Api.post(urls.ORDER_CONFIRMATION, DATA, false);
       console.log('res', res);
       if (res && res.success == true) {
         toggleModal();
+      } else {
+      }
+    } catch (error) {}
+  };
+  const addNotification = async DATA => {
+    // dispatch(removeCart(data));
+    let formdata = new FormData();
+    formdata.append('NotificationType', 'Order');
+    formdata.append('Remarks', 'Order submited');
+    formdata.append('SourceId', route.params.obj.orderId);
+    // formdata.append("Seen", false);
+    formdata.append('UserId', route.params.obj.userId);
+
+    try {
+      const res = await Api.post(urls.ADD_NOTIFICATIONS, formdata, true);
+      console.log('res', res);
+      if (res && res.success == true) {
+        dispatch(getNotificationData());
       } else {
       }
     } catch (error) {}
@@ -93,7 +117,7 @@ export default function TransactionConfirmation({route, navigation}) {
           justifyContent: 'center',
         }}>
         <Header
-          iconPath={globalPath.BACK_ARROW}
+          // iconPath={globalPath.BACK_ARROW}
           title={'Check out'}
           navigation={navigation}
         />
@@ -266,83 +290,84 @@ export default function TransactionConfirmation({route, navigation}) {
               </ResponsiveText>
             </TouchableOpacity>
           </View>
-
-          <View
-            style={{
-              backgroundColor: colors.black2,
-              marginTop: 16,
-              height: hp(5),
-              width: wp(85),
-              alignSelf: 'center',
-              borderRadius: 4,
-              flexDirection: 'row',
-            }}>
-            <TouchableOpacity
-              onPressIn={() =>
-                activeTabs === 'tab2' || activeTabs === 'tab3'
-                  ? changeCount(count > 0 ? count - 1 : 0)
-                  : changeCount(count)
-              }
-              style={{
-                backgroundColor: colors.black2,
-                borderColor: colors.black1,
-                borderWidth: 1,
-                flex: 0.22,
-                margin: 1,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <ResponsiveText color={colors.yellow} size={6}>
-                -
-              </ResponsiveText>
-            </TouchableOpacity>
+          {activeTabs === 'tab1' ? null : (
             <View
               style={{
-                backgroundColor: colors.black3,
-                borderColor: colors.black1,
-                borderWidth: 1,
-                flex: 0.56,
-                margin: 1,
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginHorizontal: 10,
-              }}>
-              <ResponsiveText color={colors.yellow} size={4}>
-                {activeTabs === 'tab2' ? '$' : ''}
-                {activeTabs === 'tab1'
-                  ? ''
-                  : activeTabs === 'tab1'
-                  ? count
-                  : count}
-                {activeTabs === 'tab3' ? '%' : ''}
-              </ResponsiveText>
-            </View>
-            <TouchableOpacity
-              onPressIn={() =>
-                activeTabs === 'tab2' || activeTabs === 'tab3'
-                  ? changeCount(
-                      activeTabs === 'tab3' && count < 100
-                        ? count + 1
-                        : activeTabs === 'tab2'
-                        ? count + 1
-                        : count,
-                    )
-                  : undefined
-              }
-              style={{
                 backgroundColor: colors.black2,
-                borderColor: colors.black1,
-                borderWidth: 1,
-                flex: 0.22,
-                margin: 1,
-                alignItems: 'center',
-                justifyContent: 'center',
+                marginTop: 16,
+                height: hp(5),
+                width: wp(85),
+                alignSelf: 'center',
+                borderRadius: 4,
+                flexDirection: 'row',
               }}>
-              <ResponsiveText color={colors.yellow} size={6}>
-                +
-              </ResponsiveText>
-            </TouchableOpacity>
-          </View>
+              <TouchableOpacity
+                onPressIn={() =>
+                  activeTabs === 'tab2' || activeTabs === 'tab3'
+                    ? changeCount(count > 0 ? count - 1 : 0)
+                    : changeCount(count)
+                }
+                style={{
+                  backgroundColor: colors.black2,
+                  borderColor: colors.black1,
+                  borderWidth: 1,
+                  flex: 0.22,
+                  margin: 1,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <ResponsiveText color={colors.yellow} size={6}>
+                  -
+                </ResponsiveText>
+              </TouchableOpacity>
+              <View
+                style={{
+                  backgroundColor: colors.black3,
+                  borderColor: colors.black1,
+                  borderWidth: 1,
+                  flex: 0.56,
+                  margin: 1,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginHorizontal: 10,
+                }}>
+                <ResponsiveText color={colors.yellow} size={4}>
+                  {activeTabs === 'tab2' ? '$' : ''}
+                  {activeTabs === 'tab1'
+                    ? ''
+                    : activeTabs === 'tab1'
+                    ? count
+                    : count}
+                  {activeTabs === 'tab3' ? '%' : ''}
+                </ResponsiveText>
+              </View>
+              <TouchableOpacity
+                onPressIn={() =>
+                  activeTabs === 'tab2' || activeTabs === 'tab3'
+                    ? changeCount(
+                        activeTabs === 'tab3' && count < 100
+                          ? count + 1
+                          : activeTabs === 'tab2'
+                          ? count + 1
+                          : count,
+                      )
+                    : undefined
+                }
+                style={{
+                  backgroundColor: colors.black2,
+                  borderColor: colors.black1,
+                  borderWidth: 1,
+                  flex: 0.22,
+                  margin: 1,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <ResponsiveText color={colors.yellow} size={6}>
+                  +
+                </ResponsiveText>
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
         <View
           style={{
