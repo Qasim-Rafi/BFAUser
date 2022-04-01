@@ -69,7 +69,7 @@ export default function ChangePassword({navigation,route}) {
   };
   const forgotPassword = async () => {
     var obj = {
-      password: value,
+      password: password,
     };
     try {
       const res = await Api.put(urls.CHANGE_PASSWORD+route.params.id, obj);
