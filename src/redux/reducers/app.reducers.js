@@ -161,6 +161,9 @@ const initialState = {
     loading: false,
     data: [],
   },
+  setTheme: {
+    data: {}
+  }
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -465,7 +468,7 @@ export const appReducers = (state = initialState, action) => {
         },
       };
     case types.GET_BFA_RECOMMENDATION_SUCCESS:
-      console.log('Dataaaaaa: ', action.payload);
+      // console.log('Dataaaaaa: ', action.payload);
 
       return {
         ...state,
@@ -1329,6 +1332,13 @@ export const appReducers = (state = initialState, action) => {
           loading: false,
         },
       };
+      case types.SET_THEME:
+        return {
+          ...state,
+          setTheme: {
+            data: typeof(action.data) === 'boolean'  ? action.data : true
+          }
+        }
     default:
       return state;
   }

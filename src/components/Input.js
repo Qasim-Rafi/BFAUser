@@ -5,7 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   KeyboardAvoidingView,
-  StatusBar, Text
+  StatusBar, Text, Platform
 } from 'react-native';
 import { colors } from '../constants/colorsPallet';
 import { iconPath } from '../constants/globalPath';
@@ -65,6 +65,8 @@ const Input = ({
     // secureTextEntry: true,
   });
   const [visible, setVisible] = React.useState(true);
+
+  const passwordKeyboardType = Platform.OS == 'android' ? 'visible-password' : 'ascii-capable'
   return (
     <KeyboardAvoidingView behavior={'position'} >
       <View
@@ -95,7 +97,7 @@ const Input = ({
           editable={props.editable}
           caretHidden={false}
           // secureTextEntry={false}
-          keyboardType={ !visible ? 'visible-password' : keyboardType}
+          keyboardType={ !visible ? passwordKeyboardType : keyboardType}
           maxLength={maxlength}
           autoCapitalize={autoCapitalize ? autoCapitalize : 'sentences'}
           style={[

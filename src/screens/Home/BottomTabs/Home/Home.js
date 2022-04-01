@@ -128,6 +128,9 @@ const Home = ({navigation}) => {
     //  setInterval(() => {
     //   dispatch(getNotificationData());
     // }, 5000);
+     setInterval(() => {
+      dispatch(getNotificationData());
+    }, 5000);
   }, []);
 
   return (

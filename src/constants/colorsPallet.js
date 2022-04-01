@@ -10,6 +10,7 @@ export const colors = {
   black1: '#404040',
   black2:'#303030',
   black3:'#202020',
+  bgWhite:'#f2f2f2',
 
   grey1:'#737373',
   grey2:'#3c3625',
