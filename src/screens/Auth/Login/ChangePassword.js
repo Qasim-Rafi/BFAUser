@@ -104,7 +104,7 @@ export default function ChangePassword({navigation,route}) {
               Change Password
             </ResponsiveText>
             <ResponsiveText margin={[5, 0, 0, 0]} color={colors.white}>
-              Please enter email or Phone number to continue
+              Please enter password to continue
             </ResponsiveText>
           </View>
           <KeyboardAvoidingView
@@ -157,7 +157,7 @@ export default function ChangePassword({navigation,route}) {
               /> */}
             <View style={styles.footer}>
               {/* <Icon size={wp(8)} margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
-              <ResponsiveText margin={[0, 10]} color={colors.white}>
+              {/* <ResponsiveText margin={[0, 10]} color={colors.white}>
                 New user{' '}
                 <ResponsiveText
                   fontFamily="Bold"
@@ -165,7 +165,7 @@ export default function ChangePassword({navigation,route}) {
                   onPress={() => navigation.navigate(routeName.SIGN_UP)}>
                   Sign up
                 </ResponsiveText>
-              </ResponsiveText>
+              </ResponsiveText> */}
               {/* <View style={styles.socialIcon}></View> */}
             </View>
           </KeyboardAvoidingView>
