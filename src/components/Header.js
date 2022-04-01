@@ -55,7 +55,7 @@ const Header = ({
           alignItems: 'center',
           bottom: 7.5,
           borderRadius: 10,
-          marginEnd: 5,
+          marginEnd: -5,
         }}>
         <View
           style={
@@ -69,7 +69,7 @@ const Header = ({
                   width: wp(13),
                   borderRadius: wp(6.5),
                 }
-              : {flexDirection: 'row', alignItems: 'center'}
+              : {flexDirection: 'row'}
           }>
           <Icon
             margin={[10, 0, 0, 20]}

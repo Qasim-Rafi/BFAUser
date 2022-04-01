@@ -96,7 +96,7 @@ const Promotion = props => {
                           style={{
                              borderTopRightRadius: 15,
                             opacity: 1, alignSelf: 'flex-start',
-                            color: 'white', padding: 4,right:5,
+                            color: 'black', padding: 4,right:5,
                             backgroundColor: colors.yellow1,
                             fontWeight: '600', fontSize: 8.5,
                           }}

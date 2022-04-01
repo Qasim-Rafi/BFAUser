@@ -447,7 +447,7 @@ const CartDetails = ({ navigation }) => {
                       <View style={{ justifyContent: 'center', width: wp(60) }}>
                       <TouchableOpacity
                       onPress={() => {
-                        setVisible(true);
+                        setVisible(false);
                         SetSelectedItem(v);
                       }}>
                         <ResponsiveText

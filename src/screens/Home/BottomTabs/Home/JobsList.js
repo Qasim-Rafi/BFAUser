@@ -106,7 +106,7 @@ const JobsList = props => {
                         padding: 5,
                         overflow: 'hidden',
                         justifyContent:url.userAppliedStatus === "Applied" ?'space-between':'flex-end',
-                        backgroundColor: 'rgba(0,0,0,1)',
+                        backgroundColor: 'rgba(0,0,0,2)',
                         priority: FastImage.priority.high,
 
                       }}
@@ -119,7 +119,7 @@ const JobsList = props => {
                       {url.userAppliedStatus === "Applied" ?
                         // <LinearGradient  start={{ x: -1, y: 0.9 }} end={{ x: 1, y: 0 }} colors={[colors.yellow, colors.black, colors.yellow]} style={styles.linearGradient}>
                         <Text
-                        style={{ color:colors.white,fontSize:10,padding:5,textAlign:'center',backgroundColor:colors.yellow}}
+                        style={{ fontWeight:'700', color:colors.black,fontSize:10,padding:5,textAlign:'center',backgroundColor:colors.yellow1}}
                         >
                           {url.userAppliedStatus === "Applied" ? url.userAppliedStatus : null}
                         </Text>

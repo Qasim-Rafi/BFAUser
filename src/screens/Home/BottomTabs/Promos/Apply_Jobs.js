@@ -77,7 +77,7 @@ export default function Apply_Jobs({ navigation, route }) {
         const res = await Api.post(urls.APPLY_FOR_JOBS ,formdata,true);
         console.log('jobsssApplied', res);
         if (res && res.success == true) {
-          dispatch(getPromoJobsData(1,4))
+          dispatch(getPromoJobsData(1,100))
           setLoader(false)
           navigation.goBack();
         } else {
