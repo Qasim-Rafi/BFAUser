@@ -280,7 +280,7 @@ export default function Signup({navigation}) {
           type: 'success',
           icon: {icon: 'auto', position: 'left'},
         });
-      } else {
+      } else  {
         // alert(res.message)
         showMessage({
           message: 'Error',
@@ -289,7 +289,13 @@ export default function Signup({navigation}) {
           type: 'danger',
           icon: {icon: 'auto', position: 'left'},
         });
-        setErrorString(res.message);
+        if(res.message === "Email already exist"){
+          setErrorString(res.message+ '.\nHave you forgotten your password? Don\'t worry, You can reset your password here.' )
+          console.log('reset password')
+        }else{
+          setErrorString(res.message);
+          console.log('no reset');
+        }
       }
     } catch (error) {
       console.log(error);
@@ -362,6 +368,7 @@ export default function Signup({navigation}) {
               iconMargin={[0, 10, 0, 0]}
               placeholder="Email"
               autoCapitalize={'none'}
+              keyboardType={'email-address'}
               onChnageText={text => setEmail(text.trim())}
               onBlur={() => checkExisting(2)}
               leftIcon={globalPath.EMAIL_LOGO}
@@ -469,6 +476,22 @@ export default function Signup({navigation}) {
             />
 
             <ResponsiveText color={colors.red}>{errorString}</ResponsiveText>
+
+
+              {
+                errorString === 'Email already exist.\nHave you forgotten your password? Don\'t worry, You can reset your password here.' ? 
+                <View style={styles.footer}>
+              {/* <Icon size={wp(8)}  margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
+                <ResponsiveText
+                  fontFamily="Bold"
+                  color={colors.yellow}
+                  onPress={() => navigation.navigate(routeName.FORGOT_PASSWORD)}>
+                  Reset Password
+                </ResponsiveText>
+              {/* <View style={styles.socialIcon}></View> */}
+            </View> :
+            undefined
+              }
 
             <View style={styles.footer}>
               {/* <Icon size={wp(8)}  margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
