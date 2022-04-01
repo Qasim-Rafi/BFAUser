@@ -104,7 +104,7 @@ export default function BottomTabs(props) {
             iconName = focused
               ? globalPath.CART_ICON
               : globalPath.CART_ICON_GREY;
-          } else if (route.name === "Inbox") {
+          } else if (route.name === "My Orders") {
             iconName = focused
               ? globalPath.INBOX
               : globalPath.INBOX_GREY;
@@ -139,8 +139,8 @@ export default function BottomTabs(props) {
           }}
       />
       <Tab.Screen
-        name={"Inbox"}
-        component={NewsFeed}
+        name={"My Orders"}
+        component={Order_history}
         options={{ headerShown: false }}
       />
 

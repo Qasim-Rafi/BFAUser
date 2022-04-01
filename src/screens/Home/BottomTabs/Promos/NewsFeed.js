@@ -7,7 +7,7 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
-import { Avatar } from 'react-native-paper';
+import {Avatar} from 'react-native-paper';
 import Header from '../../../../components/Header';
 import Advertisement2ndVarient from '../Home/Advertisement2ndVarient';
 import PromosBanner from './PromoBanner';
@@ -23,10 +23,8 @@ import Icon from '../../../../components/Icon';
 import {globalPath} from '../../../../constants/globalPath';
 import {NewsFeeds} from '../../../../constants/mock';
 import {routeName} from '../../../../constants/routeName';
-import {useSelector,useDispatch} from 'react-redux';
-import {
- getPromoNewsData
-} from '../../../../redux/actions/user.actions';
+import {useSelector, useDispatch} from 'react-redux';
+import {getPromoNewsData} from '../../../../redux/actions/user.actions';
 
 const NewsFeed = props => {
   const {navigation} = props;
@@ -35,28 +33,28 @@ const NewsFeed = props => {
   React.useEffect(() => {
     dispatch(getPromoNewsData());
     console.log('News: ', NewsData);
-  },[]);
- 
- 
+  }, []);
 
-  
   return (
     <View style={{backgroundColor: colors.black3, flex: 1}}>
       <View
         style={{
-          marginTop: 0,
-          alignSelf: 'center',
-          height: 65,
-          backgroundColor: colors.black1,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          padding: 7,
         }}>
-        <View
+        <TouchableOpacity
           style={{
-            marginTop: 25,
-            alignSelf: 'center',
-            justifyContent: 'center',
+            backgroundColor: colors.yellow1,
+            paddingVertical: 10,
+            paddingHorizontal: 10,
+            borderRadius: 20,
+          }}
+          onPress={() => {
+            navigation.goBack();
           }}>
-          <Header navigation={navigation} />
-        </View>
+          <Icon source={globalPath.BACK_BLACK_ARROW} />
+        </TouchableOpacity>
       </View>
       <ScrollView>
         <View
@@ -86,7 +84,7 @@ const NewsFeed = props => {
                       marginVertical: 12,
                       marginHorizontal: 15,
                     }}>
-                    <View >
+                    <View>
                       <Avatar.Image size={40} source={{uri: item.fullPath}} />
                     </View>
                     <View>
@@ -107,8 +105,7 @@ const NewsFeed = props => {
                   <ImageBackground
                     style={styles.Advertisement2ndVarientImage}
                     // source={item.url}
-                    source={{uri: item.fullPath}}
-                      ></ImageBackground>
+                    source={{uri: item.fullPath}}></ImageBackground>
                   <View style={{marginTop: 10, marginLeft: 15}}>
                     <View
                       style={{

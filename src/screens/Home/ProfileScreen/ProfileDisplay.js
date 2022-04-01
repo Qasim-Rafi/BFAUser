@@ -115,11 +115,11 @@ export default function ProfileDisplay({navigation}) {
             <View style={styles.cardView}>
               <ResponsiveText color={colors.grey}>Phone</ResponsiveText>
               <ResponsiveText color={colors.white}>
-                {'123456789'}
+                {profileData.contactNumber}
               </ResponsiveText>
             </View>
           </View>
-          <View style={styles.mainCard}>
+          {/* <View style={styles.mainCard}>
             <Icon source={globalPath.PHONE_LOGO} />
             <View style={styles.cardView}>
               <ResponsiveText color={colors.grey}>Phone</ResponsiveText>
@@ -127,7 +127,7 @@ export default function ProfileDisplay({navigation}) {
                 {'123456789'}
               </ResponsiveText>
             </View>
-          </View>
+          </View> */}
           <View style={styles.mainCard}>
             <Icon source={globalPath.GENDER_ICON} />
             <View style={styles.cardView}>

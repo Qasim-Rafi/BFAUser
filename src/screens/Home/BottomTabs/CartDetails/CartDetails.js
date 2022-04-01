@@ -584,7 +584,7 @@ const CartDetails = ({ navigation }) => {
                   Total
                 </ResponsiveText>
                 <ResponsiveText color={colors.yellow} size={3}>
-                  $ {item.amount}
+                  $ {parseFloat(item.amount).toFixed(2)}
                 </ResponsiveText>
               </View>
               {/* <View
@@ -615,7 +615,7 @@ const CartDetails = ({ navigation }) => {
                   Final Total
                 </ResponsiveText>
                 <ResponsiveText color={colors.yellow} size={4}>
-                  $ {item.amount}
+                  $ {parseFloat(item.amount).toFixed(2)}
                   {/* {cartList
                     .filter(i => i.titleR == item.titleR)
                     .reduce((a, c) => {

@@ -117,7 +117,7 @@ const Header = ({
             onPress={() => {
               navigation.navigate(routeName.NOTIFICATION_SCREEN);
             }}>
-            {NotificationData.filter(A => A.seen == true).length ===
+            {NotificationData.filter(A => A.seen == false).length ===
             0 ? null : (
               <View
                 style={{

@@ -79,6 +79,7 @@ export default urls = {
   GET_TRANSACTION_HISTORY: 'api/Order/GetUserTransactionHistoryById/',
   GET_NOTIFICATIONS_ALL: 'api/NotificationPannel/GetNotificationPannelAll',
   ADD_NOTIFICATIONS: 'api/NotificationPannel/AddNotificationPannel',
+  SEEN_NOTIFICATIONS:'api/NotificationPannel/SeenNotificationforUser'
 
 
 };

@@ -230,7 +230,7 @@ class RandomWheelClass extends React.Component {
                         flex: 0.1,
                         backgroundColor: colors.black2,
                         justifyContent: 'center',
-                        alignItems: 'center',
+                        // alignItems: 'center',
                     }}>
                     <Header navigation={this.props.navigation} />
                 </View>
