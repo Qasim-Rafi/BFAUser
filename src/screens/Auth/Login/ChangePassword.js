@@ -142,7 +142,7 @@ export default function ChangePassword({navigation,route}) {
                 <SkypeIndicator count={5} color={colors.black} size={30} />
               ) : (
                 <ResponsiveText color={colors.black} size={4}>
-                  Forgot Password
+                  Set New Password
                 </ResponsiveText>
               )}
             </TouchableOpacity>

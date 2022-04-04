@@ -380,7 +380,12 @@ export const setTheme = data => {
     data: data,
   }
 }
-
+export const getBalicoins = data => {
+  return {
+    type: types.GET_BALI_COINS_REQUEST,
+    data: data,
+  }
+}
 // //Get User categories actions
 // export const addRUpdateCategory = (params) => {
 //   return {
