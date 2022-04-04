@@ -52,6 +52,7 @@ import {
   getOrders,
   GetUserRandomiserSetting,
   getNotificationData,
+  getProfileData,
 } from '../../../../redux/actions/user.actions';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
@@ -108,6 +109,7 @@ const Home = ({navigation}) => {
 
   React.useEffect(() => {
     dispatch(getAddBannerData());
+    dispatch(getProfileData())
     dispatch(getPeopleChoice(1, 4));
     dispatch(getPromotions(1, 4));
     dispatch(getPeopleChoice(1, 4));

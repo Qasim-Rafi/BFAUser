@@ -172,10 +172,14 @@ const ZIP_ICON = require('../assets/icons/zip.png');
 const Link_icon = require('../assets/icons/contactlink.png');
 const NOTIFICATION = require('../assets/icons/notification.png');
 const favouriteicon_red = require('../assets/icons/favourite-icon-red.png');
+const tick_icon = require('../assets/icons/tick.png');
+const cross_icon = require('../assets/icons/cross.png');
 
 
 export const globalPath = {
   LOGOUT,
+  tick_icon,
+  cross_icon,
   favouriteicon_red,
   CAMERA_ICON,
   Link_icon,

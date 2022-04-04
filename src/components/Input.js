@@ -7,6 +7,8 @@ import {
   KeyboardAvoidingView,
   StatusBar, Text, Platform
 } from 'react-native';
+import {globalPath} from '../constants/globalPath';
+
 import { colors } from '../constants/colorsPallet';
 import { iconPath } from '../constants/globalPath';
 import { handleMargin, handlePadding } from '../constants/theme';
@@ -30,6 +32,7 @@ const Input = ({
   keyboardType,
   containerStyle,
   secureTextEntry,
+  userValidation,
   onChnageText,
   fontSize,
   value,
@@ -37,6 +40,7 @@ const Input = ({
   onPressOut,
   countryCode,
   autoCapitalize,
+  showValidationIcon,
   ...props
 }) => {
   // const [showPassword, setShowPassword] = React.useState(secureTextEntry);
@@ -67,6 +71,8 @@ const Input = ({
   const [visible, setVisible] = React.useState(true);
 
   const passwordKeyboardType = Platform.OS == 'android' ? 'visible-password' : 'ascii-capable'
+  // const [userName, setuserName] = React.useState(true);
+
   return (
     <KeyboardAvoidingView behavior={'position'} >
       <View
@@ -88,6 +94,7 @@ const Input = ({
             size={iconSize}
           />
         )}
+        
         {countryCode && (
           <Text style={{color:colors.white,paddingBottom:6,fontWeight:'bold'}}>{countryCode}</Text>
         )}
@@ -122,12 +129,16 @@ const Input = ({
           onChangeText={onChnageText ? txt => onChnageText(txt) : null}
           // onSubmitEditing={onSubmitEditing}
           onPressOut={onPressOut}
-        />
+       
+       />
 
         {secureTextEntry && (
           <TouchableOpacity
             style={styles.showPasswordBtn}
-            onPress={updateSecureTextEntry}>
+            // onPress={updateSecureTextEntry}>
+            onPressIn={updateSecureTextEntry}
+            onPressOut={updateSecureTextEntry}
+            >
             {visible ? (
               <Feather name="eye-off" size={15} style={styles.Feather} />
             ) : (
@@ -140,7 +151,35 @@ const Input = ({
             size="s4"
             // source={showPassword ? iconPath.EYE_ICON : iconPath.EYE_OFF_ICON}
           /> */}
+          
           </TouchableOpacity>
+          
+        )}
+          {showValidationIcon && (
+          <View
+            style={styles.showPasswordBtn}>
+            {userValidation ? (
+              <Icon
+              margin={rightIconMargin ? rightIconMargin : [0, 10, 0, 0]}
+             source={globalPath.tick_icon}
+            />
+            ) : (
+              <Icon
+              margin={rightIconMargin ? rightIconMargin : [0, 10, 0, 0]}
+             source={globalPath.cross_icon}
+             size={25}
+            />
+            )}
+            {/* <Icon
+            tintColor={tintColor ? tintColor : colors.grey}
+            margin={rightIconMargin ? rightIconMargin : [0, 10, 0, -4]}
+            // style={gStyles.alS_End}
+            size="s4"
+            // source={showPassword ? iconPath.EYE_ICON : iconPath.EYE_OFF_ICON}
+          /> */}
+          
+          </View>
+          
         )}
       </View>
     </KeyboardAvoidingView>

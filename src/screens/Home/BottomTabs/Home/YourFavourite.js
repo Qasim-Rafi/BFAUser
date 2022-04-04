@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Image,
   ScrollView,
@@ -34,15 +34,15 @@ import { colors } from '../../../../constants/colorsPallet';
 import SeeAllButton from '../../../../components/SeeAllButton';
 import { hp, wp } from '../../../../helpers/Responsiveness';
 import { color } from 'react-native-reanimated';
-import { getFavorite } from '../../../../redux/actions/user.actions';
+import { getFavorite,getProfileData
+ } from '../../../../redux/actions/user.actions';
 
 const YourFavourite = props => {
   const profileData = useSelector(state => state.appReducers.profileData.data);
   const favData = useSelector(state => state.appReducers.favorite.data,)
   const loading = useSelector(state => state.appReducers.favorite.refreshing)
   const dispatch = useDispatch();
-
-
+  
   console.log('favData', favData)
 
   //   const firstName = 'PG';
