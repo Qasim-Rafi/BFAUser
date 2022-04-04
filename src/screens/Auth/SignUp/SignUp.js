@@ -278,60 +278,60 @@ export default function Signup({ navigation }) {
       const res = await Api.post(urls.REGISTER_URL_CHECKS, obj);
       console.log('res', res);
       if (res && res.success == true) {
-         // setCorrectemailIcon(true)
-         console.log('success = true');
-         showMessage({
-           message: 'Success',
-           description: type == 1 ? 'User Name is valid' : type == 2 ? 'Email is valid' : type == 3 ? 'Contact number is valid' : '',
-           duration: 3000,
-           type: 'success',
-           icon: { icon: 'auto', position: 'left' },
-         });
-        if(type==1){
+        // setCorrectemailIcon(true)
+        console.log('success = true');
+        //  showMessage({
+        //    message: 'Success',
+        //    description: type == 1 ? 'User Name is valid' : type == 2 ? 'Email is valid' : type == 3 ? 'Contact number is valid' : '',
+        //    duration: 3000,
+        //    type: 'success',
+        //    icon: { icon: 'auto', position: 'left' },
+        //  });
+        if (type == 1) {
           setShowCorrectUserIcon(true)
           setCorrectUserIcon(true)
         }
-         else if (type==2){
+        else if (type == 2) {
           setShowCorrectemailIcon(true)
           setCorrectemailIcon(true)
         }
-         else if(type==3){
+        else if (type == 3) {
           setShowCorrectPhoneIcon(true)
           setCorrectPhoneIcon(true)
         }
-     
 
-       
+
+
+
       } else {
-        if(type==1){
+        if (type == 1) {
           setShowCorrectUserIcon(true)
           setCorrectUserIcon(false)
           console.log("iconnn")
         }
-        else if(type==2){
+        else if (type == 2) {
           setShowCorrectemailIcon(true)
           setCorrectemailIcon(false)
         }
-        else if (type==3)
-        {
+        else if (type == 3) {
           setShowCorrectPhoneIcon(true)
           setCorrectPhoneIcon(false)
         }
         // alert(res.message)
-        showMessage({
-          message: 'Error',
-          description: res.message ? res.message : 'Something went wrong',
-          duration: 3000,
-          type: 'danger',
-          icon: { icon: 'auto', position: 'left' },
-        });
-        if (res.message === "Email already exist") {
-          setErrorString(res.message + '.\nHave you forgotten your password? Don\'t worry, You can reset your password here.')
-          console.log('reset password')
-        } else {
-          setErrorString(res.message);
-          console.log('no reset');
-        }
+        // showMessage({
+        //   message: 'Error',
+        //   description: res.message ? res.message : 'Something went wrong',
+        //   duration: 3000,
+        //   type: 'danger',
+        //   icon: { icon: 'auto', position: 'left' },
+        // });
+        // if (res.message === "Email already exist") {
+        //   setErrorString(res.message + '.\nHave you forgotten your password? Don\'t worry, You can reset your password here.')
+        //   console.log('reset password')
+        // } else {
+        //   setErrorString(res.message);
+        //   console.log('no reset');
+        // }
       }
     } catch (error) {
       console.log(error);
@@ -385,7 +385,7 @@ export default function Signup({ navigation }) {
               margin={[0, 0, 15, 0]}
               iconMargin={[0, 10, 0, 0]}
               placeholder="User Name"
-              showValidationIcon={userName==''?false: showCorrectUserIcon}
+              showValidationIcon={userName == '' && userName.length == 3 ? false : showCorrectUserIcon}
               userValidation={correctUserIcon}
               rightIcon={globalPath.FEED_GREY}
               autoCapitalize={'none'}
@@ -407,7 +407,7 @@ export default function Signup({ navigation }) {
               padding={[0, 0, 0, 25]}
               iconMargin={[0, 10, 0, 0]}
               placeholder="Email"
-              showValidationIcon={email==''?false:showCorrectemailIcon}
+              showValidationIcon={email == '' ? false : showCorrectemailIcon}
               userValidation={correctemailIcon}
               autoCapitalize={'none'}
               keyboardType={'email-address'}
