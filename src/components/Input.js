@@ -135,7 +135,10 @@ const Input = ({
         {secureTextEntry && (
           <TouchableOpacity
             style={styles.showPasswordBtn}
-            onPress={updateSecureTextEntry}>
+            // onPress={updateSecureTextEntry}>
+            onPressIn={updateSecureTextEntry}
+            onPressOut={updateSecureTextEntry}
+            >
             {visible ? (
               <Feather name="eye-off" size={15} style={styles.Feather} />
             ) : (
