@@ -828,7 +828,7 @@ const CartDetails = ({ navigation }) => {
                       {selectedItem.remarks}
                     </Text>
                   </Text>
-                  : 'no remarks'}
+                  :undefined}
 
               </View>
               <View>
