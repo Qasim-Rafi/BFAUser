@@ -7,12 +7,24 @@ import { colors } from '../../../constants/colorsPallet';
 import { globalPath } from '../../../constants/globalPath';
 import { hp, wp } from '../../../helpers/Responsiveness';
 import Header from '../../../components/Header';
+import { useDispatch, useSelector } from 'react-redux';
+import { setTheme } from '../../../redux/actions/user.actions';
 
 export default function Settings({ navigation }) {
-  const [checked, setCheck] = React.useState(true);
+  const dispatch = useDispatch()
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
+  console.log('isThemeDark', isThemeDark);
+
+  const [checked, setCheck] = React.useState(isThemeDark);
+
+
+  const selectTheme = (data) => {
+    setCheck(data)
+    dispatch(setTheme(data))
+  }
 
   return (
-    <View style={{ flex: 1, backgroundColor: colors.black3 }}>
+    <View style={{ flex: 1, backgroundColor: isThemeDark ? colors.black3 : colors.bgWhite }}>
       <View style={{ flexDirection: 'row', justifyContent: "space-between", padding: 7 }}>
         <TouchableOpacity style={{ backgroundColor: colors.yellow1, paddingVertical: 10, paddingHorizontal: 10, borderRadius: 20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
       </View>
@@ -20,23 +32,27 @@ export default function Settings({ navigation }) {
         style={{
           flex: 0.9,
           marginHorizontal: 20,
-          backgroundColor: colors.black3,
+          backgroundColor: isThemeDark ? colors.black3 : colors.bgWhite
         }}>
         <ResponsiveText color={colors.yellow} margin={[20, 0, 15, 0]} size={4}>
           Settings
         </ResponsiveText>
 
-        <ResponsiveText color={colors.white} size={4}>
+        <ResponsiveText color={isThemeDark ? colors.white : colors.black} size={4}>
           Choose your Theme
         </ResponsiveText>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <TouchableOpacity
             style={{
-              backgroundColor: colors.black1,
+              backgroundColor: isThemeDark ? colors.black1 : colors.white,
               padding: 10,
               flexDirection: 'row',
               alignItems: 'center',
-            }}>
+            }}
+            onPress={() => {
+              selectTheme(true);
+            }}
+          >
             <View
               style={{
                 height: 22,
@@ -46,43 +62,45 @@ export default function Settings({ navigation }) {
                 borderColor: colors.grey,
                 borderWidth: 1,
               }}></View>
-            <ResponsiveText margin={[0, 30, 0, 0]} color={colors.grey}>
+            <ResponsiveText margin={[0, 30, 0, 0]} color={isThemeDark ? colors.grey : colors.black}>
               Dark Mode
             </ResponsiveText>
 
-            <TouchableOpacity
+            <View
               style={{
-                backgroundColor: checked ? colors.black3 : undefined,
+                backgroundColor: isThemeDark ? colors.black3 : undefined,
                 borderRadius: 50,
-                borderColor: colors.yellow,
+                borderColor: isThemeDark ? colors.yellow : colors.black,
                 borderWidth: 2,
                 height: 20,
                 width: 20,
                 alignItems: 'center',
                 justifyContent: 'center',
               }}
-              onPress={() => {
-                setCheck(true);
-              }}>
-              {checked ? (
+            >
+              {isThemeDark ? (
                 <Icon
                   source={globalPath.RADIO_DOT}
                   size={6}
-                  tintColor={colors.yellow}
+                  tintColor={isThemeDark ? colors.yellow : colors.black}
                 />
               ) : (
                 <View />
               )}
-            </TouchableOpacity>
+            </View>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={{
-              backgroundColor: colors.black1,
+              backgroundColor: isThemeDark ? colors.black1 : colors.white,
               padding: 10,
               flexDirection: 'row',
               alignItems: 'center',
-            }}>
+            }}
+            onPress={() => {
+              selectTheme(false);
+            }}
+          >
             <View
               style={{
                 height: 22,
@@ -92,12 +110,12 @@ export default function Settings({ navigation }) {
                 borderColor: colors.grey,
                 borderWidth: 1,
               }}></View>
-            <ResponsiveText margin={[0, 30, 0, 0]} color={colors.grey}>
+            <ResponsiveText margin={[0, 30, 0, 0]} color={isThemeDark ? colors.grey : colors.black}>
               Light Mode
             </ResponsiveText>
-            <TouchableOpacity
+            <View
               style={{
-                backgroundColor: checked ? undefined : colors.black3,
+                backgroundColor: isThemeDark ? undefined : colors.white,
                 borderRadius: 50,
                 borderColor: colors.yellow,
                 borderWidth: 2,
@@ -106,10 +124,8 @@ export default function Settings({ navigation }) {
                 alignItems: 'center',
                 justifyContent: 'center',
               }}
-              onPress={() => {
-                setCheck(false);
-              }}>
-              {checked ? (
+            >
+              {isThemeDark ? (
                 <View />
               ) : (
                 <Icon
@@ -118,7 +134,7 @@ export default function Settings({ navigation }) {
                   tintColor={colors.yellow}
                 />
               )}
-            </TouchableOpacity>
+            </View>
           </TouchableOpacity>
         </View>
 
