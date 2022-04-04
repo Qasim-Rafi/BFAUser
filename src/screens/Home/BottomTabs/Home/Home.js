@@ -69,6 +69,7 @@ const Home = ({navigation}) => {
   const loading = useSelector(
     state => state.appReducers.bfaPartners.refreshing,
   );
+  const dispatch = useDispatch();
 
   const [refreshing, setRefreshing] = React.useState(false);
   const dropdownRef = React.useRef(null);
@@ -97,7 +98,6 @@ const Home = ({navigation}) => {
 
   // console.log('loading', loading);
 
-  const dispatch = useDispatch();
   // const getCusines = () => {
   //   dispatch(
   //     getUserCusine({
@@ -128,9 +128,7 @@ const Home = ({navigation}) => {
     //  setInterval(() => {
     //   dispatch(getNotificationData());
     // }, 5000);
-     setInterval(() => {
-      dispatch(getNotificationData());
-    }, 5000);
+    
   }, []);
 
   return (

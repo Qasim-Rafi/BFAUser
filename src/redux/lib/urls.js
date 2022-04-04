@@ -9,7 +9,7 @@ export default urls = {
   FORGOT_PASSWORD:'api/Users/ChangePasswordCheckUserApp',  // forgot password
   CHANGE_PASSWORD:'api/Users/ChangeUserPasswordUserApp/',
   REGISTER_URL_CHECKS: 'api/Users/AddUserChecks', //Sign up
-  EDIT_PROFILE: 'api/Users/UpdateUser/', //Sign up
+  EDIT_PROFILE: 'api/Users/EditUserForApp/', //Sign up
   VERIFICATION_CODE: 'api/Users/UpdateUserMobileVerification', // Code verification
   PACKAGES_ALL_URL: 'api/Package/GetPackageAll',
   GET_PROFILE_DATA: 'api/Users/GetUser/', //User data by id
@@ -80,7 +80,8 @@ export default urls = {
   GET_TRANSACTION_HISTORY: 'api/Order/GetUserTransactionHistoryById/',
   GET_NOTIFICATIONS_ALL: 'api/NotificationPannel/GetNotificationPannelAll',  //get notification
   ADD_NOTIFICATIONS: 'api/NotificationPannel/AddNotificationPannel',     //  add notification
-  SEEN_NOTIFICATIONS:'api/NotificationPannel/SeenNotificationforUser'   //Seen notification
+  SEEN_NOTIFICATIONS:'api/NotificationPannel/SeenNotificationforUser' ,  //Seen notification
+  GET_BALI_COINS:'api/Order/getdataforBcoinUserApp'             //GET BALI COINS
 
 
 };

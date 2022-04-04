@@ -171,6 +171,30 @@ function* getProfileDataSagaApi(data) {
     yield put({ type: types.GET_USER_PROFILE_DATA_FAILURE, error: error });
   }
 }
+
+//GET_USER coins DATA
+export function* getBalicoinsDataSaga() {
+  yield takeLatest(types.GET_BALI_COINS_REQUEST, getBalicoinsDataSagaApi);
+}
+function* getBalicoinsDataSagaApi(data) {
+  try {
+    const profileId = yield AsyncStorage.getItem('@userId');
+    console.log('profile iddddddddd:', profileId);
+    const response = yield Api.get(urls.GET_BALI_COINS);
+    if (response && response.data != null) {
+      yield put({
+        type: types.GET_BALI_COINS_SUCCESS,
+        payload: response.data,
+      });
+    } else {
+      yield put({ type: types.GET_BALI_COINS_FAILURE, error: error });
+    }
+
+    // dispatch a success action to the store with the new data object
+  } catch (error) {
+    yield put({ type: types.GET_BALI_COINS_FAILURE, error: error });
+  }
+}
 //get notification
 export function* getNotification() {
   yield takeLatest(types.GET_NOTIFICATION_REQUEST, getNotificationApi);
