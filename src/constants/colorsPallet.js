@@ -1,3 +1,34 @@
+import { store } from "../redux/store";
+// store.subscribe(listener)
+// function select(state) {
+//   return state.state.appReducers.setTheme.data
+// }
+// let currentValue
+// function handleChange() {
+//   let previousValue = currentValue
+//   currentValue = select(store.getState())
+
+//   if (previousValue !== currentValue) {
+//     console.log(
+//       'Some deep nested property changed from',
+//       previousValue,
+//       'to',
+//       currentValue
+//     )
+//   }
+// }
+
+// const unsubscribe = store.subscribe(handleChange)
+// unsubscribe()
+console.log(store,'store in colors');
+
+function select(state) {
+  return state.appReducers.setTheme.data
+}
+const theme = select(store.getState())
+console.log(theme,'theme in colors');
+// console.log(theme.data,'theme in colors');
+
 export const colors = {
   primary: '#FFFFFF',
   secondary: '#D4D4D4',
@@ -10,7 +41,7 @@ export const colors = {
   black1: '#404040',
   black2:'#303030',
   black3:'#202020',
-  bgWhite:'#f2f2f2',
+  bgWhite:'#e2e2e2',
 
   grey1:'#737373',
   grey2:'#3c3625',
