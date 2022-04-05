@@ -59,7 +59,7 @@ const YourFavourite = props => {
     <>
       <View style={styles.AwardWinningDishesHeaderSection}>
         <ResponsiveText margin={[0, 0, 0, -5]} size={4} color={colors.white}>
-         {profileData.userInitial}  Favourites
+          {profileData.userInitial} Favourites
         </ResponsiveText>
         <View style={{ marginRight: -15 }}>
 

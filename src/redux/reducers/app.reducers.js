@@ -163,7 +163,11 @@ const initialState = {
   },
   setTheme: {
     data: {}
-  }
+  },
+  getBaliCoins: {
+    loading: false,
+    data: {},
+  },
 };
 
 export const appReducers = (state = initialState, action) => {
@@ -295,6 +299,37 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         AddOrder: {
           ...state.AddOrder,
+          loading: false,
+        },
+      };
+
+       //Get orders
+    case types.GET_BALI_COINS_REQUEST:
+      return {
+        ...state,
+        getBaliCoins: {
+          ...state.getBaliCoins,
+          loading: true,
+        },
+      };
+
+    case types.GET_BALI_COINS_SUCCESS:
+
+      return {
+        ...state,
+        getBaliCoins: {
+          ...state.getBaliCoins,
+          data: action.payload,
+          loading: false,
+        },
+      };
+
+    case types.GET_BALI_COINS_FAILURE:
+      return {
+        ...state,
+        getBaliCoins: {
+          ...state.getBaliCoins,
+          data: action.payload,
           loading: false,
         },
       };

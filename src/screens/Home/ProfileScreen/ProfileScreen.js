@@ -7,6 +7,7 @@ import {
   Platform,
   TouchableOpacity,
   Text,
+  Alert,
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
@@ -31,7 +32,7 @@ import DropDown from '../../../components/CustomizeDropdown';
 import Dropdown from '../../../components/DropDown';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import ImagePicker from 'react-native-image-crop-picker';
-import Modal from "react-native-modal";
+import Modal from 'react-native-modal';
 import urls from '../../../redux/lib/urls';
 import Api from '../../../redux/lib/api';
 
@@ -48,23 +49,26 @@ export default function ProfileScreen({navigation}) {
   const [JobInterest, setJobInterest] = useState(false);
 
   const [gender, setgender] = useState('');
+  const [contactNo, setcontactNo] = useState('');
+  const [PhoneNo, setPhoneNo] = useState('1232435');
+
   const [education, setEducation] = useState('');
   const [MaritialStatus, setMaritialStatus] = useState('');
   const [EmpSec, setEmpSec] = useState('');
   const [SelectedIndustry, setSelectedIndustry] = useState('');
-  const [children, setChildren] = useState('');
+  const [children, setChildren] = useState('2');
+  const [Address, setAddress] = useState('ok this is my address');
 
   const [IndustryData, setIndustryData] = useState([]);
   const [EmploymentSector, setEmploymentSector] = useState([]);
   const [MarriageStatusData, setMarriageStatusData] = useState([]);
 
-
   const Gender = [
-    {id:1,lable: 'Male', icon: require('../../../assets/icons/male.png')},
-    {id:2,lable: 'Female', icon: require('../../../assets/icons/female.png')},
+    {id: 1, lable: 'Male', icon: require('../../../assets/icons/male.png')},
+    {id: 2, lable: 'Female', icon: require('../../../assets/icons/female.png')},
   ];
   // const Gender=['Male','Female']
-  const [date, setDate] = useState(null);
+  const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
   const [img, setImg] = useState(null);
@@ -91,56 +95,63 @@ export default function ProfileScreen({navigation}) {
   const industry = ['Education', 'Social Media', 'Employer', 'Business'];
   const employmentSec = ['Private', 'Government', 'Semi-Government'];
   React.useEffect(() => {
-   // dispatch(getProfileData());
-   GetLookUpIndustry()
-   GetLookUpEmploymentSector();
-   GetLookUpMarriageStatus();
-   defaultData()
+    // dispatch(getProfileData());
+    GetLookUpIndustry();
+    GetLookUpEmploymentSector();
+    GetLookUpMarriageStatus();
+    defaultData();
     console.log('loading', loading);
   }, []);
   const [activeTab, setActiveTab] = React.useState(profileTabs[0].id);
 
-  const  defaultData=()=>{
+  const defaultData = () => {
     setgender(profileData.gender);
     setFullname(profileData.fullName);
     setEmail(profileData.email);
     setUsername(profileData.username);
-  }
+    setcontactNo(profileData.contactNumber);
+  };
 
   const GetLookUpIndustry = async item => {
     try {
       const res = await Api.get(urls.GET_LOOKUP_INDUSTRY);
       console.log('GetLookUpIndustry res', res);
       if (res && res.success == true) {
-        setIndustryData(res.data)
+        setIndustryData(res.data);
       } else {
       }
-    } catch (error) { }
+    } catch (error) {}
   };
   const GetLookUpEmploymentSector = async item => {
     try {
       const res = await Api.get(urls.GET_LOOKUP_EMP_SEC);
       console.log('GetLookUpEmploymentSector res', res);
       if (res && res.success == true) {
-        setEmploymentSector(res.data)
+        setEmploymentSector(res.data);
       } else {
       }
-    } catch (error) { }
+    } catch (error) {}
   };
   const GetLookUpMarriageStatus = async item => {
     try {
       const res = await Api.get(urls.GET_LOOKUP_MARITAL_STATUS);
       console.log('GetLookUpMarriageStatus', res);
       if (res && res.success == true) {
-        setMarriageStatusData(res.data)
+        setMarriageStatusData(res.data);
       } else {
       }
-    } catch (error) { }
+    } catch (error) {}
   };
   const edit = () => {
     setFullname(profileData.fullName);
     setEmail(profileData.email);
     setUsername(profileData.username);
+    setcontactNo(profileData.contactNumber);
+    setDate(profileData.dateofBirth);
+    setgender(profileData.gender);
+    setChildren(profileData.numberOfChildren);
+    setJobInterest(profileData.jobIntrest);
+
     setEditable(true);
   };
   const submitData = async id => {
@@ -154,9 +165,28 @@ export default function ProfileScreen({navigation}) {
       updatebyId: profileData.id,
       updatedDateTime: new Date(),
     };
-    console.log('obj', obj);
+
+    var formData = new FormData();
+    formData.append('Username', userName);
+    formData.append('Email', email);
+    formData.append('FullName', fullName);
+    formData.append('CellPhone', PhoneNo);
+    formData.append('Address', Address);
+    formData.append('Address2', Address);
+    formData.append('Gender', gender);
+    formData.append('DateofBirth', date);
+    formData.append('ContactNumber', contactNo);
+    formData.append('MarriageStatusId', 2);
+    formData.append('NumberOfChildren', children);
+    formData.append('IndustryId', 2);
+    formData.append('EmploymentSectorId', 2);
+    formData.append('File', img);
+    formData.append('JobIntrest', JobInterest);
+    formData.append('updatebyId',profileData.id);
+
+    console.log('obj', formData);
     try {
-      const res = await Api.put(urls.EDIT_PROFILE + profileData.id, obj);
+      const res = await Api.put(urls.EDIT_PROFILE+profileData.id, formData,true);
       console.log('ree', res);
       if (res && res.success == true) {
         dispatch(getProfileData());
@@ -181,13 +211,13 @@ export default function ProfileScreen({navigation}) {
     ImagePicker.openPicker({
       width: 300,
       height: 400,
-      cropping: true
+      cropping: true,
     }).then(image => {
       console.log(image.cropRect);
-      setImg(image)
-      setModalVisible(!isModalVisible);
+      setImg(image);
+      // setModalVisible(!isModalVisible);
     });
-  }
+  };
   const openPhoneCamera = () => {
     ImagePicker.openCamera({
       width: 300,
@@ -195,10 +225,29 @@ export default function ProfileScreen({navigation}) {
       cropping: true,
     }).then(image => {
       console.log(image);
-      setImg(image)
-      setModalVisible(!isModalVisible);
-
+      setImg(image);
+      // setModalVisible(!isModalVisible);
     });
+  };
+  const takePhoto = () => {
+    Alert.alert(
+      "Select Avatar",
+      "",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        {
+          text: "Choose from Gallery ",
+          onPress: () => takePhotoFromCamera(),
+        },
+        {
+          text: "Take Photo", onPress: async () => openPhoneCamera()
+        }
+      ]
+    );
   }
   const Optional = () => {
     return (
@@ -212,8 +261,9 @@ export default function ProfileScreen({navigation}) {
               Are you interested in receiving potential job offers?
             </ResponsiveText>
             <RadioGroup
-              selectedIndex={JobInterest?1:0}
+              selectedIndex={JobInterest ? 1 : 0}
               color={colors.yellow}
+              onSelect={(index, value) => setJobInterest(value)}
               style={{
                 flex: 1,
                 flexDirection: 'row',
@@ -234,50 +284,39 @@ export default function ProfileScreen({navigation}) {
             </RadioGroup>
           </View>
           {/* <CustomInput placeHolderText={'20/8/1980'} fieldName={'Birthday'} /> */}
-          <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
-            <DropDown
-              data={Gender}
-              // defaultValue={'Male'}
-              defaultValueByIndex={1}
-              onSelect={(selectedItem, index) => {
-                console.log(selectedItem, index);
-                setgender(selectedItem.lable);
-              }}
-              height={hp(6)}
-              width={wp(39)}
-            />
-            <View>
-              <View style={{borderWidth: 2, zIndex: 0, borderRadius: 10}}>
-                <Text
-                  style={{
-                    fontSize: 7,
-                    position: 'absolute',
-                    zIndex: 1,
-                    top: -5,
-                    marginStart: 9,
-                    color: colors.white,
-                  }}>
-                  Date of birth
-                </Text>
 
-                <TouchableOpacity onPress={showDAtepicker}>
-                  <Text
-                    style={{
-                      color: colors.white,
-                      textAlign: 'center',
-                      textAlignVertical: 'center',
-                      backgroundColor: '#3f3f3f',
-                      padding: 13,
-                      borderStartWidth: 10,
-                      borderRadius: 10,
-                      paddingHorizontal: 30,
-                      paddingVertical: 16,
-                      fontSize: 12,
-                    }}>
-                    {date == null ? 'Month/Day/Year' : dateFormat(date)}
-                  </Text>
-                </TouchableOpacity>
-              </View>
+          <View>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginHorizontal: wp(8),
+              }}>
+              <DropDown
+                data={Gender}
+                defaultValueByIndex={1}
+                onSelect={(selectedItem, index) => {
+                  console.log(selectedItem, index);
+                  setgender(selectedItem.lable);
+                }}
+                height={hp(6)}
+                width={wp(39)}
+              />
+              <TouchableOpacity onPress={showDAtepicker}>
+                <Input
+                  width={wp(39)}
+                  onChnageText={text => setLastName(text)}
+                  keyboardType={'numeric'}
+                  editable={false}
+                  margin={[15, 0, 15, 0]}
+                  padding={[0, 0, 0, 15]}
+                  iconMargin={[0, 10, 0, 0]}
+                  leftIcon={globalPath.Calender_ICON}
+                  placeholder={
+                    date == null ? 'Date of birth' : dateFormat(date)
+                  }
+                />
+              </TouchableOpacity>
             </View>
           </View>
           {show && (
@@ -291,19 +330,30 @@ export default function ProfileScreen({navigation}) {
             />
           )}
           <CustomInput
-            placeHolderText={'Graduate'}
+            // placeHolderText={'Graduate'}
             fieldName={'Educational Background'}
+            value={education}
+            onChangeText={text => setEducation(text)}
           />
-           <View style={{marginTop: 15}}>
+          <View style={{marginTop: 15}}>
             <ResponsiveText
               size={3}
               color={colors.grey1}
               margin={[0, 0, 5, 30]}>
               Marital Status
             </ResponsiveText>
-            <Dropdown data={MarriageStatusData.map((v)=>{return v.name})} />
+            <Dropdown
+              data={MarriageStatusData.map(v => {
+                return v.name;
+              })}
+            />
           </View>
-          <CustomInput placeHolderText={'3'} fieldName={'No of Children'} />
+          <CustomInput
+            //  placeHolderText={'3'}
+            fieldName={'No of Children'}
+            value={children}
+            onChangeText={text => setChildren(text)}
+          />
           <View style={{marginTop: 15}}>
             <ResponsiveText
               size={3}
@@ -311,7 +361,11 @@ export default function ProfileScreen({navigation}) {
               margin={[0, 0, 5, 30]}>
               Empoyment Sector
             </ResponsiveText>
-            <Dropdown data={EmploymentSector.map((v)=>{return v.name})} />
+            <Dropdown
+              data={EmploymentSector.map(v => {
+                return v.name;
+              })}
+            />
           </View>
           <View style={{marginTop: 15}}>
             <ResponsiveText
@@ -320,7 +374,11 @@ export default function ProfileScreen({navigation}) {
               margin={[0, 0, 5, 30]}>
               Industry
             </ResponsiveText>
-            <Dropdown data={IndustryData.map((v)=>{return v.name})} />
+            <Dropdown
+              data={IndustryData.map(v => {
+                return v.name;
+              })}
+            />
           </View>
 
           {/* <CustomInput
@@ -367,24 +425,41 @@ export default function ProfileScreen({navigation}) {
         <ScrollView>
           <View style={{flex: 0.68}}>
             <CustomInput
-              placeHolderText={profileData.fullName}
+              // placeHolderText={'Full Name'}
               fieldName={'Full Name'}
               value={fullName}
               onChangeText={text => setFullname(text)}
             />
             <CustomInput
-              placeHolderText={profileData.username}
+              // placeHolderText={profileData.username}
               fieldName={'User Name'}
               value={userName}
               onChangeText={text => setUsername(text)}
             />
             <CustomInput
-              placeHolderText={profileData.email}
+              // placeHolderText={profileData.email}
               fieldName={'Email'}
               value={email}
               onChangeText={text => setEmail(text)}
             />
-            <CustomInput placeHolderText={'000-000-0000'} fieldName={'Phone'} />
+            <CustomInput
+              //  placeHolderText={profileData.contactNumber}
+              fieldName={'Cell Number'}
+              value={contactNo}
+              onChangeText={text => setcontactNo(text)}
+            />
+            <CustomInput
+              //  placeHolderText={profileData.contactNumber}
+              fieldName={'Phone Number'}
+              value={PhoneNo}
+              onChangeText={text => setPhoneNo(text)}
+            />
+            <CustomInput
+              //  placeHolderText={profileData.contactNumber}
+              fieldName={'Address'}
+              value={Address}
+              onChangeText={text => setAddress(text)}
+            />
           </View>
           <View style={{flex: 0.32, marginTop: 40, marginBottom: 20}}>
             <TouchableOpacity
@@ -431,14 +506,14 @@ export default function ProfileScreen({navigation}) {
             </TouchableOpacity>
             <ResponsiveText size={4}>Profile</ResponsiveText>
             <TouchableOpacity
-              onPress={() => edit()}
+              // onPress={() => edit()}
               style={{
-                backgroundColor: colors.black,
+                // backgroundColor: colors.black,
                 height: hp(5),
                 padding: 10,
                 borderRadius: 20,
               }}>
-              <Icon source={globalPath.EDIT_PROFILE} />
+              {/* <Icon source={globalPath.EDIT_PROFILE} /> */}
             </TouchableOpacity>
           </View>
           <View
@@ -461,37 +536,71 @@ export default function ProfileScreen({navigation}) {
               }
             /> */}
             <View style={styles.header}>
-              <View style={{ flexDirection: 'row' }}>
-                <Image style={{
-                  width: 100,
-                  height: 100,
-                  borderRadius: 50,
-                  marginBottom: 10,
-                }}
-                  source={img==null? globalPath.USER_PROFILE:{uri:img.path}}
+              <View style={{flexDirection: 'row'}}>
+                <Image
+                  style={{
+                    width: 100,
+                    height: 100,
+                    borderRadius: 50,
+                    marginBottom: 10,
+                  }}
+                  source={
+                    img == null ? globalPath.USER_PROFILE : {uri: img.path}
+                  }
                   // {profileData.fullpath ? { uri: profileData.fullpath } : globalPath.USER_PROFILE}
                 />
-                <View style={{ height: hp(3.6), width: wp(7.4), alignItems: 'center', justifyContent: 'center' }}>
-                  <TouchableOpacity onPress={toggleModal}>
-                    <Image style={{ height: hp(2.4), width: wp(7), marginRight: hp(4), borderRadius: 30 }}
-                      source={globalPath.CAMERA_ICON} />
-
+                <View
+                  style={{
+                    height: hp(3.6),
+                    width: wp(7.4),
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}>
+                  <TouchableOpacity onPress={takePhoto}>
+                    <Image
+                      style={{
+                        height: hp(2.4),
+                        width: wp(7),
+                        marginRight: hp(4),
+                        borderRadius: 30,
+                      }}
+                      source={globalPath.CAMERA_ICON}
+                    />
                   </TouchableOpacity>
-                  <Modal isVisible={isModalVisible}
+                  <Modal
+                    isVisible={isModalVisible}
                     onSwipeComplete={() => toggleModal(false)}
-                    swipeDirection={["left", "right", 'down', 'up']}
-                    animationIn='slideInUp'
-                  >
-                    <View style={{ height: hp(40), width: wp(90), backgroundColor: colors.white, borderRadius: hp(4), justifyContent: 'center', alignItems: 'center' }}>
-                      <RnButton gradColor={[colors.green1, colors.yellow]} title={'Take Photo'} onPress={openPhoneCamera} />
-                      <RnButton margin={[50, 0, 0, 0]} gradColor={[colors.green1, colors.yellow]} title={'Take Photo from gallery'} onPress={takePhotoFromCamera} />
+                    swipeDirection={['left', 'right', 'down', 'up']}
+                    animationIn="slideInUp">
+                    <View
+                      style={{
+                        height: hp(40),
+                        width: wp(90),
+                        backgroundColor: colors.white,
+                        borderRadius: hp(4),
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}>
+                      <RnButton
+                        gradColor={[colors.green1, colors.yellow]}
+                        title={'Take Photo'}
+                        onPress={openPhoneCamera}
+                      />
+                      <RnButton
+                        margin={[50, 0, 0, 0]}
+                        gradColor={[colors.green1, colors.yellow]}
+                        title={'Take Photo from gallery'}
+                        onPress={takePhotoFromCamera}
+                      />
                     </View>
                   </Modal>
                 </View>
               </View>
             </View>
             <ResponsiveText size={4}>{profileData.fullName}</ResponsiveText>
-            <ResponsiveText color={colors.lightBlack} size={3}>{profileData.email}</ResponsiveText>
+            <ResponsiveText color={colors.lightBlack} size={3}>
+              {profileData.email}
+            </ResponsiveText>
           </View>
         </View>
         <View style={{flex: 0.09, flexDirection: 'row', marginTop: -10}}>
