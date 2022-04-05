@@ -45,42 +45,13 @@ export default function ProfileDisplay({navigation}) {
     console.log('loading', loading);
   }, []);
   const [activeTab, setActiveTab] = React.useState(profileTabs[0].id);
-  const edit = () => {
-    setFullname(profileData.fullName);
-    setEmail(profileData.email);
-    setUsername(profileData.username);
-    setEditable(true);
+  const dateFormat = incomingdate => {
+    var date = new Date(incomingdate);
+    if (date != null) {
+      return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+    }
   };
-  const submitData = async id => {
-    var obj = {
-      username: userName,
-      email: email,
-      fullName: fullName,
-      gender: 'Male',
-      dateofBirth: '2004/1/14',
-      contactNumber: '0340040404040',
-      updatebyId: profileData.id,
-      updatedDateTime: new Date(),
-    };
-    console.log('obj', obj);
-    try {
-      const res = await Api.put(urls.EDIT_PROFILE + profileData.id, obj);
-      console.log('ree', res);
-      if (res && res.success == true) {
-        dispatch(getProfileData());
-        setEditable(false);
-
-        // dropdownRef.current.showMessage({
-        //   message: 'Alert',
-        //   description: 'Order Canceled',
-        //   type: 'success',
-        //   icon: {icon: 'auto', position: 'left'},
-        //   //backgroundColor:colors.black1
-        // });
-      } else {
-      }
-    } catch (error) {}
-  };
+ 
   const userInfo = () => {
     return (
       <View
@@ -142,12 +113,11 @@ export default function ProfileDisplay({navigation}) {
             <View style={styles.cardView}>
               <ResponsiveText color={colors.grey}>Date of Birth</ResponsiveText>
               <ResponsiveText color={colors.white}>
-                {profileData.createdDateTime}
+                {dateFormat(profileData.dateofBirth)}
               </ResponsiveText>
             </View>
           </View>
-          <View style={{height:hp(5)}} />
-
+          <View style={{height: hp(5)}} />
         </ScrollView>
       </View>
     );
@@ -200,8 +170,8 @@ export default function ProfileDisplay({navigation}) {
                 marginBottom: 10,
               }}
               source={
-                profileData.fullpath
-                  ? {uri: profileData.fullpath}
+                profileData.fullPath
+                  ? {uri: profileData.fullPath}
                   : globalPath.USER_PROFILE
               }
             />
