@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -17,12 +17,12 @@ import {
 } from 'react-native';
 import Icon from '../../../../components/Icon';
 import ResponsiveText from '../../../../components/RnText';
-import {colors} from '../../../../constants/colorsPallet';
-import {globalPath} from '../../../../constants/globalPath';
-import {hp, wp} from '../../../../helpers/Responsiveness';
+import { colors } from '../../../../constants/colorsPallet';
+import { globalPath } from '../../../../constants/globalPath';
+import { hp, wp } from '../../../../helpers/Responsiveness';
 import Header from '../../../../components/Header';
 import SharedData from './SharedData';
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   removeCart,
   addCart,
@@ -31,21 +31,21 @@ import {
   getOrders,
 } from '../../../../redux/actions/user.actions';
 // import {TextInput} from 'react-native-gesture-handler';
-import {color} from 'react-native-reanimated';
+import { color } from 'react-native-reanimated';
 import AsyncStorage from '@react-native-community/async-storage';
-import {routeName} from '../../../../constants/routeName';
+import { routeName } from '../../../../constants/routeName';
 import Api from '../../../../redux/lib/api';
 import urls from '../../../../redux/lib/urls';
 import FlashMessage, {
   showMessage,
   hideMessage,
 } from 'react-native-flash-message';
-import {BarIndicator} from 'react-native-indicators';
-import {Rating, AirbnbRating} from 'react-native-ratings';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import { BarIndicator } from 'react-native-indicators';
+import { Rating, AirbnbRating } from 'react-native-ratings';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 import RNModal from 'react-native-modal';
 
-const CartDetails = ({navigation}) => {
+const CartDetails = ({ navigation }) => {
   const cartList = useSelector(state => state.appReducers.cartList.data);
   const orderList = useSelector(
     state => state.appReducers.your_ordersList.data,
@@ -92,7 +92,7 @@ const CartDetails = ({navigation}) => {
   const newArray = [];
   cartList.forEach(obj => {
     if (!newArray.some(o => o.titleR === obj.titleR)) {
-      newArray.push({...obj});
+      newArray.push({ ...obj });
     }
   });
   React.useEffect(() => {
@@ -156,9 +156,9 @@ const CartDetails = ({navigation}) => {
 
       const res = await Api.delete(
         urls.DELETE_DISH_FROM_CART +
-          item.orderId +
-          '&restaurantDishId=' +
-          item.restaurantDishId,
+        item.orderId +
+        '&restaurantDishId=' +
+        item.restaurantDishId,
       );
       console.log('res', res);
       if (res && res.success == true) {
@@ -168,7 +168,7 @@ const CartDetails = ({navigation}) => {
           message: 'Alert',
           description: 'Dish deleted',
           type: 'success',
-          icon: {icon: 'auto', position: 'left'},
+          icon: { icon: 'auto', position: 'left' },
           //backgroundColor:colors.black1
         });
       } else {
@@ -178,11 +178,11 @@ const CartDetails = ({navigation}) => {
           message: 'Alert',
           description: 'Something went wrong',
           type: 'danger',
-          icon: {icon: 'auto', position: 'left'},
+          icon: { icon: 'auto', position: 'left' },
           //backgroundColor:colors.black1
         });
       }
-    } catch (error) {}
+    } catch (error) { }
   };
   const onClearOrder = async id => {
     // dispatch(removeCart(data));
@@ -197,7 +197,7 @@ const CartDetails = ({navigation}) => {
           message: 'Alert',
           description: 'Order cleared',
           type: 'success',
-          icon: {icon: 'auto', position: 'left'},
+          icon: { icon: 'auto', position: 'left' },
           //backgroundColor:colors.black1
         });
       } else {
@@ -207,11 +207,11 @@ const CartDetails = ({navigation}) => {
           message: 'Alert',
           description: 'Something went wrong',
           type: 'danger',
-          icon: {icon: 'auto', position: 'left'},
+          icon: { icon: 'auto', position: 'left' },
           //backgroundColor:colors.black1
         });
       }
-    } catch (error) {}
+    } catch (error) { }
   };
   //increase quantity
   const onItemIncrease = async (index, item) => {
@@ -228,7 +228,7 @@ const CartDetails = ({navigation}) => {
         dispatch(getOrders());
       } else {
       }
-    } catch (error) {}
+    } catch (error) { }
 
     // var i = cartList.findIndex(obj => obj.id === id);
 
@@ -252,7 +252,7 @@ const CartDetails = ({navigation}) => {
         dispatch(getOrders());
       } else {
       }
-    } catch (error) {}
+    } catch (error) { }
   };
   const submitOrder = async Item => {
     var userId = await AsyncStorage.getItem('@userId');
@@ -282,15 +282,15 @@ const CartDetails = ({navigation}) => {
     try {
       const res = await Api.post(
         'AddStarRating?StarCount=' +
-          ratingCount +
-          '&UserId=' +
-          userId +
-          '&UpdatedById=' +
-          userId +
-          '&RestaurantBranchId=' +
-          selectedBranch +
-          '&Reviews=' +
-          text,
+        ratingCount +
+        '&UserId=' +
+        userId +
+        '&UpdatedById=' +
+        userId +
+        '&RestaurantBranchId=' +
+        selectedBranch +
+        '&Reviews=' +
+        text,
       );
       console.log('res', res);
       if (res && res.success == true) {
@@ -301,7 +301,7 @@ const CartDetails = ({navigation}) => {
           message: 'Alert',
           description: 'Thanks for rating',
           type: 'success',
-          icon: {icon: 'auto', position: 'left'},
+          icon: { icon: 'auto', position: 'left' },
           //backgroundColor:colors.black1
         });
         // navigation.navigate(routeName.LANDING_SCREEN)
@@ -312,7 +312,7 @@ const CartDetails = ({navigation}) => {
     }
     //
   };
-  const ModalPoup = ({visible, children}) => {
+  const ModalPoup = ({ visible, children }) => {
     const [showModal, setShowModal] = React.useState(visible);
     const scaleValue = React.useRef(new Animated.Value(0)).current;
     React.useEffect(() => {
@@ -339,7 +339,7 @@ const CartDetails = ({navigation}) => {
       <Modal transparent visible={showModal}>
         <View style={styles.modalBackGround}>
           <Animated.View
-            style={[styles.modalContainer, {transform: [{scale: scaleValue}]}]}>
+            style={[styles.modalContainer, { transform: [{ scale: scaleValue }] }]}>
             {children}
           </Animated.View>
         </View>
@@ -370,14 +370,14 @@ const CartDetails = ({navigation}) => {
           message: 'Alert',
           description: 'Order Canceled',
           type: 'success',
-          icon: {icon: 'auto', position: 'left'},
+          icon: { icon: 'auto', position: 'left' },
           //backgroundColor:colors.black1
         });
       } else {
       }
-    } catch (error) {}
+    } catch (error) { }
   };
-  const renderItem = ({item}) => {
+  const renderItem = ({ item }) => {
     return (
       <View
         style={{
@@ -423,53 +423,53 @@ const CartDetails = ({navigation}) => {
             {item.addOrderDetail.length === 0
               ? undefined
               : item.addOrderDetail.map((v, index) => {
-                  return (
-                    <View
-                      style={{
-                        backgroundColor: colors.black2,
-                        marginHorizontal: 10,
-                        flexDirection: 'row',
-                        padding: 5,
-                        marginBottom: 10,
-                        borderRadius: 7,
-                        alignItems: 'center',
-                      }}>
-                      <View>
-                        <Icon
-                          size={60}
-                          borderRadius={7}
-                          source={{uri: v.imageDataB}}
-                        />
-                      </View>
+                return (
+                  <View
+                    style={{
+                      backgroundColor: colors.black2,
+                      marginHorizontal: 10,
+                      flexDirection: 'row',
+                      padding: 5,
+                      marginBottom: 10,
+                      borderRadius: 7,
+                      alignItems: 'center',
+                    }}>
+                    <View>
+                      <Icon
+                        size={60}
+                        borderRadius={7}
+                        source={{ uri: v.imageDataB }}
+                      />
+                    </View>
 
-                      <View style={{justifyContent: 'center', width: wp(60)}}>
-                        <TouchableOpacity
-                          onPress={() => {
-                            setVisible(true);
-                            //  setModalVisible(true)
-                            SetSelectedItem(v);
-                          }}>
-                          <ResponsiveText
-                            size={3.5}
-                            color={colors.white}
-                            margin={[0, 0, 0, 10]}>
-                            {v.dishName}
-                          </ResponsiveText>
-                          <ResponsiveText
-                            size={2.5}
-                            color={colors.grey}
-                            margin={[-3, 15, 0, 10]}>
-                            {v.dishDescription}
-                          </ResponsiveText>
-                          <ResponsiveText
-                            size={3}
-                            color={colors.yellow}
-                            margin={[0, 0, 0, 10]}>
-                            $ {v.dishPrice}
-                          </ResponsiveText>
-                        </TouchableOpacity>
-                      </View>
-                      {/* {item.statusName === 'PreOrder' ? (
+                    <View style={{ justifyContent: 'center', width: wp(60) }}>
+                      <TouchableOpacity
+                        onPress={() => {
+                          setVisible(true);
+                          //  setModalVisible(true)
+                          SetSelectedItem(v);
+                        }}>
+                        <ResponsiveText
+                          size={3.5}
+                          color={colors.white}
+                          margin={[0, 0, 0, 10]}>
+                          {v.dishName}
+                        </ResponsiveText>
+                        <ResponsiveText
+                          size={2.5}
+                          color={colors.grey}
+                          margin={[-3, 15, 0, 10]}>
+                          {v.dishDescription}
+                        </ResponsiveText>
+                        <ResponsiveText
+                          size={3}
+                          color={colors.yellow}
+                          margin={[0, 0, 0, 10]}>
+                          $ {v.dishPrice}
+                        </ResponsiveText>
+                      </TouchableOpacity>
+                    </View>
+                    {/* {item.statusName === 'PreOrder' ? (
                       <View style={{ marginLeft: -15 }}>
                         <TouchableOpacity
                           onPress={() => {
@@ -521,45 +521,45 @@ const CartDetails = ({navigation}) => {
                         </TouchableOpacity>
                       </View>
                     ) : null} */}
-                      {item.statusName === 'PreOrder' ? (
-                        <View style={{marginLeft: wp(2), marginTop: 15}}>
-                          <TouchableOpacity
-                            onPress={() => {
-                              Alert.alert(
-                                '',
-                                'Do you want to remove this item from cart ?',
-                                [
-                                  {
-                                    text: 'Cancel',
-                                    onPress: () => {},
-                                    style: 'cancel',
-                                  },
-                                  {
-                                    text: 'OK',
-                                    onPress: () => {
-                                      // if(item.statusName === 'PreOrder'){
+                    {item.statusName === 'PreOrder' ? (
+                      <View style={{ marginLeft: wp(2), marginTop: 15 }}>
+                        <TouchableOpacity
+                          onPress={() => {
+                            Alert.alert(
+                              '',
+                              'Do you want to remove this item from cart ?',
+                              [
+                                {
+                                  text: 'Cancel',
+                                  onPress: () => { },
+                                  style: 'cancel',
+                                },
+                                {
+                                  text: 'OK',
+                                  onPress: () => {
+                                    // if(item.statusName === 'PreOrder'){
 
-                                      onItemRemove(v);
-                                      // }else{
-                                      //   Alert.alert('','Order in process')
-                                      // }
-                                    },
+                                    onItemRemove(v);
+                                    // }else{
+                                    //   Alert.alert('','Order in process')
+                                    // }
                                   },
-                                ],
-                              );
-                            }}>
-                            <Icon
-                              source={globalPath.DELETE_ICON}
-                              tintColor={colors.yellow}
-                              margin={[-20, 0, 0, 0]}
-                              size={30}
-                            />
-                          </TouchableOpacity>
-                        </View>
-                      ) : null}
-                    </View>
-                  );
-                })}
+                                },
+                              ],
+                            );
+                          }}>
+                          <Icon
+                            source={globalPath.DELETE_ICON}
+                            tintColor={colors.yellow}
+                            margin={[-20, 0, 0, 0]}
+                            size={30}
+                          />
+                        </TouchableOpacity>
+                      </View>
+                    ) : null}
+                  </View>
+                );
+              })}
           </View>
 
           <View>
@@ -688,7 +688,7 @@ const CartDetails = ({navigation}) => {
     );
   };
   return (
-    <View style={{backgroundColor: colors.black3, flex: 1}}>
+    <View style={{ backgroundColor: colors.black3, flex: 1 }}>
       <RNModal
         isVisible={visible}
         backdropOpacity={0.9}
@@ -697,16 +697,16 @@ const CartDetails = ({navigation}) => {
         // deviceHeight={hp(20)}
         animationIn={'slideInUp'}
         animationOut={'slideOutDown'}
-        //   customBackdrop={<View style={{ flex: 1 }}
-        //    />
-        // }
-        // onModalHide={()=>navigation.navigate(routeName.LANDING_SCREEN)}
-        // coverScreen={true}
+      //   customBackdrop={<View style={{ flex: 1 }}
+      //    />
+      // }
+      // onModalHide={()=>navigation.navigate(routeName.LANDING_SCREEN)}
+      // coverScreen={true}
       >
         <TouchableOpacity onPress={() => {
-                setVisible(false);
-                console.log('truee');
-              }}
+          setVisible(false);
+          console.log('truee');
+        }}
           style={{
             backgroundColor: colors.black3,
             padding: wp(5),
@@ -720,24 +720,29 @@ const CartDetails = ({navigation}) => {
               }}>
               <Image
                 source={require('../../../../assets/fake_Images/cross.png')}
-                style={{height: 22, width: 22}}
+                style={{ height: 22, width: 22 }}
               />
             </TouchableOpacity>
           </View>
 
           {selectedItem !== null ? (
             <>
-              <View style={{flexDirection: 'row'}}>
+              <View style={{ flexDirection: 'row' }}>
                 <Image
-                  source={{uri: selectedItem.imageDataB}}
+                  source={{ uri: selectedItem.imageDataB }}
                   style={styles.popupImage}
                 />
 
-                <View style={{flexDirection: 'column', marginLeft: 5}}>
+                <View style={{ marginLeft: 5 }}>
                   <Text style={styles.ModalDish}>{selectedItem.dishName}</Text>
-                  <Text style={styles.ModalPrice}>
-                    $ {selectedItem.dishPrice}
-                  </Text>
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '70%', marginTop: 10 }}>
+                    <Text style={styles.ModalPrice}>
+                      $ {selectedItem.dishPrice}
+                    </Text>
+                    <Text style={styles.ModalQuantity}>Quantity:{selectedItem.quantity}</Text>
+                  </View>
+
+
                 </View>
               </View>
 
@@ -746,12 +751,17 @@ const CartDetails = ({navigation}) => {
                 <Text style={styles.ModalDiscription}>
                   {selectedItem.dishDescription}
                 </Text>
-                <Text style={styles.headingDrinks}>Drink:</Text>
+                {selectedItem.addOnName ?
+
+
+                  <Text style={styles.headingDrinks}>Drink:</Text>
+
+                  : undefined}
                 <View
                   style={{
                     flexDirection: 'row',
                     alignItems: 'center',
-                    marginLeft: 10,
+                    // marginLeft: 10,
                   }}>
                   <View
                     style={{
@@ -767,16 +777,55 @@ const CartDetails = ({navigation}) => {
                   </Text>
                 </View>
                 <View>
-                  <Text style={styles.headingAddOns}>Add ons: </Text>
+                  {selectedItem.orderDetailExtraItemList.length > 0
+                    ?
+                    <Text style={styles.headingAddOns}>Add ons: </Text>
+
+                    : undefined}
+
+
                 </View>
                 {selectedItem.orderDetailExtraItemList.length > 0
                   ? selectedItem.orderDetailExtraItemList.map((item, index) => {
+                    return (
+                      <View
+                        style={{
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                          // marginLeft: 10,
+                        }}>
+                        <View
+                          style={{
+                            backgroundColor: colors.white,
+                            height: 5,
+                            width: 5,
+                            borderRadius: 50,
+                            marginTop: 6,
+                          }}></View>
+                        <Text style={styles.ModalDrink}>
+                          {item.restaurantDishExtraItemName}
+                        </Text>
+                      </View>
+                    );
+                  })
+                  : undefined}
+                <View></View>
+                <View>
+                  {selectedItem.orderDetailLinkedItemList.length > 0
+                    ?
+                    <Text style={styles.headingAddOns}>Upsize:</Text>
+                    : undefined}
+                </View>
+
+                {selectedItem.orderDetailLinkedItemList.length > 0
+                  ? selectedItem.orderDetailLinkedItemList.map(
+                    (item, index) => {
                       return (
                         <View
                           style={{
                             flexDirection: 'row',
                             alignItems: 'center',
-                            marginLeft: 10,
+                            // marginLeft: 10,
                           }}>
                           <View
                             style={{
@@ -787,46 +836,22 @@ const CartDetails = ({navigation}) => {
                               marginTop: 6,
                             }}></View>
                           <Text style={styles.ModalDrink}>
-                            {item.restaurantDishExtraItemName}
+                            {item.restaurantDishLinkedItemName}
                           </Text>
                         </View>
                       );
-                    })
+                    },
+                  )
                   : undefined}
-                <View></View>
-                <Text style={styles.headingAddOns}>Upsize:</Text>
-                {selectedItem.orderDetailLinkedItemList.length > 0
-                  ? selectedItem.orderDetailLinkedItemList.map(
-                      (item, index) => {
-                        return (
-                          <View
-                            style={{
-                              flexDirection: 'row',
-                              alignItems: 'center',
-                              marginLeft: 10,
-                            }}>
-                            <View
-                              style={{
-                                backgroundColor: colors.white,
-                                height: 5,
-                                width: 5,
-                                borderRadius: 50,
-                                marginTop: 6,
-                              }}></View>
-                            <Text style={styles.ModalDrink}>
-                              {item.restaurantDishLinkedItemName}
-                            </Text>
-                          </View>
-                        );
-                      },
-                    )
+                {selectedItem.remarks ?
+
+                  <Text style={styles.headingInstructions}>Remarks:
+                    <Text style={styles.ModalInstructions}>
+                      {selectedItem.remarks}
+                    </Text>
+                  </Text>
                   : undefined}
-                <Text style={styles.headingInstructions}>Remarks:</Text>
-                <Text style={styles.ModalInstructions}>
-                  {selectedItem.instructions
-                    ? selectedItem.instructions
-                    : 'no remarks'}
-                </Text>
+
               </View>
               <View>
                 <Text
@@ -836,7 +861,8 @@ const CartDetails = ({navigation}) => {
                     marginTop: 4,
                     alignSelf: 'flex-end',
                   }}>
-                  Total: $ {selectedItem.itemTotalPrice}
+                  Total: ${parseFloat(selectedItem.itemTotalPrice).toFixed(2)}
+                  {/* Total: $ {selectedItem.itemTotalPrice} */}
                 </Text>
               </View>
             </>
@@ -851,9 +877,9 @@ const CartDetails = ({navigation}) => {
         // deviceHeight={hp(20)}
         animationIn={'slideInUp'}
         animationOut={'slideOutDown'}
-        customBackdrop={<View style={{flex: 1}} />}
-        // onModalHide={()=>navigation.navigate(routeName.LANDING_SCREEN)}
-        // coverScreen={true}
+        customBackdrop={<View style={{ flex: 1 }} />}
+      // onModalHide={()=>navigation.navigate(routeName.LANDING_SCREEN)}
+      // coverScreen={true}
       >
         <View
           style={{
@@ -959,24 +985,24 @@ const CartDetails = ({navigation}) => {
         </View>
       ) : undefined}
       <View
-        style={{flex: 0.9, marginHorizontal: '1%', justifyContent: 'center'}}>
+        style={{ flex: 0.9, marginHorizontal: '1%', justifyContent: 'center' }}>
         {orderList.length > 0 ? (
           <FlatList
-            contentContainerStyle={{paddingVertical: 10}}
+            contentContainerStyle={{ paddingVertical: 10 }}
             data={orderList}
             keyExtractor={(item, index) => item + index}
             renderItem={renderItem}
             // onRefresh={onRefresh}
             refreshing={orderList_Loading}
-            // onRefresh={
-            //   <RefreshControl
-            //   colors={Colors.yellow}
-            //     size={30}
-            //     refreshing={refreshing}
-            //   />
-            // }
-            // onViewableItemsChanged={onViewRef}
-            // viewabilityConfig={viewConfigRef.current}
+          // onRefresh={
+          //   <RefreshControl
+          //   colors={Colors.yellow}
+          //     size={30}
+          //     refreshing={refreshing}
+          //   />
+          // }
+          // onViewableItemsChanged={onViewRef}
+          // viewabilityConfig={viewConfigRef.current}
           />
         ) : (
           <View
@@ -1053,6 +1079,14 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     fontWeight: '400',
   },
+  ModalQuantity: {
+    // flex:1.2,
+    color: colors.white,
+    fontSize: 10,
+    // left: wp(45),
+    // top: hp(2),
+    fontWeight: '400',
+  },
   ModalDiscription: {
     color: colors.white,
     fontSize: 10,
@@ -1097,6 +1131,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     marginTop: 1,
     marginVertical: 12,
+    flex: 1.3
   },
   headingInstructions: {
     color: colors.white,
