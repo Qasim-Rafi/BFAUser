@@ -273,16 +273,19 @@ export const getRestaurentDeatil = data => {
   };
 };
 //GET_ALL_FAVORITE_RESTAURANT
-export const getFavorateRestaurent = data => {
-  console.log('resssssssss', data);
+export const getFavouiteRestaurent = (index, limit) => {
+  // console.log('okokokokoko',data)
   return {
     type: types.GET_ALL_FAVORITE_RESTAURANT_REQUEST,
-    data,
+    data: {
+      index: index,
+      limit: limit,
+    },
   };
 };
 //Add_FAVORITE_RESTAURANT
 export const addFavoriteRestaurant = data => {
-  // console.log('okokokokoko',data)
+  console.log('dataaa',data)
   return {
     type: types.ADD_FAVORITE_RESTAURANT_REQUEST,
     data,

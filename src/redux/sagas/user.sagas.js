@@ -846,9 +846,11 @@ export function* getfavoriteRestaurantSaga() {
     getfavoriteRestaurantSagaApi,
   );
 }
-function* getfavoriteRestaurantSagaApi() {
+function* getfavoriteRestaurantSagaApi(data) {
+  const limit = data.data.limit;
+  const index = data.data.index;
   try {
-    const response = yield Api.get(urls.GET_ALL_FAVORITE_RESTAURANT);
+    const response = yield Api.get(urls.GET_ALL_FAVORITE_RESTAURANT + index + '/' + limit);
     console.log(response, 'heeeeeeeeee');
     if (response && response.success == true) {
       yield put({
@@ -873,15 +875,17 @@ export function* addReataurantfavouriteSaga() {
   );
 }
 function* addReataurantfavouriteSagaApi(data) {
-  const id = data.data;
-  console.log('parammmmmmmmmm', data);
-  var body = {
-    id: 0,
-    userLiked: true,
-  };
+  // const dishId = data.data.restaurantDishId;
+  // const resId = data.data.restaurantBranchId;
+
+  // console.log('parammmmmmmmmm', data);
+  // var body = {
+  //   id: data.data.restaurantDishId,
+  //   userLiked: true,
+  // };
 
   try {
-    const response = yield Api.put(urls.ADD_RESTAURANT_FAVORITE + 26, body);
+    const response = yield Api.put( urls.ADD_RESTAURANT_FAVORITE + data.data)
     console.log('resposssssssss', response);
     if (response && response.success == true) {
       yield put({
@@ -900,21 +904,27 @@ function* addReataurantfavouriteSagaApi(data) {
 }
 //REMOVE FAVOURATE_RESTAURANT
 export function* RemoveFavoriteRestaurantSaga() {
+  
   yield takeLatest(
     types.REMOVE_FAVORITE_RESTAURANT_REQUEST,
     RemoveFavoriteRestaurantSagaApi,
   );
 }
 function* RemoveFavoriteRestaurantSagaApi(data) {
-  const id = data.id;
-  console.log('removeeeeeeeee:', data);
+  const dishId = data.data.restaurantDishId;
+  const resId = data.data.restaurantBranchId;
+
+  console.log('parammmmmmmmmm', data);
   var body = {
-    id: data.id,
+    id: data.data.restaurantDishId,
     userLiked: false,
   };
 
   try {
-    const response = yield Api.put(urls.REMOVE_FAVORITE_RESTAURANT, body);
+    const url = urls.REMOVE_FAVORITE_RESTAURANT + dishId + '/' + resId;
+    const response = yield Api.put(url);
+    console.log('resssssssss', response);
+
     if (data) {
       yield put({
         type: types.REMOVE_FAVORITE_RESTAURANT_SUCCESS,

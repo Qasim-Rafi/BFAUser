@@ -961,7 +961,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         AddfavoriteRestaurant: {
           ...state.AddfavoriteRestaurant,
-          data: [...state.favorite.data, action.payload],
+          data: [...state.AddfavoriteRestaurant.data, action.payload],
           refreshing: false,
         },
       };
