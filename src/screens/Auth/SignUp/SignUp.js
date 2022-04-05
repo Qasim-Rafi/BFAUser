@@ -385,7 +385,7 @@ export default function Signup({ navigation }) {
               margin={[0, 0, 15, 0]}
               iconMargin={[0, 10, 0, 0]}
               placeholder="User Name"
-              showValidationIcon={userName == '' && userName.length == 3 ? false : showCorrectUserIcon}
+              showValidationIcon={userName == '' || userName.length<3? false : showCorrectUserIcon}
               userValidation={correctUserIcon}
               rightIcon={globalPath.FEED_GREY}
               autoCapitalize={'none'}
@@ -407,7 +407,7 @@ export default function Signup({ navigation }) {
               padding={[0, 0, 0, 25]}
               iconMargin={[0, 10, 0, 0]}
               placeholder="Email"
-              showValidationIcon={email == '' ? false : showCorrectemailIcon}
+              showValidationIcon={email == ''||email.length <3 ? false : showCorrectemailIcon}
               userValidation={correctemailIcon}
               autoCapitalize={'none'}
               keyboardType={'email-address'}
@@ -432,7 +432,7 @@ export default function Signup({ navigation }) {
               maxlength={7}
               onChnageText={text => setCellphoneNum(text)}
               iconMargin={[0, 10, 0, 0]}
-              showValidationIcon={showCorrectPhoneIcon}
+              showValidationIcon={CellphoneNum==''||CellphoneNum.length<3?false: showCorrectPhoneIcon}
               userValidation={correctPhoneIcon}
               placeholder="000-0000(Required)"
               countryCode="+673 "

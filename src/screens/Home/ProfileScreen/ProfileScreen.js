@@ -50,14 +50,14 @@ export default function ProfileScreen({navigation}) {
 
   const [gender, setgender] = useState('');
   const [contactNo, setcontactNo] = useState('');
-  const [PhoneNo, setPhoneNo] = useState('1232435');
+  const [PhoneNo, setPhoneNo] = useState('');
 
   const [education, setEducation] = useState('');
-  const [MaritialStatus, setMaritialStatus] = useState('');
-  const [EmpSec, setEmpSec] = useState('');
-  const [SelectedIndustry, setSelectedIndustry] = useState('');
-  const [children, setChildren] = useState('2');
-  const [Address, setAddress] = useState('ok this is my address');
+  const [MaritialStatus, setMaritialStatus] = useState();
+  const [EmpSec, setEmpSec] = useState();
+  const [SelectedIndustry, setSelectedIndustry] = useState();
+  const [children, setChildren] = useState('');
+  const [Address, setAddress] = useState('');
 
   const [IndustryData, setIndustryData] = useState([]);
   const [EmploymentSector, setEmploymentSector] = useState([]);
@@ -83,7 +83,8 @@ export default function ProfileScreen({navigation}) {
     setMode(currentMode);
   };
 
-  const dateFormat = date => {
+  const dateFormat = incomingdate => {
+    var date = new Date(incomingdate);
     if (date != null) {
       return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
     }
@@ -110,6 +111,16 @@ export default function ProfileScreen({navigation}) {
     setEmail(profileData.email);
     setUsername(profileData.username);
     setcontactNo(profileData.contactNumber);
+    setDate(profileData.dateofBirth);
+    setgender(profileData.gender);
+    setChildren(profileData.numberOfChildren);
+    setJobInterest(profileData.jobIntrest);
+    setEducation(profileData.educationalBackground);
+    setMaritialStatus(profileData.marriageStatusId);
+    setEmpSec(profileData.employmentSectorId);
+    setSelectedIndustry(profileData.industryId);
+    setAddress(profileData.address);
+    setPhoneNo(profileData.cellPhone)
   };
 
   const GetLookUpIndustry = async item => {
@@ -142,30 +153,23 @@ export default function ProfileScreen({navigation}) {
       }
     } catch (error) {}
   };
-  const edit = () => {
-    setFullname(profileData.fullName);
-    setEmail(profileData.email);
-    setUsername(profileData.username);
-    setcontactNo(profileData.contactNumber);
-    setDate(profileData.dateofBirth);
-    setgender(profileData.gender);
-    setChildren(profileData.numberOfChildren);
-    setJobInterest(profileData.jobIntrest);
 
-    setEditable(true);
-  };
   const submitData = async id => {
-    var obj = {
-      username: userName,
-      email: email,
-      fullName: fullName,
-      gender: 'Male',
-      dateofBirth: '2004/1/14',
-      contactNumber: '0340040404040',
-      updatebyId: profileData.id,
-      updatedDateTime: new Date(),
-    };
-
+    // var obj = {
+    //   username: userName,
+    //   email: email,
+    //   fullName: fullName,
+    //   gender: 'Male',
+    //   dateofBirth: '2004/1/14',
+    //   contactNumber: '0340040404040',
+    //   updatebyId: profileData.id,
+    //   updatedDateTime: new Date(),
+    // };
+    // var photo = {
+    //   uri: img.path,
+    //   type: 'image/jpeg',
+    //   name: 'photo.jpg',
+    // };
     var formData = new FormData();
     formData.append('Username', userName);
     formData.append('Email', email);
@@ -173,20 +177,34 @@ export default function ProfileScreen({navigation}) {
     formData.append('CellPhone', PhoneNo);
     formData.append('Address', Address);
     formData.append('Address2', Address);
+    formData.append('EducationalBackground', education);
     formData.append('Gender', gender);
-    formData.append('DateofBirth', date);
+    formData.append('DateofBirth', dateFormat(date));
     formData.append('ContactNumber', contactNo);
-    formData.append('MarriageStatusId', 2);
+    formData.append('MarriageStatusId', MaritialStatus);
     formData.append('NumberOfChildren', children);
-    formData.append('IndustryId', 2);
-    formData.append('EmploymentSectorId', 2);
-    formData.append('File', img);
+    formData.append('IndustryId', SelectedIndustry);
+    formData.append('EmploymentSectorId', EmpSec);
+    formData.append(
+      'File',
+      img == null
+        ? null
+        : {
+            uri: img.path,
+            type: 'image/jpeg',
+            name: 'photo.jpg',
+          },
+    );
     formData.append('JobIntrest', JobInterest);
-    formData.append('updatebyId',profileData.id);
+    formData.append('updatebyId', profileData.id);
 
     console.log('obj', formData);
     try {
-      const res = await Api.put(urls.EDIT_PROFILE+profileData.id, formData,true);
+      const res = await Api.put(
+        urls.EDIT_PROFILE + profileData.id,
+        formData,
+        true,
+      );
       console.log('ree', res);
       if (res && res.success == true) {
         dispatch(getProfileData());
@@ -230,25 +248,22 @@ export default function ProfileScreen({navigation}) {
     });
   };
   const takePhoto = () => {
-    Alert.alert(
-      "Select Avatar",
-      "",
-      [
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
-        },
-        {
-          text: "Choose from Gallery ",
-          onPress: () => takePhotoFromCamera(),
-        },
-        {
-          text: "Take Photo", onPress: async () => openPhoneCamera()
-        }
-      ]
-    );
-  }
+    Alert.alert('Select Avatar', '', [
+      {
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      {
+        text: 'Choose from Gallery ',
+        onPress: () => takePhotoFromCamera(),
+      },
+      {
+        text: 'Take Photo',
+        onPress: () => openPhoneCamera(),
+      },
+    ]);
+  };
   const Optional = () => {
     return (
       <View style={styles.formArea}>
@@ -261,7 +276,7 @@ export default function ProfileScreen({navigation}) {
               Are you interested in receiving potential job offers?
             </ResponsiveText>
             <RadioGroup
-              selectedIndex={JobInterest ? 1 : 0}
+              selectedIndex={profileData.jobIntrest == true ? 0 : 1}
               color={colors.yellow}
               onSelect={(index, value) => setJobInterest(value)}
               style={{
@@ -294,7 +309,7 @@ export default function ProfileScreen({navigation}) {
               }}>
               <DropDown
                 data={Gender}
-                defaultValueByIndex={1}
+                defaultButtonText={gender}
                 onSelect={(selectedItem, index) => {
                   console.log(selectedItem, index);
                   setgender(selectedItem.lable);
@@ -322,10 +337,11 @@ export default function ProfileScreen({navigation}) {
           {show && (
             <DateTimePicker
               // testID="dateTimePicker"
-              value={new Date()}
+              value={new Date(date)}
               mode={'date'}
               // is24Hour={true}
               display="default"
+              format="YYYY-MM-DD HH:mm"
               onChange={onChange}
             />
           )}
@@ -346,6 +362,14 @@ export default function ProfileScreen({navigation}) {
               data={MarriageStatusData.map(v => {
                 return v.name;
               })}
+              defaultButtonText={
+                MarriageStatusData.find(v => v.id == MaritialStatus)?.name
+              }
+              onSelect={async (selectedItem, index) => {
+                var id=MarriageStatusData.find(v => v.name == selectedItem)?.id
+                console.log(id, 'MarriageStatusData');
+                setMaritialStatus(id);
+              }}
             />
           </View>
           <CustomInput
@@ -365,6 +389,14 @@ export default function ProfileScreen({navigation}) {
               data={EmploymentSector.map(v => {
                 return v.name;
               })}
+              defaultButtonText={
+                EmploymentSector.find(v => v.id == EmpSec)?.name
+              }
+              onSelect={async (selectedItem, index) => {
+                var id=EmploymentSector.find(v => v.name == selectedItem)?.id
+                console.log(id, 'EmploymentSector');
+                setEmpSec(id);
+              }}
             />
           </View>
           <View style={{marginTop: 15}}>
@@ -378,6 +410,14 @@ export default function ProfileScreen({navigation}) {
               data={IndustryData.map(v => {
                 return v.name;
               })}
+              defaultButtonText={
+                IndustryData.find(v => v.id == SelectedIndustry)?.name
+              }
+              onSelect={async (selectedItem, index) => {
+                var id=IndustryData.find(v => v.name == selectedItem)?.id
+                console.log(id, 'IndustryData');
+                setSelectedIndustry(id);
+              }}
             />
           </View>
 
@@ -396,6 +436,7 @@ export default function ProfileScreen({navigation}) {
               alignSelf: 'center',
             }}>
             <TouchableOpacity
+              onPress={() => submitData()}
               style={{
                 alignSelf: 'center',
                 backgroundColor: colors.yellow,
@@ -545,7 +586,11 @@ export default function ProfileScreen({navigation}) {
                     marginBottom: 10,
                   }}
                   source={
-                    img == null ? globalPath.USER_PROFILE : {uri: img.path}
+                    img == null
+                      ? profileData.fullPath
+                        ? {uri: profileData.fullPath}
+                        : globalPath.USER_PROFILE
+                      : {uri: img.path}
                   }
                   // {profileData.fullpath ? { uri: profileData.fullpath } : globalPath.USER_PROFILE}
                 />

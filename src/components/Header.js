@@ -31,6 +31,7 @@ const Header = ({
   const NotificationData = useSelector(
     state => state.appReducers.getNotification.data,
   );
+  const profileData = useSelector(state => state.appReducers.profileData.data);
 
   return (
     <View
@@ -153,15 +154,17 @@ const Header = ({
           <View />
         ) : (
           <TouchableOpacity
-            style={{marginRight: wp(0)}}
+            style={{marginHorizontal: wp(2)}}
             onPress={() => {
               navigation.navigate(routeName.MORE_BOTTOM);
             }}>
             <Icon
               borderRadius={30}
-              size={props.iconPath ? (wp(10), hp(6)) : 38}
+              size={props.iconPath ? (wp(10), hp(6)) : 25}
               resizeMode={'cover'}
-              source={globalPath.USER_PROFILE}
+              source={profileData.fullPath
+                ? {uri: profileData.fullPath}
+                :globalPath.USER_PROFILE}
             />
           </TouchableOpacity>
         ))}
