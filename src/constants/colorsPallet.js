@@ -25,22 +25,22 @@ console.log(store,'store in colors');
 function select(state) {
   return state.appReducers.setTheme.data
 }
-const theme = select(store.getState())
-console.log(theme,'theme in colors');
-// console.log(theme.data,'theme in colors');
+const isThemeDark = select(store.getState())
+console.log(isThemeDark,'isThemeDark in colors');
+// console.log(isThemeDark.data,'isThemeDark in colors');
 
 export const colors = {
   primary: '#FFFFFF',
   secondary: '#D4D4D4',
   grey: '#A1A1A1',
   light_blue: '#AEC8C9',
-  black: '#000000',
-  white: '#ffffff',
+  black: isThemeDark ? '#000000' : '#fff' ,
+  white: isThemeDark?  '#ffffff' : '#000' ,
   yellow:"#edc54e",
   yellow1:'#C7A02E',
-  black1: '#404040',
-  black2:'#303030',
-  black3:'#202020',
+  black1: isThemeDark ?  '#404040' : '#fff'  , 
+  black2: isThemeDark ?  '#303030' : '#fff'  , 
+  black3: isThemeDark?  '#202020' : '#e2e2e2' , 
   bgWhite:'#e2e2e2',
 
   grey1:'#737373',

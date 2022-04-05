@@ -25,9 +25,15 @@ import { useSelector } from 'react-redux';
 const Tab = createBottomTabNavigator();
 
 export default function BottomTabs(props) {
-
+  
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
   const orderList = useSelector(state => state.appReducers.your_ordersList.data)
   const preOrder = orderList.filter(e=> e.statusName == "PreOrder")
+  
+  React.useEffect(() => {
+
+  }, [isThemeDark])
+  
   
   return (
     <Tab.Navigator
