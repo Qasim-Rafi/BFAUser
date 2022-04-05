@@ -432,7 +432,7 @@ export default function Signup({ navigation }) {
               maxlength={7}
               onChnageText={text => setCellphoneNum(text)}
               iconMargin={[0, 10, 0, 0]}
-              showValidationIcon={phoneNum==''||phoneNum.length<3?false: showCorrectPhoneIcon}
+              showValidationIcon={CellphoneNum==''||CellphoneNum.length<3?false: showCorrectPhoneIcon}
               userValidation={correctPhoneIcon}
               placeholder="000-0000(Required)"
               countryCode="+673 "
