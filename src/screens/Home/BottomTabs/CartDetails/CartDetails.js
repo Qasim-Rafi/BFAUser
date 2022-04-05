@@ -733,11 +733,16 @@ const CartDetails = ({ navigation }) => {
                   style={styles.popupImage}
                 />
 
-                <View style={{ flexDirection: 'column', marginLeft: 5 }}>
+                <View style={{ marginLeft: 5 }}>
                   <Text style={styles.ModalDish}>{selectedItem.dishName}</Text>
-                  <Text style={styles.ModalPrice}>
-                    $ {selectedItem.dishPrice}
-                  </Text>
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '70%', marginTop: 10 }}>
+                    <Text style={styles.ModalPrice}>
+                      $ {selectedItem.dishPrice}
+                    </Text>
+                    <Text style={styles.ModalQuantity}>Quantity:{selectedItem.quantity}</Text>
+                  </View>
+
+
                 </View>
               </View>
 
@@ -746,12 +751,17 @@ const CartDetails = ({ navigation }) => {
                 <Text style={styles.ModalDiscription}>
                   {selectedItem.dishDescription}
                 </Text>
-                <Text style={styles.headingDrinks}>Drink:</Text>
+                {selectedItem.addOnName ?
+
+
+                  <Text style={styles.headingDrinks}>Drink:</Text>
+
+                  : undefined}
                 <View
                   style={{
                     flexDirection: 'row',
                     alignItems: 'center',
-                    marginLeft: 10,
+                    // marginLeft: 10,
                   }}>
                   <View
                     style={{
@@ -767,7 +777,13 @@ const CartDetails = ({ navigation }) => {
                   </Text>
                 </View>
                 <View>
-                  <Text style={styles.headingAddOns}>Add ons: </Text>
+                  {selectedItem.orderDetailExtraItemList.length > 0
+                    ?
+                    <Text style={styles.headingAddOns}>Add ons: </Text>
+
+                    : undefined}
+
+
                 </View>
                 {selectedItem.orderDetailExtraItemList.length > 0
                   ? selectedItem.orderDetailExtraItemList.map((item, index) => {
@@ -794,7 +810,13 @@ const CartDetails = ({ navigation }) => {
                   })
                   : undefined}
                 <View></View>
-                <Text style={styles.headingAddOns}>Upsize:</Text>
+                <View>
+                  {selectedItem.orderDetailLinkedItemList.length > 0
+                    ?
+                    <Text style={styles.headingAddOns}>Upsize:</Text>
+                    : undefined}
+                </View>
+
                 {selectedItem.orderDetailLinkedItemList.length > 0
                   ? selectedItem.orderDetailLinkedItemList.map(
                     (item, index) => {
@@ -828,7 +850,7 @@ const CartDetails = ({ navigation }) => {
                       {selectedItem.remarks}
                     </Text>
                   </Text>
-                  :undefined}
+                  : undefined}
 
               </View>
               <View>
@@ -839,7 +861,8 @@ const CartDetails = ({ navigation }) => {
                     marginTop: 4,
                     alignSelf: 'flex-end',
                   }}>
-                  Total: $ {selectedItem.itemTotalPrice}
+                  Total: ${parseFloat(selectedItem.itemTotalPrice).toFixed(2)}
+                  {/* Total: $ {selectedItem.itemTotalPrice} */}
                 </Text>
               </View>
             </>
@@ -1056,6 +1079,14 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     fontWeight: '400',
   },
+  ModalQuantity: {
+    // flex:1.2,
+    color: colors.white,
+    fontSize: 10,
+    // left: wp(45),
+    // top: hp(2),
+    fontWeight: '400',
+  },
   ModalDiscription: {
     color: colors.white,
     fontSize: 10,
@@ -1100,6 +1131,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     marginTop: 1,
     marginVertical: 12,
+    flex: 1.3
   },
   headingInstructions: {
     color: colors.white,
