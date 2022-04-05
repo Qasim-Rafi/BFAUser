@@ -792,7 +792,7 @@ const CartDetails = ({ navigation }) => {
                         style={{
                           flexDirection: 'row',
                           alignItems: 'center',
-                          marginLeft: 10,
+                          // marginLeft: 10,
                         }}>
                         <View
                           style={{
@@ -825,7 +825,7 @@ const CartDetails = ({ navigation }) => {
                           style={{
                             flexDirection: 'row',
                             alignItems: 'center',
-                            marginLeft: 10,
+                            // marginLeft: 10,
                           }}>
                           <View
                             style={{
