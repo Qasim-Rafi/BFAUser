@@ -60,26 +60,26 @@ export default function AddToCart({route, navigation}) {
     // var sumoflinedItems = linkedItem.reduce((a, c) => {
     //   return a + c.price;
     // }, 0);
-    PriceCalculations()
-  
-  }, [count,extraCheese.length,SelectedDrinks.length]);
+    console.log(linkedItem.length);
+    PriceCalculations();
+  }, [count, extraCheese.length, SelectedDrinks.length,linkedItem.length,visible]);
   const Drinks = value => {
     setSelecteddrinks(value);
     console.log('Idddddddddd:', value);
   };
- 
-  const PriceCalculations=()=>{
+
+  const PriceCalculations = () => {
     var sumofExtra = extraCheese.reduce((a, c) => {
       return a + c.price * c.quantity;
     }, 0);
     var sumofDrinks = SelectedDrinks.reduce((a, c) => {
-      return a + (c.price * c.quantity);
+      return a + c.price * c.quantity;
     }, 0);
-    console.log('sum of extra',sumofExtra);
-    console.log('sumofDrinks',sumofDrinks);
-
-    updateTotal((dishPrice  * count)+ sumofExtra +sumofDrinks);
-  }
+    console.log('sum of extra', sumofExtra);
+    console.log('sumofDrinks', sumofDrinks);
+    setVisible(!visible)
+    updateTotal(dishPrice * count + sumofExtra + sumofDrinks);
+  };
   // const data = () => [{
   //   "id": 0,
   //   customerId: 10,
@@ -97,8 +97,8 @@ export default function AddToCart({route, navigation}) {
   // }];
   const AddDrinks = (item, index) => {
     //extraCheese.push(item)
-    dish.restaurantSoftDrinksList[index].quantity=1
-  
+    dish.restaurantSoftDrinksList[index].quantity = 1;
+
     if (SelectedDrinks.some(o => o.id === item.id)) {
       setSelectedDrinks(SelectedDrinks.filter(i => i.id !== item.id));
       delete dish.restaurantSoftDrinksList[index].quantity;
@@ -116,32 +116,34 @@ export default function AddToCart({route, navigation}) {
       // }, 0);
     }
     // updateTotal(total + sumofDrinks);
-  PriceCalculations()
+    PriceCalculations();
 
-     console.log('SelectedDrinks', SelectedDrinks);
+    console.log('SelectedDrinks', SelectedDrinks);
   };
- const UpdateDrinksQ=(index,type)=>{
-   if(type=='inc'){
-    //  extraCheese[index].quantity=extraCheese[index].quantity+1;
-    dish.restaurantSoftDrinksList[index].quantity=dish.restaurantSoftDrinksList[index].quantity+1
-    addDish(dish)
-    // console.log(extraCheese[index].quantity);
-   }
-   else if(type=='dec'){
-    // extraCheese[index].quantity=extraCheese[index].quantity>1?extraCheese[index].quantity -1 :1;
-    dish.restaurantSoftDrinksList[index].quantity=dish.restaurantSoftDrinksList[index].quantity>1?dish.restaurantSoftDrinksList[index].quantity -1:1
-   }
-  //  var sumofDrinks = SelectedDrinks.reduce((a, c) => {
-  //   return a + (c.price * c.quantity);
-  // }, 0);
-  // updateTotal(total + sumofDrinks);
-  PriceCalculations()
-
- }
+  const UpdateDrinksQ = (index, type) => {
+    if (type == 'inc') {
+      //  extraCheese[index].quantity=extraCheese[index].quantity+1;
+      dish.restaurantSoftDrinksList[index].quantity =
+        dish.restaurantSoftDrinksList[index].quantity + 1;
+      addDish(dish);
+      // console.log(extraCheese[index].quantity);
+    } else if (type == 'dec') {
+      // extraCheese[index].quantity=extraCheese[index].quantity>1?extraCheese[index].quantity -1 :1;
+      dish.restaurantSoftDrinksList[index].quantity =
+        dish.restaurantSoftDrinksList[index].quantity > 1
+          ? dish.restaurantSoftDrinksList[index].quantity - 1
+          : 1;
+    }
+    //  var sumofDrinks = SelectedDrinks.reduce((a, c) => {
+    //   return a + (c.price * c.quantity);
+    // }, 0);
+    // updateTotal(total + sumofDrinks);
+    PriceCalculations();
+  };
   const ExtraChees = (item, index) => {
     //extraCheese.push(item)
-    dish.restaurantDishExtraItemList[index].quantity=1
-  
+    dish.restaurantDishExtraItemList[index].quantity = 1;
+
     if (extraCheese.some(o => o.id === item.id)) {
       setExtrachess(extraCheese.filter(i => i.id !== item.id));
       delete dish.restaurantDishExtraItemList[index].quantity;
@@ -159,39 +161,91 @@ export default function AddToCart({route, navigation}) {
       // }, 0);
     }
     // updateTotal(total + sumofExtra);
-  PriceCalculations()
+    PriceCalculations();
 
     // console.log('Extraaaaaaa', sumofExtra);
   };
- const UpdateExtra=(index,type)=>{
-   if(type=='inc'){
-    //  extraCheese[index].quantity=extraCheese[index].quantity+1;
-    dish.restaurantDishExtraItemList[index].quantity=dish.restaurantDishExtraItemList[index].quantity+1
-    addDish(dish)
-    // console.log(extraCheese[index].quantity);
-   }
-   else if(type=='dec'){
-    // extraCheese[index].quantity=extraCheese[index].quantity>1?extraCheese[index].quantity -1 :1;
-    dish.restaurantDishExtraItemList[index].quantity=dish.restaurantDishExtraItemList[index].quantity>1?dish.restaurantDishExtraItemList[index].quantity -1:1
-   }
-  //  var sumofExtra = extraCheese.reduce((a, c) => {
-  //   return a + (c.price * c.quantity);
-  // }, 0);
-  // updateTotal(total + sumofExtra);
-  PriceCalculations()
-
-
- }
-  const LinkedItem = (item, index) => {
+  const UpdateExtra = (index, type) => {
+    if (type == 'inc') {
+      //  extraCheese[index].quantity=extraCheese[index].quantity+1;
+      dish.restaurantDishExtraItemList[index].quantity =
+        dish.restaurantDishExtraItemList[index].quantity + 1;
+      addDish(dish);
+      // console.log(extraCheese[index].quantity);
+    } else if (type == 'dec') {
+      // extraCheese[index].quantity=extraCheese[index].quantity>1?extraCheese[index].quantity -1 :1;
+      dish.restaurantDishExtraItemList[index].quantity =
+        dish.restaurantDishExtraItemList[index].quantity > 1
+          ? dish.restaurantDishExtraItemList[index].quantity - 1
+          : 1;
+    }
+    //  var sumofExtra = extraCheese.reduce((a, c) => {
+    //   return a + (c.price * c.quantity);
+    // }, 0);
+    // updateTotal(total + sumofExtra);
+    PriceCalculations();
+  };
+  const LinkedItem = (item,index) => {
     //extraCheese.push(item)
-    if (linkedItem.some(o => o.dishLinkedItemo === item.dishLinkedItemId)) {
-      setlinkedItem(
-        linkedItem.filter(i => i.dishLinkedItemId !== item.dishLinkedItemId),
-      );
+    // if (linkedItem.some(o => o.dishLinkedItemo === item.dishLinkedItemId)) {
+    //   setlinkedItem(
+    //     linkedItem.filter(i => i.dishLinkedItemId !== item.dishLinkedItemId),
+    //   );
+    // } else {
+    //   linkedItem.push(item);
+    // }
+    // console.log('after', linkedItem);
+    dish.restaurantDishLinkedItemList[index].quantity = 1;
+
+    if (linkedItem.some(o => o.id === item.id)) {
+      setlinkedItem(linkedItem.filter(i => i.id !== item.id));
+      delete dish.restaurantDishLinkedItemList[index].quantity;
+      // var sumofExtra = extraCheese
+      //   .filter(i => i.id !== item.id)
+      //   .reduce((a, c) => {
+      //     return a + (c.price * c.quantity);
+      //   }, 0);
+
+      // console.log('removeeee',extraCheese.filter(i => i.id !== item.id));
     } else {
-      linkedItem.push(item);
+      linkedItem.push(dish.restaurantDishLinkedItemList[index]);
+      // var sumofExtra = extraCheese.reduce((a, c) => {
+      //   return a + (c.price * c.quantity);
+      // }, 0);
     }
     console.log('after', linkedItem);
+   
+    PriceCalculations();
+  };
+  const updateLinkedItem = (index, type) => {
+    //extraCheese.push(item)
+    // if (linkedItem.some(o => o.dishLinkedItemo === item.dishLinkedItemId)) {
+    //   setlinkedItem(
+    //     linkedItem.filter(i => i.dishLinkedItemId !== item.dishLinkedItemId),
+    //   );
+    // } else {
+    //   linkedItem.push(item);
+    // }
+    // console.log('after', linkedItem);
+
+    if (type == 'inc') {
+      //  extraCheese[index].quantity=extraCheese[index].quantity+1;
+      dish.restaurantDishLinkedItemList[index].quantity =
+        dish.restaurantDishLinkedItemList[index].quantity + 1;
+      addDish(dish);
+      // console.log(extraCheese[index].quantity);
+    } else if (type == 'dec') {
+      // extraCheese[index].quantity=extraCheese[index].quantity>1?extraCheese[index].quantity -1 :1;
+      dish.restaurantDishLinkedItemList[index].quantity =
+        dish.restaurantDishLinkedItemList[index].quantity > 1
+          ? dish.restaurantDishLinkedItemList[index].quantity - 1
+          : 1;
+    }
+    //  var sumofExtra = extraCheese.reduce((a, c) => {
+    //   return a + (c.price * c.quantity);
+    // }, 0);
+    // updateTotal(total + sumofExtra);
+    PriceCalculations();
   };
   const AddToCart = () => {
     const data = {
@@ -223,6 +277,16 @@ export default function AddToCart({route, navigation}) {
     const addOrderDetail = [];
     const orderDetailExtraItemList = [];
     const orderDetailLinkedItemList = [];
+    const DrinksList = [];
+    if (SelectedDrinks.length > 0) {
+      SelectedDrinks.forEach(e => {
+        DrinksList.push({
+          restaurantDishExtraItemId: e.id,
+          price: e.price,
+          quantity: e.quantity,
+        });
+      });
+    }
     // cartList.forEach(obj => {
     // if (obj.restaurantBranchId === BrachId) {
     if (extraCheese.length > 0) {
@@ -230,6 +294,7 @@ export default function AddToCart({route, navigation}) {
         orderDetailExtraItemList.push({
           restaurantDishExtraItemId: e.id,
           price: e.price,
+          quantity: e.quantity,
         });
       });
     }
@@ -238,6 +303,7 @@ export default function AddToCart({route, navigation}) {
         orderDetailLinkedItemList.push({
           restaurantDishLinkedItemId: e.id,
           price: e.price,
+          quantity: e.quantity,
         });
       });
     }
@@ -386,10 +452,43 @@ export default function AddToCart({route, navigation}) {
                           text={item.dishLinkedItemName}
                           additem={LinkedItem}
                           value={item}
+                          index={index}
                         />
-                        {/* <ResponsiveText color={colors.white}>
-                          ${item.price}
-                        </ResponsiveText> */}
+                        <View style={{flexDirection: 'row'}}>
+                          <ResponsiveText color={colors.white} margin={[0, 10]}>
+                            $
+                            {item.quantity
+                              ? item.price * item.quantity
+                              : item.price}
+                          </ResponsiveText>
+                          {item.quantity ? (
+                            <View style={{flexDirection: 'row'}}>
+                              <TouchableOpacity
+                                onPress={() => {
+                                  updateLinkedItem(index, 'dec');
+                                  // setCheeseCount(CheeseCount > 1 ? CheeseCount - 1 : 1);
+                                }}>
+                                <Icon
+                                  size={28}
+                                  source={globalPath.MINUS_ICON}
+                                />
+                              </TouchableOpacity>
+                              <ResponsiveText
+                                size={5}
+                                margin={[0, 10]}
+                                color={colors.white}>
+                                {item.quantity}
+                              </ResponsiveText>
+                              <TouchableOpacity
+                                onPress={() => {
+                                  updateLinkedItem(index, 'inc');
+                                  //  setCheeseCount(CheeseCount + 1);
+                                }}>
+                                <Icon size={28} source={globalPath.PLUS_ICON} />
+                              </TouchableOpacity>
+                            </View>
+                          ) : null}
+                        </View>
                       </View>
                     );
                   },

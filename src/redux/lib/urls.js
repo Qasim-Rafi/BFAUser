@@ -32,12 +32,14 @@ export default urls = {
   // ADD_FAVORITE: 'api/RestaurantDish/UpdateRestaurantDishLiked/',
   REMOVE_fAVOURITE_DISH: 'api/RestaurantDish/UpdateDishUnliked/', //unlike dish
   ADD_FAVORITE_DISH: 'api/RestaurantDish/UpdateRestaurantDishLiked/', //LIKE DISHfav
+  GET_ALL_FAVORITE_RESTAURANT:'api/RestaurantAdmin/GetRestaurantLikedAll/',
   GET_RESTAURANT_DETAIL:'api/RestaurantBranchesAdmin/GetRestaurantdetailforAppAlldata/',    //Restaurant detail
-  GET_ALL_FAVORITE_RESTAURANT: 'api/PeopleChoice/GetPeopleChoiceLikedAll/1/10',
-  ADD_RESTAURANT_FAVORITE: 'api/PeopleChoice/UpdatePeopleChoiceLiked/',
-  REMOVE_FAVORITE_RESTAURANT: 'api/PeopleChoice/UpdatePeopleChoiceUnliked',
+  // GET_ALL_FAVORITE_RESTAURANT: 'api/PeopleChoice/GetPeopleChoiceLikedAll/1/10',
+  // ADD_RESTAURANT_FAVORITE: 'api/PeopleChoice/UpdatePeopleChoiceLiked/',
+  REMOVE_FAVORITE_RESTAURANT: 'api/RestaurantAdmin/UpdateRestaurantUnliked/',
   APPLY_FOR_JOBS: 'api/JobApplications/AddJobApplication', //for apply jobs,
   GET_DISH_BY_CUSINE_ID: 'api/RestaurantDish/GetRestaurantDishByCuisinesId/',
+  ADD_RESTAURANT_FAVORITE:'api/RestaurantAdmin/UpdateRestaurantLiked/',
   ADD_ORDER: 'api/Order/AddOrder',
   UPDATE_ORDER: 'api/Order/UpdateOrder/',
   GET_ALL_ORDERS: 'api/Order/OrderListForUserApp',

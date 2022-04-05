@@ -10,26 +10,25 @@ import {
 import Header from '../../../../components/Header';
 import {colors} from '../../../../constants/colorsPallet';
 import {globalPath} from '../../../../constants/globalPath';
-import {everyoneFavoriteFakeDATA, ourRecommendationFakeDATA} from '../../../../constants/mock';
 import {wp, hp} from '../../../../helpers/Responsiveness';
 import ResponsiveText from '../../../../components/RnText';
 import { routeName } from '../../../../constants/routeName';
 import Icon from '../../../../components/Icon';
-import {getFavorite} from '../../../../redux/actions/user.actions';
 import { useSelector, useDispatch } from 'react-redux';
+import { getFavouiteRestaurent } from '../../../../redux/actions/user.actions';
 export default function FavouriteRestaurants(props) {
-  const favData = useSelector(state => state.appReducers.favorite.data,)
+  const favData = useSelector(state => state.appReducers.favoriteRestaurant.data,)
   console.log(favData,'resssss')
   const dispatch = useDispatch();
   React.useEffect(() => {
-    dispatch(getFavorite());
+    dispatch(getFavouiteRestaurent(1,8))
   }, []);
  
   return (
     <View style={{backgroundColor: colors.black3, flex: 1}}>
       <View style={{flex: 0.9, margin: 20}}>
         <ResponsiveText size={4} margin={[0, 0, 5, 10]} color={colors.yellow}>
-          Favorite Dishes
+          Favorite Restaurants
         </ResponsiveText>
         <View style={{flexDirection: 'row', flexWrap: 'wrap', width: wp(100)}}>
         {favData.length > 0
