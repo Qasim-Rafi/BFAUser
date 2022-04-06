@@ -35,6 +35,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import Modal from 'react-native-modal';
 import urls from '../../../redux/lib/urls';
 import Api from '../../../redux/lib/api';
+import { BarIndicator } from 'react-native-indicators';
 
 export default function ProfileScreen({navigation}) {
   const profileData = useSelector(state => state.appReducers.profileData.data);
@@ -45,7 +46,7 @@ export default function ProfileScreen({navigation}) {
   const [email, setEmail] = useState();
   const [userName, setUsername] = useState();
   const [fullName, setFullname] = useState();
-  const [editable, setEditable] = useState(false);
+  const [isloading, setLoading] = useState(false);
   const [JobInterest, setJobInterest] = useState(false);
 
   const [gender, setgender] = useState('');
@@ -200,6 +201,7 @@ export default function ProfileScreen({navigation}) {
 
     console.log('obj', formData);
     try {
+      setLoading(true)
       const res = await Api.put(
         urls.EDIT_PROFILE + profileData.id,
         formData,
@@ -208,7 +210,8 @@ export default function ProfileScreen({navigation}) {
       console.log('ree', res);
       if (res && res.success == true) {
         dispatch(getProfileData());
-
+        setLoading(false)
+        navigation.goBack()
         // dropdownRef.current.showMessage({
         //   message: 'Alert',
         //   description: 'Order Canceled',
@@ -217,6 +220,8 @@ export default function ProfileScreen({navigation}) {
         //   //backgroundColor:colors.black1
         // });
       } else {
+        setLoading(false)
+
       }
     } catch (error) {}
   };
@@ -676,7 +681,20 @@ export default function ProfileScreen({navigation}) {
               </React.Fragment>
             );
           })}
-
+{isloading === true ? (
+        <View
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            bottom: 0,
+            right: 0,
+            backgroundColor: 'rgba(65, 65, 65, 0.4)',
+            flex: 1,
+          }}>
+          <BarIndicator color={colors.yellow} size={45} />
+        </View>
+      ) : undefined}
           {/* <View style={{flex:1, backgroundColor:colors.yellow1, justifyContent:'center', alignItems:'center'}}>
             <TouchableOpacity>
             <ResponsiveText size={4}>Profile</ResponsiveText>
@@ -693,7 +711,7 @@ export default function ProfileScreen({navigation}) {
         {/* <ScrollView style={{flex:0.9,margin:20}}> */}
 
         {activeTab === 1 && userInfo()}
-        {activeTab === 2 && <Optional />}
+        {activeTab === 2 && Optional()}
 
         {/* </ScrollView> */}
       </View>

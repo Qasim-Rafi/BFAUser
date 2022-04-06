@@ -86,7 +86,7 @@ export default function TransactionConfirmation({route, navigation}) {
     // dispatch(removeCart(data));
     let formdata = new FormData();
     formdata.append('NotificationType', 'Order');
-    formdata.append('Remarks', 'Order submited');
+    formdata.append('Remarks', 'New order');
     formdata.append('SourceId', route.params.obj.orderId);
     // formdata.append("Seen", false);
     formdata.append('UserId', route.params.obj.userId);

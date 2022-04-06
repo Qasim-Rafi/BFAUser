@@ -54,7 +54,7 @@ export default function Login({navigation}) {
     setErrorString('');
 
     if (value === '') {
-      setErrorString('Please Enter Email or Phone Number to proceed');
+      setErrorString('Please Enter Phone Number to proceed');
     } else {
       forgotPassword();
       setErrorString('');
@@ -69,7 +69,7 @@ export default function Login({navigation}) {
       const res = await Api.post(urls.FORGOT_PASSWORD, obj);
       console.log('res', res);
       if (res && res.success == true) {
-        navigation.navigate(routeName.CHANGE_PASSWORD,{id:res.data});
+        navigation.navigate(routeName.VERIFICATION_CODE, {id: res.data});
         setLoading(false);
       } else {
         setErrorString('Given information is not valid');
@@ -98,21 +98,24 @@ export default function Login({navigation}) {
               Forgot Password
             </ResponsiveText>
             <ResponsiveText margin={[5, 0, 0, 0]} color={colors.white}>
-              Please enter email or Phone number to continue
+              Please enter Phone number to continue
             </ResponsiveText>
           </View>
           <KeyboardAvoidingView
             style={styles.formArea}
             behavior={Platform.OS === 'ios' ? 'padding' : null}>
             <Input
-              padding={[0, 0, 0, 25]}
+              margin={[15, 0, 0, 0]}
+              padding={[0, 0, 0, 20]}
+              maxlength={7}
               onChnageText={text => setValue(text)}
               iconMargin={[0, 10, 0, 0]}
-              placeholder="Email or Phone Number"
-              autoCapitalize={'none'}
-              leftIcon={globalPath.USER_LOGO}
+              placeholder="Phone Number"
+              countryCode="+673"
+              keyboardType={'numeric'}
+              leftIcon={globalPath.SignUp_Phone_ICON}
+              iconSize={hp(2.5)}
             />
-
             <View style={styles.forgotPasswordContainer}></View>
             <ResponsiveText
               textAlign="center"
@@ -123,7 +126,10 @@ export default function Login({navigation}) {
               {errorString}
             </ResponsiveText>
 
-            <TouchableOpacity style={styles.signin} onPress={Validation}>
+            <TouchableOpacity style={styles.signin} 
+           onPress={Validation}
+          //  onPress={()=>navigation.navigate(routeName.VERIFICATION_CODE, {id: 23})}
+            >
               {loading == true ? (
                 <SkypeIndicator count={5} color={colors.black} size={30} />
               ) : (

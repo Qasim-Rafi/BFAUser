@@ -153,7 +153,7 @@ export default function Order_history({navigation}) {
                       <ResponsiveText size={2.5} color={colors.grey}>
                         Status:
                       </ResponsiveText>
-                      <ResponsiveText size={2.5} color={colors.white}>
+                      <ResponsiveText size={2.5} color={item.statusName=='Cancled'?colors.red1:item.statusName=='Paid'?colors.blue1:item.statusName=='InProcess'?colors.green1:item.statusName=='Delivered'?colors.yellow: item.statusName=='Served'?colors.yellow:item.statusName=='Billed'?colors.green1:colors.white}>
                         {item.statusName}
                       </ResponsiveText>
                     </View>

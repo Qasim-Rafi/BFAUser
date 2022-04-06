@@ -18,6 +18,8 @@ const initialState = {
   signupScreen: {
     refreshing: false,
     data: {},
+    messag: '',
+    success: '',
   },
   loginScreen: {
     refreshing: false,
