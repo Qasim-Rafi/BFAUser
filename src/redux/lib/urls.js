@@ -30,16 +30,16 @@ export default urls = {
   GET_ALL_PROMOTION: 'api/PromotionlDish/GetPromotionlDishIdAllapp/', //Promostions
   GET_ALL_FAVORITE: 'api/RestaurantDish/GetdishLikedAll/', ///Get favorite list
   // ADD_FAVORITE: 'api/RestaurantDish/UpdateRestaurantDishLiked/',
-  REMOVE_fAVOURITE_DISH: 'api/RestaurantDish/UpdateDishUnliked/', //unlike dish
-  ADD_FAVORITE_DISH: 'api/RestaurantDish/UpdateRestaurantDishLiked/', //LIKE DISHfav
+  REMOVE_fAVOURITE_DISH: 'api/RestaurantDish/UpdateRestaurantDishUnliked/', //unlike dish
+  ADD_FAVORITE_DISH: 'api/RestaurantDish/UpdateRestaurantAndDishLiked/', //LIKE DISHfav
   GET_ALL_FAVORITE_RESTAURANT:'api/RestaurantAdmin/GetRestaurantLikedAll/',
   GET_RESTAURANT_DETAIL:'api/RestaurantBranchesAdmin/GetRestaurantdetailforAppAlldata/',    //Restaurant detail
   // GET_ALL_FAVORITE_RESTAURANT: 'api/PeopleChoice/GetPeopleChoiceLikedAll/1/10',
   // ADD_RESTAURANT_FAVORITE: 'api/PeopleChoice/UpdatePeopleChoiceLiked/',
-  REMOVE_FAVORITE_RESTAURANT: 'api/RestaurantAdmin/UpdateRestaurantUnliked/',
+  REMOVE_FAVORITE_RESTAURANT: 'api/RestaurantDish/UpdateRestaurantDishUnliked/',
   APPLY_FOR_JOBS: 'api/JobApplications/AddJobApplication', //for apply jobs,
   GET_DISH_BY_CUSINE_ID: 'api/RestaurantDish/GetRestaurantDishByCuisinesId/',
-  ADD_RESTAURANT_FAVORITE:'api/RestaurantAdmin/UpdateRestaurantLiked/',
+  ADD_RESTAURANT_FAVORITE:'api/RestaurantDish/UpdateRestaurantAndDishLiked/',
   ADD_ORDER: 'api/Order/AddOrder',
   UPDATE_ORDER: 'api/Order/UpdateOrder/',
   GET_ALL_ORDERS: 'api/Order/OrderListForUserApp',

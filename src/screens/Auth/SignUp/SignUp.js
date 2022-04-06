@@ -322,13 +322,13 @@ export default function Signup({navigation}) {
         //   type: 'danger',
         //   icon: { icon: 'auto', position: 'left' },
         // });
-        // if (res.message === "Email already exist") {
-        //   setErrorString(res.message + '.\nHave you forgotten your password? Don\'t worry, You can reset your password here.')
-        //   console.log('reset password')
-        // } else {
-        //   setErrorString(res.message);
-        //   console.log('no reset');
-        // }
+        if (res.message === "Email already exist") {
+          setErrorString(res.message + '.\nHave you forgotten your password? Don\'t worry, You can reset your password here.')
+          console.log('reset password')
+        } else {
+          setErrorString(res.message);
+          console.log('no reset');
+        }
       }
     } catch (error) {
       console.log(error);
