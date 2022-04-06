@@ -72,7 +72,7 @@ export default function ChangePassword({navigation, route}) {
     };
     try {
       setLoading(true);
-      const res = await Api.put(urls.CHANGE_PASSWORD + route.params.id, obj);
+      const res = await Api.put(urls.CHANGE_PASSWORD + route.params.data.id, obj);
       console.log('res', res);
       if (res && res.success == true) {
         setLoading(false);
@@ -126,7 +126,7 @@ export default function ChangePassword({navigation, route}) {
             </ResponsiveText>
             <ResponsiveText margin={[5, 0, 0, 0]} color={colors.white}>
               for username{' '}
-              <ResponsiveText color={colors.white}>"itxALtaf"</ResponsiveText>
+              <ResponsiveText color={colors.white}>"{route.params?.data.username}"</ResponsiveText>
             </ResponsiveText>
           </View>
           <KeyboardAvoidingView

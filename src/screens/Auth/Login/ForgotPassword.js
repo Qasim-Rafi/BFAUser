@@ -69,7 +69,7 @@ export default function Login({navigation}) {
       const res = await Api.post(urls.FORGOT_PASSWORD, obj);
       console.log('res', res);
       if (res && res.success == true) {
-        navigation.navigate(routeName.VERIFICATION_CODE, {id: res.data});
+        navigation.navigate(routeName.VERIFICATION_CODE, {data: res.data});
         setLoading(false);
       } else {
         setErrorString('Given information is not valid');
