@@ -45,7 +45,7 @@ export default function OrderDetails({navigation, route}) {
             borderRadius: 20,
           }}
           onPress={() => {
-            navigation.goBack();
+            navigation.navigate(routeName.ORDER_HISTORY);
           }}>
           <Icon source={globalPath.BACK_BLACK_ARROW} />
         </TouchableOpacity>
