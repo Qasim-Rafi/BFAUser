@@ -1,6 +1,6 @@
 //Node Imports
-import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import React ,{useEffect}from 'react';
+import {View, BackHandler, TouchableOpacity} from 'react-native';
 
 //Local Imports
 import {colors} from '../../../../constants/colorsPallet';
@@ -13,9 +13,22 @@ import ResponsiveText from '../../../../components/RnText';
 import moment from 'moment';
 import StaticMap from '../../../../components/StaticMap';
 import Restaurant_Description from '../../RestaurantBranchDetail/ResturantDesceiption';
+import { routeName } from '../../../../constants/routeName';
 
 export default function OrderDetails({navigation, route}) {
   const [data, setdata] = React.useState(route.params.data);
+
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButtonClick);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButtonClick);
+    };
+  }, []);
+  function handleBackButtonClick() {
+    navigation.navigate(routeName.ORDER_HISTORY);
+    return true;
+  }
   return (
     <View style={{flex: 1, backgroundColor: colors.black3}}>
       <View
