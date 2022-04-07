@@ -25,7 +25,7 @@ console.log(store,'store in colors');
 function select(state) {
   return state.appReducers.setTheme.data
 }
-const isThemeDark = select(store.getState())
+const isThemeDark = true
 console.log(isThemeDark,'isThemeDark in colors');
 // console.log(isThemeDark.data,'isThemeDark in colors');
 

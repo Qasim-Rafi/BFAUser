@@ -406,7 +406,7 @@ const CartDetails = ({ navigation }) => {
                 <TouchableOpacity onPress={() => onClearOrder(item.id)}>
                   <ResponsiveText
                     margin={[15, 30, 15, -10]}
-                    color={colors.white}
+                    color={isThemeDark? colors.white: colors.black1}
                     size={4}>
                     Clear Order
                   </ResponsiveText>
@@ -426,7 +426,7 @@ const CartDetails = ({ navigation }) => {
                 return (
                   <View
                     style={{
-                      backgroundColor: colors.black2,
+                      backgroundColor: isThemeDark? colors.black2: colors.secondary,
                       marginHorizontal: 10,
                       flexDirection: 'row',
                       padding: 5,
@@ -451,7 +451,7 @@ const CartDetails = ({ navigation }) => {
                         }}>
                         <ResponsiveText
                           size={3.5}
-                          color={colors.white}
+                          color={isThemeDark? colors.white: colors.black1}
                           margin={[0, 0, 0, 10]}>
                           {v.dishName}
                         </ResponsiveText>
@@ -463,7 +463,7 @@ const CartDetails = ({ navigation }) => {
                         </ResponsiveText>
                         <ResponsiveText
                           size={3}
-                          color={colors.yellow}
+                          color={isThemeDark? colors.yellow: colors.yellow1}
                           margin={[0, 0, 0, 10]}>
                           $ {v.dishPrice}
                         </ResponsiveText>
@@ -550,7 +550,7 @@ const CartDetails = ({ navigation }) => {
                           }}>
                           <Icon
                             source={globalPath.DELETE_ICON}
-                            tintColor={colors.yellow}
+                            tintColor={isThemeDark? colors.yellow: colors.yellow1}
                             margin={[-20, 0, 0, 0]}
                             size={30}
                           />
@@ -565,7 +565,7 @@ const CartDetails = ({ navigation }) => {
           <View>
             <View
               style={{
-                backgroundColor: colors.black2,
+                backgroundColor: isThemeDark? colors.black2: colors.secondary,
                 paddingVertical: 15,
                 marginHorizontal: 20,
                 marginTop: 20,
@@ -578,10 +578,10 @@ const CartDetails = ({ navigation }) => {
                   paddingHorizontal: 15,
                   justifyContent: 'space-between',
                 }}>
-                <ResponsiveText color={colors.white} size={3}>
+                <ResponsiveText color={isThemeDark? colors.white: colors.black1} size={3}>
                   Total
                 </ResponsiveText>
-                <ResponsiveText color={colors.yellow} size={3}>
+                <ResponsiveText color={isThemeDark? colors.yellow: colors.yellow1} size={3}>
                   $ {parseFloat(item.amount).toFixed(2)}
                 </ResponsiveText>
               </View>
@@ -609,10 +609,10 @@ const CartDetails = ({ navigation }) => {
                   paddingHorizontal: 15,
                   justifyContent: 'space-between',
                 }}>
-                <ResponsiveText color={colors.white} size={3}>
+                <ResponsiveText color={isThemeDark? colors.white: colors.black1} size={3}>
                   Final Total
                 </ResponsiveText>
-                <ResponsiveText color={colors.yellow} size={4}>
+                <ResponsiveText color={isThemeDark? colors.yellow: colors.yellow1} size={4}>
                   $ {parseFloat(item.amount).toFixed(2)}
                   {/* {cartList
                     .filter(i => i.titleR == item.titleR)
@@ -688,7 +688,7 @@ const CartDetails = ({ navigation }) => {
     );
   };
   return (
-    <View style={{ backgroundColor: colors.black3, flex: 1 }}>
+    <View style={{ backgroundColor: isThemeDark? colors.black3: colors.bgWhite, flex: 1 }}>
       <RNModal
         isVisible={visible}
         backdropOpacity={0.9}
@@ -965,7 +965,7 @@ const CartDetails = ({ navigation }) => {
           padding: 6,
           // alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: colors.black2,
+          backgroundColor: isThemeDark? colors.black2: colors.white,
         }}>
         <Header navigation={navigation} />
       </View>
