@@ -15,7 +15,7 @@ import { getProfileData } from '../../../redux/actions/user.actions';
 export default function Profile() {
   const profileData = useSelector(state => state.appReducers.profileData.data);
   console.log('Profile: ', profileData);
-  const loading = useSelector(state => state.appReducers.profileData.loading);
+  const loading = useSelector(state =>  profileData.loading);
   console.log('loading', loading);
   const dispatch = useDispatch();
 
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     flex: 0.7,
     // borderTopRightRadius: wp(8),
     // borderTopLeftRadius: wp(8),
-    backgroundColor: '#202020',
+    backgroundColor: colors.black3,
     paddingTop: 10,
   },
 });

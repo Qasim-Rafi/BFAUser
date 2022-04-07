@@ -41,14 +41,14 @@ export default function Preferences({navigation}) {
     <View style={{ flex: 1, backgroundColor: colors.black3 }}>
       <View style={styles.header}>
         <TouchableOpacity onPress={()=>navigation.goBack()} >
-        <View style={{backgroundColor:colors.yellow1, padding:10, borderRadius:20}}>
+        <View style={{backgroundColor:colors.yellow, padding:10, borderRadius:20}}>
           <Icon source={require('../../../../assets/icons/x.png')} tintColor={colors.white} size={20} />
         </View>
         </TouchableOpacity>
         <ResponsiveText color={colors.white} size={4}>
           Preferences
         </ResponsiveText>
-        <View style={{ backgroundColor: colors.yellow1, paddingVertical: 5, paddingHorizontal: 10, borderRadius: 5, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ backgroundColor: colors.yellow, paddingVertical: 5, paddingHorizontal: 10, borderRadius: 5, alignItems: 'center', justifyContent: 'center' }}>
           <ResponsiveText color={colors.white} size={3} >Reset</ResponsiveText>
         </View>
       </View>

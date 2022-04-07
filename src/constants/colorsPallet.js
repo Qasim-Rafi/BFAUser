@@ -1,16 +1,47 @@
+import { store } from "../redux/store";
+// store.subscribe(listener)
+// function select(state) {
+//   return state.state.appReducers.setTheme.data
+// }
+// let currentValue
+// function handleChange() {
+//   let previousValue = currentValue
+//   currentValue = select(store.getState())
+
+//   if (previousValue !== currentValue) {
+//     console.log(
+//       'Some deep nested property changed from',
+//       previousValue,
+//       'to',
+//       currentValue
+//     )
+//   }
+// }
+
+// const unsubscribe = store.subscribe(handleChange)
+// unsubscribe()
+console.log(store,'store in colors');
+
+function select(state) {
+  return state.appReducers.setTheme.data
+}
+const isThemeDark = select(store.getState())
+console.log(isThemeDark,'isThemeDark in colors');
+// console.log(isThemeDark.data,'isThemeDark in colors');
+
 export const colors = {
   primary: '#FFFFFF',
   secondary: '#D4D4D4',
   grey: '#A1A1A1',
   light_blue: '#AEC8C9',
-  black: '#000000',
-  white: '#ffffff',
+  black: isThemeDark ? '#000000' : '#fff' ,
+  white: isThemeDark?  '#ffffff' : '#000' ,
   yellow:"#edc54e",
   yellow1:'#C7A02E',
-  black1: '#404040',
-  black2:'#303030',
-  black3:'#202020',
-  bgWhite:'#f2f2f2',
+  black1: isThemeDark ?  '#404040' : '#fff'  , 
+  black2: isThemeDark ?  '#303030' : '#fff'  , 
+  black3: isThemeDark?  '#202020' : '#e2e2e2' , 
+  bgWhite:'#e2e2e2',
 
   grey1:'#737373',
   grey2:'#3c3625',

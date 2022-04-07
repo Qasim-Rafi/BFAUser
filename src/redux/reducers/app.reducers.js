@@ -162,7 +162,7 @@ const initialState = {
     data: [],
   },
   setTheme: {
-    data: {}
+    data: true
   },
   getBaliCoins: {
     loading: false,
