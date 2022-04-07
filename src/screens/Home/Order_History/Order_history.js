@@ -39,6 +39,8 @@ export default function Order_history({navigation}) {
 
   React.useEffect(() => {
     let interval = null;
+    dispatch(getOrdersHistory());
+
     const subscribe = navigation.addListener('focus', e => {
     
       interval = setInterval(() => {
@@ -84,7 +86,7 @@ export default function Order_history({navigation}) {
         <Header navigation={navigation} />
       </View>
       <ScrollView style={{flex: 0.7, marginHorizontal: 10}}>
-        <ResponsiveText color={colors.white}>My Orders</ResponsiveText>
+        <ResponsiveText color={colors.white}>My Orders{orderList.length}</ResponsiveText>
         {orderList.map((item, index) => {
           return (
             <TouchableOpacity
@@ -158,6 +160,7 @@ export default function Order_history({navigation}) {
                       </ResponsiveText>
                     </View>
                     <View>
+                      {item.statusName=='Paid'?
                       <TouchableOpacity
                         onPress={() => submitOrder(item)}
                         style={{
@@ -170,6 +173,7 @@ export default function Order_history({navigation}) {
                           Repeat Order
                         </ResponsiveText>
                       </TouchableOpacity>
+                      :null}
                     </View>
                   </View>
                 </View>
@@ -178,7 +182,7 @@ export default function Order_history({navigation}) {
           );
         })}
       </ScrollView>
-      {/* {orderList_Loading === true ? (
+      {orderList_Loading === true && orderList.length==0? (
         <View
           style={{
             position: 'absolute',
@@ -191,7 +195,7 @@ export default function Order_history({navigation}) {
           }}>
           <BarIndicator color={colors.yellow} size={45} />
         </View>
-      ) : undefined} */}
+      ) : undefined}
     </View>
   );
 }

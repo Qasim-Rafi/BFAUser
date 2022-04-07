@@ -28,6 +28,7 @@ import CustomInput from '../../../components/customInput';
 import urls from '../../../redux/lib/urls';
 import Api from '../../../redux/lib/api';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import moment from 'moment';
 
 export default function ProfileDisplay({navigation}) {
   const profileData = useSelector(state => state.appReducers.profileData.data);
@@ -51,7 +52,18 @@ export default function ProfileDisplay({navigation}) {
       return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
     }
   };
- 
+  function formatDate(dateString, currentDateFormat, FormattedDateFormat) {
+    return moment(dateString, currentDateFormat).format(FormattedDateFormat);
+  }
+
+  const handleChange = (event, date) => {
+    const format = 'YYYY-MM-DD';
+    const displayFormat = 'DD MMM YYYY';
+
+    const displayDate = formatDate(date, format, displayFormat); // display Date
+    // setDate(displayDate)
+    return displayDate;
+  };
   const userInfo = () => {
     return (
       <View
@@ -104,7 +116,7 @@ export default function ProfileDisplay({navigation}) {
             <View style={styles.cardView}>
               <ResponsiveText color={colors.grey}>Gender</ResponsiveText>
               <ResponsiveText color={colors.white}>
-                {profileData.gender}
+                {profileData.gender==null||profileData.gender==''?'':profileData.gender}
               </ResponsiveText>
             </View>
           </View>
@@ -113,7 +125,7 @@ export default function ProfileDisplay({navigation}) {
             <View style={styles.cardView}>
               <ResponsiveText color={colors.grey}>Date of Birth</ResponsiveText>
               <ResponsiveText color={colors.white}>
-                {dateFormat(profileData.dateofBirth)}
+                {profileData.dateofBirth==null?'':handleChange('',profileData.dateofBirth)}
               </ResponsiveText>
             </View>
           </View>

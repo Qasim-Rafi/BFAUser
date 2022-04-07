@@ -27,7 +27,7 @@ export default function CustomInput(props) {
           placeholder={
             props.placeHolderText ? props.placeHolderText : undefined
           }
-          placeholderTextColor={colors.white}
+          placeholderTextColor={colors.grey}
           style={{marginStart: 20, color: colors.white, width: wp(40)}}
 		  value={props.value}
 		  onChangeText={props.onChangeText}

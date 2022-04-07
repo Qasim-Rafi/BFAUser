@@ -47,7 +47,7 @@ export default function AddToCart({route, navigation}) {
       : null,
   );
   const [dishPrice, updateDishPrice] = useState(route.params.dish.price);
-  const [total, updateTotal] = useState(0);
+  const [total, updateTotal] = useState(route.params.dish.price);
   const dispatch = useDispatch();
   const [text, setText] = useState('');
   const [extraCheese, setExtrachess] = useState([]);
@@ -61,8 +61,11 @@ export default function AddToCart({route, navigation}) {
     //   return a + c.price;
     // }, 0);
     // console.log(linkedItem.length);
-    PriceCalculations();
-  }, [count, extraCheese.length, SelectedDrinks.length,linkedItem.length,visible]);
+    // PriceCalculations();
+    // updateTotal(dishPrice * count);
+
+    // extraCheese.length, SelectedDrinks.length,linkedItem.length,
+  }, [count,visible]);
   const Drinks = value => {
     setSelecteddrinks(value);
     console.log('Idddddddddd:', value);

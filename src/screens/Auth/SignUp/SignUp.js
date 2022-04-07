@@ -205,7 +205,7 @@ export default function Signup({navigation}) {
     } else if (password.length < 8) {
       dropdownRef.current.showMessage({
         message: 'Error',
-        description: 'Password Length should be greater then 8',
+        description: 'Password Length should be greater than 8',
         type: 'danger',
         icon: {icon: 'auto', position: 'left'},
       });
@@ -416,6 +416,8 @@ export default function Signup({navigation}) {
               secureTextEntry
               leftIcon={globalPath.LOCK_LOGO}
               autoCapitalize={'none'}
+              maxlength={19}
+
             />
             <Input
               padding={[0, 0, 0, 25]}
