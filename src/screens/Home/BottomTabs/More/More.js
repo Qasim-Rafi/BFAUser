@@ -76,7 +76,7 @@ const More = ({route, navigation}) => {
                 size={20}
                 tintColor={colors.black}
               />
-              <ResponsiveText margin={[0, 0, 0, 5]} size={3}>
+              <ResponsiveText color={colors.black} margin={[0, 0, 0, 5]} size={3}>
                 Logout
               </ResponsiveText>
             </View>
