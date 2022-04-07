@@ -460,7 +460,7 @@ export default function ProfileScreen({navigation}) {
           flex: 0.7,
           // borderTopRightRadius: wp(8),
           // borderTopLeftRadius: wp(8),
-          backgroundColor: '#202020',
+          backgroundColor: colors.black3,
           paddingTop: 10,
         }}>
         <ScrollView>
@@ -718,7 +718,7 @@ const styles = StyleSheet.create({
     flex: 0.65,
     // borderTopRightRadius: wp(8),
     // borderTopLeftRadius: wp(8),
-    backgroundColor: '#202020',
+    backgroundColor: colors.black3,
     padding: wp(10),
   },
   forgotPasswordContainer: {
@@ -741,7 +741,7 @@ const styles = StyleSheet.create({
     flex: 0.7,
     // borderTopRightRadius: wp(8),
     // borderTopLeftRadius: wp(8),
-    backgroundColor: '#202020',
+    backgroundColor: colors.black3,
     paddingTop: 10,
   },
 });
