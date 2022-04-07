@@ -951,25 +951,25 @@ export const appReducers = (state = initialState, action) => {
     case types.ADD_FAVORITE_RESTAURANT_REQUEST:
       return {
         ...state,
-        AddfavoriteRestaurant: {
-          ...state.AddfavoriteRestaurant,
+        favoriteRestaurant: {
+          ...state.favoriteRestaurant,
           refreshing: true,
         },
       };
     case types.ADD_FAVORITE_RESTAURANT_SUCCESS:
       return {
         ...state,
-        AddfavoriteRestaurant: {
-          ...state.AddfavoriteRestaurant,
-          data: [...state.AddfavoriteRestaurant.data, action.payload],
+        favoriteRestaurant: {
+          ...state.favoriteRestaurant,
+          data: [...state.favoriteRestaurant.data, action.payload],
           refreshing: false,
         },
       };
     case types.ADD_FAVORITE_RESTAURANT_FAILURE:
       return {
         ...state,
-        AddfavoriteRestaurant: {
-          ...state.AddfavoriteRestaurant,
+        favoriteRestaurant: {
+          ...state.favoriteRestaurant,
           refreshing: false,
         },
       };
@@ -977,18 +977,18 @@ export const appReducers = (state = initialState, action) => {
     case types.REMOVE_FAVORITE_RESTAURANT_REQUEST:
       return {
         ...state,
-        AddfavoriteRestaurant: {
-          ...state.AddfavoriteRestaurant,
+        favoriteRestaurant: {
+          ...state.favoriteRestaurant,
           refreshing: true,
         },
       };
     case types.REMOVE_FAVORITE_RESTAURANT_SUCCESS:
       return {
         ...state,
-        AddfavoriteRestaurant: {
-          ...state.AddfavoriteRestaurant,
-          data: state.AddfavoriteRestaurant.data.filter(
-            item => item.id !== action.payload,
+        favoriteRestaurant: {
+          ...state.favoriteRestaurant,
+          data: state.favoriteRestaurant.data.filter(
+            item => item.id !== action.payload.id,
           ),
           refreshing: false,
         },
@@ -996,8 +996,8 @@ export const appReducers = (state = initialState, action) => {
     case types.REMOVE_FAVORITE_RESTAURANT_FAILURE:
       return {
         ...state,
-        AddfavoriteRestaurant: {
-          ...state.AddfavoriteRestaurant,
+        favoriteRestaurant: {
+          ...state.favoriteRestaurant,
           refreshing: false,
         },
       };

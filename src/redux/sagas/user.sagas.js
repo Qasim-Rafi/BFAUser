@@ -879,7 +879,7 @@ export function* addReataurantfavouriteSaga() {
 }
 function* addReataurantfavouriteSagaApi(data) {
   const dishId = null;
-  const branchId = data.data;
+  const branchId = data.data.id;
 
   // console.log('parammmmmmmmmm', data);
   // var body = {
@@ -917,7 +917,7 @@ export function* RemoveFavoriteRestaurantSaga() {
 }
 function* RemoveFavoriteRestaurantSagaApi(data) {
   const dishId = null;
-  const branchId = data.data.restaurantBranchId;
+  const branchId = data.data.id;
 
   // console.log('parammmmmmmmmm', data);
   // var body = {
@@ -927,7 +927,7 @@ function* RemoveFavoriteRestaurantSagaApi(data) {
 
   try {
     const response = yield Api.put(
-      urls.REMOVE_FAVORITE_RESTAURANT  + resId + '?restaurantDishId=' +dishId,
+      urls.REMOVE_FAVORITE_RESTAURANT  + branchId ,
     );
     // const response = yield Api.put(url);
     console.log('resssssssss', response);
