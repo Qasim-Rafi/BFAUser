@@ -65,6 +65,7 @@ export default function ProfileScreen({navigation}) {
   const [MarriageStatusData, setMarriageStatusData] = useState([]);
 
   const Gender = [
+    {id:0,lable: 'Gender', icon: require('../../../assets/icons/signupgender.png')},
     {id: 1, lable: 'Male', icon: require('../../../assets/icons/male.png')},
     {id: 2, lable: 'Female', icon: require('../../../assets/icons/female.png')},
   ];
@@ -114,9 +115,9 @@ export default function ProfileScreen({navigation}) {
     setcontactNo(profileData.contactNumber);
     setDate(profileData.dateofBirth);
     setgender(profileData.gender);
-    setChildren(profileData.numberOfChildren);
+    setChildren(profileData.numberOfChildren==null?'':profileData.numberOfChildren);
     setJobInterest(profileData.jobIntrest);
-    setEducation(profileData.educationalBackground);
+    setEducation(profileData.educationalBackground==null?'':profileData.educationalBackground);
     setMaritialStatus(profileData.marriageStatusId);
     setEmpSec(profileData.employmentSectorId);
     setSelectedIndustry(profileData.industryId);
@@ -313,8 +314,9 @@ export default function ProfileScreen({navigation}) {
                 marginHorizontal: wp(8),
               }}>
               <DropDown
+              defaultValueByIndex={gender==null?0:Gender.findIndex(p => p.lable == gender)}
                 data={Gender}
-                defaultButtonText={gender}
+                // defaultButtonText={gender}
                 onSelect={(selectedItem, index) => {
                   console.log(selectedItem, index);
                   setgender(selectedItem.lable);
@@ -368,7 +370,7 @@ export default function ProfileScreen({navigation}) {
                 return v.name;
               })}
               defaultButtonText={
-                MarriageStatusData.find(v => v.id == MaritialStatus)?.name
+                MarriageStatusData.find(v => v.id == MaritialStatus)?.name?MarriageStatusData.find(v => v.id == MaritialStatus)?.name:'Select Marital Status'
               }
               onSelect={async (selectedItem, index) => {
                 var id=MarriageStatusData.find(v => v.name == selectedItem)?.id
@@ -388,14 +390,14 @@ export default function ProfileScreen({navigation}) {
               size={3}
               color={colors.grey1}
               margin={[0, 0, 5, 30]}>
-              Empoyment Sector
+              Employment Sector
             </ResponsiveText>
             <Dropdown
               data={EmploymentSector.map(v => {
                 return v.name;
               })}
               defaultButtonText={
-                EmploymentSector.find(v => v.id == EmpSec)?.name
+                EmploymentSector.find(v => v.id == EmpSec)?.name?EmploymentSector.find(v => v.id == EmpSec)?.name:'Select Employment Sector'
               }
               onSelect={async (selectedItem, index) => {
                 var id=EmploymentSector.find(v => v.name == selectedItem)?.id
@@ -416,7 +418,7 @@ export default function ProfileScreen({navigation}) {
                 return v.name;
               })}
               defaultButtonText={
-                IndustryData.find(v => v.id == SelectedIndustry)?.name
+                IndustryData.find(v => v.id == SelectedIndustry)?.name?IndustryData.find(v => v.id == SelectedIndustry)?.name:'Select Industry'
               }
               onSelect={async (selectedItem, index) => {
                 var id=IndustryData.find(v => v.name == selectedItem)?.id

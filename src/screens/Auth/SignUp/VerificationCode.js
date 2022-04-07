@@ -44,7 +44,7 @@ export default function VerificationCode({navigation,route}) {
     if (value != '000000') {
       dropdownRef.current.showMessage({
         message: 'Error',
-        description: 'Enable to verify',
+        description: 'Unable to verify',
         duration: 3000,
         type: 'danger',
         icon: {icon: 'auto', position: 'left'},
