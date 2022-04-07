@@ -26,6 +26,7 @@ import Api from '../../../../redux/lib/api';
 import urls from '../../../../redux/lib/urls';
 import { BarIndicator } from 'react-native-indicators';
 import FlashMessage from 'react-native-flash-message';
+import { useSelector } from 'react-redux';
 
 const InvoiceList = ({ navigation, route }) => {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -33,6 +34,7 @@ const InvoiceList = ({ navigation, route }) => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
   const dropdownRef = React.useRef(null);
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
   React.useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -115,12 +117,12 @@ if(data.statusName==='Paid'){
     } catch (error) { }
   };
   return (
-    <View style={{ flex: 1, backgroundColor: colors.black3 }}>
+    <View style={{ flex: 1, backgroundColor: isThemeDark? colors.black3: colors.bgWhite }}>
       <View
         style={{
           flexDirection: 'row',
           padding: 7,
-          backgroundColor: colors.black2,
+          backgroundColor: isThemeDark? colors.black3: colors.bgWhite,
         }}>
         <TouchableOpacity
           style={{
@@ -135,7 +137,7 @@ if(data.statusName==='Paid'){
           <Icon source={globalPath.BACK_BLACK_ARROW} />
         </TouchableOpacity>
         <View style={{ alignSelf: 'center', marginLeft: '27%' }}>
-          <ResponsiveText size={4} color={colors.white}>
+          <ResponsiveText size={4} color={isThemeDark? colors.white: colors.black1}>
             Invoice
           </ResponsiveText>
         </View>
@@ -165,11 +167,11 @@ if(data.statusName==='Paid'){
                 justifyContent: 'space-between',
                 marginHorizontal: wp(8),
               }}>
-              <ResponsiveText size={4} color={colors.white}>
+              <ResponsiveText size={4} color={isThemeDark? colors.white: colors.black1}>
                 OrderId:{' '}
                 <ResponsiveText color={colors.grey1}>{data.id}</ResponsiveText>
               </ResponsiveText>
-              <ResponsiveText size={4} color={colors.white}>
+              <ResponsiveText size={4} color={isThemeDark? colors.white: colors.black1}>
                 Date:{' '}
                 <ResponsiveText color={colors.grey1}>
                   {data.createdDateTime}
@@ -202,13 +204,13 @@ if(data.statusName==='Paid'){
                       </View>
                       <View style={{ marginTop: '2%', marginLeft: '2%' }}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                          <ResponsiveText color={colors.white}>
+                          <ResponsiveText color={isThemeDark? colors.white: colors.black1}>
                             {item.dishName}
                           </ResponsiveText>
                           <ResponsiveText
                             size={2.8}
                             margin={[0, 0, 0, 5]}
-                            color={colors.white}>
+                            color={isThemeDark? colors.white: colors.black1}>
                             ${item.dishPrice}
                           </ResponsiveText>
                         </View>
@@ -224,7 +226,7 @@ if(data.statusName==='Paid'){
                 : null}
 
               <View style={{ alignItems: 'center', marginTop: '5%' }}>
-                <ResponsiveText color={colors.white}>
+                <ResponsiveText color={isThemeDark? colors.white: colors.black1}>
                   {'Total Amount'}
                 </ResponsiveText>
               </View>
@@ -299,7 +301,7 @@ if(data.statusName==='Paid'){
                                 <View style={{ marginLeft: wp(5) }}>
                                   <ResponsiveText
                                     // margin={[0, 10, 0, 15]}
-                                    color={colors.white}>
+                                    color={isThemeDark? colors.white: colors.black1}>
                                     {item.cardType}
                                   </ResponsiveText>
                                   <ResponsiveText color={colors.grey} size={3}>
@@ -363,7 +365,7 @@ if(data.statusName==='Paid'){
                 borderTopRightRadius: 7,
                 borderTopLeftRadius: 7,
               }}>
-              <ResponsiveText color={colors.white} size={3.5}>
+              <ResponsiveText color={isThemeDark? colors.white: colors.black1} size={3.5}>
                Payment Confirmation
               </ResponsiveText>
             </View>
@@ -398,7 +400,7 @@ if(data.statusName==='Paid'){
                 </ResponsiveText>
               </View>
               <View style={{flex: 0.1}}>
-                <ResponsiveText color={colors.white} size={3}>
+                <ResponsiveText color={isThemeDark? colors.white: colors.black1} size={3}>
                   To
                 </ResponsiveText>
               </View>

@@ -39,6 +39,7 @@ const Recommendation = props => {
     state => state.appReducers.bfaRecommendationDetail.loading,
   );
   const dispatch = useDispatch();
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
 
   console.log('Bfa Recommendations: ', bfaRecommendation);
@@ -46,7 +47,7 @@ const Recommendation = props => {
   return (
     <>
       <View style={styles.recommendationHeaderSection}>
-        <ResponsiveText margin={[0, 0, 0, 0]} size={4} color={colors.white}>
+        <ResponsiveText margin={[0, 0, 0, 0]} size={4} color={isThemeDark ? colors.white : colors.black}>
           BFA Recommendation
         </ResponsiveText>
         <View style={{ marginRight: -10 }}>

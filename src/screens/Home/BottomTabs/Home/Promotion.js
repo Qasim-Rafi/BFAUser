@@ -30,11 +30,12 @@ const Promotion = props => {
   const Promotions = useSelector(state => state.appReducers.promotions.data);
   const loading = useSelector(state => state.appReducers.promotions.loading);
   console.log('promotionssssssssssss: ', Promotions);
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
   return (
     <ScrollView>
       <View style={styles.everyOneFavoriteHeaderSection}>
-        <ResponsiveText margin={[0, 0, 0, 0]} size={4} color={colors.white}>
+        <ResponsiveText margin={[0, 0, 0, 0]} size={4} color={isThemeDark ? colors.white : colors.black}>
           Promotions
         </ResponsiveText>
         <View style={{ marginRight: -10 }}>

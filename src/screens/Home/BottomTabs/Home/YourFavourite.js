@@ -43,6 +43,8 @@ const YourFavourite = props => {
   const loading = useSelector(state => state.appReducers.favorite.refreshing)
   const dispatch = useDispatch();
   
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
+
   console.log('favData', favData)
 
   //   const firstName = 'PG';
@@ -57,8 +59,8 @@ const YourFavourite = props => {
   //   ];
   return (
     <>
-      <View style={styles.AwardWinningDishesHeaderSection}>
-        <ResponsiveText margin={[0, 0, 0, -5]} size={4} color={colors.white}>
+      <View style={[styles.AwardWinningDishesHeaderSection,{backgroundColor:isThemeDark ? colors.black3 : colors.bgWhite}]}>
+        <ResponsiveText margin={[0, 0, 0, -5]} size={4} color={isThemeDark ? colors.white : colors.black}>
           {profileData.userInitial} Favourites
         </ResponsiveText>
         <View style={{ marginRight: -15 }}>
@@ -77,7 +79,7 @@ const YourFavourite = props => {
           /> */}
         </View>
       </View>
-      <View style={styles.AwardWinningDishesItemsSection}>
+      <View style={[styles.AwardWinningDishesItemsSection,{backgroundColor:isThemeDark ? colors.black3 : colors.bgWhite}]}>
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           {favData.length > 0
             ? Array.from(new Set(favData.map(JSON.stringify))).map(JSON.parse).map((url, item) => {

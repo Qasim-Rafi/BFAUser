@@ -56,7 +56,7 @@ const CartDetails = ({ navigation }) => {
   const dispatch = useDispatch();
   const [selectedItem, SetSelectedItem] = React.useState(null);
   const [selectedBranch, SetSelectedBranch] = React.useState(null);
-
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
   const [random, setRandom] = React.useState([]);
   const [totalPrice, setTotalPrice] = React.useState();
   const [ratingCount, setRatingCount] = React.useState(3);
@@ -383,7 +383,7 @@ const CartDetails = ({ navigation }) => {
         style={{
           flex: 0.9,
           justifyContent: 'space-between',
-          backgroundColor: colors.black1,
+          backgroundColor: isThemeDark? colors.black1: colors.white,
           margin: 5,
           borderRadius: 20,
         }}>

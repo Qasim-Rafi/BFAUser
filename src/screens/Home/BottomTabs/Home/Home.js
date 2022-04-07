@@ -71,6 +71,8 @@ const Home = ({navigation}) => {
     state => state.appReducers.bfaPartners.refreshing,
   );
   const dispatch = useDispatch();
+    
+    const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
   const [refreshing, setRefreshing] = React.useState(false);
   const dropdownRef = React.useRef(null);
@@ -134,7 +136,7 @@ const Home = ({navigation}) => {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container,{backgroundColor:isThemeDark ?  colors.black3: colors.bgWhite}]}>
       <ScrollView
         style={{flex: 1, width: '100%'}}
         showsVerticalScrollIndicator={false}
@@ -155,16 +157,16 @@ const Home = ({navigation}) => {
           <BfaPartner navigation={navigation} />
         </ScrollView>
 
-        <View style={styles.yourFavorite}>
+        <View style={[styles.yourFavorite,{backgroundColor:isThemeDark ? colors.black3 : colors.bgWhite}]}>
           <YourFavourite navigation={navigation} />
         </View>
-        <View style={styles.awardWinningDishes}>
+        <View style={[styles.awardWinningDishes,{backgroundColor:isThemeDark ? colors.black3 : colors.bgWhite}]}>
           <AwardWinningDishes navigation={navigation} />
         </View>
         <View style={styles.recommendationContainer}>
           <Recommendation navigation={navigation} />
         </View>
-        <View style={styles.everyoneFavorite}>
+        <View style={[styles.everyoneFavorite,{backgroundColor:isThemeDark ?  colors.black3: colors.bgWhite}]}>
           <EveryOneFavourite navigation={navigation} />
         </View>
         {/* <View style={styles.Advertisement2ndVarient}>

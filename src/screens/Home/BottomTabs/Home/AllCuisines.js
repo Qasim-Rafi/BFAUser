@@ -45,13 +45,14 @@ const AllCuisines = props => {
   console.log('Cuisines: ', cuisinesLoader);
   console.log('cuisines length:', cuisines.length);
   const dispatch = useDispatch();
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
   React.useEffect(() => { }, [cuisines]);
 
   return (
     <>
       <View style={styles.recommendationHeaderSection}>
-        <ResponsiveText margin={[0, 0, 0, 0]} size={4} color={colors.white}>
+        <ResponsiveText margin={[0, 0, 0, 0]} size={4} color={isThemeDark ? colors.white : colors.black}>
           Cuisines
         </ResponsiveText>
         <View style={{ marginRight: -10 }}>
