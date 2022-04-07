@@ -284,7 +284,7 @@ export const getFavouiteRestaurent = (index, limit) => {
   };
 };
 //Add_FAVORITE_RESTAURANT
-export const addFavoriteRestaurant = data => {
+export const addFavoriteRestaurant = (data) => {
   console.log('dataaa',data)
   return {
     type: types.ADD_FAVORITE_RESTAURANT_REQUEST,
