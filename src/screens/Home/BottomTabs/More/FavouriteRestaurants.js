@@ -17,8 +17,8 @@ import Icon from '../../../../components/Icon';
 import { useSelector, useDispatch } from 'react-redux';
 import { getFavouiteRestaurent } from '../../../../redux/actions/user.actions';
 export default function FavouriteRestaurants(props) {
-  const favData = useSelector(state => state.appReducers.favoriteRestaurant.data,)
-  console.log(favData,'resssss')
+  const favDataRestaurant = useSelector(state => state.appReducers.favoriteRestaurant.data,)
+  console.log(favDataRestaurant,'resssss')
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(getFavouiteRestaurent(1,8))
@@ -31,16 +31,15 @@ export default function FavouriteRestaurants(props) {
           Favorite Restaurants
         </ResponsiveText>
         <View style={{flexDirection: 'row', flexWrap: 'wrap', width: wp(100)}}>
-        {favData.length > 0
-            ? Array.from(new Set(favData.map(JSON.stringify))).map(JSON.parse).map((url, item) => {
+        {favDataRestaurant.length > 0
+            ? Array.from(new Set(favDataRestaurant.map(JSON.stringify))).map(JSON.parse).map((url, item) => {
             console.log("favvvv",item)
             return (
               <TouchableOpacity
               style={{marginHorizontal: 4, marginVertical: 14}}
               onPress={() =>
-                props.navigation.navigate(routeName.DISH_DETAIL, {
-                  dish: url,
-                })
+                props.navigation.navigate(routeName.RestaurantDetail,
+                  url.restaurantBranchId,)
               }>
              
                 <View
@@ -51,7 +50,7 @@ export default function FavouriteRestaurants(props) {
                     overflow: 'hidden',
                     flexDirection: 'row',
                   }}>
-                  <ImageBackground
+                    <ImageBackground
                     imageStyle={{opacity: 1}}
                     style={{
                       flex: 1,
@@ -60,23 +59,33 @@ export default function FavouriteRestaurants(props) {
                       justifyContent: 'space-between',
                       backgroundColor: 'rgba(0,0,0,1)',
                     }}
-                    source={{uri: url.imageDataB}}>
+                    source={{uri: url.restaurantLogo}}>
                     <View style={{alignItems: 'flex-end'}}>
                       <Icon size={15} source={globalPath.favouriteicon_red} />
                     </View>
                     <View>
-                      <ResponsiveText
-                        fontFamily="Regular"
-                        size={2.9}
-                        color={colors.white}>
-                        {url.titleR}
-                      </ResponsiveText>
-                      <ResponsiveText
-                        fontFamily="Light"
-                        size={2}
-                        color={colors.white}>
-                        {url.titleD}
-                      </ResponsiveText>
+                    <Text
+                          style={{
+                            margin: 1,
+                            opacity: 1,
+
+                            color: 'white', padding: 3, marginTop: 2,
+                            backgroundColor: 'black', borderRadius: 7,
+                            textAlign: 'center', fontWeight: '600', fontSize: 8.5
+                          }}
+
+                        >  {url.restaurantName}</Text>
+                    
+                    <Text
+                          style={{
+                            margin: 1,
+                            opacity: 0.7,
+                            color: 'white', padding: 3, marginTop: 2,
+                            backgroundColor: 'black', borderRadius: 7,
+                            textAlign: 'center', fontWeight: '600', fontSize: 8.5
+                          }}
+
+                        >  {url.restaurantBranchesAlldataforappList.areaName}</Text>
                     </View>
                   </ImageBackground>
                 </View>

@@ -76,7 +76,17 @@ export default function Signup({navigation}) {
 
   React.useEffect(() => {
     console.log('responseeeeeee', errorString);
-    signupResponse ? setErrorString(signupResponse) : null;
+
+    if (signupResponse === 'Email already exist') {
+      setErrorString(
+        signupResponse +
+          ".\nHave you forgotten your password? Don't worry, You can reset your password here.",
+      );
+      console.log('reset password');
+    } else {
+      signupResponse ? setErrorString(signupResponse) : null;
+
+    }
     // signupResponse?
     // dropdownRef.current.showMessage({
     //   message: 'Error',
@@ -88,7 +98,7 @@ export default function Signup({navigation}) {
     // loginNetworkErr ? setErrorString(loginNetworkErr.message) : null
   }, [signupResponse]);
   React.useEffect(() => {
-    setErrorString('')
+    setErrorString('');
     // console.log('return');
   }, [navigation]);
 
@@ -220,7 +230,7 @@ export default function Signup({navigation}) {
       //   type: 'danger',
       //   icon: {icon: 'auto', position: 'left'},
       // });
-      setErrorString('Invalid Email')
+      setErrorString('Invalid Email');
     } else {
       var obj = {
         UserName: userName,
@@ -322,9 +332,12 @@ export default function Signup({navigation}) {
         //   type: 'danger',
         //   icon: { icon: 'auto', position: 'left' },
         // });
-        if (res.message === "Email already exist") {
-          setErrorString(res.message + '.\nHave you forgotten your password? Don\'t worry, You can reset your password here.')
-          console.log('reset password')
+        if (res.message === 'Email already exist') {
+          setErrorString(
+            res.message +
+              ".\nHave you forgotten your password? Don't worry, You can reset your password here.",
+          );
+          console.log('reset password');
         } else {
           setErrorString(res.message);
           console.log('no reset');
@@ -535,25 +548,25 @@ export default function Signup({navigation}) {
               textColor={colors.black}
               title="SIGN UP "
             /> */}
+            <View style={{marginVertical: 20}}>
+              <ResponsiveText color={errorString=='Record(s) added successfully'?colors.green1:  colors.red}>{errorString}</ResponsiveText>
 
-            <ResponsiveText color={colors.red}>{errorString}</ResponsiveText>
-
-            {errorString ===
-            "Email already exist.\nHave you forgotten your password? Don't worry, You can reset your password here." ? (
-              <View style={styles.footer}>
-                {/* <Icon size={wp(8)}  margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
-                <ResponsiveText
-                  fontFamily="Bold"
-                  color={colors.yellow}
-                  onPress={() =>
-                    navigation.navigate(routeName.FORGOT_PASSWORD)
-                  }>
-                  Reset Password
-                </ResponsiveText>
-                {/* <View style={styles.socialIcon}></View> */}
-              </View>
-            ) : undefined}
-
+              {errorString ===
+              "Email already exist.\nHave you forgotten your password? Don't worry, You can reset your password here." ? (
+                <View style={styles.footer}>
+                  {/* <Icon size={wp(8)}  margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
+                  <ResponsiveText
+                    fontFamily="Bold"
+                    color={colors.yellow}
+                    onPress={() =>
+                      navigation.navigate(routeName.FORGOT_PASSWORD)
+                    }>
+                    Reset Password
+                  </ResponsiveText>
+                  {/* <View style={styles.socialIcon}></View> */}
+                </View>
+              ) : undefined}
+            </View>
             <View style={styles.footer}>
               {/* <Icon size={wp(8)}  margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
               <ResponsiveText margin={[2, 10]} color={colors.white}>
