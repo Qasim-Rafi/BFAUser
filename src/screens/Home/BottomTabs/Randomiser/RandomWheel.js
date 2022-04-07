@@ -227,6 +227,7 @@ class RandomWheelClass extends React.Component {
                 }}>
                 <View
                     style={{
+                        backgroundColor: colors.black1,
                         flex: 0.08,
                         padding:6,
                         // alignItems: 'center',
@@ -358,7 +359,7 @@ class RandomWheelClass extends React.Component {
                             >
                                 <Image
                                     source={require('../../../../assets/fake_Images/cross.png')}
-                                    style={{ height: hp(3.7), width: 33, marginBottom: 6 }}
+                                    style={{ height: hp(3.7), width: 33, marginBottom: 6, backgroundColor:'black',borderRadius:50 }}
                                 />
                             </TouchableOpacity>
                         </View>
@@ -511,7 +512,7 @@ class RandomWheelClass extends React.Component {
                                     justifyContent: 'center',
                                     borderRadius: 7,
                                 }}>
-                                <ResponsiveText color={colors.black3}>Save</ResponsiveText>
+                                <ResponsiveText color={colors.grey1}>Save</ResponsiveText>
                             </TouchableOpacity>
                         </View>
                     </View>
