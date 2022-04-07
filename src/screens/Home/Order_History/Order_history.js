@@ -76,11 +76,11 @@ export default function Order_history({navigation}) {
     //
   };
   return (
-    <View style={{flex: 1, backgroundColor: '#202020'}}>
+    <View style={{flex: 1, backgroundColor: colors.black3}}>
       {/* <View style={{ flexDirection: 'row', justifyContent: "space-between",padding:7 }}>
             <TouchableOpacity style={{ backgroundColor:colors.yellow1,paddingVertical:10,paddingHorizontal:10,borderRadius:20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
           </View> */}
-      <View style={{flex: 0.1, justifyContent: 'center'}}>
+      <View style={{flex: 0.1, justifyContent: 'center',backgroundColor: colors.black1,}}>
         <Header navigation={navigation} />
       </View>
       <ScrollView style={{flex: 0.7, marginHorizontal: 10}}>
@@ -93,7 +93,7 @@ export default function Order_history({navigation}) {
               }>
               <View
                 style={{
-                  backgroundColor: '#303030',
+                  backgroundColor: colors.black2,
                   height: hp(10),
                   borderRadius: 5,
                   alignItems: 'center',
