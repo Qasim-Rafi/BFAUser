@@ -40,13 +40,12 @@ import {StackActions} from '@react-navigation/routers';
 import urls from '../../../redux/lib/urls';
 import Api from '../../../redux/lib/api';
 
-export default function ChangePassword({navigation,route}) {
+export default function ChangePassword({navigation, route}) {
   const dropdownRef = React.useRef(null);
   // const showError
   // const [loading, setLoading] = React.useState(false);
   const [errorString, setErrorString] = React.useState('');
   const [userName, setUserName] = React.useState('');
-  const [value, setValue] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [confirmPassword, setConfirmPassword] = React.useState('');
 
@@ -61,7 +60,7 @@ export default function ChangePassword({navigation,route}) {
     } else if (password.length < 8) {
       setErrorString('Password Length should be greater then 8');
     } else if (password != confirmPassword) {
-      setErrorString('Password did not matched');
+      setErrorString('Password is not matching');
     } else {
       forgotPassword();
       setErrorString('');
@@ -72,14 +71,16 @@ export default function ChangePassword({navigation,route}) {
       password: password,
     };
     try {
-      const res = await Api.put(urls.CHANGE_PASSWORD+route.params.id, obj);
+      setLoading(true);
+      const res = await Api.put(urls.CHANGE_PASSWORD + route.params.data.id, obj);
       console.log('res', res);
       if (res && res.success == true) {
-          navigation.navigate(routeName.LOGIN)
+        setLoading(false);
+        navigation.navigate(routeName.LOGIN);
       } else {
+        setLoading(false);
         setErrorString('Something went wrong!');
-        navigation.navigate(routeName.LOGIN)
-
+        navigation.navigate(routeName.LOGIN);
       }
     } catch (error) {}
   };
@@ -94,6 +95,26 @@ export default function ChangePassword({navigation,route}) {
             backgroundColor: colors.black,
             justifyContent: 'center',
           }}>
+          <View
+            style={{
+              justifyContent: 'center',
+            }}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.goBack();
+              }}
+              style={{
+                margin: 10,
+                backgroundColor: colors.yellow1,
+                paddingVertical: 10,
+                alignSelf: 'flex-start',
+                paddingHorizontal: 10,
+                borderRadius: 25,
+              }}>
+              <Icon source={globalPath.BACK_ARROW} />
+            </TouchableOpacity>
+            {/* <Header navigation={navigation} iconPath={globalPath.BACK_ARROW} /> */}
+          </View>
           <View style={styles.screeninfo}>
             <Icon source={globalPath.BALI_ICON} size={60} />
             <ResponsiveText
@@ -101,10 +122,11 @@ export default function ChangePassword({navigation,route}) {
               color={colors.yellow}
               fontFamily="Regular"
               size={5}>
-              Change Password
+              Reset your password
             </ResponsiveText>
             <ResponsiveText margin={[5, 0, 0, 0]} color={colors.white}>
-              Please enter password to continue
+              for username{' '}
+              <ResponsiveText color={colors.white}>"{route.params?.data.username}"</ResponsiveText>
             </ResponsiveText>
           </View>
           <KeyboardAvoidingView
@@ -115,8 +137,9 @@ export default function ChangePassword({navigation,route}) {
               onChnageText={text => setPassword(text)}
               iconMargin={[0, 10, 0, 0]}
               placeholder="Password"
-              autoCapitalize={'none'}
               leftIcon={globalPath.LOCK_LOGO}
+              secureTextEntry={true}
+              autoCapitalize={'none'}
             />
             <Input
               padding={[0, 0, 0, 25]}
@@ -124,6 +147,7 @@ export default function ChangePassword({navigation,route}) {
               onChnageText={text => setConfirmPassword(text)}
               iconMargin={[0, 10, 0, 0]}
               placeholder="Confirm Password"
+              secureTextEntry={true}
               autoCapitalize={'none'}
               leftIcon={globalPath.LOCK_LOGO}
             />

@@ -24,9 +24,10 @@ import FlashMessage, {
   showMessage,
   hideMessage,
 } from 'react-native-flash-message';
+import Icon from '../../../components/Icon';
 const CELL_COUNT = 6;
 
-export default function VerificationCode({navigation}) {
+export default function VerificationCode({navigation,route}) {
   const [userName, setUserName] = React.useState('');
   const [password, setPassword] = React.useState('');
   const dropdownRef = React.useRef(null);
@@ -49,7 +50,12 @@ export default function VerificationCode({navigation}) {
         icon: {icon: 'auto', position: 'left'},
       });
     } else {
-      dispatch(verifyUser(0, navigation));
+      if(route.params){
+        navigation.navigate(routeName.CHANGE_PASSWORD,{data:route.params.data})
+      }else{
+
+        dispatch(verifyUser(0, navigation));
+      }
     }
   };
   return (
@@ -59,6 +65,25 @@ export default function VerificationCode({navigation}) {
     //   style={styles.container}>
     <ScrollView contentContainerStyle={{flexGrow: 1}}>
       <ImageBackground style={styles.container} source={globalPath.BG_IMAGE}>
+      <View
+        style={{
+          justifyContent: 'center',
+        }}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.goBack();
+          }}
+          style={{
+            margin: 10,
+            backgroundColor: colors.yellow1,
+            paddingVertical: 10,
+            alignSelf: 'flex-start',
+            paddingHorizontal: 10,
+            borderRadius: 25,
+          }}>
+          <Icon source={globalPath.BACK_ARROW} />
+        </TouchableOpacity>
+      </View>
         <View style={styles.screeninfo}>
           <ResponsiveText color={colors.yellow} fontFamily="Regular" size={8}>
             Verification

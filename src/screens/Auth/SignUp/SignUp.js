@@ -15,28 +15,29 @@ import {
   SafeAreaView,
 } from 'react-native';
 import DropDown from '../../../components/CustomizeDropdown';
-import { useState } from 'react';
-import { hp, wp } from '../../../helpers/Responsiveness';
+import {useState} from 'react';
+import {hp, wp} from '../../../helpers/Responsiveness';
 import Icon from '../../../components/Icon';
 import Input from '../../../components/Input';
 import RnButton from '../../../components/RnButton';
 import ResponsiveText from '../../../components/RnText';
-import { globalPath } from '../../../constants/globalPath';
-import { Spacing } from '../../../constants/spacingScale';
+import {globalPath} from '../../../constants/globalPath';
+import {Spacing} from '../../../constants/spacingScale';
 import Line from '../../../components/Line';
-import { routeName } from '../../../constants/routeName';
-import { colors } from '../../../constants/colorsPallet';
+import {routeName} from '../../../constants/routeName';
+import {colors} from '../../../constants/colorsPallet';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import FlashMessage, {
   showMessage,
   hideMessage,
 } from 'react-native-flash-message';
-import { registerUser } from '../../../redux/actions/user.actions';
-import { useDispatch, useSelector } from 'react-redux';
-import { color } from 'react-native-reanimated';
+import {registerUser} from '../../../redux/actions/user.actions';
+import {useDispatch, useSelector} from 'react-redux';
+import {color} from 'react-native-reanimated';
 import Api from '../../../redux/lib/api';
 import urls from '../../../redux/lib/urls';
-export default function Signup({ navigation }) {
+import {SkypeIndicator} from 'react-native-indicators';
+export default function Signup({navigation}) {
   const dropdownRef = React.useRef(null);
   const dispatch = useDispatch();
   const [firstName, setFirstName] = useState('');
@@ -54,16 +55,18 @@ export default function Signup({ navigation }) {
   const [number, onChangeNumber] = React.useState('+973');
   const [confirmPassword, setConfirmPassword] = useState();
   const Gender = [
-    { lable: 'Gender', icon: require('../../../assets/icons/signupgender.png') },
-    { lable: 'Male', icon: require('../../../assets/icons/male.png') },
-    { lable: 'Female', icon: require('../../../assets/icons/female.png') },
+    {lable: 'Gender', icon: require('../../../assets/icons/signupgender.png')},
+    {lable: 'Male', icon: require('../../../assets/icons/male.png')},
+    {lable: 'Female', icon: require('../../../assets/icons/female.png')},
   ];
 
   // const signUpResponse = useSelector(state => state.)
   const signupResponse = useSelector(
     state => state.login_User.signupScreen.message,
   );
-
+  const loading = useSelector(
+    state => state.login_User.signupScreen.refreshing,
+  );
   // var dateMinus13 = new Date();
   // dateMinus13.setDate( dateMinus13.getDate() - 6 );
   // dateMinus13.setFullYear( dateMinus13.getFullYear() - 1 );
@@ -84,6 +87,10 @@ export default function Signup({ navigation }) {
     // :null
     // loginNetworkErr ? setErrorString(loginNetworkErr.message) : null
   }, [signupResponse]);
+  React.useEffect(() => {
+    setErrorString('')
+    // console.log('return');
+  }, [navigation]);
 
   const [date, setDate] = useState(null);
   const [mode, setMode] = useState('date');
@@ -122,35 +129,35 @@ export default function Signup({ navigation }) {
     email: /^\w+([+.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
   };
   const validation = () => {
-    setErrorString('')
+    setErrorString('');
     if (firstName === '') {
       dropdownRef.current.showMessage({
         message: 'Error',
         description: 'First name is Required',
         duration: 3000,
         type: 'danger',
-        icon: { icon: 'auto', position: 'left' },
+        icon: {icon: 'auto', position: 'left'},
       });
     } else if (lastName === '') {
       dropdownRef.current.showMessage({
         message: 'Error',
         description: 'Last name is Required',
         type: 'danger',
-        icon: { icon: 'auto', position: 'left' },
+        icon: {icon: 'auto', position: 'left'},
       });
     } else if (userName === '') {
       dropdownRef.current.showMessage({
         message: 'Error',
         description: 'User name is Required',
         type: 'danger',
-        icon: { icon: 'auto', position: 'left' },
+        icon: {icon: 'auto', position: 'left'},
       });
     } else if (email === '') {
       dropdownRef.current.showMessage({
         message: 'Error',
         description: 'Email is Required',
         type: 'danger',
-        icon: { icon: 'auto', position: 'left' },
+        icon: {icon: 'auto', position: 'left'},
       });
     }
     // else if (phoneNum === '') {
@@ -166,92 +173,90 @@ export default function Signup({ navigation }) {
         message: 'Error',
         description: 'CellPhone is Required',
         type: 'danger',
-        icon: { icon: 'auto', position: 'left' },
+        icon: {icon: 'auto', position: 'left'},
       });
-    } else
-      // if (Address === '') {
-      //   dropdownRef.current.showMessage({
-      //     message: 'Error',
-      //     description: 'Address is Required',
-      //     type: 'danger',
-      //     icon: {icon: 'auto', position: 'left'},
-      //   });
-      // }
-      //  else 
-      if (password === '') {
-        dropdownRef.current.showMessage({
-          message: 'Error',
-          description: 'Password is Required',
-          type: 'danger',
-          icon: { icon: 'auto', position: 'left' },
-        });
-      } else if (password.length < 8) {
-        dropdownRef.current.showMessage({
-          message: 'Error',
-          description: 'Password Length should be greater then 8',
-          type: 'danger',
-          icon: { icon: 'auto', position: 'left' },
-        });
-      }
-      else if (state === '') {
-        dropdownRef.current.showMessage({
-          message: 'Error',
-          description: 'State is Required',
-          type: 'danger',
-          icon: { icon: 'auto', position: 'left' },
-        });
-      }
-      else if (PostCode === '') {
-        dropdownRef.current.showMessage({
-          message: 'Error',
-          description: 'Post code is Required',
-          type: 'danger',
-          icon: { icon: 'auto', position: 'left' },
-        });
-      }
-      else if (!expressions.email.test(email) || email.includes(' ')) {
-        dropdownRef.current.showMessage({
-          message: 'Error',
-          description: 'Invalid Email',
-          type: 'danger',
-          icon: { icon: 'auto', position: 'left' },
-        });
-      } else {
-        var obj = {
-          UserName: userName,
-          Email: email,
-          FullName: firstName + ' ' + lastName,
-          Password: password,
-          UserTypeId: 3,
-          // restaurantId: 11,
-          // updatebyId: 0,
-          // updatedDateTime: `${new Date()}`,
-          // areaId: 1,
-          //  gender: gender=='Gender'?'':gender,
-          // dateofBirth: date,
-          //contactNumber: phoneNum,
-          ContactNumber: '+673' + CellphoneNum,
-          Address: Address,
-          State: state,
-          PostalCode: PostCode
-        };
-        console.log(obj);
-        dispatch(registerUser(obj, navigation));
-        // dispatch(registerUser({
-        //   "username": "alii",
-        //   "email": "uaa@gmail.com",
-        //   "fullName": "ok",
-        //   "password": "password",
-        //   "userTypeId": 3,
-        //   "restaurantId": 11,
-        //   "updatebyId": 0,
-        //   "updatedDateTime": "Fri Jan 14 2022 17:48:44 GMT+0500 (Pakistan Standard Time)",
-        //   "areaId": 1,
-        //   "gender": "male",
-        //   "dateofBirth": "2004/1/14",
-        //   "contactNumber": "00008888"
-        // }));
-      }
+    }
+    // if (Address === '') {
+    //   dropdownRef.current.showMessage({
+    //     message: 'Error',
+    //     description: 'Address is Required',
+    //     type: 'danger',
+    //     icon: {icon: 'auto', position: 'left'},
+    //   });
+    // }
+    //  else
+    else if (password === '') {
+      dropdownRef.current.showMessage({
+        message: 'Error',
+        description: 'Password is Required',
+        type: 'danger',
+        icon: {icon: 'auto', position: 'left'},
+      });
+    } else if (password.length < 8) {
+      dropdownRef.current.showMessage({
+        message: 'Error',
+        description: 'Password Length should be greater then 8',
+        type: 'danger',
+        icon: {icon: 'auto', position: 'left'},
+      });
+    } else if (state === '') {
+      dropdownRef.current.showMessage({
+        message: 'Error',
+        description: 'State is Required',
+        type: 'danger',
+        icon: {icon: 'auto', position: 'left'},
+      });
+    } else if (PostCode === '') {
+      dropdownRef.current.showMessage({
+        message: 'Error',
+        description: 'Post code is Required',
+        type: 'danger',
+        icon: {icon: 'auto', position: 'left'},
+      });
+    } else if (!expressions.email.test(email) || email.includes(' ')) {
+      // dropdownRef.current.showMessage({
+      //   message: 'Error',
+      //   description: 'Invalid Email',
+      //   type: 'danger',
+      //   icon: {icon: 'auto', position: 'left'},
+      // });
+      setErrorString('Invalid Email')
+    } else {
+      var obj = {
+        UserName: userName,
+        Email: email,
+        FullName: firstName + ' ' + lastName,
+        Password: password,
+        UserTypeId: 3,
+        // restaurantId: 11,
+        // updatebyId: 0,
+        // updatedDateTime: `${new Date()}`,
+        // areaId: 1,
+        //  gender: gender=='Gender'?'':gender,
+        // dateofBirth: date,
+        //contactNumber: phoneNum,
+        ContactNumber: '+673' + CellphoneNum,
+        Address: Address,
+        State: state,
+        PostalCode: PostCode,
+      };
+      console.log(obj);
+      dispatch(registerUser(obj, navigation));
+      // dispatch(registerUser({
+      //   "username": "alii",
+      //   "email": "uaa@gmail.com",
+      //   "fullName": "ok",
+      //   "password": "password",
+      //   "userTypeId": 3,
+      //   "restaurantId": 11,
+      //   "updatebyId": 0,
+      //   "updatedDateTime": "Fri Jan 14 2022 17:48:44 GMT+0500 (Pakistan Standard Time)",
+      //   "areaId": 1,
+      //   "gender": "male",
+      //   "dateofBirth": "2004/1/14",
+      //   "contactNumber": "00008888"
+      // }));
+    }
   };
 
   const checkExisting = async type => {
@@ -288,34 +293,26 @@ export default function Signup({ navigation }) {
         //    icon: { icon: 'auto', position: 'left' },
         //  });
         if (type == 1) {
-          setShowCorrectUserIcon(true)
-          setCorrectUserIcon(true)
+          setShowCorrectUserIcon(true);
+          setCorrectUserIcon(true);
+        } else if (type == 2) {
+          setShowCorrectemailIcon(true);
+          setCorrectemailIcon(true);
+        } else if (type == 3) {
+          setShowCorrectPhoneIcon(true);
+          setCorrectPhoneIcon(true);
         }
-        else if (type == 2) {
-          setShowCorrectemailIcon(true)
-          setCorrectemailIcon(true)
-        }
-        else if (type == 3) {
-          setShowCorrectPhoneIcon(true)
-          setCorrectPhoneIcon(true)
-        }
-
-
-
-
       } else {
         if (type == 1) {
-          setShowCorrectUserIcon(true)
-          setCorrectUserIcon(false)
-          console.log("iconnn")
-        }
-        else if (type == 2) {
-          setShowCorrectemailIcon(true)
-          setCorrectemailIcon(false)
-        }
-        else if (type == 3) {
-          setShowCorrectPhoneIcon(true)
-          setCorrectPhoneIcon(false)
+          setShowCorrectUserIcon(true);
+          setCorrectUserIcon(false);
+          console.log('iconnn');
+        } else if (type == 2) {
+          setShowCorrectemailIcon(true);
+          setCorrectemailIcon(false);
+        } else if (type == 3) {
+          setShowCorrectPhoneIcon(true);
+          setCorrectPhoneIcon(false);
         }
         // alert(res.message)
         // showMessage({
@@ -325,13 +322,13 @@ export default function Signup({ navigation }) {
         //   type: 'danger',
         //   icon: { icon: 'auto', position: 'left' },
         // });
-        // if (res.message === "Email already exist") {
-        //   setErrorString(res.message + '.\nHave you forgotten your password? Don\'t worry, You can reset your password here.')
-        //   console.log('reset password')
-        // } else {
-        //   setErrorString(res.message);
-        //   console.log('no reset');
-        // }
+        if (res.message === "Email already exist") {
+          setErrorString(res.message + '.\nHave you forgotten your password? Don\'t worry, You can reset your password here.')
+          console.log('reset password')
+        } else {
+          setErrorString(res.message);
+          console.log('no reset');
+        }
       }
     } catch (error) {
       console.log(error);
@@ -340,10 +337,10 @@ export default function Signup({ navigation }) {
 
   return (
     <KeyboardAvoidingView
-      style={{ flex: 1, backgroundColor: colors.black }}
+      style={{flex: 1, backgroundColor: colors.black}}
       behavior={Platform.OS === 'ios' ? 'padding' : null}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <ScrollView style={{ flex: 1 }}>
+        <ScrollView style={{flex: 1}}>
           <View style={styles.screeninfo}>
             <Icon source={globalPath.BALI_ICON} size={60} />
             <ResponsiveText
@@ -359,7 +356,7 @@ export default function Signup({ navigation }) {
           </View>
           <View style={styles.formArea}>
             <View
-              style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <Input
                 width={wp(39)}
                 margin={[0, 0, 15, 0]}
@@ -385,7 +382,11 @@ export default function Signup({ navigation }) {
               margin={[0, 0, 15, 0]}
               iconMargin={[0, 10, 0, 0]}
               placeholder="User Name"
-              showValidationIcon={userName == '' || userName.length<3? false : showCorrectUserIcon}
+              showValidationIcon={
+                userName == '' || userName.length < 3
+                  ? false
+                  : showCorrectUserIcon
+              }
               userValidation={correctUserIcon}
               rightIcon={globalPath.FEED_GREY}
               autoCapitalize={'none'}
@@ -407,7 +408,9 @@ export default function Signup({ navigation }) {
               padding={[0, 0, 0, 25]}
               iconMargin={[0, 10, 0, 0]}
               placeholder="Email"
-              showValidationIcon={email == ''||email.length <3 ? false : showCorrectemailIcon}
+              showValidationIcon={
+                email == '' || email.length < 3 ? false : showCorrectemailIcon
+              }
               userValidation={correctemailIcon}
               autoCapitalize={'none'}
               keyboardType={'email-address'}
@@ -432,7 +435,11 @@ export default function Signup({ navigation }) {
               maxlength={7}
               onChnageText={text => setCellphoneNum(text)}
               iconMargin={[0, 10, 0, 0]}
-              showValidationIcon={CellphoneNum==''||CellphoneNum.length<3?false: showCorrectPhoneIcon}
+              showValidationIcon={
+                CellphoneNum == '' || CellphoneNum.length < 3
+                  ? false
+                  : showCorrectPhoneIcon
+              }
               userValidation={correctPhoneIcon}
               placeholder="000-0000(Required)"
               countryCode="+673 "
@@ -450,10 +457,10 @@ export default function Signup({ navigation }) {
               // countryCode="+92"
               leftIcon={globalPath.ADDRESS_LOGO}
               iconSize={hp(3)}
-            // onPressOut={() => checkExisting()}
+              // onPressOut={() => checkExisting()}
             />
             <View
-              style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <Input
                 width={wp(39)}
                 margin={[0, 0, 15, 0]}
@@ -511,31 +518,41 @@ export default function Signup({ navigation }) {
                 onChange={onChange}
               />
             )}
-            <RnButton
+
+            <TouchableOpacity style={styles.signin} onPress={validation}>
+              {loading == true ? (
+                <SkypeIndicator count={5} color={colors.black} size={30} />
+              ) : (
+                <ResponsiveText color={colors.black} size={4}>
+                  SIGN UP
+                </ResponsiveText>
+              )}
+            </TouchableOpacity>
+            {/* <RnButton
               onPress={() => validation()}
               fontFamily="bold"
               margin={[9, 0]}
               textColor={colors.black}
               title="SIGN UP "
-            />
+            /> */}
 
             <ResponsiveText color={colors.red}>{errorString}</ResponsiveText>
 
-
-            {
-              errorString === 'Email already exist.\nHave you forgotten your password? Don\'t worry, You can reset your password here.' ?
-                <View style={styles.footer}>
-                  {/* <Icon size={wp(8)}  margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
-                  <ResponsiveText
-                    fontFamily="Bold"
-                    color={colors.yellow}
-                    onPress={() => navigation.navigate(routeName.FORGOT_PASSWORD)}>
-                    Reset Password
-                  </ResponsiveText>
-                  {/* <View style={styles.socialIcon}></View> */}
-                </View> :
-                undefined
-            }
+            {errorString ===
+            "Email already exist.\nHave you forgotten your password? Don't worry, You can reset your password here." ? (
+              <View style={styles.footer}>
+                {/* <Icon size={wp(8)}  margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
+                <ResponsiveText
+                  fontFamily="Bold"
+                  color={colors.yellow}
+                  onPress={() =>
+                    navigation.navigate(routeName.FORGOT_PASSWORD)
+                  }>
+                  Reset Password
+                </ResponsiveText>
+                {/* <View style={styles.socialIcon}></View> */}
+              </View>
+            ) : undefined}
 
             <View style={styles.footer}>
               {/* <Icon size={wp(8)}  margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
@@ -570,6 +587,15 @@ const styles = StyleSheet.create({
     //justifyContent: 'center',
     marginVertical: '10%',
     alignItems: 'center',
+  },
+  signin: {
+    backgroundColor: colors.yellow,
+    width: wp(80),
+    height: hp(6),
+    borderRadius: 7,
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
   },
   formArea: {
     flex: 1,

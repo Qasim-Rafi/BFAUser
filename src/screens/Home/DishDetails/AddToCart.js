@@ -60,7 +60,7 @@ export default function AddToCart({route, navigation}) {
     // var sumoflinedItems = linkedItem.reduce((a, c) => {
     //   return a + c.price;
     // }, 0);
-    console.log(linkedItem.length);
+    // console.log(linkedItem.length);
     PriceCalculations();
   }, [count, extraCheese.length, SelectedDrinks.length,linkedItem.length,visible]);
   const Drinks = value => {
@@ -75,8 +75,8 @@ export default function AddToCart({route, navigation}) {
     var sumofDrinks = SelectedDrinks.reduce((a, c) => {
       return a + c.price * c.quantity;
     }, 0);
-    console.log('sum of extra', sumofExtra);
-    console.log('sumofDrinks', sumofDrinks);
+    // console.log('sum of extra', sumofExtra);
+    // console.log('sumofDrinks', sumofDrinks);
     setVisible(!visible)
     updateTotal(dishPrice * count + sumofExtra + sumofDrinks);
   };
