@@ -57,7 +57,7 @@ export default function ProfileDisplay({navigation}) {
       <View
         style={{
           flex: 0.8,
-          backgroundColor: '#202020',
+          backgroundColor: colors.black3,
           paddingTop: hp(3),
         }}>
         <ScrollView>
@@ -142,7 +142,7 @@ export default function ProfileDisplay({navigation}) {
               onPress={() => {
                 navigation.goBack();
               }}>
-              <Icon source={globalPath.BACK_BLACK_ARROW} />
+              <Icon tintColor={colors.white} source={globalPath.BACK_BLACK_ARROW} />
             </TouchableOpacity>
             <ResponsiveText size={4}>Profile</ResponsiveText>
             <TouchableOpacity
@@ -153,7 +153,7 @@ export default function ProfileDisplay({navigation}) {
                 padding: 10,
                 borderRadius: 20,
               }}>
-              <Icon source={globalPath.EDIT_PROFILE} />
+              <Icon tintColor={colors.white} source={globalPath.EDIT_PROFILE} />
             </TouchableOpacity>
           </View>
           <View
