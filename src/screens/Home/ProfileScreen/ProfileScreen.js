@@ -528,18 +528,23 @@ export default function ProfileScreen({navigation}) {
               fieldName={'User Name'}
               value={userName}
               onChangeText={text => setUsername(text)}
+              editable={false}
             />
             <CustomInput
               // placeHolderText={profileData.email}
               fieldName={'Email'}
               value={email}
               onChangeText={text => setEmail(text)}
+              editable={false}
+
             />
             <CustomInput
               //  placeHolderText={profileData.contactNumber}
               fieldName={'Cell Number'}
               value={contactNo}
               onChangeText={text => setcontactNo(text)}
+              editable={false}
+
             />
             <CustomInput
               //  placeHolderText={profileData.contactNumber}
