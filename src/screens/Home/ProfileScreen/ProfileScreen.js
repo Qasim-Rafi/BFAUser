@@ -35,7 +35,8 @@ import ImagePicker from 'react-native-image-crop-picker';
 import Modal from 'react-native-modal';
 import urls from '../../../redux/lib/urls';
 import Api from '../../../redux/lib/api';
-import { BarIndicator } from 'react-native-indicators';
+import {BarIndicator} from 'react-native-indicators';
+import moment from 'moment';
 
 export default function ProfileScreen({navigation}) {
   const profileData = useSelector(state => state.appReducers.profileData.data);
@@ -65,7 +66,11 @@ export default function ProfileScreen({navigation}) {
   const [MarriageStatusData, setMarriageStatusData] = useState([]);
 
   const Gender = [
-    {id:0,lable: 'Gender', icon: require('../../../assets/icons/signupgender.png')},
+    {
+      id: 0,
+      lable: 'Gender',
+      icon: require('../../../assets/icons/signupgender.png'),
+    },
     {id: 1, lable: 'Male', icon: require('../../../assets/icons/male.png')},
     {id: 2, lable: 'Female', icon: require('../../../assets/icons/female.png')},
   ];
@@ -115,14 +120,20 @@ export default function ProfileScreen({navigation}) {
     setcontactNo(profileData.contactNumber);
     setDate(profileData.dateofBirth);
     setgender(profileData.gender);
-    setChildren(profileData.numberOfChildren==null?'':profileData.numberOfChildren);
+    setChildren(
+      profileData.numberOfChildren == null ? '' : profileData.numberOfChildren,
+    );
     setJobInterest(profileData.jobIntrest);
-    setEducation(profileData.educationalBackground==null?'':profileData.educationalBackground);
+    setEducation(
+      profileData.educationalBackground == null
+        ? ''
+        : profileData.educationalBackground,
+    );
     setMaritialStatus(profileData.marriageStatusId);
     setEmpSec(profileData.employmentSectorId);
     setSelectedIndustry(profileData.industryId);
     setAddress(profileData.address);
-    setPhoneNo(profileData.cellPhone)
+    setPhoneNo(profileData.cellPhone);
   };
 
   const GetLookUpIndustry = async item => {
@@ -202,7 +213,7 @@ export default function ProfileScreen({navigation}) {
 
     console.log('obj', formData);
     try {
-      setLoading(true)
+      setLoading(true);
       const res = await Api.put(
         urls.EDIT_PROFILE + profileData.id,
         formData,
@@ -211,8 +222,8 @@ export default function ProfileScreen({navigation}) {
       console.log('ree', res);
       if (res && res.success == true) {
         dispatch(getProfileData());
-        setLoading(false)
-        navigation.goBack()
+        setLoading(false);
+        navigation.goBack();
         // dropdownRef.current.showMessage({
         //   message: 'Alert',
         //   description: 'Order Canceled',
@@ -221,8 +232,7 @@ export default function ProfileScreen({navigation}) {
         //   //backgroundColor:colors.black1
         // });
       } else {
-        setLoading(false)
-
+        setLoading(false);
       }
     } catch (error) {}
   };
@@ -270,6 +280,18 @@ export default function ProfileScreen({navigation}) {
       },
     ]);
   };
+  function formatDate(dateString, currentDateFormat, FormattedDateFormat) {
+    return moment(dateString, currentDateFormat).format(FormattedDateFormat);
+  }
+
+  const handleChange = (event, date) => {
+    const format = 'YYYY-MM-DD';
+    const displayFormat = 'DD MMM YYYY';
+
+    const displayDate = formatDate(date, format, displayFormat); // display Date
+    // setDate(displayDate)
+    return displayDate;
+  };
   const Optional = () => {
     return (
       <View style={styles.formArea}>
@@ -314,7 +336,9 @@ export default function ProfileScreen({navigation}) {
                 marginHorizontal: wp(8),
               }}>
               <DropDown
-              defaultValueByIndex={gender==null?0:Gender.findIndex(p => p.lable == gender)}
+                defaultValueByIndex={
+                  gender == null ? 0 : Gender.findIndex(p => p.lable == gender)
+                }
                 data={Gender}
                 // defaultButtonText={gender}
                 onSelect={(selectedItem, index) => {
@@ -335,21 +359,34 @@ export default function ProfileScreen({navigation}) {
                   iconMargin={[0, 10, 0, 0]}
                   leftIcon={globalPath.Calender_ICON}
                   placeholder={
-                    date == null ? 'Date of birth' : dateFormat(date)
+                    date == null ? 'Date of birth' : handleChange('', date)
                   }
                 />
               </TouchableOpacity>
             </View>
           </View>
           {show && (
+            //         <DateTimePicker
+            //           // testID="dateTimePicker"
+            //           value={new Date()}
+            //           mode={'date'}
+            //           // is24Hour={true}
+            //           display="default"
+            //           // format="YYYY-MM-DD HH:mm"
+            //           onChange={onChange}
+            //           format={"YYYY-MM-DD"}
+            // displayFormat={"DD MMM YYYY"}
+            //         />
             <DateTimePicker
-              // testID="dateTimePicker"
-              value={new Date(date)}
-              mode={'date'}
-              // is24Hour={true}
+              timeZoneOffsetInMinutes={0}
+              value={new Date()}
+              mode="date"
+              is24Hour
               display="default"
-              format="YYYY-MM-DD HH:mm"
               onChange={onChange}
+              format={'YYYY-MM-DD'}
+              displayFormat={'DD MMM YYYY'}
+              maximumDate={new Date(2009, 1, 1)}
             />
           )}
           <CustomInput
@@ -370,10 +407,14 @@ export default function ProfileScreen({navigation}) {
                 return v.name;
               })}
               defaultButtonText={
-                MarriageStatusData.find(v => v.id == MaritialStatus)?.name?MarriageStatusData.find(v => v.id == MaritialStatus)?.name:'Select Marital Status'
+                MarriageStatusData.find(v => v.id == MaritialStatus)?.name
+                  ? MarriageStatusData.find(v => v.id == MaritialStatus)?.name
+                  : 'Select Marital Status'
               }
               onSelect={async (selectedItem, index) => {
-                var id=MarriageStatusData.find(v => v.name == selectedItem)?.id
+                var id = MarriageStatusData.find(
+                  v => v.name == selectedItem,
+                )?.id;
                 console.log(id, 'MarriageStatusData');
                 setMaritialStatus(id);
               }}
@@ -397,10 +438,12 @@ export default function ProfileScreen({navigation}) {
                 return v.name;
               })}
               defaultButtonText={
-                EmploymentSector.find(v => v.id == EmpSec)?.name?EmploymentSector.find(v => v.id == EmpSec)?.name:'Select Employment Sector'
+                EmploymentSector.find(v => v.id == EmpSec)?.name
+                  ? EmploymentSector.find(v => v.id == EmpSec)?.name
+                  : 'Select Employment Sector'
               }
               onSelect={async (selectedItem, index) => {
-                var id=EmploymentSector.find(v => v.name == selectedItem)?.id
+                var id = EmploymentSector.find(v => v.name == selectedItem)?.id;
                 console.log(id, 'EmploymentSector');
                 setEmpSec(id);
               }}
@@ -418,10 +461,12 @@ export default function ProfileScreen({navigation}) {
                 return v.name;
               })}
               defaultButtonText={
-                IndustryData.find(v => v.id == SelectedIndustry)?.name?IndustryData.find(v => v.id == SelectedIndustry)?.name:'Select Industry'
+                IndustryData.find(v => v.id == SelectedIndustry)?.name
+                  ? IndustryData.find(v => v.id == SelectedIndustry)?.name
+                  : 'Select Industry'
               }
               onSelect={async (selectedItem, index) => {
-                var id=IndustryData.find(v => v.name == selectedItem)?.id
+                var id = IndustryData.find(v => v.name == selectedItem)?.id;
                 console.log(id, 'IndustryData');
                 setSelectedIndustry(id);
               }}
@@ -683,20 +728,20 @@ export default function ProfileScreen({navigation}) {
               </React.Fragment>
             );
           })}
-{isloading === true ? (
-        <View
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            bottom: 0,
-            right: 0,
-            backgroundColor: 'rgba(65, 65, 65, 0.4)',
-            flex: 1,
-          }}>
-          <BarIndicator color={colors.yellow} size={45} />
-        </View>
-      ) : undefined}
+          {isloading === true ? (
+            <View
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                bottom: 0,
+                right: 0,
+                backgroundColor: 'rgba(65, 65, 65, 0.4)',
+                flex: 1,
+              }}>
+              <BarIndicator color={colors.yellow} size={45} />
+            </View>
+          ) : undefined}
           {/* <View style={{flex:1, backgroundColor:colors.yellow1, justifyContent:'center', alignItems:'center'}}>
             <TouchableOpacity>
             <ResponsiveText size={4}>Profile</ResponsiveText>
