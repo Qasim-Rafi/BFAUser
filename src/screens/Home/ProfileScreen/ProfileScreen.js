@@ -73,6 +73,8 @@ export default function ProfileScreen({navigation}) {
     },
     {id: 1, lable: 'Male', icon: require('../../../assets/icons/male.png')},
     {id: 2, lable: 'Female', icon: require('../../../assets/icons/female.png')},
+    // {id: 2, lable: 'Prefer not to say', icon: require('../../../assets/icons/female.png')},
+
   ];
   // const Gender=['Male','Female']
   const [date, setDate] = useState(new Date());
@@ -337,7 +339,7 @@ export default function ProfileScreen({navigation}) {
               }}>
               <DropDown
                 defaultValueByIndex={
-                  gender == null ? 0 : Gender.findIndex(p => p.lable == gender)
+                  gender == ""||gender==null ? 0 : Gender.findIndex(p => p.lable == gender)
                 }
                 data={Gender}
                 // defaultButtonText={gender}
@@ -390,7 +392,7 @@ export default function ProfileScreen({navigation}) {
             />
           )}
           <CustomInput
-            // placeHolderText={'Graduate'}
+            placeHolderText={'Graduate'}
             fieldName={'Educational Background'}
             value={education}
             onChangeText={text => setEducation(text)}
@@ -421,7 +423,7 @@ export default function ProfileScreen({navigation}) {
             />
           </View>
           <CustomInput
-            //  placeHolderText={'3'}
+             placeHolderText={'0'}
             fieldName={'No of Children'}
             value={children}
             onChangeText={text => setChildren(text)}
@@ -518,37 +520,42 @@ export default function ProfileScreen({navigation}) {
         <ScrollView>
           <View style={{flex: 0.68}}>
             <CustomInput
-              // placeHolderText={'Full Name'}
+              placeHolderText={'Full Name'}
               fieldName={'Full Name'}
               value={fullName}
               onChangeText={text => setFullname(text)}
             />
             <CustomInput
-              // placeHolderText={profileData.username}
+              placeHolderText={'User Name'}
               fieldName={'User Name'}
               value={userName}
               onChangeText={text => setUsername(text)}
+              editable={false}
             />
             <CustomInput
-              // placeHolderText={profileData.email}
+              placeHolderText={'Email'}
               fieldName={'Email'}
               value={email}
               onChangeText={text => setEmail(text)}
+              editable={false}
+
             />
             <CustomInput
-              //  placeHolderText={profileData.contactNumber}
+               placeHolderText={'Cell Number'}
               fieldName={'Cell Number'}
               value={contactNo}
               onChangeText={text => setcontactNo(text)}
+              editable={false}
+
             />
             <CustomInput
-              //  placeHolderText={profileData.contactNumber}
+               placeHolderText={'Phone Number'}
               fieldName={'Phone Number'}
               value={PhoneNo}
               onChangeText={text => setPhoneNo(text)}
             />
             <CustomInput
-              //  placeHolderText={profileData.contactNumber}
+               placeHolderText={'Address'}
               fieldName={'Address'}
               value={Address}
               onChangeText={text => setAddress(text)}

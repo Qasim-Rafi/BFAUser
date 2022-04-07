@@ -24,7 +24,7 @@ import Api from '../../../redux/lib/api';
 
 export default function TransactionConfirmation({route, navigation}) {
   const [isModalVisible, setModalVisible] = useState(false);
-  const [activeTabs, setActive] = useState('tab3');
+  const [activeTabs, setActive] = useState('tab1');
   const [count, changeCount] = useState(40);
   const [data, setData] = useState(route.params.data);
   const [total, addTotal] = useState(0);
