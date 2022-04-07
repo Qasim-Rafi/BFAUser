@@ -76,7 +76,17 @@ export default function ChangePassword({navigation, route}) {
       console.log('res', res);
       if (res && res.success == true) {
         setLoading(false);
-        navigation.navigate(routeName.LOGIN);
+        dropdownRef.current.showMessage({
+          message: 'Success',
+          description: 'Password change successfully',
+          type: 'success',
+          icon: { icon: 'auto', position: 'left' },
+          duration:4000
+        });
+        setTimeout(() => {
+          navigation.navigate(routeName.LOGIN);
+        
+        },4000)
       } else {
         setLoading(false);
         setErrorString('Something went wrong!');
