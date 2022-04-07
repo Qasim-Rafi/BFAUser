@@ -74,7 +74,6 @@ export default function ProfileScreen({navigation}) {
     {id: 1, lable: 'Male', icon: require('../../../assets/icons/male.png')},
     {id: 2, lable: 'Female', icon: require('../../../assets/icons/female.png')},
     // {id: 2, lable: 'Prefer not to say', icon: require('../../../assets/icons/female.png')},
-
   ];
   // const Gender=['Male','Female']
   const [date, setDate] = useState(null);
@@ -185,7 +184,7 @@ export default function ProfileScreen({navigation}) {
     //   type: 'image/jpeg',
     //   name: 'photo.jpg',
     // };
-    console.log('okooookko');
+    // console.log('okooookko');
     var formData = new FormData();
     formData.append('Username', userName);
     formData.append('Email', email);
@@ -195,8 +194,7 @@ export default function ProfileScreen({navigation}) {
     formData.append('Address2', Address);
     formData.append('EducationalBackground', education);
     formData.append('Gender', gender);
-    if(date!=null){
-
+    if (date != null) {
       formData.append('DateofBirth', dateFormat(date));
     }
     formData.append('ContactNumber', contactNo);
@@ -343,7 +341,9 @@ export default function ProfileScreen({navigation}) {
               }}>
               <DropDown
                 defaultValueByIndex={
-                  gender == ""||gender==null ? 0 : Gender.findIndex(p => p.lable == gender)
+                  gender == '' || gender == null
+                    ? 0
+                    : Gender.findIndex(p => p.lable == gender)
                 }
                 data={Gender}
                 // defaultButtonText={gender}
@@ -365,7 +365,12 @@ export default function ProfileScreen({navigation}) {
                   iconMargin={[0, 10, 0, 0]}
                   leftIcon={globalPath.Calender_ICON}
                   placeholder={
-                    profileData.dateofBirth == null ? 'Date of birth' : handleChange('',date==null? profileData.dateofBirth:date)
+                    profileData.dateofBirth == null
+                      ? 'Date of birth'
+                      : handleChange(
+                          '',
+                          date == null ? profileData.dateofBirth : date,
+                        )
                   }
                 />
               </TouchableOpacity>
@@ -427,7 +432,7 @@ export default function ProfileScreen({navigation}) {
             />
           </View>
           <CustomInput
-             placeHolderText={'0'}
+            placeHolderText={'0'}
             fieldName={'No of Children'}
             value={children}
             onChangeText={text => setChildren(text)}
@@ -542,24 +547,22 @@ export default function ProfileScreen({navigation}) {
               value={email}
               onChangeText={text => setEmail(text)}
               editable={false}
-
             />
             <CustomInput
-               placeHolderText={'Cell Number'}
+              placeHolderText={'Cell Number'}
               fieldName={'Cell Number'}
               value={contactNo}
               onChangeText={text => setcontactNo(text)}
               editable={false}
-
             />
             <CustomInput
-               placeHolderText={'Phone Number'}
+              placeHolderText={'Phone Number'}
               fieldName={'Phone Number'}
               value={PhoneNo}
               onChangeText={text => setPhoneNo(text)}
             />
             <CustomInput
-               placeHolderText={'Address'}
+              placeHolderText={'Address'}
               fieldName={'Address'}
               value={Address}
               onChangeText={text => setAddress(text)}
