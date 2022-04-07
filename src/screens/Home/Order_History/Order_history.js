@@ -122,7 +122,8 @@ export default function Order_history({navigation}) {
                       {item.restaurantName}
                     </ResponsiveText>
                     <ResponsiveText color={colors.yellow}>
-                      ${item.amount}
+                    ${parseFloat(item.amount).toFixed(2)}
+                      {/* ${item.amount} */}
                     </ResponsiveText>
                   </View>
                   <View style={{flexDirection: 'row'}}>

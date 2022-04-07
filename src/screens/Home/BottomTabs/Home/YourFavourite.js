@@ -42,7 +42,6 @@ const YourFavourite = props => {
   const favData = useSelector(state => state.appReducers.favorite.data,)
   const loading = useSelector(state => state.appReducers.favorite.refreshing)
   const dispatch = useDispatch();
-  
   console.log('favData', favData)
 
   //   const firstName = 'PG';
@@ -131,7 +130,7 @@ const YourFavourite = props => {
                         style={{
                           opacity: 0.8,top:2,
                           color: 'white', padding: 3,
-                          backgroundColor: '#383131', borderRadius: 7,
+                          backgroundColor: 'black', borderRadius: 7,
                           textAlign: 'center', fontWeight: '900', fontSize: 9
                         }}
                       >
