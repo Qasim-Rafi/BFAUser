@@ -75,10 +75,13 @@ export default function AddToCart({route, navigation}) {
     var sumofDrinks = SelectedDrinks.reduce((a, c) => {
       return a + c.price * c.quantity;
     }, 0);
+    var sumofUpsize = linkedItem.reduce((a, c) => {
+      return a + c.price * c.quantity;
+    }, 0);
     // console.log('sum of extra', sumofExtra);
     // console.log('sumofDrinks', sumofDrinks);
     setVisible(!visible)
-    updateTotal(dishPrice * count + sumofExtra + sumofDrinks);
+    updateTotal(dishPrice * count + sumofExtra + sumofDrinks+sumofUpsize);
   };
   // const data = () => [{
   //   "id": 0,
@@ -281,7 +284,7 @@ export default function AddToCart({route, navigation}) {
     if (SelectedDrinks.length > 0) {
       SelectedDrinks.forEach(e => {
         DrinksList.push({
-          restaurantDishExtraItemId: e.id,
+          RestaurantDishSoftDrinkId: e.id,
           price: e.price,
           quantity: e.quantity,
         });
@@ -309,7 +312,7 @@ export default function AddToCart({route, navigation}) {
     }
     addOrderDetail.push({
       restaurantDishId: dish.restaurantDishId,
-      addOnId: Selecteddrinks ? Selecteddrinks.softDrinkId : 1,
+      // addOnId: Selecteddrinks ? Selecteddrinks.softDrinkId : 1,
       quantity: count,
       RestaurantSoftDrinkId: 5,
       // RestaurantSoftDrinkId:Selecteddrinks ? Selecteddrinks.softDrinkId : 1,
@@ -317,6 +320,7 @@ export default function AddToCart({route, navigation}) {
       dishPrice: dish.price,
       orderDetailExtraItemList: orderDetailExtraItemList,
       orderDetailLinkedItemList: orderDetailLinkedItemList,
+      OrderDetailSoftDrinkList:DrinksList
     });
 
     // }
