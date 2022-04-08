@@ -29,9 +29,10 @@ export default function CustomInput(props) {
           }
           placeholderTextColor={colors.grey}
           style={{marginStart: 20, color: colors.white, width: wp(40)}}
-		  value={props.value}
-		  onChangeText={props.onChangeText}
-		  editable={props.editable}
+          value={props.value}
+          onChangeText={props.onChangeText}
+          editable={props.editable}
+          keyboardType={props.keyboardType}
         />
       </View>
     </View>

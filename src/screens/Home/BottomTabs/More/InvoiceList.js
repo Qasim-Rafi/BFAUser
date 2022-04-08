@@ -236,7 +236,7 @@ if(data.statusName==='Paid'){
                 }}>
                 <ResponsiveText size={10} color={colors.yellow}>
                   {'$'}
-                  {data.amount}
+                  {parseFloat(data.amount).toFixed(2)}
                 </ResponsiveText>
               </View>
               <View>
@@ -395,7 +395,7 @@ if(data.statusName==='Paid'){
                   color={colors.yellow}
                   size={3}
                   margin={[0, 10, 0, 0]}>
-                 {data.amount}
+                 {parseFloat(data.amount).toFixed(2)}
                 </ResponsiveText>
               </View>
               <View style={{flex: 0.1}}>

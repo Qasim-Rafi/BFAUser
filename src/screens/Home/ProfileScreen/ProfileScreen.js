@@ -193,7 +193,7 @@ export default function ProfileScreen({navigation}) {
     formData.append('Address', Address);
     formData.append('Address2', Address);
     formData.append('EducationalBackground', education);
-    formData.append('Gender', gender);
+    formData.append('Gender', gender=='Gender'?'':gender);
     if (date != null) {
       formData.append('DateofBirth', dateFormat(date));
     }
@@ -298,7 +298,10 @@ export default function ProfileScreen({navigation}) {
   };
   const Optional = () => {
     return (
-      <View style={styles.formArea}>
+      <KeyboardAvoidingView 
+      // behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      
+      style={styles.formArea}>
         <ScrollView style={{flexGrow: 1}}>
           <View style={{marginTop: 20, marginBottom: -30, marginLeft: 20}}>
             <ResponsiveText
@@ -513,12 +516,13 @@ export default function ProfileScreen({navigation}) {
             </TouchableOpacity>
           </View>
         </ScrollView>
-      </View>
+        </KeyboardAvoidingView>
     );
   };
   const userInfo = () => {
     return (
-      <View
+      <KeyboardAvoidingView
+      // behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={{
           flex: 0.7,
           // borderTopRightRadius: wp(8),
@@ -559,6 +563,7 @@ export default function ProfileScreen({navigation}) {
               placeHolderText={'Phone Number'}
               fieldName={'Phone Number'}
               value={PhoneNo}
+              keyboardType={'numeric'}
               onChangeText={text => setPhoneNo(text)}
             />
             <CustomInput
@@ -584,12 +589,12 @@ export default function ProfileScreen({navigation}) {
             </TouchableOpacity>
           </View>
         </ScrollView>
-      </View>
+      </KeyboardAvoidingView>
     );
   };
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      // behavior={ 'height'}
       style={styles.container}>
       <View style={styles.container}>
         <View style={styles.screeninfo}>
@@ -611,7 +616,7 @@ export default function ProfileScreen({navigation}) {
               }}>
               <Icon source={globalPath.BACK_BLACK_ARROW} />
             </TouchableOpacity>
-            <ResponsiveText size={4}>Profile</ResponsiveText>
+            {/* <ResponsiveText size={4}>Profile</ResponsiveText> */}
             <TouchableOpacity
               // onPress={() => edit()}
               style={{

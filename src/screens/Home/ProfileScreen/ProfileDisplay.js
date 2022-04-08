@@ -111,6 +111,7 @@ export default function ProfileDisplay({navigation}) {
               </ResponsiveText>
             </View>
           </View> */}
+          {profileData.gender!=null||profileData.gender!=''?
           <View style={styles.mainCard}>
             <Icon source={globalPath.GENDER_ICON} />
             <View style={styles.cardView}>
@@ -119,7 +120,8 @@ export default function ProfileDisplay({navigation}) {
                 {profileData.gender==null||profileData.gender==''?'':profileData.gender}
               </ResponsiveText>
             </View>
-          </View>
+          </View>:null}
+          {profileData.dateofBirth!=null?
           <View style={styles.mainCard}>
             <Icon source={globalPath.BIRTHDAY_ICON} />
             <View style={styles.cardView}>
@@ -128,7 +130,7 @@ export default function ProfileDisplay({navigation}) {
                 {profileData.dateofBirth==null?'':handleChange('',profileData.dateofBirth)}
               </ResponsiveText>
             </View>
-          </View>
+          </View>:null}
           <View style={{height: hp(5)}} />
         </ScrollView>
       </View>
