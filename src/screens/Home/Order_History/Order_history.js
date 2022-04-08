@@ -86,7 +86,9 @@ export default function Order_history({navigation}) {
         <Header navigation={navigation} />
       </View>
       <ScrollView style={{flex: 0.7, marginHorizontal: 10}}>
-        <ResponsiveText color={colors.white}>My Orders: {orderList.length}</ResponsiveText>
+        <ResponsiveText color={colors.white}>My Order  </ResponsiveText>
+        <ResponsiveText color={colors.yellow1}>  {orderList.length} orders </ResponsiveText>
+      
         {orderList.map((item, index) => {
           return (
             <TouchableOpacity
@@ -120,7 +122,8 @@ export default function Order_history({navigation}) {
                       {item.restaurantName}
                     </ResponsiveText>
                     <ResponsiveText color={colors.yellow}>
-                      ${item.amount}
+                    ${parseFloat(item.amount).toFixed(2)}
+                      {/* ${item.amount} */}
                     </ResponsiveText>
                   </View>
                   <View style={{flexDirection: 'row'}}>

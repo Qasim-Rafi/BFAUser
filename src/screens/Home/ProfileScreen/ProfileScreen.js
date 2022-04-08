@@ -77,7 +77,7 @@ export default function ProfileScreen({navigation}) {
 
   ];
   // const Gender=['Male','Female']
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(null);
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
   const [img, setImg] = useState(null);
@@ -120,7 +120,7 @@ export default function ProfileScreen({navigation}) {
     setEmail(profileData.email);
     setUsername(profileData.username);
     setcontactNo(profileData.contactNumber);
-    setDate(profileData.dateofBirth);
+    // setDate(profileData.dateofBirth);
     setgender(profileData.gender);
     setChildren(
       profileData.numberOfChildren == null ? '' : profileData.numberOfChildren,
@@ -141,7 +141,7 @@ export default function ProfileScreen({navigation}) {
   const GetLookUpIndustry = async item => {
     try {
       const res = await Api.get(urls.GET_LOOKUP_INDUSTRY);
-      console.log('GetLookUpIndustry res', res);
+      // console.log('GetLookUpIndustry res', res);
       if (res && res.success == true) {
         setIndustryData(res.data);
       } else {
@@ -151,7 +151,7 @@ export default function ProfileScreen({navigation}) {
   const GetLookUpEmploymentSector = async item => {
     try {
       const res = await Api.get(urls.GET_LOOKUP_EMP_SEC);
-      console.log('GetLookUpEmploymentSector res', res);
+      // console.log('GetLookUpEmploymentSector res', res);
       if (res && res.success == true) {
         setEmploymentSector(res.data);
       } else {
@@ -161,7 +161,7 @@ export default function ProfileScreen({navigation}) {
   const GetLookUpMarriageStatus = async item => {
     try {
       const res = await Api.get(urls.GET_LOOKUP_MARITAL_STATUS);
-      console.log('GetLookUpMarriageStatus', res);
+      // console.log('GetLookUpMarriageStatus', res);
       if (res && res.success == true) {
         setMarriageStatusData(res.data);
       } else {
@@ -185,6 +185,7 @@ export default function ProfileScreen({navigation}) {
     //   type: 'image/jpeg',
     //   name: 'photo.jpg',
     // };
+    console.log('okooookko');
     var formData = new FormData();
     formData.append('Username', userName);
     formData.append('Email', email);
@@ -194,7 +195,10 @@ export default function ProfileScreen({navigation}) {
     formData.append('Address2', Address);
     formData.append('EducationalBackground', education);
     formData.append('Gender', gender);
-    formData.append('DateofBirth', dateFormat(date));
+    if(date!=null){
+
+      formData.append('DateofBirth', dateFormat(date));
+    }
     formData.append('ContactNumber', contactNo);
     formData.append('MarriageStatusId', MaritialStatus);
     formData.append('NumberOfChildren', children);
@@ -213,7 +217,7 @@ export default function ProfileScreen({navigation}) {
     formData.append('JobIntrest', JobInterest);
     formData.append('updatebyId', profileData.id);
 
-    console.log('obj', formData);
+    // console.log('obj', formData);
     try {
       setLoading(true);
       const res = await Api.put(
@@ -221,7 +225,7 @@ export default function ProfileScreen({navigation}) {
         formData,
         true,
       );
-      console.log('ree', res);
+      // console.log('ree', res);
       if (res && res.success == true) {
         dispatch(getProfileData());
         setLoading(false);
@@ -361,7 +365,7 @@ export default function ProfileScreen({navigation}) {
                   iconMargin={[0, 10, 0, 0]}
                   leftIcon={globalPath.Calender_ICON}
                   placeholder={
-                    date == null ? 'Date of birth' : handleChange('', date)
+                    profileData.dateofBirth == null ? 'Date of birth' : handleChange('',date==null? profileData.dateofBirth:date)
                   }
                 />
               </TouchableOpacity>
@@ -490,7 +494,7 @@ export default function ProfileScreen({navigation}) {
               alignSelf: 'center',
             }}>
             <TouchableOpacity
-              onPress={() => submitData()}
+              onPress={submitData}
               style={{
                 alignSelf: 'center',
                 backgroundColor: colors.yellow,
