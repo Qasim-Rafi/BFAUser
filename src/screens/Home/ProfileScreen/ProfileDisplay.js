@@ -111,7 +111,7 @@ export default function ProfileDisplay({navigation}) {
               </ResponsiveText>
             </View>
           </View> */}
-          {profileData.gender!=null||profileData.gender!=''?
+          {profileData.gender!=null&&profileData.gender!=''&&profileData.gender!=='null'?
           <View style={styles.mainCard}>
             <Icon source={globalPath.GENDER_ICON} />
             <View style={styles.cardView}>
@@ -121,7 +121,7 @@ export default function ProfileDisplay({navigation}) {
               </ResponsiveText>
             </View>
           </View>:null}
-          {profileData.dateofBirth!=null?
+          {profileData.dateofBirth==null||profileData.dateofBirth =="0001-01-01 00:00:00.0000000"?null:
           <View style={styles.mainCard}>
             <Icon source={globalPath.BIRTHDAY_ICON} />
             <View style={styles.cardView}>
@@ -130,7 +130,7 @@ export default function ProfileDisplay({navigation}) {
                 {profileData.dateofBirth==null?'':handleChange('',profileData.dateofBirth)}
               </ResponsiveText>
             </View>
-          </View>:null}
+          </View>}
           <View style={{height: hp(5)}} />
         </ScrollView>
       </View>
@@ -149,7 +149,7 @@ export default function ProfileDisplay({navigation}) {
             <TouchableOpacity
               style={{
                 backgroundColor: colors.black,
-                height: hp(5),
+                height:40,
                 padding: 9,
                 borderRadius: 20,
               }}
@@ -163,7 +163,7 @@ export default function ProfileDisplay({navigation}) {
               onPress={() => navigation.navigate(routeName.PROFILE_SCREEN)}
               style={{
                 backgroundColor: colors.black,
-                height: hp(5),
+                height:40,
                 padding: 10,
                 borderRadius: 20,
               }}>

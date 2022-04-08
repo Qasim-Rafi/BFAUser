@@ -60,6 +60,9 @@ function HomeStack() {
       screenOptions={{
         headerShown: false,
       }}
+      tabBarOptions={{
+        keyboardHidesTabBar: true
+     }} 
     // initialRouteName="SPLASH"
     >
       <Stack.Screen name={routeName.LANDING_SCREEN} component={Home} />

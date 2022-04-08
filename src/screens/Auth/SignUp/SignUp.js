@@ -275,15 +275,16 @@ export default function Signup({navigation}) {
     // const expressions = {
     //   email: /^\w+([+.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
     // };
-    // if (!expressions.email.test(email) || email.includes(' ')) {
-    //   dropdownRef.current.showMessage({
-    //     message: 'Error',
-    //     description: 'Invalid Email',
-    //     type: 'danger',
-    //     icon: {icon: 'auto', position: 'left'},
-    //   });
-    // return false
-    // }
+    if (type==2&& !expressions.email.test(email) || email.includes(' ')) {
+      // dropdownRef.current.showMessage({
+      //   message: 'Error',
+      //   description: 'Invalid Email',
+      //   type: 'danger',
+      //   icon: {icon: 'auto', position: 'left'},
+      // });
+      setErrorString('Invalid Email')
+    return false
+    }
     var obj = {
       userName: type == 1 ? userName : '',
       email: type == 2 ? email : '',
@@ -292,7 +293,7 @@ export default function Signup({navigation}) {
     try {
       const res = await Api.post(urls.REGISTER_URL_CHECKS, obj);
       console.log('res', res);
-      if (res && res.success == true) {
+      if (res && res.message == null) {
         // setCorrectemailIcon(true)
         console.log('success = true');
         //  showMessage({
