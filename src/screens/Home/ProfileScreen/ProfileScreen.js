@@ -133,8 +133,8 @@ export default function ProfileScreen({navigation}) {
     setMaritialStatus(profileData.marriageStatusId);
     setEmpSec(profileData.employmentSectorId);
     setSelectedIndustry(profileData.industryId);
-    setAddress(profileData.address);
-    setPhoneNo(profileData.cellPhone);
+    setAddress(profileData.address=='null'||profileData.address==null?'':profileData.address);
+    setPhoneNo(profileData.cellPhone=='null'||profileData.cellPhone==null?'':profileData.cellPhone);
   };
 
   const GetLookUpIndustry = async item => {
@@ -160,7 +160,7 @@ export default function ProfileScreen({navigation}) {
   const GetLookUpMarriageStatus = async item => {
     try {
       const res = await Api.get(urls.GET_LOOKUP_MARITAL_STATUS);
-      // console.log('GetLookUpMarriageStatus', res);
+      console.log('GetLookUpMarriageStatus', res);
       if (res && res.success == true) {
         setMarriageStatusData(res.data);
       } else {
@@ -344,7 +344,7 @@ export default function ProfileScreen({navigation}) {
               }}>
               <DropDown
                 defaultValueByIndex={
-                  gender == '' || gender == null
+                  profileData.gender==null||profileData.gender==''||profileData.gender=='null'
                     ? 0
                     : Gender.findIndex(p => p.lable == gender)
                 }
@@ -368,7 +368,7 @@ export default function ProfileScreen({navigation}) {
                   iconMargin={[0, 10, 0, 0]}
                   leftIcon={globalPath.Calender_ICON}
                   placeholder={
-                    profileData.dateofBirth == null
+                    profileData.dateofBirth == null||profileData.dateofBirth =="0001-01-01 00:00:00.0000000"
                       ? 'Date of birth'
                       : handleChange(
                           '',
@@ -607,7 +607,7 @@ export default function ProfileScreen({navigation}) {
             <TouchableOpacity
               style={{
                 backgroundColor: colors.black,
-                height: hp(5),
+                height:40,
                 padding: 9,
                 borderRadius: 20,
               }}

@@ -292,7 +292,7 @@ export default function Signup({navigation}) {
     try {
       const res = await Api.post(urls.REGISTER_URL_CHECKS, obj);
       console.log('res', res);
-      if (res && res.success == true) {
+      if (res && res.message == null) {
         // setCorrectemailIcon(true)
         console.log('success = true');
         //  showMessage({
