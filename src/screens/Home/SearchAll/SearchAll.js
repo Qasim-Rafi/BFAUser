@@ -318,7 +318,7 @@ export default function SearchAll({navigation}) {
           </TouchableOpacity>
         </View>
       </View>
-      {Note ? (
+      {/* {Note ? (
         <Text
           style={{
             color: colors.white,
@@ -328,7 +328,7 @@ export default function SearchAll({navigation}) {
           }}>
           {Note}
         </Text>
-      ) : null}
+      ) : null} */}
       <Modal
         isVisible={isModalVisible}
         backdropOpacity={0.9}

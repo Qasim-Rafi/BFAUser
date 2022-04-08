@@ -154,8 +154,8 @@ export default function Login({navigation}) {
                 <ResponsiveText
                   fontFamily="Bold"
                   color={colors.yellow}
-                  onPress={() => navigation.navigate(routeName.SIGN_UP)}>
-                  Sign up
+                  onPress={() => navigation.navigate(routeName.LOGIN)}>
+                  Sign In
                 </ResponsiveText>
               </ResponsiveText>
               {/* <View style={styles.socialIcon}></View> */}

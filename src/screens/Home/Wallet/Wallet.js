@@ -110,7 +110,7 @@ const Wallet = props => {
           <Image source={bCoin} style={{height: 60, width: 50}} />
           <Text style={{color: 'white', fontSize: 60,}}>
             {typeof comingAmount === 'undefined'
-              ? parseFloat(data.bcoins).toFixed(2)
+              ?data.bcoins? parseFloat(data.bcoins).toFixed(2):parseFloat(0).toFixed(2)
               : parseFloat(walletAmount + comingAmount).toFixed(2)}
             <TouchableOpacity>
               {/* <Image source={leftArrow} style={{ height: 20, width: 20, margin:5 }} /> */}
