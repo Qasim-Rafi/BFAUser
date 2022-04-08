@@ -27,6 +27,7 @@ import {useNavigation} from '@react-navigation/native';
 export default function DishDescription(props) {
   const dispatch = useDispatch();
   const favData = useSelector(state => state.appReducers.favorite.data);
+  const [liked, setLiked] = React.useState(props.item.userLiked);
 
   const navigation = useNavigation();
 
@@ -86,9 +87,17 @@ export default function DishDescription(props) {
         <TouchableOpacity
           style={{alignItems: 'center'}}
           onPress={() => {
-            favData.some(o => o.restaurantDishId === props.item.restaurantDishId) || props.item.userLiked
-              ? dispatch(onRemoveFavorite(props.item))
-              : dispatch(addFavorite(props.item));
+            if(favData.some(o => o.restaurantDishId === props.item.restaurantDishId) ||liked){
+              dispatch(onRemoveFavorite(props.item))
+              setLiked(!liked)
+            }else{
+              dispatch(addFavorite(props.item));
+              setLiked(!liked)
+
+            }
+            // favData.some(o => o.restaurantDishId === props.item.restaurantDishId) || props.item.userLiked
+            //   ? 
+            //   : 
           }}>
           <Icon
             source={

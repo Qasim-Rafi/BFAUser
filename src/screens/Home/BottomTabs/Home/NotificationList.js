@@ -127,7 +127,7 @@ export default function NotificationList({navigation}) {
                   </ResponsiveText>
                 </View>
                 <ResponsiveText color={colors.grey} size={2.7}>
-                  Order Id: {item.id}
+                  Order Id: {item.sourceId}
                 </ResponsiveText>
               </View>
               <View

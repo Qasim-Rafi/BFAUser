@@ -27,6 +27,8 @@ import {
 export default function Restaurant_Description(props) {
   const navigation = useNavigation();
   const [data, setData] = React.useState(props.data);
+  const [liked, setLiked] = React.useState(props.data.userLiked);
+
   const dispatch = useDispatch();
   const favDataa = useSelector(
     state => state.appReducers.favoriteRestaurant.data,
@@ -75,16 +77,23 @@ export default function Restaurant_Description(props) {
         }}>
         <TouchableOpacity
           onPress={() => {
-            favDataa.some(o => o.id === data.id) || data.userLiked
+            if(liked)
+            {
+              dispatch(RemoveFavoriteRestaurant(data))
+              setLiked(!liked)
+            }
+            else{
+              dispatch(addFavoriteRestaurant(data))
+              setLiked(!liked)
 
-              ? dispatch(RemoveFavoriteRestaurant(data))
-              : dispatch(addFavoriteRestaurant(data))
+            }
+
               
           }}>
           <View style={{alignItems: 'center'}}>
           <Icon
             source={
-              data.userLiked    || favDataa.some(o => o.id === data.id)
+              liked
                 ? globalPath.F_HEART
                 :
                  globalPath.HEART

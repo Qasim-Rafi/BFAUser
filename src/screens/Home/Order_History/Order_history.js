@@ -185,7 +185,7 @@ export default function Order_history({navigation}) {
           );
         })}
       </ScrollView>
-      {orderList_Loading === true && orderList.length==0? (
+      {/* {orderList_Loading === true && orderList.length==0? (
         <View
           style={{
             position: 'absolute',
@@ -198,7 +198,7 @@ export default function Order_history({navigation}) {
           }}>
           <BarIndicator color={colors.yellow} size={45} />
         </View>
-      ) : undefined}
+      ) : undefined} */}
     </View>
   );
 }
