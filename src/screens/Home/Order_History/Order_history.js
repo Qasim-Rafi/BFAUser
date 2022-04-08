@@ -86,7 +86,7 @@ export default function Order_history({navigation}) {
         <Header navigation={navigation} />
       </View>
       <ScrollView style={{flex: 0.7, marginHorizontal: 10}}>
-        <ResponsiveText color={colors.white}>My Orders{orderList.length}</ResponsiveText>
+        <ResponsiveText color={colors.white}>My Orders: {orderList.length}</ResponsiveText>
         {orderList.map((item, index) => {
           return (
             <TouchableOpacity
