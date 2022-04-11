@@ -46,7 +46,12 @@ const YourFavourite = props => {
   const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
   console.log('favData', favData)
+  const key = 'restaurantDishId';
 
+  const arrayUniqueByKey = [...new Map(favData.map(item =>
+    [item[key], item])).values()];
+  
+  console.log(arrayUniqueByKey,'arrayUniqueByKey');
   //   const firstName = 'PG';
   //   const title = firstName + "'s Favorites";
   //   const favButons = [
@@ -81,8 +86,8 @@ const YourFavourite = props => {
       </View>
       <View style={[styles.AwardWinningDishesItemsSection,{backgroundColor:isThemeDark ? colors.black3 : colors.bgWhite}]}>
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-          {favData.length > 0
-            ? Array.from(new Set(favData.map(JSON.stringify))).map(JSON.parse).map((url, item) => {
+          {arrayUniqueByKey.length > 0
+            ? arrayUniqueByKey.map((url, item) => {
               return (
                 <TouchableOpacity
                   onPress={() =>

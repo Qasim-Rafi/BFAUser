@@ -112,7 +112,10 @@ export default function NotificationList({navigation}) {
                     alignItems: 'center',
                     overflow: 'hidden',
                   }}>
-                  <ResponsiveText size={2.5} color={colors.white}>
+                    {/* <ResponsiveText size={3} color={colors.white}>
+                      Order status:{' '}
+                    </ResponsiveText> */}
+                  <ResponsiveText size={3} color={item.remarks=='NewOrder'?colors.white:item.remarks=='Cancled'?colors.red1:item.remarks=='Paid'?colors.blue1:item.remarks=='InProcess'?colors.green1:item.remarks=='Delivered'?colors.yellow: item.remarks=='Served'?colors.yellow:item.remarks=='Billed'?colors.green1:colors.white}>
                     {item.remarks}
                   </ResponsiveText>
                 </View>
@@ -123,11 +126,11 @@ export default function NotificationList({navigation}) {
                     overflow: 'hidden',
                   }}>
                   <ResponsiveText size={3.5} color={colors.yellow}>
-                    {item.restaurant}
+                    {item.restaurantName}
                   </ResponsiveText>
                 </View>
                 <ResponsiveText color={colors.grey} size={2.7}>
-                  Order Id: {item.sourceId}
+                  Serial No: {item.id}
                 </ResponsiveText>
               </View>
               <View
@@ -140,7 +143,7 @@ export default function NotificationList({navigation}) {
                   size={2.5}
                   margin={[0, 0, 0, 0]}
                   color={colors.white}>
-                  {moment(item.datetime).fromNow('mm')} ago
+                  {/* {moment(item.datetime).fromNow('mm')} ago */}
                 </ResponsiveText>
                 {/* <ResponsiveText
                 margin={[0, 0, 0, 0]}

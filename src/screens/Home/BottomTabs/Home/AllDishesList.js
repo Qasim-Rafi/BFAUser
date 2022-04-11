@@ -86,6 +86,14 @@ export default function AllDishesList({ route, navigation }) {
                   ? state.appReducers.moreFromRest.loading
                   : state.appReducers.getdishbycusineid.refreshing,
   );
+
+
+  const key = 'restaurantDishId';
+
+  const arrayUniqueByKey = [...new Map(data.map(item =>
+    [item[key], item])).values()];
+  
+  console.log(arrayUniqueByKey,'arrayUniqueByKey');
   React.useEffect(() => {
     // onLoad();
     if(route.params.id){
@@ -265,7 +273,7 @@ export default function AllDishesList({ route, navigation }) {
     }
     setIndex(index + 1);
   };
-
+//Array.from(new Set(data.map(JSON.stringify))).map(JSON.parse)
   return (
     <View style={{ backgroundColor: colors.black3, flex: 1 }}>
       <FlatList
@@ -273,7 +281,7 @@ export default function AllDishesList({ route, navigation }) {
         stickyHeaderIndices={[0]}
         onEndReached={() => onLoad()}
         onEndReachedThreshold={0.2}
-        data={route.params.id ? data.filter(v => v.cusineName == title) : Array.from(new Set(data.map(JSON.stringify))).map(JSON.parse)}
+        data={route.params.id ? data.filter(v => v.cusineName == title) : arrayUniqueByKey}
         keyExtractor={item => item.id.toString()}
         renderItem={renderItem}
         numColumns={3}

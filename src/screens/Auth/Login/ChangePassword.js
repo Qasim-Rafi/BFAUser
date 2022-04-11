@@ -101,7 +101,7 @@ export default function ChangePassword({navigation, route}) {
         contentContainerStyle={{flexGrow: 1, backgroundColor: colors.black}}>
         <View
           style={{
-            flex: 0.96,
+            flex: 1,
             backgroundColor: colors.black,
             justifyContent: 'center',
           }}>

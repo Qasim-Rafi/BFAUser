@@ -49,6 +49,8 @@ const More = ({route, navigation}) => {
         text: 'OK',
         onPress: async () => {
           await AsyncStorage.removeItem('@token');
+          await AsyncStorage.clear();
+
           navigation.dispatch(StackActions.replace('Auth'));
         },
       },

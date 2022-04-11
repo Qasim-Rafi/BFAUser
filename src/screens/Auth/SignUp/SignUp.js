@@ -186,14 +186,14 @@ export default function Signup({navigation}) {
         icon: {icon: 'auto', position: 'left'},
       });
     }
-    else if (CellphoneNum.length == 7) {
-      dropdownRef.current.showMessage({
-        message: 'Error',
-        description: 'Enter a valid cell phone number',
-        type: 'danger',
-        icon: {icon: 'auto', position: 'left'},
-      });
-    }
+    // else if (CellphoneNum.length == 7) {
+    //   dropdownRef.current.showMessage({
+    //     message: 'Error',
+    //     description: 'Enter a valid cell phone number',
+    //     type: 'danger',
+    //     icon: {icon: 'auto', position: 'left'},
+    //   });
+    // }
     // if (Address === '') {
     //   dropdownRef.current.showMessage({
     //     message: 'Error',
