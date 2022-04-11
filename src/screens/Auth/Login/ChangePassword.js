@@ -50,7 +50,7 @@ export default function ChangePassword({navigation, route}) {
   const [confirmPassword, setConfirmPassword] = React.useState('');
 
   const [loading, setLoading] = React.useState(false);
-
+  
   //validation form
   const Validation = item => {
     console.log('ErrorMessage: ', errorString);
@@ -189,7 +189,19 @@ export default function ChangePassword({navigation, route}) {
                 margin={[0, 0]}
                 title="SIGN IN"
               /> */}
-            <View style={styles.footer}>
+              <View style={styles.footer}>
+              {/* <Icon size={wp(8)} margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
+              <ResponsiveText margin={[0, 10]} color={colors.white}>
+                New user{' '}
+                <ResponsiveText
+                  fontFamily="Bold"
+                  color={colors.yellow}
+                  onPress={() => navigation.navigate(routeName.LOGIN)}>
+                  Sign In
+                </ResponsiveText>
+              </ResponsiveText>
+              {/* <View style={styles.socialIcon}></View> */}
+            </View>
               {/* <Icon size={wp(8)} margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
               {/* <ResponsiveText margin={[0, 10]} color={colors.white}>
                 New user{' '}
@@ -201,7 +213,7 @@ export default function ChangePassword({navigation, route}) {
                 </ResponsiveText>
               </ResponsiveText> */}
               {/* <View style={styles.socialIcon}></View> */}
-            </View>
+              
           </KeyboardAvoidingView>
         </View>
         <FlashMessage ref={dropdownRef} />
