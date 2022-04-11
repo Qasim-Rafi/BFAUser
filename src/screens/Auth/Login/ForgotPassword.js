@@ -150,7 +150,7 @@ export default function Login({navigation}) {
             <View style={styles.footer}>
               {/* <Icon size={wp(8)} margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
               <ResponsiveText margin={[0, 10]} color={colors.white}>
-                New user{' '}
+              Remember password?{' '}
                 <ResponsiveText
                   fontFamily="Bold"
                   color={colors.yellow}
