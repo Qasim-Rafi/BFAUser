@@ -211,7 +211,7 @@ class RandomWheelClass extends React.Component {
             borderWidth: 5,
             borderColor: '#fff',
             innerRadius: 30,
-            duration: 6000,
+            duration: 3000,
             iconRewards: this.state.restaurantSelected ? this.props.restaurantList.map(names => names.fullPath) : this.props.favoriteDishesData.map(names => names.imageDataB) ,
             backgroundColor: 'transparent',
 
@@ -370,7 +370,7 @@ class RandomWheelClass extends React.Component {
                                     Randomiser setting
                                 </ResponsiveText>
                             </View>
-                            <View style={{ display: 'flex', flexDirection: 'row', marginTop: 5 }}>
+                            {/* <View style={{ display: 'flex', flexDirection: 'row', marginTop: 5 }}>
                                 <RadioGroup color={colors.yellow} style={{ flex: 1, flexDirection: 'row' }}
                                     onSelect={(index, value) => {
                                         index === 0 ? this.setState({ dishesSelected: true, restaurantSelected: false }) : index === 1 ? this.setState({ dishesSelected: false, restaurantSelected: true }) : null
@@ -387,7 +387,7 @@ class RandomWheelClass extends React.Component {
                                     </RadioButton>
                                 </RadioGroup>
 
-                            </View>
+                            </View> */}
                             <View style={{ marginStart: 10, marginTop: 15 }}>
 
                                 <View style={{ paddingBottom: 5, display: 'flex', flexDirection: 'row', marginStart: 10, marginEnd: 20, marginTop: 5, marginBottom: 5, borderBottomWidth: 1, borderBottomColor: colors.black2, alignItems: 'center' }}>

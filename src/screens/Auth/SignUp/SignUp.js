@@ -493,7 +493,7 @@ export default function Signup({navigation}) {
                 padding={[0, 0, 0, 25]}
                 onChnageText={text => setState(text)}
                 iconMargin={[0, 10, 0, 0]}
-                placeholder="State"
+                placeholder="District"
                 leftIcon={globalPath.State_ICON}
               />
               <Input

@@ -25,6 +25,8 @@ import Api from '../../../redux/lib/api';
 export default function TransactionConfirmation({route, navigation}) {
   const [isModalVisible, setModalVisible] = useState(false);
   const [activeTabs, setActive] = useState('tab1');
+  const [mode, setMode] = useState('mode1');
+
   const [count, changeCount] = useState(40);
   const [data, setData] = useState(route.params.data);
   const [total, addTotal] = useState(0);
@@ -43,7 +45,7 @@ export default function TransactionConfirmation({route, navigation}) {
     var obj = {
       ...route.params.obj,
       ...{
-        OrderType: pickup == true ? 2 : 1,
+        OrderType: mode == 'mode1' ? 1 :'mode2' ? 2 : 3,
         tip: activeTabs === 'tab1' ? 0 : count,
       },
     };
@@ -202,32 +204,47 @@ export default function TransactionConfirmation({route, navigation}) {
           }}>
           <TouchableOpacity
             onPress={() => {
-              setPickup(true);
+              setMode('mode1');
             }}
             style={{
-              backgroundColor: pickup ? colors.yellow : colors.black2,
+              backgroundColor: mode=='mode1' ? colors.yellow : colors.black2,
               flex: 1,
               margin: 1,
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <ResponsiveText color={pickup ? colors.black : colors.yellow}>
+            <ResponsiveText color={mode=='mode1' ? colors.black : colors.yellow}>
               Take Away
             </ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              setPickup(false);
+              setMode('mode2');
             }}
             style={{
-              backgroundColor: pickup ? colors.black2 : colors.yellow,
+              backgroundColor: mode=='mode2' ? colors.yellow : colors.black2,
               flex: 1,
               margin: 1,
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <ResponsiveText color={pickup ? colors.yellow : colors.black}>
+            <ResponsiveText color={mode=='mode2' ? colors.black : colors.yellow}>
               Dine In
+            </ResponsiveText>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setMode('mode3');
+            }}
+            style={{
+              backgroundColor: mode=='mode3' ? colors.yellow : colors.black2,
+              flex: 1,
+              margin: 1,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <ResponsiveText color={mode=='mode3' ? colors.black : colors.yellow}>
+              Self Pick Up
             </ResponsiveText>
           </TouchableOpacity>
         </View>
