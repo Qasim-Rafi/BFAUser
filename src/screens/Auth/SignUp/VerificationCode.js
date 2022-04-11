@@ -51,7 +51,7 @@ export default function VerificationCode({navigation,route}) {
       });
     } else {
       if(route.params){
-        navigation.navigate(routeName.CHANGE_PASSWORD,{data:route.params.data})
+        navigation.replace(routeName.CHANGE_PASSWORD,{data:route.params.data})
       }else{
 
         dispatch(verifyUser(0, navigation));

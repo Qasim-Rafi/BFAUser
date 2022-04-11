@@ -747,39 +747,69 @@ const CartDetails = ({ navigation }) => {
               </View>
 
               <View style={styles.ModalInnerDisign}>
+                <View style={{flexDirection:'row',}}>
                 <Text style={styles.headingDiscription}>Description:</Text>
                 <Text style={styles.ModalDiscription}>
-                  {selectedItem.dishDescription}
+                  { selectedItem.dishDescription} 
                 </Text>
-                {selectedItem.addOnName ?
-
-
-                  <Text style={styles.headingDrinks}>Drink:</Text>
-
-                  : undefined}
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    // marginLeft: 10,
-                  }}>
-                  <View
-                    style={{
-                      backgroundColor: colors.white,
-                      height: 5,
-                      width: 5,
-                      borderRadius: 50,
-                      marginTop: 6,
-                    }}></View>
-                  <Text style={styles.ModalDrink}>
-                    {' '}
-                    {selectedItem.addOnName}
-                  </Text>
                 </View>
+                
+                {selectedItem.orderDetailSoftDrinkList.length > 0
+                    ?
+                <View style={{ backgroundColor: colors.black2, height: hp(2), width: wp(80), flexDirection: 'row', justifyContent: 'space-between' }}>
+                  <Text style={{ fontSize: 10, color: colors.yellow }}>Drinks</Text>
+                  <Text style={{ fontSize: 10, color: colors.yellow }}>Quantity</Text>
+                  <Text style={{ fontSize: 10, color: colors.yellow }}>Price</Text>
+
+                </View>:undefined}
+                {selectedItem.orderDetailSoftDrinkList.length > 0
+                  ? selectedItem.orderDetailSoftDrinkList.map((item, index) => {
+                   
+                    return (
+                      
+                      <View
+                        style={{
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                          // marginLeft: 10,
+                        }}>
+                          
+                        <View
+                          style={{
+                            backgroundColor: colors.white,
+                            height: 5,
+                            width: 5,
+                            borderRadius: 50,
+                            marginTop: 6,
+                          
+                          }}></View>
+                          <View style={{  flexDirection:'row',
+                            }}>
+
+                        <Text style={styles.restaurantSoftDrinkName}>
+                          {item.restaurantSoftDrinkName}
+                        </Text>
+                        <Text style={styles.ModalDrink}>
+                          {item.quantity}
+                        </Text>
+                        <Text style={styles.Quantity}>
+                          {item.price}
+                        </Text>
+                        </View>
+                      </View>
+                    );
+                  })
+                  : undefined}
+
                 <View>
                   {selectedItem.orderDetailExtraItemList.length > 0
                     ?
-                    <Text style={styles.headingAddOns}>Add ons: </Text>
+                    <View style={{ backgroundColor: colors.black2, height: hp(2), width: wp(80), flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <Text style={{ fontSize: 10, color: colors.yellow }}>Add ons</Text>
+                    <Text style={{ fontSize: 10, color: colors.yellow }}>Quantity</Text>
+                    <Text style={{ fontSize: 10, color: colors.yellow }}>Price</Text>
+  
+                  </View>
 
                     : undefined}
 
@@ -802,9 +832,20 @@ const CartDetails = ({ navigation }) => {
                             borderRadius: 50,
                             marginTop: 6,
                           }}></View>
-                        <Text style={styles.ModalDrink}>
+                          
+                          <View style={{  flexDirection:'row',
+                            }}>
+
+                        <Text style={styles.restaurantSoftDrinkName}>
                           {item.restaurantDishExtraItemName}
                         </Text>
+                        <Text style={styles.ModalDrink}>
+                          {item.quantity}
+                        </Text>
+                        <Text style={styles.Quantity}>
+                          {item.price}
+                        </Text>
+                        </View>
                       </View>
                     );
                   })
@@ -813,7 +854,12 @@ const CartDetails = ({ navigation }) => {
                 <View>
                   {selectedItem.orderDetailLinkedItemList.length > 0
                     ?
-                    <Text style={styles.headingAddOns}>Upsize:</Text>
+                    <View style={{ backgroundColor: colors.black2, height: hp(2), width: wp(80), flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <Text style={{ fontSize: 10, color: colors.yellow }}>Upsize</Text>
+                    <Text style={{ fontSize: 10, color: colors.yellow }}>Quantity</Text>
+                    <Text style={{ fontSize: 10, color: colors.yellow }}>Price</Text>
+  
+                  </View>
                     : undefined}
                 </View>
 
@@ -835,9 +881,19 @@ const CartDetails = ({ navigation }) => {
                               borderRadius: 50,
                               marginTop: 6,
                             }}></View>
-                          <Text style={styles.ModalDrink}>
-                            {item.restaurantDishLinkedItemName}
-                          </Text>
+                         <View style={{  flexDirection:'row',
+                            }}>
+
+                        <Text style={styles.restaurantSoftDrinkName}>
+                          {item.restaurantDishLinkedItemName}
+                        </Text>
+                        <Text style={styles.ModalDrink}>
+                          {item.quantity}
+                        </Text>
+                        <Text style={styles.Quantity}>
+                          {item.price}
+                        </Text>
+                        </View>
                         </View>
                       );
                     },
@@ -1089,20 +1145,33 @@ const styles = StyleSheet.create({
   },
   ModalDiscription: {
     color: colors.white,
-    fontSize: 10,
-    marginTop: 4,
+    left:1,
+    fontSize: 9,
+    flex:1.5,
+alignSelf:'center',
+marginTop: 4,
   },
   headingDiscription: {
-    color: colors.white,
-    fontSize: 10,
+    color: colors.yellow1,
+    fontSize: 12,
+    // flex:0.4,
     marginTop: 4,
+    alignSelf:'center',
     fontWeight: 'bold',
   },
   ModalDrink: {
     color: colors.white,
+    flex:0.76,
     fontSize: 10,
     marginTop: 4,
     marginLeft: 4,
+  },
+  restaurantSoftDrinkName:{
+    color: colors.white,
+    fontSize: 10,
+    marginTop: 4,
+    marginLeft: 4,
+    flex:0.7
   },
   headingAddOns: {
     color: colors.white,
@@ -1115,6 +1184,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     marginTop: 4,
     fontWeight: 'bold',
+    flex:0.8
   },
   ModalAddons: {
     color: colors.white,
@@ -1128,14 +1198,23 @@ const styles = StyleSheet.create({
   },
   ModalInstructions: {
     color: colors.white,
-    fontSize: 10,
+    fontSize: 9,
     marginTop: 1,
-    marginVertical: 12,
+    // marginVertical: 12,
     flex: 1.3
   },
-  headingInstructions: {
+  Quantity:{
     color: colors.white,
     fontSize: 10,
+    marginTop: 4,
+    fontWeight: 'bold',
+    flex:0.1,
+    alignSelf:'center'
+
+  },
+  headingInstructions: {
+    color: colors.yellow1,
+    fontSize: 12,
     marginTop: 4,
     fontWeight: 'bold',
   },

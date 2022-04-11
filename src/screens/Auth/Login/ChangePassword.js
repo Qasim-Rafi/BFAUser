@@ -109,7 +109,7 @@ export default function ChangePassword({navigation, route}) {
             style={{
               justifyContent: 'center',
             }}>
-            <TouchableOpacity
+            {/* <TouchableOpacity
               onPress={() => {
                 navigation.goBack();
               }}
@@ -122,7 +122,7 @@ export default function ChangePassword({navigation, route}) {
                 borderRadius: 25,
               }}>
               <Icon source={globalPath.BACK_ARROW} />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             {/* <Header navigation={navigation} iconPath={globalPath.BACK_ARROW} /> */}
           </View>
           <View style={styles.screeninfo}>
@@ -192,7 +192,7 @@ export default function ChangePassword({navigation, route}) {
               <View style={styles.footer}>
               {/* <Icon size={wp(8)} margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
               <ResponsiveText margin={[0, 10]} color={colors.white}>
-                New user{' '}
+                Remember password?{' '}
                 <ResponsiveText
                   fontFamily="Bold"
                   color={colors.yellow}

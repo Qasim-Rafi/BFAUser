@@ -893,18 +893,18 @@ function* addReataurantfavouriteSagaApi(data) {
     );
     console.log('resposssssssss', response);
     if (response && response.success == true) {
-      yield put({
-        type: types.ADD_FAVORITE_RESTAURANT_SUCCESS,
-        payload: data.data,
-      });
+      // yield put({
+      //   type: types.ADD_FAVORITE_RESTAURANT_SUCCESS,
+      //   payload: data.data,
+      // });
       // navigation.navigate(routeName.Categories,{data:response.data});
     } else {
-      yield put({ type: types.ADD_FAVORITE_RESTAURANT_FAILURE, payload: {} });
+      // yield put({ type: types.ADD_FAVORITE_RESTAURANT_FAILURE, payload: {} });
     }
 
     // dispatch a success action to the store with the new data object
   } catch (error) {
-    yield put({ type: types.ADD_FAVORITE_RESTAURANT_FAILURE, error: {} });
+    // yield put({ type: types.ADD_FAVORITE_RESTAURANT_FAILURE, error: {} });
   }
 }
 //REMOVE FAVOURATE_RESTAURANT

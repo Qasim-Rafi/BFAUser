@@ -169,7 +169,7 @@ export default function Restaurant_Description(props) {
         <ResponsiveText fontFamily="Regular" size={4} color={colors.white}>
           Location On Map
         </ResponsiveText>
-        <StaticMap data={data}/>
+        {/* <StaticMap data={data}/> */}
       </View>
     </View>
   );

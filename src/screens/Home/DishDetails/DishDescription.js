@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   Text,
@@ -32,6 +32,9 @@ export default function DishDescription(props) {
   const navigation = useNavigation();
 
   console.log(props.item, 'itemmmpropsss');
+  useEffect(()=>{
+
+  },[liked])
   return (
     <View>
       <View>
