@@ -12,6 +12,7 @@ export const routeName = {
   Categories: 'Categories',
   RestaurantBranch: 'RESTAURANT_BRANCH',
   SETTINGS: 'SETTINGS',
+  BALI_CENTER:'BALI_CENTER',
   ADD_CARD: 'ADD_CARD',
   VIEW_CARD: 'VIEW_CARD',
   MANAGE_CARDS: 'MANAGE_CARDS',

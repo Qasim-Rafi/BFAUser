@@ -288,7 +288,7 @@ const More = ({route, navigation}) => {
               </ResponsiveText>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => navigation.navigate(routeName.CONTACT_US)}
+              onPress={() => navigation.navigate(routeName.BALI_CENTER)}
               style={{ backgroundColor:colors.black2, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
               <Icon size={20} source={globalPath.CONTACT} />
               <ResponsiveText
