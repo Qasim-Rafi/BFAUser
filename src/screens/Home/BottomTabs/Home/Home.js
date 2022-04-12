@@ -123,7 +123,7 @@ const Home = ({navigation}) => {
     dispatch(getFavorite(1, 4));
     dispatch(getPromoJobsData(1, 4));
     dispatch(getBfaRecommendations(1, 4));
-    dispatch(getBruneiFoodRewards(1, 8));
+    dispatch(getBruneiFoodRewards(1, 4));
 
     dispatch(getOrders());
     dispatch(GetUserRandomiserSetting());
