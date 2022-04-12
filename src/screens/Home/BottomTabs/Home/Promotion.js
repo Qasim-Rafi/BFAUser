@@ -93,6 +93,7 @@ const Promotion = props => {
                           </Text>
                           : undefined
                         } */}
+                        {/* <View style={styles.pacman} /> */}
                         <Text
                           style={{
                              borderTopRightRadius: 15,
@@ -201,5 +202,20 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     justifyContent: 'center',
     overflow: 'hidden',
+  },
+  pacman: {
+  
+    borderTopWidth: 12,
+    borderTopColor: colors.yellow1,
+    borderLeftColor:colors.yellow1,
+    // borderLeftWidth: 10,
+    borderRightColor: "transparent",
+    borderRightWidth: 25,
+    borderBottomColor:colors.yellow1,
+    borderBottomWidth: 12,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 55,
+    borderBottomRightRadius: 60,
+    borderBottomLeftRadius: 10,
   },
 });

@@ -119,7 +119,7 @@ export default function ProfileScreen({navigation}) {
     setEmail(profileData.email);
     setUsername(profileData.username);
     setcontactNo(profileData.contactNumber);
-    // setDate(profileData.dateofBirth);
+    setDate(profileData.dateofBirth == null||profileData.dateofBirth =="0001-01-01 00:00:00.0000000"?null:profileData.dateofBirth);
     setgender(profileData.gender);
     setChildren(
       profileData.numberOfChildren == null ? '' : profileData.numberOfChildren,
@@ -368,7 +368,7 @@ export default function ProfileScreen({navigation}) {
                   iconMargin={[0, 10, 0, 0]}
                   leftIcon={globalPath.Calender_ICON}
                   placeholder={
-                    profileData.dateofBirth == null||profileData.dateofBirth =="0001-01-01 00:00:00.0000000"
+                    date == null
                       ? 'Date of birth'
                       : handleChange(
                           '',

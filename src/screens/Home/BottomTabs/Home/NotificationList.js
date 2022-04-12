@@ -41,7 +41,10 @@ export default function NotificationList({navigation}) {
       // Prevent default action
       // e.preventDefault();
     // dispatch(getNotificationData());
+    setTimeout(() => {
     SeenNotification()
+      
+    }, 10000);
     });
    
      return subscribe
@@ -97,7 +100,7 @@ export default function NotificationList({navigation}) {
           return (
             <View
               style={{
-                backgroundColor: colors.black2,
+                backgroundColor:item.seen?colors.black2: colors.black1,
                 borderRadius: 5,
                 marginBottom: 4,
                 padding: 5,
