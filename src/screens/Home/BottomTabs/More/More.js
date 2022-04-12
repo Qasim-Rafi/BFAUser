@@ -295,7 +295,7 @@ const More = ({route, navigation}) => {
                 margin={[0, 0, 0, 10]}
                 size={3.5}
                 color={colors.grey}>
-                Contact Us
+               Help center
               </ResponsiveText>
             </TouchableOpacity>
           </View>

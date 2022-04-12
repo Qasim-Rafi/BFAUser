@@ -28,21 +28,41 @@ export default function Bali_Center({ navigation, route }) {
             </View>
 
             </View>
-            <ResponsiveText size={2.5} color={colors.white} margin={[hp(1), 20, 5, wp(40)]} >{profileData.fullName}</ResponsiveText>     
-            <ResponsiveText size={2.5} color={colors.white} margin={[hp(0.5), 20, 5, wp(35)]} >{profileData.email}</ResponsiveText>     
+            <View style={{flexDirection:'row'}}>
 
             <Image
-              source={globalPath.BFA_LOGO}
-              style={{ height: hp(15), width:wp(40) ,justifyContent:'center',alignSelf:'center',resizeMode:"contain",top:hp(10)}}
+              style={{
+                width: 50,
+                height: 50,
+                borderRadius: 50,
+                marginTop: 10,
+                marginLeft: 20,
+              }}
+              source={
+                profileData.fullPath
+                  ? {uri: profileData.fullPath}
+                  : globalPath.USER_PROFILE
+              }
             />
-            <ResponsiveText size={5} color={colors.white} margin={[hp(12), 20, 5, wp(27)]} >How can we help?</ResponsiveText>     
+             <View style={{justifyContent: 'center', marginLeft: 10}}>
+            <ResponsiveText color={colors.white} size={3}>{profileData.fullName}</ResponsiveText>
+            <ResponsiveText color={colors.yellow1} size={2.5}>
+              {profileData.email}
+            </ResponsiveText>
+            </View>
+
+          </View>
+
+          <Image
+              source={globalPath.HOME_BFA_PARTNER}
+              style={{ height: hp(15), width:wp(35) ,justifyContent:'center',alignSelf:'center',resizeMode:"contain"}}
+            />
+            <ResponsiveText size={5} color={colors.white} margin={[hp(-2), 20, 5, wp(27)]} >How can we help?</ResponsiveText>     
             <View style={{backgroundColor:colors.black2}}>
-            {/* <ResponsiveText size={2.5} color={colors.white} margin={[hp(1), 20, 5, wp(2)]} >Gmail:          {profileData.email}</ResponsiveText>      */}
-            {/* <ResponsiveText size={2.5} color={colors.white} margin={[hp(1), 20, 5, wp(2)]} >Contact:      {profileData.contactNumber}</ResponsiveText>    */}
             </View>
             <View
             style={{
-                top:hp(10),
+                top:hp(2),
               margin: 5,
               paddingHorizontal: 10,
             }}>
@@ -59,6 +79,7 @@ export default function Bali_Center({ navigation, route }) {
               }}
               textAlignVertical="top"
               multiline={true}
+              placeholderTextColor={colors.grey}
               placeholder="Message...."
               onChangeText={text => setText(text)}
               defaultValue={text}
@@ -72,7 +93,10 @@ export default function Bali_Center({ navigation, route }) {
                 </ResponsiveText>
               
             </TouchableOpacity>
-            
+            <Image
+              source={globalPath.BFA_LOGO}
+              style={{opacity:0.3, height: hp(8), width:wp(11),alignSelf:"flex-end",top:hp(26),right:wp(2),resizeMode:'contain'}}
+            />
                    </View>
     )
 }
