@@ -69,6 +69,9 @@ if(data.statusName==='Paid'){
       console.log('res', res);
       if (res && res.success == true) {
         setModalVisible(true)
+      const response = await Api.put(urls.BALI_COIN_PAYMENT+data.id);
+      console.log('response', response);
+
         // dropdownRef.current.showMessage({
         //   message: 'Alert',
         //   description: "paid Successfully",

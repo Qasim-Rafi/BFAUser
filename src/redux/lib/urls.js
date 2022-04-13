@@ -83,7 +83,7 @@ export default urls = {
   GET_NOTIFICATIONS_ALL: 'api/NotificationPannel/GetNotificationPannelAll',  //get notification
   ADD_NOTIFICATIONS: 'api/NotificationPannel/AddNotificationPannel',     //  add notification
   SEEN_NOTIFICATIONS:'api/NotificationPannel/SeenNotificationforUser' ,  //Seen notification
-  GET_BALI_COINS:'api/Order/getdataforBcoinUserApp'             //GET BALI COINS
-
+  GET_BALI_COINS:'api/Order/getdataforBcoinUserApp',             //GET BALI COINS
+  BALI_COIN_PAYMENT:'api/Order/Bcoinpayment/'
 
 };
