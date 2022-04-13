@@ -129,7 +129,7 @@ const Home = ({navigation}) => {
     dispatch(GetUserRandomiserSetting());
      setInterval(() => {
       dispatch(getNotificationData());
-    }, 30000);
+    }, 5000);
     
   }, []);
 

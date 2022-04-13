@@ -68,6 +68,8 @@ export default function AddToCart({route, navigation}) {
 
     // extraCheese.length, SelectedDrinks.length,linkedItem.length,
   }, [count,extraCheese.length, SelectedDrinks.length,linkedItem.length]);
+
+ 
   const Drinks = value => {
     setSelecteddrinks(value);
     console.log('Idddddddddd:', value);

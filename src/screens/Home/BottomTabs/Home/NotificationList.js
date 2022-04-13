@@ -44,7 +44,7 @@ export default function NotificationList({navigation}) {
     setTimeout(() => {
     SeenNotification()
       
-    }, 10000);
+    }, 5000);
     });
    
      return subscribe
@@ -118,7 +118,9 @@ export default function NotificationList({navigation}) {
                     {/* <ResponsiveText size={3} color={colors.white}>
                       Order status:{' '}
                     </ResponsiveText> */}
-                  <ResponsiveText size={3} color={item.remarks=='NewOrder'?colors.white:item.remarks=='Cancled'?colors.red1:item.remarks=='Paid'?colors.blue1:item.remarks=='InProcess'?colors.green1:item.remarks=='Delivered'?colors.yellow: item.remarks=='Served'?colors.yellow:item.remarks=='Billed'?colors.green1:colors.white}>
+                  <ResponsiveText size={3} color={colors.white}
+                  // color={item.remarks=='NewOrder'?colors.white:item.remarks=='Cancled'?colors.red1:item.remarks=='Paid'?colors.blue1:item.remarks=='InProcess'?colors.green1:item.remarks=='Delivered'?colors.yellow: item.remarks=='Served'?colors.yellow:item.remarks=='Billed'?colors.green1:colors.white}
+                  >
                     {item.remarks}
                   </ResponsiveText>
                 </View>
