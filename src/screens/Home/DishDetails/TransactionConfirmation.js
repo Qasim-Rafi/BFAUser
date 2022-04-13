@@ -88,7 +88,7 @@ export default function TransactionConfirmation({route, navigation}) {
     // dispatch(removeCart(data));
     let formdata = new FormData();
     formdata.append('NotificationType', 'Order');
-    formdata.append('Remarks', 'New order');
+    formdata.append('Remarks', 'Your_Order_Has_Been_Placed');
     formdata.append('SourceId', route.params.obj.orderId);
     // formdata.append("Seen", false);
     formdata.append('UserId', route.params.obj.userId);
@@ -541,7 +541,7 @@ export default function TransactionConfirmation({route, navigation}) {
                   color={colors.yellow}
                   size={3}
                   margin={[0, 10, 0, 0]}>
-                  ${Calculate(data.amount, count)}
+                  ${totalsum()}
                 </ResponsiveText>
               </View>
               <View style={{flex: 0.1}}>

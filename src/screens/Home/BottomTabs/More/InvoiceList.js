@@ -70,7 +70,9 @@ if(data.statusName==='Paid'){
       const res = await Api.post(urls.ADD_PAYMENT, obj);
       console.log('res', res);
       if (res && res.success == true) {
-        setModalVisible(true)
+        // setModalVisible(true)
+        BcoinPayment()
+
         // dropdownRef.current.showMessage({
         //   message: 'Alert',
         //   description: "paid Successfully",
@@ -88,6 +90,35 @@ if(data.statusName==='Paid'){
     //dispatch(checkoutOrder(obj,navigation));
     //
   };
+
+  const BcoinPayment=async()=>{
+    try {
+      const res =await Api.put(urls.BALI_COIN_PAYMENT+data.id);
+      console.log('res', res);
+      if (res && res.success == true) {
+        setModalVisible(true)
+
+        dropdownRef.current.showMessage({
+          message: 'Success',
+          description: res.message,
+          type: 'success',
+          // duration:'6000',
+          icon: { icon: 'auto', position: 'left' },
+          backgroundColor: colors.green1,
+        });
+        // navigation.navigate(routeName.LANDING_SCREEN,);
+
+      } else {
+        dropdownRef.current.showMessage({
+          message: 'Alert',
+          description: res.message,
+          type: 'danger',
+          // duration:'6000',
+          icon: { icon: 'auto', position: 'left' },
+        });
+      }
+    } catch (error) { }
+  }
   const getData = async id => {
     // var obj = {
     //   orderStatus: 5,

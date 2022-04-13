@@ -35,23 +35,33 @@ export default function DishDetails({route, navigation}) {
   );
   const [showCalories, setShowCalories] = React.useState(false);
   React.useEffect(() => {
-    addDish(route.params.dish);
-    if(route.params?.promotion){
-      console.log('promo', route.params?.promotion);
-      var obj={
-        "id": 0,
-        "createdByDateTime": "string",
-        "restaurantBranchId": route.params.dish.restaurantBranchId,
-        "restaurantDishId": route.params.dish.restaurantDishId,
-        "customerId": 83,
-        "customerName": "Altaf",
-        "fullPath": route.params.dish.imageDataB,
-        "dishName": route.params.dish.titleD
+
+    const subscribe = navigation.addListener('focus', (e) => {
+
+      if (route.params.dish.restaurantSoftDrinksList.length > 0) {
+        route.params.dish.restaurantSoftDrinksList.forEach((e,i) => {
+          delete route.params.dish.restaurantSoftDrinksList[i].quantity;
+
+        });
       }
-       dispatch(promotoinClick(obj))
-    }
+      if (route.params.dish.restaurantDishExtraItemList.length > 0) {
+        route.params.dish.restaurantDishExtraItemList.forEach((e,i) => {
+          delete route.params.dish.restaurantDishExtraItemList[i].quantity;
+
+        });
+      }
+      if (route.params.dish.restaurantDishLinkedItemList.length > 0) {
+        route.params.dish.restaurantDishLinkedItemList.forEach((e,i) => {
+          delete route.params.dish.restaurantDishLinkedItemList[i].quantity;
+
+        });
+      }
+    addDish(route.params.dish);
     console.log('detail dataaaaaaa', route.params);
-  }, []);
+
+    });
+     return subscribe
+  }, [navigation]);
 
   const MoreFrom = data => {
     // console.log('More Fromm', data);

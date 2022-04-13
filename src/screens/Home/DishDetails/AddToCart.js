@@ -68,6 +68,8 @@ export default function AddToCart({route, navigation}) {
 
     // extraCheese.length, SelectedDrinks.length,linkedItem.length,
   }, [count,extraCheese.length, SelectedDrinks.length,linkedItem.length]);
+
+ 
   const Drinks = value => {
     setSelecteddrinks(value);
     console.log('Idddddddddd:', value);
@@ -283,6 +285,7 @@ export default function AddToCart({route, navigation}) {
         o.restaurantBranchId === dish.restaurantBranchId,
     );
     console.log('filter    nnnn', checkData);
+  
     // console.log('filter    orderList', orderList);
     // console.log('filter    dish', dish);
 
