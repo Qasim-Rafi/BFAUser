@@ -65,7 +65,7 @@ const AwardWinningDishes = props => {
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           {FoodsAwards.length > 0
             ? FoodsAwards.map((url, index) => {
-              if (index < 4) {
+              if (index < 8) {
               return (
                 <TouchableOpacity
                   onPress={() =>

@@ -39,6 +39,8 @@ export default function Order_history({navigation}) {
 
   React.useEffect(() => {
     let interval = null;
+    dispatch(getOrdersHistory());
+
     const subscribe = navigation.addListener('focus', e => {
     
       interval = setInterval(() => {
@@ -76,15 +78,17 @@ export default function Order_history({navigation}) {
     //
   };
   return (
-    <View style={{flex: 1, backgroundColor: '#202020'}}>
+    <View style={{flex: 1, backgroundColor: colors.black3}}>
       {/* <View style={{ flexDirection: 'row', justifyContent: "space-between",padding:7 }}>
             <TouchableOpacity style={{ backgroundColor:colors.yellow1,paddingVertical:10,paddingHorizontal:10,borderRadius:20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
           </View> */}
-      <View style={{flex: 0.1, justifyContent: 'center'}}>
+      <View style={{flex: 0.1, justifyContent: 'center',backgroundColor: colors.black1,}}>
         <Header navigation={navigation} />
       </View>
       <ScrollView style={{flex: 0.7, marginHorizontal: 10}}>
-        <ResponsiveText color={colors.white}>My Orders</ResponsiveText>
+        <ResponsiveText color={colors.white}>My Order  </ResponsiveText>
+        <ResponsiveText color={colors.yellow1}>  {orderList.length} orders </ResponsiveText>
+      
         {orderList.map((item, index) => {
           return (
             <TouchableOpacity
@@ -93,7 +97,7 @@ export default function Order_history({navigation}) {
               }>
               <View
                 style={{
-                  backgroundColor: '#303030',
+                  backgroundColor: colors.black2,
                   height: hp(10),
                   borderRadius: 5,
                   alignItems: 'center',
@@ -118,7 +122,8 @@ export default function Order_history({navigation}) {
                       {item.restaurantName}
                     </ResponsiveText>
                     <ResponsiveText color={colors.yellow}>
-                      ${item.amount}
+                    ${parseFloat(item.amount).toFixed(2)}
+                      {/* ${item.amount} */}
                     </ResponsiveText>
                   </View>
                   <View style={{flexDirection: 'row'}}>
@@ -158,6 +163,7 @@ export default function Order_history({navigation}) {
                       </ResponsiveText>
                     </View>
                     <View>
+                      {item.statusName=='Paid'?
                       <TouchableOpacity
                         onPress={() => submitOrder(item)}
                         style={{
@@ -170,6 +176,7 @@ export default function Order_history({navigation}) {
                           Repeat Order
                         </ResponsiveText>
                       </TouchableOpacity>
+                      :null}
                     </View>
                   </View>
                 </View>
@@ -178,7 +185,7 @@ export default function Order_history({navigation}) {
           );
         })}
       </ScrollView>
-      {/* {orderList_Loading === true ? (
+      {/* {orderList_Loading === true && orderList.length==0? (
         <View
           style={{
             position: 'absolute',

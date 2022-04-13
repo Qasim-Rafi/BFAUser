@@ -47,7 +47,9 @@ export default function AddToCart({route, navigation}) {
       : null,
   );
   const [dishPrice, updateDishPrice] = useState(route.params.dish.price);
-  const [total, updateTotal] = useState(0);
+  const [total, updateTotal] = useState(route.params.dish.price);
+  const [extraTotal, setextraTotal] = useState(0);
+
   const dispatch = useDispatch();
   const [text, setText] = useState('');
   const [extraCheese, setExtrachess] = useState([]);
@@ -62,7 +64,10 @@ export default function AddToCart({route, navigation}) {
     // }, 0);
     // console.log(linkedItem.length);
     PriceCalculations();
-  }, [count, extraCheese.length, SelectedDrinks.length,linkedItem.length,visible]);
+    // updateTotal(dishPrice * count + extraTotal);
+
+    // extraCheese.length, SelectedDrinks.length,linkedItem.length,
+  }, [count,extraCheese.length, SelectedDrinks.length,linkedItem.length]);
   const Drinks = value => {
     setSelecteddrinks(value);
     console.log('Idddddddddd:', value);
@@ -75,10 +80,17 @@ export default function AddToCart({route, navigation}) {
     var sumofDrinks = SelectedDrinks.reduce((a, c) => {
       return a + c.price * c.quantity;
     }, 0);
-    // console.log('sum of extra', sumofExtra);
-    // console.log('sumofDrinks', sumofDrinks);
-    setVisible(!visible)
-    updateTotal(dishPrice * count + sumofExtra + sumofDrinks);
+    var sumofUpsize = linkedItem.reduce((a, c) => {
+      return a + c.price * c.quantity;
+    }, 0);
+    //  console.log('sum of extra', sumofExtra);
+     console.log('sum of sumofDrinks', sumofDrinks);
+     console.log('sum of SelectedDrinks', SelectedDrinks);
+
+    //  console.log('setextraTotal', sumofExtra + sumofDrinks + sumofUpsize);
+    // setVisible(!visible);
+    updateTotal(dishPrice * count + sumofExtra + sumofDrinks+sumofUpsize);
+    // setextraTotal(sumofExtra + sumofDrinks + sumofUpsize);
   };
   // const data = () => [{
   //   "id": 0,
@@ -185,7 +197,7 @@ export default function AddToCart({route, navigation}) {
     // updateTotal(total + sumofExtra);
     PriceCalculations();
   };
-  const LinkedItem = (item,index) => {
+  const LinkedItem = (item, index) => {
     //extraCheese.push(item)
     // if (linkedItem.some(o => o.dishLinkedItemo === item.dishLinkedItemId)) {
     //   setlinkedItem(
@@ -214,7 +226,7 @@ export default function AddToCart({route, navigation}) {
       // }, 0);
     }
     console.log('after', linkedItem);
-   
+
     PriceCalculations();
   };
   const updateLinkedItem = (index, type) => {
@@ -281,7 +293,7 @@ export default function AddToCart({route, navigation}) {
     if (SelectedDrinks.length > 0) {
       SelectedDrinks.forEach(e => {
         DrinksList.push({
-          restaurantDishExtraItemId: e.id,
+          RestaurantDishSoftDrinkId: e.id,
           price: e.price,
           quantity: e.quantity,
         });
@@ -309,7 +321,7 @@ export default function AddToCart({route, navigation}) {
     }
     addOrderDetail.push({
       restaurantDishId: dish.restaurantDishId,
-      addOnId: Selecteddrinks ? Selecteddrinks.softDrinkId : 1,
+      // addOnId: Selecteddrinks ? Selecteddrinks.softDrinkId : 1,
       quantity: count,
       RestaurantSoftDrinkId: 5,
       // RestaurantSoftDrinkId:Selecteddrinks ? Selecteddrinks.softDrinkId : 1,
@@ -317,6 +329,7 @@ export default function AddToCart({route, navigation}) {
       dishPrice: dish.price,
       orderDetailExtraItemList: orderDetailExtraItemList,
       orderDetailLinkedItemList: orderDetailLinkedItemList,
+      OrderDetailSoftDrinkList: DrinksList,
     });
 
     // }

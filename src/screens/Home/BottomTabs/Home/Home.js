@@ -94,7 +94,7 @@ const Home = ({navigation}) => {
     dispatch(getFavorite(1, 4));
     dispatch(getPromoJobsData(1, 4));
     dispatch(getBfaRecommendations(1, 4));
-    dispatch(getBruneiFoodRewards(1, 4));
+    dispatch(getBruneiFoodRewards(1, 8));
   }, []);
 
   // console.log('loading', loading);
@@ -123,13 +123,13 @@ const Home = ({navigation}) => {
     dispatch(getFavorite(1, 4));
     dispatch(getPromoJobsData(1, 4));
     dispatch(getBfaRecommendations(1, 4));
-    dispatch(getBruneiFoodRewards(1, 4));
+    dispatch(getBruneiFoodRewards(1, 8));
 
     dispatch(getOrders());
     dispatch(GetUserRandomiserSetting());
-    //  setInterval(() => {
-    //   dispatch(getNotificationData());
-    // }, 5000);
+     setInterval(() => {
+      dispatch(getNotificationData());
+    }, 5000);
     
   }, []);
 

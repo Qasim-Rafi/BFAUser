@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   Text,
@@ -27,10 +27,14 @@ import {useNavigation} from '@react-navigation/native';
 export default function DishDescription(props) {
   const dispatch = useDispatch();
   const favData = useSelector(state => state.appReducers.favorite.data);
+  const [liked, setLiked] = React.useState(props.item.userLiked);
 
   const navigation = useNavigation();
 
   console.log(props.item, 'itemmmpropsss');
+  useEffect(()=>{
+
+  },[liked])
   return (
     <View>
       <View>
@@ -86,13 +90,21 @@ export default function DishDescription(props) {
         <TouchableOpacity
           style={{alignItems: 'center'}}
           onPress={() => {
-            favData.some(o => o.restaurantDishId === props.item.restaurantDishId) || props.item.userLiked
-              ? dispatch(onRemoveFavorite(props.item))
-              : dispatch(addFavorite(props.item));
+            if(favData.some(o => o.restaurantDishId === props.item.restaurantDishId) ||liked){
+              dispatch(onRemoveFavorite(props.item))
+              setLiked(!liked)
+            }else{
+              dispatch(addFavorite(props.item));
+              setLiked(!liked)
+
+            }
+            // favData.some(o => o.restaurantDishId === props.item.restaurantDishId) || props.item.userLiked
+            //   ? 
+            //   : 
           }}>
           <Icon
             source={
-              props.item.userLiked || favData.some(o => o.restaurantDishId === props.item.restaurantDishId)
+              liked || favData.some(o => o.restaurantDishId === props.item.restaurantDishId)
                 ? globalPath.F_HEART
                 : globalPath.HEART
             }

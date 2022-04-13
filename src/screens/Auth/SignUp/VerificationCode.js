@@ -44,14 +44,14 @@ export default function VerificationCode({navigation,route}) {
     if (value != '000000') {
       dropdownRef.current.showMessage({
         message: 'Error',
-        description: 'Enable to verify',
+        description: 'Unable to verify',
         duration: 3000,
         type: 'danger',
         icon: {icon: 'auto', position: 'left'},
       });
     } else {
       if(route.params){
-        navigation.navigate(routeName.CHANGE_PASSWORD,{data:route.params.data})
+        navigation.replace(routeName.CHANGE_PASSWORD,{data:route.params.data})
       }else{
 
         dispatch(verifyUser(0, navigation));

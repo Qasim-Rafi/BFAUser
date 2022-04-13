@@ -209,7 +209,8 @@ if(data.statusName==='Paid'){
                             size={2.8}
                             margin={[0, 0, 0, 5]}
                             color={colors.white}>
-                            ${item.dishPrice}
+                              ${parseFloat(item.dishPrice).toFixed(2)}
+                            {/* ${item.dishPrice} */}
                           </ResponsiveText>
                         </View>
                         <View style={{ flexDirection: 'row' }}>
@@ -235,7 +236,7 @@ if(data.statusName==='Paid'){
                 }}>
                 <ResponsiveText size={10} color={colors.yellow}>
                   {'$'}
-                  {data.amount}
+                  {parseFloat(data.amount).toFixed(2)}
                 </ResponsiveText>
               </View>
               <View>
@@ -394,7 +395,7 @@ if(data.statusName==='Paid'){
                   color={colors.yellow}
                   size={3}
                   margin={[0, 10, 0, 0]}>
-                 {data.amount}
+                 {parseFloat(data.amount).toFixed(2)}
                 </ResponsiveText>
               </View>
               <View style={{flex: 0.1}}>

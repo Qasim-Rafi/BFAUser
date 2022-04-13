@@ -46,6 +46,8 @@ import {
 } from 'react-native-indicators';
 import FastImage from 'react-native-fast-image';
 export default function AllDishesList({ route, navigation }) {
+  const profileData = useSelector(state => state.appReducers.profileData.data);
+
   // const data = route.params.data;
   const title = route.params.title;
   const dispatch = useDispatch();
@@ -84,6 +86,14 @@ export default function AllDishesList({ route, navigation }) {
                   ? state.appReducers.moreFromRest.loading
                   : state.appReducers.getdishbycusineid.refreshing,
   );
+
+
+  const key = 'restaurantDishId';
+
+  const arrayUniqueByKey = [...new Map(data.map(item =>
+    [item[key], item])).values()];
+  
+  console.log(arrayUniqueByKey,'arrayUniqueByKey');
   React.useEffect(() => {
     // onLoad();
     if(route.params.id){
@@ -221,7 +231,7 @@ export default function AllDishesList({ route, navigation }) {
       </View>
       <View style={{ flex: 0.9, margin: 20 }}>
         <ResponsiveText size={4} margin={[0, 0, 5, 10]} color={colors.yellow}>
-          {title}
+          {title=="PG's Favourites"? profileData.userInitial+" favourites":title}
         </ResponsiveText>
       </View>
     </View>
@@ -263,7 +273,7 @@ export default function AllDishesList({ route, navigation }) {
     }
     setIndex(index + 1);
   };
-
+//Array.from(new Set(data.map(JSON.stringify))).map(JSON.parse)
   return (
     <View style={{ backgroundColor: colors.black3, flex: 1 }}>
       <FlatList
@@ -271,7 +281,7 @@ export default function AllDishesList({ route, navigation }) {
         stickyHeaderIndices={[0]}
         onEndReached={() => onLoad()}
         onEndReachedThreshold={0.2}
-        data={route.params.id ? data.filter(v => v.cusineName == title) : Array.from(new Set(data.map(JSON.stringify))).map(JSON.parse)}
+        data={route.params.id ? data.filter(v => v.cusineName == title) : arrayUniqueByKey}
         keyExtractor={item => item.id.toString()}
         renderItem={renderItem}
         numColumns={3}

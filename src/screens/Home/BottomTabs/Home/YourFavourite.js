@@ -42,9 +42,13 @@ const YourFavourite = props => {
   const favData = useSelector(state => state.appReducers.favorite.data,)
   const loading = useSelector(state => state.appReducers.favorite.refreshing)
   const dispatch = useDispatch();
-  
   console.log('favData', favData)
+  const key = 'restaurantDishId';
 
+  const arrayUniqueByKey = [...new Map(favData.map(item =>
+    [item[key], item])).values()];
+  
+  console.log(arrayUniqueByKey,'arrayUniqueByKey');
   //   const firstName = 'PG';
   //   const title = firstName + "'s Favorites";
   //   const favButons = [
@@ -79,8 +83,8 @@ const YourFavourite = props => {
       </View>
       <View style={styles.AwardWinningDishesItemsSection}>
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-          {favData.length > 0
-            ? Array.from(new Set(favData.map(JSON.stringify))).map(JSON.parse).map((url, item) => {
+          {arrayUniqueByKey.length > 0
+            ? arrayUniqueByKey.map((url, item) => {
               return (
                 <TouchableOpacity
                   onPress={() =>
@@ -131,7 +135,7 @@ const YourFavourite = props => {
                         style={{
                           opacity: 0.8,top:2,
                           color: 'white', padding: 3,
-                          backgroundColor: '#383131', borderRadius: 7,
+                          backgroundColor: 'black', borderRadius: 7,
                           textAlign: 'center', fontWeight: '900', fontSize: 9
                         }}
                       >

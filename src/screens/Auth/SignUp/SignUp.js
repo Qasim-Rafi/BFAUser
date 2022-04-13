@@ -76,7 +76,17 @@ export default function Signup({navigation}) {
 
   React.useEffect(() => {
     console.log('responseeeeeee', errorString);
-    signupResponse ? setErrorString(signupResponse) : null;
+
+    if (signupResponse === 'Email already exist') {
+      setErrorString(
+        signupResponse +
+          ".\nHave you forgotten your password? Don't worry, You can reset your password here.",
+      );
+      console.log('reset password');
+    } else {
+      signupResponse ? setErrorString(signupResponse) : null;
+
+    }
     // signupResponse?
     // dropdownRef.current.showMessage({
     //   message: 'Error',
@@ -88,7 +98,7 @@ export default function Signup({navigation}) {
     // loginNetworkErr ? setErrorString(loginNetworkErr.message) : null
   }, [signupResponse]);
   React.useEffect(() => {
-    setErrorString('')
+    setErrorString('');
     // console.log('return');
   }, [navigation]);
 
@@ -176,6 +186,14 @@ export default function Signup({navigation}) {
         icon: {icon: 'auto', position: 'left'},
       });
     }
+    // else if (CellphoneNum.length == 7) {
+    //   dropdownRef.current.showMessage({
+    //     message: 'Error',
+    //     description: 'Enter a valid cell phone number',
+    //     type: 'danger',
+    //     icon: {icon: 'auto', position: 'left'},
+    //   });
+    // }
     // if (Address === '') {
     //   dropdownRef.current.showMessage({
     //     message: 'Error',
@@ -195,7 +213,7 @@ export default function Signup({navigation}) {
     } else if (password.length < 8) {
       dropdownRef.current.showMessage({
         message: 'Error',
-        description: 'Password Length should be greater then 8',
+        description: 'Password Length should be greater than 8',
         type: 'danger',
         icon: {icon: 'auto', position: 'left'},
       });
@@ -220,7 +238,7 @@ export default function Signup({navigation}) {
       //   type: 'danger',
       //   icon: {icon: 'auto', position: 'left'},
       // });
-      setErrorString('Invalid Email')
+      setErrorString('Invalid Email');
     } else {
       var obj = {
         UserName: userName,
@@ -265,15 +283,18 @@ export default function Signup({navigation}) {
     // const expressions = {
     //   email: /^\w+([+.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
     // };
-    // if (!expressions.email.test(email) || email.includes(' ')) {
-    //   dropdownRef.current.showMessage({
-    //     message: 'Error',
-    //     description: 'Invalid Email',
-    //     type: 'danger',
-    //     icon: {icon: 'auto', position: 'left'},
-    //   });
-    // return false
-    // }
+    if (type==2&& !expressions.email.test(email) || email.includes(' ')) {
+      // dropdownRef.current.showMessage({
+      //   message: 'Error',
+      //   description: 'Invalid Email',
+      //   type: 'danger',
+      //   icon: {icon: 'auto', position: 'left'},
+      // });
+      setErrorString('Invalid Email')
+      setShowCorrectemailIcon(true);
+          setCorrectemailIcon(false);
+    return false
+    }
     var obj = {
       userName: type == 1 ? userName : '',
       email: type == 2 ? email : '',
@@ -282,7 +303,7 @@ export default function Signup({navigation}) {
     try {
       const res = await Api.post(urls.REGISTER_URL_CHECKS, obj);
       console.log('res', res);
-      if (res && res.success == true) {
+      if (res && res.message == null) {
         // setCorrectemailIcon(true)
         console.log('success = true');
         //  showMessage({
@@ -322,13 +343,16 @@ export default function Signup({navigation}) {
         //   type: 'danger',
         //   icon: { icon: 'auto', position: 'left' },
         // });
-        // if (res.message === "Email already exist") {
-        //   setErrorString(res.message + '.\nHave you forgotten your password? Don\'t worry, You can reset your password here.')
-        //   console.log('reset password')
-        // } else {
-        //   setErrorString(res.message);
-        //   console.log('no reset');
-        // }
+        if (res.message === 'Email already exist') {
+          setErrorString(
+            res.message +
+              ".\nHave you forgotten your password? Don't worry, You can reset your password here.",
+          );
+          console.log('reset password');
+        } else {
+          setErrorString(res.message);
+          console.log('no reset');
+        }
       }
     } catch (error) {
       console.log(error);
@@ -403,6 +427,8 @@ export default function Signup({navigation}) {
               secureTextEntry
               leftIcon={globalPath.LOCK_LOGO}
               autoCapitalize={'none'}
+              maxlength={19}
+
             />
             <Input
               padding={[0, 0, 0, 25]}
@@ -467,7 +493,7 @@ export default function Signup({navigation}) {
                 padding={[0, 0, 0, 25]}
                 onChnageText={text => setState(text)}
                 iconMargin={[0, 10, 0, 0]}
-                placeholder="State"
+                placeholder="District"
                 leftIcon={globalPath.State_ICON}
               />
               <Input
@@ -535,25 +561,25 @@ export default function Signup({navigation}) {
               textColor={colors.black}
               title="SIGN UP "
             /> */}
+            <View style={{marginVertical: 20}}>
+              <ResponsiveText color={errorString=='Record(s) added successfully'?colors.green1:  colors.red}>{errorString}</ResponsiveText>
 
-            <ResponsiveText color={colors.red}>{errorString}</ResponsiveText>
-
-            {errorString ===
-            "Email already exist.\nHave you forgotten your password? Don't worry, You can reset your password here." ? (
-              <View style={styles.footer}>
-                {/* <Icon size={wp(8)}  margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
-                <ResponsiveText
-                  fontFamily="Bold"
-                  color={colors.yellow}
-                  onPress={() =>
-                    navigation.navigate(routeName.FORGOT_PASSWORD)
-                  }>
-                  Reset Password
-                </ResponsiveText>
-                {/* <View style={styles.socialIcon}></View> */}
-              </View>
-            ) : undefined}
-
+              {errorString ===
+              "Email already exist.\nHave you forgotten your password? Don't worry, You can reset your password here." ? (
+                <View style={styles.footer}>
+                  {/* <Icon size={wp(8)}  margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
+                  <ResponsiveText
+                    fontFamily="Bold"
+                    color={colors.yellow}
+                    onPress={() =>
+                      navigation.navigate(routeName.FORGOT_PASSWORD)
+                    }>
+                    Reset Password
+                  </ResponsiveText>
+                  {/* <View style={styles.socialIcon}></View> */}
+                </View>
+              ) : undefined}
+            </View>
             <View style={styles.footer}>
               {/* <Icon size={wp(8)}  margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
               <ResponsiveText margin={[2, 10]} color={colors.white}>

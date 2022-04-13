@@ -34,7 +34,7 @@ export default function DropDown(props) {
           fontSize: 14,
         }}
         //   defaultValueByIndex={props.defaultValueByIndex !== 'Gender' ? props.defaultValueByIndex : null}
-        // defaultValueByIndex={0}
+         defaultValueByIndex={props.defaultValueByIndex}
         //defaultValue={props.defaultValue?props.defaultValue:null}
         defaultButtonText={props.defaultButtonText}
         rowTextStyle={{color: colors.white, alignSelf: 'center', fontSize: 14}}

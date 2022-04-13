@@ -84,7 +84,7 @@ export default function Login({navigation}) {
         contentContainerStyle={{flexGrow: 1, backgroundColor: colors.black}}>
         <View
           style={{
-            flex: 0.96,
+            flex: 1,
             backgroundColor: colors.black,
             justifyContent: 'center',
           }}>
@@ -150,12 +150,12 @@ export default function Login({navigation}) {
             <View style={styles.footer}>
               {/* <Icon size={wp(8)} margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
               <ResponsiveText margin={[0, 10]} color={colors.white}>
-                New user{' '}
+              Remember password?{' '}
                 <ResponsiveText
                   fontFamily="Bold"
                   color={colors.yellow}
-                  onPress={() => navigation.navigate(routeName.SIGN_UP)}>
-                  Sign up
+                  onPress={() => navigation.navigate(routeName.LOGIN)}>
+                  Sign In
                 </ResponsiveText>
               </ResponsiveText>
               {/* <View style={styles.socialIcon}></View> */}

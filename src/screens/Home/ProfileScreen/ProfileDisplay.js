@@ -28,6 +28,7 @@ import CustomInput from '../../../components/customInput';
 import urls from '../../../redux/lib/urls';
 import Api from '../../../redux/lib/api';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import moment from 'moment';
 
 export default function ProfileDisplay({navigation}) {
   const profileData = useSelector(state => state.appReducers.profileData.data);
@@ -51,13 +52,24 @@ export default function ProfileDisplay({navigation}) {
       return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
     }
   };
- 
+  function formatDate(dateString, currentDateFormat, FormattedDateFormat) {
+    return moment(dateString, currentDateFormat).format(FormattedDateFormat);
+  }
+
+  const handleChange = (event, date) => {
+    const format = 'YYYY-MM-DD';
+    const displayFormat = 'DD MMM YYYY';
+
+    const displayDate = formatDate(date, format, displayFormat); // display Date
+    // setDate(displayDate)
+    return displayDate;
+  };
   const userInfo = () => {
     return (
       <View
         style={{
           flex: 0.8,
-          backgroundColor: '#202020',
+          backgroundColor: colors.black3,
           paddingTop: hp(3),
         }}>
         <ScrollView>
@@ -99,24 +111,26 @@ export default function ProfileDisplay({navigation}) {
               </ResponsiveText>
             </View>
           </View> */}
+          {profileData.gender!=null&&profileData.gender!=''&&profileData.gender!=='null'?
           <View style={styles.mainCard}>
             <Icon source={globalPath.GENDER_ICON} />
             <View style={styles.cardView}>
               <ResponsiveText color={colors.grey}>Gender</ResponsiveText>
               <ResponsiveText color={colors.white}>
-                {profileData.gender}
+                {profileData.gender==null||profileData.gender==''?'':profileData.gender}
               </ResponsiveText>
             </View>
-          </View>
+          </View>:null}
+          {profileData.dateofBirth==null||profileData.dateofBirth =="0001-01-01 00:00:00.0000000"?null:
           <View style={styles.mainCard}>
             <Icon source={globalPath.BIRTHDAY_ICON} />
             <View style={styles.cardView}>
               <ResponsiveText color={colors.grey}>Date of Birth</ResponsiveText>
               <ResponsiveText color={colors.white}>
-                {dateFormat(profileData.dateofBirth)}
+                {profileData.dateofBirth==null?'':handleChange('',profileData.dateofBirth)}
               </ResponsiveText>
             </View>
-          </View>
+          </View>}
           <View style={{height: hp(5)}} />
         </ScrollView>
       </View>
@@ -135,25 +149,25 @@ export default function ProfileDisplay({navigation}) {
             <TouchableOpacity
               style={{
                 backgroundColor: colors.black,
-                height: hp(5),
+                height:40,
                 padding: 9,
                 borderRadius: 20,
               }}
               onPress={() => {
                 navigation.goBack();
               }}>
-              <Icon source={globalPath.BACK_BLACK_ARROW} />
+              <Icon tintColor={colors.white} source={globalPath.BACK_BLACK_ARROW} />
             </TouchableOpacity>
             <ResponsiveText size={4}>Profile</ResponsiveText>
             <TouchableOpacity
               onPress={() => navigation.navigate(routeName.PROFILE_SCREEN)}
               style={{
                 backgroundColor: colors.black,
-                height: hp(5),
+                height:40,
                 padding: 10,
                 borderRadius: 20,
               }}>
-              <Icon source={globalPath.EDIT_PROFILE} />
+              <Icon tintColor={colors.white} source={globalPath.EDIT_PROFILE} />
             </TouchableOpacity>
           </View>
           <View

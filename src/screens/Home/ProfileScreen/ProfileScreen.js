@@ -35,7 +35,8 @@ import ImagePicker from 'react-native-image-crop-picker';
 import Modal from 'react-native-modal';
 import urls from '../../../redux/lib/urls';
 import Api from '../../../redux/lib/api';
-import { BarIndicator } from 'react-native-indicators';
+import {BarIndicator} from 'react-native-indicators';
+import moment from 'moment';
 
 export default function ProfileScreen({navigation}) {
   const profileData = useSelector(state => state.appReducers.profileData.data);
@@ -65,11 +66,17 @@ export default function ProfileScreen({navigation}) {
   const [MarriageStatusData, setMarriageStatusData] = useState([]);
 
   const Gender = [
+    {
+      id: 0,
+      lable: 'Gender',
+      icon: require('../../../assets/icons/signupgender.png'),
+    },
     {id: 1, lable: 'Male', icon: require('../../../assets/icons/male.png')},
     {id: 2, lable: 'Female', icon: require('../../../assets/icons/female.png')},
+    // {id: 2, lable: 'Prefer not to say', icon: require('../../../assets/icons/female.png')},
   ];
   // const Gender=['Male','Female']
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(null);
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
   const [img, setImg] = useState(null);
@@ -112,22 +119,28 @@ export default function ProfileScreen({navigation}) {
     setEmail(profileData.email);
     setUsername(profileData.username);
     setcontactNo(profileData.contactNumber);
-    setDate(profileData.dateofBirth);
+    setDate(profileData.dateofBirth == null||profileData.dateofBirth =="0001-01-01 00:00:00.0000000"?null:profileData.dateofBirth);
     setgender(profileData.gender);
-    setChildren(profileData.numberOfChildren);
+    setChildren(
+      profileData.numberOfChildren == null ? '' : profileData.numberOfChildren,
+    );
     setJobInterest(profileData.jobIntrest);
-    setEducation(profileData.educationalBackground);
+    setEducation(
+      profileData.educationalBackground == null
+        ? ''
+        : profileData.educationalBackground,
+    );
     setMaritialStatus(profileData.marriageStatusId);
     setEmpSec(profileData.employmentSectorId);
     setSelectedIndustry(profileData.industryId);
-    setAddress(profileData.address);
-    setPhoneNo(profileData.cellPhone)
+    setAddress(profileData.address=='null'||profileData.address==null?'':profileData.address);
+    setPhoneNo(profileData.cellPhone=='null'||profileData.cellPhone==null?'':profileData.cellPhone);
   };
 
   const GetLookUpIndustry = async item => {
     try {
       const res = await Api.get(urls.GET_LOOKUP_INDUSTRY);
-      console.log('GetLookUpIndustry res', res);
+      // console.log('GetLookUpIndustry res', res);
       if (res && res.success == true) {
         setIndustryData(res.data);
       } else {
@@ -137,7 +150,7 @@ export default function ProfileScreen({navigation}) {
   const GetLookUpEmploymentSector = async item => {
     try {
       const res = await Api.get(urls.GET_LOOKUP_EMP_SEC);
-      console.log('GetLookUpEmploymentSector res', res);
+      // console.log('GetLookUpEmploymentSector res', res);
       if (res && res.success == true) {
         setEmploymentSector(res.data);
       } else {
@@ -171,6 +184,7 @@ export default function ProfileScreen({navigation}) {
     //   type: 'image/jpeg',
     //   name: 'photo.jpg',
     // };
+    // console.log('okooookko');
     var formData = new FormData();
     formData.append('Username', userName);
     formData.append('Email', email);
@@ -179,8 +193,10 @@ export default function ProfileScreen({navigation}) {
     formData.append('Address', Address);
     formData.append('Address2', Address);
     formData.append('EducationalBackground', education);
-    formData.append('Gender', gender);
-    formData.append('DateofBirth', dateFormat(date));
+    formData.append('Gender', gender=='Gender'?'':gender);
+    if (date != null) {
+      formData.append('DateofBirth', dateFormat(date));
+    }
     formData.append('ContactNumber', contactNo);
     formData.append('MarriageStatusId', MaritialStatus);
     formData.append('NumberOfChildren', children);
@@ -199,19 +215,19 @@ export default function ProfileScreen({navigation}) {
     formData.append('JobIntrest', JobInterest);
     formData.append('updatebyId', profileData.id);
 
-    console.log('obj', formData);
+    // console.log('obj', formData);
     try {
-      setLoading(true)
+      setLoading(true);
       const res = await Api.put(
         urls.EDIT_PROFILE + profileData.id,
         formData,
         true,
       );
-      console.log('ree', res);
+      // console.log('ree', res);
       if (res && res.success == true) {
         dispatch(getProfileData());
-        setLoading(false)
-        navigation.goBack()
+        setLoading(false);
+        navigation.goBack();
         // dropdownRef.current.showMessage({
         //   message: 'Alert',
         //   description: 'Order Canceled',
@@ -220,8 +236,7 @@ export default function ProfileScreen({navigation}) {
         //   //backgroundColor:colors.black1
         // });
       } else {
-        setLoading(false)
-
+        setLoading(false);
       }
     } catch (error) {}
   };
@@ -269,9 +284,24 @@ export default function ProfileScreen({navigation}) {
       },
     ]);
   };
+  function formatDate(dateString, currentDateFormat, FormattedDateFormat) {
+    return moment(dateString, currentDateFormat).format(FormattedDateFormat);
+  }
+
+  const handleChange = (event, date) => {
+    const format = 'YYYY-MM-DD';
+    const displayFormat = 'DD MMM YYYY';
+
+    const displayDate = formatDate(date, format, displayFormat); // display Date
+    // setDate(displayDate)
+    return displayDate;
+  };
   const Optional = () => {
     return (
-      <View style={styles.formArea}>
+      <KeyboardAvoidingView 
+      // behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      
+      style={styles.formArea}>
         <ScrollView style={{flexGrow: 1}}>
           <View style={{marginTop: 20, marginBottom: -30, marginLeft: 20}}>
             <ResponsiveText
@@ -313,8 +343,13 @@ export default function ProfileScreen({navigation}) {
                 marginHorizontal: wp(8),
               }}>
               <DropDown
+                defaultValueByIndex={
+                  profileData.gender==null||profileData.gender==''||profileData.gender=='null'
+                    ? 0
+                    : Gender.findIndex(p => p.lable == gender)
+                }
                 data={Gender}
-                defaultButtonText={gender}
+                // defaultButtonText={gender}
                 onSelect={(selectedItem, index) => {
                   console.log(selectedItem, index);
                   setgender(selectedItem.lable);
@@ -333,25 +368,43 @@ export default function ProfileScreen({navigation}) {
                   iconMargin={[0, 10, 0, 0]}
                   leftIcon={globalPath.Calender_ICON}
                   placeholder={
-                    date == null ? 'Date of birth' : dateFormat(date)
+                    date == null
+                      ? 'Date of birth'
+                      : handleChange(
+                          '',
+                          date == null ? profileData.dateofBirth : date,
+                        )
                   }
                 />
               </TouchableOpacity>
             </View>
           </View>
           {show && (
+            //         <DateTimePicker
+            //           // testID="dateTimePicker"
+            //           value={new Date()}
+            //           mode={'date'}
+            //           // is24Hour={true}
+            //           display="default"
+            //           // format="YYYY-MM-DD HH:mm"
+            //           onChange={onChange}
+            //           format={"YYYY-MM-DD"}
+            // displayFormat={"DD MMM YYYY"}
+            //         />
             <DateTimePicker
-              // testID="dateTimePicker"
-              value={new Date(date)}
-              mode={'date'}
-              // is24Hour={true}
+              timeZoneOffsetInMinutes={0}
+              value={new Date()}
+              mode="date"
+              is24Hour
               display="default"
-              format="YYYY-MM-DD HH:mm"
               onChange={onChange}
+              format={'YYYY-MM-DD'}
+              displayFormat={'DD MMM YYYY'}
+              maximumDate={new Date(2009, 1, 1)}
             />
           )}
           <CustomInput
-            // placeHolderText={'Graduate'}
+            placeHolderText={'Graduate'}
             fieldName={'Educational Background'}
             value={education}
             onChangeText={text => setEducation(text)}
@@ -369,16 +422,20 @@ export default function ProfileScreen({navigation}) {
               })}
               defaultButtonText={
                 MarriageStatusData.find(v => v.id == MaritialStatus)?.name
+                  ? MarriageStatusData.find(v => v.id == MaritialStatus)?.name
+                  : 'Select Marital Status'
               }
               onSelect={async (selectedItem, index) => {
-                var id=MarriageStatusData.find(v => v.name == selectedItem)?.id
+                var id = MarriageStatusData.find(
+                  v => v.name == selectedItem,
+                )?.id;
                 console.log(id, 'MarriageStatusData');
                 setMaritialStatus(id);
               }}
             />
           </View>
           <CustomInput
-            //  placeHolderText={'3'}
+            placeHolderText={'0'}
             fieldName={'No of Children'}
             value={children}
             onChangeText={text => setChildren(text)}
@@ -388,7 +445,7 @@ export default function ProfileScreen({navigation}) {
               size={3}
               color={colors.grey1}
               margin={[0, 0, 5, 30]}>
-              Empoyment Sector
+              Employment Sector
             </ResponsiveText>
             <Dropdown
               data={EmploymentSector.map(v => {
@@ -396,9 +453,11 @@ export default function ProfileScreen({navigation}) {
               })}
               defaultButtonText={
                 EmploymentSector.find(v => v.id == EmpSec)?.name
+                  ? EmploymentSector.find(v => v.id == EmpSec)?.name
+                  : 'Select Employment Sector'
               }
               onSelect={async (selectedItem, index) => {
-                var id=EmploymentSector.find(v => v.name == selectedItem)?.id
+                var id = EmploymentSector.find(v => v.name == selectedItem)?.id;
                 console.log(id, 'EmploymentSector');
                 setEmpSec(id);
               }}
@@ -417,9 +476,11 @@ export default function ProfileScreen({navigation}) {
               })}
               defaultButtonText={
                 IndustryData.find(v => v.id == SelectedIndustry)?.name
+                  ? IndustryData.find(v => v.id == SelectedIndustry)?.name
+                  : 'Select Industry'
               }
               onSelect={async (selectedItem, index) => {
-                var id=IndustryData.find(v => v.name == selectedItem)?.id
+                var id = IndustryData.find(v => v.name == selectedItem)?.id;
                 console.log(id, 'IndustryData');
                 setSelectedIndustry(id);
               }}
@@ -441,7 +502,7 @@ export default function ProfileScreen({navigation}) {
               alignSelf: 'center',
             }}>
             <TouchableOpacity
-              onPress={() => submitData()}
+              onPress={submitData}
               style={{
                 alignSelf: 'center',
                 backgroundColor: colors.yellow,
@@ -455,53 +516,58 @@ export default function ProfileScreen({navigation}) {
             </TouchableOpacity>
           </View>
         </ScrollView>
-      </View>
+        </KeyboardAvoidingView>
     );
   };
   const userInfo = () => {
     return (
-      <View
+      <KeyboardAvoidingView
+      // behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={{
           flex: 0.7,
           // borderTopRightRadius: wp(8),
           // borderTopLeftRadius: wp(8),
-          backgroundColor: '#202020',
+          backgroundColor: colors.black3,
           paddingTop: 10,
         }}>
         <ScrollView>
           <View style={{flex: 0.68}}>
             <CustomInput
-              // placeHolderText={'Full Name'}
+              placeHolderText={'Full Name'}
               fieldName={'Full Name'}
               value={fullName}
               onChangeText={text => setFullname(text)}
             />
             <CustomInput
-              // placeHolderText={profileData.username}
+              placeHolderText={'User Name'}
               fieldName={'User Name'}
               value={userName}
               onChangeText={text => setUsername(text)}
+              editable={false}
             />
             <CustomInput
-              // placeHolderText={profileData.email}
+              placeHolderText={'Email'}
               fieldName={'Email'}
               value={email}
               onChangeText={text => setEmail(text)}
+              editable={false}
             />
             <CustomInput
-              //  placeHolderText={profileData.contactNumber}
+              placeHolderText={'Cell Number'}
               fieldName={'Cell Number'}
               value={contactNo}
               onChangeText={text => setcontactNo(text)}
+              editable={false}
             />
             <CustomInput
-              //  placeHolderText={profileData.contactNumber}
+              placeHolderText={'Phone Number'}
               fieldName={'Phone Number'}
               value={PhoneNo}
+              keyboardType={'numeric'}
               onChangeText={text => setPhoneNo(text)}
             />
             <CustomInput
-              //  placeHolderText={profileData.contactNumber}
+              placeHolderText={'Address'}
               fieldName={'Address'}
               value={Address}
               onChangeText={text => setAddress(text)}
@@ -523,12 +589,12 @@ export default function ProfileScreen({navigation}) {
             </TouchableOpacity>
           </View>
         </ScrollView>
-      </View>
+      </KeyboardAvoidingView>
     );
   };
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      // behavior={ 'height'}
       style={styles.container}>
       <View style={styles.container}>
         <View style={styles.screeninfo}>
@@ -541,7 +607,7 @@ export default function ProfileScreen({navigation}) {
             <TouchableOpacity
               style={{
                 backgroundColor: colors.black,
-                height: hp(5),
+                height:40,
                 padding: 9,
                 borderRadius: 20,
               }}
@@ -550,7 +616,7 @@ export default function ProfileScreen({navigation}) {
               }}>
               <Icon source={globalPath.BACK_BLACK_ARROW} />
             </TouchableOpacity>
-            <ResponsiveText size={4}>Profile</ResponsiveText>
+            {/* <ResponsiveText size={4}>Profile</ResponsiveText> */}
             <TouchableOpacity
               // onPress={() => edit()}
               style={{
@@ -681,20 +747,20 @@ export default function ProfileScreen({navigation}) {
               </React.Fragment>
             );
           })}
-{isloading === true ? (
-        <View
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            bottom: 0,
-            right: 0,
-            backgroundColor: 'rgba(65, 65, 65, 0.4)',
-            flex: 1,
-          }}>
-          <BarIndicator color={colors.yellow} size={45} />
-        </View>
-      ) : undefined}
+          {isloading === true ? (
+            <View
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                bottom: 0,
+                right: 0,
+                backgroundColor: 'rgba(65, 65, 65, 0.4)',
+                flex: 1,
+              }}>
+              <BarIndicator color={colors.yellow} size={45} />
+            </View>
+          ) : undefined}
           {/* <View style={{flex:1, backgroundColor:colors.yellow1, justifyContent:'center', alignItems:'center'}}>
             <TouchableOpacity>
             <ResponsiveText size={4}>Profile</ResponsiveText>
@@ -736,7 +802,7 @@ const styles = StyleSheet.create({
     flex: 0.65,
     // borderTopRightRadius: wp(8),
     // borderTopLeftRadius: wp(8),
-    backgroundColor: '#202020',
+    backgroundColor: colors.black3,
     padding: wp(10),
   },
   forgotPasswordContainer: {
@@ -759,7 +825,7 @@ const styles = StyleSheet.create({
     flex: 0.7,
     // borderTopRightRadius: wp(8),
     // borderTopLeftRadius: wp(8),
-    backgroundColor: '#202020',
+    backgroundColor: colors.black3,
     paddingTop: 10,
   },
 });

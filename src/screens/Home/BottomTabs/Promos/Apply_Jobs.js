@@ -78,8 +78,18 @@ export default function Apply_Jobs({ navigation, route }) {
         console.log('jobsssApplied', res);
         if (res && res.success == true) {
           dispatch(getPromoJobsData(1,100))
+          dropdownRef.current.showMessage({
+            message: 'Success',
+            description: 'Your application has been successfully submitted',
+            type: 'success',
+            icon: { icon: 'auto', position: 'left' },
+            duration:4000
+          });
           setLoader(false)
+          setTimeout(() => {
           navigation.goBack();
+          },4000)
+        
         } else {
           setLoader(false)
         }

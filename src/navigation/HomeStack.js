@@ -49,6 +49,7 @@ import TopUp from '../screens/Home/Wallet/topUp'
 import Transfer from '../screens/Home/Wallet/transfer';
 import Home from '../screens/Home/BottomTabs/Home/Home';
 import Notifications from '../components/Static/Notifications';
+import Bali_Center from '.././screens/Home/ProfileScreen/Bali_Center';
 import NotificationList from '../screens/Home/BottomTabs/Home/NotificationList';
 import NewsFeed from '../screens/Home/BottomTabs/Promos/NewsFeed';
 
@@ -60,6 +61,9 @@ function HomeStack() {
       screenOptions={{
         headerShown: false,
       }}
+      tabBarOptions={{
+        keyboardHidesTabBar: true
+     }} 
     // initialRouteName="SPLASH"
     >
       <Stack.Screen name={routeName.LANDING_SCREEN} component={Home} />
@@ -77,6 +81,7 @@ function HomeStack() {
       <Stack.Screen name={routeName.WALLET} component={Wallet} />
       <Stack.Screen name={routeName.TRANSFER} component={Transfer} />
       <Stack.Screen name={routeName.TOP_UP} component={TopUp} />
+      <Stack.Screen name={routeName.BALI_CENTER} component={Bali_Center} />
 
       <Stack.Screen name={routeName.ORDER_HISTORY} component={Order_history} />
       <Stack.Screen name={routeName.RestaurantDetail} component={RestaurantDetail} />
