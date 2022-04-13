@@ -40,11 +40,20 @@ import FlashMessage, {
   showMessage,
   hideMessage,
 } from 'react-native-flash-message';
-import { BarIndicator } from 'react-native-indicators';
 import { Rating, AirbnbRating } from 'react-native-ratings';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import RNModal from 'react-native-modal';
-
+import {
+  BallIndicator,
+  BarIndicator,
+  DotIndicator,
+  MaterialIndicator,
+  PacmanIndicator,
+  PulseIndicator,
+  SkypeIndicator,
+  UIActivityIndicator,
+  WaveIndicator,
+} from 'react-native-indicators';
 const CartDetails = ({ navigation }) => {
   const cartList = useSelector(state => state.appReducers.cartList.data);
   const orderList = useSelector(
@@ -56,6 +65,7 @@ const CartDetails = ({ navigation }) => {
   const dispatch = useDispatch();
   const [selectedItem, SetSelectedItem] = React.useState(null);
   const [selectedBranch, SetSelectedBranch] = React.useState(null);
+  const [loader, setloader] = React.useState(true);
 
   const [random, setRandom] = React.useState([]);
   const [totalPrice, setTotalPrice] = React.useState();
@@ -148,6 +158,12 @@ const CartDetails = ({ navigation }) => {
     });
   }, [navigation]);
   //Remove product
+  useEffect(() => {
+    const timer = setTimeout(() => {
+     setloader(false)
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, []);
   const onItemRemove = async item => {
     console.log('itemm', item);
     // dispatch(removeCart(data));
@@ -1061,6 +1077,9 @@ const CartDetails = ({ navigation }) => {
           // viewabilityConfig={viewConfigRef.current}
           />
         ) : (
+          loader===true?   <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, backgroundColor: 'rgba(65, 65, 65, 0)', flex: 1 }}>
+          < BarIndicator color={colors.yellow1} size={25} />
+        </View>:
           <View
             style={{
               width: wp(100),
@@ -1076,11 +1095,20 @@ const CartDetails = ({ navigation }) => {
               source={globalPath.NORECORD_ICON}
             />
           </View>
-        )}
+
+          )}
       </View>
       <FlashMessage ref={dropdownRef} />
 
       <View style={styles.centeredView}></View>
+      {/* {
+          loader === true ?
+            <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, backgroundColor: 'rgba(65, 65, 65, 0.5)', flex: 1 }}>
+              < BarIndicator color={colors.black} size={25} />
+            </View>
+            :
+            undefined
+        } */}
     </View>
   );
 };

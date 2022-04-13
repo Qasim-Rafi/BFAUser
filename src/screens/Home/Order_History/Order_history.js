@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
 import {
   ImageBackground,
   ScrollView,
@@ -30,6 +31,13 @@ import {routeName} from '../../../constants/routeName';
 import {getOrders, getOrdersHistory} from '../../../redux/actions/user.actions';
 import {useDispatch, useSelector} from 'react-redux';
 export default function Order_history({navigation}) {
+  const [loader, setloader] = React.useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+     setloader(false)
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, []);
   const orderList = useSelector(state => state.appReducers.orderHistory.data);
   const orderList_Loading = useSelector(
     state => state.appReducers.orderHistory.loading,
@@ -87,9 +95,11 @@ export default function Order_history({navigation}) {
       </View>
       <ScrollView style={{flex: 0.7, marginHorizontal: 10}}>
         <ResponsiveText color={colors.white}>My Order  </ResponsiveText>
-        <ResponsiveText color={colors.yellow1}>  {orderList.length} orders </ResponsiveText>
+        <ResponsiveText margin={[0,0,0,wp(75)]} color={colors.grey}>({orderList.length}) orders </ResponsiveText>
       
-        {orderList.map((item, index) => {
+        { orderList.length>0?
+        orderList.map((item, index) => {
+          orderList.length
           return (
             <TouchableOpacity
               onPress={() =>
@@ -156,7 +166,7 @@ export default function Order_history({navigation}) {
                     </View>
                     <View style={{flexDirection: 'row', marginLeft: 20}}>
                       <ResponsiveText size={2.5} color={colors.grey}>
-                        Status:
+                        Status:{' '}
                       </ResponsiveText>
                       <ResponsiveText size={2.5} color={item.statusName=='Cancled'?colors.red1:item.statusName=='Paid'?colors.blue1:item.statusName=='InProcess'?colors.green1:item.statusName=='Delivered'?colors.yellow: item.statusName=='Served'?colors.yellow:item.statusName=='Billed'?colors.green1:colors.white}>
                         {item.statusName}
@@ -183,7 +193,27 @@ export default function Order_history({navigation}) {
               </View>
             </TouchableOpacity>
           );
-        })}
+        }):
+          loader===true?   <View style={{justifyContent:'center', backgroundColor: 'rgba(65, 65, 65, 0)', flex: 1 }}>
+          < BarIndicator color={colors.yellow1} size={25} />
+        </View>:
+          <View
+            style={{
+              width: wp(100),
+              marginTop: 100,
+              alignItems: 'center',
+              alignSelf: 'center',
+            }}>
+            <Icon
+              borderColor={colors.yellow}
+              borderWidth={0}
+              borderRadius={0}
+              size={250}
+              source={globalPath.NORECORD_ICON}
+            />
+          </View>
+
+          }
       </ScrollView>
       {/* {orderList_Loading === true && orderList.length==0? (
         <View
