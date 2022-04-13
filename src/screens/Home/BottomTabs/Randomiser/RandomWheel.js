@@ -33,6 +33,7 @@ import { showMessage } from 'react-native-flash-message';
 import urls from '../../../../redux/lib/urls';
 import Api from '../../../../redux/lib/api';
 import AsyncStorage from '@react-native-community/async-storage';
+import { BarIndicator } from 'react-native-indicators';
 
 
 
@@ -57,13 +58,14 @@ class RandomWheelClass extends React.Component {
             selectedAreaId: 1,
             selectedDistanceId: 6,
             selectedPremiseId: 1,
-            noOfResults: 1,
+            noOfResults: 6,
             areaSelected: false,
             distanceSelected: false,
             premiseSelected: false,
             dishesSelected: false,
             getRandomiserSuccess: false,
-            isThemeDark:true
+            isThemeDark:true,
+            take: 6
         };
         this.child = null;
     }
@@ -108,7 +110,14 @@ class RandomWheelClass extends React.Component {
                     (position) => {
                         console.log(position);
                         this.setState({ lat: position.coords.latitude, long: position.coords.longitude })
-                        this.props.dispatch(GetNearestRestaurantAction({ lat: position.coords.latitude, long: position.coords.longitude, distance: this.state.selectedDistanceId }))
+                        this.props.dispatch(GetNearestRestaurantAction({ 
+                            lat: !this.state.areaSelected && !this.state.premiseSelected ? position.coords.latitude : 0,
+                            long: !this.state.areaSelected && !this.state.premiseSelected ? position.coords.longitude : 0,
+                            distance: this.state.selectedDistanceId, 
+                            pId: !this.state.premiseSelected ? 0 : this.state.selectedPremiseId , 
+                            aId: !this.state.areaSelected? 0 : this.state.selectedAreaId,  
+                            take: this.state.noOfResults
+                        }))
                     },
                     (error) => {
                         // See error code charts below.
@@ -278,7 +287,19 @@ class RandomWheelClass extends React.Component {
                                 //     type: "info",
                                 // })
                                 null
-                            : null}
+                            : <View
+                            style={{
+                              position: 'absolute',
+                              top: 0,
+                              left: 0,
+                              bottom: 0,
+                              right: 0,
+                              backgroundColor: 'rgba(65, 65, 65, 0.5)',
+                              flex: 1,
+                              zIndex: 10,
+                            }}>
+                            <BarIndicator color={colors.yellow} size={50} />
+                          </View>}
 
 
 
@@ -466,21 +487,21 @@ class RandomWheelClass extends React.Component {
                                     <View style={{ display: 'flex', flexDirection: 'row', marginTop: 5 }}>
                                         <RadioGroup color={colors.yellow} style={{ flex: 1, flexDirection: 'row' }}
                                             onSelect={(index, value) => {
-                                                this.setState({ noOfResults: value })
+                                                this.setState({ noOfResults: value, take:value })
                                                 console.log(index, value, this.state.noOfResults);
                                             }}
-                                            selectedIndex={this.state.noOfResults-1}
+                                            selectedIndex={this.state.noOfResults-5}
                                         >
-                                            <RadioButton value={1} style={{ marginStart: 10 }}>
-                                                <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>1</ResponsiveText>
+                                            <RadioButton value={5} style={{ marginStart: 10 }}>
+                                                <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>5</ResponsiveText>
                                             </RadioButton>
 
-                                            <RadioButton value={2} style={{ marginStart: 10 }}>
-                                                <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>2</ResponsiveText>
+                                            <RadioButton value={6} style={{ marginStart: 10 }}>
+                                                <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>6</ResponsiveText>
                                             </RadioButton>
 
-                                            <RadioButton value={3} style={{ marginStart: 10 }}>
-                                                <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>3</ResponsiveText>
+                                            <RadioButton value={7} style={{ marginStart: 10 }}>
+                                                <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>7</ResponsiveText>
                                             </RadioButton>
                                         </RadioGroup>
 
@@ -499,7 +520,14 @@ class RandomWheelClass extends React.Component {
                                 onPress={() => {
                                     {
                                         this.setState({ isModalVisible: false });
-                                        this.props.dispatch(GetNearestRestaurantAction({ lat: this.state.lat, long: this.state.long, distance: this.state.selectedDistanceId }));
+                                        this.props.dispatch(GetNearestRestaurantAction({ 
+                                            lat: !this.state.areaSelected || !this.state.premiseSelected ? this.state.lat : 0,
+                                            long: !this.state.areaSelected || !this.state.premiseSelected ? this.state.long : 0,
+                                            distance: this.state.selectedDistanceId, 
+                                            pId: !this.state.premiseSelected ? 0 : this.state.selectedPremiseId , 
+                                            aId: !this.state.areaSelected? 0 : this.state.selectedAreaId,  
+                                            take: this.state.noOfResults
+                                        }));
                                         if(this.state.getRandomiserSuccess){
                                             this.updateUserRandomiserSettings()
                                         }else{

@@ -1152,7 +1152,7 @@ export function* getNearestRestaurantsSaga() {
 function* getNearestRestaurantsSagaApi(data) {
   console.log(data, 'Data in getNearestRestaurantsSaga')
   try {
-    const response = yield Api.get(urls.GET_NEAREST_RESTAURANTS + data.data.long + '/' + data.data.lat + '/' + data.data.distance);
+    const response = yield Api.get(urls.GET_NEAREST_RESTAURANTS + data.data.long + '/' + data.data.lat + '/' + data.data.distance + '/' + data.data.pId + '/' + data.data.aId + '/' + data.data.take);
     console.log(response, 'NearestRestaurants');
     if (response && response.success == true) {
       yield put({
