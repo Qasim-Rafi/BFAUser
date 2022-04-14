@@ -16,6 +16,7 @@ import {
 } from '../../../../redux/actions/user.actions';
 import urls from '../../../../redux/lib/urls';
 import Api from '../../../../redux/lib/api';
+import { routeName } from '../../../../constants/routeName';
 export default function NotificationList({navigation}) {
   const dispatch = useDispatch();
 
@@ -98,7 +99,7 @@ export default function NotificationList({navigation}) {
         </ResponsiveText>
         {NotificationData.map((item, index) => {
           return (
-            <View
+            <TouchableOpacity onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
               style={{
                 backgroundColor:item.seen?colors.black2: colors.black1,
                 borderRadius: 5,
@@ -159,7 +160,7 @@ export default function NotificationList({navigation}) {
                 {item.wallet}
               </ResponsiveText> */}
               </View>
-            </View>
+            </TouchableOpacity>
           );
         })}
       </ScrollView>
