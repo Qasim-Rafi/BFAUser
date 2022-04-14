@@ -38,24 +38,24 @@ export default function DishDetails({route, navigation}) {
 
     const subscribe = navigation.addListener('focus', (e) => {
 
-      // if (route.params.dish.restaurantSoftDrinksList.length > 0) {
-      //   route.params.dish.restaurantSoftDrinksList.forEach((e,i) => {
-      //     delete route.params.dish.restaurantSoftDrinksList[i].quantity;
+      if (route.params.dish.restaurantSoftDrinksList.length > 0) {
+        route.params.dish.restaurantSoftDrinksList.forEach((e,i) => {
+          delete route.params.dish.restaurantSoftDrinksList[i].quantity;
 
-      //   });
-      // }
-      // if (route.params.dish.restaurantDishExtraItemList.length > 0) {
-      //   route.params.dish.restaurantDishExtraItemList.forEach((e,i) => {
-      //     delete route.params.dish.restaurantDishExtraItemList[i].quantity;
+        });
+      }
+      if (route.params.dish.restaurantDishExtraItemList.length > 0) {
+        route.params.dish.restaurantDishExtraItemList.forEach((e,i) => {
+          delete route.params.dish.restaurantDishExtraItemList[i].quantity;
 
-      //   });
-      // }
-      // if (route.params.dish.restaurantDishLinkedItemList.length > 0) {
-      //   route.params.dish.restaurantDishLinkedItemList.forEach((e,i) => {
-      //     delete route.params.dish.restaurantDishLinkedItemList[i].quantity;
+        });
+      }
+      if (route.params.dish.restaurantDishLinkedItemList.length > 0) {
+        route.params.dish.restaurantDishLinkedItemList.forEach((e,i) => {
+          delete route.params.dish.restaurantDishLinkedItemList[i].quantity;
 
-      //   });
-      // }
+        });
+      }
     addDish(route.params.dish);
     console.log('detail dataaaaaaa', route.params);
 
