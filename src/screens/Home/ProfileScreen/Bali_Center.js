@@ -3,11 +3,71 @@ import { View, Text,Image, TextInput, TouchableOpacity, ImageBackground,StyleShe
 import { colors } from '../../../constants/colorsPallet'
 import { wp,hp } from '../../../helpers/Responsiveness'
 import Icon from '../../../components/Icon'
+import FlashMessage from 'react-native-flash-message';
+import {
+ 
+  SkypeIndicator,
+} from 'react-native-indicators';
 import { globalPath } from '../../../constants/globalPath'
 import ResponsiveText from '../../../components/RnText'
 import { useSelector } from 'react-redux'
+
+import urls from '../../../redux/lib/urls'
+import { addComplain } from '../../../redux/actions/user.actions'
+import Api from '../../../redux/lib/api'
 export default function Bali_Center({ navigation, route }) {
   const [text, setText] = useState('');
+  const dropdownRef = React.useRef(null);
+
+  const [loadingg, setLoadingg] = useState(false);
+ 
+  const AddCompalin = async id => {
+   
+    const obj = {    
+      compalin: text,
+    };
+    console.log('complainnnnn', obj);
+    // dispatch(removeCart(data));
+    if (text === '') {
+      dropdownRef.current.showMessage({
+        message: 'Error',
+        description: 'Please enter something',
+        type: 'danger',
+        icon: { icon: 'auto', position: 'left' },
+      });}
+      else{
+    try {
+      setLoadingg(true);
+      const res = await Api.post(urls.HELP_CENTER,obj);
+      console.log('res', res);
+      if (res && res.success == true) {
+        setText('')
+        // dispatch(addComplain());
+        dropdownRef.current.showMessage({
+          message: 'Alert',
+          description: 'Submit Successfully',
+          type: 'success',
+          icon: { icon: 'auto', position: 'left' },
+          //backgroundColor:colors.black1
+        });
+        setLoadingg(false);
+        setTimeout(() => {
+          navigation.goBack();
+          },1000)
+      } else {
+        setLoadingg(false);
+
+        dropdownRef.current.showMessage({
+          message: 'Alert',
+          description: 'Something went wrong',
+          type: 'danger',
+          icon: { icon: 'auto', position: 'left' },
+          //backgroundColor:colors.black1
+        });
+      }
+    } catch (error) { }
+  }
+  };
 
     const profileData = useSelector(state => state.appReducers.profileData.data);
     console.log('Profile: ', profileData);
@@ -79,31 +139,37 @@ export default function Bali_Center({ navigation, route }) {
               }}
               textAlignVertical="top"
               multiline={true}
-              placeholderTextColor={colors.grey}
-              placeholder="Message...."
+              placeholder="Message......"
               onChangeText={text => setText(text)}
               defaultValue={text}
             />
           </View>
 
-          <TouchableOpacity style={styles.signin}>
-             
+          <TouchableOpacity style={styles.signin} onPress={() => {
+                AddCompalin();
+              }}>
+                {loadingg == true ?
+            <  SkypeIndicator count={5} color={colors.black} size={30} />
+             :
                 <ResponsiveText color={colors.black} size={4}>
                  Submit
                 </ResponsiveText>
+}
               
             </TouchableOpacity>
             <Image
               source={globalPath.BFA_LOGO}
               style={{opacity:0.3, height: hp(8), width:wp(11),alignSelf:"flex-end",top:hp(26),right:wp(2),resizeMode:'contain'}}
             />
+      <FlashMessage ref={dropdownRef} />
+
                    </View>
     )
 }
 const styles = StyleSheet.create({
   
     signin: {
-        top:hp(10),
+        top:hp(2),
       backgroundColor: colors.yellow,
       width: wp(30),
       height: hp(6),

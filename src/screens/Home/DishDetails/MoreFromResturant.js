@@ -40,7 +40,7 @@ const MoreFromResturant = (props, navigation) => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(moreFromRestaurant(props.restaurantBranchId));
+    dispatch(moreFromRestaurant(445,1,4));
   }, []);
   return (
     <>

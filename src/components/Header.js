@@ -160,7 +160,7 @@ const Header = ({
             }}>
             <Icon
               borderRadius={30}
-              size={props.iconPath ? (wp(10), hp(6)) : 25}
+              size={props.iconPath ? (wp(10), hp(6)) : 300}
               resizeMode={'cover'}
               source={profileData.fullPath
                 ? {uri: profileData.fullPath}

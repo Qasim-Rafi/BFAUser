@@ -16,10 +16,12 @@ export default urls = {
   REGISTER_URL: 'api/Auth/Register',
   RESTAURANT_AWARDS: 'api/RestaurantAwards/GetRestaurantAwardsAll',
   CUSINE_URL: 'api/Cusine/GetCusineAll/', //Cusine list
+  //help_center
+  HELP_CENTER:'api/MoreFromRestaurant/AddUserComplaints',
   // PROMOTIONS: 'api/HomeAdSlideShowAdmin/GetHomeAdSlideShowAdminAll',
   RESTAURANT_DISH_ALL: 'api/RestaurantDish/GetRestaurantDishAll/', /// bfa Recomendation
   DISH_CALORIE: 'api/RestaurantBranchesAdmin/GetRestaurantDishCalorie/', //MORE about dish detail
-  MORE_RESTAURANT: 'api/RestaurantDish/GetMoreFromRestaurant/', //MORE from restaurant
+  MORE_RESTAURANT: 'api/MoreFromRestaurant/GetMoreFromRestaurantForApplicationAll/', //MORE from restaurant
   GET_USER: 'api/Users/GetUser/2',
   GET_BFA_PARTNERS: 'api/AdminBFAPartner/GetAdminBFAPartnerAll/24/1/40',
   GET_ADD_BANNER: 'api/HomeAdSlideShowAdmin/GetHomeAdSlideShowAdminAll',
