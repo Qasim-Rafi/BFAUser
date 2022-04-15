@@ -45,7 +45,7 @@ export default function TransactionConfirmation({route, navigation}) {
     var obj = {
       ...route.params.obj,
       ...{
-        OrderType: mode == 'mode1' ? 2 :'mode2' ? 1 : 2,
+        OrderType: mode == 'mode1' ? 'DineIn' :'mode2' ? 'TakeAway' : 'Self_Pickup',
         tip: activeTabs === 'tab1' ? 0 : count,
       },
     };
