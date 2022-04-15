@@ -129,9 +129,9 @@ const Home = ({navigation}) => {
 
     dispatch(getOrders());
     dispatch(GetUserRandomiserSetting());
-     setInterval(() => {
-      dispatch(getNotificationData());
-    }, 5000);
+    //  setInterval(() => {
+    //   dispatch(getNotificationData());
+    // }, 5000);
     
   }, []);
 

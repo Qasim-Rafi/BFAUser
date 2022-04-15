@@ -32,10 +32,14 @@ export const SearchResult = (SearchText, selected) => {
   };
 };
 //More from rest
-export const moreFromRestaurant = (id) => {
+export const moreFromRestaurant = (id,index,limit) => {
   return {
     type: types.MORE_FROM_RESTAURANT_REQUEST,
-    data: id
+    data: {
+      index: index,
+      limit: limit,
+      id:id
+    },
   };
 };
 //GET PAYMENT HISTORY
@@ -208,7 +212,14 @@ export const getFavorite = (index, limit) => {
     },
   };
 };
-
+//Add complain
+export const addComplain = data => {
+  console.log('okokokokoko',data)
+  return {
+    type: types.SEND_HELP_CENTER_REQUEST,
+    data,
+  };
+};
 export const addFavorite = data => {
   // console.log('okokokokoko',data)
   return {

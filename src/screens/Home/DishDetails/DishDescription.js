@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   Text,
@@ -32,9 +32,15 @@ export default function DishDescription(props) {
   const navigation = useNavigation();
 
   console.log(props.item, 'itemmmpropsss');
-  useEffect(()=>{
+  useEffect(() => {
+    setLiked(props.item.userLiked);
+  }, [liked]);
 
-  },[liked])
+  const updateLike = () => {
+    props.item.userLiked = !props.item.userLiked;
+    setLiked(!liked);
+    // console.log(props.item.userLiked, 'props.item.userLiked');
+  };
   return (
     <View>
       <View>
@@ -90,21 +96,28 @@ export default function DishDescription(props) {
         <TouchableOpacity
           style={{alignItems: 'center'}}
           onPress={() => {
-            if(favData.some(o => o.restaurantDishId === props.item.restaurantDishId) ||liked){
-              dispatch(onRemoveFavorite(props.item))
-              setLiked(!liked)
-            }else{
+            if (
+              favData.some(
+                o => o.restaurantDishId === props.item.restaurantDishId,
+              ) ||
+              liked
+            ) {
+              dispatch(onRemoveFavorite(props.item));
+              updateLike();
+            } else {
               dispatch(addFavorite(props.item));
-              setLiked(!liked)
-
+              updateLike();
             }
             // favData.some(o => o.restaurantDishId === props.item.restaurantDishId) || props.item.userLiked
-            //   ? 
-            //   : 
+            //   ?
+            //   :
           }}>
           <Icon
             source={
-              liked || favData.some(o => o.restaurantDishId === props.item.restaurantDishId)
+              liked ||
+              favData.some(
+                o => o.restaurantDishId === props.item.restaurantDishId,
+              )
                 ? globalPath.F_HEART
                 : globalPath.HEART
             }
@@ -123,7 +136,12 @@ export default function DishDescription(props) {
           </View>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => navigation.navigate(routeName.CONTACT_US,props.item.restaurantBranchId)}>
+          onPress={() =>
+            navigation.navigate(
+              routeName.CONTACT_US,
+              props.item.restaurantBranchId,
+            )
+          }>
           <View style={{alignItems: 'center'}}>
             <Icon source={globalPath.CONTACT} />
             <ResponsiveText top={5} color={colors.yellow}>
@@ -166,6 +184,6 @@ const styles = StyleSheet.create({
   },
   priceDesc: {
     padding: 20,
-    flex:4
+    flex: 4,
   },
 });

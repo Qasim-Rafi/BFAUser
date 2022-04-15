@@ -572,10 +572,12 @@ export function* moreFromRestSaga() {
   yield takeLatest(types.MORE_FROM_RESTAURANT_REQUEST, moreFromRestSagaApi);
 }
 function* moreFromRestSagaApi(data) {
-  const id = data.data;
+  const id = data.data.id;
+  const index = data.data.index;
+  const limit = data.data.limit;
 
   console.log('paramsssssssssss: ', data);
-  const url = urls.MORE_RESTAURANT +id;
+  const url = urls.MORE_RESTAURANT +id+'/'+index+'/'+limit;
   console.log('People Url: ', url);
   try {
     const response = yield Api.get(url);
