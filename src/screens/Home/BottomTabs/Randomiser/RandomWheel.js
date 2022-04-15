@@ -206,7 +206,7 @@ class RandomWheelClass extends React.Component {
         );
 
         const wheelOptions = {
-            rewards: this.state.restaurantSelected ? this.props.restaurantList.map(names => names.name) : this.props.favoriteDishesData.map(names => names.dishName) ,
+            rewards: this.props.restaurantList.map(names => names.name) ,
             knobSize: 30,
             borderWidth: 5,
             borderColor: '#fff',
