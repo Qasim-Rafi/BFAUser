@@ -10,12 +10,15 @@ import {hp} from '../helpers/Responsiveness';
 import {wp} from '../helpers/Responsiveness';
 import Icon from './Icon';
 import ResponsiveText from './RnText';
+import { useSelector } from 'react-redux';
 
 export default function DropDown(props) {
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
+
   return (
     <View
       style={{
-        backgroundColor: colors.black1,
+        backgroundColor: isThemeDark ? colors.black1 : colors.grey,
         height: props.height ? props.height : hp(6),
         width: props.width ? props.width : wp(85),
         alignSelf: 'center',
@@ -39,12 +42,12 @@ export default function DropDown(props) {
         defaultButtonText={props.defaultButtonText}
         rowTextStyle={{color: colors.white, alignSelf: 'center', fontSize: 14}}
         rowStyle={{
-          backgroundColor: colors.black1,
-          borderBottomColor: colors.black1,
+          backgroundColor: isThemeDark ? colors.black1 : colors.grey,
+          borderBottomColor: isThemeDark ? colors.black1 : colors.grey,
           borderBottomWidth: 0,
         }}
         buttonStyle={{
-          backgroundColor: colors.black1,
+          backgroundColor: isThemeDark ? colors.black1 : colors.grey,
           height: props.height ? props.height : hp(6),
           width: props.width ? props.width : wp(81),
           alignSelf: 'center',
@@ -61,7 +64,7 @@ export default function DropDown(props) {
           return (
             <Icon
               source={globalPath.DOWN_ARROW}
-              tintColor={colors.white}
+              tintColor={isThemeDark ? colors.white : colors.black}
               size={10}
             />
           );
@@ -78,7 +81,7 @@ export default function DropDown(props) {
                 margin={[0, 0, 0, 10]}
                 size={20}
               />
-              <Text style={{color: colors.grey, marginLeft: 10, top: -3}}>
+              <Text style={{color: isThemeDark ? colors.grey : colors.black1, marginLeft: 10, top: -3}}>
                 {selectedItem.lable}
               </Text>
             </View>
@@ -91,7 +94,7 @@ export default function DropDown(props) {
           return (
             <View style={{flexDirection: 'row'}}>
               <Icon source={item.icon} margin={[0, 0, 0, 15]} size={20} />
-              <Text style={{color: colors.white, marginLeft: 10}}>
+              <Text style={{color: isThemeDark ? colors.white : colors.black, marginLeft: 10}}>
                 {item.lable}
               </Text>
             </View>

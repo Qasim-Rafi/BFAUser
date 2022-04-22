@@ -7,8 +7,10 @@ import {hp} from '../helpers/Responsiveness';
 import {wp} from '../helpers/Responsiveness';
 import Icon from './Icon';
 import {globalPath} from '../constants/globalPath';
+import { useSelector } from 'react-redux';
 
 export default function CustomInput(props) {
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
   return (
     <View style={{marginTop: 15}}>
       <ResponsiveText color={colors.grey1} size={3} margin={[0, 0, 2, 30]}>
@@ -16,7 +18,7 @@ export default function CustomInput(props) {
       </ResponsiveText>
       <View
         style={{
-          backgroundColor: colors.black1,
+          backgroundColor: isThemeDark ? colors.black1 : colors.grey,
           height: hp(6),
           width: props.width ? props.width : wp(85),
           alignSelf: 'center',
@@ -27,8 +29,8 @@ export default function CustomInput(props) {
           placeholder={
             props.placeHolderText ? props.placeHolderText : undefined
           }
-          placeholderTextColor={colors.grey}
-          style={{marginStart: 20, color: colors.white, width: wp(40)}}
+          placeholderTextColor={isThemeDark ? colors.grey : colors.lighterGrey }
+          style={{marginStart: 20, color: isThemeDark ? colors.white : colors.black, width: wp(40)}}
           value={props.value}
           onChangeText={props.onChangeText}
           editable={props.editable}

@@ -5,16 +5,18 @@ import ResponsiveText from '../../../components/RnText';
 import TimeTable from './TimeTable';
 import Restaurant_Description from './ResturantDesceiption';
 import { colors } from '../../../constants/colorsPallet';
+import { useSelector } from 'react-redux';
 
 const Info = (props) => {
   const [data, setData] = useState(props.data)
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
   console.log('facilities', props.data)
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <Restaurant_Description data={data} logo={props.logo}/>
       <View>
         <View style={{ marginHorizontal: 20, marginVertical: 10 }}>
-          <ResponsiveText size={4} color={colors.white} >Facilities</ResponsiveText>
+          <ResponsiveText size={4} color={isThemeDark ?  colors.white: colors.black} >Facilities</ResponsiveText>
           <FacilityList data={data.facilitiesTaglist} />
           {/* <View style={{ display: 'flex', flexDirection: 'row' }}>
             <Icon

@@ -18,6 +18,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getFavouiteRestaurent } from '../../../../redux/actions/user.actions';
 export default function FavouriteRestaurants(props) {
   const favDataRestaurant = useSelector(state => state.appReducers.favoriteRestaurant.data,)
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
   console.log(favDataRestaurant,'resssss')
   const dispatch = useDispatch();
   React.useEffect(() => {
@@ -25,9 +26,9 @@ export default function FavouriteRestaurants(props) {
   }, []);
  
   return (
-    <View style={{backgroundColor: colors.black3, flex: 1}}>
+    <View style={{backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite, flex: 1}}>
       <View style={{flex: 0.9, margin: 20}}>
-        <ResponsiveText size={4} margin={[0, 0, 5, 10]} color={colors.yellow}>
+        <ResponsiveText size={4} margin={[0, 0, 5, 10]} color={isThemeDark ? colors.yellow : colors.black}>
           Favorite Restaurants
         </ResponsiveText>
         <View style={{flexDirection: 'row', flexWrap: 'wrap', width: wp(100)}}>
@@ -49,6 +50,8 @@ export default function FavouriteRestaurants(props) {
                     borderRadius: 7,
                     overflow: 'hidden',
                     flexDirection: 'row',
+                    borderWidth: 0.5, 
+                    borderColor: colors.black3
                   }}>
                     <ImageBackground
                     imageStyle={{opacity: 1}}

@@ -35,6 +35,8 @@ export default function TransactionConfirmation({route, navigation}) {
   const [pickup, setPickup] = useState(true);
   const dispatch = useDispatch();
 
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
+
   useEffect(() => {
     //addTotal(route.params);
     console.log('PARAMS CONFIRM ', route.params);
@@ -128,11 +130,11 @@ export default function TransactionConfirmation({route, navigation}) {
     }
   };
   return (
-    <View style={{flex: 1, backgroundColor: colors.black3}}>
+    <View style={{flex: 1, backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}}>
       <View
         style={{
           flex: 0.1,
-          backgroundColor: colors.black2,
+          backgroundColor: isThemeDark ? colors.black2 : colors.white,
           justifyContent: 'center',
         }}>
         <Header
@@ -141,11 +143,11 @@ export default function TransactionConfirmation({route, navigation}) {
           navigation={navigation}
         />
       </View>
-      <View style={{flex: 0.9, backgroundColor: colors.black3}}>
+      <View style={{flex: 0.9, backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}}>
         <ResponsiveText margin={[25, 0, 0, 20]} color={colors.yellow}>
           Transaction Confirmation
         </ResponsiveText>
-        <ResponsiveText margin={[15, 0, 0, 20]} color={colors.white}>
+        <ResponsiveText margin={[15, 0, 0, 20]} color={isThemeDark ?  colors.white: colors.black}>
           Confirm payment for the following:
         </ResponsiveText>
         <View
@@ -156,9 +158,9 @@ export default function TransactionConfirmation({route, navigation}) {
             flexDirection: 'row',
             justifyContent: 'space-between',
             borderBottomWidth: 1,
-            borderBottomColor: colors.black2,
+            borderBottomColor: isThemeDark ?  colors.black2: colors.white,
           }}>
-          <ResponsiveText color={colors.white}>Restaurant Name</ResponsiveText>
+          <ResponsiveText color={isThemeDark ?  colors.white: colors.black}>Restaurant Name</ResponsiveText>
           <ResponsiveText color={colors.yellow}>
             {data.restaurantName}
           </ResponsiveText>
@@ -207,13 +209,13 @@ export default function TransactionConfirmation({route, navigation}) {
               setMode('mode1');
             }}
             style={{
-              backgroundColor: mode=='mode1' ? colors.yellow : colors.black2,
+              backgroundColor: mode=='mode1' ? colors.yellow : isThemeDark ?  colors.black2: colors.white,
               flex: 1,
               margin: 1,
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <ResponsiveText color={mode=='mode1' ? colors.black : colors.yellow}>
+            <ResponsiveText color={mode=='mode1' ? isThemeDark ?  colors.black: colors.white : colors.yellow}>
               Take Away
             </ResponsiveText>
           </TouchableOpacity>
@@ -222,13 +224,13 @@ export default function TransactionConfirmation({route, navigation}) {
               setMode('mode2');
             }}
             style={{
-              backgroundColor: mode=='mode2' ? colors.yellow : colors.black2,
+              backgroundColor: mode=='mode2' ? colors.yellow : isThemeDark ?  colors.black2: colors.white,
               flex: 1,
               margin: 1,
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <ResponsiveText color={mode=='mode2' ? colors.black : colors.yellow}>
+            <ResponsiveText color={mode=='mode2' ? isThemeDark ?  colors.black: colors.white : colors.yellow}>
               Dine In
             </ResponsiveText>
           </TouchableOpacity>
@@ -237,13 +239,13 @@ export default function TransactionConfirmation({route, navigation}) {
               setMode('mode3');
             }}
             style={{
-              backgroundColor: mode=='mode3' ? colors.yellow : colors.black2,
+              backgroundColor: mode=='mode3' ? colors.yellow : isThemeDark ?  colors.black2: colors.white,
               flex: 1,
               margin: 1,
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <ResponsiveText color={mode=='mode3' ? colors.black : colors.yellow}>
+            <ResponsiveText color={mode=='mode3' ? isThemeDark ?  colors.black: colors.white : colors.yellow}>
               Self Pick Up
             </ResponsiveText>
           </TouchableOpacity>
@@ -252,12 +254,12 @@ export default function TransactionConfirmation({route, navigation}) {
         <View
           style={{
             paddingBottom: 10,
-            backgroundColor: colors.black2,
+            backgroundColor: isThemeDark ?  colors.black2: colors.white,
             borderRadius: 5,
             marginHorizontal: 20,
             marginTop: 15,
           }}>
-          <ResponsiveText color={colors.white} margin={[15, 0, 0, 15]}>
+          <ResponsiveText color={isThemeDark ?  colors.white: colors.black} margin={[15, 0, 0, 15]}>
             Add Tip?
           </ResponsiveText>
           <View
@@ -277,14 +279,14 @@ export default function TransactionConfirmation({route, navigation}) {
               }}
               style={{
                 backgroundColor:
-                  activeTabs === 'tab1' ? colors.yellow : colors.black2,
+                  activeTabs === 'tab1' ? colors.yellow : isThemeDark ?  colors.black2: colors.white,
                 flex: 1,
                 margin: 1,
                 alignItems: 'center',
                 justifyContent: 'center',
               }}>
               <ResponsiveText
-                color={activeTabs === 'tab1' ? colors.black : colors.yellow}>
+                color={activeTabs === 'tab1' ? isThemeDark ?  colors.black: colors.white : colors.yellow}>
                 No
               </ResponsiveText>
             </TouchableOpacity>
@@ -294,14 +296,14 @@ export default function TransactionConfirmation({route, navigation}) {
               }}
               style={{
                 backgroundColor:
-                  activeTabs === 'tab2' ? colors.yellow : colors.black2,
+                  activeTabs === 'tab2' ? colors.yellow : isThemeDark ?  colors.black2: colors.white,
                 flex: 1,
                 margin: 1,
                 alignItems: 'center',
                 justifyContent: 'center',
               }}>
               <ResponsiveText
-                color={activeTabs === 'tab2' ? colors.black : colors.yellow}>
+                color={activeTabs === 'tab2' ? isThemeDark ?  colors.black: colors.white : colors.yellow}>
                 $
               </ResponsiveText>
             </TouchableOpacity>
@@ -312,14 +314,14 @@ export default function TransactionConfirmation({route, navigation}) {
               }}
               style={{
                 backgroundColor:
-                  activeTabs === 'tab3' ? colors.yellow : colors.black2,
+                  activeTabs === 'tab3' ? colors.yellow : isThemeDark ?  colors.black2: colors.white,
                 flex: 1,
                 margin: 1,
                 alignItems: 'center',
                 justifyContent: 'center',
               }}>
               <ResponsiveText
-                color={activeTabs === 'tab3' ? colors.black : colors.yellow}>
+                color={activeTabs === 'tab3' ? isThemeDark ?  colors.black: colors.white : colors.yellow}>
                 %
               </ResponsiveText>
             </TouchableOpacity>
@@ -327,7 +329,7 @@ export default function TransactionConfirmation({route, navigation}) {
           {activeTabs === 'tab1' ? null : (
             <View
               style={{
-                backgroundColor: colors.black2,
+                backgroundColor: isThemeDark ?  colors.black2: colors.white,
                 marginTop: 16,
                 height: hp(5),
                 width: wp(85),
@@ -342,7 +344,7 @@ export default function TransactionConfirmation({route, navigation}) {
                     : changeCount(count)
                 }
                 style={{
-                  backgroundColor: colors.black2,
+                  backgroundColor: isThemeDark ?  colors.black2: colors.white,
                   borderColor: colors.black1,
                   borderWidth: 1,
                   flex: 0.22,
@@ -356,7 +358,7 @@ export default function TransactionConfirmation({route, navigation}) {
               </TouchableOpacity>
               <View
                 style={{
-                  backgroundColor: colors.black3,
+                  backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite,
                   borderColor: colors.black1,
                   borderWidth: 1,
                   flex: 0.56,
@@ -388,7 +390,7 @@ export default function TransactionConfirmation({route, navigation}) {
                     : undefined
                 }
                 style={{
-                  backgroundColor: colors.black2,
+                  backgroundColor: isThemeDark ?  colors.black2: colors.white,
                   borderColor: colors.black1,
                   borderWidth: 1,
                   flex: 0.22,
@@ -405,13 +407,13 @@ export default function TransactionConfirmation({route, navigation}) {
         </View>
         <View
           style={{
-            backgroundColor: colors.black3,
+            backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite,
             marginTop: 10,
             paddingHorizontal: 5,
           }}>
           <View
             style={{
-              borderBottomColor: colors.black2,
+              borderBottomColor: isThemeDark ?  colors.black2: colors.white,
               paddingBottom: 5,
               borderBottomWidth: 1,
               marginHorizontal: 15,
@@ -419,14 +421,14 @@ export default function TransactionConfirmation({route, navigation}) {
               flexDirection: 'row',
               justifyContent: 'space-between',
             }}>
-            <ResponsiveText color={colors.white}>Total</ResponsiveText>
+            <ResponsiveText color={isThemeDark ?  colors.white: colors.black}>Total</ResponsiveText>
             <ResponsiveText color={colors.yellow}>
               ${parseFloat(data.amount).toFixed(2)}
             </ResponsiveText>
           </View>
           <View
             style={{
-              borderBottomColor: colors.black2,
+              borderBottomColor: isThemeDark ?  colors.black2: colors.white,
               paddingBottom: 5,
               borderBottomWidth: 1,
               marginHorizontal: 15,
@@ -434,7 +436,7 @@ export default function TransactionConfirmation({route, navigation}) {
               flexDirection: 'row',
               justifyContent: 'space-between',
             }}>
-            <ResponsiveText color={colors.white}>Tips</ResponsiveText>
+            <ResponsiveText color={isThemeDark ?  colors.white: colors.black}>Tips</ResponsiveText>
             <ResponsiveText color={colors.yellow}>
               {activeTabs === 'tab2' ? '$' : ''}
               {Calculate()}
@@ -443,14 +445,14 @@ export default function TransactionConfirmation({route, navigation}) {
           </View>
           <View
             style={{
-              borderBottomColor: colors.black2,
+              borderBottomColor: isThemeDark ?  colors.black2: colors.white,
               paddingBottom: 5,
               marginHorizontal: 15,
               marginTop: 10,
               flexDirection: 'row',
               justifyContent: 'space-between',
             }}>
-            <ResponsiveText color={colors.white}>Final</ResponsiveText>
+            <ResponsiveText color={isThemeDark ?  colors.white: colors.black}>Final</ResponsiveText>
             <ResponsiveText color={colors.yellow}>
               $ {totalsum()}
             </ResponsiveText>
@@ -467,7 +469,7 @@ export default function TransactionConfirmation({route, navigation}) {
               width: wp(90),
               backgroundColor: colors.yellow,
             }}
-            onPress={orderConfirmation}>
+            onPress={ orderConfirmation}>
             <ResponsiveText>Order Confirmation</ResponsiveText>
           </TouchableOpacity>
           <TouchableOpacity
@@ -481,7 +483,7 @@ export default function TransactionConfirmation({route, navigation}) {
               width: wp(90),
               borderColor: colors.yellow,
               borderWidth: 1,
-              backgroundColor: colors.black3,
+              backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite,
             }}>
             <ResponsiveText color={colors.yellow}>Cancel</ResponsiveText>
           </TouchableOpacity>
@@ -497,7 +499,7 @@ export default function TransactionConfirmation({route, navigation}) {
           <View
             style={{
               flex: 0.3,
-              backgroundColor: colors.black2,
+              backgroundColor: isThemeDark ?  colors.black2: colors.white,
               borderRadius: 7,
               marginBottom: 20,
             }}>
@@ -510,14 +512,14 @@ export default function TransactionConfirmation({route, navigation}) {
                 borderTopRightRadius: 7,
                 borderTopLeftRadius: 7,
               }}>
-              <ResponsiveText color={colors.white} size={3.5}>
+              <ResponsiveText color={isThemeDark ?  colors.white: colors.black} size={3.5}>
                 Order Placed
               </ResponsiveText>
             </View>
             <View
               style={{
                 flex: 0.18,
-                backgroundColor: colors.black2,
+                backgroundColor: isThemeDark ?  colors.black2: colors.white,
                 justifyContent: 'center',
                 alignItems: 'center',
                 marginHorizontal: 15,
@@ -529,7 +531,7 @@ export default function TransactionConfirmation({route, navigation}) {
             <View
               style={{
                 flex: 0.13,
-                backgroundColor: colors.black2,
+                backgroundColor: isThemeDark ?  colors.black2: colors.white,
                 flexDirection: 'row',
                 alignItems: 'center',
                 borderBottomWidth: 2,
@@ -545,7 +547,7 @@ export default function TransactionConfirmation({route, navigation}) {
                 </ResponsiveText>
               </View>
               <View style={{flex: 0.1}}>
-                <ResponsiveText color={colors.white} size={3}>
+                <ResponsiveText color={isThemeDark ?  colors.white: colors.black} size={3}>
                   To
                 </ResponsiveText>
               </View>
@@ -558,14 +560,14 @@ export default function TransactionConfirmation({route, navigation}) {
             <View
               style={{
                 flex: 0.2,
-                backgroundColor: colors.black2,
+                backgroundColor: isThemeDark ?  colors.black2: colors.white,
                 flexDirection: 'row',
                 marginHorizontal: 15,
               }}>
               <View style={{flex: 0.55, marginTop: 5}}>
                 <ResponsiveText
                   size={3}
-                  color={colors.white}
+                  color={isThemeDark ?  colors.white: colors.black}
                   margin={[0, 0, 0, 15]}>
                   Your Current Points:
                 </ResponsiveText>
@@ -579,7 +581,7 @@ export default function TransactionConfirmation({route, navigation}) {
             <View
               style={{
                 flex: 0.29,
-                backgroundColor: colors.black2,
+                backgroundColor: isThemeDark ?  colors.black2: colors.white,
                 alignItems: 'center',
                 borderBottomLeftRadius: 7,
                 borderBottomRightRadius: 7,

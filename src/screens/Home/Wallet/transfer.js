@@ -31,6 +31,7 @@ import _10BCent from '../../../assets/BCents/10_BCENTS.png'
 import _20BCent from '../../../assets/BCents/20_BCENTS.png'
 import _50BCent from '../../../assets/BCents/50_BCENTS.png'
 import Input from '../../../components/Input'
+import { useSelector } from 'react-redux'
 
 const Transfer = (props) => {
     const navigation = useNavigation()
@@ -46,6 +47,7 @@ const Transfer = (props) => {
     const [numPad, setNumPad] = useState(numeric);
 
     const transferAmountComing = route.params
+    const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
     // navigation.setOptions({
     //     headerShown: true,
@@ -57,20 +59,24 @@ const Transfer = (props) => {
     //     headerTintColor: '#fff'
     // })
     return (
-        <View style={styles.container} >
-            <View style={{  flexDirection: 'row',marginLeft:10,backgroundColor:colors.black3,paddingVertical:5,alignSelf:'flex-start'}}>
+        <View style={[styles.container,{backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}]} >
+            <View style={{  flexDirection: 'row',marginLeft:10,backgroundColor:isThemeDark ?  colors.black3: colors.bgWhite,paddingVertical:5,alignSelf:'flex-start'}}>
             <TouchableOpacity style={{ backgroundColor:colors.yellow1,paddingVertical:13,paddingHorizontal:10,borderRadius:25,}} onPress={() => { navigation.goBack() }}><Image source={bArrow} style={styles.bCLogo} /></TouchableOpacity>
-                <Text style={{fontWeight:'bold',fontSize:20,color:'white',marginLeft:'25%',padding:5}}>Transfer</Text> 
+                <Text style={{fontWeight:'bold',fontSize:20,color:isThemeDark ?  colors.white: colors.black,marginLeft:'25%',padding:5}}>Transfer</Text> 
             </View>
             <View style={{alignItems:'center',justifyContent:'center'}}>
-                    <Text style={{color:'white',fontSize:20}} >Top-up Bcoin Balance</Text>
+                    <Text style={{color:isThemeDark ?  colors.white: colors.black,fontSize:20}} >Top-up Bcoin Balance</Text>
                     <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} >
-                        <Image source={bCoin} style={{ height: 60, width: 50 }} />
+                        <Icon source={bCoin} 
+                            // style={{ height: 60, width: 50 }} 
+                            size={60}
+                            tintColor={isThemeDark ?  colors.white: colors.black}
+                        />
                         <TouchableOpacity onPress={()=>{setModalVisible(true); Keyboard.dismiss()}} >
                             <TextInput
                                 editable={false}
                                 onPressIn={ ()=> setModalVisible(true)}
-                                style={styles.input}
+                                style={[styles.input,{color:isThemeDark ?  colors.white: colors.black}]}
                                 onChangeText={setNumber}
                                 value={parseFloat(number).toFixed(2)}
                                 maxLength={8}
@@ -84,7 +90,7 @@ const Transfer = (props) => {
                         </TouchableOpacity>
                     </View> 
                     {/* <Text style={{color:'white',fontSize:70,marginTop:50}} >{topUpAmount}</Text> */}
-                    <Text style={{color:'white',fontSize:15}} >5% Fee</Text>
+                    <Text style={{color:isThemeDark ?  colors.white: colors.black,fontSize:15}} >5% Fee</Text>
                 </View>
 
 
@@ -92,7 +98,7 @@ const Transfer = (props) => {
                 style={{
                     flex: 1,
                     marginTop: 10,
-                    backgroundColor: colors.black2,
+                    backgroundColor: isThemeDark ?  colors.black2: colors.grey,
                     borderTopRightRadius: 30,
                     paddingVertical: 5,
                     borderTopLeftRadius: 30,
@@ -106,7 +112,7 @@ const Transfer = (props) => {
                         marginHorizontal: 40,
                         marginTop: 10,
                         paddingBottom: 10,
-                        borderBottomColor: colors.black1,
+                        borderBottomColor: isThemeDark ?  colors.black1: colors.white,
                         borderBottomWidth: 1,
                         alignItems: 'center',
                     }}
@@ -155,7 +161,9 @@ const Transfer = (props) => {
                                     keyboardType='numeric'
                                      /> */}
                                     <Input 
-                                        margin={0,0,0,wp(2)} 
+                                        style={{backgroundColor:isThemeDark ?  colors.black1: colors.white}}
+                                        backgroundColor={isThemeDark ?  colors.black1: colors.white}
+                                        margin={[0,0,0,wp(2)]} 
                                         width={wp(75)} 
                                         editable={true} 
                                         placeholder={'Enter the Phone No.'} 
@@ -210,7 +218,7 @@ const Transfer = (props) => {
                             </View>
 
                             {!numeric ? 
-                            <View style={styles.modalView} >
+                            <View style={[styles.modalView,{backgroundColor: isThemeDark ?  colors.grey4: colors.lighterGrey}]} >
                                 <View style={{ flexDirection: 'row' }} >
                                     <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(parseFloat(number) + 1)} >
                                         <Image source={_1BCoin} style={styles.image2} />
@@ -260,48 +268,48 @@ const Transfer = (props) => {
                                     </TouchableOpacity>
                                 </View>
                             </View>
-                                 : <View style={styles.modalView} >
+                                 : <View style={[styles.modalView,{backgroundColor: isThemeDark ?  colors.grey4: colors.lighterGrey}]} >
                                  <View style={{ flexDirection: 'row' }} >
                                      <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '1')} >
-                                         <Text style={styles.keypadText} >1</Text>
+                                         <Text style={[styles.keypadText,{color:isThemeDark ?  colors.white: colors.black}]} >1</Text>
                                      </TouchableOpacity>
                                      <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '2')} >
-                                        <Text style={styles.keypadText} >2</Text>
+                                     <Text style={[styles.keypadText,{color:isThemeDark ?  colors.white: colors.black}]} >2</Text>
                                      </TouchableOpacity>
                                      <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '3')} >
-                                        <Text style={styles.keypadText} >3</Text>
+                                     <Text style={[styles.keypadText,{color:isThemeDark ?  colors.white: colors.black}]} >3</Text>
                                      </TouchableOpacity>
                                  </View>
  
                                  <View style={{ flexDirection: 'row' }} >
                                      <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '4')} >
-                                        <Text style={styles.keypadText} >4</Text>
+                                     <Text style={[styles.keypadText,{color:isThemeDark ?  colors.white: colors.black}]} >4</Text>
                                      </TouchableOpacity>
                                      <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '5')} >
-                                        <Text style={styles.keypadText} >5</Text>
+                                     <Text style={[styles.keypadText,{color:isThemeDark ?  colors.white: colors.black}]} >5</Text>
                                      </TouchableOpacity>
                                      <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '6')} >
-                                        <Text style={styles.keypadText} >6</Text>
+                                     <Text style={[styles.keypadText,{color:isThemeDark ?  colors.white: colors.black}]} >6</Text>
                                      </TouchableOpacity>
                                  </View>
  
                                  <View style={{ flexDirection: 'row',alignItems:'center', justifyContent: 'center', width: '100%', marginTop: 20, marginBottom: 10,alignContent:'center' }} >
                                      <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '7')} >
-                                        <Text style={styles.keypadText} >7</Text>
+                                     <Text style={[styles.keypadText,{color:isThemeDark ?  colors.white: colors.black}]} >7</Text>
                                      </TouchableOpacity>
                                      <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '8')} >
-                                        <Text style={styles.keypadText} >8</Text>
+                                     <Text style={[styles.keypadText,{color:isThemeDark ?  colors.white: colors.black}]} >8</Text>
                                      </TouchableOpacity>
                                      <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '9')} >
-                                        <Text style={styles.keypadText} >9</Text>
+                                     <Text style={[styles.keypadText,{color:isThemeDark ?  colors.white: colors.black}]} >9</Text>
                                      </TouchableOpacity>
                                  </View>
                                  <View style={{ flexDirection: 'row',alignItems:'center', justifyContent: 'center', width: '100%', marginTop: 10, marginBottom: 20 }} >
                                      <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '.')} >
-                                        <Text style={styles.keypadText} >.</Text>
+                                     <Text style={[styles.keypadText,{color:isThemeDark ?  colors.white: colors.black}]} >.</Text>
                                      </TouchableOpacity>
                                      <TouchableOpacity style={styles.imageContainer} onPress={() => setNumber(number + '0')} >
-                                     <Text style={styles.keypadText} >0</Text>
+                                     <Text style={[styles.keypadText,{color:isThemeDark ?  colors.white: colors.black}]} >0</Text>
                                      </TouchableOpacity>
                                      <TouchableOpacity style={styles.imageContainer} onPress={() => setModalVisible(false)} >
                                          <View style={[styles.bCents,{backgroundColor:colors.yellow1, borderRadius:hp(2.2), alignItems:'center', justifyContent:'center'}]} >
@@ -460,20 +468,20 @@ const Transfer = (props) => {
                         <View
                             style={{
                             flex: 0.3,
-                            backgroundColor: colors.black2,
+                            backgroundColor: isThemeDark ?  colors.black2: colors.grey1,
                             borderRadius: 7,
                             marginBottom: 20,
                             }}>
                             <View
                             style={{
                                 flex: 0.2,
-                                backgroundColor: colors.black1,
+                                backgroundColor: isThemeDark ?  colors.black1: colors.bgWhite,
                                 justifyContent: 'center',
                                 alignItems: 'center',
                                 borderTopRightRadius: 7,
                                 borderTopLeftRadius: 7,
                             }}>
-                            <ResponsiveText color={colors.white} size={3.5}>
+                            <ResponsiveText color={isThemeDark ?  colors.white: colors.black} size={3.5}>
                                 Confirmation
                             </ResponsiveText>
                             </View>
@@ -492,11 +500,11 @@ const Transfer = (props) => {
                             <View
                             style={{
                                 flex: 0.13,
-                                backgroundColor: colors.black2,
+                                // backgroundColor: isThemeDark ?  colors.black2: colors.white,
                                 flexDirection: 'row',
                                 alignItems: 'center',
                                 borderBottomWidth: 2,
-                                borderBottomColor: colors.black1,
+                                borderBottomColor: isThemeDark ? colors.black1 : colors.bgWhite,
                                 marginHorizontal: 15,
                             }}>
                             <View style={{flex: 0.55, alignItems: 'center'}}>
@@ -516,11 +524,11 @@ const Transfer = (props) => {
                             <View
                             style={{
                                 flex: 0.13,
-                                backgroundColor: colors.black2,
+                                // backgroundColor: isThemeDark ?  colors.black2: colors.white,
                                 flexDirection: 'row',
                                 alignItems: 'center',
                                 borderBottomWidth: 2,
-                                borderBottomColor: colors.black1,
+                                borderBottomColor: isThemeDark ? colors.black1 : colors.bgWhite,
                                 marginHorizontal: 15,
                             }}>
                             <View style={{flex: 0.55, alignItems: 'center'}}>
@@ -540,11 +548,11 @@ const Transfer = (props) => {
                             <View
                             style={{
                                 flex: 0.13,
-                                backgroundColor: colors.black2,
+                                // backgroundColor: isThemeDark ?  colors.black2: colors.white,
                                 flexDirection: 'row',
                                 alignItems: 'center',
                                 borderBottomWidth: 2,
-                                borderBottomColor: colors.black1,
+                                borderBottomColor: isThemeDark ? colors.black1 : colors.bgWhite,
                                 marginHorizontal: 15,
                             }}>
                             <View style={{flex: 0.55, alignItems: 'center'}}>
@@ -565,7 +573,7 @@ const Transfer = (props) => {
                             <View
                             style={{
                                 flex: 0.29,
-                                backgroundColor: colors.black2,
+                                // backgroundColor: isThemeDark ?  colors.black2: colors.white,
                                 alignItems: 'center',
                                 borderBottomLeftRadius: 7,
                                 borderBottomRightRadius: 7,
@@ -590,7 +598,7 @@ const Transfer = (props) => {
                             <View
                             style={{
                                 flex: 0.29,
-                                backgroundColor: colors.black2,
+                                // backgroundColor: isThemeDark ?  colors.black2: colors.white,
                                 alignItems: 'center',
                                 borderBottomLeftRadius: 7,
                                 borderBottomRightRadius: 7,
@@ -665,7 +673,7 @@ const styles = StyleSheet.create({
         // height: '40%',
         width: '120%',
         borderWidth: 1,
-        borderColor: colors.black1,
+        // borderColor: colors.black1,
         
         // alignSelf: 'center'
     },

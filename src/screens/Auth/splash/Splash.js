@@ -12,7 +12,7 @@ import ResponsiveText from '../../../components/RnText';
 
 import Icon from '../../../components/Icon';
 import { useDispatch } from 'react-redux';
-import { getBfaPartners } from '../../../redux/actions/user.actions';
+import { getBfaPartners, setTheme } from '../../../redux/actions/user.actions';
 
 const Splash = ({ navigation }) => {
 
@@ -70,10 +70,21 @@ const Splash = ({ navigation }) => {
   React.useEffect(() => {
     
     fetchAndSetUser();
-    
+    getTheme()
 
 
   }, [])
+
+  const getTheme=async()=>{
+    const isThemeDark = await AsyncStorage.getItem('@ThemeDark');
+    console.log(isThemeDark,'isThemeDark in splash');
+    if(isThemeDark!=null){
+      if(isThemeDark=='false'){
+        console.log(isThemeDark,'isThemeDark in splash2');
+        dispatch(setTheme(false));
+      }
+    }
+  }
 
 
   return (

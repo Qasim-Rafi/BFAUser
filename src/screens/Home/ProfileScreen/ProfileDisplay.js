@@ -41,6 +41,8 @@ export default function ProfileDisplay({navigation}) {
   const [fullName, setFullname] = useState();
   const [editable, setEditable] = useState(false);
 
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
+
   React.useEffect(() => {
     dispatch(getProfileData());
     console.log('loading', loading);
@@ -69,7 +71,7 @@ export default function ProfileDisplay({navigation}) {
       <View
         style={{
           flex: 0.8,
-          backgroundColor: colors.black3,
+          backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite,
           paddingTop: hp(3),
         }}>
         <ScrollView>
@@ -78,7 +80,7 @@ export default function ProfileDisplay({navigation}) {
 
             <View style={styles.cardView}>
               <ResponsiveText color={colors.grey}>User Name</ResponsiveText>
-              <ResponsiveText color={colors.white}>
+              <ResponsiveText color={isThemeDark ?  colors.white: colors.black}>
                 {profileData.username}
               </ResponsiveText>
             </View>
@@ -88,7 +90,7 @@ export default function ProfileDisplay({navigation}) {
             <Icon source={globalPath.JOBS} />
             <View style={styles.cardView}>
               <ResponsiveText color={colors.grey}>Email</ResponsiveText>
-              <ResponsiveText color={colors.white}>
+              <ResponsiveText color={isThemeDark ?  colors.white: colors.black}>
                 {profileData.email}
               </ResponsiveText>
             </View>
@@ -97,7 +99,7 @@ export default function ProfileDisplay({navigation}) {
             <Icon source={globalPath.PHONE_LOGO} />
             <View style={styles.cardView}>
               <ResponsiveText color={colors.grey}>Phone</ResponsiveText>
-              <ResponsiveText color={colors.white}>
+              <ResponsiveText color={isThemeDark ?  colors.white: colors.black}>
                 {profileData.contactNumber}
               </ResponsiveText>
             </View>
@@ -116,7 +118,7 @@ export default function ProfileDisplay({navigation}) {
             <Icon source={globalPath.GENDER_ICON} />
             <View style={styles.cardView}>
               <ResponsiveText color={colors.grey}>Gender</ResponsiveText>
-              <ResponsiveText color={colors.white}>
+              <ResponsiveText color={isThemeDark ?  colors.white: colors.black}>
                 {profileData.gender==null||profileData.gender==''?'':profileData.gender}
               </ResponsiveText>
             </View>
@@ -126,7 +128,7 @@ export default function ProfileDisplay({navigation}) {
             <Icon source={globalPath.BIRTHDAY_ICON} />
             <View style={styles.cardView}>
               <ResponsiveText color={colors.grey}>Date of Birth</ResponsiveText>
-              <ResponsiveText color={colors.white}>
+              <ResponsiveText color={isThemeDark ?  colors.white: colors.black}>
                 {profileData.dateofBirth==null?'':handleChange('',profileData.dateofBirth)}
               </ResponsiveText>
             </View>
@@ -148,7 +150,7 @@ export default function ProfileDisplay({navigation}) {
             }}>
             <TouchableOpacity
               style={{
-                backgroundColor: colors.black,
+                backgroundColor: isThemeDark ?  colors.black: colors.bgWhite,
                 height:40,
                 padding: 9,
                 borderRadius: 20,
@@ -156,18 +158,18 @@ export default function ProfileDisplay({navigation}) {
               onPress={() => {
                 navigation.goBack();
               }}>
-              <Icon tintColor={colors.white} source={globalPath.BACK_BLACK_ARROW} />
+              <Icon tintColor={isThemeDark ?  colors.white: colors.black} source={globalPath.BACK_BLACK_ARROW} />
             </TouchableOpacity>
             <ResponsiveText size={4}>Profile</ResponsiveText>
             <TouchableOpacity
               onPress={() => navigation.navigate(routeName.PROFILE_SCREEN)}
               style={{
-                backgroundColor: colors.black,
+                backgroundColor: isThemeDark ?  colors.black: colors.bgWhite,
                 height:40,
                 padding: 10,
                 borderRadius: 20,
               }}>
-              <Icon tintColor={colors.white} source={globalPath.EDIT_PROFILE} />
+              <Icon tintColor={isThemeDark ?  colors.white: colors.black} source={globalPath.EDIT_PROFILE} />
             </TouchableOpacity>
           </View>
           <View

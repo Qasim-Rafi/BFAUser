@@ -17,6 +17,7 @@ const JobListing = ({ navigation ,route}) => {
     // const JobsList = useSelector(state => state.appReducers.getApplyJobList.data);
     const JobsList = useSelector(state => state.appReducers.promoJobs.data);
     const List_Loading = useSelector(state => state.appReducers.promoJobs.loading);
+    const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
     console.log("Jobs data: ", JobsList);
     const dispatch = useDispatch();
     React.useEffect(() => {
@@ -25,7 +26,7 @@ const JobListing = ({ navigation ,route}) => {
     }, []);
 
     return (
-        <View style={{ flex: 1, backgroundColor: colors.black3 }}>
+        <View style={{ flex: 1, backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite }}>
             <View style={{ flexDirection: 'row', justifyContent: "space-between", padding: 7 }}>
                 <TouchableOpacity style={{ backgroundColor: colors.yellow1, paddingVertical: 10, paddingHorizontal: 10, borderRadius: 20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
             </View>
@@ -41,11 +42,11 @@ const JobListing = ({ navigation ,route}) => {
 
                                 data: item,
                             })}>
-                                <View style={{ backgroundColor: colors.black2, height: hp(10), borderRadius: 5, marginTop: 10, flexDirection: 'row' }}>
+                                <View style={{ backgroundColor: isThemeDark ?  colors.black2: colors.white, height: hp(10), borderRadius: 5, marginTop: 10, flexDirection: 'row' }}>
                                     <View style={{ marginTop: '2%', marginLeft: '2%', }}><Icon source={{ uri: item.fullPath }} borderRadius={5} size={65} /></View>
                                     <View style={{ marginTop: '2%', marginLeft: '2%' }}>
                                         <View  style={{flexDirection:'row',justifyContent:"space-between"}}>
-                                            <ResponsiveText flex={1.3}  color={colors.white}>{item.jobTitle} </ResponsiveText>
+                                            <ResponsiveText flex={1.3}  color={isThemeDark ?  colors.white: colors.black}>{item.jobTitle} </ResponsiveText>
                                             <Text style={{ fontWeight: '800', color: colors.black,backgroundColor:colors.yellow1,borderRadius:5,alignSelf:'flex-end',left:wp(10) }}>
                                                     {item.userAppliedStatus === "Applied" ? 'Already Applied' : undefined}
                                                 </Text>

@@ -4,14 +4,16 @@ import { colors } from '../../constants/colorsPallet'
 import Icon from '../Icon'
 import { globalPath } from '../../constants/globalPath'
 import ResponsiveText from '../RnText'
+import { useSelector } from 'react-redux'
 export default function CheckBox({text,onPress,value,additem, checkedd,index}) {
    const [checked, setChecked] = React.useState( checkedd? checkedd : false);
+   const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
     return (
         <TouchableOpacity style={{flexDirection:'row'}}
         onPress={()=>{setChecked(!checked);if(additem){additem(value,index);if(onPress){onPress}}}}
         >
         <View style={{height:20, width:20,borderRadius:3, 
-            backgroundColor:checked ? colors.yellow: colors.black3,
+            backgroundColor:checked ? colors.yellow: isThemeDark ?  colors.black3: colors.bgWhite,
             borderWidth:checked ? undefined: 2,
             borderColor:checked ? undefined : colors.yellow, 
             justifyContent:'center', alignItems:'center'}} >

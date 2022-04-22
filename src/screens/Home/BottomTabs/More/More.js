@@ -63,7 +63,7 @@ const More = ({route, navigation}) => {
 
         <View style={{ flex: 0.05, backgroundColor: colors.yellow, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', paddingVertical: 10 }} >
           <View style={{ flexDirection: 'row', justifyContent: "space-between", flex: .97 }}>
-            <TouchableOpacity style={{ backgroundColor: colors.black, paddingVertical: 10, paddingHorizontal: 10, borderRadius: 20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} tintColor={colors.white} /></TouchableOpacity>
+            <TouchableOpacity style={{ backgroundColor: isThemeDark ?  colors.black: colors.white, paddingVertical: 10, paddingHorizontal: 10, borderRadius: 20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} tintColor={isThemeDark ?  colors.white: colors.black} /></TouchableOpacity>
           </View>
           <TouchableOpacity onPress={logout}>
             <View
@@ -208,7 +208,7 @@ const More = ({route, navigation}) => {
               Payment information
             </ResponsiveText>
             <TouchableOpacity
-              onPress={() => navigation.navigate(routeName.SCAN_QR)}
+              onPress={() => navigation.navigate(routeName.BARCODE_READER,true)}
               style={{ backgroundColor:  isThemeDark? colors.black2: colors.white, flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 10, marginTop: 5, borderRadius: 7 }}>
               <Icon size={20} source={globalPath.QR_SCAN} />
               <ResponsiveText

@@ -34,6 +34,7 @@ export default function RestaurantBranchDetailScreen({ navigation, route }) {
   const dispatch = useDispatch();
   const data = useSelector(state => state.appReducers.restaurantDetail.data);
   const loading = useSelector(state => state.appReducers.restaurantDetail.refreshing);
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
   React.useEffect(() => {
     dispatch(getRestaurentDeatil(route.params));
     //route.params.restaurantId
@@ -41,7 +42,7 @@ export default function RestaurantBranchDetailScreen({ navigation, route }) {
   }, []);
   console.log('restaurant detail', route.params);
   return (
-    <View style={{ backgroundColor: colors.black3, flex: 1 }}>
+    <View style={{ backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite, flex: 1 }}>
       <View style={styles.headerImage}>
         <ImageHeader navigation={navigation} img={data.restaurantLogo} />
       </View>
@@ -51,7 +52,7 @@ export default function RestaurantBranchDetailScreen({ navigation, route }) {
             flexDirection: 'row',
             padding: 10,
             justifyContent: 'space-between',
-            backgroundColor: colors.black2,
+            backgroundColor: isThemeDark ?  colors.black2: colors.secondary,
           }}>
           {BranchDetailButtons.map((items, index) => {
             return (
@@ -62,7 +63,7 @@ export default function RestaurantBranchDetailScreen({ navigation, route }) {
                     styles.buttonView,
                     {
                       backgroundColor:
-                        items.id === activeTab ? colors.yellow : colors.grey,
+                        items.id === activeTab ? colors.yellow : isThemeDark ? colors.grey : colors.white,
                     },
                   ]}>
                   <View

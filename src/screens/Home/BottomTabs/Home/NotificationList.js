@@ -21,6 +21,7 @@ export default function NotificationList({navigation}) {
   const dispatch = useDispatch();
 
 
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
 
   const HISTORY = useSelector(
@@ -71,7 +72,7 @@ export default function NotificationList({navigation}) {
     // dispatch(retriveCart(cartList));
   };
   return (
-    <View style={{flex: 1, backgroundColor: colors.black3}}>
+    <View style={{flex: 1, backgroundColor: isThemeDark ? colors.black3 : colors.bgWhite}}>
       <View
         style={{
           flexDirection: 'row',
@@ -101,7 +102,7 @@ export default function NotificationList({navigation}) {
           return (
             <TouchableOpacity onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
               style={{
-                backgroundColor:item.seen?colors.black2: colors.black1,
+                backgroundColor: isThemeDark ? item.seen?colors.black2: colors.black1 : item.seen?colors.white: colors.secondary ,
                 borderRadius: 5,
                 marginBottom: 4,
                 padding: 5,
@@ -119,7 +120,7 @@ export default function NotificationList({navigation}) {
                     {/* <ResponsiveText size={3} color={colors.white}>
                       Order status:{' '}
                     </ResponsiveText> */}
-                  <ResponsiveText size={3} color={colors.white}
+                  <ResponsiveText size={3} color={isThemeDark ?  colors.white: colors.black}
                   // color={item.remarks=='NewOrder'?colors.white:item.remarks=='Cancled'?colors.red1:item.remarks=='Paid'?colors.blue1:item.remarks=='InProcess'?colors.green1:item.remarks=='Delivered'?colors.yellow: item.remarks=='Served'?colors.yellow:item.remarks=='Billed'?colors.green1:colors.white}
                   >
                     {item.remarks}

@@ -29,6 +29,8 @@ export default function DishDetails({route, navigation}) {
   const dropdownRef = React.useRef(null);
   const dispatch=useDispatch()
 
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
+
   const cartList = useSelector(state => state.appReducers.cartList.data);
   const orderList = useSelector(
     state => state.appReducers.your_ordersList.data,
@@ -88,7 +90,7 @@ export default function DishDetails({route, navigation}) {
     }
   };
   return (
-    <ScrollView style={{backgroundColor: colors.black3}}>
+    <ScrollView style={{backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}}>
       <View style={styles.headerImage}>
         <ImageHeader
           navigation={navigation}

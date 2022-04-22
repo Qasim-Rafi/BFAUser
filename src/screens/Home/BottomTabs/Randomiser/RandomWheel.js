@@ -111,8 +111,8 @@ class RandomWheelClass extends React.Component {
                         console.log(position);
                         this.setState({ lat: position.coords.latitude, long: position.coords.longitude })
                         this.props.dispatch(GetNearestRestaurantAction({
-                            lat: !this.state.areaSelected || !this.state.premiseSelected ? 0 : position.coords.latitude ,
-                            long: !this.state.areaSelected || !this.state.premiseSelected ? 0 : position.coords.longitude ,
+                            lat: this.state.areaSelected || this.state.premiseSelected ? 0 : position.coords.latitude ,
+                            long: this.state.areaSelected || this.state.premiseSelected ? 0 : position.coords.longitude ,
                             distance: this.state.selectedDistanceId,
                             pId: !this.state.premiseSelected ? 0 : this.state.selectedPremiseId,
                             aId: !this.state.areaSelected ? 0 : this.state.selectedAreaId,

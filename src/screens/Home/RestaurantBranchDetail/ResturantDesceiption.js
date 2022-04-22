@@ -28,6 +28,7 @@ export default function Restaurant_Description(props) {
   const navigation = useNavigation();
   const [data, setData] = React.useState(props.data);
   const [liked, setLiked] = React.useState(props.data.userLiked);
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
   const dispatch = useDispatch();
   const favDataa = useSelector(
@@ -48,7 +49,7 @@ export default function Restaurant_Description(props) {
             justifyContent: 'space-between',
           }}>
           <View style={styles.priceDesc}>
-            <ResponsiveText size={4} color={colors.white}>
+            <ResponsiveText size={4} color={isThemeDark ?  colors.white: colors.black}>
               {data.branchAlias}
             </ResponsiveText>
             <ResponsiveText size={3.7} color={colors.grey}>
@@ -74,6 +75,9 @@ export default function Restaurant_Description(props) {
           padding: 20,
           borderBottomColor: colors.grey,
           borderBottomWidth: 1,
+          backgroundColor: isThemeDark ? undefined : colors.white,
+          borderTopStartRadius:15,
+          borderTopEndRadius:15,
         }}>
         <TouchableOpacity
           onPress={() => {
@@ -130,7 +134,7 @@ export default function Restaurant_Description(props) {
         </View>
       </View>
       <View style={{paddingTop: 10, paddingLeft: 20}}>
-        <ResponsiveText fontFamily="Regular" size={4} color={colors.white}>
+        <ResponsiveText fontFamily="Regular" size={4} color={isThemeDark ?  colors.white: colors.black}>
           Business Address
         </ResponsiveText>
         <ResponsiveText
@@ -142,7 +146,7 @@ export default function Restaurant_Description(props) {
         </ResponsiveText>
       </View>
       <View style={{paddingTop: 10, paddingLeft: 20}}>
-        <ResponsiveText fontFamily="Regular" size={4} color={colors.white}>
+        <ResponsiveText fontFamily="Regular" size={4} color={isThemeDark ?  colors.white: colors.black}>
           District
         </ResponsiveText>
         <ResponsiveText
@@ -154,7 +158,7 @@ export default function Restaurant_Description(props) {
         </ResponsiveText>
       </View>
       <View style={{paddingTop: 10, paddingLeft: 20}}>
-        <ResponsiveText fontFamily="Regular" size={4} color={colors.white}>
+        <ResponsiveText fontFamily="Regular" size={4} color={isThemeDark ?  colors.white: colors.black}>
           Premise
         </ResponsiveText>
         <ResponsiveText
@@ -166,7 +170,7 @@ export default function Restaurant_Description(props) {
         </ResponsiveText>
       </View>
       <View style={{paddingTop: 10, paddingLeft: 20}}>
-        <ResponsiveText fontFamily="Regular" size={4} color={colors.white}>
+        <ResponsiveText fontFamily="Regular" size={4} color={isThemeDark ?  colors.white: colors.black}>
           Location On Map
         </ResponsiveText>
         {/* <StaticMap data={data}/> */}

@@ -9,6 +9,7 @@ import { hp, wp } from '../../../helpers/Responsiveness';
 import Header from '../../../components/Header';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTheme } from '../../../redux/actions/user.actions';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default function Settings({ navigation }) {
   const dispatch = useDispatch()
@@ -18,9 +19,10 @@ export default function Settings({ navigation }) {
   const [checked, setCheck] = React.useState(isThemeDark);
 
 
-  const selectTheme = (data) => {
+  const selectTheme = async(data) => {
     setCheck(data)
     dispatch(setTheme(data))
+    await AsyncStorage.setItem('@ThemeDark',JSON.stringify(data) );
   }
 
   return (
