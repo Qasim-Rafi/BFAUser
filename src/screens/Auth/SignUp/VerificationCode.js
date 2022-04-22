@@ -18,7 +18,7 @@ import {StackActions} from '@react-navigation/routers';
 import {colors} from '../../../constants/colorsPallet';
 import {TextInput} from 'react-native-gesture-handler';
 import Preferences from '../../Home/BottomTabs/More/Preferences';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {verifyUser} from '../../../redux/actions/user.actions';
 import FlashMessage, {
   showMessage,
@@ -31,6 +31,8 @@ export default function VerificationCode({navigation,route}) {
   const [userName, setUserName] = React.useState('');
   const [password, setPassword] = React.useState('');
   const dropdownRef = React.useRef(null);
+
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
   const dispatch = useDispatch();
   const [value, setValue] = React.useState('');
@@ -64,7 +66,7 @@ export default function VerificationCode({navigation,route}) {
     //   keyboardVerticalOffset={hp(-10)}
     //   style={styles.container}>
     <ScrollView contentContainerStyle={{flexGrow: 1}}>
-      <ImageBackground style={styles.container} source={globalPath.BG_IMAGE}>
+      <ImageBackground style={styles.container} source={isThemeDark? globalPath.BG_IMAGE : globalPath.BG_IMAGE_LIGHT}>
       <View
         style={{
           justifyContent: 'center',
@@ -92,7 +94,7 @@ export default function VerificationCode({navigation,route}) {
             Mobile Verification
           </ResponsiveText>
         </View>
-        <View style={styles.formArea}>
+        <View style={[styles.formArea,{backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}]}>
           <View
             style={{
               justifyContent: 'center',
@@ -103,7 +105,7 @@ export default function VerificationCode({navigation,route}) {
               {' '}
               Verify your mobile number
             </ResponsiveText>
-            <ResponsiveText textAlign={'center'} color={colors.white}>
+            <ResponsiveText textAlign={'center'} color={isThemeDark ?  colors.white: colors.black}>
               {' '}
               A text message with 6 digit code send to Your Mobile number
             </ResponsiveText>
@@ -121,7 +123,7 @@ export default function VerificationCode({navigation,route}) {
               renderCell={({index, symbol, isFocused}) => (
                 <Text
                   key={index}
-                  style={[styles.cell, isFocused && styles.focusCell]}
+                  style={[styles.cell, isFocused && styles.focusCell,{backgroundColor: isThemeDark ?  colors.black3: colors.white}]}
                   onLayout={getCellOnLayoutHandler(index)}>
                   {symbol || (isFocused ? <Cursor /> : null)}
                 </Text>
@@ -161,7 +163,7 @@ const styles = StyleSheet.create({
     flex: 0.77,
     borderTopRightRadius: wp(8),
     borderTopLeftRadius: wp(8),
-    backgroundColor: '#2f2f2f',
+    backgroundColor: colors.grey3,
     padding: wp(10),
   },
   forgotPasswordContainer: {

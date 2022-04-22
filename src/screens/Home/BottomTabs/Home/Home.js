@@ -132,7 +132,8 @@ const Home = ({navigation}) => {
     //  setInterval(() => {
     //   dispatch(getNotificationData());
     // }, 5000);
-    
+    // console.log(showAsyncStorageContentInDev());
+    // showAsyncStorageContentInDev()
   }, []);
 
   return (

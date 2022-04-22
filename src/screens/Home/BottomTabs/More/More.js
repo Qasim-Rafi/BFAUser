@@ -49,7 +49,9 @@ const More = ({route, navigation}) => {
         text: 'OK',
         onPress: async () => {
           await AsyncStorage.removeItem('@token');
-          await AsyncStorage.clear();
+          await AsyncStorage.removeItem('cartData');
+          await AsyncStorage.removeItem('@userId');
+          // await AsyncStorage.clear();
 
           navigation.dispatch(StackActions.replace('Auth'));
         },

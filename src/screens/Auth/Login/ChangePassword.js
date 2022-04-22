@@ -41,6 +41,9 @@ import urls from '../../../redux/lib/urls';
 import Api from '../../../redux/lib/api';
 
 export default function ChangePassword({navigation, route}) {
+
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
+
   const dropdownRef = React.useRef(null);
   // const showError
   // const [loading, setLoading] = React.useState(false);
@@ -98,11 +101,11 @@ export default function ChangePassword({navigation, route}) {
     <>
       <ScrollView
         keyboardShouldPersistTaps="handled"
-        contentContainerStyle={{flexGrow: 1, backgroundColor: colors.black}}>
+        contentContainerStyle={{flexGrow: 1, backgroundColor: isThemeDark ?  colors.black: colors.white}}>
         <View
           style={{
             flex: 1,
-            backgroundColor: colors.black,
+            // backgroundColor: colors.black,
             justifyContent: 'center',
           }}>
           <View
@@ -134,15 +137,18 @@ export default function ChangePassword({navigation, route}) {
               size={5}>
               Reset your password
             </ResponsiveText>
-            <ResponsiveText margin={[5, 0, 0, 0]} color={colors.white}>
+            <ResponsiveText margin={[5, 0, 0, 0]} color={isThemeDark ?  colors.white: colors.black}>
               for username{' '}
-              <ResponsiveText color={colors.white}>"{route.params?.data.username}"</ResponsiveText>
+              <ResponsiveText color={isThemeDark ?  colors.white: colors.black}>"{route.params?.data.username}"</ResponsiveText>
             </ResponsiveText>
           </View>
           <KeyboardAvoidingView
-            style={styles.formArea}
+            style={[styles.formArea,{backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}]}
             behavior={Platform.OS === 'ios' ? 'padding' : null}>
             <Input
+              style={{backgroundColor:isThemeDark ?  colors.black1: colors.grey}}
+              backgroundColor={isThemeDark ?  colors.black1: colors.grey}
+              placeholderTextColor={isThemeDark ? undefined : colors.secondary}
               padding={[0, 0, 0, 25]}
               onChnageText={text => setPassword(text)}
               iconMargin={[0, 10, 0, 0]}
@@ -152,6 +158,9 @@ export default function ChangePassword({navigation, route}) {
               autoCapitalize={'none'}
             />
             <Input
+              style={{backgroundColor:isThemeDark ?  colors.black1: colors.grey}}
+              backgroundColor={isThemeDark ?  colors.black1: colors.grey}
+              placeholderTextColor={isThemeDark ? undefined : colors.secondary}
               padding={[0, 0, 0, 25]}
               margin={[20, 0, 0, 0]}
               onChnageText={text => setConfirmPassword(text)}
@@ -191,7 +200,7 @@ export default function ChangePassword({navigation, route}) {
               /> */}
               <View style={styles.footer}>
               {/* <Icon size={wp(8)} margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
-              <ResponsiveText margin={[0, 10]} color={colors.white}>
+              <ResponsiveText margin={[0, 10]} color={isThemeDark ? colors.white : colors.black}>
                 Remember password?{' '}
                 <ResponsiveText
                   fontFamily="Bold"
