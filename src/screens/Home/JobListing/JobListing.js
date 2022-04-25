@@ -47,7 +47,7 @@ const JobListing = ({ navigation ,route}) => {
                                     <View style={{ marginTop: '2%', marginLeft: '2%' }}>
                                         <View  style={{flexDirection:'row',justifyContent:"space-between"}}>
                                             <ResponsiveText flex={1.3}  color={isThemeDark ?  colors.white: colors.black}>{item.jobTitle} </ResponsiveText>
-                                            <Text style={{ fontWeight: '800', color: colors.black,backgroundColor:colors.yellow1,borderRadius:5,alignSelf:'flex-end',left:wp(10) }}>
+                                            <Text style={{ fontWeight: '800', color: colors.black,backgroundColor:colors.yellow1,borderRadius:5,alignSelf:'flex-end',left:wp(10), paddingHorizontal:item.userAppliedStatus === "Applied" ? 3 : 0 }}>
                                                     {item.userAppliedStatus === "Applied" ? 'Already Applied' : undefined}
                                                 </Text>
                                         </View>

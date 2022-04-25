@@ -47,7 +47,8 @@ export default function TransactionConfirmation({route, navigation}) {
     var obj = {
       ...route.params.obj,
       ...{
-        OrderType: mode == 'mode1' ? 'TakeAway' :mode == 'mode2' ? 'DineIn' : 'Self_Pickup',
+        // OrderType: mode == 'mode1' ? 'TakeAway' :mode == 'mode2' ? 'DineIn' : 'Self_Pickup',
+        OrderType:mode == 'mode1' ? 2 :'mode2' ? 1 : 2,
         tip: activeTabs === 'tab1' ? 0 : count,
       },
     };
@@ -506,7 +507,7 @@ export default function TransactionConfirmation({route, navigation}) {
             <View
               style={{
                 flex: 0.2,
-                backgroundColor: colors.black1,
+                backgroundColor: colors.bgWhite,
                 justifyContent: 'center',
                 alignItems: 'center',
                 borderTopRightRadius: 7,

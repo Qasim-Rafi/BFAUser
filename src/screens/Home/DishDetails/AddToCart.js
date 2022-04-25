@@ -419,7 +419,7 @@ export default function AddToCart({route, navigation}) {
           <View style={{padding: 20}}>
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-              <ResponsiveText color={colors.isThemeDark ?  colors.white: colors.black}>
+              <ResponsiveText color={isThemeDark ?  colors.white: colors.black}>
                 {route.params.dish.dishName}
               </ResponsiveText>
               <ResponsiveText color={colors.yellow}>
@@ -451,8 +451,8 @@ export default function AddToCart({route, navigation}) {
                 marginTop: 20,
                 marginHorizontal: 10,
               }}>
-              <ResponsiveText color={colors.isThemeDark ?  colors.white: colors.black}>{'Upsize'}</ResponsiveText>
-              <ResponsiveText color={colors.isThemeDark ?  colors.white: colors.black}>{'Optional'}</ResponsiveText>
+              <ResponsiveText color={isThemeDark ?  colors.white: colors.black}>{'Upsize'}</ResponsiveText>
+              <ResponsiveText color={isThemeDark ?  colors.white: colors.black}>{'Optional'}</ResponsiveText>
             </View>
           ) : undefined}
           <View style={{padding: 20}}>
@@ -474,7 +474,7 @@ export default function AddToCart({route, navigation}) {
                           index={index}
                         />
                         <View style={{flexDirection: 'row'}}>
-                          <ResponsiveText color={colors.isThemeDark ?  colors.white: colors.black} margin={[0, 10]}>
+                          <ResponsiveText color={isThemeDark ?  colors.white: colors.black} margin={[0, 10]}>
                             $
                             {item.quantity
                               ? item.price * item.quantity
@@ -495,7 +495,7 @@ export default function AddToCart({route, navigation}) {
                               <ResponsiveText
                                 size={5}
                                 margin={[0, 10]}
-                                color={colors.isThemeDark ?  colors.white: colors.black}>
+                                color={isThemeDark ?  colors.white: colors.black}>
                                 {item.quantity}
                               </ResponsiveText>
                               <TouchableOpacity
@@ -526,7 +526,7 @@ export default function AddToCart({route, navigation}) {
             >
               <Icon source={globalPath.PLUS_ICON} />
             </TouchableOpacity>
-            <ResponsiveText color={colors.isThemeDark ?  colors.white: colors.black} margin={[0, 0, 0, 10]}>
+            <ResponsiveText color={isThemeDark ?  colors.white: colors.black} margin={[0, 0, 0, 10]}>
               Add Special Instruction
             </ResponsiveText>
           </View>
@@ -545,7 +545,7 @@ export default function AddToCart({route, navigation}) {
                 borderColor: color.black2,
                 alignContent: 'center',
                 backgroundColor: isThemeDark ? colors.black2 : colors.white,
-                color: colors.isThemeDark ?  colors.white: colors.black,
+                color: isThemeDark ?  colors.white: colors.black,
               }}
               placeholderTextColor={isThemeDark ? undefined : colors.grey}
               textAlignVertical="top"
@@ -572,14 +572,14 @@ export default function AddToCart({route, navigation}) {
                 onPress={() => changeCount(count > 1 ? count - 1 : 1)}>
                 <Icon size={28} source={globalPath.MINUS_ICON} />
               </TouchableOpacity>
-              <ResponsiveText size={5} margin={[0, 10]} color={colors.isThemeDark ?  colors.white: colors.black}>
+              <ResponsiveText size={5} margin={[0, 10]} color={isThemeDark ?  colors.white: colors.black}>
                 {count}
               </ResponsiveText>
               <TouchableOpacity onPress={() => changeCount(count + 1)}>
                 <Icon size={28} source={globalPath.PLUS_ICON} />
               </TouchableOpacity>
             </View>
-            <ResponsiveText size={5} color={colors.isThemeDark ?  colors.white: colors.black}>
+            <ResponsiveText size={5} color={isThemeDark ?  colors.white: colors.black}>
               ${parseFloat(total).toFixed(2)}
             </ResponsiveText>
           </View>
