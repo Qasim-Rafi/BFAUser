@@ -11,6 +11,9 @@ import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { routeName } from '../../../constants/routeName';
 export default function Categories({ navigation, route }) {
+
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
+
   const { data } = route.params;
   // const [index, setindex] = useState(4);
   // var index=4;
@@ -39,7 +42,7 @@ export default function Categories({ navigation, route }) {
     return (
       <View style={styles.item}>
         <Text style={styles.header}>{item.name[0]}</Text>
-        <View style={{ borderRadius: 10, backgroundColor: colors.black2, paddingVertical: 10 }}>
+        <View style={{ borderRadius: 10, backgroundColor: isThemeDark ? colors.black2 : colors.white, paddingVertical: 10 }}>
           {data.filter(i => i.name[0] == item.name[0]).map((v, index) => {
             // if (i.name[0] == item.name[0]) {
             return (
@@ -51,7 +54,7 @@ export default function Categories({ navigation, route }) {
                       })
                     }>
 
-                <Text style={styles.title}>{v.name}</Text>
+                <Text style={[styles.title,{color: isThemeDark ? colors.white : colors.black}]}>{v.name}</Text>
                 </TouchableOpacity>
               </View>)
           }
@@ -63,24 +66,24 @@ export default function Categories({ navigation, route }) {
     )
   };
   return (
-    <View style={styles.container}>
-      <View style={[styles.header, { backgroundColor: colors.grey3 }]}>
+    <View style={[styles.container,{backgroundColor: isThemeDark ? colors.black3 : colors.bgWhite }]}>
+      <View style={[styles.header, { backgroundColor: isThemeDark ? colors.grey3 : colors.white }]}>
         <View style={{ borderRadius: 2 }}>
           <TouchableOpacity onPress={() => { navigation.goBack() }} style={{ margin: 5, backgroundColor: colors.yellow, paddingVertical: 10, alignSelf: 'flex-start', paddingHorizontal: 10, borderRadius: 25 }}>
             <Icon source={globalPath.BACK_ARROW} />
           </TouchableOpacity>
         </View>
-        <Text style={{ color: colors.white, width: wp(75), textAlign: 'center' }} >View Cuisines and Categories</Text>
+        <Text style={{ color: isThemeDark ? colors.white : colors.black, width: wp(75), textAlign: 'center' }} >View Cuisines and Categories</Text>
         <Icon source={globalPath.SEARCH_LOGO} size={20} />
 
 
       </View>
-      <View style={{ position: 'absolute', height: '85%', marginRight: 10, width: wp(5), backgroundColor: '#383838', zIndex: 5000, right: 0, marginTop: hp(10), alignItems: 'center', borderRadius: 10, justifyContent: 'center' }}>
+      <View style={{ position: 'absolute', height: '85%', marginRight: 10, width: wp(5), backgroundColor: isThemeDark ? colors.grey3 : colors.lightGrey , zIndex: 5000, right: 0, marginTop: hp(10), alignItems: 'center', borderRadius: 10, justifyContent: 'center' }}>
         {newArray.sort((a, b) => a.name.localeCompare(b.name)).map((item, index) => {
 
           return (
             <View style={{ flex: 1, justifyContent: 'center' }}>
-              <TouchableOpacity style={{ marginBottom: 2, backgroundColor: colors.white, height: 25, width: 25, justifyContent: 'center', alignItems: 'center', borderRadius: 1000 }} onPress={() => ScrollHandler(item, index)}>
+              <TouchableOpacity style={{ marginBottom: 2, backgroundColor: isThemeDark ? colors.white : colors.lighterGrey, height: 25, width: 25, justifyContent: 'center', alignItems: 'center', borderRadius: 1000 }} onPress={() => ScrollHandler(item, index)}>
                 <ResponsiveText color={colors.black1}>{item.name[0]}</ResponsiveText>
               </TouchableOpacity>
             </View>
