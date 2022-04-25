@@ -124,7 +124,7 @@ export default function ManageCards({ navigation }) {
         {/* ------------ ModalView -------------- */}
         <View
           style={{
-            backgroundColor: colors.black1,
+            backgroundColor: isThemeDark ? colors.black1 : colors.white,
             borderRadius: 7,
             marginBottom: 20,
           }}>
@@ -137,7 +137,7 @@ export default function ManageCards({ navigation }) {
               borderBottomWidth: 1,
               paddingBottom: 15,
             }}>
-            <ResponsiveText color={colors.white} size={3.5}>
+            <ResponsiveText color={isThemeDark ? colors.white : colors.black} size={3.5}>
               Delete Card
             </ResponsiveText>
             <ResponsiveText color={colors.grey1} size={3} margin={[0, 0, 0, 0]}>

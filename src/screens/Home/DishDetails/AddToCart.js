@@ -31,6 +31,9 @@ import {BarIndicator} from 'react-native-indicators';
 import Api from '../../../redux/lib/api';
 import urls from '../../../redux/lib/urls';
 export default function AddToCart({route, navigation}) {
+
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
+
   const cartList = useSelector(state => state.appReducers.cartList.data);
   const orderList = useSelector(
     state => state.appReducers.your_ordersList.data,
@@ -390,7 +393,7 @@ export default function AddToCart({route, navigation}) {
   };
   return (
     <View style={{flex: 1}}>
-      <ScrollView style={styles.container}>
+      <ScrollView style={[styles.container,{backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}]}>
         {loading === true ? (
           <View
             style={{
@@ -416,7 +419,7 @@ export default function AddToCart({route, navigation}) {
           <View style={{padding: 20}}>
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-              <ResponsiveText color={colors.white}>
+              <ResponsiveText color={colors.isThemeDark ?  colors.white: colors.black}>
                 {route.params.dish.dishName}
               </ResponsiveText>
               <ResponsiveText color={colors.yellow}>
@@ -448,8 +451,8 @@ export default function AddToCart({route, navigation}) {
                 marginTop: 20,
                 marginHorizontal: 10,
               }}>
-              <ResponsiveText color={colors.white}>{'Upsize'}</ResponsiveText>
-              <ResponsiveText color={colors.white}>{'Optional'}</ResponsiveText>
+              <ResponsiveText color={colors.isThemeDark ?  colors.white: colors.black}>{'Upsize'}</ResponsiveText>
+              <ResponsiveText color={colors.isThemeDark ?  colors.white: colors.black}>{'Optional'}</ResponsiveText>
             </View>
           ) : undefined}
           <View style={{padding: 20}}>
@@ -471,7 +474,7 @@ export default function AddToCart({route, navigation}) {
                           index={index}
                         />
                         <View style={{flexDirection: 'row'}}>
-                          <ResponsiveText color={colors.white} margin={[0, 10]}>
+                          <ResponsiveText color={colors.isThemeDark ?  colors.white: colors.black} margin={[0, 10]}>
                             $
                             {item.quantity
                               ? item.price * item.quantity
@@ -492,7 +495,7 @@ export default function AddToCart({route, navigation}) {
                               <ResponsiveText
                                 size={5}
                                 margin={[0, 10]}
-                                color={colors.white}>
+                                color={colors.isThemeDark ?  colors.white: colors.black}>
                                 {item.quantity}
                               </ResponsiveText>
                               <TouchableOpacity
@@ -523,7 +526,7 @@ export default function AddToCart({route, navigation}) {
             >
               <Icon source={globalPath.PLUS_ICON} />
             </TouchableOpacity>
-            <ResponsiveText color={colors.white} margin={[0, 0, 0, 10]}>
+            <ResponsiveText color={colors.isThemeDark ?  colors.white: colors.black} margin={[0, 0, 0, 10]}>
               Add Special Instruction
             </ResponsiveText>
           </View>
@@ -536,14 +539,15 @@ export default function AddToCart({route, navigation}) {
             <TextInput
               style={{
                 height: 70,
-                borderWidth: 2,
+                borderWidth: 0.5,
                 borderRadius: 3,
                 paddingHorizontal: 15,
                 borderColor: color.black2,
                 alignContent: 'center',
-                backgroundColor: colors.black2,
-                color: colors.white,
+                backgroundColor: isThemeDark ? colors.black2 : colors.white,
+                color: colors.isThemeDark ?  colors.white: colors.black,
               }}
+              placeholderTextColor={isThemeDark ? undefined : colors.grey}
               textAlignVertical="top"
               multiline={true}
               placeholder="Instructions..."
@@ -559,7 +563,7 @@ export default function AddToCart({route, navigation}) {
             style={{
               flexDirection: 'row',
               justifyContent: 'space-between',
-              backgroundColor: colors.black1,
+              backgroundColor: isThemeDark ? colors.black1 : colors.white,
               width: wp(62),
               padding: 16,
             }}>
@@ -568,18 +572,18 @@ export default function AddToCart({route, navigation}) {
                 onPress={() => changeCount(count > 1 ? count - 1 : 1)}>
                 <Icon size={28} source={globalPath.MINUS_ICON} />
               </TouchableOpacity>
-              <ResponsiveText size={5} margin={[0, 10]} color={colors.white}>
+              <ResponsiveText size={5} margin={[0, 10]} color={colors.isThemeDark ?  colors.white: colors.black}>
                 {count}
               </ResponsiveText>
               <TouchableOpacity onPress={() => changeCount(count + 1)}>
                 <Icon size={28} source={globalPath.PLUS_ICON} />
               </TouchableOpacity>
             </View>
-            <ResponsiveText size={5} color={colors.white}>
+            <ResponsiveText size={5} color={colors.isThemeDark ?  colors.white: colors.black}>
               ${parseFloat(total).toFixed(2)}
             </ResponsiveText>
           </View>
-          <View style={{padding: 16, backgroundColor: colors.black1}}>
+          <View style={{padding: 16, backgroundColor: isThemeDark ? colors.black1 : colors.white}}>
             <TouchableOpacity
               style={{
                 height: hp(4),
