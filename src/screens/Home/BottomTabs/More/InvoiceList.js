@@ -210,13 +210,13 @@ if(data.statusName==='Paid'){
               </ResponsiveText>
             </View>
 
-            <View style={styles.Container}>
+            <View style={[styles.Container,{backgroundColor: isThemeDark ?  colors.black2: colors.white}]}>
               {Object.keys(data).length != 0
                 ? data.addOrderDetail.map(item => {
                   return (
                     <View
                       style={{
-                        backgroundColor: colors.black2,
+                        // backgroundColor: colors.black2,
                         height: hp(10),
                         borderRadius: 5,
                         marginTop: hp(3),
@@ -287,7 +287,7 @@ if(data.statusName==='Paid'){
                   style={{
                     flex: 1,
                     marginTop: 0,
-                    backgroundColor: colors.black2,
+                    // backgroundColor: colors.black2,
                     borderTopRightRadius: 30,
                     paddingVertical: 5,
                     borderTopLeftRadius: 30,
