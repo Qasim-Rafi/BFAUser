@@ -30,6 +30,7 @@ import AwardWinningDishes from './AwardWinningDishes';
 import Promotion from './Promotion';
 import JobsList from './JobsList';
 import Header from '../../../../components/Header';
+import SkeletonComponent from '../../../Home/BottomTabs/Home/SkeletonComponent';
 import {ourRecommendationFakeDATA} from '../../../../constants/mock';
 0;
 import {useDispatch, useSelector} from 'react-redux';

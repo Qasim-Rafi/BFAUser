@@ -22,6 +22,7 @@ export const routeName = {
   WALLET: 'Wallet',
   TOP_UP: 'Top-up',
   TRANSFER: 'Transfer',
+  SKELETON_COMPONENT:'SKELETON_COMPONENT',
   // BOTTOM TABS
   HOME_BOTTOM: "Home",
   RANDOMISER_BOTTOM: "Randomiser",
