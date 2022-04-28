@@ -65,6 +65,7 @@ const CartDetails = ({ navigation }) => {
   const dispatch = useDispatch();
   const [selectedItem, SetSelectedItem] = React.useState(null);
   const [selectedBranch, SetSelectedBranch] = React.useState(null);
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
   const [loader, setloader] = React.useState(true);
 
   const [random, setRandom] = React.useState([]);
@@ -399,7 +400,7 @@ const CartDetails = ({ navigation }) => {
         style={{
           flex: 0.9,
           justifyContent: 'space-between',
-          backgroundColor: colors.black1,
+          backgroundColor: isThemeDark? colors.black1: colors.white,
           margin: 5,
           borderRadius: 20,
         }}>
@@ -422,7 +423,7 @@ const CartDetails = ({ navigation }) => {
                 <TouchableOpacity onPress={() => onClearOrder(item.id)}>
                   <ResponsiveText
                     margin={[15, 30, 15, -10]}
-                    color={colors.white}
+                    color={isThemeDark? colors.white: colors.black1}
                     size={4}>
                     Clear Order
                   </ResponsiveText>
@@ -442,7 +443,7 @@ const CartDetails = ({ navigation }) => {
                 return (
                   <View
                     style={{
-                      backgroundColor: colors.black2,
+                      backgroundColor: isThemeDark? colors.black2: colors.secondary,
                       marginHorizontal: 10,
                       flexDirection: 'row',
                       padding: 5,
@@ -467,7 +468,7 @@ const CartDetails = ({ navigation }) => {
                         }}>
                         <ResponsiveText
                           size={3.5}
-                          color={colors.white}
+                          color={isThemeDark? colors.white: colors.black1}
                           margin={[0, 0, 0, 10]}>
                           {v.dishName}
                         </ResponsiveText>
@@ -479,7 +480,7 @@ const CartDetails = ({ navigation }) => {
                         </ResponsiveText>
                         <ResponsiveText
                           size={3}
-                          color={colors.yellow}
+                          color={isThemeDark? colors.yellow: colors.yellow1}
                           margin={[0, 0, 0, 10]}>
                           $ {v.dishPrice}
                         </ResponsiveText>
@@ -566,7 +567,7 @@ const CartDetails = ({ navigation }) => {
                           }}>
                           <Icon
                             source={globalPath.DELETE_ICON}
-                            tintColor={colors.yellow}
+                            tintColor={isThemeDark? colors.yellow: colors.yellow1}
                             margin={[-20, 0, 0, 0]}
                             size={30}
                           />
@@ -581,7 +582,7 @@ const CartDetails = ({ navigation }) => {
           <View>
             <View
               style={{
-                backgroundColor: colors.black2,
+                backgroundColor: isThemeDark? colors.black2: colors.secondary,
                 paddingVertical: 15,
                 marginHorizontal: 20,
                 marginTop: 20,
@@ -594,10 +595,10 @@ const CartDetails = ({ navigation }) => {
                   paddingHorizontal: 15,
                   justifyContent: 'space-between',
                 }}>
-                <ResponsiveText color={colors.white} size={3}>
+                <ResponsiveText color={isThemeDark? colors.white: colors.black1} size={3}>
                   Total
                 </ResponsiveText>
-                <ResponsiveText color={colors.yellow} size={3}>
+                <ResponsiveText color={isThemeDark? colors.yellow: colors.yellow1} size={3}>
                   $ {parseFloat(item.amount).toFixed(2)}
                 </ResponsiveText>
               </View>
@@ -625,10 +626,10 @@ const CartDetails = ({ navigation }) => {
                   paddingHorizontal: 15,
                   justifyContent: 'space-between',
                 }}>
-                <ResponsiveText color={colors.white} size={3}>
+                <ResponsiveText color={isThemeDark? colors.white: colors.black1} size={3}>
                   Final Total
                 </ResponsiveText>
-                <ResponsiveText color={colors.yellow} size={4}>
+                <ResponsiveText color={isThemeDark? colors.yellow: colors.yellow1} size={4}>
                   $ {parseFloat(item.amount).toFixed(2)}
                   {/* {cartList
                     .filter(i => i.titleR == item.titleR)
@@ -704,7 +705,7 @@ const CartDetails = ({ navigation }) => {
     );
   };
   return (
-    <View style={{ backgroundColor: colors.black3, flex: 1 }}>
+    <View style={{ backgroundColor: isThemeDark? colors.black3: colors.bgWhite, flex: 1 }}>
       <RNModal
         isVisible={visible}
         backdropOpacity={0.9}
@@ -724,7 +725,7 @@ const CartDetails = ({ navigation }) => {
           console.log('truee');
         }}
           style={{
-            backgroundColor: colors.black3,
+            backgroundColor: isThemeDark ? colors.black3 : colors.white,
             padding: wp(5),
             borderRadius: 20,
           }}>
@@ -750,12 +751,12 @@ const CartDetails = ({ navigation }) => {
                 />
 
                 <View style={{ marginLeft: 5 }}>
-                  <Text style={styles.ModalDish}>{selectedItem.dishName}</Text>
+                  <Text style={[styles.ModalDish,{color: isThemeDark ?  colors.white: colors.black}]}>{selectedItem.dishName}</Text>
                   <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '70%', marginTop: 10 }}>
-                    <Text style={styles.ModalPrice}>
+                    <Text style={[styles.ModalPrice,{color: isThemeDark ?  colors.white: colors.black}]}>
                       $ {selectedItem.dishPrice}
                     </Text>
-                    <Text style={styles.ModalQuantity}>Quantity:{selectedItem.quantity}</Text>
+                    <Text style={[styles.ModalQuantity,{color: isThemeDark ?  colors.white: colors.black}]}>Quantity:{selectedItem.quantity}</Text>
                   </View>
 
 
@@ -765,14 +766,14 @@ const CartDetails = ({ navigation }) => {
               <View style={styles.ModalInnerDisign}>
                 <View style={{flexDirection:'row',}}>
                 <Text style={styles.headingDiscription}>Description:</Text>
-                <Text style={styles.ModalDiscription}>
+                <Text style={[styles.ModalDiscription,{color: isThemeDark ?  colors.white: colors.black}]}>
                   { selectedItem.dishDescription} 
                 </Text>
                 </View>
                 
                 {selectedItem.orderDetailSoftDrinkList.length > 0
                     ?
-                <View style={{ backgroundColor: colors.black2, height: hp(2), width: wp(80), flexDirection: 'row', justifyContent: 'space-between' }}>
+                <View style={{ backgroundColor: isThemeDark ?  colors.black2: colors.white, height: hp(2), width: wp(80), flexDirection: 'row', justifyContent: 'space-between' }}>
                   <Text style={{ fontSize: 10, color: colors.yellow }}>Drinks</Text>
                   <Text style={{ fontSize: 10, color: colors.yellow }}>Quantity</Text>
                   <Text style={{ fontSize: 10, color: colors.yellow }}>Price</Text>
@@ -792,7 +793,7 @@ const CartDetails = ({ navigation }) => {
                           
                         <View
                           style={{
-                            backgroundColor: colors.white,
+                            backgroundColor: isThemeDark ?  colors.white: colors.black,
                             height: 5,
                             width: 5,
                             borderRadius: 50,
@@ -802,13 +803,13 @@ const CartDetails = ({ navigation }) => {
                           <View style={{  flexDirection:'row',
                             }}>
 
-                        <Text style={styles.restaurantSoftDrinkName}>
+                        <Text style={[styles.restaurantSoftDrinkName,{color: isThemeDark ?  colors.white: colors.black}]}>
                           {item.restaurantSoftDrinkName}
                         </Text>
-                        <Text style={styles.ModalDrink}>
+                        <Text style={[styles.ModalDrink,{color: isThemeDark ?  colors.white: colors.black}]}>
                           {item.quantity}
                         </Text>
-                        <Text style={styles.Quantity}>
+                        <Text style={[styles.Quantity,{color: isThemeDark ?  colors.white: colors.black}]}>
                           {item.price}
                         </Text>
                         </View>
@@ -820,7 +821,7 @@ const CartDetails = ({ navigation }) => {
                 <View>
                   {selectedItem.orderDetailExtraItemList.length > 0
                     ?
-                    <View style={{ backgroundColor: colors.black2, height: hp(2), width: wp(80), flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <View style={{ backgroundColor: isThemeDark ?  colors.black2: colors.white, height: hp(2), width: wp(80), flexDirection: 'row', justifyContent: 'space-between' }}>
                     <Text style={{ fontSize: 10, color: colors.yellow }}>Add ons</Text>
                     <Text style={{ fontSize: 10, color: colors.yellow }}>Quantity</Text>
                     <Text style={{ fontSize: 10, color: colors.yellow }}>Price</Text>
@@ -842,7 +843,7 @@ const CartDetails = ({ navigation }) => {
                         }}>
                         <View
                           style={{
-                            backgroundColor: colors.white,
+                            backgroundColor: isThemeDark ?  colors.white: colors.black,
                             height: 5,
                             width: 5,
                             borderRadius: 50,
@@ -852,13 +853,13 @@ const CartDetails = ({ navigation }) => {
                           <View style={{  flexDirection:'row',
                             }}>
 
-                        <Text style={styles.restaurantSoftDrinkName}>
+                        <Text style={[styles.restaurantSoftDrinkName,{color: isThemeDark ?  colors.white: colors.black}]}>
                           {item.restaurantDishExtraItemName}
                         </Text>
-                        <Text style={styles.ModalDrink}>
+                        <Text style={[styles.ModalDrink,{color: isThemeDark ?  colors.white: colors.black}]}>
                           {item.quantity}
                         </Text>
-                        <Text style={styles.Quantity}>
+                        <Text style={[styles.Quantity,{color: isThemeDark ?  colors.white: colors.black}]}>
                           {item.price}
                         </Text>
                         </View>
@@ -870,7 +871,7 @@ const CartDetails = ({ navigation }) => {
                 <View>
                   {selectedItem.orderDetailLinkedItemList.length > 0
                     ?
-                    <View style={{ backgroundColor: colors.black2, height: hp(2), width: wp(80), flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <View style={{ backgroundColor: isThemeDark ?  colors.black2: colors.white, height: hp(2), width: wp(80), flexDirection: 'row', justifyContent: 'space-between' }}>
                     <Text style={{ fontSize: 10, color: colors.yellow }}>Upsize</Text>
                     <Text style={{ fontSize: 10, color: colors.yellow }}>Quantity</Text>
                     <Text style={{ fontSize: 10, color: colors.yellow }}>Price</Text>
@@ -891,7 +892,7 @@ const CartDetails = ({ navigation }) => {
                           }}>
                           <View
                             style={{
-                              backgroundColor: colors.white,
+                              backgroundColor: isThemeDark ?  colors.white: colors.black,
                               height: 5,
                               width: 5,
                               borderRadius: 50,
@@ -900,13 +901,13 @@ const CartDetails = ({ navigation }) => {
                          <View style={{  flexDirection:'row',
                             }}>
 
-                        <Text style={styles.restaurantSoftDrinkName}>
+                        <Text style={[styles.restaurantSoftDrinkName,{color: isThemeDark ?  colors.white: colors.black}]}>
                           {item.restaurantDishLinkedItemName}
                         </Text>
-                        <Text style={styles.ModalDrink}>
+                        <Text style={[styles.ModalDrink,{color: isThemeDark ?  colors.white: colors.black}]}>
                           {item.quantity}
                         </Text>
-                        <Text style={styles.Quantity}>
+                        <Text style={[styles.Quantity,{color: isThemeDark ?  colors.white: colors.black}]}>
                           {item.price}
                         </Text>
                         </View>
@@ -918,7 +919,7 @@ const CartDetails = ({ navigation }) => {
                 {selectedItem.remarks ?
 
                   <Text style={styles.headingInstructions}>Remarks:
-                    <Text style={styles.ModalInstructions}>
+                    <Text style={[styles.ModalInstructions,{color: isThemeDark ?  colors.white: colors.black}]}>
                       {selectedItem.remarks}
                     </Text>
                   </Text>
@@ -928,7 +929,7 @@ const CartDetails = ({ navigation }) => {
               <View>
                 <Text
                   style={{
-                    color: colors.white,
+                    color: isThemeDark ?  colors.white: colors.black,
                     fontSize: 10,
                     marginTop: 4,
                     alignSelf: 'flex-end',
@@ -1037,7 +1038,7 @@ const CartDetails = ({ navigation }) => {
           padding: 6,
           // alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: colors.black2,
+          backgroundColor: isThemeDark? colors.black2: colors.white,
         }}>
         <Header navigation={navigation} />
       </View>

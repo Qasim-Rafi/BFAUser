@@ -8,16 +8,18 @@ import ResponsiveText from '../../../components/RnText';
 import Icon from '../../../components/Icon';
 import CustomInput from '../../../components/customInput';
 import {routeName} from '../../../constants/routeName';
+import { useSelector } from 'react-redux';
 
 export default function AddCard({navigation}) {
   const [checked, setCheck] = React.useState(false);
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
   return (
-    <View style={{flex: 1, backgroundColor: colors.black3}}>
+    <View style={{flex: 1, backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}}>
       <View
         style={{
           flex: 0.1,
-          backgroundColor: colors.black2,
+          backgroundColor: isThemeDark ? colors.black2 : colors.white,
           justifyContent: 'center',
         }}>
         <Header iconPath={globalPath.BACK_ARROW} navigation={navigation} />
@@ -29,7 +31,7 @@ export default function AddCard({navigation}) {
       <View style={{flexDirection: 'row'}}>
         <TouchableOpacity
           style={{
-            backgroundColor: checked ? colors.black3 : undefined,
+            backgroundColor: checked ? isThemeDark ?  colors.black3: colors.bgWhite : undefined,
             borderRadius: 50,
             borderColor: colors.yellow,
             borderWidth: 2,
@@ -58,7 +60,7 @@ export default function AddCard({navigation}) {
 
         <TouchableOpacity
           style={{
-            backgroundColor: checked ? colors.black3 : undefined,
+            backgroundColor: checked ? isThemeDark ?  colors.black3: colors.bgWhite : undefined,
             borderRadius: 50,
             borderColor: colors.yellow,
             borderWidth: 2,
@@ -94,7 +96,7 @@ export default function AddCard({navigation}) {
         style={{
           flex: 0.9,
           marginTop: 5,
-          backgroundColor: colors.black2,
+          backgroundColor: isThemeDark ?  colors.black2: colors.white,
           borderTopRightRadius: 30,
           paddingVertical: 5,
           borderTopLeftRadius: 30,

@@ -19,9 +19,11 @@ import {
 import { hp, wp } from '../../../../helpers/Responsiveness'
 import Api from '../../../../redux/lib/api'
 import urls from '../../../../redux/lib/urls'
+import { useSelector } from 'react-redux'
 export default function ContactUs({ navigation, route }) {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(false);
+    const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
     React.useEffect(() => {
         // dispatch(getProfileData());
@@ -57,7 +59,7 @@ export default function ContactUs({ navigation, route }) {
         } catch (error) { }
     };
     return (
-        <View style={{ flex: 1, backgroundColor: colors.black3 }}>
+        <View style={{ flex: 1, backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite }}>
             <View style={{height:20,width:wp(10)}}>
             <TouchableOpacity style={{ backgroundColor: colors.yellow1,padding:10,top:20,left:20, borderRadius: 20, }} onPress={() => { navigation.goBack() }}>
                     <Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
@@ -67,7 +69,7 @@ export default function ContactUs({ navigation, route }) {
               source={{uri:data.restaurantLogo}}
               style={{ height: hp(30), borderRadius:wp(20), width:wp(40) ,justifyContent:'center',alignSelf:'center',resizeMode:"contain"}}
             />
-                        <ResponsiveText color={colors.white} size={4} margin={[wp(0), 20, 10, wp(25)]}>{data.branchAlias}</ResponsiveText>
+                        <ResponsiveText color={isThemeDark ?  colors.white: colors.black} size={4} margin={[wp(0), 20, 10, wp(25)]}>{data.branchAlias}</ResponsiveText>
 
             <View style={{ flex: 0.9, }}>
                 <ResponsiveText size={5} color={colors.yellow} margin={[20, 20, 5, 20]} >Contact Us</ResponsiveText>

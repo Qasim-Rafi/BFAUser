@@ -52,6 +52,7 @@ export default function AllDishesList({ route, navigation }) {
   const title = route.params.title;
   const dispatch = useDispatch();
   const [index, setIndex] = React.useState(1);
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
   const data = useSelector(state =>
     title == 'BFA Recommendation'
       ? state.appReducers.bfaRecommendationDetail.data
@@ -211,7 +212,7 @@ export default function AllDishesList({ route, navigation }) {
         style={{
           flex: 0.1,
           justifyContent: 'center',
-          backgroundColor: colors.black2,
+          backgroundColor: isThemeDark ? colors.black2 : colors.white,
         }}>
         <TouchableOpacity
           onPress={() => {
@@ -275,7 +276,7 @@ export default function AllDishesList({ route, navigation }) {
   };
 //Array.from(new Set(data.map(JSON.stringify))).map(JSON.parse)
   return (
-    <View style={{ backgroundColor: colors.black3, flex: 1 }}>
+    <View style={{ backgroundColor: isThemeDark ? colors.black3 : colors.bgWhite , flex: 1 }}>
       <FlatList
         ListHeaderComponent={listHead}
         stickyHeaderIndices={[0]}
@@ -289,7 +290,7 @@ export default function AllDishesList({ route, navigation }) {
           <View>
             {data.length == 0 ? (
               <View style={{ alignItems: 'center' }}>
-                <ResponsiveText color={colors.white}>
+                <ResponsiveText color={isThemeDark ?  colors.white : colors.black}>
                   {loading ? '' : 'No record found against' + ' ' + title}
                 </ResponsiveText>
               </View>

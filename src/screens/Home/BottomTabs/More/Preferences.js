@@ -15,6 +15,7 @@ import { getFoodPrefrences } from '../../../../redux/actions/user.actions'
 
 export default function Preferences({navigation}) {
   const dispatch = useDispatch();
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
   useEffect(()=>{
     dispatch(getFoodPrefrences(1, 4));
@@ -38,14 +39,14 @@ export default function Preferences({navigation}) {
   }
 
   return (
-    <View style={{ flex: 1, backgroundColor: colors.black3 }}>
-      <View style={styles.header}>
+    <View style={{ flex: 1, backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite }}>
+      <View style={[styles.header,{backgroundColor: isThemeDark ? colors.black2 : colors.white}]}>
         <TouchableOpacity onPress={()=>navigation.goBack()} >
         <View style={{backgroundColor:colors.yellow, padding:10, borderRadius:20}}>
           <Icon source={require('../../../../assets/icons/x.png')} tintColor={colors.white} size={20} />
         </View>
         </TouchableOpacity>
-        <ResponsiveText color={colors.white} size={4}>
+        <ResponsiveText color={isThemeDark ?  colors.white: colors.black} size={4}>
           Preferences
         </ResponsiveText>
         <View style={{ backgroundColor: colors.yellow, paddingVertical: 5, paddingHorizontal: 10, borderRadius: 5, alignItems: 'center', justifyContent: 'center' }}>
@@ -55,7 +56,7 @@ export default function Preferences({navigation}) {
       <View style={{ flex: 0.9,}}>
         <ScrollView>
         <View style={{ borderBottomColor: colors.black2, borderBottomWidth: 1, marginHorizontal: 20, marginVertical: 15, }}>
-          <ResponsiveText size={4} color={colors.white}>
+          <ResponsiveText size={4} color={isThemeDark ?  colors.white: colors.black}>
             Cuisines
           </ResponsiveText>
         </View>
@@ -76,13 +77,13 @@ export default function Preferences({navigation}) {
                     borderRadius: 18,
                     alignItems: 'center',
                     justifyContent: 'center',
-                    backgroundColor: itemList.includes(item) ? colors.yellow : colors.black2,
+                    backgroundColor: itemList.includes(item) ? colors.yellow : isThemeDark ? colors.black2 : colors.white,
                     marginHorizontal: 5,
                     paddingVertical: 10,
                     paddingHorizontal:20,
                     marginTop: 10,
                   }}>
-                  <Text style={{ fontSize: 14, color: itemList.includes(item) ? colors.black : colors.white, }}>{item.title}</Text>
+                  <Text style={{ fontSize: 14, color: itemList.includes(item) ? colors.black : isThemeDark ? colors.white : colors.black1, }}>{item.title}</Text>
                 </View>
               </TouchableOpacity>
             );
@@ -92,7 +93,7 @@ export default function Preferences({navigation}) {
 
 
         <View style={{ borderBottomColor: colors.black2, borderBottomWidth: 1, marginHorizontal: 20, marginVertical: 15, }}>
-          <ResponsiveText size={4} color={colors.white}>
+          <ResponsiveText size={4} color={isThemeDark ?  colors.white: colors.black}>
             Popular Dishes
           </ResponsiveText>
         </View>
@@ -114,13 +115,13 @@ export default function Preferences({navigation}) {
                     borderRadius: 18,
                     alignItems: 'center',
                     justifyContent: 'center',
-                    backgroundColor: itemList.includes(item) ? colors.yellow : colors.black2,
+                    backgroundColor: itemList.includes(item) ? colors.yellow : isThemeDark ? colors.black2 : colors.white,
                     marginHorizontal: 5,
                     paddingVertical: 10,
                     paddingHorizontal:20,
                     marginTop: 10,
                   }}>
-                  <Text style={{ fontSize: 14, color: itemList.includes(item) ? colors.black : colors.white,}}>{item.title}</Text>
+                  <Text style={{ fontSize: 14, color: itemList.includes(item) ? colors.black : isThemeDark ? colors.white : colors.black1,}}>{item.title}</Text>
                 </View>
               </TouchableOpacity>
             );
@@ -130,7 +131,7 @@ export default function Preferences({navigation}) {
 
 
         <View style={{ borderBottomColor: colors.black2, borderBottomWidth: 1, marginHorizontal: 20, marginVertical: 15, }}>
-          <ResponsiveText size={4} color={colors.white}>
+          <ResponsiveText size={4} color={isThemeDark ?  colors.white: colors.black}>
             Others
           </ResponsiveText>
         </View>
@@ -152,13 +153,13 @@ export default function Preferences({navigation}) {
                     borderRadius: 18,
                     alignItems: 'center',
                     justifyContent: 'center',
-                    backgroundColor: itemList.includes(item) ? colors.yellow : colors.black2,
+                    backgroundColor: itemList.includes(item) ? colors.yellow : isThemeDark ? colors.black2 : colors.white,
                     marginHorizontal: 5,
                     paddingVertical: 10,
                     paddingHorizontal:20,
                     marginTop: 10,
                   }}>
-                  <Text style={{ fontSize: 14, color: itemList.includes(item) ? colors.black : colors.white, }}>{item.title}</Text>
+                  <Text style={{ fontSize: 14, color: itemList.includes(item) ? colors.black : isThemeDark ? colors.white : colors.black1, }}>{item.title}</Text>
                 </View>
               </TouchableOpacity>
             );

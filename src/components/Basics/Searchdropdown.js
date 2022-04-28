@@ -13,29 +13,31 @@ import { globalPath } from '../../constants/globalPath';
 import { color } from 'react-native-reanimated';
 import { colors } from '../../constants/colorsPallet';
 import Icon from '../Icon';
+import { useSelector } from 'react-redux';
 
 export default function SearchDropDown(props) {
     const { data } = props
+    const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
     return (
         <TouchableOpacity
             onPress={props.onPress}
             style={styles.container}>
 
-            <View style={styles.subContainer}>
+            <View style={[styles.subContainer,{backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}]}>
                 {
                     data.length ?
 
                         data.map((item, index) => {
                             if (index < 10) {
                                 return (
-                                    <View style={styles.itemView}>
+                                    <View style={[styles.itemView,{backgroundColor: isThemeDark ? colors.black1 : colors.secondary}]}>
                                         <TouchableOpacity onPress={() => props.onSearch(item.suggestedName)}>
 
-                                            <View style={styles.itemView}>
-                                                <Text style={styles.itemText}>{item.suggestedName}</Text>
+                                            <View style={[styles.itemView,{backgroundColor: isThemeDark ? colors.black1 : colors.secondary}]}>
+                                                <Text style={[styles.itemText,{color: isThemeDark ?  colors.white: colors.black}]}>{item.suggestedName}</Text>
                                                 <View style={{ alignItems: 'flex-end' }}>
 
-                                                    <Icon size={15} margin={[-10, 10, 0, 0]} source={require('../../assets/icons/uparrow.png')} />
+                                                    <Icon size={15} margin={[-10, 10, 0, 0]} tintColor={isThemeDark ?  colors.white: colors.black} source={require('../../assets/icons/uparrow.png')} />
                                                 </View>
                                             </View>
                                         </TouchableOpacity>
@@ -60,8 +62,8 @@ export default function SearchDropDown(props) {
                         :
                        
                         <View
-                            style={styles.noResultView}>
-                            <Text style={styles.noResultText}>No search items matched</Text>
+                            style={[styles.noResultView,{backgroundColor: isThemeDark ?  colors.black1: colors.secondary}]}>
+                            <Text style={[styles.noResultText,{color: isThemeDark ?  colors.white: colors.black}]}>No search items matched</Text>
                         </View>
                 }
             </View>

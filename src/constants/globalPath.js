@@ -2,6 +2,7 @@
 // 2. EXPORT CONSTANT BELOW ICON PATHS IN GLOBAL PATH OBJECT
 
 const BG_IMAGE = require('../assets/icons/background.png');
+const BG_IMAGE_LIGHT = require('../assets/icons/bg-white.png');
 const BALI_LOGO = require('../assets/icons/bali-logo.png');
 const LOCK_LOGO = require('../assets/fake_Images/lock.png');
 const USER_LOGO = require('../assets/fake_Images/user.png');
@@ -330,5 +331,6 @@ export const globalPath = {
   HOME_BFA_PARTNER_5,
   HOME_BFA_PARTNER_6,
   NEWS_FEED_IAMGE1,
+  BG_IMAGE_LIGHT
 
 };

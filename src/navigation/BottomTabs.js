@@ -53,7 +53,7 @@ export default function BottomTabs(props) {
         },
         // tabBarStyle: {borderTopWidth:0},
         tabStyle: {
-          backgroundColor: colors.black1,
+          backgroundColor: isThemeDark ?  colors.black1 : colors.white,
           borderBottomWidth: 0,
           padding: 0,
           margin: 0,

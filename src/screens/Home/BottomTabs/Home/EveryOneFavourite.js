@@ -42,6 +42,7 @@ const EveryOneFavourite = props => {
   const People_choice_Loading = useSelector(
     State => State.appReducers.PeopleChoice.loading,
   );
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
   console.log('People Choice: ', People_choice);
   console.log('People Choice: ', People_choice.length);
 
@@ -49,8 +50,8 @@ const EveryOneFavourite = props => {
 
   return (
     <>
-      <View style={styles.everyOneFavoriteHeaderSection}>
-        <ResponsiveText size={4} margin={[0, 0, 0, 0]} color={colors.white}>
+      <View style={[styles.everyOneFavoriteHeaderSection,{backgroundColor:isThemeDark ?  colors.black3: colors.bgWhite}]}>
+        <ResponsiveText size={4} margin={[0, 0, 0, 0]} color={isThemeDark ? colors.white : colors.black}>
           People's Choice
         </ResponsiveText>
         <View style={{marginRight: -10}}>
@@ -62,7 +63,7 @@ const EveryOneFavourite = props => {
           />
         </View>
       </View>
-      <View style={styles.everyOneFavoriteItemsSection}>
+      <View style={[styles.everyOneFavoriteItemsSection,{backgroundColor:isThemeDark ?  colors.black3: colors.bgWhite}]}>
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           {People_choice.length > 0
             ? People_choice.map((url, index) => {

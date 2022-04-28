@@ -11,10 +11,12 @@ import { hp, wp } from '../../../helpers/Responsiveness';
 import ResponsiveText from '../../../components/RnText';
 
 import Icon from '../../../components/Icon';
-import { useDispatch } from 'react-redux';
-import { getBfaPartners } from '../../../redux/actions/user.actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBfaPartners, setTheme } from '../../../redux/actions/user.actions';
 
 const Splash = ({ navigation }) => {
+
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
   //Validation Login
   const [Token, setToken] = React.useState(null);
@@ -70,15 +72,26 @@ const Splash = ({ navigation }) => {
   React.useEffect(() => {
     
     fetchAndSetUser();
-    
+    getTheme()
 
 
   }, [])
 
+  const getTheme=async()=>{
+    const isThemeDark = await AsyncStorage.getItem('@ThemeDark');
+    console.log(isThemeDark,'isThemeDark in splash');
+    if(isThemeDark!=null){
+      if(isThemeDark=='false'){
+        console.log(isThemeDark,'isThemeDark in splash2');
+        dispatch(setTheme(false));
+      }
+    }
+  }
+
 
   return (
 
-    <View style={{ backgroundColor: colors.black, flex: 1, justifyContent: 'center', alignItems: 'center' }} >
+    <View style={{ backgroundColor: isThemeDark ? colors.black : colors.white, flex: 1, justifyContent: 'center', alignItems: 'center' }} >
 
       {
         logo ?

@@ -13,10 +13,12 @@ import {hp, wp} from '../../../helpers/Responsiveness';
 import { useCallback } from 'react';
 import { routeName } from '../../../constants/routeName';
 import FastImage from 'react-native-fast-image';
+import { useSelector } from 'react-redux';
 const Menu = (props) => {
   const scrollRef = useRef(null);
   const [activeTab, setActiveTab] = React.useState(0);
   const [data,setData]=React.useState(props.data)
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
   // console.log(data,'jjjj')
   const viewConfigRef = React.useRef({viewAreaCoveragePercentThreshold: 90});
   const ScrollHandler = (item, index) => {
@@ -40,7 +42,7 @@ const Menu = (props) => {
             <TouchableOpacity
               style={{
                 height: wp(20),
-                backgroundColor: colors.lightBlack,
+                backgroundColor: isThemeDark ? colors.lightBlack : colors.white,
                 borderRadius: 5,
                 marginBottom: 4,
                 padding: 5,
@@ -58,7 +60,7 @@ const Menu = (props) => {
                     alignItems: 'center',
                     overflow: 'hidden',
                   }}>
-                  <ResponsiveText size={2.9} color={colors.white}>
+                  <ResponsiveText size={2.9} color={isThemeDark ?  colors.white: colors.black}>
                     {data.dishName}
                   </ResponsiveText>
                   <ResponsiveText
@@ -89,7 +91,7 @@ const Menu = (props) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container,{backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}]}>
       
       <View horizontal={true}
         style={{
@@ -114,7 +116,7 @@ const Menu = (props) => {
                       paddingBottom: 7,
                       zIndex: 100,
                     }}>
-                    <ResponsiveText size={2.5} color={colors.white}>
+                    <ResponsiveText size={2.5} color={isThemeDark ?  colors.white: colors.black}>
                       {items.menuCategoryName}
                     </ResponsiveText>
                   </TouchableOpacity>

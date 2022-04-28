@@ -42,6 +42,7 @@ import {hp, wp} from '../../../helpers/Responsiveness';
 import leftArrow from '../../../assets/icons/arrow-left.png';
 import {useDispatch, useSelector} from 'react-redux';
 import {getBalicoins} from '../../../redux/actions/user.actions';
+import Icon from '../../../components/Icon';
 
 const Wallet = props => {
   const navigation = useNavigation();
@@ -56,6 +57,7 @@ const Wallet = props => {
 
   const [number, setNumber] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
   useEffect(() => {
     // navigation.setOptions({
@@ -72,12 +74,12 @@ const Wallet = props => {
   }, []);
 
   return (
-    <ScrollView style={{backgroundColor: colors.black3}}>
+    <ScrollView style={{backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}}>
       <View
         style={{
           flexDirection: 'row',
           padding: 15,
-          backgroundColor: colors.black3,
+          backgroundColor: isThemeDark ?  colors.black3: colors.white,
           paddingVertical: 15,
         }}>
         <TouchableOpacity
@@ -96,19 +98,23 @@ const Wallet = props => {
           style={{
             fontWeight: 'bold',
             fontSize: 20,
-            color: 'white',
+            color: isThemeDark ?  colors.white: colors.black,
             marginLeft: '33%',
           }}>
           Wallet
         </Text>
       </View>
-      <View style={styles.container}>
-        <Text style={{color: 'white', fontSize: 19, marginTop: 20}}>
+      <View style={[styles.container,{backgroundColor:isThemeDark ?  colors.black3: colors.bgWhite}]}>
+        <Text style={{color: isThemeDark ?  colors.white: colors.black, fontSize: 19, marginTop: 20}}>
           Your Bcoin Balance is:
         </Text>
         <View style={{justifyContent: 'center', flexDirection: 'row',marginBottom:20}}>
-          <Image source={bCoin} style={{height: 60, width: 50}} />
-          <Text style={{color: 'white', fontSize: 60,}}>
+          <Icon source={bCoin} 
+            // style={{height: 60, width: 50}}
+            size={60}
+            tintColor={isThemeDark ?  colors.white: colors.black}
+           />
+          <Text style={{color: isThemeDark ?  colors.white: colors.black, fontSize: 60,}}>
             {typeof comingAmount === 'undefined'
               ?data? parseFloat(data.bcoins).toFixed(2):parseFloat(0).toFixed(2)
               : parseFloat(walletAmount + comingAmount).toFixed(2)}
@@ -139,29 +145,29 @@ const Wallet = props => {
               onPress={() =>
                 navigation.navigate(routeName.TRANSACTION_HISTORY)
               }>
-              <View style={styles.imageContainer}>
+              <View style={[styles.imageContainer,{backgroundColor: isThemeDark ?  colors.grey1: colors.white}]}>
                 <Image source={historyLogo} style={styles.image} />
               </View>
             </TouchableOpacity>
-            <Text style={{color: 'white'}}>History</Text>
+            <Text style={{color: isThemeDark ?  colors.white: colors.black}}>History</Text>
           </View>
           <View style={{alignItems: 'center'}}>
             <TouchableOpacity
               onPress={() => navigation.navigate(routeName.TRANSFER)}>
-              <View style={styles.imageContainer}>
+              <View style={[styles.imageContainer,{backgroundColor: isThemeDark ?  colors.grey1: colors.white}]}>
                 <Image source={transferLogo} style={styles.image} />
               </View>
             </TouchableOpacity>
-            <Text style={{color: 'white'}}>Transfer</Text>
+            <Text style={{color: isThemeDark ?  colors.white: colors.black}}>Transfer</Text>
           </View>
           <View style={{alignItems: 'center'}}>
             <TouchableOpacity
               onPress={() => navigation.navigate(routeName.TOP_UP)}>
-              <View style={styles.imageContainer}>
+              <View style={[styles.imageContainer,{backgroundColor: isThemeDark ?  colors.grey1: colors.white}]}>
                 <Image source={topUpLogo} style={styles.image} />
               </View>
             </TouchableOpacity>
-            <Text style={{color: 'white'}}>Top-Up</Text>
+            <Text style={{color: isThemeDark ?  colors.white: colors.black}}>Top-Up</Text>
           </View>
         </View>
 

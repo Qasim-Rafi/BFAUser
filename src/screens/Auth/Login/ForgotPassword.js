@@ -41,6 +41,9 @@ import urls from '../../../redux/lib/urls';
 import Api from '../../../redux/lib/api';
 
 export default function Login({navigation}) {
+
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
+
   const dropdownRef = React.useRef(null);
   // const showError
   // const [loading, setLoading] = React.useState(false);
@@ -81,11 +84,11 @@ export default function Login({navigation}) {
     <>
       <ScrollView
         keyboardShouldPersistTaps="handled"
-        contentContainerStyle={{flexGrow: 1, backgroundColor: colors.black}}>
+        contentContainerStyle={{flexGrow: 1, backgroundColor: isThemeDark ?  colors.black: colors.white}}>
         <View
           style={{
             flex: 1,
-            backgroundColor: colors.black,
+            backgroundColor: isThemeDark ?  colors.black: colors.white,
             justifyContent: 'center',
           }}>
           <View style={styles.screeninfo}>
@@ -97,14 +100,17 @@ export default function Login({navigation}) {
               size={5}>
               Forgot Password
             </ResponsiveText>
-            <ResponsiveText margin={[5, 0, 0, 0]} color={colors.white}>
+            <ResponsiveText margin={[5, 0, 0, 0]} color={isThemeDark ?  colors.white: colors.black}>
               Please enter Phone number to continue
             </ResponsiveText>
           </View>
           <KeyboardAvoidingView
-            style={styles.formArea}
+            style={[styles.formArea,{backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}]}
             behavior={Platform.OS === 'ios' ? 'padding' : null}>
             <Input
+              style={{backgroundColor:isThemeDark ?  colors.black1: colors.grey}}
+              backgroundColor={isThemeDark ?  colors.black1: colors.grey}
+              placeholderTextColor={isThemeDark ? undefined : colors.secondary}
               margin={[15, 0, 0, 0]}
               padding={[0, 0, 0, 20]}
               maxlength={7}
@@ -149,7 +155,7 @@ export default function Login({navigation}) {
               /> */}
             <View style={styles.footer}>
               {/* <Icon size={wp(8)} margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
-              <ResponsiveText margin={[0, 10]} color={colors.white}>
+              <ResponsiveText margin={[0, 10]} color={isThemeDark ?  colors.white: colors.black}>
               Remember password?{' '}
                 <ResponsiveText
                   fontFamily="Bold"

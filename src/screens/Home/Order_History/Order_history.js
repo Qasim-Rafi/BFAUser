@@ -32,6 +32,7 @@ import {getOrders, getOrdersHistory} from '../../../redux/actions/user.actions';
 import {useDispatch, useSelector} from 'react-redux';
 export default function Order_history({navigation}) {
   const [loader, setloader] = React.useState(true);
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
   useEffect(() => {
     const timer = setTimeout(() => {
      setloader(false)
@@ -86,16 +87,16 @@ export default function Order_history({navigation}) {
     //
   };
   return (
-    <View style={{flex: 1, backgroundColor: colors.black3}}>
+    <View style={{flex: 1, backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}}>
       {/* <View style={{ flexDirection: 'row', justifyContent: "space-between",padding:7 }}>
             <TouchableOpacity style={{ backgroundColor:colors.yellow1,paddingVertical:10,paddingHorizontal:10,borderRadius:20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
           </View> */}
-      <View style={{flex: 0.1, justifyContent: 'center',backgroundColor: colors.black1,}}>
+      <View style={{flex: 0.1, justifyContent: 'center',backgroundColor:isThemeDark ?  colors.black1: colors.white,}}>
         <Header navigation={navigation} />
       </View>
       <ScrollView style={{flex: 0.7, marginHorizontal: 10}}>
-        <ResponsiveText color={colors.white}>My Order  </ResponsiveText>
-        <ResponsiveText margin={[0,0,0,wp(75)]} color={colors.grey}>({orderList.length}) orders </ResponsiveText>
+        <ResponsiveText color={isThemeDark ?  colors.white : colors.black}>My Order  </ResponsiveText>
+        <ResponsiveText size={wp(0.9)} margin={[0,0,0,wp(75)]} color={colors.grey}>({orderList.length}) orders </ResponsiveText>
       
         { orderList.length>0?
         orderList.map((item, index) => {
@@ -107,7 +108,7 @@ export default function Order_history({navigation}) {
               }>
               <View
                 style={{
-                  backgroundColor: colors.black2,
+                  backgroundColor: isThemeDark ?  colors.black1: colors.white,
                   height: hp(10),
                   borderRadius: 5,
                   alignItems: 'center',
@@ -128,7 +129,7 @@ export default function Order_history({navigation}) {
                       flexDirection: 'row',
                       justifyContent: 'space-between',
                     }}>
-                    <ResponsiveText color={colors.white}>
+                    <ResponsiveText color={isThemeDark ?  colors.white: colors.black}>
                       {item.restaurantName}
                     </ResponsiveText>
                     <ResponsiveText color={colors.yellow}>
@@ -157,7 +158,7 @@ export default function Order_history({navigation}) {
                       </ResponsiveText>
                       <Text
                         style={{
-                          color: colors.white,
+                          color: isThemeDark ?  colors.white: colors.black,
                           fontSize: 10,
                           marginLeft: 2,
                         }}>
@@ -168,7 +169,7 @@ export default function Order_history({navigation}) {
                       <ResponsiveText size={2.5} color={colors.grey}>
                         Status:{' '}
                       </ResponsiveText>
-                      <ResponsiveText size={2.5} color={item.statusName=='Cancled'?colors.red1:item.statusName=='Paid'?colors.blue1:item.statusName=='InProcess'?colors.green1:item.statusName=='Delivered'?colors.yellow: item.statusName=='Served'?colors.yellow:item.statusName=='Billed'?colors.green1:colors.white}>
+                      <ResponsiveText size={2.5} color={item.statusName=='Cancled'?colors.red1:item.statusName=='Paid'?colors.blue1:item.statusName=='InProcess'?colors.green1:item.statusName=='Delivered'?colors.yellow: item.statusName=='Served'?colors.yellow:item.statusName=='Billed'?colors.green1:colors.bgWhite}>
                         {item.statusName}
                       </ResponsiveText>
                     </View>

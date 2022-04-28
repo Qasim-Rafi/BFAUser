@@ -76,6 +76,8 @@ export default function SearchAll({navigation}) {
   //   dispatch(SearchResult());
   // }, []);
 
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
+
   const DATA = useSelector(state => state.appReducers.SearchResult.data);
   const Loading = useSelector(state => state.appReducers.SearchResult.loading);
   console.log('searching', DATA);
@@ -232,7 +234,7 @@ export default function SearchAll({navigation}) {
           borderColor: colors.grey1,
           borderWidth: 0.5,
         }}>
-        <ResponsiveText color={colors.white} fontFamily={'regular'}>
+        <ResponsiveText color={isThemeDark ? colors.white : colors.black} fontFamily={'regular'}>
           {item.name}
           <ResponsiveText color={colors.yellow}>({item.value})</ResponsiveText>
         </ResponsiveText>
@@ -240,7 +242,7 @@ export default function SearchAll({navigation}) {
     );
   };
   return (
-    <View style={{flex: 1, backgroundColor: colors.black3}}>
+    <View style={{flex: 1, backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}}>
       <View style={{margin: 10, flexDirection: 'row', alignItems: 'center'}}>
         <TouchableOpacity
           style={{
@@ -259,16 +261,16 @@ export default function SearchAll({navigation}) {
           style={{
             height: hp(6),
             width: wp(73),
-            backgroundColor: colors.black1,
+            backgroundColor: isThemeDark ? colors.black1 : colors.grey,
             borderRadius: wp(4),
             padding: wp(4),
-            color: colors.white,
+            color: isThemeDark ? colors.white : colors.black,
           }}
           value={SearchText}
           autoFocus={true}
           fontSize={11}
           focusable={true}
-          placeholderTextColor={colors.grey}
+          placeholderTextColor={colors.grey2}
           placeholder={'Search....'}
           onChangeText={text => onSearch(text)}
         />
@@ -339,7 +341,7 @@ export default function SearchAll({navigation}) {
         // onModalHide={()=>navigation.navigate(routeName.LANDING_SCREEN)}
         coverScreen={true}>
         <SafeAreaView
-          style={{flex: 1, marginLeft: wp(8), backgroundColor: colors.black3}}>
+          style={{flex: 1, marginLeft: wp(8), backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}}>
           <ScrollView>
             <View
               style={{
@@ -348,7 +350,7 @@ export default function SearchAll({navigation}) {
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 padding: 10,
-                backgroundColor: colors.black2,
+                backgroundColor: isThemeDark ? colors.black2 : colors.grey,
               }}>
               <TouchableOpacity
                 onPress={() => setModalVisible(false)}
@@ -356,7 +358,7 @@ export default function SearchAll({navigation}) {
                   borderRadius: 5,
                   marginLeft: 5,
                   padding: 10,
-                  backgroundColor: colors.black1,
+                  backgroundColor: isThemeDark ? colors.black1 : colors.grey1,
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}>
@@ -366,7 +368,7 @@ export default function SearchAll({navigation}) {
                 />
               </TouchableOpacity>
 
-              <ResponsiveText color={colors.white} size={4}>
+              <ResponsiveText color={isThemeDark ? colors.white : colors.black} size={4}>
                 Filter By
               </ResponsiveText>
               <TouchableOpacity
@@ -418,7 +420,7 @@ export default function SearchAll({navigation}) {
                   // alignContent: 'center',
                   paddingTop: hp(1),
                   borderTopWidth: 0.3,
-                  borderTopColor: colors.white,
+                  borderTopColor: isThemeDark ? colors.white : colors.black,
                 }}>
                 {CUISINES_DATA.map((item, index) => {
                   return (
@@ -430,13 +432,13 @@ export default function SearchAll({navigation}) {
                           borderRadius: 18,
                           alignItems: 'center',
                           justifyContent: 'center',
-                          backgroundColor: colors.black2,
+                          backgroundColor: isThemeDark ? colors.black2 : colors.grey,
                           marginHorizontal: 5,
                           paddingVertical: 10,
                           paddingHorizontal: 20,
                           marginTop: 10,
                         }}>
-                        <Text style={{fontSize: 10, color: colors.white}}>
+                        <Text style={{fontSize: 10, color: isThemeDark ? colors.white : colors.black}}>
                           {item.title}
                         </Text>
                       </View>
@@ -474,7 +476,7 @@ export default function SearchAll({navigation}) {
                   // alignContent: 'center',
                   paddingTop: hp(1),
                   borderTopWidth: 0.3,
-                  borderTopColor: colors.white,
+                  borderTopColor: isThemeDark ? colors.white : colors.black,
                 }}>
                 {FacilityData.map((item, index) => {
                   return (
@@ -486,13 +488,13 @@ export default function SearchAll({navigation}) {
                           borderRadius: 18,
                           alignItems: 'center',
                           justifyContent: 'center',
-                          backgroundColor: colors.black2,
+                          backgroundColor: isThemeDark ? colors.black2 : colors.grey,
                           marginHorizontal: 5,
                           paddingVertical: 10,
                           paddingHorizontal: 20,
                           marginTop: 10,
                         }}>
-                        <Text style={{fontSize: 10, color: colors.white}}>
+                        <Text style={{fontSize: 10, color: isThemeDark ? colors.white : colors.black}}>
                           {item.name}
                         </Text>
                       </View>
@@ -529,7 +531,7 @@ export default function SearchAll({navigation}) {
                   // alignContent: 'center',
                   paddingTop: hp(1),
                   borderTopWidth: 0.3,
-                  borderTopColor: colors.white,
+                  borderTopColor: isThemeDark ? colors.white : colors.black,
                 }}>
                 {AWARDS.map((item, index) => {
                   return (
@@ -541,13 +543,13 @@ export default function SearchAll({navigation}) {
                           borderRadius: 18,
                           alignItems: 'center',
                           justifyContent: 'center',
-                          backgroundColor: colors.black2,
+                          backgroundColor: isThemeDark ? colors.black2 : colors.grey,
                           marginHorizontal: 5,
                           paddingVertical: 10,
                           paddingHorizontal: 20,
                           marginTop: 10,
                         }}>
-                        <Text style={{fontSize: 10, color: colors.white}}>
+                        <Text style={{fontSize: 10, color: isThemeDark ? colors.white : colors.black}}>
                           {item}
                         </Text>
                       </View>
@@ -573,7 +575,7 @@ export default function SearchAll({navigation}) {
                   // alignContent: 'center',
                   paddingTop: hp(1),
                   borderTopWidth: 0.3,
-                  borderTopColor: colors.white,
+                  borderTopColor: isThemeDark ? colors.white : colors.black,
                 }}>
                 {OTHERS_DATA.map((item, index) => {
                   return (
@@ -585,7 +587,7 @@ export default function SearchAll({navigation}) {
                           justifyContent: 'center',
                           backgroundColor: itemList.includes(item)
                             ? colors.yellow
-                            : colors.black2,
+                            : isThemeDark ? colors.black2 : colors.grey,
                           marginHorizontal: 5,
                           paddingVertical: 10,
                           paddingHorizontal: 20,
@@ -596,7 +598,7 @@ export default function SearchAll({navigation}) {
                             fontSize: 10,
                             color: itemList.includes(item)
                               ? colors.black
-                              : colors.white,
+                              : isThemeDark ? colors.white : colors.black,
                           }}>
                           {item.title}
                         </Text>
@@ -623,7 +625,7 @@ export default function SearchAll({navigation}) {
                   <TouchableOpacity
                     style={{
                       flexDirection: 'row',
-                      backgroundColor: colors.black2,
+                      backgroundColor: isThemeDark ? colors.black2 : colors.grey ,
                       marginTop: 10,
                       marginHorizontal: 15,
                       borderRadius: 5,
@@ -659,19 +661,19 @@ export default function SearchAll({navigation}) {
                           marginLeft: 5,
                           width: wp(55),
                         }}>
-                        <ResponsiveText size={3} color={colors.white}>
+                        <ResponsiveText size={3} color={isThemeDark ? colors.white : colors.black}>
                           {item.titleD}
                         </ResponsiveText>
-                        <ResponsiveText size={2.7} color={colors.white}>
+                        <ResponsiveText size={2.7} color={isThemeDark ? colors.white : colors.black}>
                           {item.titleR}
                         </ResponsiveText>
                         <Rating
                           size={2}
-                          tintColor={colors.black2}
+                          tintColor={isThemeDark ? colors.black2 : colors.grey}
                           imageSize={10}
                           style={{
                             paddingVertical: 10,
-                            color: colors.black2,
+                            color: isThemeDark ? colors.black2 : colors.grey,
                             marginLeft: -5,
                             marginTop: -5,
                           }}
@@ -679,7 +681,7 @@ export default function SearchAll({navigation}) {
                       </View>
                       <View style={{margin: 20}}>
                         <Icon source={globalPath.LOCATION1} />
-                        <ResponsiveText color={colors.white} top={5} size={3}>
+                        <ResponsiveText color={isThemeDark ? colors.white : colors.black} top={5} size={3}>
                           1km
                         </ResponsiveText>
                       </View>
@@ -691,7 +693,7 @@ export default function SearchAll({navigation}) {
                   <TouchableOpacity
                     style={{
                       flexDirection: 'row',
-                      backgroundColor: colors.black2,
+                      backgroundColor: isThemeDark ? colors.black2 : colors.grey,
                       marginTop: 10,
                       marginHorizontal: 15,
                       borderRadius: 5,
@@ -730,19 +732,19 @@ export default function SearchAll({navigation}) {
                           marginLeft: 5,
                           width: wp(55),
                         }}>
-                        <ResponsiveText size={2.7} color={colors.white}>
+                        <ResponsiveText size={2.7} color={ isThemeDark ? colors.white : colors.black }>
                           {item.restaurentName}
                         </ResponsiveText>
-                        <ResponsiveText size={2.2} color={colors.white}>
+                        <ResponsiveText size={2.2} color={isThemeDark ? colors.white : colors.black}>
                           {item.branchAlias}
                         </ResponsiveText>
                         <Rating
                           size={2}
-                          tintColor={colors.black2}
+                          tintColor={isThemeDark ? colors.black2 : colors.grey}
                           imageSize={10}
                           style={{
                             paddingVertical: 10,
-                            color: colors.black2,
+                            color: isThemeDark ? colors.black2 : colors.grey,
                             // marginLeft: 5,
                             alignSelf: 'flex-start',
                             marginTop: -5,
@@ -751,7 +753,7 @@ export default function SearchAll({navigation}) {
                       </View>
                       <View style={{margin: 20}}>
                         <Icon source={globalPath.LOCATION1} />
-                        <ResponsiveText color={colors.white} top={5} size={3}>
+                        <ResponsiveText color={isThemeDark ? colors.white : colors.black} top={5} size={3}>
                           1km
                         </ResponsiveText>
                       </View>

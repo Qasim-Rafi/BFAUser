@@ -14,9 +14,11 @@ import moment from 'moment';
 import StaticMap from '../../../../components/StaticMap';
 import Restaurant_Description from '../../RestaurantBranchDetail/ResturantDesceiption';
 import { routeName } from '../../../../constants/routeName';
+import { useSelector } from 'react-redux';
 
 export default function OrderDetails({navigation, route}) {
   const [data, setdata] = React.useState(route.params.data);
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
 
   useEffect(() => {
@@ -30,7 +32,7 @@ export default function OrderDetails({navigation, route}) {
     return true;
   }
   return (
-    <View style={{flex: 1, backgroundColor: colors.black3}}>
+    <View style={{flex: 1, backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}}>
       <View
         style={{
           flexDirection: 'row',
@@ -52,7 +54,7 @@ export default function OrderDetails({navigation, route}) {
       </View>
       <View
         style={{
-          backgroundColor: colors.black3,
+          // backgroundColor: colors.black3,
           marginHorizontal: wp(5),
           marginVertical: hp(2),
         }}>
@@ -62,7 +64,7 @@ export default function OrderDetails({navigation, route}) {
       </View>
 
       <View style={{padding: hp(1), flexDirection: 'row'}}>
-        <ResponsiveText size={3} color={colors.white} margin={[0, 0, 0, 15]}>
+        <ResponsiveText size={3} color={isThemeDark ?  colors.white: colors.black} margin={[0, 0, 0, 15]}>
           Id:
         </ResponsiveText>
         <ResponsiveText size={3} color={colors.grey} margin={[0, 0, 0, 15]}>
@@ -70,7 +72,7 @@ export default function OrderDetails({navigation, route}) {
         </ResponsiveText>
       </View>
       <View style={{padding: hp(1), flexDirection: 'row'}}>
-        <ResponsiveText size={3} color={colors.white} margin={[0, 0, 0, 15]}>
+        <ResponsiveText size={3} color={isThemeDark ?  colors.white: colors.black} margin={[0, 0, 0, 15]}>
           Time:
         </ResponsiveText>
         <ResponsiveText size={3} color={colors.grey} margin={[0, 0, 0, 15]}>
@@ -80,23 +82,23 @@ export default function OrderDetails({navigation, route}) {
 
       <View
         style={{
-          backgroundColor: colors.black1,
+          backgroundColor: isThemeDark ? colors.black1 : colors.secondary, 
           flexDirection: 'row',
           paddingVertical: 10,
         }}>
         <View
           style={{flex: 0.6, justifyContent: 'center', marginHorizontal: 15}}>
-          <ResponsiveText size={3} color={colors.white}>
+          <ResponsiveText size={3} color={isThemeDark ?  colors.white: colors.black}>
             Ordered Items
           </ResponsiveText>
         </View>
         <View style={{flex: 0.2, justifyContent: 'center'}}>
-          <ResponsiveText size={3} color={colors.white}>
+          <ResponsiveText size={3} color={isThemeDark ?  colors.white: colors.black}>
             Qnt
           </ResponsiveText>
         </View>
         <View style={{flex: 0.2, justifyContent: 'center'}}>
-          <ResponsiveText size={3} color={colors.white}>
+          <ResponsiveText size={3} color={isThemeDark ?  colors.white: colors.black}>
             Amount
           </ResponsiveText>
         </View>
@@ -105,7 +107,7 @@ export default function OrderDetails({navigation, route}) {
         return (
           <View
             style={{
-              backgroundColor: colors.black2,
+              backgroundColor: isThemeDark ? colors.black2 : colors.white,
               flexDirection: 'row',
               borderBottomWidth: 1,
               borderBottomColor: colors.black1,
@@ -143,7 +145,7 @@ export default function OrderDetails({navigation, route}) {
           marginTop: 10,
         }}>
         <View style={{flex: 0.45, alignItems: 'flex-start'}}>
-          <ResponsiveText color={colors.white} size={3}>
+          <ResponsiveText color={isThemeDark ?  colors.white: colors.black} size={3}>
             Total
           </ResponsiveText>
         </View>
@@ -164,7 +166,7 @@ export default function OrderDetails({navigation, route}) {
           borderBottomWidth: 1,
         }}>
         <View style={{flex: 0.45, alignItems: 'flex-start'}}>
-          <ResponsiveText color={colors.white} size={3}>
+          <ResponsiveText color={isThemeDark ?  colors.white: colors.black} size={3}>
             Tips
           </ResponsiveText>
         </View>
@@ -182,7 +184,7 @@ export default function OrderDetails({navigation, route}) {
           marginTop: 20,
         }}>
         <View style={{flex: 0.45, alignItems: 'flex-start'}}>
-          <ResponsiveText color={colors.white} size={3}>
+          <ResponsiveText color={isThemeDark ?  colors.white: colors.black} size={3}>
             Final Total
           </ResponsiveText>
         </View>

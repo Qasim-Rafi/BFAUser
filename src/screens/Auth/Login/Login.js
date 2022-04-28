@@ -48,6 +48,8 @@ export default function Login({ navigation }) {
   const loginResponse = useSelector(state => state.login_User.loginScreen.data)
   const loginNetworkErr = useSelector(state => state.login_User.loginScreen.errorMsg)
 
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
+
 
   console.log(loginResponse, 'LOgin screen error');
   console.log(loginNetworkErr, 'LOgin network error');
@@ -146,14 +148,14 @@ export default function Login({ navigation }) {
     <>
       <ScrollView
         keyboardShouldPersistTaps="handled"
-        contentContainerStyle={{ flexGrow: 1, backgroundColor: colors.black }}>
-        <View style={{ flex: 1, backgroundColor: colors.black }}>
+        contentContainerStyle={{ flexGrow: 1, backgroundColor: isThemeDark ?  colors.black: colors.white }}>
+        <View style={{ flex: 1, backgroundColor: isThemeDark ?  colors.black: colors.white }}>
           <View style={styles.screeninfo}>
             <Icon source={globalPath.BALI_ICON} size={60} />
             <ResponsiveText margin={[1, 0, 0, 0]} color={colors.yellow} fontFamily="Regular" size={8}>
               Sign In
             </ResponsiveText>
-            <ResponsiveText margin={[1, 0, 0, 0]} color={colors.white}>
+            <ResponsiveText margin={[1, 0, 0, 0]} color={isThemeDark ?  colors.white: colors.black}>
               Please Login to Continue
             </ResponsiveText>
             {/* {
@@ -167,8 +169,11 @@ export default function Login({ navigation }) {
                   </ResponsiveText>
                 } */}
           </View>
-          <KeyboardAvoidingView style={styles.formArea} behavior={Platform.OS === "ios" ? "padding" : null}>
+          <KeyboardAvoidingView style={[styles.formArea,{backgroundColor:isThemeDark ?  colors.black3: colors.bgWhite}]} behavior={Platform.OS === "ios" ? "padding" : null}>
             <Input
+              style={{backgroundColor:isThemeDark ?  colors.black1: colors.grey}}
+              backgroundColor={isThemeDark ?  colors.black1: colors.grey}
+              placeholderTextColor={isThemeDark ? undefined : colors.secondary}
               padding={[0, 0, 0, 25]}
               onChnageText={text => setUserName(text)}
               iconMargin={[0, 10, 0, 0]}
@@ -178,6 +183,9 @@ export default function Login({ navigation }) {
               leftIcon={globalPath.USER_LOGO}
             />
             <Input
+              style={{backgroundColor:isThemeDark ?  colors.black1: colors.grey}}
+              backgroundColor={isThemeDark ?  colors.black1: colors.grey}
+              placeholderTextColor={isThemeDark ? undefined : colors.secondary}
               margin={[20, 0, wp(10), 0]}
               padding={[0, 0, 0, 25]}
               iconMargin={[0, 10, 0, 0]}
@@ -192,7 +200,7 @@ export default function Login({ navigation }) {
             <View style={styles.forgotPasswordContainer}>
               <Line color={colors.grey5} width={wp(20)} />
               <TouchableOpacity onPress={()=>navigation.navigate(routeName.FORGOT_PASSWORD)}>
-            <ResponsiveText margin={[0, 10]} color={colors.white}>
+            <ResponsiveText margin={[0, 10]} color={isThemeDark ?  colors.white: colors.black}>
               Forgot Password?
             </ResponsiveText>
             </TouchableOpacity>
@@ -222,7 +230,7 @@ export default function Login({ navigation }) {
               /> */}
             <View style={styles.footer}>
               {/* <Icon size={wp(8)} margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
-              <ResponsiveText margin={[0, 10]} color={colors.white}>
+              <ResponsiveText margin={[0, 10]} color={isThemeDark ?  colors.white: colors.black}>
                 New user{' '}
                 <ResponsiveText
                   fontFamily="Bold"

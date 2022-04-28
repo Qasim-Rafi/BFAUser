@@ -15,13 +15,14 @@ export default function TransactionHistory({navigation}) {
 
   const HISTORY = useSelector(state => state.appReducers.getPaymentHistory.data);
   const loading = useSelector(state => state.appReducers.getPaymentHistory.loading);
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
   useEffect(()=>{
     HISTORY.length <= 0 ?  dispatch(GETPAYMENTHISTORY()) : null
     
   },[HISTORY])
   console.log('HISTORY:  ',HISTORY)
   return (
-    <View style={{flex: 1, backgroundColor: colors.black3}}>
+    <View style={{flex: 1, backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}}>
        <View style={{ flexDirection: 'row', justifyContent: "space-between",padding:7 }}>
             <TouchableOpacity style={{ backgroundColor:colors.yellow1,paddingVertical:10,paddingHorizontal:10,borderRadius:20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
           </View>
@@ -35,7 +36,7 @@ export default function TransactionHistory({navigation}) {
             <View
             style={{
               
-              backgroundColor: colors.black2,
+              backgroundColor: isThemeDark ?  colors.black2: colors.white,
               borderRadius: 5,
               marginBottom: 4,
               padding: 5,
@@ -50,7 +51,7 @@ export default function TransactionHistory({navigation}) {
                   alignItems: 'center',
                   overflow: 'hidden',
                 }}>
-                <ResponsiveText size={3.5} color={item.type === 'out' ? colors.red3 : colors.white }>
+                <ResponsiveText size={3.5} color={item.type === 'out' ? colors.red3 : isThemeDark ?  colors.white: colors.black }>
                   {item.restaurantName}
                 </ResponsiveText>
               </View>
