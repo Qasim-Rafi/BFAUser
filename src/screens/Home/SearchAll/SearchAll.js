@@ -265,8 +265,9 @@ export default function SearchAll({navigation}) {
             color: colors.white,
           }}
           value={SearchText}
-          editable={true}
+          autoFocus={true}
           fontSize={11}
+          focusable={true}
           placeholderTextColor={colors.grey}
           placeholder={'Search....'}
           onChangeText={text => onSearch(text)}

@@ -16,6 +16,7 @@ import {
 } from '../../../../redux/actions/user.actions';
 import urls from '../../../../redux/lib/urls';
 import Api from '../../../../redux/lib/api';
+import { routeName } from '../../../../constants/routeName';
 export default function NotificationList({navigation}) {
   const dispatch = useDispatch();
 
@@ -44,7 +45,7 @@ export default function NotificationList({navigation}) {
     setTimeout(() => {
     SeenNotification()
       
-    }, 10000);
+    }, 5000);
     });
    
      return subscribe
@@ -98,7 +99,7 @@ export default function NotificationList({navigation}) {
         </ResponsiveText>
         {NotificationData.map((item, index) => {
           return (
-            <View
+            <TouchableOpacity onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
               style={{
                 backgroundColor:item.seen?colors.black2: colors.black1,
                 borderRadius: 5,
@@ -118,7 +119,9 @@ export default function NotificationList({navigation}) {
                     {/* <ResponsiveText size={3} color={colors.white}>
                       Order status:{' '}
                     </ResponsiveText> */}
-                  <ResponsiveText size={3} color={item.remarks=='NewOrder'?colors.white:item.remarks=='Cancled'?colors.red1:item.remarks=='Paid'?colors.blue1:item.remarks=='InProcess'?colors.green1:item.remarks=='Delivered'?colors.yellow: item.remarks=='Served'?colors.yellow:item.remarks=='Billed'?colors.green1:colors.white}>
+                  <ResponsiveText size={3} color={colors.white}
+                  // color={item.remarks=='NewOrder'?colors.white:item.remarks=='Cancled'?colors.red1:item.remarks=='Paid'?colors.blue1:item.remarks=='InProcess'?colors.green1:item.remarks=='Delivered'?colors.yellow: item.remarks=='Served'?colors.yellow:item.remarks=='Billed'?colors.green1:colors.white}
+                  >
                     {item.remarks}
                   </ResponsiveText>
                 </View>
@@ -157,7 +160,7 @@ export default function NotificationList({navigation}) {
                 {item.wallet}
               </ResponsiveText> */}
               </View>
-            </View>
+            </TouchableOpacity>
           );
         })}
       </ScrollView>
