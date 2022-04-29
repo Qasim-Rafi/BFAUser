@@ -78,6 +78,8 @@ export default function ProfileScreen({navigation}) {
   ];
   // const Gender=['Male','Female']
   const [date, setDate] = useState(null);
+  const [date2, setDate2] = useState(null);
+
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
   const [img, setImg] = useState(null);
@@ -85,6 +87,8 @@ export default function ProfileScreen({navigation}) {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
     setDate(currentDate);
+    setDate2(currentDate)
+
   };
 
   const showMode = currentMode => {
@@ -185,7 +189,7 @@ export default function ProfileScreen({navigation}) {
     //   type: 'image/jpeg',
     //   name: 'photo.jpg',
     // };
-    // console.log('okooookko');
+    console.log('okooookko');
     var formData = new FormData();
     formData.append('Username', userName);
     formData.append('Email', email);
@@ -195,8 +199,8 @@ export default function ProfileScreen({navigation}) {
     formData.append('Address2', Address);
     formData.append('EducationalBackground', education);
     formData.append('Gender', gender=='Gender'?'':gender);
-    if (date != null) {
-      formData.append('DateofBirth', dateFormat(date));
+    if (date2 != null) {
+      formData.append('DateofBirth', dateFormat(date2));
     }
     formData.append('ContactNumber', contactNo);
     formData.append('MarriageStatusId', MaritialStatus);
@@ -224,7 +228,7 @@ export default function ProfileScreen({navigation}) {
         formData,
         true,
       );
-      // console.log('ree', res);
+      console.log('ree', res);
       if (res && res.success == true) {
         dispatch(getProfileData());
         setLoading(false);
