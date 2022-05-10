@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Image, Text, View, TouchableOpacity} from 'react-native';
+import { useSelector } from 'react-redux';
 import Header from '../../../../components/Header';
 import Icon from '../../../../components/Icon';
 import ResponsiveText from '../../../../components/RnText';
@@ -9,8 +10,9 @@ import {routeName} from '../../../../constants/routeName';
 import {hp, wp} from '../../../../helpers/Responsiveness';
 
 const Checkout = ({navigation, route}) => {
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
   return (
-    <View style={{backgroundColor: colors.black3, flex: 1}}>
+    <View style={{backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite, flex: 1}}>
       <Header navigation={navigation} iconPath={globalPath.BACK_ARROW} />
       <View style={{flex: 0.9}}>
         <View
@@ -21,16 +23,16 @@ const Checkout = ({navigation, route}) => {
           }}>
           <ResponsiveText
             margin={[0, 0, -5, 0]}
-            color={colors.white}
+            color={isThemeDark ?  colors.white: colors.black}
             size={4.5}>
             Your Bcoin Balance
           </ResponsiveText>
-          <ResponsiveText fontFamily={'Bold'} color={colors.white} size={12}>
+          <ResponsiveText fontFamily={'Bold'} color={isThemeDark ?  colors.white: colors.black} size={12}>
             114
           </ResponsiveText>
           <ResponsiveText
             margin={[-5, 0, 0, 0]}
-            color={colors.white}
+            color={isThemeDark ?  colors.white: colors.black}
             size={4.5}>
             Choose Payment Method:
           </ResponsiveText>
@@ -38,11 +40,11 @@ const Checkout = ({navigation, route}) => {
         <View style={{justifyContent: 'center'}}>
           <TouchableOpacity
             onPress={() =>
-              navigation.navigate('TRANSACTION_CONFIRMATION', 'Bcoin')
+              navigation.navigate('TRANSACTION_CONFIRMATION', {paymentMethod:'Bcoin'})
             }>
             <View
               style={{
-                backgroundColor: colors.black2,
+                backgroundColor: isThemeDark ? colors.black2 : colors.white,
                 paddingHorizontal: 20,
                 paddingVertical: 15,
                 marginHorizontal: 20,
@@ -57,17 +59,18 @@ const Checkout = ({navigation, route}) => {
               <ResponsiveText
                 margin={[0, 0, 5, 20]}
                 size={4.5}
-                color={colors.white}>
+                color={isThemeDark ?  colors.white: colors.black}>
                 Bcoin
               </ResponsiveText>
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={() => navigation.navigate(routeName.MANAGE_CARDS, 'Card')}>
+            // onPress={() => navigation.navigate(routeName.MANAGE_CARDS, {paymentMethod:'Card'})}>
+            onPress={() => navigation.navigate(routeName.TRANSACTION_CONFIRMATION, {paymentMethod:'Card'})}>
             <View
               style={{
-                backgroundColor: colors.black2,
+                backgroundColor: isThemeDark ? colors.black2 : colors.white,
                 paddingHorizontal: 20,
                 paddingVertical: 15,
                 marginHorizontal: 20,
@@ -84,18 +87,18 @@ const Checkout = ({navigation, route}) => {
               <ResponsiveText
                 margin={[0, 0, 5, 20]}
                 size={4.5}
-                color={colors.white}>
+                color={isThemeDark ?  colors.white: colors.black}>
                 Cards
               </ResponsiveText>
             </View>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() =>
-              navigation.navigate('TRANSACTION_CONFIRMATION', 'Cash')
+              navigation.navigate('TRANSACTION_CONFIRMATION', {paymentMethod:'Cash'})
             }>
             <View
               style={{
-                backgroundColor: colors.black2,
+                backgroundColor: isThemeDark ? colors.black2 : colors.white,
                 paddingHorizontal: 20,
                 paddingVertical: 15,
                 marginHorizontal: 20,
@@ -116,7 +119,7 @@ const Checkout = ({navigation, route}) => {
               <ResponsiveText
                 margin={[0, 0, 5, 20]}
                 size={4.5}
-                color={colors.white}>
+                color={isThemeDark ?  colors.white: colors.black}>
                 Cash
               </ResponsiveText>
             </View>

@@ -140,6 +140,7 @@ export default function Signup({navigation}) {
 
   const expressions = {
     email: /^\w+([+.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+    postCode: /^[a-zA-Z]{2}[0-9]{4}$/
   };
   const validation = () => {
     setErrorString('');
@@ -296,6 +297,18 @@ export default function Signup({navigation}) {
       setErrorString('Invalid Email')
       setShowCorrectemailIcon(true);
           setCorrectemailIcon(false);
+    return false
+    }
+    if (type==4&& !expressions.postCode.test(PostCode) || PostCode.includes(' ')) {
+    // dropdownRef.current.showMessage({
+      //   message: 'Error',
+      //   description: 'Invalid Email',
+      //   type: 'danger',
+      //   icon: {icon: 'auto', position: 'left'},
+      // });
+      setErrorString('Invalid PostCode')
+      // setShowCorrectemailIcon(true);
+      //     setCorrectemailIcon(false);
     return false
     }
     var obj = {
@@ -529,12 +542,13 @@ export default function Signup({navigation}) {
                 placeholderTextColor={isThemeDark ? undefined : colors.secondary}
                 width={wp(39)}
                 onChnageText={text => setPostCode(text)}
-                maxlength={5}
-                keyboardType={'numeric'}
+                maxlength={6}
+                keyboardType={'name-phone-pad'}
                 margin={[0, 0, 15, 0]}
                 padding={[0, 0, 0, 15]}
                 iconMargin={[0, 10, 0, 0]}
                 placeholder="Postcode"
+                onBlur={() => checkExisting(4)}
                 leftIcon={globalPath.ZIP_ICON}
               />
             </View>

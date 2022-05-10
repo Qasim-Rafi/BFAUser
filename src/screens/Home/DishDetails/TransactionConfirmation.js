@@ -36,6 +36,7 @@ export default function TransactionConfirmation({route, navigation}) {
   const dispatch = useDispatch();
 
   const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
+  const paymentMethod = route.params.paymentMethod ? route.params.paymentMethod : 'Cash'
 
   useEffect(() => {
     //addTotal(route.params);
@@ -50,6 +51,7 @@ export default function TransactionConfirmation({route, navigation}) {
         // OrderType: mode == 'mode1' ? 'TakeAway' :mode == 'mode2' ? 'DineIn' : 'Self_Pickup',
         OrderType:mode == 'mode1' ? 2 :'mode2' ? 1 : 2,
         tip: activeTabs === 'tab1' ? 0 : count,
+        PaymentType: paymentMethod
       },
     };
     console.log('res check', obj);
@@ -166,7 +168,7 @@ export default function TransactionConfirmation({route, navigation}) {
             {data.restaurantName}
           </ResponsiveText>
         </View>
-        {/* <TouchableOpacity
+        <TouchableOpacity
           onPress={() => navigation.navigate(routeName.SELECT_PAYMENT_METHOD)}>
           <View
             style={{
@@ -176,7 +178,7 @@ export default function TransactionConfirmation({route, navigation}) {
               flexDirection: 'row',
               justifyContent: 'space-between',
             }}>
-            <ResponsiveText color={colors.white}>Payment Method</ResponsiveText>
+            <ResponsiveText color={isThemeDark ? colors.white : colors.black}>Payment Method</ResponsiveText>
             <TouchableOpacity
               style={{
                 backgroundColor: colors.yellow,
@@ -189,11 +191,11 @@ export default function TransactionConfirmation({route, navigation}) {
                 navigation.navigate(routeName.SELECT_PAYMENT_METHOD)
               }>
               <ResponsiveText color={colors.black} size={3}>
-                {'Cash'}
+                {paymentMethod}
               </ResponsiveText>
             </TouchableOpacity>
           </View>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
 
         <View
           style={{

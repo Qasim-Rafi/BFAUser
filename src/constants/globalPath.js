@@ -86,6 +86,7 @@ const WIFI_ICON = require('../assets/icons/wifi.png');
 const MOSQUE_ICON = require('../assets/icons/mosque.png');
 const NORECORD_ICON = require('../assets/icons/norecordfound.png');
 const INVOICE_ICON = require('../assets/icons/Invoice.png');
+const ADD_TO_CART = require('../assets/icons/add-to-cart-1.png');
 
 
 
@@ -331,6 +332,6 @@ export const globalPath = {
   HOME_BFA_PARTNER_5,
   HOME_BFA_PARTNER_6,
   NEWS_FEED_IAMGE1,
-  BG_IMAGE_LIGHT
-
+  BG_IMAGE_LIGHT,
+  ADD_TO_CART
 };
