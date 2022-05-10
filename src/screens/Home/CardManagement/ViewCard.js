@@ -12,9 +12,25 @@ import { routeName } from '../../../constants/routeName'
 export default function ViewCard({navigation}) {
     return (
         <View style={{flex:1, backgroundColor:colors.black3}}>
-            <View style={{flex:0.1, backgroundColor:colors.black2, justifyContent:'center',}}>
-            <Header iconPath={globalPath.BACK_ARROW} navigation={navigation} />
-            </View>
+            <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          padding: 7,
+        }}>
+        <TouchableOpacity
+          style={{
+            backgroundColor: colors.yellow1,
+            paddingVertical: 10,
+            paddingHorizontal: 10,
+            borderRadius: 20,
+          }}
+          onPress={() => {
+            navigation.goBack();
+          }}>
+          <Icon source={globalPath.BACK_BLACK_ARROW} />
+        </TouchableOpacity>
+      </View>
             
                 <ResponsiveText margin={[20,20,10,20]} color={colors.yellow} size={4} >View Card</ResponsiveText>
 
