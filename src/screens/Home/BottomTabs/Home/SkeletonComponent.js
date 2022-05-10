@@ -4,10 +4,12 @@ import { color } from "react-native-reanimated";
 import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 import { colors } from "../../../../constants/colorsPallet";
 import { hp, wp } from '../../../../helpers/Responsiveness';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default SkeletonComponent = ({ width }) => {
+const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
     return (
-        <SkeletonPlaceholder >
+        <SkeletonPlaceholder backgroundColor={isThemeDark?colors.black3:colors.lightGrey} >
             <View style={styles.Header}>
             </View>
 
