@@ -157,9 +157,7 @@ const Home = ({ navigation }) => {
           <SkeletonComponent/>
         </View>
         :
-        undefined
-      }
-      <ScrollView
+        <ScrollView
         style={{ flex: 1, width: '100%' }}
         showsVerticalScrollIndicator={false}
         nestedScrollEnabled={true}
@@ -234,6 +232,8 @@ const Home = ({ navigation }) => {
          
         </ImageBackground> */}
       </ScrollView>
+      }
+      
       <View style={{ flex: 0.1, position: 'absolute', top: 0 }}>
         <Header screen={'home'} navigation={navigation} />
       </View>
