@@ -42,10 +42,11 @@ const WhatsNew = props => {
   const NewData = useSelector(state => state.appReducers.whatsnew.data,)
   const loading = useSelector(state => state.appReducers.whatsnew.refreshing)
   const dispatch = useDispatch();
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
   return (
     <>
-      <View style={styles.recommendationHeaderSection}>
-        <ResponsiveText margin={[0, 0, 0, 0]} size={4} color={colors.white}>
+      <View style={[styles.recommendationHeaderSection,{backgroundColor:isThemeDark ?  colors.black3: colors.bgWhite}]}>
+        <ResponsiveText margin={[0, 0, 0, 0]} size={4} color={isThemeDark ? colors.white : colors.black}>
           What's New
         </ResponsiveText>
         <View style={{ marginRight: -10 }}>
@@ -58,7 +59,7 @@ const WhatsNew = props => {
           />
         </View>
       </View>
-      <View style={styles.recommendationItemsSection}>
+      <View style={[styles.recommendationItemsSection,{backgroundColor:isThemeDark ?  colors.black3: colors.bgWhite}]}>
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           {
 

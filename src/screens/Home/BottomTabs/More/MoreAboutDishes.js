@@ -12,6 +12,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 import ImageHeader from '../Home/ImageHeader';
 import { BarIndicator } from 'react-native-indicators';
 export default function MoreAboutDishes({navigation, route}) {
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
+
   const dispatch = useDispatch();
   const Data = useSelector(state => state.appReducers.moreaboutDishDetail.data);
   const loading = useSelector(
@@ -29,7 +31,7 @@ export default function MoreAboutDishes({navigation, route}) {
   console.log(route.params, 'moreaboutttttttttt');
 
   return (
-    <View style={{flex: 1, backgroundColor: colors.black3}}>
+    <View style={{flex: 1, backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}}>
       <ScrollView>
         <ImageHeader navigation={navigation} img={route.params.imageDataB} />
         {Data.length > 0 ? (
@@ -48,7 +50,7 @@ export default function MoreAboutDishes({navigation, route}) {
                     marginTop: 10,
                     marginLeft: 10,
                   }}>
-                  <ResponsiveText color={colors.white}>
+                  <ResponsiveText color={isThemeDark ?  colors.white: colors.black}>
                     {item.calorieTitle}
                   </ResponsiveText>
                 </View>

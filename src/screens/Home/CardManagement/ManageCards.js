@@ -15,17 +15,19 @@ import { CARD_DATA } from '../../../constants/mock';
 import Icon from '../../../components/Icon';
 import { routeName } from '../../../constants/routeName';
 import Modal from 'react-native-modal';
+import { useSelector } from 'react-redux';
 
 export default function ManageCards({ navigation }) {
   const [isModalVisible, setModalVisible] = React.useState(false);
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
   return (
-    <View style={{ flex: 1, backgroundColor: colors.black3 }}>
+    <View style={{ flex: 1, backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite }}>
       <View style={{ flexDirection: 'row', justifyContent: "space-between", padding: 7 }}>
         <TouchableOpacity style={{ backgroundColor: colors.yellow1, paddingVertical: 10, paddingHorizontal: 10, borderRadius: 20, }} onPress={() => { navigation.goBack() }}><Icon source={globalPath.BACK_BLACK_ARROW} /></TouchableOpacity>
       </View>
 
-      <ResponsiveText margin={[20, 20, 10, 20]} color={colors.yellow} size={4}>
+      <ResponsiveText margin={[20, 20, 10, 20]} color={isThemeDark ?  colors.yellow: colors.black} size={4}>
         Card Management
       </ResponsiveText>
       <View style={{ flex: 0.3 }}>
@@ -38,7 +40,7 @@ export default function ManageCards({ navigation }) {
         style={{
           flex: 0.6,
           marginTop: 20,
-          backgroundColor: colors.black2,
+          backgroundColor: isThemeDark ?  colors.black2: colors.white,
           borderTopRightRadius: 30,
           paddingVertical: 20,
           borderTopLeftRadius: 30,
@@ -66,10 +68,10 @@ export default function ManageCards({ navigation }) {
                     paddingHorizontal: 5,
                   }}>
                   <Icon source={item.url} size={40} />
-                  <ResponsiveText margin={[0, 10, 0, 15]} color={colors.white}>
+                  <ResponsiveText margin={[0, 10, 0, 15]} color={isThemeDark ?  colors.white: colors.black}>
                     {item.cardType}
                   </ResponsiveText>
-                  <ResponsiveText color={colors.white}>
+                  <ResponsiveText color={isThemeDark ?  colors.white: colors.black}>
                     {item.cardNo}
                   </ResponsiveText>
                 </View>
@@ -122,7 +124,7 @@ export default function ManageCards({ navigation }) {
         {/* ------------ ModalView -------------- */}
         <View
           style={{
-            backgroundColor: colors.black1,
+            backgroundColor: isThemeDark ? colors.black1 : colors.white,
             borderRadius: 7,
             marginBottom: 20,
           }}>
@@ -135,7 +137,7 @@ export default function ManageCards({ navigation }) {
               borderBottomWidth: 1,
               paddingBottom: 15,
             }}>
-            <ResponsiveText color={colors.white} size={3.5}>
+            <ResponsiveText color={isThemeDark ? colors.white : colors.black} size={3.5}>
               Delete Card
             </ResponsiveText>
             <ResponsiveText color={colors.grey1} size={3} margin={[0, 0, 0, 0]}>

@@ -44,11 +44,13 @@ const JobsList = props => {
   const List_Loading = useSelector(state => state.appReducers.promoJobs.loading);
   console.log('Job List: ', List);
   // console.log('Loading: ', List_Loading);
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
+  
   
   return (
     <>
       <View style={styles.recommendationHeaderSection}>
-        <ResponsiveText margin={[0, 0, 0, 0]} size={4} color={colors.white}>
+        <ResponsiveText margin={[0, 0, 0, 0]} size={4} color={isThemeDark ? colors.white : colors.black}>
           Jobs
         </ResponsiveText>
         <View style={{ marginRight: -10 }}>

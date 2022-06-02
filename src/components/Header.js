@@ -32,6 +32,7 @@ const Header = ({
     state => state.appReducers.getNotification.data,
   );
   const profileData = useSelector(state => state.appReducers.profileData.data);
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
   return (
     <View
@@ -89,7 +90,7 @@ const Header = ({
             paddingLeft: wp(17),
           }}>
           <Text
-            style={{color: colors.white, fontSize: wp(6), fontWeight: 'bold'}}>
+            style={{color: isThemeDark ? colors.white : colors.black, fontSize: wp(6), fontWeight: 'bold'}}>
             {title}
           </Text>
         </View>

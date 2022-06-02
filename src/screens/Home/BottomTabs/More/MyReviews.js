@@ -13,13 +13,14 @@ import {getAllReviews} from '../../../../redux/actions/user.actions';
 import moment from 'moment';
 export default function MyReviews({navigation}) {
   const Reviews = useSelector(state => state.appReducers.getAllReviews.data);
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
   console.log('revewssssss', Reviews);
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(getAllReviews());
   }, []);
   return (
-    <View style={{flex: 1, backgroundColor: colors.black3}}>
+    <View style={{flex: 1, backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}}>
       <View
         style={{
           flexDirection: 'row',
@@ -44,7 +45,7 @@ export default function MyReviews({navigation}) {
           <ResponsiveText
             margin={[30, 20, 20, 20]}
             size={4}
-            color={colors.yellow}>
+            color={isThemeDark? colors.yellow : colors.black}>
             My Reviews
           </ResponsiveText>
 

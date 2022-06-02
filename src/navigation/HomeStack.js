@@ -48,6 +48,7 @@ import Wallet from '../screens/Home/Wallet/Wallet'
 import TopUp from '../screens/Home/Wallet/topUp'
 import Transfer from '../screens/Home/Wallet/transfer';
 import Home from '../screens/Home/BottomTabs/Home/Home';
+import SkeletonComponent from '../screens/Home/BottomTabs/Home/SkeletonComponent';
 import Notifications from '../components/Static/Notifications';
 import Bali_Center from '.././screens/Home/ProfileScreen/Bali_Center';
 import NotificationList from '../screens/Home/BottomTabs/Home/NotificationList';
@@ -120,6 +121,7 @@ function HomeStack() {
       <Stack.Screen name={routeName.BARCODE_READER} component={BarcodeReader} />
       <Stack.Screen name={routeName.NOTIFICATION_SCREEN} component={NotificationList} />
       <Stack.Screen name={routeName.INBOX} component={NewsFeed} />
+      <Stack.Screen name={routeName.SKELETON_COMPONENT} component={SkeletonComponent} />
 
       <Stack.Screen
         name={routeName.ALL_DISHES_LIST}

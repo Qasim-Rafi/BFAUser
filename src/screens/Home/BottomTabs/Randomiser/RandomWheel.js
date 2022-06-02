@@ -33,6 +33,7 @@ import { showMessage } from 'react-native-flash-message';
 import urls from '../../../../redux/lib/urls';
 import Api from '../../../../redux/lib/api';
 import AsyncStorage from '@react-native-community/async-storage';
+import { BarIndicator } from 'react-native-indicators';
 
 
 
@@ -57,12 +58,14 @@ class RandomWheelClass extends React.Component {
             selectedAreaId: 1,
             selectedDistanceId: 6,
             selectedPremiseId: 1,
-            noOfResults: 1,
+            noOfResults: 6,
             areaSelected: false,
             distanceSelected: false,
             premiseSelected: false,
             dishesSelected: false,
             getRandomiserSuccess: false,
+            isThemeDark: true,
+            take: 6
         };
         this.child = null;
     }
@@ -80,11 +83,12 @@ class RandomWheelClass extends React.Component {
             selectedDistanceId: this.props.userRandomiserSetting.distance ? this.props.userRandomiserSetting.distance : 6,
             selectedPremiseId: this.props.userRandomiserSetting.premiseId ? this.props.userRandomiserSetting.premiseId : 1,
             noOfResults: this.props.userRandomiserSetting.noOfResult ? this.props.userRandomiserSetting.noOfResult : 1,
-            areaSelected: this.props.userRandomiserSetting.areaId ? true : false,
-            distanceSelected: this.props.userRandomiserSetting.distance ? true : false,
-            premiseSelected: this.props.userRandomiserSetting.premiseId ? true : false,
-            restaurantSelected: typeof(this.props.userRandomiserSetting.isRestaurant) === "boolean"  ? this.props.userRandomiserSetting.isRestaurant : true,
-            getRandomiserSuccess: this.props.userRandomiserSettingSuccess
+            areaSelected: this.props.userRandomiserSetting.isArea,
+            distanceSelected: this.props.userRandomiserSetting.isDistance,
+            premiseSelected: this.props.userRandomiserSetting.isPremise,
+            restaurantSelected: typeof (this.props.userRandomiserSetting.isRestaurant) === "boolean" ? this.props.userRandomiserSetting.isRestaurant : true,
+            getRandomiserSuccess: this.props.userRandomiserSettingSuccess,
+            isThemeDark: this.props.isThemeDark
         })
     }
     getUserId = async () => {
@@ -106,7 +110,14 @@ class RandomWheelClass extends React.Component {
                     (position) => {
                         console.log(position);
                         this.setState({ lat: position.coords.latitude, long: position.coords.longitude })
-                        this.props.dispatch(GetNearestRestaurantAction({ lat: position.coords.latitude, long: position.coords.longitude, distance: this.state.selectedDistanceId }))
+                        this.props.dispatch(GetNearestRestaurantAction({
+                            lat: this.state.areaSelected || this.state.premiseSelected ? 0 : position.coords.latitude ,
+                            long: this.state.areaSelected || this.state.premiseSelected ? 0 : position.coords.longitude ,
+                            distance: this.state.selectedDistanceId,
+                            pId: !this.state.premiseSelected ? 0 : this.state.selectedPremiseId,
+                            aId: !this.state.areaSelected ? 0 : this.state.selectedAreaId,
+                            take: this.state.noOfResults
+                        }))
                     },
                     (error) => {
                         // See error code charts below.
@@ -145,7 +156,7 @@ class RandomWheelClass extends React.Component {
         });
 
         this.setState({ winnerIndex: null });
-        if(this.props.restaurantList.map(names => names.name).length){
+        if (this.props.restaurantList.map(names => names.name).length) {
 
             this.child._tryAgain();
         }
@@ -159,7 +170,10 @@ class RandomWheelClass extends React.Component {
             "areaId": this.state.selectedAreaId,
             "distance": this.state.selectedDistanceId,
             "premiseId": this.state.selectedPremiseId,
-            "noOfResult": this.state.noOfResults
+            "noOfResult": this.state.noOfResults,
+            "isArea": this.state.areaSelected,
+            "isDistance": this.state.distanceSelected,
+            "isPremise": this.state.premiseSelected
         }
         console.log('addUserRandomiserSettings obj', obj);
         try {
@@ -169,7 +183,7 @@ class RandomWheelClass extends React.Component {
                 this.props.dispatch(GetUserRandomiserSetting());
             } else {
             }
-        } catch (error) { console.log(error);}
+        } catch (error) { console.log(error); }
     };
     updateUserRandomiserSettings = async (index, item) => {
         var obj = {
@@ -180,16 +194,19 @@ class RandomWheelClass extends React.Component {
             "noOfResult": this.state.noOfResults,
             "updatedById": this.state.userId,
             "updateDateTime": new Date(),
+            "isArea": this.state.areaSelected,
+            "isDistance": this.state.distanceSelected ,
+            "isPremise": this.state.premiseSelected
         }
         console.log('updateUserRandomiserSettings obj', obj);
         try {
-            const res = await Api.put(urls.UPDATE_USER_RANDOMISER+this.state.userId, obj);
+            const res = await Api.put(urls.UPDATE_USER_RANDOMISER + this.state.userId, obj);
             console.log('res', res);
             if (res && res.success == true) {
                 this.props.dispatch(GetUserRandomiserSetting());
             } else {
             }
-        } catch (error) { console.log(error);}
+        } catch (error) { console.log(error); }
     };
     render() {
         // console.log(this.state.areaList, 'areaList in Class');
@@ -199,20 +216,20 @@ class RandomWheelClass extends React.Component {
         // console.log(new Date().toLocaleString().replace(',',''))
         // console.log(this.state.userId,'UserId');
         // console.log(this.props.userRandomiserSetting, 'userRandomiserSettinn');
-        console.log(this.state.areaSelected, 'areaSelected', this.state.selectedAreaId, 
-        this.state.selectedDistanceId, this.state.selectedPremiseId,
-        this.state.distanceSelected,this.state.premiseSelected,this.state.restaurantSelected,this.props.userRandomiserSetting.isRestaurant,
-        this.state.getRandomiserSuccess,'getRandomiserSuccess',
+        console.log(this.state.areaSelected, 'areaSelected', this.state.selectedAreaId,
+            this.state.selectedDistanceId, this.state.selectedPremiseId,
+            this.state.distanceSelected, this.state.premiseSelected, this.state.restaurantSelected, this.props.userRandomiserSetting.isRestaurant,
+            this.state.getRandomiserSuccess, 'getRandomiserSuccess',
         );
 
         const wheelOptions = {
-            rewards: this.state.restaurantSelected ? this.props.restaurantList.map(names => names.name) : this.props.favoriteDishesData.map(names => names.dishName) ,
+            rewards: this.state.restaurantSelected ? this.props.restaurantList.map(names => names.name) : this.props.favoriteDishesData.map(names => names.dishName),
             knobSize: 30,
             borderWidth: 5,
             borderColor: '#fff',
             innerRadius: 30,
             duration: 3000,
-            iconRewards: this.state.restaurantSelected ? this.props.restaurantList.map(names => names.fullPath) : this.props.favoriteDishesData.map(names => names.imageDataB) ,
+            iconRewards: this.state.restaurantSelected ? this.props.restaurantList.map(names => names.fullPath) : this.props.favoriteDishesData.map(names => names.imageDataB),
             backgroundColor: 'transparent',
 
             textAngle: 'horizontal',
@@ -223,23 +240,24 @@ class RandomWheelClass extends React.Component {
             <View
                 style={{
                     flex: 1,
-                    backgroundColor: colors.black3,
+                    backgroundColor: this.state.isThemeDark ? colors.black3 : colors.bgWhite,
                 }}>
                 <View
                     style={{
                         backgroundColor: colors.black1,
                         flex: 0.08,
-                        padding:6,
+                        padding: 6,
                         // alignItems: 'center',
                         justifyContent: 'center',
                         // alignItems: 'center',
+                        backgroundColor: this.state.isThemeDark ? colors.black3 : colors.white,
                     }}>
                     <Header navigation={this.props.navigation} />
                 </View>
                 <View
                     style={{
                         flex: 0.9,
-                        backgroundColor: colors.black3,
+                        backgroundColor: this.state.isThemeDark ? colors.black3 : colors.bgWhite,
                         justifyContent: 'space-between'
                     }}>
                     <View>
@@ -249,7 +267,7 @@ class RandomWheelClass extends React.Component {
                             <ResponsiveText color={colors.grey} size={3.5} margin={[0, 0, 0, 5]} >Refine Search</ResponsiveText>
                         </TouchableOpacity>
                     </View>
-                    <View style={styles.container}>
+                    <View style={[styles.container, { backgroundColor: this.state.isThemeDark ? colors.black3 : colors.bgWhite }]}>
                         <StatusBar barStyle={'light-content'} />
                         {!this.props.loading ?
                             this.props.restaurantList.map(names => names.name).length ?
@@ -258,24 +276,36 @@ class RandomWheelClass extends React.Component {
 
                                     getWinner={(value, index) => {
                                         this.setState({ winnerValue: value, winnerIndex: index });
-                                        if(this.state.restaurantSelected){
+                                        if (this.state.restaurantSelected) {
                                             this.props.navigation.navigate(routeName.RestaurantDetail, this.props.restaurantList.find(element => element.name === value).restaurantBranchId)
-                                        }else{
-                                            this.props.navigation.navigate(routeName.DISH_DETAIL,{ dish: this.props.favoriteDishesData.find(element => element.dishName === value)})
+                                        } else {
+                                            this.props.navigation.navigate(routeName.DISH_DETAIL, { dish: this.props.favoriteDishesData.find(element => element.dishName === value) })
                                         }
 
                                         // alert('Dish ID: ',participants[this.state.winnerIndex])
                                         //    alert('Dish ID: '+participants[this.state.winnerIndex])
                                     }}
                                 />
-                                : 
+                                :
                                 // showMessage({
                                 //     message: "Oooopsss...",
                                 //     description: "Seems like there are no restaurants in area you provided.",
                                 //     type: "info",
                                 // })
                                 null
-                            : null}
+                            : <View
+                                style={{
+                                    position: 'absolute',
+                                    top: 0,
+                                    left: 0,
+                                    bottom: 0,
+                                    right: 0,
+                                    backgroundColor: 'rgba(65, 65, 65, 0.5)',
+                                    flex: 1,
+                                    zIndex: 10,
+                                }}>
+                                <BarIndicator color={colors.yellow} size={50} />
+                            </View>}
 
 
 
@@ -307,7 +337,7 @@ class RandomWheelClass extends React.Component {
                     </View>
                     <View
                         style={{
-                            backgroundColor: colors.black3,
+                            backgroundColor: this.state.isThemeDark ? colors.black3 : colors.bgWhite,
                             alignItems: 'center',
                             marginBottom: 30,
                         }}>
@@ -323,7 +353,7 @@ class RandomWheelClass extends React.Component {
                                 borderRadius: 7,
 
                             }}>
-                            <ResponsiveText color={colors.black3}>Randomise</ResponsiveText>
+                            <ResponsiveText color={this.state.isThemeDark ? colors.black3 : colors.grey1}>Randomise</ResponsiveText>
                         </TouchableOpacity>
                     </View>
 
@@ -345,7 +375,7 @@ class RandomWheelClass extends React.Component {
                     <View
                         style={{
                             flex: 1,
-                            backgroundColor: colors.black3,
+                            backgroundColor: this.state.isThemeDark ? colors.black3 : colors.bgWhite,
                             justifyContent: 'space-between',
                             borderRadius: 10
                         }}>
@@ -359,14 +389,14 @@ class RandomWheelClass extends React.Component {
                             >
                                 <Image
                                     source={require('../../../../assets/fake_Images/cross.png')}
-                                    style={{ height: hp(3.7), width: 33, marginBottom: 6, backgroundColor:'black',borderRadius:50 }}
+                                    style={{ height: hp(3.7), width: 33, marginBottom: 6, backgroundColor: 'black', borderRadius: 50 }}
                                 />
                             </TouchableOpacity>
                         </View>
                         <View style={{ marginTop: 40 }} >
 
-                            <View style={{ backgroundColor: colors.black3, }}>
-                                <ResponsiveText color={colors.white} size={3.7} margin={[20, 0, 10, 20]}>
+                            <View style={{ backgroundColor: this.state.isThemeDark ? colors.black3 : colors.bgWhite, }}>
+                                <ResponsiveText color={this.state.isThemeDark ? colors.white : colors.black} size={3.7} margin={[20, 0, 10, 20]}>
                                     Randomiser setting
                                 </ResponsiveText>
                             </View>
@@ -401,7 +431,7 @@ class RandomWheelClass extends React.Component {
                                                 disabled={!this.state.areaSelected}
                                                 data={this.props.areaList.map(names => names.name)}
                                                 height={hp(4)} width={wp(57)}
-                                                defaultValue={this.props.areaList.length>0? this.props.areaList.find(e => e.id == this.state.selectedAreaId).name:'null'}
+                                                defaultValue={this.props.areaList.length > 0 ? this.props.areaList.find(e => e.id == this.state.selectedAreaId).name : 'null'}
                                                 onSelect={(selectedItem, index) => {
                                                     console.log('selectedAreaId', this.props.areaList.find(e => e.name == selectedItem).id);
                                                     this.setState({
@@ -442,19 +472,19 @@ class RandomWheelClass extends React.Component {
                                     </ResponsiveText>
                                     <View style={{ marginStart: 5 }} >
                                         <DropDown
-                                            disabled={!this.state.premiseSelected} 
+                                            disabled={!this.state.premiseSelected}
                                             data={this.props.premiseList.map(names => names.name)}
                                             defaultValue={this.props.premiseList.find(e => e.id == this.state.selectedPremiseId)?.name}
-                                            height={hp(4)} 
-                                            width={wp(57)} 
+                                            height={hp(4)}
+                                            width={wp(57)}
                                         />
                                     </View>
                                 </View>
                             </View>
-                            <View style={{ backgroundColor: colors.black3 }}>
+                            <View style={{ backgroundColor: this.state.isThemeDark ? colors.black3 : colors.bgWhite }}>
                                 <View>
                                     <ResponsiveText
-                                        color={colors.white}
+                                        color={this.state.isThemeDark ? colors.white : colors.black}
                                         margin={[20, 0, 0, 20]}
                                         size={3.7}>
                                         Choose how many results
@@ -463,21 +493,21 @@ class RandomWheelClass extends React.Component {
                                     <View style={{ display: 'flex', flexDirection: 'row', marginTop: 5 }}>
                                         <RadioGroup color={colors.yellow} style={{ flex: 1, flexDirection: 'row' }}
                                             onSelect={(index, value) => {
-                                                this.setState({ noOfResults: value })
+                                                this.setState({ noOfResults: value, take: value })
                                                 console.log(index, value, this.state.noOfResults);
                                             }}
-                                            selectedIndex={this.state.noOfResults-1}
+                                            selectedIndex={this.state.noOfResults - 5}
                                         >
-                                            <RadioButton value={1} style={{ marginStart: 10 }}>
-                                                <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>1</ResponsiveText>
+                                            <RadioButton value={5} style={{ marginStart: 10 }}>
+                                                <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>5</ResponsiveText>
                                             </RadioButton>
 
-                                            <RadioButton value={2} style={{ marginStart: 10 }}>
-                                                <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>2</ResponsiveText>
+                                            <RadioButton value={6} style={{ marginStart: 10 }}>
+                                                <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>6</ResponsiveText>
                                             </RadioButton>
 
-                                            <RadioButton value={3} style={{ marginStart: 10 }}>
-                                                <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>3</ResponsiveText>
+                                            <RadioButton value={7} style={{ marginStart: 10 }}>
+                                                <ResponsiveText color={colors.grey1} margin={[0, 10, 0, 10]}>7</ResponsiveText>
                                             </RadioButton>
                                         </RadioGroup>
 
@@ -488,7 +518,7 @@ class RandomWheelClass extends React.Component {
                         </View>
                         <View
                             style={{
-                                backgroundColor: colors.black3,
+                                backgroundColor: this.state.isThemeDark ? colors.black3 : colors.bgWhite,
                                 alignItems: 'center',
                                 marginBottom: 30,
                             }}>
@@ -496,11 +526,18 @@ class RandomWheelClass extends React.Component {
                                 onPress={() => {
                                     {
                                         this.setState({ isModalVisible: false });
-                                        this.props.dispatch(GetNearestRestaurantAction({ lat: this.state.lat, long: this.state.long, distance: this.state.selectedDistanceId }));
-                                        if(this.state.getRandomiserSuccess){
+                                        this.props.dispatch(GetNearestRestaurantAction({
+                                            lat: !this.state.areaSelected || !this.state.premiseSelected ? 0 : this.state.lat,
+                                            long: !this.state.areaSelected || !this.state.premiseSelected ? 0 : this.state.long,
+                                            distance: this.state.selectedDistanceId,
+                                            pId: !this.state.premiseSelected ? 0 : this.state.selectedPremiseId,
+                                            aId: !this.state.areaSelected ? 0 : this.state.selectedAreaId,
+                                            take: this.state.noOfResults
+                                        }));
+                                        if (this.state.getRandomiserSuccess) {
                                             this.updateUserRandomiserSettings()
-                                        }else{
-                                            this.addUserRandomiserSettings();   
+                                        } else {
+                                            this.addUserRandomiserSettings();
                                         }
                                     }
                                 }}
@@ -535,11 +572,12 @@ export default RandomWheel = (props) => {
     const userRandomiserSetting = useSelector(state => state.appReducers.getUserRandomiserSetting.data)
     const userRandomiserSettingSuccess = useSelector(state => state.appReducers.getUserRandomiserSetting.success)
     const favoriteDishesData = useSelector(state => state.appReducers.favorite.data)
+    const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
-    console.log(favoriteDishesData,'favoriteDishesData');
+    console.log(favoriteDishesData, 'favoriteDishesData');
 
     console.log('Effect of useEffect');
-    console.log(userRandomiserSettingSuccess,'userRandomiserSettingSuccess');
+    console.log(userRandomiserSettingSuccess, 'userRandomiserSettingSuccess');
 
     return <RandomWheelClass {...props}
         dispatch={dispatch}
@@ -551,6 +589,7 @@ export default RandomWheel = (props) => {
         userRandomiserSetting={userRandomiserSetting}
         userRandomiserSettingSuccess={userRandomiserSettingSuccess}
         favoriteDishesData={favoriteDishesData}
+        isThemeDark={isThemeDark}
     />
 
 };

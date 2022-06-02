@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import Header from '../../../../components/Header';
 import RnButton from '../../../../components/RnButton';
@@ -36,6 +37,9 @@ import { useDispatch } from 'react-redux';
 
 // Pick a single file
 export default function Apply_Jobs({ navigation, route }) {
+
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
+
   console.log(':ressssss::', route.params.data);
 
   const [data, setdata] = React.useState(route.params.data);
@@ -47,7 +51,7 @@ export default function Apply_Jobs({ navigation, route }) {
   const loading = useSelector(
     state => state.appReducers.applyForJob.loading,
   );
-  const validation = async()  => {
+  const validation = async () => {
     if (coverletter === '') {
       dropdownRef.current.showMessage({
         message: 'Error',
@@ -74,26 +78,26 @@ export default function Apply_Jobs({ navigation, route }) {
       // dispatch(getPromoJobsData(1, 4));
       try {
         setLoader(true)
-        const res = await Api.post(urls.APPLY_FOR_JOBS ,formdata,true);
+        const res = await Api.post(urls.APPLY_FOR_JOBS, formdata, true);
         console.log('jobsssApplied', res);
         if (res && res.success == true) {
-          dispatch(getPromoJobsData(1,100))
+          dispatch(getPromoJobsData(1, 100))
           dropdownRef.current.showMessage({
             message: 'Success',
             description: 'Your application has been successfully submitted',
             type: 'success',
             icon: { icon: 'auto', position: 'left' },
-            duration:4000
+            duration: 4000
           });
           setLoader(false)
           setTimeout(() => {
-          navigation.goBack();
-          },4000)
-        
+            navigation.goBack();
+          }, 4000)
+
         } else {
           setLoader(false)
         }
-      } catch (error) {}
+      } catch (error) { }
     }
   };
 
@@ -113,151 +117,154 @@ export default function Apply_Jobs({ navigation, route }) {
     }
   };
   return (
-    <View style={styles.main_container}>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          padding: 7,
-        }}>
-        <TouchableOpacity
-          style={{
-            backgroundColor: colors.yellow1,
-            paddingVertical: 10,
-            paddingHorizontal: 10,
-            borderRadius: 20,
-          }}
-          onPress={() => {
-            navigation.goBack();
-          }}>
-          <Icon source={globalPath.BACK_BLACK_ARROW} />
-        </TouchableOpacity>
-      </View>
-      <View style={{ margin: 20, flex: 0.9 }}>
-        <ResponsiveText size={4} color={colors.yellow}>
-          {' '}
-          Job Details
-        </ResponsiveText>
-        <View style={styles.marginTop}>
-          <ResponsiveText size={4} color={colors.white}>
-            {' '}
-            Job Title : 
-          </ResponsiveText>
-          <ResponsiveText size={4} color={colors.grey}>
-          {'         '}
-              {data.jobTitle}
-              </ResponsiveText>
-        </View>
-        <View style={styles.marginTop}>
-          <View style={{flex:1.2}}>
-            <ResponsiveText size={4} color={colors.white}>
-            Description : 
-          </ResponsiveText>
-          </View>
-          <View style={{flex:2.5}}>
-          
-          <ResponsiveText size={3} color={colors.grey}>
-          {data.jobDescription}
-          </ResponsiveText>
-          </View>
-
-        </View>
-        <View style={styles.marginTop}>
-          <ResponsiveText size={4} color={colors.white}>
-          {' '}
-            Restaurant : 
-          </ResponsiveText>
-          <ResponsiveText size={4} color={colors.grey}>
-          {'    '}
-          {data.restuarantName}
-          </ResponsiveText>
-        </View>
-        <View style={styles.marginTop}>
-          <ResponsiveText size={4} color={colors.white}>
-          {' '}
-            Salary : 
-          </ResponsiveText>
-          <ResponsiveText size={4} color={colors.grey}>
-          {'             '}
-          {data.salaryRange}
-          </ResponsiveText>
-        </View>
-        <Text
-          style={{
-            marginTop: hp(4),
-            color: colors.white,
-            fontSize: 18,
-            fontWeight: '500',
-          }}>
-            {' '}
-          Cover letter
-        </Text>
+    <View style={[styles.main_container, { backgroundColor: isThemeDark ? colors.black3 : colors.bgWhite }]}>
+      <ScrollView>
         <View
           style={{
-            backgroundColor: colors.black2,
-            width: wp(90),
-            height: hp(15),
-            marginTop: hp(2),
-            borderRadius: 6,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            padding: 7,
           }}>
-          <TextInput
-            multiline={true}
-            placeholderTextColor={colors.grey}
-            editable={true}
-            value={coverletter}
-            onChangeText={setcoverletter}
-            style={{ margin: 5, color: colors.grey }}
-            placeholder="Introduce yourself.."
-          />
+          <TouchableOpacity
+            style={{
+              backgroundColor: colors.yellow1,
+              paddingVertical: 10,
+              paddingHorizontal: 10,
+              borderRadius: 20,
+            }}
+            onPress={() => {
+              navigation.goBack();
+            }}>
+            <Icon source={globalPath.BACK_BLACK_ARROW} />
+          </TouchableOpacity>
         </View>
-        <View style={{marginTop:20}}>
-          <ResponsiveText size={4} color={colors.white}>
+        <View style={{ margin: 20, flex: 0.9 }}>
+          <ResponsiveText size={4} color={colors.yellow}>
             {' '}
-            Upload CV
+            Job Details
           </ResponsiveText>
-          <View style={{flexDirection:'row'}}>
-            <View
-              style={{
-                backgroundColor: colors.black2,
-                width: wp(65),
-                height: hp(7),
-                padding: 5,
-                borderRadius: 6,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <ResponsiveText color={colors.white}>
-                {file != null ? file.name : ''}
+          <View style={styles.marginTop}>
+            <ResponsiveText size={4} color={isThemeDark ? colors.white : colors.black}>
+              {' '}
+              Job Title :
+            </ResponsiveText>
+            <ResponsiveText size={4} color={isThemeDark ? colors.grey : colors.black1}>
+              {'         '}
+              {data.jobTitle}
+            </ResponsiveText>
+          </View>
+          <View style={styles.marginTop}>
+            <View style={{ flex: 1.2 }}>
+              <ResponsiveText size={4} color={isThemeDark ? colors.white : colors.black}>
+                Description :
               </ResponsiveText>
             </View>
-            <TouchableOpacity
-              onPress={() => Pickfile()}
-              style={{
-                backgroundColor: colors.grey,
-                width: wp(25),
-                alignItems: 'center',
-                justifyContent: 'center',
-                borderTopRightRadius: 7,
-                borderBottomRightRadius: 7,
-              }}>
-              <ResponsiveText>Browse</ResponsiveText>
-            </TouchableOpacity>
+            <View style={{ flex: 2.5 }}>
+
+              <ResponsiveText size={3} color={isThemeDark ? colors.grey : colors.black1}>
+                {data.jobDescription}
+              </ResponsiveText>
+            </View>
+
           </View>
+          <View style={styles.marginTop}>
+            <ResponsiveText size={4} color={isThemeDark ? colors.white : colors.black}>
+              {' '}
+              Restaurant :
+            </ResponsiveText>
+            <ResponsiveText size={4} color={isThemeDark ? colors.grey : colors.black1}>
+              {'    '}
+              {data.restuarantName}
+            </ResponsiveText>
+          </View>
+          <View style={styles.marginTop}>
+            <ResponsiveText size={4} color={isThemeDark ? colors.white : colors.black}>
+              {' '}
+              Salary :
+            </ResponsiveText>
+            <ResponsiveText size={4} color={isThemeDark ? colors.grey : colors.black1}>
+              {'             '}
+              {data.salaryRange}
+            </ResponsiveText>
+          </View>
+          <Text
+            style={{
+              marginTop: hp(4),
+              color: isThemeDark ? colors.white : colors.black,
+              fontSize: 18,
+              fontWeight: '500',
+            }}>
+            {' '}
+            Cover letter
+          </Text>
+          <View
+            style={{
+              backgroundColor: isThemeDark ? colors.black2 : colors.white,
+              width: wp(90),
+              height: hp(15),
+              marginTop: hp(2),
+              borderRadius: 6,
+            }}>
+            <TextInput
+              multiline={true}
+              placeholderTextColor={colors.grey}
+              editable={true}
+              value={coverletter}
+              onChangeText={setcoverletter}
+              style={{ margin: 5, color: colors.grey }}
+              placeholder="Introduce yourself.."
+            />
+          </View>
+          <View style={{ marginTop: 20 }}>
+            <ResponsiveText size={4} color={isThemeDark ? colors.white : colors.black}>
+              {' '}
+              Upload CV
+            </ResponsiveText>
+            <View style={{ flexDirection: 'row' }}>
+              <View
+                style={{
+                  backgroundColor: isThemeDark ? colors.black2 : colors.white,
+                  width: wp(65),
+                  height: hp(7),
+                  padding: 5,
+                  borderRadius: 6,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <ResponsiveText color={isThemeDark ? colors.white : colors.black}>
+                  {file != null ? file.name : ''}
+                </ResponsiveText>
+              </View>
+              <TouchableOpacity
+                onPress={() => Pickfile()}
+                style={{
+                  backgroundColor: colors.grey,
+                  width: wp(25),
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderTopRightRadius: 7,
+                  borderBottomRightRadius: 7,
+                }}>
+                <ResponsiveText>Browse</ResponsiveText>
+              </TouchableOpacity>
+            </View>
+          </View>
+
+
+          <TouchableOpacity style={[styles.signin, { backgroundColor: data.userAppliedStatus === "Applied" ? colors.grey6 : colors.yellow }]} disabled={data.userAppliedStatus === "Applied" ? true : false} onPress={() => validation()}>
+            {loader == true ?
+              <  SkypeIndicator count={5} color={colors.black} size={30} />
+              :
+              <Text style={{ fontWeight: '800', color: colors.black, top: 15 }}>
+                {data.userAppliedStatus === "Applied" ? 'Already Applied' : 'Submit'}
+              </Text>
+            }
+          </TouchableOpacity>
+
+
         </View>
 
-
-        <TouchableOpacity style={[styles.signin,{backgroundColor: data.userAppliedStatus === "Applied" ? colors.grey6 : colors.yellow}]} disabled={data.userAppliedStatus === "Applied" ? true : false} onPress={() => validation()}>
-          {loader == true ?
-            <  SkypeIndicator count={5} color={colors.black} size={30} />
-            :
-            <Text style={{fontWeight:'800',color:colors.black,top:15}}>
-              {data.userAppliedStatus === "Applied" ? 'Already Applied' : 'Submit'}
-            </Text>
-          }
-        </TouchableOpacity>
-
-
-      </View>
+      </ScrollView>
       <FlashMessage ref={dropdownRef} />
     </View>
   );
@@ -269,7 +276,7 @@ const styles = StyleSheet.create({
   },
   marginTop: {
     marginTop: 20,
-    flexDirection:'row',
+    flexDirection: 'row',
   },
   btn_style: {
     borderRadius: 7,
@@ -280,11 +287,11 @@ const styles = StyleSheet.create({
     width: wp(80),
   },
   signin: {
-    
+
     width: wp(80),
     height: hp(6),
     borderRadius: 7, alignItems: 'center',
-    alignSelf:'center',
+    alignSelf: 'center',
     marginTop: hp(10),
   },
 });

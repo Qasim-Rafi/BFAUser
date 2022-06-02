@@ -17,13 +17,15 @@ import {favouriteTabs, profileTabs} from '../../../../constants/mock';
 import Header from '../../../../components/Header';
 import {globalPath} from '../../../../constants/globalPath';
 import FavouriteRestaurants from './FavouriteRestaurants';
+import { useSelector } from 'react-redux';
 
 export default function MyWhitelist({navigation}) {
   const [activeTab, setActiveTab] = React.useState(favouriteTabs[0].id);
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
   return (
     
-      <View style={styles.container}>
+      <View style={[styles.container,{backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}]}>
         <View
           style={{
             flexDirection: 'row',
@@ -57,7 +59,7 @@ export default function MyWhitelist({navigation}) {
                     justifyContent: 'center',
                     marginTop: 10,
                     backgroundColor:
-                      items.id === activeTab ? colors.yellow1 : colors.black2,
+                      items.id === activeTab ? colors.yellow1 : isThemeDark ? colors.black2 : colors.grey,
                   }}
                   padding={[3, 15]}>
                   <ResponsiveText

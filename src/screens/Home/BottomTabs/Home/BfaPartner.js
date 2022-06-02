@@ -35,6 +35,7 @@ const BfaPartner = ({props}) => {
   const loading = useSelector(
     state => state.appReducers.bfaPartners.refreshing,
   );
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
   // console.log('loading', loading);
   const [moreData, setMoreData] = React.useState(false);
@@ -112,8 +113,8 @@ const BfaPartner = ({props}) => {
   };
   const ContentThatGoesAboveTheFlatList = ({item, index}) => {
     return (
-      <View style={styles.bfaPartnerHeaderSection}>
-        <ResponsiveText size={4} color={colors.white}>
+      <View style={[styles.bfaPartnerHeaderSection,{backgroundColor:isThemeDark ? colors.black3 : colors.bgWhite}]}>
+        <ResponsiveText size={4} color={isThemeDark ? colors.white : colors.black}>
           Bali Partners
         </ResponsiveText>
         <TouchableOpacity
@@ -169,7 +170,7 @@ const BfaPartner = ({props}) => {
     );
   };
   return (
-    <View style={{flex:1,backgroundColor: colors.black3,width:wp(99),paddingRight:wp(5)}}>
+    <View style={{flex:1,backgroundColor: isThemeDark ? colors.black3 : colors.bgWhite,width:wp(99),paddingRight:wp(5)}}>
       {images.length > 0 ? (
         <FlatList
           data={title === 'More' ? lessImages : images}

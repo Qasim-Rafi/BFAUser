@@ -10,14 +10,16 @@ import { hp } from '../helpers/Responsiveness';
 import { wp } from '../helpers/Responsiveness';
 import Icon from './Icon';
 import ResponsiveText from './RnText';
+import { useSelector } from 'react-redux';
 
 
 export default function DropDown(props) {
 
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
   return (
     <View style={{
-      backgroundColor: colors.black1,
+      backgroundColor: isThemeDark ? colors.black1 : colors.grey,
       height: props.height ? props.height : hp(6),
       width: props.width ? props.width : wp(85),
       alignSelf: 'center',
@@ -31,14 +33,14 @@ export default function DropDown(props) {
         disabled={props.disabled? props.disabled : false}
         statusBarTranslucent={true}
         dropdownStyle={{ borderRadius: 7, borderBottomWidth: 0 }}
-        dropdown1RowTxtStyle={{ color: colors.white, textAlign: "left", marginStart: 20, fontSize: 14, }}
+        dropdown1RowTxtStyle={{ color: isThemeDark ?  colors.white: colors.black, textAlign: "left", marginStart: 20, fontSize: 14, }}
         defaultValue={props.defaultValue?props.defaultValue:null}
         // defaultValueByIndex={0}
         defaultButtonText={props.defaultButtonText?props.defaultButtonText:null}
-        rowTextStyle={{ color: colors.white, alignSelf: 'center', fontSize: 14 }}
-        rowStyle={{ backgroundColor: colors.black1, borderBottomColor: colors.black1, borderBottomWidth: 0 }}
+        rowTextStyle={{ color: isThemeDark ?  colors.white: colors.black, alignSelf: 'center', fontSize: 14 }}
+        rowStyle={{ backgroundColor: isThemeDark ? colors.black1 : colors.grey, borderBottomColor: isThemeDark ? colors.black1 : colors.grey, borderBottomWidth: 0 }}
         buttonStyle={{
-          backgroundColor: colors.black1,
+          backgroundColor: isThemeDark ? colors.black1 : colors.grey,
           height: props.height ? props.height : hp(6),
           width: props.width ? props.width : wp(81),
           alignSelf: 'center',
@@ -46,10 +48,10 @@ export default function DropDown(props) {
           borderRadius: 7,
 
         }}
-        buttonTextStyle={{ color: props.disabled? colors.grey :colors.white, fontSize: 14, textAlign: 'left', }}
+        buttonTextStyle={{ color: props.disabled? isThemeDark ?  colors.grey: colors.lightBlack :isThemeDark ?  colors.white: colors.black, fontSize: 14, textAlign: 'left', }}
         renderDropdownIcon={() => {
           return (
-            <Icon source={globalPath.DOWN_ARROW} tintColor={props.disabled? colors.grey :colors.white} size={10} />
+            <Icon source={globalPath.DOWN_ARROW} tintColor={props.disabled? isThemeDark ?  colors.grey: colors.lightBlack :isThemeDark ?  colors.white: colors.black} size={10} />
           );
         }}
         dropdownIconPosition={"right"}

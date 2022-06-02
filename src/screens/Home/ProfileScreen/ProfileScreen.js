@@ -43,6 +43,7 @@ export default function ProfileScreen({navigation}) {
   console.log('Profile: ', profileData);
   const loading = useSelector(state => state.appReducers.profileData.loading);
   console.log('loading', loading);
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
   const dispatch = useDispatch();
   const [email, setEmail] = useState();
   const [userName, setUsername] = useState();
@@ -77,6 +78,8 @@ export default function ProfileScreen({navigation}) {
   ];
   // const Gender=['Male','Female']
   const [date, setDate] = useState(null);
+  const [date2, setDate2] = useState(null);
+
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
   const [img, setImg] = useState(null);
@@ -84,6 +87,8 @@ export default function ProfileScreen({navigation}) {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
     setDate(currentDate);
+    setDate2(currentDate)
+
   };
 
   const showMode = currentMode => {
@@ -184,7 +189,7 @@ export default function ProfileScreen({navigation}) {
     //   type: 'image/jpeg',
     //   name: 'photo.jpg',
     // };
-    // console.log('okooookko');
+    console.log('okooookko');
     var formData = new FormData();
     formData.append('Username', userName);
     formData.append('Email', email);
@@ -194,8 +199,8 @@ export default function ProfileScreen({navigation}) {
     formData.append('Address2', Address);
     formData.append('EducationalBackground', education);
     formData.append('Gender', gender=='Gender'?'':gender);
-    if (date != null) {
-      formData.append('DateofBirth', dateFormat(date));
+    if (date2 != null) {
+      formData.append('DateofBirth', dateFormat(date2));
     }
     formData.append('ContactNumber', contactNo);
     formData.append('MarriageStatusId', MaritialStatus);
@@ -223,7 +228,7 @@ export default function ProfileScreen({navigation}) {
         formData,
         true,
       );
-      // console.log('ree', res);
+      console.log('ree', res);
       if (res && res.success == true) {
         dispatch(getProfileData());
         setLoading(false);
@@ -301,7 +306,7 @@ export default function ProfileScreen({navigation}) {
       <KeyboardAvoidingView 
       // behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       
-      style={styles.formArea}>
+      style={[styles.formArea,{backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}]}>
         <ScrollView style={{flexGrow: 1}}>
           <View style={{marginTop: 20, marginBottom: -30, marginLeft: 20}}>
             <ResponsiveText
@@ -359,6 +364,8 @@ export default function ProfileScreen({navigation}) {
               />
               <TouchableOpacity onPress={showDAtepicker}>
                 <Input
+                  style={{backgroundColor:isThemeDark ?  colors.black1: colors.grey}}
+                  backgroundColor={isThemeDark ?  colors.black1: colors.grey}
                   width={wp(39)}
                   onChnageText={text => setLastName(text)}
                   keyboardType={'numeric'}
@@ -367,6 +374,7 @@ export default function ProfileScreen({navigation}) {
                   padding={[0, 0, 0, 15]}
                   iconMargin={[0, 10, 0, 0]}
                   leftIcon={globalPath.Calender_ICON}
+                  placeholderTextColor={isThemeDark ? colors.black : undefined}
                   placeholder={
                     date == null
                       ? 'Date of birth'
@@ -527,7 +535,7 @@ export default function ProfileScreen({navigation}) {
           flex: 0.7,
           // borderTopRightRadius: wp(8),
           // borderTopLeftRadius: wp(8),
-          backgroundColor: colors.black3,
+          backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite,
           paddingTop: 10,
         }}>
         <ScrollView>
@@ -606,7 +614,7 @@ export default function ProfileScreen({navigation}) {
             }}>
             <TouchableOpacity
               style={{
-                backgroundColor: colors.black,
+                backgroundColor: isThemeDark ? colors.black : colors.bgWhite,
                 height:40,
                 padding: 9,
                 borderRadius: 20,
@@ -614,7 +622,7 @@ export default function ProfileScreen({navigation}) {
               onPress={() => {
                 navigation.goBack();
               }}>
-              <Icon source={globalPath.BACK_BLACK_ARROW} />
+              <Icon tintColor={isThemeDark ? colors.white : colors.black} source={globalPath.BACK_BLACK_ARROW} />
             </TouchableOpacity>
             {/* <ResponsiveText size={4}>Profile</ResponsiveText> */}
             <TouchableOpacity
@@ -732,14 +740,15 @@ export default function ProfileScreen({navigation}) {
                     justifyContent: 'center',
                     marginTop: 10,
                     backgroundColor:
-                      items.id === activeTab ? colors.yellow1 : colors.black2,
+                      items.id === activeTab ? colors.yellow1 : isThemeDark ? colors.black2 : colors.grey,
                   }}
                   padding={[3, 15]}>
                   <ResponsiveText
                     size={3.5}
                     // fontFamily={items.id === activeTab ? 'Boldedium' : undefined}
                     color={
-                      items.id === activeTab ? colors.black : colors.white
+                      // items.id === activeTab ? colors.black : colors.white
+                      colors.black
                     }>
                     {items.name}
                   </ResponsiveText>

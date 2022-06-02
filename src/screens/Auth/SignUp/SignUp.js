@@ -111,6 +111,9 @@ export default function Signup({navigation}) {
   const [showCorrectUserIcon, setShowCorrectUserIcon] = useState(false);
   const [showCorrectemailIcon, setShowCorrectemailIcon] = useState(false);
   const [showCorrectPhoneIcon, setShowCorrectPhoneIcon] = useState(false);
+
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
+
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
@@ -137,6 +140,7 @@ export default function Signup({navigation}) {
 
   const expressions = {
     email: /^\w+([+.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+    postCode: /^[a-zA-Z]{2}[0-9]{4}$/
   };
   const validation = () => {
     setErrorString('');
@@ -295,6 +299,18 @@ export default function Signup({navigation}) {
           setCorrectemailIcon(false);
     return false
     }
+    if (type==4&& !expressions.postCode.test(PostCode) || PostCode.includes(' ')) {
+    // dropdownRef.current.showMessage({
+      //   message: 'Error',
+      //   description: 'Invalid Email',
+      //   type: 'danger',
+      //   icon: {icon: 'auto', position: 'left'},
+      // });
+      setErrorString('Invalid PostCode')
+      // setShowCorrectemailIcon(true);
+      //     setCorrectemailIcon(false);
+    return false
+    }
     var obj = {
       userName: type == 1 ? userName : '',
       email: type == 2 ? email : '',
@@ -361,7 +377,7 @@ export default function Signup({navigation}) {
 
   return (
     <KeyboardAvoidingView
-      style={{flex: 1, backgroundColor: colors.black}}
+      style={{flex: 1, backgroundColor: isThemeDark ?  colors.black: colors.white}}
       behavior={Platform.OS === 'ios' ? 'padding' : null}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ScrollView style={{flex: 1}}>
@@ -374,14 +390,17 @@ export default function Signup({navigation}) {
               size={8}>
               SignUp
             </ResponsiveText>
-            <ResponsiveText margin={[1, 0, 0, 0]} color={colors.white}>
+            <ResponsiveText margin={[1, 0, 0, 0]} color={isThemeDark ?  colors.white: colors.black}>
               Please SignUp to Continue
             </ResponsiveText>
           </View>
-          <View style={styles.formArea}>
+          <View style={[styles.formArea,{backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}]}>
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <Input
+                style={{backgroundColor:isThemeDark ?  colors.black1: colors.grey}}
+                backgroundColor={isThemeDark ?  colors.black1: colors.grey}
+                placeholderTextColor={isThemeDark ? undefined : colors.secondary}
                 width={wp(39)}
                 margin={[0, 0, 15, 0]}
                 padding={[0, 0, 0, 25]}
@@ -391,6 +410,9 @@ export default function Signup({navigation}) {
                 leftIcon={globalPath.USER_LOGO}
               />
               <Input
+                style={{backgroundColor:isThemeDark ?  colors.black1: colors.grey}}
+                backgroundColor={isThemeDark ?  colors.black1: colors.grey}
+                placeholderTextColor={isThemeDark ? undefined : colors.secondary}
                 width={wp(39)}
                 onChnageText={text => setLastName(text)}
                 margin={[0, 0, 15, 0]}
@@ -402,6 +424,9 @@ export default function Signup({navigation}) {
             </View>
 
             <Input
+              style={{backgroundColor:isThemeDark ?  colors.black1: colors.grey}}
+              backgroundColor={isThemeDark ?  colors.black1: colors.grey}
+              placeholderTextColor={isThemeDark ? undefined : colors.secondary}
               padding={[0, 0, 0, 25]}
               margin={[0, 0, 15, 0]}
               iconMargin={[0, 10, 0, 0]}
@@ -419,6 +444,9 @@ export default function Signup({navigation}) {
               leftIcon={globalPath.MALE_LOGO}
             />
             <Input
+              style={{backgroundColor:isThemeDark ?  colors.black1: colors.grey}}
+              backgroundColor={isThemeDark ?  colors.black1: colors.grey}
+              placeholderTextColor={isThemeDark ? undefined : colors.secondary}
               margin={[0, 0, 15, 0]}
               padding={[0, 0, 0, 25]}
               iconMargin={[0, 10, 0, 0]}
@@ -431,6 +459,9 @@ export default function Signup({navigation}) {
 
             />
             <Input
+              style={{backgroundColor:isThemeDark ?  colors.black1: colors.grey}}
+              backgroundColor={isThemeDark ?  colors.black1: colors.grey}
+              placeholderTextColor={isThemeDark ? undefined : colors.secondary}
               padding={[0, 0, 0, 25]}
               iconMargin={[0, 10, 0, 0]}
               placeholder="Email"
@@ -456,6 +487,9 @@ export default function Signup({navigation}) {
              // onPressOut={() => checkExisting()}
             /> */}
             <Input
+              style={{backgroundColor:isThemeDark ?  colors.black1: colors.grey}}
+              backgroundColor={isThemeDark ?  colors.black1: colors.grey}
+              placeholderTextColor={isThemeDark ? undefined : colors.secondary}
               margin={[15, 0, 0, 0]}
               padding={[0, 0, 0, 20]}
               maxlength={7}
@@ -475,6 +509,9 @@ export default function Signup({navigation}) {
               onBlur={() => checkExisting(3)}
             />
             <Input
+              style={{backgroundColor:isThemeDark ?  colors.black1: colors.grey}}
+              backgroundColor={isThemeDark ?  colors.black1: colors.grey}
+              placeholderTextColor={isThemeDark ? undefined : colors.secondary}
               margin={[15, 0, 15, 0]}
               padding={[0, 0, 0, 20]}
               onChnageText={text => setAddress(text)}
@@ -488,6 +525,9 @@ export default function Signup({navigation}) {
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <Input
+                style={{backgroundColor:isThemeDark ?  colors.black1: colors.grey}}
+                backgroundColor={isThemeDark ?  colors.black1: colors.grey}
+                placeholderTextColor={isThemeDark ? undefined : colors.secondary}
                 width={wp(39)}
                 margin={[0, 0, 15, 0]}
                 padding={[0, 0, 0, 25]}
@@ -497,14 +537,18 @@ export default function Signup({navigation}) {
                 leftIcon={globalPath.State_ICON}
               />
               <Input
+                style={{backgroundColor:isThemeDark ?  colors.black1: colors.grey}}
+                backgroundColor={isThemeDark ?  colors.black1: colors.grey}
+                placeholderTextColor={isThemeDark ? undefined : colors.secondary}
                 width={wp(39)}
                 onChnageText={text => setPostCode(text)}
-                maxlength={5}
-                keyboardType={'numeric'}
+                maxlength={6}
+                keyboardType={'name-phone-pad'}
                 margin={[0, 0, 15, 0]}
                 padding={[0, 0, 0, 15]}
                 iconMargin={[0, 10, 0, 0]}
                 placeholder="Postcode"
+                onBlur={() => checkExisting(4)}
                 leftIcon={globalPath.ZIP_ICON}
               />
             </View>
@@ -582,7 +626,7 @@ export default function Signup({navigation}) {
             </View>
             <View style={styles.footer}>
               {/* <Icon size={wp(8)}  margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
-              <ResponsiveText margin={[2, 10]} color={colors.white}>
+              <ResponsiveText margin={[2, 10]} color={isThemeDark ?  colors.white: colors.black}>
                 Already have an account?{' '}
                 <ResponsiveText
                   fontFamily="Bold"

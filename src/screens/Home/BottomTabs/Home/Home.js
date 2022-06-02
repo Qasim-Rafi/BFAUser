@@ -13,11 +13,11 @@ import Icon from '../../../../components/Icon';
 import ResponsiveText from '../../../../components/RnText';
 import Input from '../../../../components/Input';
 import RnButton from '../../../../components/RnButton';
-import {globalPath} from '../../../../constants/globalPath';
-import {hp, wp} from '../../../../helpers/Responsiveness';
+import { globalPath } from '../../../../constants/globalPath';
+import { hp, wp } from '../../../../helpers/Responsiveness';
 import Swiper from 'react-native-swiper';
-import {routeName} from '../../../../constants/routeName';
-import {colors} from '../../../../constants/colorsPallet';
+import { routeName } from '../../../../constants/routeName';
+import { colors } from '../../../../constants/colorsPallet';
 import Fonts from '../../../../helpers/Fonts';
 import AdvertisementBanner from './AdvertisementBanner';
 import SeeAllButton from '../../../../components/SeeAllButton';
@@ -30,9 +30,10 @@ import AwardWinningDishes from './AwardWinningDishes';
 import Promotion from './Promotion';
 import JobsList from './JobsList';
 import Header from '../../../../components/Header';
-import {ourRecommendationFakeDATA} from '../../../../constants/mock';
+import SkeletonComponent from '../../../Home/BottomTabs/Home/SkeletonComponent';
+import { ourRecommendationFakeDATA } from '../../../../constants/mock';
 0;
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getRestaurantAllDishes,
   getUserCusine,
@@ -59,21 +60,34 @@ import axios from 'axios';
 import urls from '../../../../redux/lib/urls';
 import AllCuisines from './AllCuisines';
 import WhatsNew from './WhatNew';
-import {bfaPartnerSelecter} from '../../../../redux/lib/selectors';
-import {getBfaRecommendationSaga} from '../../../../redux/sagas/user.sagas';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import { bfaPartnerSelecter } from '../../../../redux/lib/selectors';
+import { getBfaRecommendationSaga } from '../../../../redux/sagas/user.sagas';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 import FlashMessage from 'react-native-flash-message';
 const wait = timeout => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 };
-const Home = ({navigation}) => {
+const Home = ({ navigation }) => {
   const loading = useSelector(
     state => state.appReducers.bfaPartners.refreshing,
   );
   const dispatch = useDispatch();
 
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
+
   const [refreshing, setRefreshing] = React.useState(false);
   const dropdownRef = React.useRef(null);
+   const PromotionLoading = useSelector(state => state.appReducers.promotions.loading);
+  const loadingBanner = useSelector(state => state.appReducers.addBanner.loading);
+  const PeopleChoice = useSelector(state => state.appReducers.PeopleChoice.loading);
+  const BfaPartners = useSelector(state => state.appReducers.bfaPartners.loading);
+  const UserCusine = useSelector(state => state.appReducers.cusineDetail.loading);
+  const whatsNew = useSelector(state => state.appReducers.whatsnew.loading);
+  const Favorite = useSelector(state => state.appReducers.favorite.loading);
+  const PromoJobs = useSelector(state => state.appReducers.promoJobs.loading);
+  const BfaRecommendations = useSelector(state => state.appReducers.bfaRecommendationDetail.loading);
+  const BruneiFoodRewards = useSelector(state => state.appReducers.bruneiFoodsAwards.loading);
+
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -130,13 +144,23 @@ const Home = ({navigation}) => {
     //  setInterval(() => {
     //   dispatch(getNotificationData());
     // }, 5000);
-    
+    // console.log(showAsyncStorageContentInDev());
+    // showAsyncStorageContentInDev()
   }, []);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: isThemeDark ? colors.black3 : colors.bgWhite }]}>
+      {PromotionLoading === true || loadingBanner == true || PeopleChoice == true || BfaPartners == true ||
+        UserCusine === true || whatsNew == true || Favorite == true || PromoJobs == true || BfaRecommendations == true
+        || BruneiFoodRewards == true ?
+        <View style={{ position: 'absolute', flex: 1, zIndex: 1, backgroundColor: isThemeDark ? colors.black1 : colors.white, height: hp(100) }}>
+          <SkeletonComponent/>
+        </View>
+        :
+        undefined
+      }
       <ScrollView
-        style={{flex: 1, width: '100%'}}
+        style={{ flex: 1, width: '100%' }}
         showsVerticalScrollIndicator={false}
         nestedScrollEnabled={true}
         // contentContainerStyle={{ flex: 1 }}
@@ -155,16 +179,16 @@ const Home = ({navigation}) => {
           <BfaPartner navigation={navigation} />
         </ScrollView>
 
-        <View style={styles.yourFavorite}>
+        <View style={[styles.yourFavorite, { backgroundColor: isThemeDark ? colors.black3 : colors.bgWhite }]}>
           <YourFavourite navigation={navigation} />
         </View>
-        <View style={styles.awardWinningDishes}>
+        <View style={[styles.awardWinningDishes, { backgroundColor: isThemeDark ? colors.black3 : colors.bgWhite }]}>
           <AwardWinningDishes navigation={navigation} />
         </View>
         <View style={styles.recommendationContainer}>
           <Recommendation navigation={navigation} />
         </View>
-        <View style={styles.everyoneFavorite}>
+        <View style={[styles.everyoneFavorite, { backgroundColor: isThemeDark ? colors.black3 : colors.bgWhite }]}>
           <EveryOneFavourite navigation={navigation} />
         </View>
         {/* <View style={styles.Advertisement2ndVarient}>
@@ -210,7 +234,7 @@ const Home = ({navigation}) => {
          
         </ImageBackground> */}
       </ScrollView>
-      <View style={{flex: 0.1, position: 'absolute', top: 0}}>
+      <View style={{ flex: 0.1, position: 'absolute', top: 0 }}>
         <Header screen={'home'} navigation={navigation} />
       </View>
       <FlashMessage ref={dropdownRef} />

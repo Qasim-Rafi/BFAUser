@@ -20,14 +20,15 @@ import {useSelector, useDispatch} from 'react-redux';
 export default function FavouriteDishes(props) {
   const favData = useSelector(state => state.appReducers.favorite.data,)
   const dispatch = useDispatch();
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
   React.useEffect(() => {
     dispatch(getFavorite(1, 13));
   }, []);
 
   return (
-    <View style={{backgroundColor: colors.black3, flex: 1}}>
+    <View style={{backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite, flex: 1}}>
       <View style={{flex: 0.9, margin: 20}}>
-        <ResponsiveText size={4} margin={[0, 0, 5, 10]} color={colors.yellow}>
+        <ResponsiveText size={4} margin={[0, 0, 5, 10]} color={isThemeDark ? colors.yellow : colors.black}>
           Favorite Dishes
         </ResponsiveText>
         <View style={{flexDirection: 'row', flexWrap: 'wrap', width: wp(100)}}>
@@ -36,7 +37,7 @@ export default function FavouriteDishes(props) {
             console.log("favvvv",item)
             return (
               <TouchableOpacity
-              style={{marginHorizontal: 4, marginVertical: 14}}
+              style={{marginHorizontal: 4, marginVertical: 14, }}
               onPress={() =>
                 props.navigation.navigate(routeName.DISH_DETAIL, {
                   dish: url,
@@ -50,6 +51,8 @@ export default function FavouriteDishes(props) {
                     borderRadius: 7,
                     overflow: 'hidden',
                     flexDirection: 'row',
+                    borderWidth: 0.5, 
+                    borderColor: colors.black3
                   }}>
                   <ImageBackground
                     imageStyle={{opacity: 1}}

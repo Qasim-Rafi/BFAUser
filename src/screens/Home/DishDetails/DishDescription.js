@@ -30,6 +30,7 @@ export default function DishDescription(props) {
   const [liked, setLiked] = React.useState(props.item.userLiked);
 
   const navigation = useNavigation();
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
   console.log(props.item, 'itemmmpropsss');
   useEffect(() => {
@@ -52,7 +53,7 @@ export default function DishDescription(props) {
             justifyContent: 'space-between',
           }}>
           <View style={styles.priceDesc}>
-            <ResponsiveText size={4} color={colors.white}>
+            <ResponsiveText size={4} color={ isThemeDark ? colors.white : colors.black}>
               {props.item.titleD == undefined
                 ? props.item.titleA
                 : props.item.titleD}
@@ -92,6 +93,9 @@ export default function DishDescription(props) {
           padding: 20,
           borderBottomColor: colors.grey,
           borderBottomWidth: 1,
+          backgroundColor: isThemeDark ? undefined : colors.white,
+          borderTopStartRadius:15,
+          borderTopEndRadius:15
         }}>
         <TouchableOpacity
           style={{alignItems: 'center'}}
@@ -162,7 +166,7 @@ export default function DishDescription(props) {
         </TouchableOpacity>
       </View>
       <View style={{padding: 20}}>
-        <ResponsiveText fontFamily="Regular" size={4} color={colors.white}>
+        <ResponsiveText fontFamily="Regular" size={4} color={ isThemeDark ? colors.white : colors.black}>
           {props.item.titleA == undefined
             ? props.item.titleD
             : props.item.titleA}

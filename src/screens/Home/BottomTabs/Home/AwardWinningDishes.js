@@ -43,13 +43,14 @@ const AwardWinningDishes = props => {
   const loading = useSelector(
     state => state.appReducers.bruneiFoodsAwards.loading,
   );
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
   console.log('Brunei Foods Awards: ', FoodsAwards);
   console.log('Brunei Length: ', FoodsAwards.length);
   console.log('Brunei Foods Awards  Loading: ', loading);
   return (
     <>
-      <View style={styles.AwardWinningDishesHeaderSection}>
-        <ResponsiveText margin={[0, 0, 0, -5]} size={4} color={colors.white}>
+      <View style={[styles.AwardWinningDishesHeaderSection,{backgroundColor:isThemeDark ? colors.black3 : colors.bgWhite}]}>
+        <ResponsiveText margin={[0, 0, 0, -5]} size={4} color={isThemeDark ? colors.white : colors.black}>
           Brunei Food Awards
         </ResponsiveText>
         <View style={{ marginRight: -15 }}>
@@ -61,7 +62,7 @@ const AwardWinningDishes = props => {
           />
         </View>
       </View>
-      <View style={styles.AwardWinningDishesItemsSection}>
+      <View style={[styles.AwardWinningDishesItemsSection,{backgroundColor:isThemeDark ? colors.black3 : colors.bgWhite}]}>
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           {FoodsAwards.length > 0
             ? FoodsAwards.map((url, index) => {

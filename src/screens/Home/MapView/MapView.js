@@ -11,6 +11,7 @@ import ResponsiveText from '../../../components/RnText';
 import {globalPath} from '../../../constants/globalPath';
 import {hp, wp} from '../../../helpers/Responsiveness';
 import {colors} from '../../../constants/colorsPallet';
+import { useSelector } from 'react-redux';
 
 const origin = {latitude: 37.3318456, longitude: -122.0296002};
 const destination = {latitude: 37.771707, longitude: -122.4053769};
@@ -29,16 +30,17 @@ export default function MapView(props) {
       longitude: 114.6675,
     },
   ]);
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
   return (
     <View style={{flex: 1}}>
-      <View style={styles.header}>
+      <View style={[styles.header,{backgroundColor: isThemeDark ?  colors.black2: colors.white}]}>
         <TouchableOpacity style={styles.backArrow} onPress={()=>props.navigation.goBack()}>
         <Icon  source={globalPath.BACK_ARROW} />
         </TouchableOpacity>
-        <ResponsiveText color={colors.white} size={5}>
+        <ResponsiveText color={isThemeDark ?  colors.white: colors.black} size={5}>
           View Map
         </ResponsiveText>
-        <ResponsiveText color={colors.white} size={5}>
+        <ResponsiveText color={isThemeDark ?  colors.white: colors.black} size={5}>
         </ResponsiveText>
       </View>
       <View

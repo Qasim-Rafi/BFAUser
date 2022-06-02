@@ -38,6 +38,7 @@ const MoreFromResturant = (props, navigation) => {
   );
   const loading = useSelector(state => state.appReducers.moreFromRest.loading);
   const dispatch = useDispatch();
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
   React.useEffect(() => {
     dispatch(moreFromRestaurant(props.restaurantBranchId,1,4));
@@ -45,7 +46,7 @@ const MoreFromResturant = (props, navigation) => {
   return (
     <>
       <View style={styles.yourFavoriteHeaderSection}>
-        <ResponsiveText size={4} color={colors.white}>
+        <ResponsiveText size={4} color={ isThemeDark ?  colors.white : colors.black}>
           More From {props.title}
         </ResponsiveText>
         <SeeAllButton
@@ -130,7 +131,7 @@ const MoreFromResturant = (props, navigation) => {
           <Text
             style={{
               textAlign: 'center',
-              color: colors.white,
+              color: isThemeDark ? colors.white : colors.black,
             }}>
             No data found
           </Text>

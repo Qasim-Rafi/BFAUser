@@ -8,19 +8,32 @@ import ResponsiveText from '../../../components/RnText';
 import Icon from '../../../components/Icon';
 import CustomInput from '../../../components/customInput';
 import {routeName} from '../../../constants/routeName';
+import { useSelector } from 'react-redux';
 
 export default function AddCard({navigation}) {
   const [checked, setCheck] = React.useState(false);
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
   return (
-    <View style={{flex: 1, backgroundColor: colors.black3}}>
+    <View style={{flex: 1, backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}}>
       <View
         style={{
-          flex: 0.1,
-          backgroundColor: colors.black2,
-          justifyContent: 'center',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          padding: 7,
         }}>
-        <Header iconPath={globalPath.BACK_ARROW} navigation={navigation} />
+        <TouchableOpacity
+          style={{
+            backgroundColor: colors.yellow1,
+            paddingVertical: 10,
+            paddingHorizontal: 10,
+            borderRadius: 20,
+          }}
+          onPress={() => {
+            navigation.goBack();
+          }}>
+          <Icon source={globalPath.BACK_BLACK_ARROW} />
+        </TouchableOpacity>
       </View>
 
       <ResponsiveText margin={[20, 20, 10, 20]} color={colors.yellow} size={4}>
@@ -29,7 +42,7 @@ export default function AddCard({navigation}) {
       <View style={{flexDirection: 'row'}}>
         <TouchableOpacity
           style={{
-            backgroundColor: checked ? colors.black3 : undefined,
+            backgroundColor: checked ? isThemeDark ?  colors.black3: colors.bgWhite : undefined,
             borderRadius: 50,
             borderColor: colors.yellow,
             borderWidth: 2,
@@ -58,7 +71,7 @@ export default function AddCard({navigation}) {
 
         <TouchableOpacity
           style={{
-            backgroundColor: checked ? colors.black3 : undefined,
+            backgroundColor: checked ? isThemeDark ?  colors.black3: colors.bgWhite : undefined,
             borderRadius: 50,
             borderColor: colors.yellow,
             borderWidth: 2,
@@ -94,7 +107,7 @@ export default function AddCard({navigation}) {
         style={{
           flex: 0.9,
           marginTop: 5,
-          backgroundColor: colors.black2,
+          backgroundColor: isThemeDark ?  colors.black2: colors.white,
           borderTopRightRadius: 30,
           paddingVertical: 5,
           borderTopLeftRadius: 30,
