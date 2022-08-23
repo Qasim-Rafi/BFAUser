@@ -2,22 +2,15 @@ import React from 'react';
 import {
   StyleSheet,
   View,
-  KeyboardAvoidingView,
   ImageBackground,
-  Platform,
-  useColorScheme,
-  ViewPagerAndroidBase,
 } from 'react-native';
-import {ScrollView, TouchableOpacity} from 'react-native';
+import {ScrollView} from 'react-native';
 
 import {hp, wp} from '../../../helpers/Responsiveness';
-import Icon from '../../../components/Icon';
 import Input from '../../../components/Input';
 import RnButton from '../../../components/RnButton';
 import ResponsiveText from '../../../components/RnText';
 import {globalPath} from '../../../constants/globalPath';
-import {Spacing} from '../../../constants/spacingScale';
-import Line from '../../../components/Line';
 import { routeName } from '../../../constants/routeName';
 import { colors } from '../../../constants/colorsPallet';
 import { TextInput } from 'react-native-gesture-handler';

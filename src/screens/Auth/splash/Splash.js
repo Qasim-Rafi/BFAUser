@@ -29,8 +29,10 @@ const Splash = ({ navigation }) => {
     const id = await AsyncStorage.getItem('@userId');
     console.log('user Id: ', id);
     console.log(token, 'token');
+
     setToken(token);
     if (token === null) {
+      
       setTimeout(() => {
         setLogo(true)
         setTimeout(() => {
@@ -49,9 +51,22 @@ const Splash = ({ navigation }) => {
     }, 0)
     }
     else {
-      navigation.dispatch(
-            StackActions.replace('Home')
-          )
+      // const jwtPayload = JSON.parse(window.atob(token.split('.')[1]))
+      // console.log('jwtPayload.exp', jwtPayload.exp * 1000 < new Date().getTime());
+      // if (jwtPayload.exp * 1000 < new Date().getTime()) {
+      //  await AsyncStorage.clear()
+      //   navigation.dispatch(
+      //     CommonActions.reset({
+      //       index: 0,
+      //       routes: [{ name: routeName.LOGIN }],
+      //     }),
+      //   );
+      // } else {
+        
+        navigation.dispatch(
+              StackActions.replace('Home')
+            )
+      // }
       // console.log('condition True');
       // dispatch(getBfaPartners({navigation:navigation}))
 
