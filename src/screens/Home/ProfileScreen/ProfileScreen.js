@@ -69,7 +69,7 @@ export default function ProfileScreen({navigation}) {
   const Gender = [
     {
       id: 0,
-      lable: 'Gender',
+      lable: 'Other',
       icon: require('../../../assets/icons/signupgender.png'),
     },
     {id: 1, lable: 'Male', icon: require('../../../assets/icons/male.png')},
@@ -199,8 +199,11 @@ export default function ProfileScreen({navigation}) {
     formData.append('Address2', Address);
     formData.append('EducationalBackground', education);
     formData.append('Gender', gender=='Gender'?'':gender);
+
     if (date2 != null) {
       formData.append('DateofBirth', dateFormat(date2));
+    }else{
+      formData.append('DateofBirth', dateFormat(profileData.dateofBirth));
     }
     formData.append('ContactNumber', contactNo);
     formData.append('MarriageStatusId', MaritialStatus);
@@ -374,7 +377,7 @@ export default function ProfileScreen({navigation}) {
                   padding={[0, 0, 0, 15]}
                   iconMargin={[0, 10, 0, 0]}
                   leftIcon={globalPath.Calender_ICON}
-                  placeholderTextColor={isThemeDark ? colors.black : undefined}
+                  placeholderTextColor={isThemeDark ? colors.grey : undefined}
                   placeholder={
                     date == null
                       ? 'Date of birth'

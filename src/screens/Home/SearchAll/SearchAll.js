@@ -45,7 +45,7 @@ import {
   DISH_TAG,
   OTHERS_DATA,
 } from '../../../constants/mock';
-import {Rating} from 'react-native-ratings';
+import {AirbnbRating, Rating} from 'react-native-ratings';
 import Icon from '../../../components/Icon';
 import {globalPath} from '../../../constants/globalPath';
 import {myListingTabs} from '../../../constants/mock';
@@ -76,7 +76,7 @@ export default function SearchAll({navigation}) {
   //   dispatch(SearchResult());
   // }, []);
 
-  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data);
 
   const DATA = useSelector(state => state.appReducers.SearchResult.data);
   const Loading = useSelector(state => state.appReducers.SearchResult.loading);
@@ -234,7 +234,9 @@ export default function SearchAll({navigation}) {
           borderColor: colors.grey1,
           borderWidth: 0.5,
         }}>
-        <ResponsiveText color={isThemeDark ? colors.white : colors.black} fontFamily={'regular'}>
+        <ResponsiveText
+          color={isThemeDark ? colors.white : colors.black}
+          fontFamily={'regular'}>
           {item.name}
           <ResponsiveText color={colors.yellow}>({item.value})</ResponsiveText>
         </ResponsiveText>
@@ -242,7 +244,11 @@ export default function SearchAll({navigation}) {
     );
   };
   return (
-    <View style={{flex: 1, backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: isThemeDark ? colors.black3 : colors.bgWhite,
+      }}>
       <View style={{margin: 10, flexDirection: 'row', alignItems: 'center'}}>
         <TouchableOpacity
           style={{
@@ -266,6 +272,7 @@ export default function SearchAll({navigation}) {
             padding: wp(4),
             color: isThemeDark ? colors.white : colors.black,
           }}
+          underlineColorAndroid="transparent"
           value={SearchText}
           autoFocus={true}
           fontSize={11}
@@ -341,7 +348,11 @@ export default function SearchAll({navigation}) {
         // onModalHide={()=>navigation.navigate(routeName.LANDING_SCREEN)}
         coverScreen={true}>
         <SafeAreaView
-          style={{flex: 1, marginLeft: wp(8), backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}}>
+          style={{
+            flex: 1,
+            marginLeft: wp(8),
+            backgroundColor: isThemeDark ? colors.black3 : colors.bgWhite,
+          }}>
           <ScrollView>
             <View
               style={{
@@ -368,7 +379,9 @@ export default function SearchAll({navigation}) {
                 />
               </TouchableOpacity>
 
-              <ResponsiveText color={isThemeDark ? colors.white : colors.black} size={4}>
+              <ResponsiveText
+                color={isThemeDark ? colors.white : colors.black}
+                size={4}>
                 Filter By
               </ResponsiveText>
               <TouchableOpacity
@@ -432,13 +445,19 @@ export default function SearchAll({navigation}) {
                           borderRadius: 18,
                           alignItems: 'center',
                           justifyContent: 'center',
-                          backgroundColor: isThemeDark ? colors.black2 : colors.grey,
+                          backgroundColor: isThemeDark
+                            ? colors.black2
+                            : colors.grey,
                           marginHorizontal: 5,
                           paddingVertical: 10,
                           paddingHorizontal: 20,
                           marginTop: 10,
                         }}>
-                        <Text style={{fontSize: 10, color: isThemeDark ? colors.white : colors.black}}>
+                        <Text
+                          style={{
+                            fontSize: 10,
+                            color: isThemeDark ? colors.white : colors.black,
+                          }}>
                           {item.title}
                         </Text>
                       </View>
@@ -450,7 +469,12 @@ export default function SearchAll({navigation}) {
               <ResponsiveText margin={[25, 0, 2, 0]} color={colors.yellow}>
                 Dish Type
               </ResponsiveText>
-              <DropDown defaultButtonText={'Select Type'} data={DISH_TYPE} height={hp(5)} width={wp(73)} />
+              <DropDown
+                defaultButtonText={'Select Type'}
+                data={DISH_TYPE}
+                height={hp(5)}
+                width={wp(73)}
+              />
               <ResponsiveText margin={[10, 0, 2, 0]} color={colors.yellow}>
                 Dish Tag
               </ResponsiveText>
@@ -488,13 +512,19 @@ export default function SearchAll({navigation}) {
                           borderRadius: 18,
                           alignItems: 'center',
                           justifyContent: 'center',
-                          backgroundColor: isThemeDark ? colors.black2 : colors.grey,
+                          backgroundColor: isThemeDark
+                            ? colors.black2
+                            : colors.grey,
                           marginHorizontal: 5,
                           paddingVertical: 10,
                           paddingHorizontal: 20,
                           marginTop: 10,
                         }}>
-                        <Text style={{fontSize: 10, color: isThemeDark ? colors.white : colors.black}}>
+                        <Text
+                          style={{
+                            fontSize: 10,
+                            color: isThemeDark ? colors.white : colors.black,
+                          }}>
                           {item.name}
                         </Text>
                       </View>
@@ -543,13 +573,19 @@ export default function SearchAll({navigation}) {
                           borderRadius: 18,
                           alignItems: 'center',
                           justifyContent: 'center',
-                          backgroundColor: isThemeDark ? colors.black2 : colors.grey,
+                          backgroundColor: isThemeDark
+                            ? colors.black2
+                            : colors.grey,
                           marginHorizontal: 5,
                           paddingVertical: 10,
                           paddingHorizontal: 20,
                           marginTop: 10,
                         }}>
-                        <Text style={{fontSize: 10, color: isThemeDark ? colors.white : colors.black}}>
+                        <Text
+                          style={{
+                            fontSize: 10,
+                            color: isThemeDark ? colors.white : colors.black,
+                          }}>
                           {item}
                         </Text>
                       </View>
@@ -587,7 +623,9 @@ export default function SearchAll({navigation}) {
                           justifyContent: 'center',
                           backgroundColor: itemList.includes(item)
                             ? colors.yellow
-                            : isThemeDark ? colors.black2 : colors.grey,
+                            : isThemeDark
+                            ? colors.black2
+                            : colors.grey,
                           marginHorizontal: 5,
                           paddingVertical: 10,
                           paddingHorizontal: 20,
@@ -598,7 +636,9 @@ export default function SearchAll({navigation}) {
                             fontSize: 10,
                             color: itemList.includes(item)
                               ? colors.black
-                              : isThemeDark ? colors.white : colors.black,
+                              : isThemeDark
+                              ? colors.white
+                              : colors.black,
                           }}>
                           {item.title}
                         </Text>
@@ -618,6 +658,7 @@ export default function SearchAll({navigation}) {
         {DATA.length > 0 ? (
           <FlatList
             data={DATA}
+            ListFooterComponent={() => <View style={{height: hp(15)}} />}
             // extraData={dataFiltersDummyData}
             renderItem={({item, index}) => {
               if (selected == 1) {
@@ -625,7 +666,9 @@ export default function SearchAll({navigation}) {
                   <TouchableOpacity
                     style={{
                       flexDirection: 'row',
-                      backgroundColor: isThemeDark ? colors.black2 : colors.grey ,
+                      backgroundColor: isThemeDark
+                        ? colors.black2
+                        : colors.grey,
                       marginTop: 10,
                       marginHorizontal: 15,
                       borderRadius: 5,
@@ -660,28 +703,38 @@ export default function SearchAll({navigation}) {
                           justifyContent: 'center',
                           marginLeft: 5,
                           width: wp(55),
+                          alignItems:'flex-star'
                         }}>
-                        <ResponsiveText size={3} color={isThemeDark ? colors.white : colors.black}>
+                        <ResponsiveText
+                          size={3}
+                          color={isThemeDark ? colors.white : colors.black}>
                           {item.titleD}
                         </ResponsiveText>
-                        <ResponsiveText size={2.7} color={isThemeDark ? colors.white : colors.black}>
+                        <ResponsiveText
+                          size={2.7}
+                          color={isThemeDark ? colors.white : colors.black}>
                           {item.titleR}
                         </ResponsiveText>
-                        <Rating
-                          size={2}
-                          tintColor={isThemeDark ? colors.black2 : colors.grey}
-                          imageSize={10}
-                          style={{
-                            paddingVertical: 10,
-                            color: isThemeDark ? colors.black2 : colors.grey,
-                            marginLeft: -5,
-                            marginTop: -5,
-                          }}
-                        />
+                        <View>
+                          <AirbnbRating
+                            showRating={false}
+                            isDisabled={true}
+                            count={5}
+                            defaultRating={3}
+                            size={12}
+                            style={{
+                              paddingVertical: 10,
+                              // alignSelf: 'flex-start',
+                            }}
+                          />
+                        </View>
                       </View>
                       <View style={{margin: 20}}>
                         <Icon source={globalPath.LOCATION1} />
-                        <ResponsiveText color={isThemeDark ? colors.white : colors.black} top={5} size={3}>
+                        <ResponsiveText
+                          color={isThemeDark ? colors.white : colors.black}
+                          top={5}
+                          size={3}>
                           1km
                         </ResponsiveText>
                       </View>
@@ -693,7 +746,9 @@ export default function SearchAll({navigation}) {
                   <TouchableOpacity
                     style={{
                       flexDirection: 'row',
-                      backgroundColor: isThemeDark ? colors.black2 : colors.grey,
+                      backgroundColor: isThemeDark
+                        ? colors.black2
+                        : colors.grey,
                       marginTop: 10,
                       marginHorizontal: 15,
                       borderRadius: 5,
@@ -732,10 +787,14 @@ export default function SearchAll({navigation}) {
                           marginLeft: 5,
                           width: wp(55),
                         }}>
-                        <ResponsiveText size={2.7} color={ isThemeDark ? colors.white : colors.black }>
+                        <ResponsiveText
+                          size={2.7}
+                          color={isThemeDark ? colors.white : colors.black}>
                           {item.restaurentName}
                         </ResponsiveText>
-                        <ResponsiveText size={2.2} color={isThemeDark ? colors.white : colors.black}>
+                        <ResponsiveText
+                          size={2.2}
+                          color={isThemeDark ? colors.white : colors.black}>
                           {item.branchAlias}
                         </ResponsiveText>
                         <Rating
@@ -753,7 +812,10 @@ export default function SearchAll({navigation}) {
                       </View>
                       <View style={{margin: 20}}>
                         <Icon source={globalPath.LOCATION1} />
-                        <ResponsiveText color={isThemeDark ? colors.white : colors.black} top={5} size={3}>
+                        <ResponsiveText
+                          color={isThemeDark ? colors.white : colors.black}
+                          top={5}
+                          size={3}>
                           1km
                         </ResponsiveText>
                       </View>
