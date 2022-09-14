@@ -703,7 +703,7 @@ export default function SearchAll({navigation}) {
                           justifyContent: 'center',
                           marginLeft: 5,
                           width: wp(55),
-                          alignItems:'flex-star'
+                          alignItems:'flex-start'
                         }}>
                         <ResponsiveText
                           size={3}

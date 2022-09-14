@@ -344,7 +344,7 @@ const [loading, setLoading] = useState(false)
               <TouchableOpacity
                 onPressIn={() =>
                   activeTabs === 'tab2' || activeTabs === 'tab3'
-                    ? changeCount(count > 0 ? count - 1 : 0)
+                    ? changeCount(count > 1 ? count - 1 : 1)
                     : changeCount(count)
                 }
                 style={{

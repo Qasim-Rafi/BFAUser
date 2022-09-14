@@ -22,8 +22,11 @@ export default function FavouriteRestaurants(props) {
   console.log(favDataRestaurant,'resssss')
   const dispatch = useDispatch();
   React.useEffect(() => {
+    const subscribe = props.navigation.addListener('focus', e => {
+
     dispatch(getFavouiteRestaurent(1,8))
-  }, []);
+    })
+  }, [props.navigation]);
  
   return (
     <View style={{backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite, flex: 1}}>
