@@ -17,12 +17,26 @@ import {favouriteTabs, profileTabs} from '../../../../constants/mock';
 import Header from '../../../../components/Header';
 import {globalPath} from '../../../../constants/globalPath';
 import FavouriteRestaurants from './FavouriteRestaurants';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getFavorite, getFavouiteRestaurent } from '../../../../redux/actions/user.actions';
 
 export default function MyWhitelist({navigation}) {
   const [activeTab, setActiveTab] = React.useState(favouriteTabs[0].id);
   const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
+  const dispatch = useDispatch();
 
+  React.useEffect(() => {
+    const subscribe = navigation.addListener('focus', e => {
+      if (activeTab==1) {
+    dispatch(getFavorite(1, 15));
+        
+      } else {
+      dispatch(getFavouiteRestaurent(1, 15));
+        
+      }
+    })
+    return subscribe
+  }, [navigation]);
   return (
     
       <View style={[styles.container,{backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}]}>

@@ -34,6 +34,9 @@ const Menu = (props) => {
   }, []);
 
   const renderItem = ({ item }) => {
+    if (item.dishlist.length==0) {
+      return false
+    }
     return (
       <View style={{}}>
         <ResponsiveText color={colors.yellow} margin={[15, 0]}>
@@ -51,7 +54,7 @@ const Menu = (props) => {
                 flexDirection: 'row',
                 overflow: 'hidden',
               }} onPress={() =>
-                props.navigation.push(routeName.DISH_DETAIL, { dish: data })
+                props.navigation.push(routeName.DISH_DETAIL, { dish: data,Combo:item.menuCategoryName=='Combo'?true:false })
               }>
               <FastImage style={{ width: '20%', height: '100%' }} source={{ uri: data.imageDataB }} />
 
@@ -86,7 +89,7 @@ const Menu = (props) => {
                     ${data.price}
                   </ResponsiveText>
                 </View>
-                <TouchableOpacity
+                {/* <TouchableOpacity
                   onPress={() => {
                     props.navigation.navigate(routeName.ADD_TO_CART, { dish: data })
                     console.log(data, 'data in menuItem')
@@ -94,7 +97,7 @@ const Menu = (props) => {
                   style={{ flex: 0.5, alignItems: 'baseline', justifyContent: 'flex-end', alignSelf: 'flex-end' }}
                 >
                   <Icon source={globalPath.ADD_TO_CART} size={wp(8)} />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
               </View>
             </TouchableOpacity>
           );
@@ -116,6 +119,9 @@ const Menu = (props) => {
         }}>
         <ScrollView horizontal={true}>
           {data.map((items, index) => {
+            if (items.dishlist.length==0) {
+              return false
+            }
             return (
               <React.Fragment key={items.id}>
                 <TouchableOpacity

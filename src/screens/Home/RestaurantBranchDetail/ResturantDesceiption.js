@@ -109,7 +109,7 @@ export default function Restaurant_Description(props) {
           </View>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => navigation.navigate(routeName.MAP_VIEW)}>
+          onPress={() => navigation.navigate(routeName.MAP_VIEW,{data:data})}>
           <View style={{alignItems: 'center'}}>
             <Icon source={globalPath.LOCATION} />
             <ResponsiveText top={5} color={colors.yellow}>
@@ -173,7 +173,7 @@ export default function Restaurant_Description(props) {
         <ResponsiveText fontFamily="Regular" size={4} color={isThemeDark ?  colors.white: colors.black}>
           Location On Map
         </ResponsiveText>
-        {/* <StaticMap data={data}/> */}
+        <StaticMap data={data}/>
       </View>
     </View>
   );

@@ -60,6 +60,7 @@ export const routeName = {
   RANDOM_WHEEL: 'RANDOM_WHEEL',
   NOTIFICATION_SCREEN: 'NOTIFICATION_SCREEN',
   INBOX: 'INBOX',
+  ORDER_STACK:'My Orders'
 
 
 };

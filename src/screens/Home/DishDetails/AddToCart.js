@@ -31,9 +31,9 @@ import {BarIndicator} from 'react-native-indicators';
 import Api from '../../../redux/lib/api';
 import urls from '../../../redux/lib/urls';
 export default function AddToCart({route, navigation}) {
-
-  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
-
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data);
+  const Combo = route.params?.Combo;
+  console.log('Combo', Combo)
   const cartList = useSelector(state => state.appReducers.cartList.data);
   const orderList = useSelector(
     state => state.appReducers.your_ordersList.data,
@@ -70,36 +70,40 @@ export default function AddToCart({route, navigation}) {
     // updateTotal(dishPrice * count + extraTotal);
 
     // extraCheese.length, SelectedDrinks.length,linkedItem.length,
-  }, [count,extraCheese.length, SelectedDrinks.length,linkedItem.length,total]);
+  }, [
+    count,
+    extraCheese.length,
+    SelectedDrinks.length,
+    linkedItem.length,
+    total,
+  ]);
 
- 
   const Drinks = value => {
     setSelecteddrinks(value);
     console.log('Idddddddddd:', value);
   };
 
   const PriceCalculations = () => {
-    setVary(vary+1)
+    setVary(vary + 1);
     var sumofExtra = extraCheese.reduce((a, c) => {
-      return c.quantity? a + c.price * c.quantity:0;
+      return c.quantity ? a + c.price * c.quantity : 0;
     }, 0);
     var sumofDrinks = SelectedDrinks.reduce((a, c) => {
-      return c.quantity? a + c.price * c.quantity:0;
+      return c.quantity && !Combo? a + c.price * c.quantity : 0;
     }, 0);
     var sumofUpsize = linkedItem.reduce((a, c) => {
-
-      return c.quantity? a + c.price * c.quantity:0;
+      return c.quantity ? a + c.price * c.quantity : 0;
     }, 0);
-    console.log('linkedItem', linkedItem)
-     console.log('sum of extra', sumofExtra);
-     console.log('sum of sumofDrinks', sumofDrinks);
-     console.log('sum of sumofUpsize', sumofUpsize);
+    console.log('linkedItem', linkedItem);
+    console.log('sum of extra', sumofExtra);
+    console.log('sum of sumofDrinks', sumofDrinks);
+    console.log('sum of sumofUpsize', sumofUpsize);
 
-     console.log('setextraTotal', sumofExtra + sumofDrinks + sumofUpsize);
-    updateTotal(dishPrice * count + sumofExtra + sumofDrinks+sumofUpsize);
+    console.log('setextraTotal', sumofExtra + sumofDrinks + sumofUpsize);
+    updateTotal(dishPrice * count + sumofExtra + sumofDrinks + sumofUpsize);
     // setextraTotal(sumofExtra + sumofDrinks + sumofUpsize);
   };
-  
+
   const AddDrinks = (item, index) => {
     dish.restaurantSoftDrinksList[index].quantity = 1;
 
@@ -210,14 +214,16 @@ export default function AddToCart({route, navigation}) {
       //     return a + (c.price * c.quantity);
       //   }, 0);
 
-      console.log('removeeee restaurantDishLinkedItemList',linkedItem.filter(i => i.id !== item.id));
+      console.log(
+        'removeeee restaurantDishLinkedItemList',
+        linkedItem.filter(i => i.id !== item.id),
+      );
     } else {
       linkedItem.push(dish.restaurantDishLinkedItemList[index]);
       // var sumofExtra = extraCheese.reduce((a, c) => {
       //   return a + (c.price * c.quantity);
       // }, 0);
-    console.log('add restaurantDishLinkedItemList', linkedItem);
-
+      console.log('add restaurantDishLinkedItemList', linkedItem);
     }
     console.log('after', linkedItem);
 
@@ -277,7 +283,7 @@ export default function AddToCart({route, navigation}) {
         o.restaurantBranchId === dish.restaurantBranchId,
     );
     console.log('filter    nnnn', checkData);
-  
+
     // console.log('filter    orderList', orderList);
     // console.log('filter    dish', dish);
 
@@ -382,7 +388,11 @@ export default function AddToCart({route, navigation}) {
   };
   return (
     <View style={{flex: 1}}>
-      <ScrollView style={[styles.container,{backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}]}>
+      <ScrollView
+        style={[
+          styles.container,
+          {backgroundColor: isThemeDark ? colors.black3 : colors.bgWhite},
+        ]}>
         {loading === true ? (
           <View
             style={{
@@ -408,7 +418,7 @@ export default function AddToCart({route, navigation}) {
           <View style={{padding: 20}}>
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-              <ResponsiveText color={isThemeDark ?  colors.white: colors.black}>
+              <ResponsiveText color={isThemeDark ? colors.white : colors.black}>
                 {route.params.dish.dishName}
               </ResponsiveText>
               <ResponsiveText color={colors.yellow}>
@@ -427,6 +437,7 @@ export default function AddToCart({route, navigation}) {
             UpdateExtra={UpdateExtra}
             AddDrinks={AddDrinks}
             UpdateDrinksQ={UpdateDrinksQ}
+            Combo={Combo}
           />
           {route.params.dish.restaurantDishLinkedItemList?.length > 0 ? (
             <View
@@ -440,8 +451,12 @@ export default function AddToCart({route, navigation}) {
                 marginTop: 20,
                 marginHorizontal: 10,
               }}>
-              <ResponsiveText color={isThemeDark ?  colors.white: colors.black}>{'Upsize'}</ResponsiveText>
-              <ResponsiveText color={isThemeDark ?  colors.white: colors.black}>{'Optional'}</ResponsiveText>
+              <ResponsiveText color={isThemeDark ? colors.white : colors.black}>
+                {'Upsize'}
+              </ResponsiveText>
+              <ResponsiveText color={isThemeDark ? colors.white : colors.black}>
+                {'Optional'}
+              </ResponsiveText>
             </View>
           ) : undefined}
           <View style={{padding: 20}}>
@@ -463,13 +478,15 @@ export default function AddToCart({route, navigation}) {
                           index={index}
                         />
                         <View style={{flexDirection: 'row'}}>
-                          <ResponsiveText color={isThemeDark ?  colors.white: colors.black} margin={[0, 10]}>
+                          <ResponsiveText
+                            color={isThemeDark ? colors.white : colors.black}
+                            margin={[0, 10]}>
                             $
                             {item.quantity
                               ? item.price * item.quantity
                               : item.price}
                           </ResponsiveText>
-                          {item.quantity ? (
+                          {item.quantity && !Combo ? (
                             <View style={{flexDirection: 'row'}}>
                               <TouchableOpacity
                                 onPress={() => {
@@ -484,7 +501,9 @@ export default function AddToCart({route, navigation}) {
                               <ResponsiveText
                                 size={5}
                                 margin={[0, 10]}
-                                color={isThemeDark ?  colors.white: colors.black}>
+                                color={
+                                  isThemeDark ? colors.white : colors.black
+                                }>
                                 {item.quantity}
                               </ResponsiveText>
                               <TouchableOpacity
@@ -515,7 +534,9 @@ export default function AddToCart({route, navigation}) {
             >
               <Icon source={globalPath.PLUS_ICON} />
             </TouchableOpacity>
-            <ResponsiveText color={isThemeDark ?  colors.white: colors.black} margin={[0, 0, 0, 10]}>
+            <ResponsiveText
+              color={isThemeDark ? colors.white : colors.black}
+              margin={[0, 0, 0, 10]}>
               Add Special Instruction
             </ResponsiveText>
           </View>
@@ -534,7 +555,7 @@ export default function AddToCart({route, navigation}) {
                 borderColor: color.black2,
                 alignContent: 'center',
                 backgroundColor: isThemeDark ? colors.black2 : colors.white,
-                color: isThemeDark ?  colors.white: colors.black,
+                color: isThemeDark ? colors.white : colors.black,
               }}
               placeholderTextColor={isThemeDark ? undefined : colors.grey}
               textAlignVertical="top"
@@ -556,23 +577,35 @@ export default function AddToCart({route, navigation}) {
               width: wp(62),
               padding: 16,
             }}>
+              {Combo?
+              <View/>:
             <View style={{flexDirection: 'row'}}>
               <TouchableOpacity
                 onPress={() => changeCount(count > 1 ? count - 1 : 1)}>
                 <Icon size={28} source={globalPath.MINUS_ICON} />
               </TouchableOpacity>
-              <ResponsiveText size={5} margin={[0, 10]} color={isThemeDark ?  colors.white: colors.black}>
+              <ResponsiveText
+                size={5}
+                margin={[0, 10]}
+                color={isThemeDark ? colors.white : colors.black}>
                 {count}
               </ResponsiveText>
               <TouchableOpacity onPress={() => changeCount(count + 1)}>
                 <Icon size={28} source={globalPath.PLUS_ICON} />
               </TouchableOpacity>
             </View>
-            <ResponsiveText size={5} color={isThemeDark ?  colors.white: colors.black}>
+              }
+            <ResponsiveText
+              size={5}
+              color={isThemeDark ? colors.white : colors.black}>
               ${parseFloat(total).toFixed(2)}
             </ResponsiveText>
           </View>
-          <View style={{padding: 16, backgroundColor: isThemeDark ? colors.black1 : colors.white}}>
+          <View
+            style={{
+              padding: 16,
+              backgroundColor: isThemeDark ? colors.black1 : colors.white,
+            }}>
             <TouchableOpacity
               style={{
                 height: hp(4),

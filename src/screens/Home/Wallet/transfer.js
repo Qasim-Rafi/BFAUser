@@ -1,6 +1,6 @@
 import { useNavigation, useRoute } from '@react-navigation/native'
 import React, { useState } from 'react'
-import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View, TextInput, Keyboard} from 'react-native'
+import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View, TextInput, Keyboard, Platform} from 'react-native'
 import Icon from '../../../components/Icon'
 import ResponsiveText from '../../../components/RnText'
 import { colors } from '../../../constants/colorsPallet'
@@ -43,6 +43,7 @@ const Transfer = (props) => {
     const [isModal2Visible, setModal2Visible] = useState(false);
 
     const [number, setNumber] = useState(0)
+    const [PhoneNumber, setPhoneNumber] = useState('')
     const [numeric, setNumeric] = useState(true)
     const [numPad, setNumPad] = useState(numeric);
 
@@ -168,8 +169,10 @@ const Transfer = (props) => {
                                         editable={true} 
                                         placeholder={'Enter the Phone No.'} 
                                         leftIcon={phoneIcon} 
-                                        keyboardType={'numeric'}
+                                        keyboardType={Platform.OS=='android'?"numeric" : "number-pad"}
+                                        value={PhoneNumber}
                                         iconMargin={[0,wp(2),0,wp(1.5)]}
+                                        onChnageText={text => setPhoneNumber(text.replace(/[- #*;,.<>\{\}\[\]\\\/]/gi, ''))}
                                     />
                                     {/* <ResponsiveText margin={[0, 10, 0, 15]} color={colors.white}>
                                         *0000 **********

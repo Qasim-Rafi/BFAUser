@@ -95,8 +95,10 @@ export default function Order_history({navigation}) {
         <Header navigation={navigation} />
       </View>
       <ScrollView style={{flex: 0.7, marginHorizontal: 10}}>
+        <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:10}}>
         <ResponsiveText color={isThemeDark ?  colors.white : colors.black}>My Order  </ResponsiveText>
-        <ResponsiveText size={wp(0.9)} margin={[0,0,0,wp(75)]} color={colors.grey}>({orderList.length}) orders </ResponsiveText>
+        <ResponsiveText size={wp(0.9)}  color={colors.grey}>orders({orderList.length})  </ResponsiveText>
+        </View>
       
         { orderList.length>0?
         orderList.map((item, index) => {

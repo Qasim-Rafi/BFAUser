@@ -60,10 +60,12 @@ export default function AddToCartDetails(props) {
                   index={index}
                 />
                 <View style={{flexDirection: 'row'}}>
+                  {props.Combo?null:
                   <ResponsiveText color={colors.white} margin={[0, 10]}>
                     ${item1.quantity ? item1.price * item1.quantity : item1.price}
                   </ResponsiveText>
-                  {item1.quantity ? (
+                  }
+                  {item1.quantity && !props.Combo  ? (
                     <View style={{flexDirection: 'row'}}>
                       <TouchableOpacity
                         onPress={() => {
@@ -92,7 +94,7 @@ export default function AddToCartDetails(props) {
             );
           })
         : null}
-      {props.data.restaurantDishExtraItemList?.length > 0 ? (
+      {props.data.restaurantDishExtraItemList?.length > 0 && !props.Combo ? (
         <View
           style={{
             flexDirection: 'row',
@@ -108,7 +110,7 @@ export default function AddToCartDetails(props) {
         </View>
       ) : undefined}
 
-      {Object.keys(props.data).length != 0 &&
+      {Object.keys(props.data).length != 0 && !props.Combo && 
       props.data.restaurantDishExtraItemList
         ? props.data.restaurantDishExtraItemList?.map((item, index) => {
             return (

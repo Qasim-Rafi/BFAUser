@@ -20,6 +20,7 @@ import RandomWheel from '../screens/Home/BottomTabs/Randomiser/RandomWheel';
 import NewsFeed from '../screens/Home/BottomTabs/Promos/NewsFeed';
 import HomeStack from './HomeStack';
 import { useSelector } from 'react-redux';
+import OrderStack from './OrderStack';
 
 
 const Tab = createBottomTabNavigator();
@@ -110,7 +111,7 @@ export default function BottomTabs(props) {
             iconName = focused
               ? globalPath.CART_ICON
               : globalPath.CART_ICON_GREY;
-          } else if (route.name === "My Orders") {
+          } else if (route.name === routeName.ORDER_STACK) {
             iconName = focused
               ? globalPath.INBOX
               : globalPath.INBOX_GREY;
@@ -145,8 +146,8 @@ export default function BottomTabs(props) {
           }}
       />
       <Tab.Screen
-        name={"My Orders"}
-        component={Order_history}
+        name={routeName.ORDER_STACK}
+        component={OrderStack}
         options={{ headerShown: false }}
       />
 
