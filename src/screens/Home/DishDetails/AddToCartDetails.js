@@ -24,7 +24,7 @@ export default function AddToCartDetails(props) {
   };
 
   return (
-    <View style={{margin: 20}}>
+    <View style={{marginHorizontal: 20}}>
       {props.data.restaurantSoftDrinksList?.length > 0 ? (
         <View
           style={{

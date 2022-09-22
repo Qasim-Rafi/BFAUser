@@ -5,6 +5,7 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  KeyboardAvoidingView,
 } from 'react-native';
 import {colors} from '../../../constants/colorsPallet';
 import ImageHeader from '../BottomTabs/Home/ImageHeader';
@@ -33,7 +34,7 @@ import urls from '../../../redux/lib/urls';
 export default function AddToCart({route, navigation}) {
   const isThemeDark = useSelector(state => state.appReducers.setTheme.data);
   const Combo = route.params?.Combo;
-  console.log('Combo', Combo)
+  console.log('Combo', Combo);
   const cartList = useSelector(state => state.appReducers.cartList.data);
   const orderList = useSelector(
     state => state.appReducers.your_ordersList.data,
@@ -89,7 +90,7 @@ export default function AddToCart({route, navigation}) {
       return c.quantity ? a + c.price * c.quantity : 0;
     }, 0);
     var sumofDrinks = SelectedDrinks.reduce((a, c) => {
-      return c.quantity && !Combo? a + c.price * c.quantity : 0;
+      return c.quantity && !Combo ? a + c.price * c.quantity : 0;
     }, 0);
     var sumofUpsize = linkedItem.reduce((a, c) => {
       return c.quantity ? a + c.price * c.quantity : 0;
@@ -388,245 +389,262 @@ export default function AddToCart({route, navigation}) {
   };
   return (
     <View style={{flex: 1}}>
-      <ScrollView
-        style={[
-          styles.container,
-          {backgroundColor: isThemeDark ? colors.black3 : colors.bgWhite},
-        ]}>
-        {loading === true ? (
-          <View
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              bottom: 0,
-              right: 0,
-              backgroundColor: 'rgba(65, 65, 65, 0.5)',
-              flex: 1,
-              zIndex: 10,
-            }}>
-            <BarIndicator color={colors.yellow} size={50} />
-          </View>
-        ) : undefined}
-        <View>
-          <View style={styles.headerImage}>
-            <ImageHeader
-              navigation={navigation}
-              img={route.params.dish.imageDataB}
-            />
-          </View>
-          <View style={{padding: 20}}>
-            <View
-              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-              <ResponsiveText color={isThemeDark ? colors.white : colors.black}>
-                {route.params.dish.dishName}
-              </ResponsiveText>
-              <ResponsiveText color={colors.yellow}>
-                {' '}
-                ${route.params.dish.price}
-              </ResponsiveText>
-            </View>
-            <ResponsiveText color={colors.grey1}>
-              {route.params.dish.description}
-            </ResponsiveText>
-          </View>
-          <AddToCartDetails
-            data={dish}
-            ExtraChees={ExtraChees}
-            SelectedDrinks={Drinks}
-            UpdateExtra={UpdateExtra}
-            AddDrinks={AddDrinks}
-            UpdateDrinksQ={UpdateDrinksQ}
-            Combo={Combo}
-          />
-          {route.params.dish.restaurantDishLinkedItemList?.length > 0 ? (
+      <KeyboardAvoidingView behavior={'position'}>
+        <ScrollView
+          style={[
+            styles.container,
+            {backgroundColor: isThemeDark ? colors.black3 : colors.bgWhite},
+          ]}>
+          {loading === true ? (
             <View
               style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                borderTopWidth: 1,
-                borderBottomWidth: 1,
-                borderColor: colors.black2,
-                padding: 5,
-                marginTop: 20,
-                marginHorizontal: 10,
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                bottom: 0,
+                right: 0,
+                backgroundColor: 'rgba(65, 65, 65, 0.5)',
+                flex: 1,
+                zIndex: 10,
               }}>
-              <ResponsiveText color={isThemeDark ? colors.white : colors.black}>
-                {'Upsize'}
-              </ResponsiveText>
-              <ResponsiveText color={isThemeDark ? colors.white : colors.black}>
-                {'Optional'}
-              </ResponsiveText>
+              <BarIndicator color={colors.yellow} size={50} />
             </View>
           ) : undefined}
-          <View style={{padding: 20}}>
-            {Object.keys(route.params.dish).length != 0 &&
-            route.params.dish.restaurantDishLinkedItemList
-              ? route.params.dish.restaurantDishLinkedItemList.map(
-                  (item, index) => {
-                    return (
-                      <View
-                        style={{
-                          flexDirection: 'row',
-                          justifyContent: 'space-between',
-                          marginTop: 10,
-                        }}>
-                        <CheckBox
-                          text={item.dishLinkedItemName}
-                          additem={LinkedItem}
-                          value={item}
-                          index={index}
-                        />
-                        <View style={{flexDirection: 'row'}}>
-                          <ResponsiveText
-                            color={isThemeDark ? colors.white : colors.black}
-                            margin={[0, 10]}>
-                            $
-                            {item.quantity
-                              ? item.price * item.quantity
-                              : item.price}
-                          </ResponsiveText>
-                          {item.quantity && !Combo ? (
-                            <View style={{flexDirection: 'row'}}>
-                              <TouchableOpacity
-                                onPress={() => {
-                                  updateLinkedItem(index, 'dec');
-                                  // setCheeseCount(CheeseCount > 1 ? CheeseCount - 1 : 1);
-                                }}>
-                                <Icon
-                                  size={28}
-                                  source={globalPath.MINUS_ICON}
-                                />
-                              </TouchableOpacity>
-                              <ResponsiveText
-                                size={5}
-                                margin={[0, 10]}
-                                color={
-                                  isThemeDark ? colors.white : colors.black
-                                }>
-                                {item.quantity}
-                              </ResponsiveText>
-                              <TouchableOpacity
-                                onPress={() => {
-                                  updateLinkedItem(index, 'inc');
-                                  //  setCheeseCount(CheeseCount + 1);
-                                }}>
-                                <Icon size={28} source={globalPath.PLUS_ICON} />
-                              </TouchableOpacity>
-                            </View>
-                          ) : null}
+
+          <View>
+            <View style={styles.headerImage}>
+              <ImageHeader
+                navigation={navigation}
+                img={route.params.dish.imageDataB}
+              />
+            </View>
+            <View style={{padding: 20}}>
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <ResponsiveText
+                  color={isThemeDark ? colors.white : colors.black}>
+                  {route.params.dish.dishName}
+                </ResponsiveText>
+                <ResponsiveText color={colors.yellow}>
+                  {' '}
+                  ${route.params.dish.price}
+                </ResponsiveText>
+              </View>
+              <ResponsiveText color={colors.grey1}>
+                {route.params.dish.description}
+              </ResponsiveText>
+            </View>
+            <AddToCartDetails
+              data={dish}
+              ExtraChees={ExtraChees}
+              SelectedDrinks={Drinks}
+              UpdateExtra={UpdateExtra}
+              AddDrinks={AddDrinks}
+              UpdateDrinksQ={UpdateDrinksQ}
+              Combo={Combo}
+            />
+            {route.params.dish.restaurantDishLinkedItemList?.length > 0 ? (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  borderTopWidth: 1,
+                  borderBottomWidth: 1,
+                  borderColor: colors.black2,
+                  padding: 5,
+                  marginTop: 20,
+                  marginHorizontal: 10,
+                }}>
+                <ResponsiveText
+                  color={isThemeDark ? colors.white : colors.black}>
+                  {'Upsize'}
+                </ResponsiveText>
+                <ResponsiveText
+                  color={isThemeDark ? colors.white : colors.black}>
+                  {'Optional'}
+                </ResponsiveText>
+              </View>
+            ) : undefined}
+            <View
+              style={{
+                padding:
+                  Object.keys(route.params.dish).length != 0 &&
+                  route.params.dish.restaurantDishLinkedItemList.length > 0
+                    ? 20
+                    : 0,
+              }}>
+              {Object.keys(route.params.dish).length != 0 &&
+              route.params.dish.restaurantDishLinkedItemList
+                ? route.params.dish.restaurantDishLinkedItemList.map(
+                    (item, index) => {
+                      return (
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                            marginTop: 10,
+                          }}>
+                          <CheckBox
+                            text={item.dishLinkedItemName}
+                            additem={LinkedItem}
+                            value={item}
+                            index={index}
+                          />
+                          <View style={{flexDirection: 'row'}}>
+                            <ResponsiveText
+                              color={isThemeDark ? colors.white : colors.black}
+                              margin={[0, 10]}>
+                              $
+                              {item.quantity
+                                ? item.price * item.quantity
+                                : item.price}
+                            </ResponsiveText>
+                            {item.quantity && !Combo ? (
+                              <View style={{flexDirection: 'row'}}>
+                                <TouchableOpacity
+                                  onPress={() => {
+                                    updateLinkedItem(index, 'dec');
+                                    // setCheeseCount(CheeseCount > 1 ? CheeseCount - 1 : 1);
+                                  }}>
+                                  <Icon
+                                    size={28}
+                                    source={globalPath.MINUS_ICON}
+                                  />
+                                </TouchableOpacity>
+                                <ResponsiveText
+                                  size={5}
+                                  margin={[0, 10]}
+                                  color={
+                                    isThemeDark ? colors.white : colors.black
+                                  }>
+                                  {item.quantity}
+                                </ResponsiveText>
+                                <TouchableOpacity
+                                  onPress={() => {
+                                    updateLinkedItem(index, 'inc');
+                                    //  setCheeseCount(CheeseCount + 1);
+                                  }}>
+                                  <Icon
+                                    size={28}
+                                    source={globalPath.PLUS_ICON}
+                                  />
+                                </TouchableOpacity>
+                              </View>
+                            ) : null}
+                          </View>
                         </View>
-                      </View>
-                    );
-                  },
-                )
-              : null}
-            {/* // (loading == false ?
+                      );
+                    },
+                  )
+                : null}
+              {/* // (loading == false ?
               //   <View style={{ width: wp(100), marginTop: 100, alignItems: 'center', alignSelf: 'center' }}>
               //     <Icon borderColor={colors.yellow} borderWidth={0} borderRadius={0} size={250} source={require('../../../components/../assets/icons/norecordfound.png')} />
               //   </View> : null
               // ) */}
-          </View>
+            </View>
 
-          <View style={{flexDirection: 'row', margin: 20}}>
-            <TouchableOpacity
-            // onPress={() => setVisible(!visible)}
-            >
-              <Icon source={globalPath.PLUS_ICON} />
-            </TouchableOpacity>
-            <ResponsiveText
-              color={isThemeDark ? colors.white : colors.black}
-              margin={[0, 0, 0, 10]}>
-              Add Special Instruction
-            </ResponsiveText>
-          </View>
-
-          <View
-            style={{
-              margin: 5,
-              paddingHorizontal: 10,
-            }}>
-            <TextInput
-              style={{
-                height: 70,
-                borderWidth: 0.5,
-                borderRadius: 3,
-                paddingHorizontal: 15,
-                borderColor: color.black2,
-                alignContent: 'center',
-                backgroundColor: isThemeDark ? colors.black2 : colors.white,
-                color: isThemeDark ? colors.white : colors.black,
-              }}
-              placeholderTextColor={isThemeDark ? undefined : colors.grey}
-              textAlignVertical="top"
-              multiline={true}
-              placeholder="Instructions..."
-              onChangeText={text => setText(text)}
-              defaultValue={text}
-            />
-          </View>
-        </View>
-
-        <View
-          style={{flexDirection: 'row', height: hp(9), position: 'relative'}}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              backgroundColor: isThemeDark ? colors.black1 : colors.white,
-              width: wp(62),
-              padding: 16,
-            }}>
-              {Combo?
-              <View/>:
-            <View style={{flexDirection: 'row'}}>
+            <View style={{flexDirection: 'row', margin: 20}}>
               <TouchableOpacity
-                onPress={() => changeCount(count > 1 ? count - 1 : 1)}>
-                <Icon size={28} source={globalPath.MINUS_ICON} />
+              // onPress={() => setVisible(!visible)}
+              >
+                <Icon source={globalPath.PLUS_ICON} />
               </TouchableOpacity>
               <ResponsiveText
-                size={5}
-                margin={[0, 10]}
-                color={isThemeDark ? colors.white : colors.black}>
-                {count}
+                color={isThemeDark ? colors.white : colors.black}
+                margin={[0, 0, 0, 10]}>
+                Add Special Instruction
               </ResponsiveText>
-              <TouchableOpacity onPress={() => changeCount(count + 1)}>
-                <Icon size={28} source={globalPath.PLUS_ICON} />
+            </View>
+
+            <View
+              style={{
+                margin: 5,
+                paddingHorizontal: 10,
+              }}>
+              <TextInput
+                style={{
+                  height: 70,
+                  borderWidth: 0.5,
+                  borderRadius: 3,
+                  paddingHorizontal: 15,
+                  borderColor: color.black2,
+                  alignContent: 'center',
+                  backgroundColor: isThemeDark ? colors.black2 : colors.white,
+                  color: isThemeDark ? colors.white : colors.black,
+                }}
+                placeholderTextColor={isThemeDark ? undefined : colors.grey}
+                textAlignVertical="top"
+                multiline={true}
+                placeholder="Instructions..."
+                onChangeText={text => setText(text)}
+                defaultValue={text}
+              />
+            </View>
+          </View>
+
+          <View
+            style={{flexDirection: 'row', height: hp(9), position: 'relative'}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                backgroundColor: isThemeDark ? colors.black1 : colors.white,
+                width: wp(62),
+                padding: 16,
+              }}>
+              {Combo ? (
+                <View />
+              ) : (
+                <View style={{flexDirection: 'row'}}>
+                  <TouchableOpacity
+                    onPress={() => changeCount(count > 1 ? count - 1 : 1)}>
+                    <Icon size={28} source={globalPath.MINUS_ICON} />
+                  </TouchableOpacity>
+                  <ResponsiveText
+                    size={5}
+                    margin={[0, 10]}
+                    color={isThemeDark ? colors.white : colors.black}>
+                    {count}
+                  </ResponsiveText>
+                  <TouchableOpacity onPress={() => changeCount(count + 1)}>
+                    <Icon size={28} source={globalPath.PLUS_ICON} />
+                  </TouchableOpacity>
+                </View>
+              )}
+              <ResponsiveText
+                size={5}
+                color={isThemeDark ? colors.white : colors.black}>
+                ${parseFloat(total).toFixed(2)}
+              </ResponsiveText>
+            </View>
+            <View
+              style={{
+                padding: 16,
+                backgroundColor: isThemeDark ? colors.black1 : colors.white,
+              }}>
+              <TouchableOpacity
+                style={{
+                  height: hp(4),
+                  width: wp(30),
+                  backgroundColor: colors.yellow,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: 6,
+                }}
+                onPress={() => {
+                  submitOrder();
+                  // console.log("Data: ",data);
+                  //             SharedData.setData(dish);
+                  //             console.log(SharedData.data);
+                  //             navigation.navigate(routeName.LANDING_SCREEN)
+                }}>
+                <ResponsiveText> Add to cart</ResponsiveText>
               </TouchableOpacity>
             </View>
-              }
-            <ResponsiveText
-              size={5}
-              color={isThemeDark ? colors.white : colors.black}>
-              ${parseFloat(total).toFixed(2)}
-            </ResponsiveText>
           </View>
-          <View
-            style={{
-              padding: 16,
-              backgroundColor: isThemeDark ? colors.black1 : colors.white,
-            }}>
-            <TouchableOpacity
-              style={{
-                height: hp(4),
-                width: wp(30),
-                backgroundColor: colors.yellow,
-                alignItems: 'center',
-                justifyContent: 'center',
-                borderRadius: 6,
-              }}
-              onPress={() => {
-                submitOrder();
-                // console.log("Data: ",data);
-                //             SharedData.setData(dish);
-                //             console.log(SharedData.data);
-                //             navigation.navigate(routeName.LANDING_SCREEN)
-              }}>
-              <ResponsiveText> Add to cart</ResponsiveText>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </View>
   );
 }
