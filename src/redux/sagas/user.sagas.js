@@ -381,11 +381,8 @@ function* getPromotionsSagaApi(data) {
 
   try {
     const url = urls.GET_ALL_PROMOTION + index + '/' + limit;
-    console.log('urlsssssss', url);
-
-    console.log('Cuisines Url: ', url);
     const response = yield Api.get(url);
-    console.log('responseeeeeeeeeeeeeee', response);
+    console.log('Promotions saga', response);
     if (response && response.data != null) {
       yield put({ type: types.GET_PROMOTIONS_SUCCESS, payload: response.data });
       // navigation.navigate(routeName.Categories,{data:response.data});

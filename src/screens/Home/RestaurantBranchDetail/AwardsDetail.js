@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, ScrollView, TouchableOpacity} from 'react-native';
 import {AwardsMenuSectionsData} from '../../../constants/mock';
 import {wp, hp} from '../../../helpers/Responsiveness';
 import ResponsiveText from '../../../components/RnText';
@@ -7,18 +7,23 @@ import {colors} from '../../../constants/colorsPallet';
 import {useDispatch, useSelector} from 'react-redux';
 import {awardsRestaurant} from '../../../redux/actions/user.actions';
 import Icon from '../../../components/Icon';
+import { routeName } from '../../../constants/routeName';
 
 export default function AwardsDetail(props) {
   const counter = useSelector(state => state.appReducers.restaurantDetail.data);
-  console.log('Awards_statee', counter);
+  console.log('Awards_statee', props.data);
   const [data, setData] = React.useState(props.data);
 
 
   return (
     <View style={{flex: 1, marginTop: 20}}>
-      {data.map((item, index) => {
+      <ScrollView>
+      {data.map((data, index) => (
+        data?.dishlist.filter((v)=>v.awardName!="In Review").map((item, index) => {
         return (
-          <View
+          <TouchableOpacity
+          onPress={() =>
+            props.navigation.push(routeName.DISH_DETAIL, { dish: item,})}
             style={{
               height: wp(20),
               backgroundColor: colors.black2,
@@ -28,7 +33,7 @@ export default function AwardsDetail(props) {
               flexDirection: 'row',
               overflow: 'hidden',
             }}>
-            <Icon source={{uri:item.fullPath}} borderRadius={5} size={70} />
+            <Icon source={{uri:item.imageDataB}} borderRadius={5} size={70} />
 
             <View style={{flex: 1, marginLeft: 10}}>
               <View
@@ -38,7 +43,7 @@ export default function AwardsDetail(props) {
                   overflow: 'hidden',
                 }}>
                 <ResponsiveText size={2.9} color={colors.white}>
-                  {item.adSlideTitle}
+                  {item.titleD}
                 </ResponsiveText>
                 <ResponsiveText
                   color={'grey'}
@@ -50,20 +55,22 @@ export default function AwardsDetail(props) {
                 </ResponsiveText>
               </View>
               <ResponsiveText color={'grey'} numberOfLines={2} size={2.7}>
-                {item.description}
+                {item.awardName}
               </ResponsiveText>
             </View>
             <View style={{width: '15%', overflow: 'hidden'}}>
               <ResponsiveText
-                margin={[4, 0, 0, 0]}
+                margin={[4, 8, 0, 0]}
                 color={colors.yellow}
                 position="flex-end">
-                {item.price}
+                {item.price}$
               </ResponsiveText>
             </View>
-          </View>
+          </TouchableOpacity>
         );
-      })}
+              })
+      ))}
+      </ScrollView>
     </View>
   );
 }

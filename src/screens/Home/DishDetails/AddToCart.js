@@ -388,7 +388,7 @@ export default function AddToCart({route, navigation}) {
     //
   };
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1,backgroundColor:isThemeDark ? colors.black3 : colors.bgWhite}}>
       <KeyboardAvoidingView behavior={'position'}>
         <ScrollView
           style={[
