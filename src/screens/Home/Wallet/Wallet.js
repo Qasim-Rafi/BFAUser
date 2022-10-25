@@ -108,7 +108,7 @@ const Wallet = props => {
         <Text style={{color: isThemeDark ?  colors.white: colors.black, fontSize: 19, marginTop: 20}}>
           Your Bcoin Balance is:
         </Text>
-        <View style={{justifyContent: 'center', flexDirection: 'row',marginBottom:20}}>
+        <View style={{justifyContent: 'center', flexDirection: 'row',marginBottom:20,alignItems:'center'}}>
           <Icon source={bCoin} 
             // style={{height: 60, width: 50}}
             size={60}

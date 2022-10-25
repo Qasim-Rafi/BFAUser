@@ -37,7 +37,7 @@ const TopUp = (props) => {
 
     const [isModalVisible, setModalVisible] = useState(false);
     const [isModal2Visible, setModal2Visible] = useState(false);
-    const [checked, setCheck] = useState(false);
+    const [checked, setCheck] = useState(true);
     
 
     const topUpAmountComing = route.params
@@ -73,19 +73,19 @@ const TopUp = (props) => {
                             size={60}
                             tintColor={isThemeDark ?  colors.white: colors.black}
                         />
-                    <TouchableOpacity onPress={() => setModalVisible(true)} >
+                    {/* <TouchableOpacity onPress={() => setModalVisible(true)} > */}
                         <TextInput
                             editable={false}
                             onPressIn={() => setModalVisible(true)}
                             style={[styles.input,{color:isThemeDark ?  colors.white: colors.black}]}
                             onChangeText={setNumber}
-                            value={parseFloat(number).toFixed(2)}
+                            value={parseFloat(number.length>6?number.substring(0,6):number).toFixed(2)}
                             maxLength={8}
                             defaultValue={'' + parseFloat(number) + ''}
                             // keyboardType="numeric"
                             showSoftInputOnFocus={false}
                         />
-                    </TouchableOpacity>
+                    {/* </TouchableOpacity> */}
                     <TouchableOpacity onPress={() => setNumber(0)} >
                         <Image source={leftArrow} style={{ height: 20, width: 20, margin: 5 }} />
                     </TouchableOpacity>
@@ -122,7 +122,7 @@ const TopUp = (props) => {
                             }}
                         >
                             <View style={{ flex: 0.3 }}>
-                                <RadioGroup color={colors.yellow} onSelect={() => setCheck(true)} selectedIndex={0} >
+                                <RadioGroup color={colors.yellow}  onSelect={() => setCheck(true)} selectedIndex={0} >
                                     {CARD_DATA.map(item => {
                                         return (
                                             <RadioButton
@@ -653,12 +653,11 @@ const styles = StyleSheet.create({
         // height: 40,
         color: colors.white,
         fontSize: wp(16),
-        marginBottom: 18,
+        // marginBottom: 18,
         // borderWidth: 1,
         // padding: 10,
         borderBottomWidth: 2,
         borderBottomColor: colors.grey1,
-        paddingBottom: 5,
     },
     centeredModalView: {
         flex: 1,

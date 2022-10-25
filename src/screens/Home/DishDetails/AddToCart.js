@@ -40,7 +40,7 @@ export default function AddToCart({route, navigation}) {
   );
   //const loading = useSelector(state => state.appReducers.AddOrder.loading);
   // console.log('Add Admin: ', cartList);
-  const [visible, setVisible] = React.useState(false);
+  const [vary, setVary] = React.useState(0);
   const [loading, setLoading] = React.useState(false);
 
   const [count, changeCount] = useState(1);
@@ -70,7 +70,7 @@ export default function AddToCart({route, navigation}) {
     // updateTotal(dishPrice * count + extraTotal);
 
     // extraCheese.length, SelectedDrinks.length,linkedItem.length,
-  }, [count,extraCheese.length, SelectedDrinks.length,linkedItem.length]);
+  }, [count,extraCheese.length, SelectedDrinks.length,linkedItem.length,total]);
 
  
   const Drinks = value => {
@@ -79,41 +79,28 @@ export default function AddToCart({route, navigation}) {
   };
 
   const PriceCalculations = () => {
+    setVary(vary+1)
     var sumofExtra = extraCheese.reduce((a, c) => {
-      return a + c.price * c.quantity;
+      return c.quantity? a + c.price * c.quantity:0;
     }, 0);
     var sumofDrinks = SelectedDrinks.reduce((a, c) => {
-      return a + c.price * c.quantity;
+      return c.quantity? a + c.price * c.quantity:0;
     }, 0);
     var sumofUpsize = linkedItem.reduce((a, c) => {
-      return a + c.price * c.quantity;
-    }, 0);
-    //  console.log('sum of extra', sumofExtra);
-     console.log('sum of sumofDrinks', sumofDrinks);
-     console.log('sum of SelectedDrinks', SelectedDrinks);
 
-    //  console.log('setextraTotal', sumofExtra + sumofDrinks + sumofUpsize);
-    // setVisible(!visible);
+      return c.quantity? a + c.price * c.quantity:0;
+    }, 0);
+    console.log('linkedItem', linkedItem)
+     console.log('sum of extra', sumofExtra);
+     console.log('sum of sumofDrinks', sumofDrinks);
+     console.log('sum of sumofUpsize', sumofUpsize);
+
+     console.log('setextraTotal', sumofExtra + sumofDrinks + sumofUpsize);
     updateTotal(dishPrice * count + sumofExtra + sumofDrinks+sumofUpsize);
     // setextraTotal(sumofExtra + sumofDrinks + sumofUpsize);
   };
-  // const data = () => [{
-  //   "id": 0,
-  //   customerId: 10,
-  //   status: 1,
-  //   orderStatus: 1,
-  //   couponNo: "superior",
-  //   orderPlacedfrom: "karachi",
-  //   dishId: 26,
-  //   remarks: "Good"
-  //   // title : "Fish Crackers",
-  //   // description: "lorem ipsum dolor sit amet, consectetur adipis",
-  //   // quantity: 8,
-  //   // price: '8.00',
-  //   // url: require('../../../assets/fake_Images/cart-1.png'),
-  // }];
+  
   const AddDrinks = (item, index) => {
-    //extraCheese.push(item)
     dish.restaurantSoftDrinksList[index].quantity = 1;
 
     if (SelectedDrinks.some(o => o.id === item.id)) {
@@ -223,12 +210,14 @@ export default function AddToCart({route, navigation}) {
       //     return a + (c.price * c.quantity);
       //   }, 0);
 
-      // console.log('removeeee',extraCheese.filter(i => i.id !== item.id));
+      console.log('removeeee restaurantDishLinkedItemList',linkedItem.filter(i => i.id !== item.id));
     } else {
       linkedItem.push(dish.restaurantDishLinkedItemList[index]);
       // var sumofExtra = extraCheese.reduce((a, c) => {
       //   return a + (c.price * c.quantity);
       // }, 0);
+    console.log('add restaurantDishLinkedItemList', linkedItem);
+
     }
     console.log('after', linkedItem);
 

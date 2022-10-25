@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
 import Header from '../../../../components/Header';
 import {TRANSACTION_HISTORY_FAKE_DATA} from '../../../../constants/mock';
@@ -17,9 +17,10 @@ import {
 import urls from '../../../../redux/lib/urls';
 import Api from '../../../../redux/lib/api';
 import { routeName } from '../../../../constants/routeName';
+import { BarIndicator } from 'react-native-indicators';
 export default function NotificationList({navigation}) {
   const dispatch = useDispatch();
-
+const [isLoading, setLoading] = useState(true)
 
   const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
@@ -39,10 +40,16 @@ export default function NotificationList({navigation}) {
   console.log('NotificationData:  ', NotificationData);
 
   useEffect(() => {
+    dispatch(getNotificationData());
+    setTimeout(() => {
+      setLoading(false)
+        
+      }, 2000);
     const subscribe = navigation.addListener('focus', (e) => {
       // Prevent default action
       // e.preventDefault();
     // dispatch(getNotificationData());
+    
     setTimeout(() => {
     SeenNotification()
       
@@ -73,6 +80,7 @@ export default function NotificationList({navigation}) {
   };
   return (
     <View style={{flex: 1, backgroundColor: isThemeDark ? colors.black3 : colors.bgWhite}}>
+      
       <View
         style={{
           flexDirection: 'row',
@@ -92,12 +100,18 @@ export default function NotificationList({navigation}) {
           <Icon source={globalPath.BACK_BLACK_ARROW} />
         </TouchableOpacity>
       </View>
+      
       <ScrollView
         style={{flex: 0.9, margin: 20}}
         showsVerticalScrollIndicator={false}>
         <ResponsiveText margin={[0, 0, 20, 0]} color={colors.yellow} size={4.5}>
           Notifications
         </ResponsiveText>
+        {
+        isLoading===true?   <View style={{justifyContent:'center', backgroundColor: 'rgba(65, 65, 65, 0)', flex: 1 }}>
+        < BarIndicator color={colors.yellow1} size={25} />
+        </View>:null
+      }
         {NotificationData.map((item, index) => {
           return (
             <TouchableOpacity onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
@@ -150,7 +164,7 @@ export default function NotificationList({navigation}) {
                   size={2.5}
                   margin={[0, 0, 0, 0]}
                   color={colors.white}>
-                  {/* {moment(item.datetime).fromNow('mm')} ago */}
+                  {moment(item.datetime).fromNow('mm')} ago
                 </ResponsiveText>
                 {/* <ResponsiveText
                 margin={[0, 0, 0, 0]}
@@ -165,6 +179,7 @@ export default function NotificationList({navigation}) {
           );
         })}
       </ScrollView>
+      
     </View>
   );
 }

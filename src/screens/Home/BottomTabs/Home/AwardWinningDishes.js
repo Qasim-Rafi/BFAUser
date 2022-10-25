@@ -6,30 +6,14 @@ import {
   StyleSheet,
   View,
   Text,
-  ImageBackground,
   TouchableOpacity,
 } from 'react-native';
 import ResponsiveText from '../../../../components/RnText';
-import { Rating, AirbnbRating } from 'react-native-ratings';
 import { routeName } from '../../../../constants/routeName';
-import {
-  advertisementBannerFakeDATA,
-  awardWinningFakeDATA,
-  promotionsFakeDATA,
-  yourFavoriteFakeDATA,
-} from '../../../../constants/mock';
 import FastImage from 'react-native-fast-image'
 
 import {
-  BallIndicator,
-  BarIndicator,
   DotIndicator,
-  MaterialIndicator,
-  PacmanIndicator,
-  PulseIndicator,
-  SkypeIndicator,
-  UIActivityIndicator,
-  WaveIndicator,
 } from 'react-native-indicators';
 import { colors } from '../../../../constants/colorsPallet';
 import SeeAllButton from '../../../../components/SeeAllButton';

@@ -6,18 +6,9 @@ import {
   StyleSheet,
   Text,
   View,
-  ImageBackground,
 } from 'react-native';
 import {
-  BallIndicator,
-  BarIndicator,
   DotIndicator,
-  MaterialIndicator,
-  PacmanIndicator,
-  PulseIndicator,
-  SkypeIndicator,
-  UIActivityIndicator,
-  WaveIndicator,
 } from 'react-native-indicators';
 import ResponsiveText from '../../../../components/RnText';
 import {Rating, AirbnbRating} from 'react-native-ratings';
@@ -25,15 +16,12 @@ import {routeName} from '../../../../constants/routeName';
 import FastImage from 'react-native-fast-image';
 
 import {
-  advertisementBannerFakeDATA,
-  everyoneFavoriteFakeDATA,
   ourRecommendationFakeDATA,
 } from '../../../../constants/mock';
 import {colors} from '../../../../constants/colorsPallet';
 import SeeAllButton from '../../../../components/SeeAllButton';
 import {hp, wp} from '../../../../helpers/Responsiveness';
 import {useSelector} from 'react-redux';
-import {State} from 'react-native-gesture-handler';
 import {getPeopleChoice} from '../../../../redux/actions/user.actions';
 const EveryOneFavourite = props => {
   const People_choice = useSelector(

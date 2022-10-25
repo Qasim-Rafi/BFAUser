@@ -22,8 +22,10 @@ export default function FavouriteDishes(props) {
   const dispatch = useDispatch();
   const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
   React.useEffect(() => {
+    const subscribe = props.navigation.addListener('focus', e => {
     dispatch(getFavorite(1, 13));
-  }, []);
+    })
+  }, [props.navigation]);
 
   return (
     <View style={{backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite, flex: 1}}>

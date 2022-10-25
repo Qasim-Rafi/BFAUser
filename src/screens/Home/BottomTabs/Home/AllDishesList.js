@@ -2,16 +2,11 @@ import React from 'react';
 import {
   View,
   Text,
-  ImageBackground,
-  ScrollView,
   TouchableOpacity,
   FlatList,
 } from 'react-native';
-
-import Header from '../../../../components/Header';
 import { colors } from '../../../../constants/colorsPallet';
 import { globalPath } from '../../../../constants/globalPath';
-import { ourRecommendationFakeDATA } from '../../../../constants/mock';
 import { wp, hp } from '../../../../helpers/Responsiveness';
 import ResponsiveText from '../../../../components/RnText';
 import { useSelector, useDispatch } from 'react-redux';
@@ -19,30 +14,16 @@ import { routeName } from '../../../../constants/routeName';
 import { Rating, AirbnbRating } from 'react-native-ratings';
 import Icon from '../../../../components/Icon';
 import {
-  getRestaurantAllDishes,
-  getUserCusine,
   getBruneiFoodRewards,
   getPromotions,
   getFavorite,
-  whatsNew,
   getBfaRecommendations,
-  getPromoNewsData,
-  getPromoJobsData,
   getPeopleChoice,
   GetDishByCusineId,
-  moreFromRestaurant,
   getwhatsNew,
 } from '../../../../redux/actions/user.actions';
 import {
-  BallIndicator,
-  BarIndicator,
   DotIndicator,
-  MaterialIndicator,
-  PacmanIndicator,
-  PulseIndicator,
-  SkypeIndicator,
-  UIActivityIndicator,
-  WaveIndicator,
 } from 'react-native-indicators';
 import FastImage from 'react-native-fast-image';
 export default function AllDishesList({ route, navigation }) {
@@ -94,7 +75,7 @@ export default function AllDishesList({ route, navigation }) {
   const arrayUniqueByKey = [...new Map(data.map(item =>
     [item[key], item])).values()];
   
-  console.log(arrayUniqueByKey,'arrayUniqueByKey');
+  // console.log(arrayUniqueByKey,'arrayUniqueByKey');
   React.useEffect(() => {
     // onLoad();
     if(route.params.id){

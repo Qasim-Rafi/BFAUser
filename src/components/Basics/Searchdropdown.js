@@ -2,15 +2,10 @@ import React from 'react';
 import {
     TouchableOpacity,
     StyleSheet,
-    ScrollView,
     View,
     Text,
-    KeyboardAvoidingView,
-    TextInput,
 } from 'react-native';
 import { hp, wp } from '../../helpers/Responsiveness';
-import { globalPath } from '../../constants/globalPath';
-import { color } from 'react-native-reanimated';
 import { colors } from '../../constants/colorsPallet';
 import Icon from '../Icon';
 import { useSelector } from 'react-redux';
@@ -31,7 +26,7 @@ export default function SearchDropDown(props) {
                             if (index < 10) {
                                 return (
                                     <View style={[styles.itemView,{backgroundColor: isThemeDark ? colors.black1 : colors.secondary}]}>
-                                        <TouchableOpacity onPress={() => props.onSearch(item.suggestedName)}>
+                                        <TouchableOpacity onPress={() => props.onSearch(item.branchName?item.branchName:item.suggestedName)}>
 
                                             <View style={[styles.itemView,{backgroundColor: isThemeDark ? colors.black1 : colors.secondary}]}>
                                                 <Text style={[styles.itemText,{color: isThemeDark ?  colors.white: colors.black}]}>{item.suggestedName}</Text>
@@ -77,7 +72,7 @@ const styles = StyleSheet.create({
     container: {
         position: 'absolute',
         zIndex: 1,
-        top: '20%',
+        top: '15%',
         left: -5, right: -5, bottom: 0,
 
     },

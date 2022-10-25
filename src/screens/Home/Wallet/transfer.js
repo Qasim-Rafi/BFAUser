@@ -168,6 +168,7 @@ const Transfer = (props) => {
                                         editable={true} 
                                         placeholder={'Enter the Phone No.'} 
                                         leftIcon={phoneIcon} 
+                                        keyboardType={'numeric'}
                                         iconMargin={[0,wp(2),0,wp(1.5)]}
                                     />
                                     {/* <ResponsiveText margin={[0, 10, 0, 15]} color={colors.white}>

@@ -210,8 +210,7 @@ export const appReducers = (state = initialState, action) => {
         ...state,
         bruneiFoodsAwards: {
           ...state.bruneiFoodsAwards,
-
-          data: action.payload,
+          data: [...state.bruneiFoodsAwards.data, ...action.payload],
           loading: false,
         },
       };

@@ -51,7 +51,6 @@ export default urls = {
   DELETE_ORDER_FROM_CART: 'api/Order/DeleteOrder/', //
   ORDER_CONFIRMATION: 'api/OrderPayment/PaymentCheckMethodConfirmation', //
   UPDATE_ORDER_STATUS: 'api/Order/UpdateOrderStatus/',
-  GET_ALL_ORDERS: 'api/Order/OrderListForUserApp',
   GET_ORDERS_HISTORY: 'api/Order/OrderHistory',
   PROMOTION_CLICK: 'api/PromotionlDish/AddPromotionlDishForRestaurantClick',
   CHECK_ORDER: 'api/OrderBill/CheckOutOrder', //

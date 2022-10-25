@@ -21,6 +21,7 @@ import {
 } from '../../../redux/actions/user.actions';
 import urls from '../../../redux/lib/urls';
 import Api from '../../../redux/lib/api';
+import { BarIndicator } from 'react-native-indicators';
 
 export default function TransactionConfirmation({route, navigation}) {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -29,9 +30,10 @@ export default function TransactionConfirmation({route, navigation}) {
 
   const [count, changeCount] = useState(40);
   const [data, setData] = useState(route.params.data);
+  const [preobj, setObj] = useState(route.params.obj)
   const [total, addTotal] = useState(0);
   const [tip, setTip] = useState();
-
+const [loading, setLoading] = useState(false)
   const [pickup, setPickup] = useState(true);
   const dispatch = useDispatch();
 
@@ -39,14 +41,12 @@ export default function TransactionConfirmation({route, navigation}) {
   const paymentMethod = route.params.paymentMethod ? route.params.paymentMethod : 'Cash'
 
   useEffect(() => {
-    //addTotal(route.params);
     console.log('PARAMS CONFIRM ', route.params);
   });
 
   const toggleModal = async () => {
-    // dispatch(checkoutOrder(route.params));
     var obj = {
-      ...route.params.obj,
+      ...preobj,
       ...{
         // OrderType: mode == 'mode1' ? 'TakeAway' :mode == 'mode2' ? 'DineIn' : 'Self_Pickup',
         OrderType:mode == 'mode1' ? 2 :'mode2' ? 1 : 2,
@@ -55,6 +55,7 @@ export default function TransactionConfirmation({route, navigation}) {
       },
     };
     console.log('res check', obj);
+    setLoading(true)
 
     try {
       const response = await Api.post(urls.CHECK_ORDER, obj, false);
@@ -63,7 +64,7 @@ export default function TransactionConfirmation({route, navigation}) {
         setModalVisible(!isModalVisible);
         dispatch(getOrders());
         addNotification();
-        // setLoading(false);
+        setLoading(false);
       } else {
         // setLoading(false);
         // dropdownRef.current.showMessage({
@@ -81,7 +82,7 @@ export default function TransactionConfirmation({route, navigation}) {
   const orderConfirmation = async DATA => {
     // dispatch(removeCart(data));
     try {
-      const res = await Api.post(urls.ORDER_CONFIRMATION, DATA, false);
+      const res = await Api.post(urls.ORDER_CONFIRMATION, {}, false);
       console.log('res', res);
       if (res && res.success == true) {
         toggleModal();
@@ -94,10 +95,10 @@ export default function TransactionConfirmation({route, navigation}) {
     let formdata = new FormData();
     formdata.append('NotificationType', 'Order');
     formdata.append('Remarks', 'Your_Order_Has_Been_Placed');
-    formdata.append('SourceId', route.params.obj.orderId);
+    formdata.append('SourceId', preobj.orderId);
     // formdata.append("Seen", false);
-    formdata.append('UserId', route.params.obj.userId);
-    formdata.append('RestaurantBranchId', route.params.data.restaurantBranchId);
+    formdata.append('UserId', preobj.userId);
+    formdata.append('RestaurantBranchId', data.restaurantBranchId);
 
 
     try {
@@ -343,7 +344,7 @@ export default function TransactionConfirmation({route, navigation}) {
               <TouchableOpacity
                 onPressIn={() =>
                   activeTabs === 'tab2' || activeTabs === 'tab3'
-                    ? changeCount(count > 0 ? count - 1 : 0)
+                    ? changeCount(count > 1 ? count - 1 : 1)
                     : changeCount(count)
                 }
                 style={{
@@ -609,6 +610,11 @@ export default function TransactionConfirmation({route, navigation}) {
           {/* ------------ ModalView End -------------- */}
         </Modal>
       </View>
+      {
+        loading===true?   <View style={{justifyContent:'center', backgroundColor: 'rgba(65, 65, 65, 0)', flex: 1 }}>
+        < BarIndicator color={colors.yellow1} size={25} />
+        </View>:null
+      }
     </View>
   );
 }
