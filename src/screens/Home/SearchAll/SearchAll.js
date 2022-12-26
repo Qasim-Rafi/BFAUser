@@ -58,6 +58,8 @@ import {FiltersDummyData} from '../../../constants/mock';
 import FastImage from 'react-native-fast-image';
 import {ActivityIndicator} from 'react-native-paper';
 import DropDown from '../../../components/DropDown';
+import {isImage} from '../../../constants/Index';
+
 import {SafeAreaView} from 'react-native-safe-area-context';
 export default function SearchAll({navigation}) {
   const data = [
@@ -713,7 +715,7 @@ export default function SearchAll({navigation}) {
                         <ResponsiveText
                           size={2.7}
                           color={isThemeDark ? colors.white : colors.black}>
-                          {item.titleR}
+                          {item.branchAlias}
                         </ResponsiveText>
                         <View>
                           <AirbnbRating
@@ -772,7 +774,7 @@ export default function SearchAll({navigation}) {
                           alignSelf: 'center',
                           margin: 10,
                         }}
-                        source={{uri: item.restaurantLogo}}
+                        source={isImage(item.restaurantLogo)? {uri: item.restaurantLogo}:globalPath.Bali_Res}
                       />
                     </View>
                     <View

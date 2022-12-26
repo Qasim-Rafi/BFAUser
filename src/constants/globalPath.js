@@ -176,10 +176,12 @@ const NOTIFICATION = require('../assets/icons/notification.png');
 const favouriteicon_red = require('../assets/icons/favourite-icon-red.png');
 const tick_icon = require('../assets/icons/tick.png');
 const cross_icon = require('../assets/icons/cross.png');
+const Bali_Res = require('../assets/icons/bali-icon.png');
 
 
 export const globalPath = {
   LOGOUT,
+  Bali_Res,
   tick_icon,
   cross_icon,
   favouriteicon_red,

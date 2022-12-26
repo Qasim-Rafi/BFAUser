@@ -114,7 +114,7 @@ const [isLoading, setLoading] = useState(true)
       }
         {NotificationData.map((item, index) => {
           return (
-            <TouchableOpacity onPress={()=>navigation.navigate(routeName.ORDER_HISTORY)}
+            <TouchableOpacity onPress={()=>navigation.navigate(routeName.ORDER_STACK)}
               style={{
                 backgroundColor: isThemeDark ? item.seen?colors.black2: colors.black1 : item.seen?colors.white: colors.secondary ,
                 borderRadius: 5,

@@ -16,16 +16,17 @@ import {routeName} from '../../../../constants/routeName';
 import Icon from '../../../../components/Icon';
 import {getFavorite} from '../../../../redux/actions/user.actions';
 import {useSelector, useDispatch} from 'react-redux';
+import { DotIndicator } from 'react-native-indicators';
 
 export default function FavouriteDishes(props) {
-  const favData = useSelector(state => state.appReducers.favorite.data,)
+  const favData = useSelector(state => state.appReducers.favorite.data)
+  const loading = useSelector(state => state.appReducers.favorite.refreshing)
+
   const dispatch = useDispatch();
   const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
   React.useEffect(() => {
-    const subscribe = props.navigation.addListener('focus', e => {
-    dispatch(getFavorite(1, 13));
-    })
-  }, [props.navigation]);
+    dispatch(getFavorite(1, 15));
+  }, []);
 
   return (
     <View style={{backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite, flex: 1}}>
@@ -91,6 +92,20 @@ export default function FavouriteDishes(props) {
           : undefined}
         </View>
       </View>
+        {loading === true ? (
+          <View
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              bottom: 0,
+              right: 0,
+              backgroundColor: 'rgba(65, 65, 65, 0)',
+              flex: 1,
+            }}>
+            <DotIndicator color={colors.yellow} size={5} />
+          </View>
+        ) : undefined}
     </View>
   );
 }

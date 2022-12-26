@@ -414,6 +414,13 @@ export default function ProfileScreen({navigation}) {
               maximumDate={new Date(2009, 1, 1)}
             />
           )}
+           <CustomInput
+              placeHolderText={'Phone Number'}
+              fieldName={'Phone Number'}
+              value={PhoneNo}
+              keyboardType={'numeric'}
+              onChangeText={text => setPhoneNo(text)}
+            />
           <CustomInput
             placeHolderText={'Graduate'}
             fieldName={'Educational Background'}
@@ -570,13 +577,7 @@ export default function ProfileScreen({navigation}) {
               onChangeText={text => setcontactNo(text)}
               editable={false}
             />
-            <CustomInput
-              placeHolderText={'Phone Number'}
-              fieldName={'Phone Number'}
-              value={PhoneNo}
-              keyboardType={'numeric'}
-              onChangeText={text => setPhoneNo(text)}
-            />
+           
             <CustomInput
               placeHolderText={'Address'}
               fieldName={'Address'}
@@ -750,8 +751,8 @@ export default function ProfileScreen({navigation}) {
                     size={3.5}
                     // fontFamily={items.id === activeTab ? 'Boldedium' : undefined}
                     color={
-                      // items.id === activeTab ? colors.black : colors.white
-                      colors.black
+                      items.id === activeTab ?colors.black  :isThemeDark ? colors.white : colors.black
+                      // colors.black
                     }>
                     {items.name}
                   </ResponsiveText>

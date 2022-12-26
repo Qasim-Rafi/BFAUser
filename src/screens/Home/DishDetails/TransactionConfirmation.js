@@ -94,7 +94,7 @@ const [loading, setLoading] = useState(false)
     // dispatch(removeCart(data));
     let formdata = new FormData();
     formdata.append('NotificationType', 'Order');
-    formdata.append('Remarks', 'Your_Order_Has_Been_Placed');
+    formdata.append('Remarks', 'Your Order Has Been Placed');
     formdata.append('SourceId', preobj.orderId);
     // formdata.append("Seen", false);
     formdata.append('UserId', preobj.userId);

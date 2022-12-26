@@ -85,7 +85,6 @@ export default function Signup({navigation}) {
       console.log('reset password');
     } else {
       signupResponse ? setErrorString(signupResponse) : null;
-
     }
     // signupResponse?
     // dropdownRef.current.showMessage({
@@ -112,7 +111,7 @@ export default function Signup({navigation}) {
   const [showCorrectemailIcon, setShowCorrectemailIcon] = useState(false);
   const [showCorrectPhoneIcon, setShowCorrectPhoneIcon] = useState(false);
 
-  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data);
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -140,7 +139,7 @@ export default function Signup({navigation}) {
 
   const expressions = {
     email: /^\w+([+.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
-    postCode: /^[a-zA-Z]{2}[0-9]{4}$/
+    postCode: /^[a-zA-Z]{2}[0-9]{4}$/,
   };
   const validation = () => {
     setErrorString('');
@@ -287,29 +286,32 @@ export default function Signup({navigation}) {
     // const expressions = {
     //   email: /^\w+([+.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
     // };
-    if (type==2&& !expressions.email.test(email) || email.includes(' ')) {
+    if ((type == 2 && !expressions.email.test(email)) || email.includes(' ')) {
       // dropdownRef.current.showMessage({
       //   message: 'Error',
       //   description: 'Invalid Email',
       //   type: 'danger',
       //   icon: {icon: 'auto', position: 'left'},
       // });
-      setErrorString('Invalid Email')
+      setErrorString('Invalid Email');
       setShowCorrectemailIcon(true);
-          setCorrectemailIcon(false);
-    return false
+      setCorrectemailIcon(false);
+      return false;
     }
-    if (type==4&& !expressions.postCode.test(PostCode) || PostCode.includes(' ')) {
-    // dropdownRef.current.showMessage({
+    if (
+      (type == 4 && !expressions.postCode.test(PostCode)) ||
+      PostCode.includes(' ')
+    ) {
+      // dropdownRef.current.showMessage({
       //   message: 'Error',
       //   description: 'Invalid Email',
       //   type: 'danger',
       //   icon: {icon: 'auto', position: 'left'},
       // });
-      setErrorString('Invalid PostCode')
+      setErrorString('Invalid PostCode');
       // setShowCorrectemailIcon(true);
       //     setCorrectemailIcon(false);
-    return false
+      return false;
     }
     var obj = {
       userName: type == 1 ? userName : '',
@@ -377,7 +379,10 @@ export default function Signup({navigation}) {
 
   return (
     <KeyboardAvoidingView
-      style={{flex: 1, backgroundColor: isThemeDark ?  colors.black: colors.white}}
+      style={{
+        flex: 1,
+        backgroundColor: isThemeDark ? colors.black : colors.white,
+      }}
       behavior={Platform.OS === 'ios' ? 'padding' : null}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ScrollView style={{flex: 1}}>
@@ -390,17 +395,27 @@ export default function Signup({navigation}) {
               size={8}>
               SignUp
             </ResponsiveText>
-            <ResponsiveText margin={[1, 0, 0, 0]} color={isThemeDark ?  colors.white: colors.black}>
+            <ResponsiveText
+              margin={[1, 0, 0, 0]}
+              color={isThemeDark ? colors.white : colors.black}>
               Please SignUp to Continue
             </ResponsiveText>
           </View>
-          <View style={[styles.formArea,{backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite}]}>
+          <View
+            style={[
+              styles.formArea,
+              {backgroundColor: isThemeDark ? colors.black3 : colors.bgWhite},
+            ]}>
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <Input
-                style={{backgroundColor:isThemeDark ?  colors.black1: colors.grey}}
-                backgroundColor={isThemeDark ?  colors.black1: colors.grey}
-                placeholderTextColor={isThemeDark ? undefined : colors.secondary}
+                style={{
+                  backgroundColor: isThemeDark ? colors.black1 : colors.grey,
+                }}
+                backgroundColor={isThemeDark ? colors.black1 : colors.grey}
+                placeholderTextColor={
+                  isThemeDark ? undefined : colors.secondary
+                }
                 width={wp(39)}
                 margin={[0, 0, 15, 0]}
                 padding={[0, 0, 0, 25]}
@@ -410,9 +425,13 @@ export default function Signup({navigation}) {
                 leftIcon={globalPath.USER_LOGO}
               />
               <Input
-                style={{backgroundColor:isThemeDark ?  colors.black1: colors.grey}}
-                backgroundColor={isThemeDark ?  colors.black1: colors.grey}
-                placeholderTextColor={isThemeDark ? undefined : colors.secondary}
+                style={{
+                  backgroundColor: isThemeDark ? colors.black1 : colors.grey,
+                }}
+                backgroundColor={isThemeDark ? colors.black1 : colors.grey}
+                placeholderTextColor={
+                  isThemeDark ? undefined : colors.secondary
+                }
                 width={wp(39)}
                 onChnageText={text => setLastName(text)}
                 margin={[0, 0, 15, 0]}
@@ -424,8 +443,10 @@ export default function Signup({navigation}) {
             </View>
 
             <Input
-              style={{backgroundColor:isThemeDark ?  colors.black1: colors.grey}}
-              backgroundColor={isThemeDark ?  colors.black1: colors.grey}
+              style={{
+                backgroundColor: isThemeDark ? colors.black1 : colors.grey,
+              }}
+              backgroundColor={isThemeDark ? colors.black1 : colors.grey}
               placeholderTextColor={isThemeDark ? undefined : colors.secondary}
               padding={[0, 0, 0, 25]}
               margin={[0, 0, 15, 0]}
@@ -444,8 +465,10 @@ export default function Signup({navigation}) {
               leftIcon={globalPath.MALE_LOGO}
             />
             <Input
-              style={{backgroundColor:isThemeDark ?  colors.black1: colors.grey}}
-              backgroundColor={isThemeDark ?  colors.black1: colors.grey}
+              style={{
+                backgroundColor: isThemeDark ? colors.black1 : colors.grey,
+              }}
+              backgroundColor={isThemeDark ? colors.black1 : colors.grey}
               placeholderTextColor={isThemeDark ? undefined : colors.secondary}
               margin={[0, 0, 15, 0]}
               padding={[0, 0, 0, 25]}
@@ -456,11 +479,12 @@ export default function Signup({navigation}) {
               leftIcon={globalPath.LOCK_LOGO}
               autoCapitalize={'none'}
               maxlength={19}
-
             />
             <Input
-              style={{backgroundColor:isThemeDark ?  colors.black1: colors.grey}}
-              backgroundColor={isThemeDark ?  colors.black1: colors.grey}
+              style={{
+                backgroundColor: isThemeDark ? colors.black1 : colors.grey,
+              }}
+              backgroundColor={isThemeDark ? colors.black1 : colors.grey}
               placeholderTextColor={isThemeDark ? undefined : colors.secondary}
               padding={[0, 0, 0, 25]}
               iconMargin={[0, 10, 0, 0]}
@@ -487,13 +511,15 @@ export default function Signup({navigation}) {
              // onPressOut={() => checkExisting()}
             /> */}
             <Input
-              style={{backgroundColor:isThemeDark ?  colors.black1: colors.grey}}
-              backgroundColor={isThemeDark ?  colors.black1: colors.grey}
+              style={{
+                backgroundColor: isThemeDark ? colors.black1 : colors.grey,
+              }}
+              backgroundColor={isThemeDark ? colors.black1 : colors.grey}
               placeholderTextColor={isThemeDark ? undefined : colors.secondary}
               margin={[15, 0, 0, 0]}
               padding={[0, 0, 0, 20]}
               maxlength={7}
-              onChnageText={text => setCellphoneNum(text)}
+              onChnageText={text => setCellphoneNum(text.replace(/[- #*;,.<>\{\}\[\]\\\/]/gi, ''))}
               iconMargin={[0, 10, 0, 0]}
               showValidationIcon={
                 CellphoneNum == '' || CellphoneNum.length < 3
@@ -503,14 +529,17 @@ export default function Signup({navigation}) {
               userValidation={correctPhoneIcon}
               placeholder="000-0000(Required)"
               countryCode="+673 "
-              keyboardType={'numeric'}
+              keyboardType={Platform.OS == 'android' ? 'numeric' : 'number-pad'}
+              value={CellphoneNum}
               leftIcon={globalPath.SignUp_Phone_ICON}
               iconSize={hp(2.5)}
               onBlur={() => checkExisting(3)}
             />
             <Input
-              style={{backgroundColor:isThemeDark ?  colors.black1: colors.grey}}
-              backgroundColor={isThemeDark ?  colors.black1: colors.grey}
+              style={{
+                backgroundColor: isThemeDark ? colors.black1 : colors.grey,
+              }}
+              backgroundColor={isThemeDark ? colors.black1 : colors.grey}
               placeholderTextColor={isThemeDark ? undefined : colors.secondary}
               margin={[15, 0, 15, 0]}
               padding={[0, 0, 0, 20]}
@@ -525,9 +554,13 @@ export default function Signup({navigation}) {
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <Input
-                style={{backgroundColor:isThemeDark ?  colors.black1: colors.grey}}
-                backgroundColor={isThemeDark ?  colors.black1: colors.grey}
-                placeholderTextColor={isThemeDark ? undefined : colors.secondary}
+                style={{
+                  backgroundColor: isThemeDark ? colors.black1 : colors.grey,
+                }}
+                backgroundColor={isThemeDark ? colors.black1 : colors.grey}
+                placeholderTextColor={
+                  isThemeDark ? undefined : colors.secondary
+                }
                 width={wp(39)}
                 margin={[0, 0, 15, 0]}
                 padding={[0, 0, 0, 25]}
@@ -537,9 +570,13 @@ export default function Signup({navigation}) {
                 leftIcon={globalPath.State_ICON}
               />
               <Input
-                style={{backgroundColor:isThemeDark ?  colors.black1: colors.grey}}
-                backgroundColor={isThemeDark ?  colors.black1: colors.grey}
-                placeholderTextColor={isThemeDark ? undefined : colors.secondary}
+                style={{
+                  backgroundColor: isThemeDark ? colors.black1 : colors.grey,
+                }}
+                backgroundColor={isThemeDark ? colors.black1 : colors.grey}
+                placeholderTextColor={
+                  isThemeDark ? undefined : colors.secondary
+                }
                 width={wp(39)}
                 onChnageText={text => setPostCode(text)}
                 maxlength={6}
@@ -606,7 +643,14 @@ export default function Signup({navigation}) {
               title="SIGN UP "
             /> */}
             <View style={{marginVertical: 20}}>
-              <ResponsiveText color={errorString=='Record(s) added successfully'?colors.green1:  colors.red}>{errorString}</ResponsiveText>
+              <ResponsiveText
+                color={
+                  errorString == 'Record(s) added successfully'
+                    ? colors.green1
+                    : colors.red
+                }>
+                {errorString}
+              </ResponsiveText>
 
               {errorString ===
               "Email already exist.\nHave you forgotten your password? Don't worry, You can reset your password here." ? (
@@ -626,7 +670,9 @@ export default function Signup({navigation}) {
             </View>
             <View style={styles.footer}>
               {/* <Icon size={wp(8)}  margin={[0,0,wp(5),0]} source={globalPath.GOOGLE_LOGO} /> */}
-              <ResponsiveText margin={[2, 10]} color={isThemeDark ?  colors.white: colors.black}>
+              <ResponsiveText
+                margin={[2, 10]}
+                color={isThemeDark ? colors.white : colors.black}>
                 Already have an account?{' '}
                 <ResponsiveText
                   fontFamily="Bold"

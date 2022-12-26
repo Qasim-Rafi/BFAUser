@@ -106,7 +106,7 @@ const Home = ({ navigation }) => {
     // dispatch(getPromoNewsData());
     // dispatch(awardsRestaurant());
     dispatch(getFavorite(1, 4));
-    dispatch(getPromoJobsData(1, 4));
+    dispatch(getPromoJobsData(1, 12));
     dispatch(getBfaRecommendations(1, 4));
     dispatch(getBruneiFoodRewards(1, 8));
   }, []);
@@ -135,7 +135,7 @@ const Home = ({ navigation }) => {
     // dispatch(getPromoNewsData());
     // dispatch(awardsRestaurant());
     dispatch(getFavorite(1, 4));
-    dispatch(getPromoJobsData(1, 4));
+    dispatch(getPromoJobsData(1, 12));
     dispatch(getBfaRecommendations(1, 4));
     dispatch(getBruneiFoodRewards(1, 8));
 

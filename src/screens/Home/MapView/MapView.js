@@ -18,12 +18,13 @@ const destination = {latitude: 37.771707, longitude: -122.4053769};
 // const GOOGLE_MAPS_APIKEY = 'AIzaSyBPlHPQFOoDXh4K60fqBVg7kPHC7Fcmy5I';
 const GOOGLE_MAPS_APIKEY ='AIzaSyCVqqBceVIdw8mFtICTxUYQ4kWqvk2Wi_c';
 export default function MapView(props) {
+const data=props.route.params?.data
   // latitude: 4.5353,
   // longitude: 114.7277,
   const [coordinates,setCoordinates] = useState([
     {
-      latitude: 4.7353,
-      longitude: 114.7277,
+      latitude:data.latitude!==null?parseFloat(data.latitude):37.78825 ,
+          longitude:data.longitude!==null?parseFloat(data.longitude):-122.4324,
     },
     {
       latitude: 4.2254,
@@ -112,8 +113,8 @@ export default function MapView(props) {
           provider={PROVIDER_GOOGLE} // remove if not using Google Maps
           style={styles.map}
           region={{
-            latitude: 4.5353,
-            longitude: 114.7277,
+            latitude:data.latitude!==null?parseFloat(data.latitude):37.78825 ,
+          longitude:data.longitude!==null?parseFloat(data.longitude):-122.4324,
             latitudeDelta: 0.9,
             longitudeDelta: 0.0121,
           }}>
@@ -122,15 +123,15 @@ export default function MapView(props) {
             destination={destination}
             apikey={GOOGLE_MAPS_APIKEY}
           /> */}
-          <MapViewDirections
+          {/* <MapViewDirections
             origin={coordinates[0]}
             destination={coordinates[1]}
             apikey={GOOGLE_MAPS_APIKEY} // insert your API Key here
             strokeWidth={4}
             strokeColor="blue"
-          />
+          /> */}
           <Marker coordinate={coordinates[0]} />
-          <Marker coordinate={coordinates[1]} />
+          {/* <Marker coordinate={coordinates[1]} /> */}
           {/* <Polyline
           coordinates={coordinates}
           strokeColor=colors.black // fallback for when `strokeColors` is not supported by the map-provider

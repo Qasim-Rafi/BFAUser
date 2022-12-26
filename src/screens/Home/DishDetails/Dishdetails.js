@@ -1,33 +1,22 @@
 import React from 'react';
 import {View, Text, ScrollView, StyleSheet, Alert} from 'react-native';
-import AdvertisementBanner from '../BottomTabs/Home/AdvertisementBanner';
 import ImageHeader from '../BottomTabs/Home/ImageHeader';
 import DishDescription from './DishDescription';
 import {colors} from '../../../constants/colorsPallet';
 import CalorieCount from './CalorieCount';
 import MoreFromResturant from './MoreFromResturant';
-import PeopleSay from './PeopleSay';
-import {BarIndicator} from 'react-native-indicators';
-import Comments from './Comments';
 import RnButton from '../../../components/RnButton';
 import ResponsiveText from '../../../components/RnText';
 import {routeName} from '../../../constants/routeName';
 import {useDispatch, useSelector} from 'react-redux';
-import {Cart_Details} from '../../../constants/mock';
-import {
-  advertisementBannerFakeDATA,
-  ourRecommendationFakeDATA,
-} from '../../../constants/mock';
-import FlashMessage, {
-  showMessage,
-  hideMessage,
-} from 'react-native-flash-message';
-import { promotoinClick } from '../../../redux/actions/user.actions';
+import FlashMessage from 'react-native-flash-message';
 
 export default function DishDetails({route, navigation}) {
+  const Combo = route.params?.Combo;
+  console.log('Combo', Combo)
+
   const [dish, addDish] = React.useState({});
   const dropdownRef = React.useRef(null);
-  const dispatch=useDispatch()
 
   const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
 
@@ -85,7 +74,7 @@ export default function DishDetails({route, navigation}) {
         //backgroundColor:colors.black1
       });
     } else {
-      navigation.navigate(routeName.ADD_TO_CART, {dish: dish});
+      navigation.navigate(routeName.ADD_TO_CART, {dish: dish,Combo:Combo});
       
     }
   };

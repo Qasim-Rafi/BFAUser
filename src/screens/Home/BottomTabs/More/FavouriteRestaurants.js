@@ -12,95 +12,137 @@ import {colors} from '../../../../constants/colorsPallet';
 import {globalPath} from '../../../../constants/globalPath';
 import {wp, hp} from '../../../../helpers/Responsiveness';
 import ResponsiveText from '../../../../components/RnText';
-import { routeName } from '../../../../constants/routeName';
+import {routeName} from '../../../../constants/routeName';
 import Icon from '../../../../components/Icon';
-import { useSelector, useDispatch } from 'react-redux';
-import { getFavouiteRestaurent } from '../../../../redux/actions/user.actions';
+import {useSelector, useDispatch} from 'react-redux';
+import {getFavouiteRestaurent} from '../../../../redux/actions/user.actions';
+import {DotIndicator} from 'react-native-indicators';
 export default function FavouriteRestaurants(props) {
-  const favDataRestaurant = useSelector(state => state.appReducers.favoriteRestaurant.data,)
-  const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
-  console.log(favDataRestaurant,'resssss')
+  const favDataRestaurant = useSelector(
+    state => state.appReducers.favoriteRestaurant.data,
+  );
+  const loading = useSelector(
+    state => state.appReducers.favoriteRestaurant.refreshing,
+  );
+
+  const isThemeDark = useSelector(state => state.appReducers.setTheme.data);
   const dispatch = useDispatch();
   React.useEffect(() => {
-    const subscribe = props.navigation.addListener('focus', e => {
+      dispatch(getFavouiteRestaurent(1, 15));
+  }, []);
 
-    dispatch(getFavouiteRestaurent(1,8))
-    })
-  }, [props.navigation]);
- 
   return (
-    <View style={{backgroundColor: isThemeDark ?  colors.black3: colors.bgWhite, flex: 1}}>
+    <View
+      style={{
+        backgroundColor: isThemeDark ? colors.black3 : colors.bgWhite,
+        flex: 1,
+      }}>
       <View style={{flex: 0.9, margin: 20}}>
-        <ResponsiveText size={4} margin={[0, 0, 5, 10]} color={isThemeDark ? colors.yellow : colors.black}>
+        <ResponsiveText
+          size={4}
+          margin={[0, 0, 5, 10]}
+          color={isThemeDark ? colors.yellow : colors.black}>
           Favorite Restaurants
         </ResponsiveText>
         <View style={{flexDirection: 'row', flexWrap: 'wrap', width: wp(100)}}>
-        {favDataRestaurant.length > 0
-            ? Array.from(new Set(favDataRestaurant.map(JSON.stringify))).map(JSON.parse).map((url, item) => {
-            console.log("favvvv",item)
-            return (
-              <TouchableOpacity
-              style={{marginHorizontal: 4, marginVertical: 14}}
-              onPress={() =>
-                props.navigation.navigate(routeName.RestaurantDetail,
-                  url.restaurantBranchId,)
-              }>
-             
-                <View
-                  style={{
-                    width: wp(26),
-                    height: hp(18),
-                    borderRadius: 7,
-                    overflow: 'hidden',
-                    flexDirection: 'row',
-                    borderWidth: 0.5, 
-                    borderColor: colors.black3
-                  }}>
-                    <ImageBackground
-                    imageStyle={{opacity: 1}}
-                    style={{
-                      flex: 1,
-                      padding: 5,
-                      overflow: 'hidden',
-                      justifyContent: 'space-between',
-                      backgroundColor: 'rgba(0,0,0,1)',
-                    }}
-                    source={{uri: url.restaurantLogo}}>
-                    <View style={{alignItems: 'flex-end'}}>
-                      <Icon size={15} source={globalPath.favouriteicon_red} />
-                    </View>
-                    <View>
-                    <Text
+          {favDataRestaurant.length > 0
+            ? Array.from(new Set(favDataRestaurant.map(JSON.stringify)))
+                .map(JSON.parse)
+                .map((url, item) => {
+                  console.log('favvvv', item);
+                  return (
+                    <TouchableOpacity
+                      style={{marginHorizontal: 4, marginVertical: 14}}
+                      onPress={() =>
+                        props.navigation.navigate(
+                          routeName.RestaurantDetail,
+                          url.restaurantBranchId,
+                        )
+                      }>
+                      <View
+                        style={{
+                          width: wp(26),
+                          height: hp(18),
+                          borderRadius: 7,
+                          overflow: 'hidden',
+                          flexDirection: 'row',
+                          borderWidth: 0.5,
+                          borderColor: colors.black3,
+                        }}>
+                        <ImageBackground
+                          imageStyle={{opacity: 1}}
                           style={{
-                            margin: 1,
-                            opacity: 1,
-
-                            color: 'white', padding: 3, marginTop: 2,
-                            backgroundColor: 'black', borderRadius: 7,
-                            textAlign: 'center', fontWeight: '600', fontSize: 8.5
+                            flex: 1,
+                            padding: 5,
+                            overflow: 'hidden',
+                            justifyContent: 'space-between',
+                            backgroundColor: 'rgba(0,0,0,1)',
                           }}
+                          source={{uri: url.restaurantLogo}}>
+                          <View style={{alignItems: 'flex-end'}}>
+                            <Icon
+                              size={15}
+                              source={globalPath.favouriteicon_red}
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={{
+                                margin: 1,
+                                opacity: 1,
 
-                        >  {url.restaurantName}</Text>
-                    
-                    <Text
-                          style={{
-                            margin: 1,
-                            opacity: 0.7,
-                            color: 'white', padding: 3, marginTop: 2,
-                            backgroundColor: 'black', borderRadius: 7,
-                            textAlign: 'center', fontWeight: '600', fontSize: 8.5
-                          }}
+                                color: 'white',
+                                padding: 3,
+                                marginTop: 2,
+                                backgroundColor: 'black',
+                                borderRadius: 7,
+                                textAlign: 'center',
+                                fontWeight: '600',
+                                fontSize: 8.5,
+                              }}>
+                              {' '}
+                              {url.restaurantName}
+                            </Text>
 
-                        >  {url.restaurantBranchesAlldataforappList.areaName}</Text>
-                    </View>
-                  </ImageBackground>
-                </View>
-              </TouchableOpacity>
-            )     
-          })
-          : undefined}
+                            <Text
+                              style={{
+                                margin: 1,
+                                opacity: 0.7,
+                                color: 'white',
+                                padding: 3,
+                                marginTop: 2,
+                                backgroundColor: 'black',
+                                borderRadius: 7,
+                                textAlign: 'center',
+                                fontWeight: '600',
+                                fontSize: 8.5,
+                              }}>
+                              {' '}
+                              {url.restaurantBranchesAlldataforappList.areaName}
+                            </Text>
+                          </View>
+                        </ImageBackground>
+                      </View>
+                    </TouchableOpacity>
+                  );
+                })
+            : undefined}
         </View>
       </View>
+        {loading === true ? (
+          <View
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              bottom: 0,
+              right: 0,
+              backgroundColor: 'rgba(0, 0, 0, 0)',
+              flex: 1,
+            }}>
+            <DotIndicator color={colors.yellow} size={5} />
+          </View>
+        ) : undefined}
     </View>
   );
 }
