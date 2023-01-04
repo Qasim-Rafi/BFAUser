@@ -482,7 +482,7 @@ const CartDetails = ({ navigation }) => {
                           size={3}
                           color={isThemeDark? colors.yellow: colors.yellow1}
                           margin={[0, 0, 0, 10]}>
-                          $ {v.dishPrice}
+                          $ {v.price}
                         </ResponsiveText>
                       </TouchableOpacity>
                     </View>

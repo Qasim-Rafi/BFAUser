@@ -510,7 +510,7 @@ const [loading, setLoading] = useState(false)
             <View
               style={{
                 flex: 0.2,
-                backgroundColor: colors.bgWhite,
+                backgroundColor:isThemeDark ?colors.black1: colors.bgWhite,
                 justifyContent: 'center',
                 alignItems: 'center',
                 borderTopRightRadius: 7,

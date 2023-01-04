@@ -39,7 +39,7 @@ const InvoiceList = ({ navigation, route }) => {
   React.useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       // do something
-      getData();
+      getData(route.params);
       console.log("useEffect");
     });
 
@@ -128,7 +128,7 @@ if(data.statusName==='Paid'){
     // console.log('obj', obj);
     try {
       setLoading(true)
-      const res = await Api.get(urls.GET_ORDER_BY_ID + route.params);
+      const res = await Api.get(urls.GET_ORDER_BY_ID + id);
       console.log('ree', res);
       if (res && res.success == true) {
         setLoading(false)
@@ -211,7 +211,7 @@ if(data.statusName==='Paid'){
             </View>
 
             <View style={[styles.Container,{backgroundColor: isThemeDark ?  colors.black2: colors.white}]}>
-              {Object.keys(data).length != 0
+              {Object.keys(data).length == 0
                 ? data.addOrderDetail.map(item => {
                   return (
                     <View

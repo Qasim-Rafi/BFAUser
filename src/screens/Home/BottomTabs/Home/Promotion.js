@@ -31,7 +31,14 @@ const Promotion = props => {
   const loading = useSelector(state => state.appReducers.promotions.loading);
   console.log('promotionssssssssssss: ', Promotions);
   const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
+  const key = 'restaurantDishId';
 
+  const filteredData=(data)=>{
+    const arrayUniqueByKey = [...new Map(data.map(item =>
+      [item[key], item])).values()];
+
+      return arrayUniqueByKey
+  }
   return (
     <ScrollView>
       <View style={styles.everyOneFavoriteHeaderSection}>
@@ -51,7 +58,7 @@ const Promotion = props => {
       <View style={styles.everyOneFavoriteItemsSection}>
         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
           {Promotions.length > 0
-            ? Promotions.map((url, index) => {
+            ? filteredData(Promotions).map((url, index) => {
               if (index < 4) {
                 return (
                   <TouchableOpacity

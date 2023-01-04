@@ -460,9 +460,9 @@ function* getJobsNewsSagaApi(data) {
 
   console.log('paramsssssssssss: ', data);
   const url = urls.GET_PROMO_JOBS + index + '/' + limit;
-  console.log('GET_PROMO_JOBS: ', url);
   try {
     const response = yield Api.get(url);
+    console.log('promo jobs response: ', response);
     if (response && response.data != null) {
       yield put({ type: types.GET_PROMO_JOBS_SUCCESS, payload: response.data });
       // navigation.navigate(routeName.Categories,{data:response.data});

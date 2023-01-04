@@ -1,14 +1,11 @@
 import React from 'react';
 import {
-  Image,
   ScrollView,
   StyleSheet,
   View,
   Text,
-  ImageBackground,
   TouchableOpacity,
 } from 'react-native';
-// import LinearGradient from 'react-native-linear-gradient';
 import Icon from '../../../../components/Icon';
 import { globalPath } from '../../../../constants/globalPath';
 
@@ -16,28 +13,12 @@ import ResponsiveText from '../../../../components/RnText';
 import FastImage from 'react-native-fast-image'
 
 import {
-  BallIndicator,
-  BarIndicator,
   DotIndicator,
-  MaterialIndicator,
-  PacmanIndicator,
-  PulseIndicator,
-  SkypeIndicator,
-  UIActivityIndicator,
-  WaveIndicator,
 } from 'react-native-indicators';
-import {
-  advertisementBannerFakeDATA,
-  ourRecommendationFakeDATA,
-} from '../../../../constants/mock';
 import { colors } from '../../../../constants/colorsPallet';
-import SeeAllButton from '../../../../components/SeeAllButton';
 import { routeName } from '../../../../constants/routeName';
 import { hp, wp } from '../../../../helpers/Responsiveness';
 import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { getPromoJobsData } from '../../../../redux/actions/user.actions';
-import { color } from 'react-native-reanimated';
 const JobsList = props => {
 
   const List = useSelector(state => state.appReducers.promoJobs.data);

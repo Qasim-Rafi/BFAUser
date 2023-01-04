@@ -133,7 +133,7 @@ android {
         versionName "1.0"
         multiDexEnabled true
         missingDimensionStrategy 'react-native-camera', 'general'
-    missingDimensionStrategy 'react-native-camera', 'mlkit'
+    // missingDimensionStrategy 'react-native-camera', 'mlkit'
     }
     splits {
         abi {

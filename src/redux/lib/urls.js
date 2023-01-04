@@ -14,7 +14,7 @@ export default urls = {
   PACKAGES_ALL_URL: 'api/Package/GetPackageAll',
   GET_PROFILE_DATA: 'api/Users/GetUser/', //User data by id
   REGISTER_URL: 'api/Auth/Register',
-  RESTAURANT_AWARDS: 'api/RestaurantAwards/GetRestaurantAwardsAll',
+  RESTAURANT_AWARDS: 'api/RestaurantAwards/GetRestaurantAwardsAll',  // Brunei food awards
   CUSINE_URL: 'api/Cusine/GetCusineAll/', //Cusine list
   //help_center
   HELP_CENTER:'api/MoreFromRestaurant/AddUserComplaints',
@@ -26,14 +26,14 @@ export default urls = {
   GET_BFA_PARTNERS: 'api/AdminBFAPartner/GetAdminBFAPartnerAll/24/1/40',
   GET_ADD_BANNER: 'api/HomeAdSlideShowAdmin/GetHomeAdSlideShowAdminAll',
   GET_PROMO_NEWS: 'api/PromoItemNews/GetPromoNewsAdminAllAdmin',
-  GET_PROMO_JOBS: 'api/PromoJobsAdmin/GetPromoJobsAdminAllAdminForapp/',
+  GET_PROMO_JOBS: 'api/PromoJobsAdmin/GetPromoJobsAdminAllAdminForapp/', //promo jobs
   PEOPLE_CHOICE: 'api/PeopleChoice/GetPeopleChoiceAll/', ///people choice
   GET_ALL_WHATSNEW: 'api/RestaurantDish/GetdishWhatsNewAll/', //Whats new
   GET_ALL_PROMOTION: 'api/PromotionlDish/GetPromotionlDishIdAllapp/', //Promostions
   GET_ALL_FAVORITE: 'api/RestaurantDish/GetdishLikedAll/', ///Get favorite list
   // ADD_FAVORITE: 'api/RestaurantDish/UpdateRestaurantDishLiked/',
   REMOVE_fAVOURITE_DISH: 'api/RestaurantDish/UpdateRestaurantDishUnliked/', //unlike dish
-  ADD_FAVORITE_DISH: 'api/RestaurantDish/UpdateRestaurantAndDishLiked/', //LIKE DISHfav
+  ADD_FAVORITE_DISH: 'api/RestaurantDish/UpdateRestaurantAndDishLiked/', //Favorite dish
   GET_ALL_FAVORITE_RESTAURANT:'api/RestaurantAdmin/GetRestaurantLikedAll/',
   GET_RESTAURANT_DETAIL:'api/RestaurantBranchesAdmin/GetRestaurantdetailforAppAlldata/',    //Restaurant detail
   // GET_ALL_FAVORITE_RESTAURANT: 'api/PeopleChoice/GetPeopleChoiceLikedAll/1/10',

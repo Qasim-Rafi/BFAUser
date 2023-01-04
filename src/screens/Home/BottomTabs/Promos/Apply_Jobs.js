@@ -184,7 +184,7 @@ export default function Apply_Jobs({ navigation, route }) {
             </ResponsiveText>
             <ResponsiveText size={4} color={isThemeDark ? colors.grey : colors.black1}>
               {'             '}
-              {data.salaryRange}
+              {data.salaryRange}$
             </ResponsiveText>
           </View>
           <Text

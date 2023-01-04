@@ -72,8 +72,7 @@ export default function AllDishesList({ route, navigation }) {
 
   const key = 'restaurantDishId';
 
-  const arrayUniqueByKey = [...new Map(data.map(item =>
-    [item[key], item])).values()];
+ 
   
   // console.log(arrayUniqueByKey,'arrayUniqueByKey');
   React.useEffect(() => {
@@ -86,6 +85,12 @@ export default function AllDishesList({ route, navigation }) {
     //   data.filter(v => v.cusineName == title),
     // );
   }, []);
+  const filteredData=(data)=>{
+    const arrayUniqueByKey = [...new Map(data.map(item =>
+      [item[key], item])).values()];
+
+      return arrayUniqueByKey
+  }
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={{ marginHorizontal: 8, marginVertical: 10, flex: 1 }}
@@ -263,7 +268,7 @@ export default function AllDishesList({ route, navigation }) {
         stickyHeaderIndices={[0]}
         onEndReached={() => onLoad()}
         onEndReachedThreshold={0.2}
-        data={route.params.id ? data.filter(v => v.cusineName == title) : arrayUniqueByKey}
+        data={route.params.id ?filteredData( data.filter(v => v.cusineName == title)) :filteredData(data) }
         keyExtractor={item => item.id.toString()}
         renderItem={renderItem}
         numColumns={3}

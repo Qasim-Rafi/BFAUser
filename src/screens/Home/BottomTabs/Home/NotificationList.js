@@ -137,7 +137,7 @@ const [isLoading, setLoading] = useState(true)
                   <ResponsiveText size={3} color={isThemeDark ?  colors.white: colors.black}
                   // color={item.remarks=='NewOrder'?colors.white:item.remarks=='Cancled'?colors.red1:item.remarks=='Paid'?colors.blue1:item.remarks=='InProcess'?colors.green1:item.remarks=='Delivered'?colors.yellow: item.remarks=='Served'?colors.yellow:item.remarks=='Billed'?colors.green1:colors.white}
                   >
-                    {item.remarks}
+                    {typeof item.remarks === 'string' || item.remarks instanceof String? item.remarks.split('_').join(' '):null}
                   </ResponsiveText>
                 </View>
                 <View

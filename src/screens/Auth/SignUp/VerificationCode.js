@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {StyleSheet, View, ImageBackground, Platform, Text} from 'react-native';
 import {ScrollView, TouchableOpacity} from 'react-native';
 import {
@@ -25,11 +25,13 @@ import FlashMessage, {
   hideMessage,
 } from 'react-native-flash-message';
 import Icon from '../../../components/Icon';
+import { BarIndicator, SkypeIndicator } from 'react-native-indicators';
 const CELL_COUNT = 6;
 
 export default function VerificationCode({navigation,route}) {
   const [userName, setUserName] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [loading, setLoading] = useState(false)
   const dropdownRef = React.useRef(null);
 
   const isThemeDark = useSelector(state => state.appReducers.setTheme.data)
@@ -57,6 +59,7 @@ export default function VerificationCode({navigation,route}) {
       }else{
 
         dispatch(verifyUser(0, navigation));
+        setLoading(true)
       }
     }
   };
@@ -131,13 +134,17 @@ export default function VerificationCode({navigation,route}) {
             />
           </View>
 
-          <RnButton
-            onPress={() => checkCode()}
-            fontFamily="SemiBold"
-            margin={[20, 0]}
-            title="Continue"
-          />
+           <TouchableOpacity style={styles.signin} onPress={() => checkCode()}>
+              {loading == true ? (
+                <SkypeIndicator count={5} color={colors.black} size={30} />
+              ) : (
+                <ResponsiveText color={colors.black} size={4}>
+                  Continue
+                </ResponsiveText>
+              )}
+            </TouchableOpacity>
         </View>
+      
       </ImageBackground>
       <FlashMessage ref={dropdownRef} />
     </ScrollView>
@@ -158,6 +165,16 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     paddingBottom: wp(10),
     padding: wp(5),
+  },
+  signin: {
+    backgroundColor: colors.yellow,
+    width: wp(80),
+    height: hp(6),
+    borderRadius: 7,
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+    marginTop:hp(8)
   },
   formArea: {
     flex: 0.77,

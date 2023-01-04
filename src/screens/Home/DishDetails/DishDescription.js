@@ -97,7 +97,7 @@ export default function DishDescription(props) {
           borderTopStartRadius:15,
           borderTopEndRadius:15
         }}>
-        <TouchableOpacity
+        <TouchableOpacity disabled={props.item.titleA}
           style={{alignItems: 'center'}}
           onPress={() => {
             if (

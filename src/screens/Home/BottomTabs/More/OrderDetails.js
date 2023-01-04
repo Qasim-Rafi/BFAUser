@@ -150,7 +150,7 @@ export default function OrderDetails({navigation, route}) {
                 </View>
                 <View style={{ flex: 0.3, justifyContent: 'center' }}>
                   <ResponsiveText size={3} margin={[0, 0, 0, 28]} color={isThemeDark ? colors.white : colors.black3}>
-                    $ {parseFloat(item.dishPrice*item.quantity).toFixed(2)}
+                    $ {parseFloat(item.price*item.quantity).toFixed(2)}
                   </ResponsiveText>
                 </View>
               </View>
@@ -313,7 +313,7 @@ export default function OrderDetails({navigation, route}) {
           </View>
           <View style={{ flex: 0.55, alignItems: 'flex-end' }}>
             <ResponsiveText margin={[0, 0, 0, 0]} color={isThemeDark ? colors.yellow : colors.black3} size={3}>
-              ${data ? parseFloat(data.amount).toFixed(2) : 'amount'}
+              ${data ? parseFloat(data.itemTotalPrice).toFixed(2) : 'amount'}
             </ResponsiveText>
           </View>
         </View>
@@ -355,7 +355,7 @@ export default function OrderDetails({navigation, route}) {
               margin={[0, 0, 0, 0]}
               color={isThemeDark ? colors.yellow : colors.black3}
               size={4.5}>
-              ${data ? parseFloat(data.amount).toFixed(2) : 'amount'}
+              ${data ? parseFloat(data.tip+data.amount).toFixed(2) : 'amount'}
             </ResponsiveText>
           </View>
         </View>
