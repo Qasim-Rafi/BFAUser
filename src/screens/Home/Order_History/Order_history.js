@@ -51,17 +51,17 @@ const Order_history = ({navigation}) => {
     let interval = null;
     dispatch(getOrdersHistory());
 
-    const subscribe = navigation.addListener('focus', e => {
-      interval = setInterval(() => {
-        dispatch(getOrdersHistory());
-        console.log('focusss');
-      }, 5000);
-    });
+    // const subscribe = navigation.addListener('focus', e => {
+    //   interval = setInterval(() => {
+    //     dispatch(getOrdersHistory());
+    //     console.log('focusss');
+    //   }, 5000);
+    // });
 
-    const unsubscribe = navigation.addListener('blur', e => {
-      clearInterval(interval);
-      console.log('blurrrrrr');
-    });
+    // const unsubscribe = navigation.addListener('blur', e => {
+    //   clearInterval(interval);
+    //   console.log('blurrrrrr');
+    // });
   }, [navigation]);
   const submitOrder = async Item => {
     // var userId = await AsyncStorage.getItem('@userId');
@@ -258,7 +258,7 @@ const Order_history = ({navigation}) => {
         </View>
         )}
       </View>
-      {/* {Refreshing ==false?  <View
+      {Refreshing ?  <View
           style={{
             position: 'absolute',
             top: 0,
@@ -269,7 +269,7 @@ const Order_history = ({navigation}) => {
             flex: 1,
           }}>
           <BarIndicator color={colors.yellow} size={45} />
-        </View> : undefined} */}
+        </View> : undefined}
         </View>
     </SafeAreaView>
   );
