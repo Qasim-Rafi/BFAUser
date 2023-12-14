@@ -7,7 +7,7 @@ import {
   View,
   TouchableOpacity,
   SafeAreaView,
-  FlatList
+  FlatList,
 } from 'react-native';
 import {
   BallIndicator,
@@ -93,184 +93,193 @@ const Order_history = ({navigation}) => {
           flex: 1,
           backgroundColor: isThemeDark ? colors.black3 : colors.bgWhite,
         }}>
-          <View
-        style={{
-          flex: 0.1,
-          justifyContent: 'center',
-          backgroundColor: isThemeDark ? colors.black1 : colors.white,
-        }}>
-        <Header navigation={navigation} />
-      </View>
-      <View  style={{ flex: 1, marginHorizontal: 10}}>
-      <View
+        <View
           style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginTop: 10,
+            flex: 0.1,
+            justifyContent: 'center',
+            backgroundColor: isThemeDark ? colors.black1 : colors.white,
           }}>
-          <ResponsiveText color={isThemeDark ? colors.white : colors.black}>
-            My Order{' '}
-          </ResponsiveText>
-          <ResponsiveText size={wp(0.9)} color={colors.grey}>
-            orders({orderList.length}){' '}
-          </ResponsiveText>
+          <Header navigation={navigation} />
         </View>
-        {orderList.length > 0 ? (
-          <FlatList
-            // contentContainerStyle={{ alignItems: "center" }}
-            // ListHeaderComponent={listHeader}
-            //  stickyHeaderIndices={[0]}
-            // onEndReached={() => onLoad(index, 10)}
-            onEndReachedThreshold={0.2}
-             refreshing={Refreshing}
-            // onRefresh={() => update()}
-            data={orderList}
-            // numColumns={1}
-            // keyExtractor={(item) => item.id.toString()}
-            renderItem={({item}) => {
-              return (
-                <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate(routeName.ORDER_DETAILS, {data: item})
-                }>
-                <View
-                  style={{
-                    backgroundColor: isThemeDark ? colors.black1 : colors.white,
-                    height: hp(10),
-                    borderRadius: 5,
-                    alignItems: 'center',
-                    marginTop: 10,
-                    paddingHorizontal: 5,
-                    flexDirection: 'row',
-                  }}>
-                  <View>
-                    <Icon
-                      borderRadius={7}
-                      source={{uri: item.restaurantLogo}}
-                      size={60}
-                    />
-                  </View>
-                  <View style={{marginTop: '2%', marginLeft: '2%'}}>
+        <View style={{flex: 1, marginHorizontal: 10}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginTop: 10,
+            }}>
+            <ResponsiveText color={isThemeDark ? colors.white : colors.black}>
+              My Order{' '}
+            </ResponsiveText>
+            <ResponsiveText size={wp(0.9)} color={colors.grey}>
+              orders({orderList.length}){' '}
+            </ResponsiveText>
+          </View>
+          {orderList.length > 0 ? (
+            <FlatList
+              // contentContainerStyle={{ alignItems: "center" }}
+              // ListHeaderComponent={listHeader}
+              //  stickyHeaderIndices={[0]}
+              // onEndReached={() => onLoad(index, 10)}
+              onEndReachedThreshold={0.2}
+              refreshing={Refreshing}
+              // onRefresh={() => update()}
+              data={orderList}
+              // numColumns={1}
+              // keyExtractor={(item) => item.id.toString()}
+              renderItem={({item}) => {
+                return (
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate(routeName.ORDER_DETAILS, {data: item})
+                    }>
                     <View
                       style={{
+                        backgroundColor: isThemeDark
+                          ? colors.black1
+                          : colors.white,
+                        height: hp(10),
+                        borderRadius: 5,
+                        alignItems: 'center',
+                        marginTop: 10,
+                        paddingHorizontal: 5,
                         flexDirection: 'row',
-                        justifyContent: 'space-between',
                       }}>
-                      <ResponsiveText
-                        color={isThemeDark ? colors.white : colors.black}>
-                        {item.restaurantName}
-                      </ResponsiveText>
-                      <ResponsiveText color={colors.yellow}>
-                        ${parseFloat(item.amount).toFixed(2)}
-                        {/* ${item.amount} */}
-                      </ResponsiveText>
-                    </View>
-                    <View style={{flexDirection: 'row'}}>
-                      <ResponsiveText size={2.1} color={colors.yellow}>
-                        Order iD:
-                      </ResponsiveText>
-                      <ResponsiveText size={2.1} color={colors.yellow}>
-                        {item.id}
-                      </ResponsiveText>
-                    </View>
-                    <View
-                      style={{
-                        flexDirection: 'row',
-                        width: wp(68),
-                        alignItems: 'baseline',
-                        justifyContent: 'space-between',
-                      }}>
-                      <View style={{flexDirection: 'row'}}>
-                        <ResponsiveText size={2.5} color={colors.grey}>
-                          Items :
-                        </ResponsiveText>
-                        <Text
-                          style={{
-                            color: isThemeDark ? colors.white : colors.black,
-                            fontSize: 10,
-                            marginLeft: 2,
-                          }}>
-                          {item.addOrderDetail.length}
-                        </Text>
-                      </View>
-                      <View style={{flexDirection: 'row', marginLeft: 20}}>
-                        <ResponsiveText size={2.5} color={colors.grey}>
-                          Status:{' '}
-                        </ResponsiveText>
-                        <ResponsiveText
-                          size={2.5}
-                          color={
-                            item.statusName == 'Cancled'
-                              ? colors.red1
-                              : item.statusName == 'Paid'
-                              ? colors.blue1
-                              : item.statusName == 'InProcess'
-                              ? colors.green1
-                              : item.statusName == 'Delivered'
-                              ? colors.yellow
-                              : item.statusName == 'Served'
-                              ? colors.yellow
-                              : item.statusName == 'Billed'
-                              ? colors.green1
-                              : colors.bgWhite
-                          }>
-                          {item.statusName}
-                        </ResponsiveText>
-                      </View>
                       <View>
-                        {item.statusName == 'Paid' ? (
-                          <TouchableOpacity
-                            onPress={() => submitOrder(item)}
-                            style={{
-                              backgroundColor: colors.yellow,
-                              padding: 3,
-                              borderRadius: 3,
-                            }}>
-                            <ResponsiveText size={2.5}>
-                              {' '}
-                              Repeat Order
+                        <Icon
+                          borderRadius={7}
+                          source={{uri: item.restaurantLogo}}
+                          size={60}
+                        />
+                      </View>
+                      <View style={{marginTop: '2%', marginLeft: '2%'}}>
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                          }}>
+                          <ResponsiveText
+                            color={isThemeDark ? colors.white : colors.black}>
+                            {item.restaurantName}
+                          </ResponsiveText>
+                          <ResponsiveText color={colors.yellow}>
+                            ${parseFloat(item.amount).toFixed(2)}
+                            {/* ${item.amount} */}
+                          </ResponsiveText>
+                        </View>
+                        <View style={{flexDirection: 'row'}}>
+                          <ResponsiveText size={2.1} color={colors.yellow}>
+                            Order iD:
+                          </ResponsiveText>
+                          <ResponsiveText size={2.1} color={colors.yellow}>
+                            {item.id}
+                          </ResponsiveText>
+                        </View>
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            width: wp(68),
+                            alignItems: 'baseline',
+                            justifyContent: 'space-between',
+                          }}>
+                          <View style={{flexDirection: 'row'}}>
+                            <ResponsiveText size={2.5} color={colors.grey}>
+                              Items :
                             </ResponsiveText>
-                          </TouchableOpacity>
-                        ) : null}
+                            <Text
+                              style={{
+                                color: isThemeDark
+                                  ? colors.white
+                                  : colors.black,
+                                fontSize: 10,
+                                marginLeft: 2,
+                              }}>
+                              {item.addOrderDetail.length}
+                            </Text>
+                          </View>
+                          <View style={{flexDirection: 'row', marginLeft: 20}}>
+                            <ResponsiveText size={2.5} color={colors.grey}>
+                              Status:{' '}
+                            </ResponsiveText>
+                            <ResponsiveText
+                              size={2.5}
+                              color={
+                                item.statusName == 'Cancled'
+                                  ? colors.red1
+                                  : item.statusName == 'Paid'
+                                  ? colors.blue1
+                                  : item.statusName == 'InProcess'
+                                  ? colors.green1
+                                  : item.statusName == 'Delivered'
+                                  ? colors.yellow
+                                  : item.statusName == 'Served'
+                                  ? colors.yellow
+                                  : item.statusName == 'Billed'
+                                  ? colors.green1
+                                  : colors.bgWhite
+                              }>
+                              {item.statusName}
+                            </ResponsiveText>
+                          </View>
+                          <View>
+                            {item.statusName == 'Paid' ? (
+                              <TouchableOpacity
+                                onPress={() => submitOrder(item)}
+                                style={{
+                                  backgroundColor: colors.yellow,
+                                  padding: 3,
+                                  borderRadius: 3,
+                                }}>
+                                <ResponsiveText size={2.5}>
+                                  {' '}
+                                  Repeat Order
+                                </ResponsiveText>
+                              </TouchableOpacity>
+                            ) : null}
+                          </View>
+                        </View>
                       </View>
                     </View>
-                  </View>
-                </View>
-              </TouchableOpacity>
-              );
-            }}
-          />
-        ) : (
+                  </TouchableOpacity>
+                );
+              }}
+            />
+          ) : (
+            <View
+              style={{
+                width: wp(100),
+                marginTop: 100,
+                alignItems: 'center',
+                alignSelf: 'center',
+              }}>
+              <Icon
+                borderColor={colors.yellow}
+                borderWidth={0}
+                borderRadius={0}
+                size={250}
+                source={globalPath.NORECORD_ICON}
+              />
+            </View>
+          )}
+        </View>
+        {Refreshing ? (
           <View
-          style={{
-            width: wp(100),
-            marginTop: 100,
-            alignItems: 'center',
-            alignSelf: 'center',
-          }}>
-          <Icon
-            borderColor={colors.yellow}
-            borderWidth={0}
-            borderRadius={0}
-            size={250}
-            source={globalPath.NORECORD_ICON}
-          />
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              bottom: 0,
+              right: 0,
+              backgroundColor: 'rgba(65, 65, 65, 0.4)',
+              flex: 1,
+            }}>
+            <BarIndicator color={colors.yellow} size={45} />
+          </View>
+        ) : undefined}
+        <View style={{height:hp(1)}}>
+
         </View>
-        )}
       </View>
-      {Refreshing ?  <View
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            bottom: 0,
-            right: 0,
-            backgroundColor: 'rgba(65, 65, 65, 0.4)',
-            flex: 1,
-          }}>
-          <BarIndicator color={colors.yellow} size={45} />
-        </View> : undefined}
-        </View>
     </SafeAreaView>
   );
 };

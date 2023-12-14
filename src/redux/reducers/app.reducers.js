@@ -1270,11 +1270,15 @@ export const appReducers = (state = initialState, action) => {
         },
       };
     case types.GET_ORDERS_HISTORY_SUCCESS:
+      const key = 'id';
+
+      const arrayUniqueByKey = [...new Map([...action.payload, ...state.orderHistory.data].map(item =>
+        [item[key], item])).values()];
       return {
         ...state,
         orderHistory: {
           ...state.orderHistory,
-          data: action.payload,
+          data: arrayUniqueByKey,
           loading: false,
         },
       };
